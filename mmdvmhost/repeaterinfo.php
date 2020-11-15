@@ -180,25 +180,25 @@ require_once($_SERVER['DOCUMENT_ROOT'].'/config/ircddblocal.php');
 		    $dmrMasterHost5Tooltip = $dmrMasterHost5;
 		}
 		if (strlen($xlxMasterHost1) > 25) {
-		    $xlxMasterHost1 = substr($xlxMasterHost1, 0, 17) . '..';
+		    $xlxMasterHost1 = substr($xlxMasterHost1, 0, 23) . '..';
 		}
 		if (strlen($dmrMasterHost1) > 25) {
-		    $dmrMasterHost1 = substr($dmrMasterHost1, 0, 17) . '..';
+		    $dmrMasterHost1 = substr($dmrMasterHost1, 0, 23) . '..';
 		}
 		if (strlen($dmrMasterHost2) > 25) {
-		    $dmrMasterHost2 = substr($dmrMasterHost2, 0, 17) . '..';
+		    $dmrMasterHost2 = substr($dmrMasterHost2, 0, 23) . '..';
 		}
 		if (strlen($dmrMasterHost3) > 25) {
-		    $dmrMasterHost3 = substr($dmrMasterHost3, 0, 17) . '..';
+		    $dmrMasterHost3 = substr($dmrMasterHost3, 0, 23) . '..';
 		}
 		if (isset($dmrMasterHost4)) {
 		    if (strlen($dmrMasterHost4) > 25) {
-			$dmrMasterHost4 = substr($dmrMasterHost4, 0, 17) . '..';
+			$dmrMasterHost4 = substr($dmrMasterHost4, 0, 23) . '..';
 		    }
 		}
 		if (isset($dmrMasterHost5)) {
 		    if (strlen($dmrMasterHost5) > 25) {
-			$dmrMasterHost5 = substr($dmrMasterHost5, 0, 17) . '..';
+			$dmrMasterHost5 = substr($dmrMasterHost5, 0, 23) . '..';
 		    }
 		}
 	    }
@@ -213,8 +213,8 @@ require_once($_SERVER['DOCUMENT_ROOT'].'/config/ircddblocal.php');
 		    }
 		}
 		$dmrMasterHostTooltip = $dmrMasterHost;
-		if (strlen($dmrMasterHost) > 19) {
-		    $dmrMasterHost = substr($dmrMasterHost, 0, 17) . '..';
+		if (strlen($dmrMasterHost) > 25) {
+		    $dmrMasterHost = substr($dmrMasterHost, 0, 23) . '..';
 		}
 	    }
 	    fclose($dmrMasterFile);
@@ -322,13 +322,13 @@ require_once($_SERVER['DOCUMENT_ROOT'].'/config/ircddblocal.php');
 		
 		if ($ysfLinkedToTxt != "null") {
 		    //$ysfLinkedToTxt = "Room: ".$ysfLinkedToTxt;
-		    $ysfLinkState = ' [Room]';
-		    $ysfLinkStateTooltip = 'Room: ';
+		    $ysfLinkState = ' [In Room]';
+		    $ysfLinkStateTooltip = 'In Room: ';
 		}
 		else {
 		    //$ysfLinkedToTxt = "Linked to: ".$ysfLinkedTo;
 		    $ysfLinkedToTxt = $ysfLinkedTo;
-		    $ysfLinkState = ' [Lnkd]';
+		    $ysfLinkState = ' [Linked]';
 		    $ysfLinkStateTooltip = 'Linked to ';
 		}
 		
@@ -336,8 +336,8 @@ require_once($_SERVER['DOCUMENT_ROOT'].'/config/ircddblocal.php');
             }
 	    
 	    $ysfLinkedToTooltip = $ysfLinkStateTooltip.$ysfLinkedToTxt;
-            if (strlen($ysfLinkedToTxt) > 19) {
-		$ysfLinkedToTxt = substr($ysfLinkedToTxt, 0, 17) . '..';
+            if (strlen($ysfLinkedToTxt) > 25) {
+		$ysfLinkedToTxt = substr($ysfLinkedToTxt, 0, 23) . '..';
 	    }
             echo "<br />\n";
             echo "<table>\n";
@@ -363,8 +363,8 @@ require_once($_SERVER['DOCUMENT_ROOT'].'/config/ircddblocal.php');
                 }
             }
 	    $dmrMasterHostTooltip = $dmrMasterHost;
-            if (strlen($dmrMasterHost) > 19) {
-		$dmrMasterHost = substr($dmrMasterHost, 0, 17) . '..';
+            if (strlen($dmrMasterHost) > 25) {
+		$dmrMasterHost = substr($dmrMasterHost, 0, 23) . '..';
 	    }
             fclose($dmrMasterFile);
 	    
@@ -428,8 +428,8 @@ require_once($_SERVER['DOCUMENT_ROOT'].'/config/ircddblocal.php');
 	    if (isset($_SESSION['DAPNETGatewayConfigs']['DAPNET']['Address'])) {
 		$dapnetGatewayRemoteAddr = $_SESSION['DAPNETGatewayConfigs']['DAPNET']['Address'];
 	        $dapnetGatewayRemoteTooltip = $dapnetGatewayRemoteAddr;
-		if (strlen($dapnetGatewayRemoteAddr) > 19) {
-		    $dapnetGatewayRemoteAddr = substr($dapnetGatewayRemoteAddr, 0, 17) . '..';
+		if (strlen($dapnetGatewayRemoteAddr) > 25) {
+		    $dapnetGatewayRemoteAddr = substr($dapnetGatewayRemoteAddr, 0, 23) . '..';
 		}
 		echo "<tr><th colspan=\"2\">POCSAG Master</th></tr>\n";
 		echo "<tr><td colspan=\"2\"style=\"background: #ffffff;\" title=\"".$dapnetGatewayRemoteTooltip."\">".$dapnetGatewayRemoteAddr."</td></tr>\n";
