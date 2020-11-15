@@ -14,7 +14,7 @@ I offer ZERO support. This is here for your hacking and enjoyment.
         rpi-rw
 3. Run:
 
-        curl https://repo.cucc.io/Chipster/W0CHP-PiStar-Install/raw/master/W0CHP-pistar -o W0CHP-pistar
+        curl https://repo.w0chp.net/Chipster/W0CHP-PiStar-Install/raw/master/W0CHP-pistar -o W0CHP-pistar
 4. Run:
 
         sudo bash ./W0CHP-pistar -h
@@ -39,7 +39,7 @@ I offer ZERO support. This is here for your hacking and enjoyment.
 
 ## Screenshots
 
-![alt text](http://techdocs.cuccio.us/W0CHP-Dash.png "Screenshot Green")
+![alt text](https://w0chp.net/img/W0CHP-Dash.png "Screenshot Green")
 
-![alt text](http://techdocs.cuccio.us/W0CHP-Dash_1.png "Screenshot Blue")
+![alt text](https://w0chp.net/img/W0CHP-Dash_1.png "Screenshot Blue")
 
