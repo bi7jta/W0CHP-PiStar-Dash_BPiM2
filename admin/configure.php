@@ -1673,7 +1673,10 @@ $MYCALL=strtoupper($callsign);
 		    if (empty($_POST['nxdnNetHangTime']) != TRUE ) {
 			$configmmdvm['NXDN Network']['ModeHang'] = preg_replace('/[^0-9]/', '', $_POST['nxdnNetHangTime']);
 		    }
-		    
+		    // Set POCSAG Hang Timer
+		    if (empty($_POST['POCSAGNetHangTime']) != TRUE ) {
+			$configmmdvm['POCSAG Network']['ModeHang'] = preg_replace('/[^0-9]/', '', $_POST['POCSAGNetHangTime']);
+		    }
 		    // Set the hardware type
 		    if (empty($_POST['confHardware']) != TRUE ) {
 			$confHardware = escapeshellcmd($_POST['confHardware']);
@@ -3039,7 +3042,7 @@ $MYCALL=strtoupper($callsign);
 					    echo "<td align=\"left\"><div class=\"switch\"><input id=\"toggle-pocsag\" class=\"toggle toggle-round-flat\" type=\"checkbox\" name=\"MMDVMModePOCSAG\" value=\"ON\" /><label for=\"toggle-pocsag\"></label></div></td>\n";
 					}
 					?>
-					<td>POCSAG Paging Features</td>
+					<td>Net Hangtime: <input type="text" name="POCSAGNetHangTime" size="7" maxlength="3" value="<?php if (isset($configmmdvm['POCSAG Network']['ModeHang'])) { echo $configmmdvm['POCSAG Network']['ModeHang']; } else { echo "5"; } ?>"></td>
 				    </tr>
 				<?php } ?>
 				<tr>
