@@ -1674,8 +1674,8 @@ $MYCALL=strtoupper($callsign);
 			$configmmdvm['NXDN Network']['ModeHang'] = preg_replace('/[^0-9]/', '', $_POST['nxdnNetHangTime']);
 		    }
 		    // Set POCSAG Hang Timer
-		    if (empty($_POST['POCSAGNetHangTime']) != TRUE ) {
-			$configmmdvm['POCSAG Network']['ModeHang'] = preg_replace('/[^0-9]/', '', $_POST['POCSAGNetHangTime']);
+		    if (empty($_POST['POCSAGHangTime']) != TRUE ) {
+			$configmmdvm['POCSAG Network']['ModeHang'] = preg_replace('/[^0-9]/', '', $_POST['POCSAGHangTime']);
 		    }
 		    // Set the hardware type
 		    if (empty($_POST['confHardware']) != TRUE ) {
@@ -2655,7 +2655,6 @@ $MYCALL=strtoupper($callsign);
 		    if (!isset($configmmdvm['POCSAG Network']['GatewayPort'])) { $configmmdvm['POCSAG Network']['GatewayPort'] = "4800"; }
 		    if (!isset($configmmdvm['POCSAG Network']['ModeHang'])) { $configmmdvm['POCSAG Network']['ModeHang'] = "5"; }
 		    if (!isset($configmmdvm['POCSAG Network']['Debug'])) { $configmmdvm['POCSAG Network']['Debug'] = "0"; }
-		    if (!isset($configmmdvm['POCSAG Network']['ModeHang'])) { $configmmdvm['POCSAG Network']['ModeHang'] = "5"; }
 		    
 		    // Create the hostfiles.nodextra file if required
 		    if (empty($_POST['confHostFilesNoDExtra']) != TRUE ) {
@@ -3042,7 +3041,7 @@ $MYCALL=strtoupper($callsign);
 					    echo "<td align=\"left\"><div class=\"switch\"><input id=\"toggle-pocsag\" class=\"toggle toggle-round-flat\" type=\"checkbox\" name=\"MMDVMModePOCSAG\" value=\"ON\" /><label for=\"toggle-pocsag\"></label></div></td>\n";
 					}
 					?>
-					<td>Net Hangtime: <input type="text" name="POCSAGNetHangTime" size="7" maxlength="3" value="<?php if (isset($configmmdvm['POCSAG Network']['ModeHang'])) { echo $configmmdvm['POCSAG Network']['ModeHang']; } else { echo "5"; } ?>"></td>
+					<td>POCSAG Mode Hangtime: <input type="text" name="POCSAGHangTime" size="7" maxlength="3" value="<?php if (isset($configmmdvm['POCSAG Network']['ModeHang'])) { echo $configmmdvm['POCSAG Network']['ModeHang']; } else { echo "5"; } ?>"></td>
 				    </tr>
 				<?php } ?>
 				<tr>
