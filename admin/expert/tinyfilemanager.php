@@ -15,7 +15,7 @@ require($fm_auth_file); // Auth file: /etc/tinyfilemanager-auth.php
  */
 
 //TFM version
-define('VERSION', '2.4.1-Pi_Star-f1rmb');
+define('VERSION', 'Pi-Star_W0CHP');
 
 //Application Title
 define('APP_TITLE', 'Tiny File Manager');
