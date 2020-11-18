@@ -379,19 +379,10 @@ checkSessionValidity();
 	</div>
 	
 	<div class="footer">
-	    <?php if ($_SERVER["PHP_SELF"] == "/admin/index.php") {
-		echo 'Pi-Star web config, &copy; Andy Taylor (MW0MWZ) 2014-'.date("Y").'<br />'."\n";
-		echo 'Need help? Click <a style="color: #ffffff;" href="https://www.facebook.com/groups/pistarusergroup/" target="_new">here for the Support Group</a><br />'."\n";
-		echo 'or Click <a style="color: #ffffff;" href="https://forum.pistar.uk/" target="_new">here to join the Support Forum</a><br />'."\n";
-	    }
-	    else {
+	   <?php 
 		echo 'Pi-Star / Pi-Star Dashboard, &copy; Andy Taylor (MW0MWZ) 2014-'.date("Y").'<br />'."\n";
-		echo 'ircDDBGateway Dashboard by Hans-J. Barthen (DL5DI),<br />'."\n";
-		echo 'MMDVMDash developed by Kim Huebel (DG9VH), <br />'."\n";
-		echo 'Need help? Click <a style="color: #ffffff;" href="https://www.facebook.com/groups/pistarusergroup/" target="_new">here for the Facebook Group</a><br />'."\n";
-		echo 'or Click <a style="color: #ffffff;" href="https://forum.pistar.uk/" target="_new">here to join the Support Forum</a><br />'."\n";
-		echo 'Get your copy of Pi-Star from <a style="color: #ffffff;" href="http://www.pistar.uk/downloads/" target="_new">here</a>.<br />'."\n";
-	    } ?>
+		echo '<a href="https://repo.w0chp.net/Chipster/W0CHP-PiStar-Dash" style="color: #ffffff;">W0CHP-PiStar_Dash</a> enhancements by W0CHP';
+	   ?>
 	</div>
 	
 	</div>
