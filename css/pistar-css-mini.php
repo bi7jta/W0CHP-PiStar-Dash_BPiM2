@@ -14,7 +14,7 @@ include_once('css-base.php');
 }
 
 body, font {
-    font: 12px verdana,arial,sans-serif;
+    font: 16px sans-serif;
     color: #ffffff;
     -webkit-text-size-adjust: none;
     -moz-text-size-adjust: none;
@@ -26,7 +26,7 @@ body, font {
     background : <?php echo $backgroundBanners; ?>;
     text-decoration : none;
     color : <?php echo $textBanners; ?>;
-    font-family : verdana, arial, sans-serif;
+    font-family : sans-serif;
     text-align : left;
     padding : 5px 0px 5px 0px;
     border-radius: 10px 10px 0 0;
@@ -44,6 +44,10 @@ body, font {
     background : <?php echo $backgroundNavPanel; ?>;
     font-weight : normal;
     min-height : 100%;
+}
+
+#hwInfo {
+    display: none;
 }
 
 .content {
@@ -64,7 +68,7 @@ body, font {
 
 .contentwide h2 {
     color: #<?php echo $textContent; ?>;
-    font: 1em verdana,arial,sans-serif;
+    font: 1em sans-serif;
     text-align: center;
     font-weight: bold;
     padding: 0px;
@@ -75,7 +79,7 @@ body, font {
     background : <?php echo $backgroundBanners; ?>;
     text-decoration : none;
     color : <?php echo $textBanners; ?>;
-    font-family : verdana, arial, sans-serif;
+    font-family : sans-serif;
     font-size : 9px;
     text-align : center;
     padding : 10px 0 10px 0;
@@ -111,13 +115,13 @@ table {
     text-decoration: none;
     color: #ffffff;
     background: #000000;
-    font-family: verdana,arial,sans-serif;
+    font-family: sans-serif;
     width: 100%;
     white-space: nowrap;
 }
 
 table th {
-    font-family: "Lucidia Console",Monaco,monospace;
+    font-family: monospace;
     text-shadow: 1px 1px <?php echo $tableHeadDropShaddow; ?>;
     text-decoration: none;
     color : <?php echo $textBanners; ?>;
@@ -135,7 +139,7 @@ table tr:nth-child(odd) {
 
 table td {
     color: #000000;
-    font-family: "Lucidia Console",Monaco,monospace;
+    font-family: monospace;
     text-decoration: none;
     border: 1px solid #000000;
     overflow-x: hidden;
@@ -188,7 +192,7 @@ a.tooltip:hover span {
     color: #000000;
     border:1px solid #000000;
     background: #f7f7f7;
-    font: 12px Verdana, sans-serif; 
+    font: 12px sans-serif; 
     text-align: left;
 }
 
@@ -239,7 +243,7 @@ a.tooltip2:hover span {
     color: #000000;
     border:1px solid #000000;
     background: #f7f7f7;
-    font: 12px Verdana, sans-serif; 
+    font: 12px sans-serif; 
     text-align: left;
 }
 
@@ -380,7 +384,7 @@ input.toggle-round-flat:focus + label {
 /* Links inside the navbar */
 .navbar a {
     float: right;
-    font-family : verdana, arial, sans-serif;
+    font-family : sans-serif;
     font-size: 14px;
     color: <?php echo $textNavbar; ?>;
     text-align: center;
@@ -458,7 +462,7 @@ input.toggle-round-flat:focus + label {
     padding: 0;
     display: inline-block;
     padding: 1px 10px;
-    font-family : verdana, arial, sans-serif;
+    font-family : sans-serif;
     font-size: 14px;
     color: <?php echo $textNavbar; ?>;
     text-align: center;
@@ -689,11 +693,13 @@ input.toggle-round-flat:focus + label {
     background: <?php echo $backgroundModeCellInactiveColor; ?>;
 }
 
+/*
 .table-container {
     position: relative;
     overflow: auto;
     max-height: 255px;
 }
+*/
 
 /* Tame Firefox Buttons */
 /*
@@ -703,7 +709,7 @@ input.toggle-round-flat:focus + label {
         margin : 0;
         padding : 0;
         border-width : 1px;
-        font : 12px verdana,arial,sans-serif;
+        font : 12px sans-serif;
     }
     input[type="button"], button, input[type="submit"] {
         padding : 0px 3px 0px 3px;
