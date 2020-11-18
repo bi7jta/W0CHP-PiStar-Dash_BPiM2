@@ -92,7 +92,7 @@ require_once($_SERVER['DOCUMENT_ROOT'].'/config/ircddblocal.php');
         	    echo "<td style=\"background:#c9f;\">Listening: NXDN</td>";
         	}
 		else if (getActualMode($lastHeard, $_SESSION['MMDVMHostConfigs']) === 'POCSAG') {
-        	    echo "<td style=\"color:#fff; background:#f33; font-weight:bold\">TX: POCSAG</td>";
+        	    echo "<td style=\"color:#fff; background:#f33; font-weight:bold\">POCSAG Activity</td>";
         	}
         	else {
         	    echo "<td>".getActualMode($lastHeard, $_SESSION['MMDVMHostConfigs'])."</td>";
