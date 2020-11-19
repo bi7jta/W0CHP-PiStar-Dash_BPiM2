@@ -66,6 +66,7 @@ sudo bash ./W0CHP-pistar -id
     This means that if you want your previous custom CSS applied the W0CHP dashboard, you will need to manually
     customize your colors; You can reference the color values you had previously used, by viewing the backup file of
     your custom CSS...
+
 ```text
     /etc/.pistar-css.ini.user
 ```
