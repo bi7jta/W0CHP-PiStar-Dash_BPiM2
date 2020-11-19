@@ -2,7 +2,7 @@
 include_once('css-base.php');
 ?>
 
-@import url('https://fonts.googleapis.com/css2?family=Source+Code+Pro:ital,wght@0,400;0,500;0,600;0,700;1,500;1,600;1,700&family=Source+Sans+Pro:ital,wght@0,400;0,600;0,700;1,400;1,600;1,700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Inconsolata:ital,wght@0,400;0,500;0,600;0,700;1,500;1,600;1,700&family=Source+Sans+Pro:ital,wght@0,400;0,600;0,700;1,400;1,600;1,700&display=swap');
 
 .container {
     width: 98%;
@@ -17,7 +17,7 @@ include_once('css-base.php');
 }
 
 body, font {
-    font: 15px 'Source Sans Pro', sans-serif;
+    font: 17px 'Source Sans Pro', sans-serif;
     color: #ffffff;
     -webkit-text-size-adjust: none;
     -moz-text-size-adjust: none;
@@ -119,7 +119,7 @@ table {
 }
 
 table th {
-    font-family: 'Source Code Pro', monospace;
+    font-family: 'Inconsolata', monospace;
     font-weight: 700;
     text-shadow: 1px 1px <?php echo $tableHeadDropShaddow; ?>;
     text-decoration: none;
@@ -138,8 +138,8 @@ table tr:nth-child(odd) {
 
 table td {
     color: #000000;
-    font-family: 'Source Code Pro', monospace;
-    font-weight: 500;
+    font-family: 'Inconsolata', monospace;
+    font-weight: 600;
     text-decoration: none;
     border: 1px solid #000000;
 }
