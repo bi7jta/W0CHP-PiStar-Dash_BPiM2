@@ -2,7 +2,7 @@
 include_once('css-base.php');
 ?>
 
-@import url('https://fonts.googleapis.com/css2?family=Source+Code+Pro:ital,wght@0,400;0,500;0,700;1,400;1,500;1,700&family=Source+Sans+Pro:ital,wght@0,400;0,700;1,400;1,700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Source+Code+Pro:ital,wght@0,400;0,500;0,600;0,700;1,500;1,600;1,700&family=Source+Sans+Pro:ital,wght@0,400;0,600;0,700;1,400;1,600;1,700&display=swap');
 
 .container {
     width: 98%;
@@ -24,33 +24,6 @@ body, font {
     -ms-text-size-adjust: none;
     text-size-adjust: none;
 }
-/*
-.blink_me {
-  animation: blinker 1s linear infinite;
-}
-
-@keyframes blinker {
-  50% {
-      opacity: 0;
-        }
-}
-*/
-
-/*
-@keyframes blink {  
-  0% { color: white; }
-  100% { color: black; }
-}
-@-webkit-keyframes blink {
-  0% { color: white; }
-  100% { color: black; }
-}
-.blink_me {
-  -webkit-animation: blink 1s linear infinite;
-  -moz-animation: blink 1s linear infinite;
-  animation: blink 1s linear infinite;
-} 
-*/
 
 .header {
     background : <?php echo $backgroundBanners; ?>;
@@ -69,14 +42,14 @@ body, font {
     float : left;
     margin : 0;
     padding : 3px 3px 3px 3px;
-    width : 220px;
+    width : 225px;
     background : <?php echo $backgroundNavPanel; ?>;
     font-weight : normal;
     min-height : 100%;
 }
 
 .content {
-    margin : 0 0 0 226px;
+    margin : 0 0 0 231px;
     padding : 1px 5px 5px 5px;
     color : <?php echo $textContent; ?>;
     background : <?php echo $backgroundContent; ?>;
@@ -217,7 +190,7 @@ a.tooltip:hover span {
     color: #000000;
     border:1px solid #000000;
     background: #f7f7f7;
-    font: 12px Verdana, 'Source Sans Pro', sans-serif; 
+    font: 12px 'Source Sans Pro', sans-serif; 
     text-align: left;
     white-space: nowrap;
 }
@@ -311,7 +284,7 @@ ul li a {
     float:left;
     color: #999;
     cursor: pointer;
-    font: 900 14px/22px "Arial", Helvetica, 'Source Sans Pro', sans-serif;
+    font: 900 14px/22px 'Source Sans Pro', sans-serif;
 }
 
 ul li a span {
@@ -417,7 +390,7 @@ input.toggle-round-flat:focus + label {
 .navbar a {
     float: right;
     font-family : 'Source Sans Pro', sans-serif;
-    font-size: 14px;
+    font-size: 16px;
     color: <?php echo $textNavbar; ?>;
     text-align: center;
     padding: 5px 8px;
@@ -495,7 +468,7 @@ input.toggle-round-flat:focus + label {
     display: inline-block;
     padding: 1px 10px;
     font-family : 'Source Sans Pro', sans-serif;
-    font-size: 14px;
+    font-size: 16px;
     color: <?php echo $textNavbar; ?>;
     text-align: center;
     text-decoration: none;
