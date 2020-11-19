@@ -49,7 +49,7 @@ I offer ZERO support. This is here for your hacking and enjoyment.
     customize your colors; You can reference the color values you had previously used, by viewing the backup file of
     your custom CSS:
 
-	/etc/.pistar-css.ini.user
+        /etc/.pistar-css.ini.user
 
       * The reason for this, is because the W0CHP dashboard is vastly different than the official upstream version
     (completely different CSS mappings). Since this is for my personal use, I haven't added any logic to suck in
