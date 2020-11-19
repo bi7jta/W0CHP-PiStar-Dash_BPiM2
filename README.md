@@ -32,17 +32,20 @@ sudo bash ./W0CHP-pistar -h
 ```
 ...to familiarize yourself with the available options/arguments:
 
-        -h,   --help                     Display this help text.
-        -ia,  --install-all              Install W0CHP dashboard, styelsheet, binaries and system binaries
-        -ra,  --restore-all              Restore original dashboard, binaries and system binaries
-        -id,  --install-dashboard        Install W0CHP dashboard.
-        -idn  --install-dashboard-nocss  Install W0CHP dashboard WITHOUT Stylesheet.
-        -rd,  --restore-dashboard        Restore original dashboard.
-        -ib,  --install-binaries         Install W0CHP binaries.
-        -rb,  --restore-binaries         Restore original binaries.
-        -is,  --install-sbinaries        Install W0CHP system binaries.
-        -rs,  --restore-sbinaries        Restore original system binaries.
-        -s,   --status                   Display current install, original or W0CHP installations.
+```text
+-h,   --help                     Display this help text.
+-ia,  --install-all              Install W0CHP dashboard, styelsheet, binaries and system binaries
+-ra,  --restore-all              Restore original dashboard, binaries and system binaries
+-id,  --install-dashboard        Install W0CHP dashboard.
+-idn  --install-dashboard-nocss  Install W0CHP dashboard WITHOUT Stylesheet.
+-rd,  --restore-dashboard        Restore original dashboard.
+-ib,  --install-binaries         Install W0CHP binaries.
+-rb,  --restore-binaries         Restore original binaries.
+-is,  --install-sbinaries        Install W0CHP system binaries.
+-rs,  --restore-sbinaries        Restore original system binaries.
+-s,   --status                   Display current install, original or W0CHP installations.
+```
+
 5. When ready to install, run the above command again with the option/argument you wish...e.g:
 
 ```text
