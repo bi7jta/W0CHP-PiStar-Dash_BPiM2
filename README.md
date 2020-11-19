@@ -38,6 +38,17 @@ I offer ZERO support. This is here for your hacking and enjoyment.
 
 6. Enjoy! :-)
 
+## Notes about custom CSS you may have applied to the official PiStar Dashboard
+
+  * When using the `-id` or `-ia` options, the W0CHP CSS is installed, and any of you your custom CSS settings
+    before installing the W0CHP dashboard, are backed up.
+  * When using the `-idn` option, your custom CSS settings are backed up, and the W0CHP dashboard uses
+    the standard PiStar colors. You will need to manually customize your colors since the W0CHP dashboard
+    is vastly different than the official upstream version. (completely different CSS mappings)
+  * If you had customized CSS settings before installing the W0CHP dashboard, they will be restored when
+    using the `-ra` or `-rd` options.
+
+
 ## Screenshots
 
 ![alt text](https://w0chp.net/img/W0CHP-Dash.png "Screenshot Green")
