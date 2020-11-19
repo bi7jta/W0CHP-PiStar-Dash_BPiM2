@@ -15,10 +15,9 @@ website](https://w0chp.net) for not following very simple instructions.**
 1. Open an SSH session to your Pi-Star instance.
 
 2. Run:
-
-<!-- language: lang-none -->
-
-        rpi-rw
+```text
+    rpi-rw
+```
 3. Run:
 
 <!-- language: lang-none -->
