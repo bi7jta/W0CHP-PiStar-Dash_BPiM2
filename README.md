@@ -3,7 +3,7 @@
 This is my personal and highly customized PiStar dashboard, and related binaries, forked from F1RMB, which was forked from MW0MWZ's original code.
 I offer ZERO support. This is here for your hacking and enjoyment.
 
-## If you ask me for support, I will ignore you!
+**If you ask me for support, I will ignore you; and possibly mock you on my [website](https://w0chp.net)!**
 
 ## To install the `W0CHP` Pi-Star Dashboard
 
