@@ -70,7 +70,8 @@ sudo bash ./W0CHP-pistar -id
     ```text
     /etc/.pistar-css.ini.user
     ```
-    - ...the reason for this, is because the W0CHP dashboard is vastly different than the official upstream version
+
+        - ...the reason for this, is because the W0CHP dashboard is vastly different than the official upstream version
     (completely different CSS mappings). Since this is for my personal use, I haven't added any logic to suck in
     the user CSS values to the new mappings.
   * If you had customized CSS settings before installing the W0CHP dashboard, they will be restored when
