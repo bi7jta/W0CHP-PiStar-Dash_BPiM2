@@ -56,7 +56,7 @@ sudo bash ./W0CHP-pistar -id
 
 6. Enjoy! :-)
 
-## Notes about custom CSS you may have applied to the official PiStar Dashboard
+## Notes about custom CSS you may have applied
 
   * When using the `-id` or `-ia` options, the W0CHP CSS is installed, and any of your custom CSS settings
     before installing the W0CHP dashboard, are backed up in the event you want to restore the official dashboard
