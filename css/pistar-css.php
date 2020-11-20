@@ -120,7 +120,7 @@ table {
 
 table th {
     font-family: 'Inconsolata', monospace;
-    font-weight: 700;
+    font-weight: 600;
     text-shadow: 1px 1px <?php echo $tableHeadDropShaddow; ?>;
     text-decoration: none;
     color : <?php echo $textBanners; ?>;
@@ -139,7 +139,7 @@ table tr:nth-child(odd) {
 table td {
     color: #000000;
     font-family: 'Inconsolata', monospace;
-    font-weight: 600;
+    font-weight: 500;
     text-decoration: none;
     border: 1px solid #000000;
 }
