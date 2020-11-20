@@ -157,7 +157,6 @@ a {
 a:link, a:visited {
     text-decoration: none;
     color: #0000e0;
-    font-weight: normal;
 }
 
 a.tooltip, a.tooltip:link, a.tooltip:visited, a.tooltip:active  {
