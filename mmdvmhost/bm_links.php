@@ -66,39 +66,40 @@ if ( $testMMDVModeDMR == 1 ) {
             foreach($bmStaticTGListJson as $staticTG) {
                 if (getConfigItem("DMR Network", "Slot1", $_SESSION['MMDVMHostConfigs']) && $staticTG->slot == "1") {
                     $bmStaticTGname = exec("grep -w \"$staticTG->talkgroup\" /usr/local/etc/BM_TGs.json | cut -d\":\" -f2- | tr -cd \"'[:alnum:] -\"");
-                    $bmStaticTGList .= "TG".$staticTG->talkgroup." ".$bmStaticTGname." (".$staticTG->slot.")<br />";
+                    $bmStaticTGList .= "&nbsp;TG".$staticTG->talkgroup." ".$bmStaticTGname." (".$staticTG->slot.")<br />";
                 }
                 else if (getConfigItem("DMR Network", "Slot2", $_SESSION['MMDVMHostConfigs']) && $staticTG->slot == "2") {
                     $bmStaticTGname = exec("grep -w \"$staticTG->talkgroup\" /usr/local/etc/BM_TGs.json | cut -d\":\" -f2- | tr -cd \"'[:alnum:] -\"");
-                    $bmStaticTGList .= "TG".$staticTG->talkgroup." ".$bmStaticTGname." (".$staticTG->slot.")<br />";
+                    $bmStaticTGList .= "&nbsp;TG".$staticTG->talkgroup." ".$bmStaticTGname." (".$staticTG->slot.")<br />";
                 }
                 else if (getConfigItem("DMR Network", "Slot1", $_SESSION['MMDVMHostConfigs']) == "0" && getConfigItem("DMR Network", "Slot2", $_SESSION['MMDVMHostConfigs']) && $staticTG->slot == "0") {
                     $bmStaticTGname = exec("grep -w \"$staticTG->talkgroup\" /usr/local/etc/BM_TGs.json | cut -d\":\" -f2- | tr -cd \"'[:alnum:] -\"");
-                    $bmStaticTGList .= "TG".$staticTG->talkgroup." ".$bmStaticTGname."<br />";
+                    $bmStaticTGList .= "&nbsp;TG".$staticTG->talkgroup." ".$bmStaticTGname."<br />";
                 }
             }
             $bmStaticTGList = wordwrap($bmStaticTGList, 135, "\n");
-            if (preg_match('/TG/', $bmStaticTGList) == false) { $bmStaticTGList = "None"; }
+            if (preg_match('/TG/', $bmStaticTGList) == false) { $bmStaticTGList = "&nbsp;None"; }
         }
 	else { $bmStaticTGList = "None"; }
 	if (isset($json->dynamicSubscriptions)) { $bmDynamicTGListJson = $json->dynamicSubscriptions;
             foreach($bmDynamicTGListJson as $dynamicTG) {
                 if (getConfigItem("DMR Network", "Slot1", $_SESSION['MMDVMHostConfigs']) && $dynamicTG->slot == "1") {
                     $bmDynamicTGname = exec("grep -w \"$dynamicTG->talkgroup\" /usr/local/etc/BM_TGs.json | cut -d\":\" -f2- | tr -cd \"'[:alnum:] -\"");
-                    $bmDynamicTGList .= "TG".$dynamicTG->talkgroup." ".$bmDynamicTGname." (".$dynamicTG->slot.")<br />";
+                    $bmDynamicTGList .= "&nbsp;TG".$dynamicTG->talkgroup." ".$bmDynamicTGname." (".$dynamicTG->slot.")<br />";
+
                 }
                 else if (getConfigItem("DMR Network", "Slot2", $_SESSION['MMDVMHostConfigs']) && $dynamicTG->slot == "2") {
                     $bmDynamicTGname = exec("grep -w \"$dynamicTG->talkgroup\" /usr/local/etc/BM_TGs.json | cut -d\":\" -f2- | tr -cd \"'[:alnum:] -\"");
-                    $bmDynamicTGList .= "TG".$dynamicTG->talkgroup." ".$bmDynamicTGname." (".$dynamicTG->slot.")<br />";
+                    $bmDynamicTGList .= "&nbsp;TG".$dynamicTG->talkgroup." ".$bmDynamicTGname." (".$dynamicTG->slot.")<br />";
                 }
                 else if (getConfigItem("DMR Network", "Slot1", $_SESSION['MMDVMHostConfigs']) == "0" && getConfigItem("DMR Network", "Slot2", $_SESSION['MMDVMHostConfigs']) && $dynamicTG->slot == "0") {
                     $bmDynamicTGname = exec("grep -w \"$dynamicTG->talkgroup\" /usr/local/etc/BM_TGs.json | cut -d\":\" -f2- | tr -cd \"'[:alnum:] -\"");
-                    $bmDynamicTGList .= "TG".$dynamicTG->talkgroup." ".$bmDynamicTGname."<br />";
+                    $bmDynamicTGList .= "&nbsp;TG".$dynamicTG->talkgroup." ".$bmDynamicTGname."<br />";
                 }
             }
             $bmDynamicTGList = wordwrap($bmDynamicTGList, 135, "\n");
             if (preg_match('/TG/', $bmDynamicTGList) == false) { $bmDynamicTGList = "None"; }
-        } else { $bmDynamicTGList = "None"; }
+        } else { $bmDynamicTGList = "&nbsp;None"; }
 	
 	echo '<b>Active BrandMeister Connections</b>
   <table>
