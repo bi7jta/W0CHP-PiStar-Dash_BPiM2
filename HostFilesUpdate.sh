@@ -5,8 +5,8 @@
 #                                                       #
 #      Written for Pi-Star (http://www.pistar.uk/)      #
 #               By Andy Taylor (MW0MWZ)                 #
-#                                                       #
-#                     Version 2.5                       #
+#                  Enhanced by W0CHP                    #
+#                     Version 2.6                       #
 #                                                       #
 #   Based on the update script by Tony Corbett G0WFV    #
 #                                                       #
