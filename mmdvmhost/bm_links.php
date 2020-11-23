@@ -56,18 +56,33 @@ if ( $testMMDVModeDMR == 1 ) {
 	$jsonContext = stream_context_create(array('http'=>array('timeout' => 2, 'header' => 'User-Agent: Pi-Star '.$_SESSION['PiStarRelease']['Pi-Star']['Version'].'W0CHP-Dashboard for '.$dmrID) )); // Add Timout and User Agent to include DMRID
 	$json = json_decode(@file_get_contents("https://api.brandmeister.network/v1.0/repeater/?action=PROFILE&q=$dmrID", true, $jsonContext));
 	
+    # TODO: Map GM TG's to actual names:
+    # https://api.brandmeister.network/v1.0/groups/
+    # keys: resulting TGs device has subcribed to
+    # values: tg list from bm api
+
+    //$results = array_map(function($values) use ($keys) {
+    //    return array_combine($keys, $values);
+    //    }, $values);
+    //
+    //var_dump($results);
+
+
 	// Set some Variable
 	$bmStaticTGList = "";
 	$bmDynamicTGList = "";
+
+	$mapCMD = 'grep -w "$staticTG->talkgroup" /usr/local/etc/BM_TGs.json|awk {\'print $2\'}|sed \'s/\"//g\'|tr -cd \'[:alnum:]._-\'\)';
 	
-	// Pull the information form JSON
+	// Pull the information from JSON
 	if (isset($json->reflector->reflector)) { $bmReflectorDef = "REF".$json->reflector->reflector; } else { $bmReflectorDef = "Not Set"; }
 	if (isset($json->reflector->interval)) { $bmReflectorInterval = $json->reflector->interval."(s)"; } else {$bmReflectorInterval = "Not Set"; }
 	if ((isset($json->reflector->active)) && ($json->reflector->active != "4000")) { $bmReflectorActive = "REF".$json->reflector->active; } else { $bmReflectorActive = "None"; }
 	if (isset($json->staticSubscriptions)) { $bmStaticTGListJson = $json->staticSubscriptions;
             foreach($bmStaticTGListJson as $staticTG) {
                 if (getConfigItem("DMR Network", "Slot1", $_SESSION['MMDVMHostConfigs']) && $staticTG->slot == "1") {
-                    $bmStaticTGList .= "TG".$staticTG->talkgroup."(".$staticTG->slot.") ";
+                    $bgTGname = exec($mapCMD);
+                    $bmStaticTGList .= "TG".$staticTG->talkgroup." ".$bgTGname."  ".(".$staticTG->slot.") ";
                 }
                 else if (getConfigItem("DMR Network", "Slot2", $_SESSION['MMDVMHostConfigs']) && $staticTG->slot == "2") {
                     $bmStaticTGList .= "TG".$staticTG->talkgroup."(".$staticTG->slot.") ";
