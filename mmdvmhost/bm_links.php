@@ -56,58 +56,49 @@ if ( $testMMDVModeDMR == 1 ) {
 	$jsonContext = stream_context_create(array('http'=>array('timeout' => 2, 'header' => 'User-Agent: Pi-Star '.$_SESSION['PiStarRelease']['Pi-Star']['Version'].'W0CHP-Dashboard for '.$dmrID) )); // Add Timout and User Agent to include DMRID
 	$json = json_decode(@file_get_contents("https://api.brandmeister.network/v1.0/repeater/?action=PROFILE&q=$dmrID", true, $jsonContext));
 	
-    # TODO: Map GM TG's to actual names:
-    # https://api.brandmeister.network/v1.0/groups/
-    # keys: resulting TGs device has subcribed to
-    # values: tg list from bm api
-
-    //$results = array_map(function($values) use ($keys) {
-    //    return array_combine($keys, $values);
-    //    }, $values);
-    //
-    //var_dump($results);
-
-
 	// Set some Variable
 	$bmStaticTGList = "";
 	$bmDynamicTGList = "";
-
-	$mapCMD = 'grep -w "$staticTG->talkgroup" /usr/local/etc/BM_TGs.json|awk {\'print $2\'}|sed \'s/\"//g\'|tr -cd \'[:alnum:]._-\'\)';
 	
-	// Pull the information from JSON
+	// Pull the information form JSON
 	if (isset($json->reflector->reflector)) { $bmReflectorDef = "REF".$json->reflector->reflector; } else { $bmReflectorDef = "Not Set"; }
 	if (isset($json->reflector->interval)) { $bmReflectorInterval = $json->reflector->interval."(s)"; } else {$bmReflectorInterval = "Not Set"; }
 	if ((isset($json->reflector->active)) && ($json->reflector->active != "4000")) { $bmReflectorActive = "REF".$json->reflector->active; } else { $bmReflectorActive = "None"; }
 	if (isset($json->staticSubscriptions)) { $bmStaticTGListJson = $json->staticSubscriptions;
             foreach($bmStaticTGListJson as $staticTG) {
                 if (getConfigItem("DMR Network", "Slot1", $_SESSION['MMDVMHostConfigs']) && $staticTG->slot == "1") {
-                    $bgTGname = exec($mapCMD);
-                    $bmStaticTGList .= "TG".$staticTG->talkgroup." ".$bgTGname."  ".(".$staticTG->slot.") ";
+                    $bmStaticTGname = exec("grep -w \"$staticTG->talkgroup\" /usr/local/etc/BM_TGs.json | cut -d\":\" -f2- | tr -cd \"'[:alnum:] \"");
+                    $bmStaticTGList .= "TG".$staticTG->talkgroup." ".$bmStaticTGname." (".$staticTG->slot.")<br />";
                 }
                 else if (getConfigItem("DMR Network", "Slot2", $_SESSION['MMDVMHostConfigs']) && $staticTG->slot == "2") {
-                    $bmStaticTGList .= "TG".$staticTG->talkgroup."(".$staticTG->slot.") ";
+                    $bmStaticTGname = exec("grep -w \"$staticTG->talkgroup\" /usr/local/etc/BM_TGs.json | cut -d\":\" -f2- | tr -cd \"'[:alnum:] \"");
+                    $bmStaticTGList .= "TG".$staticTG->talkgroup." ".$bmStaticTGname." (".$staticTG->slot.")<br />";
                 }
                 else if (getConfigItem("DMR Network", "Slot1", $_SESSION['MMDVMHostConfigs']) == "0" && getConfigItem("DMR Network", "Slot2", $_SESSION['MMDVMHostConfigs']) && $staticTG->slot == "0") {
-                    $bmStaticTGList .= "TG".$staticTG->talkgroup." ";
+                    $bmStaticTGname = exec("grep -w \"$staticTG->talkgroup\" /usr/local/etc/BM_TGs.json | cut -d\":\" -f2- | tr -cd \"'[:alnum:] \"");
+                    $bmStaticTGList .= "TG".$staticTG->talkgroup." ".$bmStaticTGname."<br />";
                 }
             }
-            $bmStaticTGList = wordwrap($bmStaticTGList, 15, "<br />\n");
+            $bmStaticTGList = wordwrap($bmStaticTGList, 135, "\n");
             if (preg_match('/TG/', $bmStaticTGList) == false) { $bmStaticTGList = "None"; }
         }
 	else { $bmStaticTGList = "None"; }
 	if (isset($json->dynamicSubscriptions)) { $bmDynamicTGListJson = $json->dynamicSubscriptions;
             foreach($bmDynamicTGListJson as $dynamicTG) {
                 if (getConfigItem("DMR Network", "Slot1", $_SESSION['MMDVMHostConfigs']) && $dynamicTG->slot == "1") {
-                    $bmDynamicTGList .= "TG".$dynamicTG->talkgroup."(".$dynamicTG->slot.") ";
+                    $bmDynamicTGname = exec("grep -w \"$dynamicTG->talkgroup\" /usr/local/etc/BM_TGs.json | cut -d\":\" -f2- | tr -cd \"'[:alnum:] \"");
+                    $bmDynamicTGList .= "TG".$dynamicTG->talkgroup." ".$bmDynamicTGname." (".$dynamicTG->slot.")<br />";
                 }
                 else if (getConfigItem("DMR Network", "Slot2", $_SESSION['MMDVMHostConfigs']) && $dynamicTG->slot == "2") {
-                    $bmDynamicTGList .= "TG".$dynamicTG->talkgroup."(".$dynamicTG->slot.") ";
+                    $bmDynamicTGname = exec("grep -w \"$dynamicTG->talkgroup\" /usr/local/etc/BM_TGs.json | cut -d\":\" -f2- | tr -cd \"'[:alnum:] \"");
+                    $bmDynamicTGList .= "TG".$dynamicTG->talkgroup." ".$bmDynamicTGname." (".$dynamicTG->slot.")<br />";
                 }
                 else if (getConfigItem("DMR Network", "Slot1", $_SESSION['MMDVMHostConfigs']) == "0" && getConfigItem("DMR Network", "Slot2", $_SESSION['MMDVMHostConfigs']) && $dynamicTG->slot == "0") {
-                    $bmDynamicTGList .= "TG".$dynamicTG->talkgroup." ";
+                    $bmDynamicTGname = exec("grep -w \"$dynamicTG->talkgroup\" /usr/local/etc/BM_TGs.json | cut -d\":\" -f2- | tr -cd \"'[:alnum:] \"");
+                    $bmDynamicTGList .= "TG".$dynamicTG->talkgroup." ".$bmDynamicTGname."<br />";
                 }
             }
-            $bmDynamicTGList = wordwrap($bmDynamicTGList, 15, "<br />\n");
+            $bmDynamicTGList = wordwrap($bmDynamicTGList, 135, "\n");
             if (preg_match('/TG/', $bmDynamicTGList) == false) { $bmDynamicTGList = "None"; }
         } else { $bmDynamicTGList = "None"; }
 	
@@ -115,20 +106,14 @@ if ( $testMMDVModeDMR == 1 ) {
   <table>
     <tr>
       <th><a class=tooltip href="#">'.$lang['bm_master'].'<span><b>Connected Master</b></span></a></th>
-      <th><a class=tooltip href="#">Default Ref<span><b>Default Reflector</b></span></a></th>
-      <th><a class=tooltip href="#">Timeout(s)<span><b>Configured Timeout</b></span></a></th>
-      <th><a class=tooltip href="#">Active Ref<span><b>Active Reflector</b></span></a></th>
       <th><a class=tooltip href="#">Static TGs<span><b>Statically linked talkgroups</b></span></a></th>
       <th><a class=tooltip href="#">Dynamic TGs<span><b>Dynamically linked talkgroups</b></span></a></th>
     </tr>'."\n";
 	
 	echo '    <tr>'."\n";
 	echo '     <td>'.$dmrMasterHost.'</td>';
-	echo '     <td>'.$bmReflectorDef.'</td>';
-	echo '     <td>'.$bmReflectorInterval.'</td>';
-	echo '     <td>'.$bmReflectorActive.'</td>';
-	echo '     <td>'.$bmStaticTGList.'</td>';
-	echo '     <td>'.$bmDynamicTGList.'</td>';
+	echo '     <td align="left">'.$bmStaticTGList.'</td>';
+	echo '     <td align="left">'.$bmDynamicTGList.'</td>';
 	echo '    </tr>'."\n";
 	echo '  </table>'."\n";
 	echo '  <br />'."\n";
