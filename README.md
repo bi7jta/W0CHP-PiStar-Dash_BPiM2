@@ -82,7 +82,7 @@ sudo bash ./W0CHP-pistar -id
 
 ## Screenshots
 
-![alt text](https://w0chp.net/img/W0CHP-Dash.png "Screenshot Green")
+![alt text](https://w0chp.net/img/W0CHP_Dash.png "W0CHP Dashboard")
 
-![alt text](https://w0chp.net/img/W0CHP-Dash_1.png "Screenshot Blue")
+![alt text](https://w0chp.net/img/W0CHP_Admin.png "W0CHP Admin Page")
 
