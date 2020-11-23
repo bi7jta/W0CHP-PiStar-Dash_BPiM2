@@ -104,13 +104,13 @@ if ( $testMMDVModeDMR == 1 ) {
 	echo '<b>Active BrandMeister Connections</b>
   <table>
     <tr>
-      <th><a class=tooltip href="#">'.$lang['bm_master'].'<span><b>Connected Master</b></span></a></th>
-      <th><a class=tooltip href="#">Static TGs (Slot #)<span><b>Statically linked talkgroups</b></span></a></th>
-      <th><a class=tooltip href="#">Dynamic TGs (Slot #)<span><b>Dynamically linked talkgroups</b></span></a></th>
+      <th align="left" style="padding-left: 5px;"><a class=tooltip href="#">'.$lang['bm_master'].'<span><b>Connected Master</b></span></a></th>
+      <th align="left" style="padding-left: 5px;"><a class=tooltip href="#">Static TGs (Slot #)<span><b>Statically linked talkgroups</b></span></a></th>
+      <th align="left" style="padding-left: 5px;"><a class=tooltip href="#">Dynamic TGs (Slot #)<span><b>Dynamically linked talkgroups</b></span></a></th>
     </tr>'."\n";
 	
 	echo '    <tr>'."\n";
-	echo '     <td>'.$dmrMasterHost.'</td>';
+	echo '     <td align="left" style="padding-left: 5px;">'.$dmrMasterHost.'</td>';
 	echo '     <td align="left" style="padding-left: 5px;">'.$bmStaticTGList.'</td>';
 	echo '     <td align="left" style="padding-left: 5px;">'.$bmDynamicTGList.'</td>';
 	echo '    </tr>'."\n";
