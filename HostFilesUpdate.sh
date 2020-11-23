@@ -62,7 +62,6 @@ if [ ${FILEBACKUP} -ne 0 ]; then
 	cp ${TGLISTP25} ${TGLISTP25}.$(date +%Y%m%d)
 	cp ${TGLISTNXDN} ${TGLISTNXDN}.$(date +%Y%m%d)
 	cp ${TGLISTYSF} ${TGLISTYSF}.$(date +%Y%m%d)
-	cp ${BMTGNAMES} ${BMTGNAMES}.$(date +%Y%m%d)
 fi
 
 # Prune backups
@@ -81,8 +80,7 @@ ${NXDNHOSTS}
 ${TGLISTBM}
 ${TGLISTP25}
 ${TGLISTNXDN}
-${TGLISTYSF}
-${BMTGNAMES}"
+${TGLISTYSF}"
 
 for file in ${FILES}
 do
