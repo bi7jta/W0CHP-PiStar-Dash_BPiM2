@@ -55,27 +55,25 @@ website](https://w0chp.net) for not following very simple instructions.**
 
 ## Notes about custom CSS you may have applied
 
-  * When using the `-id` or `-ia` options, the W0CHP CSS is installed, and any of your custom CSS settings
-    before installing the W0CHP dashboard, are backed up in the event you want to restore the official dashboard
-    (see last bullet point). This is done because the CSS in the official Pi-Star is incompatible. You can still
-    manually map/change your CSS back when running W0CHP-Dash (see third bullet for details).
-  * If you are already running W0CHP-Dash, AND you have custom or W0CHP-Dash CSS, no CSS changes, no matter which
-    option you run this command with.
-  * When using the `-idn` option, your custom CSS settings are backed up (in the event you want to revert back
-    to the official dashboard -- see last bullet point), and the W0CHP dashboard uses the standard Pi-Star colors.
-    This means that if you want your previous custom CSS applied the W0CHP dashboard, you will need to manually
-    customize your colors; You can reference the color values you had previously used, by viewing the backup file of
-    your custom CSS...
+* When using the `-id` or `-ia` options, the W0CHP CSS is installed, and any of your custom CSS settings
+  before installing the W0CHP dashboard, are backed up in the event you want to restore the official dashboard
+  (see last bullet point). This is done because the CSS in the official Pi-Star is incompatible. You can still
+  manually map/change your CSS back when running W0CHP-Dash (see third bullet for details).
+* If you are already running W0CHP-Dash, AND you have custom or W0CHP-Dash CSS, no CSS changes, no matter which
+  option you run this command with.
+* When using the `-idn` option, your custom CSS settings are backed up (in the event you want to revert back
+  to the official dashboard -- see last bullet point), and the W0CHP dashboard uses the standard Pi-Star colors.
+  This means that if you want your previous custom CSS applied the W0CHP dashboard, you will need to manually
+  customize your colors; You can reference the color values you had previously used, by viewing the backup file of
+  your custom CSS...
 
-```text
-    /etc/.pistar-css.ini.user
-```
+        /etc/.pistar-css.ini.user
 
-  * ...the reason for this, is because the W0CHP dashboard is vastly different than the official upstream version
-    (completely different CSS mappings). Since this is for my personal use, I haven't added any logic to suck-in
-    the user CSS values to the new mappings.
-  * If you had customized CSS settings before installing the W0CHP dashboard, they will be restored when
-    using the `-ra` or `-rd` options.
+* ...the reason for this, is because the W0CHP dashboard is vastly different than the official upstream version
+  (completely different CSS mappings). Since this is for my personal use, I haven't added any logic to suck-in
+  the user CSS values to the new mappings.
+* If you had customized CSS settings before installing the W0CHP dashboard, they will be restored when
+  using the `-ra` or `-rd` options.
 
 ## Screenshots
 
