@@ -17,6 +17,7 @@ website](https://w0chp.net) for not following very simple instructions.**
   functionality removed per <https://news.brandmeister.network/brandmeister-dmr-reflectors-support-ending-by-end-of-2020/>.
 * RF activity moved to top on dashboard.
 * YSF link manager now enabled for YSF2DMR mode as well; gives the ability to change links/rooms on-the-fly.
+* Ability to configure POCSAG hangtime from the config page.
 * Much more. See [screenshots below](#screenshots).
 
 ## To install the `W0CHP` Pi-Star Dashboard
