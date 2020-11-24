@@ -34,9 +34,7 @@ website](https://w0chp.net) for not following very simple instructions.**
 4. Run:
 
         sudo bash ./W0CHP-pistar -h
-
 ...to familiarize yourself with the available options/arguments:
-
         -h,   --help                     Display this help text.
         -ia,  --install-all              Install W0CHP dashboard, styelsheet, binaries and system binaries
         -ra,  --restore-all              Restore original dashboard, binaries and system binaries
