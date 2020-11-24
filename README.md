@@ -10,6 +10,15 @@ fully on your own.
 **If you ask me for support, I will ignore you; and possibly mock you on [my
 website](https://w0chp.net) for not following very simple instructions.**
 
+## Features and enhancements (not an exhaustive list)
+
+  * Updated styling, wider, bigger, and mobile-friendly. Better fonts (no MS font references here!).
+  * Brandmeiser manager updated to show TG names (in admin page). BM reflector
+    functionality removed per <https://news.brandmeister.network/brandmeister-dmr-reflectors-support-ending-by-end-of-2020/>.
+  * RF activity moved to top on dashboard.
+  * YSF link manager now enabled for YSF2DMR mode; changing links/rooms on-the-fly.
+  * Much more. See [screenshots](#https://repo.w0chp.net/Chipster/W0CHP-PiStar-Dash#screenshots).
+
 ## To install the `W0CHP` Pi-Star Dashboard
 
 1. Open an SSH session to your Pi-Star instance.
