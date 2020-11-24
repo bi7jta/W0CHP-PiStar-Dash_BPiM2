@@ -29,7 +29,7 @@ rpi-rw
 3. Run:
 ```text
 curl https://repo.w0chp.net/Chipster/W0CHP-PiStar-Install/raw/master/W0CHP-pistar -o W0CHP-pistar
-  ```
+```
 4. Run:
 ```text
 sudo bash ./W0CHP-pistar -h
