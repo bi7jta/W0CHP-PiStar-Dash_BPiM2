@@ -79,7 +79,12 @@ website](https://w0chp.net) for not following very simple instructions.**
 
 ## Screenshots
 
+### Main Dashboard
+
 ![alt text](https://w0chp.net/img/W0CHP_Dash.png "W0CHP Dashboard")
+
+
+### Admin Page
 
 ![alt text](https://w0chp.net/img/W0CHP_Admin.png "W0CHP Admin Page")
 
