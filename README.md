@@ -12,38 +12,36 @@ website](https://w0chp.net) for not following very simple instructions.**
 
 ## Features and enhancements (not an exhaustive list)
 
-  * Updated styling, wider, bigger, and mobile-friendly. Better fonts (no MS font references here!).
-  * Brandmeiser manager updated to show TG names (in admin page). BM reflector
-    functionality removed per <https://news.brandmeister.network/brandmeister-dmr-reflectors-support-ending-by-end-of-2020/>.
-  * RF activity moved to top on dashboard.
-  * YSF link manager now enabled for YSF2DMR modei as well; gives the ability to change links/rooms on-the-fly.
-  * Much more. See [screenshots below](#screenshots).
+* Updated styling, wider, bigger, and mobile-friendly. Better fonts (no MS font references here!).
+* Brandmeiser manager updated to show TG names (in admin page). BM reflector
+  functionality removed per <https://news.brandmeister.network/brandmeister-dmr-reflectors-support-ending-by-end-of-2020/>.
+* RF activity moved to top on dashboard.
+* YSF link manager now enabled for YSF2DMR modei as well; gives the ability to change links/rooms on-the-fly.
+* Much more. See [screenshots below](#screenshots).
 
 ## To install the `W0CHP` Pi-Star Dashboard
 
 1. Open an SSH session to your Pi-Star instance.
 2. Run:
-`rpi-rw`
+    rpi-rw
 3. Run:
-`curl https://repo.w0chp.net/Chipster/W0CHP-PiStar-Install/raw/master/W0CHP-pistar -o W0CHP-pistar`
+    curl https://repo.w0chp.net/Chipster/W0CHP-PiStar-Install/raw/master/W0CHP-pistar -o W0CHP-pistar
 4. Run:
-`sudo bash ./W0CHP-pistar -h`
+    sudo bash ./W0CHP-pistar -h
 ...to familiarize yourself with the available options/arguments:
-~~~
-  -h,   --help                     Display this help text.
-  -ia,  --install-all              Install W0CHP dashboard, styelsheet, binaries and system binaries
-  -ra,  --restore-all              Restore original dashboard, binaries and system binaries
-  -id,  --install-dashboard        Install W0CHP dashboard.
-  -idn  --install-dashboard-nocss  Install W0CHP dashboard WITHOUT Stylesheet.
-  -rd,  --restore-dashboard        Restore original dashboard.
-  -ib,  --install-binaries         Install W0CHP binaries.
-  -rb,  --restore-binaries         Restore original binaries.
-  -is,  --install-sbinaries        Install W0CHP system binaries.
-  -rs,  --restore-sbinaries        Restore original system binaries.
-  -s,   --status                   Display current install, original or W0CHP installations.
-~~
+    -h,   --help                     Display this help text.
+    -ia,  --install-all              Install W0CHP dashboard, styelsheet, binaries and system binaries
+    -ra,  --restore-all              Restore original dashboard, binaries and system binaries
+    -id,  --install-dashboard        Install W0CHP dashboard.
+    -idn  --install-dashboard-nocss  Install W0CHP dashboard WITHOUT Stylesheet.
+    -rd,  --restore-dashboard        Restore original dashboard.
+    -ib,  --install-binaries         Install W0CHP binaries.
+    -rb,  --restore-binaries         Restore original binaries.
+    -is,  --install-sbinaries        Install W0CHP system binaries.
+    -rs,  --restore-sbinaries        Restore original system binaries.
+    -s,   --status                   Display current install, original or W0CHP installations.
 5. When ready to install, run the above command again with the option/argument you wish...e.g:
-`sudo bash ./W0CHP-pistar -id`
+    sudo bash ./W0CHP-pistar -id
 (...to install the dashboard only).
 
 ## Notes about custom CSS you may have applied
