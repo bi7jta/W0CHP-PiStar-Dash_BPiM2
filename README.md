@@ -16,7 +16,7 @@ website](https://w0chp.net) for not following very simple instructions.**
 * Brandmeiser manager updated to show TG names (in admin page). BM reflector
   functionality removed per <https://news.brandmeister.network/brandmeister-dmr-reflectors-support-ending-by-end-of-2020/>.
 * RF activity moved to top on dashboard.
-* YSF link manager now enabled for YSF2DMR modei as well; gives the ability to change links/rooms on-the-fly.
+* YSF link manager now enabled for YSF2DMR mode as well; gives the ability to change links/rooms on-the-fly.
 * Much more. See [screenshots below](#screenshots).
 
 ## To install the `W0CHP` Pi-Star Dashboard
@@ -36,10 +36,10 @@ website](https://w0chp.net) for not following very simple instructions.**
         sudo bash ./W0CHP-pistar -h
 ...to familiarize yourself with the available options/arguments:
         -h,   --help                     Display this help text.
-        -ia,  --install-all              Install W0CHP dashboard, styelsheet, binaries and system binaries
+        -ia,  --install-all              Install W0CHP dashboard, stylesheet, binaries and system binaries
         -ra,  --restore-all              Restore original dashboard, binaries and system binaries
         -id,  --install-dashboard        Install W0CHP dashboard.
-        -idn  --install-dashboard-nocss  Install W0CHP dashboard WITHOUT Stylesheet.
+        -idn  --install-dashboard-nocss  Install W0CHP dashboard WITHOUT stylesheet.
         -rd,  --restore-dashboard        Restore original dashboard.
         -ib,  --install-binaries         Install W0CHP binaries.
         -rb,  --restore-binaries         Restore original binaries.
@@ -57,7 +57,7 @@ website](https://w0chp.net) for not following very simple instructions.**
 
   * When using the `-id` or `-ia` options, the W0CHP CSS is installed, and any of your custom CSS settings
     before installing the W0CHP dashboard, are backed up in the event you want to restore the official dashboard
-    (see last bullet point). This is done because the CSS in the offical Pi-Star is incompatible. You can still
+    (see last bullet point). This is done because the CSS in the official Pi-Star is incompatible. You can still
     manually map/change your CSS back when running W0CHP-Dash (see third bullet for details).
   * If you are already running W0CHP-Dash, AND you have custom or W0CHP-Dash CSS, no CSS changes, no matter which
     option you run this command with.
