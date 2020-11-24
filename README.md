@@ -21,16 +21,16 @@ website](https://w0chp.net) for not following very simple instructions.**
 
 ## To install the `W0CHP` Pi-Star Dashboard
 
-  1. Open an SSH session to your Pi-Star instance.
-  2. Run:
+1. Open an SSH session to your Pi-Star instance.
+2. Run:
   ```text
   rpi-rw
   ```
-  3. Run:
+3. Run:
   ```text
   curl https://repo.w0chp.net/Chipster/W0CHP-PiStar-Install/raw/master/W0CHP-pistar -o W0CHP-pistar
   ```
-  4. Run:
+4. Run:
   ```text
   sudo bash ./W0CHP-pistar -h
   ```
@@ -48,11 +48,11 @@ website](https://w0chp.net) for not following very simple instructions.**
   -rs,  --restore-sbinaries        Restore original system binaries.
   -s,   --status                   Display current install, original or W0CHP installations.
   ```
-  5. When ready to install, run the above command again with the option/argument you wish...e.g:
+5. When ready to install, run the above command again with the option/argument you wish...e.g:
   ```text
   sudo bash ./W0CHP-pistar -id
   ```
-  (...to install the dashboard only).
+(...to install the dashboard only).
 
 ## Notes about custom CSS you may have applied
 
