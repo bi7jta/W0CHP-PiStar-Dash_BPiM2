@@ -28,7 +28,6 @@ website](https://w0chp.net) for not following very simple instructions.**
 ```text
 rpi-rw
 ```
-
 3. Run:
 
 ```text
@@ -54,7 +53,6 @@ sudo bash ./W0CHP-pistar -h
 -rs,  --restore-sbinaries        Restore original system binaries.
 -s,   --status                   Display current install, original or W0CHP installations.
 ```
-
 5. When ready to install, run the above command again with the option/argument you wish...e.g:
 
 ```text
@@ -62,8 +60,6 @@ sudo bash ./W0CHP-pistar -id
 ```
 
 (...to install the dashboard only).
-
-6. Enjoy! :-)
 
 ## Notes about custom CSS you may have applied
 
