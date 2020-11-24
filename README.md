@@ -2,7 +2,7 @@
 
 **DO NOT contact me for support, bugs, etc...**
 
-This is my *personal* and highly customized PiStar dashboard, and related
+This is my *personal* and highly customized Pi-Star dashboard, and related
 binaries, forked from F1RMB, which was forked from MW0MWZ's original code.  I
 offer ZERO support. This is here for your hacking and enjoyment, and you're
 fully on your own.
@@ -29,17 +29,17 @@ website](https://w0chp.net) for not following very simple instructions.**
 
 3. Run:
 
-        curl https://repo.w0chp.net/Chipster/W0CHP-PiStar-Install/raw/master/W0CHP-pistar -o W0CHP-pistar
+        curl https://repo.w0chp.net/Chipster/W0CHP-Pi-Star-Install/raw/master/W0CHP-pistar -o W0CHP-pistar
 
 4. Run:
 
         sudo bash ./W0CHP-pistar -h
 ...to familiarize yourself with the available options/arguments:
         -h,   --help                     Display this help text.
-        -ia,  --install-all              Install W0CHP dashboard, stylesheet, binaries and system binaries
+        -ia,  --install-all              Install W0CHP dashboard, style sheet, binaries and system binaries
         -ra,  --restore-all              Restore original dashboard, binaries and system binaries
         -id,  --install-dashboard        Install W0CHP dashboard.
-        -idn  --install-dashboard-nocss  Install W0CHP dashboard WITHOUT stylesheet.
+        -idn  --install-dashboard-nocss  Install W0CHP dashboard WITHOUT style sheet.
         -rd,  --restore-dashboard        Restore original dashboard.
         -ib,  --install-binaries         Install W0CHP binaries.
         -rb,  --restore-binaries         Restore original binaries.
@@ -62,7 +62,7 @@ website](https://w0chp.net) for not following very simple instructions.**
   * If you are already running W0CHP-Dash, AND you have custom or W0CHP-Dash CSS, no CSS changes, no matter which
     option you run this command with.
   * When using the `-idn` option, your custom CSS settings are backed up (in the event you want to revert back
-    to the official dashboard -- see last bullet point), and the W0CHP dashboard uses the standard PiStar colors.
+    to the official dashboard -- see last bullet point), and the W0CHP dashboard uses the standard Pi-Star colors.
     This means that if you want your previous custom CSS applied the W0CHP dashboard, you will need to manually
     customize your colors; You can reference the color values you had previously used, by viewing the backup file of
     your custom CSS...
