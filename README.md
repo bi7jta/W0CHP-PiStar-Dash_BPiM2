@@ -16,8 +16,8 @@ website](https://w0chp.net) for not following very simple instructions.**
   * Brandmeiser manager updated to show TG names (in admin page). BM reflector
     functionality removed per <https://news.brandmeister.network/brandmeister-dmr-reflectors-support-ending-by-end-of-2020/>.
   * RF activity moved to top on dashboard.
-  * YSF link manager now enabled for YSF2DMR mode; changing links/rooms on-the-fly.
-  * Much more. See [screenshots](#https://repo.w0chp.net/Chipster/W0CHP-PiStar-Dash#screenshots).
+  * YSF link manager now enabled for YSF2DMR modei as well; gives the ability to change links/rooms on-the-fly.
+  * Much more. See [screenshots below](#screenshots).
 
 ## To install the `W0CHP` Pi-Star Dashboard
 
