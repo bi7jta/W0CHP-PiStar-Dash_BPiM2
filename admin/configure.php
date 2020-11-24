@@ -2844,7 +2844,7 @@ $MYCALL=strtoupper($callsign);
 			<h2><?php echo $lang['control_software'];?></h2>
 			<table>
 			    <tr>
-				<th width="200"><a class="tooltip" href="#"><?php echo $lang['setting'];?><span><b>Setting</b></span></a></th>
+				<th><a class="tooltip" href="#"><?php echo $lang['setting'];?><span><b>Setting</b></span></a></th>
 				<th colspan="2"><a class="tooltip" href="#"><?php echo $lang['value'];?><span><b>Value</b>The current value from<br />the configuration files</span></a></th>
 			    </tr>
 			    <tr>
@@ -2892,7 +2892,7 @@ $MYCALL=strtoupper($callsign);
 			    <h2><?php echo $lang['mmdvmhost_config'];?></h2>
 			    <table>
 				<tr>
-				    <th width="200"><a class="tooltip" href="#"><?php echo $lang['setting'];?><span><b>Setting</b></span></a></th>
+				    <th><a class="tooltip" href="#"><?php echo $lang['setting'];?><span><b>Setting</b></span></a></th>
 				    <th colspan="2"><a class="tooltip" href="#"><?php echo $lang['value'];?><span><b>Value</b>The current value from<br />the configuration files</span></a></th>
 				</tr>
 				<tr>
@@ -3105,7 +3105,7 @@ $MYCALL=strtoupper($callsign);
 			<h2><?php echo $lang['general_config'];?></h2>
 			<table>
 			    <tr>
-				<th width="200"><a class="tooltip" href="#"><?php echo $lang['setting'];?><span><b>Setting</b></span></a></th>
+				<th><a class="tooltip" href="#"><?php echo $lang['setting'];?><span><b>Setting</b></span></a></th>
 				<th colspan="2"><a class="tooltip" href="#"><?php echo $lang['value'];?><span><b>Value</b>The current value from the<br />configuration files</span></a></th>
 			    </tr>
 			    <tr>
@@ -3171,7 +3171,7 @@ $MYCALL=strtoupper($callsign);
 				    <tr>
 					<td align="left"><a class="tooltip2" href="#"><?php echo $lang['url'];?>:<span><b>Gateway URL</b>The URL used to access this dashboard</span></a></td>
 					<td align="left"><input type="text" name="confURL" size="30" maxlength="64" value="<?php echo $configircddb['url'] ?>" /></td>
-					<td width="300">
+					<td>
 					    <input type="radio" name="urlAuto" value="auto"<?php if (strpos($configircddb['url'], 'www.qrz.com/db/'.$configmmdvm['General']['Callsign']) !== FALSE) {echo ' checked="checked"';} ?> />Auto
 					    <input type="radio" name="urlAuto" value="man"<?php if (strpos($configircddb['url'], 'www.qrz.com/db/'.$configmmdvm['General']['Callsign']) == FALSE) {echo ' checked="checked"';} ?> />Manual</td>
 				    </tr>
@@ -3307,9 +3307,13 @@ $MYCALL=strtoupper($callsign);
 			    <input type="hidden" name="dmrDMRnetJitterBufer" value="OFF" />
 			    <table>
 				<tr>
-				    <th width="200"><a class="tooltip" href="#"><?php echo $lang['setting'];?><span><b>Setting</b></span></a></th>
+				    <th><a class="tooltip" href="#"><?php echo $lang['setting'];?><span><b>Setting</b></span></a></th>
 				    <th colspan="2"><a class="tooltip" href="#"><?php echo $lang['value'];?><span><b>Value</b>The current value from the<br />configuration files</span></a></th>
 				</tr>
+                                    <tr>
+                                        <th align="left" colspan="3">Main DMR Network Settings</th>
+                                    </tr>
+                                    <tr>
 				<tr>
 				    <td align="left"><a class="tooltip2" href="#"><?php echo $lang['dmr_master'];?>:<span><b>DMR Master (MMDVMHost)</b>Set your prefered DMR master here</span></a></td>
 				    <td style="text-align: left;"><select name="dmrMasterHost">
@@ -3329,11 +3333,15 @@ $MYCALL=strtoupper($callsign);
 					fclose($dmrMasterFile);
 					?>
 				    </select></td>
+				    <td align="left">Select the DMR Master to connect. Or, select "DMRGateway"<br />to enable and connect to multiple DMR networks.</td>
 				</tr>
 				<?php if ($dmrMasterNow == "DMRGateway") { ?>
 				    <tr>
+					<th align="left"colspan="3">BrandMeister Network Settings</th>
+				    </tr>
+				    <tr>
 					<td align="left"><a class="tooltip2" href="#"><?php echo $lang['bm_master'];?>:<span><b>BrandMeister Master</b>Set your prefered DMR master here</span></a></td>
-					<td style="text-align: left;"><select name="dmrMasterHost1">
+					<td style="text-align: left;" colspan="2"><select name="dmrMasterHost1">
 					    <?php
 					    $dmrMasterFile1 = fopen("/usr/local/etc/DMR_Hosts.txt", "r");
 					    $testMMDVMdmrMaster1 = $configdmrgateway['DMR Network 1']['Address'];
@@ -3353,13 +3361,13 @@ $MYCALL=strtoupper($callsign);
 					</select></td></tr>
 				    <tr>
 					<td align="left"><a class="tooltip2" href="#">BM Hotspot Security:<span><b>BrandMeister Password</b>Override the Password for BrandMeister with your own custom password, make sure you already configured this using BM Self Care. Empty the field to use the default.</span></a></td>
-					<td align="left">
+					<td align="left" colspan="2">
 					    <input type="password" name="bmHSSecurity" size="30" maxlength="30" value="<?php if (isset($configModem['BrandMeister']['Password'])) {echo $configModem['BrandMeister']['Password'];} ?>"></input>
 					</td>
 				    </tr>
 				    <tr>
 					<td align="left"><a class="tooltip2" href="#"><?php echo $lang['bm_network'];?> ESSID:<span><b>BrandMeister Extended ID</b>This is the extended ID, to make your DMR ID 9 digits long</span></a></td>
-					<td align="left">
+					<td align="left" colspan="2">
 					    <?php
 					    if (isset($configdmrgateway['DMR Network 1']['Id'])) {
 						if (strlen($configdmrgateway['DMR Network 1']['Id']) > strlen($configmmdvm['General']['Id'])) {
@@ -3400,7 +3408,7 @@ $MYCALL=strtoupper($callsign);
 					</td></tr>
 				    <tr>
 					<td align="left"><a class="tooltip2" href="#"><?php echo $lang['bm_network'];?> Enable:<span><b>BrandMeister Network Enable</b>Enable or disable BrandMeister Network</span></a></td>
-					<td align="left">
+					<td align="left" colspan="2">
 					    <?php
 					    if ($configdmrgateway['DMR Network 1']['Enabled'] == 1) { 
 						echo "<div class=\"switch\"><input id=\"toggle-dmrGatewayNet1En\" class=\"toggle toggle-round-flat\" type=\"checkbox\" name=\"dmrGatewayNet1En\" value=\"ON\" checked=\"checked\" /><label for=\"toggle-dmrGatewayNet1En\"></label></div>\n"; }
@@ -3412,14 +3420,17 @@ $MYCALL=strtoupper($callsign);
 				    </tr>
 				    <tr>
 					<td align="left"><a class="tooltip2" href="#"><?php echo $lang['bm_network'];?>:<span><b>BrandMeister Dashboards</b>Direct links to your BrandMeister Dashboards</span></a></td>
-					<td>
-					    <a href="https://brandmeister.network/?page=hotspot&amp;id=<?php echo $configmmdvm['General']['Id']; if ($brandMeisterESSID != "None") { echo $brandMeisterESSID; }; ?>" target="_new" style="color: #000;">Repeater Information</a> |
-					    <a href="https://brandmeister.network/?page=hotspot-edit&amp;id=<?php echo $configmmdvm['General']['Id']; if ($brandMeisterESSID != "None") { echo $brandMeisterESSID; }; ?>" target="_new" style="color: #000;">Edit Repeater (BrandMeister Selfcare)</a>
+					<td colspan="2" align="left">
+					    <a style="text-decoration:underline;" href="https://brandmeister.network/?page=hotspot&amp;id=<?php echo $configmmdvm['General']['Id']; if ($brandMeisterESSID != "None") { echo $brandMeisterESSID; }; ?>" target="_new" style="color: #000;">Repeater Information</a> |
+					    <a style="text-decoration:unerline;" href="https://brandmeister.network/?page=hotspot-edit&amp;id=<?php echo $configmmdvm['General']['Id']; if ($brandMeisterESSID != "None") { echo $brandMeisterESSID; }; ?>" target="_new" style="color: #000;">Edit Repeater (BrandMeister Selfcare)</a>
 					</td>
 				    </tr>
+                                    <tr>
+                                        <th align="left" colspan="3">DMR+ Network Settings</th>
+                                    </tr>
 				    <tr>
 					<td align="left"><a class="tooltip2" href="#"><?php echo $lang['dmr_plus_master'];?>:<span><b>DMR+ Master</b>Set your prefered DMR master here</span></a></td>
-					<td style="text-align: left;"><select name="dmrMasterHost2">
+					<td style="text-align: left;" colspan="2"><select name="dmrMasterHost2">
 					    <?php
 					    $dmrMasterFile2 = fopen("/usr/local/etc/DMR_Hosts.txt", "r");
 					    $testMMDVMdmrMaster2= $configdmrgateway['DMR Network 2']['Address'];
@@ -3441,13 +3452,13 @@ $MYCALL=strtoupper($callsign);
 					</select></td></tr>
 				    <tr>
 					<td align="left"><a class="tooltip2" href="#"><?php echo $lang['dmr_plus_network'];?>:<span><b>DMR+ Network</b>Set your options= for DMR+ here</span></a></td>
-					<td align="left">
+					<td align="left" colspan="2">
 					    Options=<input type="text" name="dmrNetworkOptions" size="40" maxlength="100" value="<?php if (isset($configdmrgateway['DMR Network 2']['Options'])) { echo $configdmrgateway['DMR Network 2']['Options']; } ?>" />
 					</td>
 				    </tr>
 				    <tr>
 					<td align="left"><a class="tooltip2" href="#"><?php echo $lang['dmr_plus_network'];?> ESSID:<span><b>DMR Plus Extended ID</b>This is the extended ID, to make your DMR ID 8 digits long</span></a></td>
-					<td align="left">
+					<td align="left" colspan="2">
 					    <?php
 					    if (isset($configdmrgateway['DMR Network 2']['Id'])) {
 						if (strlen($configdmrgateway['DMR Network 2']['Id']) > strlen($configmmdvm['General']['Id'])) {
@@ -3488,7 +3499,7 @@ $MYCALL=strtoupper($callsign);
 					</td></tr>
 				    <tr>
 					<td align="left"><a class="tooltip2" href="#"><?php echo $lang['dmr_plus_network'];?> Enable:<span><b>DMR+ Network Enable</b></span></a></td>
-					<td align="left">
+					<td align="left" colspan="2">
 					    <?php 
 					    if ($configdmrgateway['DMR Network 2']['Enabled'] == 1) {
 						echo "<div class=\"switch\"><input id=\"toggle-dmrGatewayNet2En\" class=\"toggle toggle-round-flat\" type=\"checkbox\" name=\"dmrGatewayNet2En\" value=\"ON\" checked=\"checked\" /><label for=\"toggle-dmrGatewayNet2En\"></label></div>\n"; }
@@ -3498,9 +3509,12 @@ $MYCALL=strtoupper($callsign);
 					    ?>
 					</td>
 				    </tr>
-				    <tr>
+                                    <tr>
+                                        <th align="left" colspan="3">XLX Network Settings</th>
+                                    </tr>
+                                    <tr>
 					<td align="left"><a class="tooltip2" href="#"><?php echo $lang['xlx_master'];?>:<span><b>XLX Master</b>Set your prefered XLX master here</span></a></td>
-					<td style="text-align: left;"><select name="dmrMasterHost3">
+					<td style="text-align: left;" colspan="2"><select name="dmrMasterHost3">
 					    <?php
 					    $dmrMasterFile3 = fopen("/usr/local/etc/DMR_Hosts.txt", "r");
 					    $testMMDVMdmrMaster3 = "";
@@ -3525,7 +3539,7 @@ $MYCALL=strtoupper($callsign);
 				    <?php if (isset($configdmrgateway['XLX Network 1']['Startup'])) { ?>
 					<tr>
 					    <td align="left"><a class="tooltip2" href="#"><?php echo $lang['xlx_startup_tg'];?>:<span><b>XLX Startup TG</b></span></a></td>
-					    <td align="left"><select name="dmrMasterHost3Startup">
+					    <td align="left" colspan="2"><select name="dmrMasterHost3Startup">
 						<?php
 						if (isset($configdmrgateway['XLX Network 1']['Startup'])) {
 						    echo '      <option value="None">None</option>'."\n";
@@ -3548,7 +3562,7 @@ $MYCALL=strtoupper($callsign);
 				    <?php if (isset($configdmrgateway['XLX Network']['TG'])) { ?>
 					<tr>
 					    <td align="left"><a class="tooltip2" href="#"><?php echo $lang['xlx_startup_module'];?>:<span><b>XLX Startup Module override</b>Default will use the host file option, or override it here.</span></a></td>
-					    <td align="left"><select name="dmrMasterHost3StartupModule">
+					    <td align="left" colspan="2"><select name="dmrMasterHost3StartupModule">
 						<?php
 						if (isset($configdmrgateway['XLX Network']['Module'])) {
 						    echo '        <option value="'.$configdmrgateway['XLX Network']['Module'].'" selected="selected">'.$configdmrgateway['XLX Network']['Module'].'</option>'."\n";
@@ -3589,7 +3603,7 @@ $MYCALL=strtoupper($callsign);
 				    <?php } ?>
 				    <tr>
 					<td align="left"><a class="tooltip2" href="#"><?php echo $lang['xlx_enable'];?>:<span><b>XLX Master Enable</b>Turn your XLX connection on or off.</span></a></td>
-					<td align="left">
+					<td align="left" colspan="2">
 					    <?php
 					    if ((isset($configdmrgateway['XLX Network 1']['Enabled'])) && ($configdmrgateway['XLX Network 1']['Enabled'] == 1)) { 
 						echo "<div class=\"switch\"><input id=\"toggle-dmrGatewayXlxEn\" class=\"toggle toggle-round-flat\" type=\"checkbox\" name=\"dmrGatewayXlxEn\" value=\"ON\" checked=\"checked\" /><label for=\"toggle-dmrGatewayXlxEn\"></label></div>\n"; 
@@ -3605,14 +3619,14 @@ $MYCALL=strtoupper($callsign);
 				<?php }
 				if (substr($dmrMasterNow, 0, 2) == "BM") { 
 				    echo '    <tr><td align="left"><a class="tooltip2" href="#">Hotspot Security:<span><b>Custom Password</b>Override the Password for your DMR Host with your own custom password, make sure you already configured this with your chosen DMR Host too. Empty the field to use the default.</span></a></td>
-      <td align="left"><input type="password" name="bmHSSecurity" size="30" maxlength="30" value="';
+      <td align="left" colspan="2"><input type="password" name="bmHSSecurity" size="30" maxlength="30" value="';
 				    if (isset($configModem['BrandMeister']['Password'])) {
 					echo $configModem['BrandMeister']['Password'];
 				    };
-				    echo '"></input></td></tr><tr><td align="left"><a class="tooltip2" href="#">'.$lang['bm_network'].':<span><b>BrandMeister Dashboards</b>Direct links to your BrandMeister Dashboards</span></a></td><td><a href="https://brandmeister.network/?page=hotspot&amp;id='.$configmmdvm['General']['Id'].'" target="_new" style="color: #000;">Repeater Information</a> | <a href="https://brandmeister.network/?page=hotspot-edit&amp;id='.$configmmdvm['General']['Id'].'" target="_new" style="color: #000;">Edit Repeater (BrandMeister Selfcare)</a></td></tr>'."\n";
+				    echo '"></input></td></tr><tr><td align="left"><a class="tooltip2" href="#">'.$lang['bm_network'].':<span><b>BrandMeister Dashboards</b>Direct links to your BrandMeister Dashboards</span></a></td><td colspan="2"><a href="https://brandmeister.network/?page=hotspot&amp;id='.$configmmdvm['General']['Id'].'" target="_new" style="color: #000;">Repeater Information</a> | <a href="https://brandmeister.network/?page=hotspot-edit&amp;id='.$configmmdvm['General']['Id'].'" target="_new" style="color: #000;">Edit Repeater (BrandMeister Selfcare)</a></td></tr>'."\n";
 				}
 				if (substr($dmrMasterNow, 0, 4) == "DMR+") {
-				    echo '    <tr><td align="left"><a class="tooltip2" href="#">'.$lang['dmr_plus_network'].':<span><b>DMR+ Network</b>Set your options= for DMR+ here</span></a></td><td align="left">Options=<input type="text" name="dmrNetworkOptions" size="40" maxlength="100" value="';
+				    echo '    <tr><td align="left"><a class="tooltip2" href="#">'.$lang['dmr_plus_network'].':<span><b>DMR+ Network</b>Set your options= for DMR+ here</span></a></td><td align="left" colspan="2">Options=<input type="text" name="dmrNetworkOptions" size="40" maxlength="100" value="';
 				    if (isset($configmmdvm['DMR Network']['Options'])) {
 					echo $configmmdvm['DMR Network']['Options'];
 				    }
@@ -3623,7 +3637,7 @@ $MYCALL=strtoupper($callsign);
 				<?php if ($dmrMasterNow !== "DMRGateway") { ?>
 				    <tr>
 					<td align="left"><a class="tooltip2" href="#">DMR ESSID:<span><b>DMR Extended ID</b>This is the extended ID, to make your DMR ID 8 or 9 digits long</span></a></td>
-					<td align="left">
+					<td align="left" colspan="2">
 					    <?php
 					    if (isset($configmmdvm['DMR']['Id'])) {
 						if (strlen($configmmdvm['DMR']['Id']) > strlen($configmmdvm['General']['Id'])) {
@@ -3655,8 +3669,11 @@ $MYCALL=strtoupper($callsign);
 					</td></tr>
 				    <tr>
 				<?php } ?>
+                                        <th align="left" colspan="3">System-Wide DMR Settings</th>
+                                    </tr>
+                                    <tr>
 				<td align="left"><a class="tooltip2" href="#"><?php echo $lang['dmr_cc'];?>:<span><b>DMR Color Code</b>Set your DMR Color Code here</span></a></td>
-				<td style="text-align: left;"><select name="dmrColorCode">
+				<td style="text-align: left;" colspan="2"><select name="dmrColorCode">
 				    <?php for ($dmrColorCodeInput = 0; $dmrColorCodeInput <= 15; $dmrColorCodeInput++) {
 					if ($configmmdvm['DMR']['ColorCode'] == $dmrColorCodeInput) { echo "<option selected=\"selected\" value=\"$dmrColorCodeInput\">$dmrColorCodeInput</option>\n"; }
 					else {echo "      <option value=\"$dmrColorCodeInput\">$dmrColorCodeInput</option>\n"; }
@@ -3665,7 +3682,7 @@ $MYCALL=strtoupper($callsign);
 				    </tr>
 				    <tr>
 					<td align="left"><a class="tooltip2" href="#"><?php echo $lang['dmr_embeddedlconly'];?>:<span><b>DMR EmbeddedLCOnly</b>Turn ON to disable extended message support, including GPS and Talker Alias data. This can help reduce problems with some DMR Radios that do not support such features.</span></a></td>
-					<td align="left">
+					<td align="left" colspan="2">
 					    <?php if ($configmmdvm['DMR']['EmbeddedLCOnly'] == 1) { 
 						echo "<div class=\"switch\"><input id=\"toggle-dmrEmbeddedLCOnly\" class=\"toggle toggle-round-flat\" type=\"checkbox\" name=\"dmrEmbeddedLCOnly\" value=\"ON\" checked=\"checked\" /><label for=\"toggle-dmrEmbeddedLCOnly\"></label></div>\n";
 					    }
@@ -3676,7 +3693,7 @@ $MYCALL=strtoupper($callsign);
 					</td></tr>
 				    <tr>
 					<td align="left"><a class="tooltip2" href="#"><?php echo $lang['dmr_dumptadata'];?>:<span><b>DMR DumpTAData</b>Turn ON to dump GPS and Talker Alias data to MMDVMHost log file.</span></a></td>
-					<td align="left">
+					<td align="left" colspan="2">
 					    <?php if ($configmmdvm['DMR']['DumpTAData'] == 1) {
 						echo "<div class=\"switch\"><input id=\"toggle-dmrDumpTAData\" class=\"toggle toggle-round-flat\" type=\"checkbox\" name=\"dmrDumpTAData\" value=\"ON\" checked=\"checked\" /><label for=\"toggle-dmrDumpTAData\"></label></div>\n";
 					    }
@@ -3702,7 +3719,7 @@ $MYCALL=strtoupper($callsign);
 			    <input type="hidden" name="confHostFilesNoDExtra" value="OFF" />
 			    <table>
 				<tr>
-				    <th width="200"><a class="tooltip" href="#"><?php echo $lang['setting'];?><span><b>Setting</b></span></a></th>
+				    <th><a class="tooltip" href="#"><?php echo $lang['setting'];?><span><b>Setting</b></span></a></th>
 				    <th colspan="2"><a class="tooltip" href="#"><?php echo $lang['value'];?><span><b>Value</b>The current value from the<br />configuration files</span></a></th>
 				</tr>
 				<tr>
@@ -3817,7 +3834,7 @@ $MYCALL=strtoupper($callsign);
 					<option>Z</option>
 				    </select>
 				    </td>
-				    <td width="300">
+				    <td>
 					<input type="radio" name="confDefRefAuto" value="ON"<?php if ($configircddb['atStartup1'] == '1') {echo ' checked="checked"';} ?> />Startup
 					<input type="radio" name="confDefRefAuto" value="OFF"<?php if ($configircddb['atStartup1'] == '0') {echo ' checked="checked"';} ?> />Manual</td>
 				</tr>
@@ -3879,7 +3896,7 @@ $MYCALL=strtoupper($callsign);
 			    <h2><?php echo $lang['ysf_config'];?></h2>
 			    <table>
 				<tr>
-				    <th width="200"><a class="tooltip" href="#"><?php echo $lang['setting'];?><span><b>Setting</b></span></a></th>
+				    <th><a class="tooltip" href="#"><?php echo $lang['setting'];?><span><b>Setting</b></span></a></th>
 				    <th colspan="2"><a class="tooltip" href="#"><?php echo $lang['value'];?><span><b>Value</b>The current value from the<br />configuration files</span></a></th>
 				</tr>
 				<tr>
@@ -4188,7 +4205,7 @@ $MYCALL=strtoupper($callsign);
 			    <h2><?php echo $lang['p25_config'];?></h2>
 			    <table>
 				<tr>
-				    <th width="200"><a class="tooltip" href="#"><?php echo $lang['setting'];?><span><b>Setting</b></span></a></th>
+				    <th><a class="tooltip" href="#"><?php echo $lang['setting'];?><span><b>Setting</b></span></a></th>
 				    <th colspan="2"><a class="tooltip" href="#"><?php echo $lang['value'];?><span><b>Value</b>The current value from the<br />configuration files</span></a></th>
 				</tr>
 				<tr>
@@ -4254,7 +4271,7 @@ $MYCALL=strtoupper($callsign);
 			    <h2><?php echo $lang['nxdn_config'];?></h2>
 			    <table>
 				<tr>
-				    <th width="200"><a class="tooltip" href="#"><?php echo $lang['setting'];?><span><b>Setting</b></span></a></th>
+				    <th><a class="tooltip" href="#"><?php echo $lang['setting'];?><span><b>Setting</b></span></a></th>
 				    <th colspan="2"><a class="tooltip" href="#"><?php echo $lang['value'];?><span><b>Value</b>The current value from the<br />configuration files</span></a></th>
 				</tr>
 				<tr>
@@ -4332,7 +4349,7 @@ $MYCALL=strtoupper($callsign);
 			    <h2><?php echo $lang['gpsd_config'];?></h2>
 			    <table>
 				<tr>
-				    <th width="200"><a class="tooltip" href="#"><?php echo $lang['setting'];?><span><b>Setting</b></span></a></th>
+				    <th><a class="tooltip" href="#"><?php echo $lang['setting'];?><span><b>Setting</b></span></a></th>
 				    <th colspan="2"><a class="tooltip" href="#"><?php echo $lang['value'];?><span><b>Value</b>The current value from the<br />configuration files</span></a></th>
 				</tr>
 				<tr>
@@ -4353,7 +4370,7 @@ $MYCALL=strtoupper($callsign);
 			    <h2><?php echo $lang['pocsag_config'];?></h2>
 			    <table>
 				<tr>
-				    <th width="200"><a class="tooltip" href="#"><?php echo $lang['setting'];?><span><b>Setting</b></span></a></th>
+				    <th><a class="tooltip" href="#"><?php echo $lang['setting'];?><span><b>Setting</b></span></a></th>
 				    <th colspan="2"><a class="tooltip" href="#"><?php echo $lang['value'];?><span><b>Value</b>The current value from the<br />configuration files</span></a></th>
 				</tr>
 				<tr>
@@ -4409,7 +4426,7 @@ $MYCALL=strtoupper($callsign);
 			<h2><?php echo $lang['fw_config'];?></h2>
 			<table>
 			    <tr>
-				<th width="200"><a class="tooltip" href="#"><?php echo $lang['setting'];?><span><b>Setting</b></span></a></th>
+				<th><a class="tooltip" href="#"><?php echo $lang['setting'];?><span><b>Setting</b></span></a></th>
 				<th colspan="2"><a class="tooltip" href="#"><?php echo $lang['value'];?><span><b>Value</b>The current value from the<br />configuration files</span></a></th>
 			    </tr>
 			    <tr>
@@ -4501,7 +4518,7 @@ $MYCALL=strtoupper($callsign);
 		    <h2><?php echo $lang['remote_access_pw'];?></h2>
 		    <form id="adminPassForm" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="post">
 			<table>
-			    <tr><th width="200"><?php echo $lang['user'];?></th><th colspan="3"><?php echo $lang['password'];?></th></tr>
+			    <tr><th><?php echo $lang['user'];?></th><th colspan="3"><?php echo $lang['password'];?></th></tr>
 			    <tr>
 				<td align="left"><b>pi-star</b></td>
 				<td align="left"><label for="pass1">Password:</label><input type="password" name="adminPassword" id="pass1" onkeyup="checkPass(); return false;" size="15" />
