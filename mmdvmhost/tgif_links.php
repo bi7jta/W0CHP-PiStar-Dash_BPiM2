@@ -87,8 +87,8 @@ if ( $testMMDVModeDMR == 1 ) {
     <table>
       <tr>
         <th align="left" style="padding-left: 8px;"><a class=tooltip href="#">Connected to Master:<span><b>Connected Master</b></span></a></th>
-        <th align="left" style="padding-left: 8px;"><a class=tooltip href="#">Slot 1 TalkGroup<span><b>TG linked to Slot 1</b></span></a></th>
-        <th align="left" style="padding-left: 8px;"><a class=tooltip href="#">Slot 2 TalkGroup<span><b>TG linked to Slot 2</b></span></a></th>
+        <th align="left" style="padding-left: 8px;"><a class=tooltip href="#">Slot 1 Talkgroup<span><b>TG linked to Slot 1</b></span></a></th>
+        <th align="left" style="padding-left: 8px;"><a class=tooltip href="#">Slot 2 Talkgroup<span><b>TG linked to Slot 2</b></span></a></th>
       </tr>'."\n";
 	
 	echo '    <tr>'."\n";

@@ -105,8 +105,8 @@ if ( $testMMDVModeDMR == 1 ) {
   <table>
     <tr>
       <th align="left" style="padding-left: 8px;"><a class=tooltip href="#">Connected to Master:<span><b>Connected Master</b></span></a></th>
-      <th align="left" style="padding-left: 8px;"><a class=tooltip href="#">Static TalkGroups (Slot #)<span><b>Statically linked talkgroups</b></span></a></th>
-      <th align="left" style="padding-left: 8px;"><a class=tooltip href="#">Dynamic TalkGroups (Slot #)<span><b>Dynamically linked talkgroups</b></span></a></th>
+      <th align="left" style="padding-left: 8px;"><a class=tooltip href="#">Static Talkgroups (Slot #)<span><b>Statically linked talkgroups</b></span></a></th>
+      <th align="left" style="padding-left: 8px;"><a class=tooltip href="#">Dynamic Talkgroups (Slot #)<span><b>Dynamically linked talkgroups</b></span></a></th>
     </tr>'."\n";
 	
 	echo '    <tr>'."\n";

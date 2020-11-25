@@ -29,14 +29,14 @@ if ( $testMMDVModeNXDN == 1 ) {
 	    }
 	    if ($_POST["Link"] == "LINK") {
 		if ($_POST['nxdnLinkHost'] == "none") {
-		    $remoteCommand = "cd /var/log/pi-star && sudo /usr/local/bin/RemoteCommand ".$remotePort." TalkGroup9999";
+		    $remoteCommand = "cd /var/log/pi-star && sudo /usr/local/bin/RemoteCommand ".$remotePort." Talkgroup9999";
 		}
 		else {
-		    $remoteCommand = "cd /var/log/pi-star && sudo /usr/local/bin/RemoteCommand ".$remotePort." TalkGroup".$_POST['nxdnLinkHost'];
+		    $remoteCommand = "cd /var/log/pi-star && sudo /usr/local/bin/RemoteCommand ".$remotePort." Talkgroup".$_POST['nxdnLinkHost'];
 		}
 	    }
 	    else if ($_POST["Link"] == "UNLINK") {
-		$remoteCommand = "cd /var/log/pi-star && sudo /usr/local/bin/RemoteCommand ".$remotePort." TalkGroup9999";
+		$remoteCommand = "cd /var/log/pi-star && sudo /usr/local/bin/RemoteCommand ".$remotePort." Talkgroup9999";
 	    }
 	    else {
 		echo "<b>NXDN Link Manager</b>\n";
