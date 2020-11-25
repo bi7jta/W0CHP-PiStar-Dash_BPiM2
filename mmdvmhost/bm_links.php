@@ -104,18 +104,17 @@ if ( $testMMDVModeDMR == 1 ) {
 	echo '<b>Active BrandMeister Connections</b>
   <table>
     <tr>
-      <th align="left" style="padding-left: 5px;"><a class=tooltip href="#">'.$lang['bm_master'].'<span><b>Connected Master</b></span></a></th>
-      <th align="left" style="padding-left: 5px;"><a class=tooltip href="#">Static TGs (Slot #)<span><b>Statically linked talkgroups</b></span></a></th>
-      <th align="left" style="padding-left: 5px;"><a class=tooltip href="#">Dynamic TGs (Slot #)<span><b>Dynamically linked talkgroups</b></span></a></th>
+      <th align="left" style="padding-left: 8px;"><a class=tooltip href="#">Connected to Master:<span><b>Connected Master</b></span></a></th>
+      <th align="left" style="padding-left: 8px;"><a class=tooltip href="#">Static TalkGroups (Slot #)<span><b>Statically linked talkgroups</b></span></a></th>
+      <th align="left" style="padding-left: 8px;"><a class=tooltip href="#">Dynamic TalkGroups (Slot #)<span><b>Dynamically linked talkgroups</b></span></a></th>
     </tr>'."\n";
 	
 	echo '    <tr>'."\n";
-	echo '     <td align="left" style="padding-left: 5px;">'.$dmrMasterHost.'</td>';
-	echo '     <td align="left" style="padding-left: 5px;">'.$bmStaticTGList.'</td>';
-	echo '     <td align="left" style="padding-left: 5px;">'.$bmDynamicTGList.'</td>';
+	echo '     <td align="left" style="padding: 8px;">'.$dmrMasterHost.'<br /><small><a href="https://brandmeister.network/?page=hotspot&amp;id='.$dmrID.'" target="_new" title="Click to view your hotspot info on BrandMeister">Your HotSpot/Repeater ID: '.$dmrID.'</a></small></td>';
+	echo '     <td align="left" style="padding: 8px;">'.$bmStaticTGList.'</td>';
+	echo '     <td align="left" style="padding: 8px;">'.$bmDynamicTGList.'</td>';
 	echo '    </tr>'."\n";
 	echo '  </table>'."\n";
-	echo '  <br />'."\n";
     }
 }
 ?>

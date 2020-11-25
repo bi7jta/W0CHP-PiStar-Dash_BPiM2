@@ -117,11 +117,11 @@ if ( $testMMDVModeDMR == 1 ) {
 	}
 	else { // Do this when we are not handling post data
 	    if (isset($_SESSION['BMAPIKey'])) {
-		echo '<a href="https://brandmeister.network/?page=hotspot&amp;id='.$dmrID.'" target="_new" style="color:inherit;" ><b>BrandMeister Manager</b></a>'."\n";
+		echo '<b>BrandMeister Manager</b>'."\n";
 		echo '<form action="'.htmlentities($_SERVER['PHP_SELF']).'" method="post">'."\n";
 		echo '<table>'."\n";
 		echo '<tr>
-        <th><a class=tooltip href="#">Static Talkgroup<span><b>Enter the Talkgroup number</b></span></a></th>
+        <th><a class=tooltip href="#">Enter Static Talkgroup:<span><b>Enter the Talkgroup number</b></span></a></th>
         <th><a class=tooltip href="#">Slot<span><b>Where to link/unlink</b></span></a></th>
         <th><a class=tooltip href="#">Add / Remove<span><b>Add or Remove</b></span></a></th>
         <th><a class=tooltip href="#">Action<span><b>Take Action</b></span></a></th>
@@ -129,13 +129,13 @@ if ( $testMMDVModeDMR == 1 ) {
       </tr>'."\n";
 		echo '    <tr>';
 		echo '<td><input type="text" id="tgNr" name="tgNr" size="10" maxlength="7" oninput="enableOnNonEmpty(\'tgNr\', \'tgSubmit\', \'tgAdd\', \'tgDel\'); return false;"/></td>';
-		echo '<td><input type="radio" id="ts1" name="TS" value="1" '.((getConfigItem("General", "Duplex", $_SESSION['MMDVMHostConfigs']) == "1") ? '' : '').'/><label for="ts1"/>TS1</label> <input type="radio" id="ts2" name="TS" value="2"/><label for="ts2"/>TS2</td>';
+		echo '<td><input type="radio" id="ts1" name="TS" value="1" '.((getConfigItem("General", "Duplex", $_SESSION['MMDVMHostConfigs']) == "1") ? '' : '').'/><label for="ts1"/>TS1</label> <input type="radio" id="ts2" name="TS" value="2" checked="checked"/><label for="ts2"/>TS2</td>';
 		echo '<td><input type="radio" id="tgAdd" name="TGmgr" value="ADD" checked="checked" /><label for="tgAdd">Add</label> <input type="radio" id="tgDel" name="TGmgr" value="DEL" checked="checked" /><label for="tgDel">Delete</label></td>';
 		echo '<td><input type="submit" value="Modify Static" id="tgSubmit" name="tgSubmit"/></td>';
 		echo '<td><input type="submit" value="Drop QSO" title="Drop current QSO" name="dropQso" /><input type="submit" value="Drop All Dyn." title="Drop all dynamic groups" name="dropDyn" /></td>';
 		echo '</tr>'."\n";
 		echo '  </table>'."\n";
-		echo '  <br />'."\n";
+		echo '  <br /><hr style="color:inherit;height:0px;border-bottom:1px;"/>'."\n";
 	    }
 	}
     }

@@ -61,7 +61,6 @@ if (isset($_SESSION['DAPNETAPIKeyConfigs']['DAPNETAPI']['USER']) && (empty($_SES
         echo "<table>\n<tr><th>Command Output</th></tr>\n<tr><td>";
         print $resultapi;
         echo "</td></tr>\n</table>\n";
-        echo "<br />\n";
 	
         unset($_POST); // Cleanup
         echo '<script type="text/javascript">setTimeout(function() { window.location=window.location;},5000);</script>';
@@ -95,7 +94,6 @@ else {
     echo "<table>\n<tr><th>DISABLED</th></tr>\n<tr><td>";
     print "DAPNET API configuration is incomplete";
     echo "</td></tr>\n</table>\n";
-    echo "<br />\n";
 }
 
 ?>

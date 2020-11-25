@@ -86,20 +86,17 @@ if ( $testMMDVModeDMR == 1 ) {
     echo '<b>Active TGIF Connections</b>
     <table>
       <tr>
-        <th align="left" style="padding-left: 5px;"><a class=tooltip href="#">DMR Master<span><b>Connected Master</b></span></a></th>
-        <th align="left" style="padding-left: 5px;"><a class=tooltip href="#">Repeater ID<span><b>The ID for this Repeater/Hotspot</b></span></a></th>
-        <th align="left" style="padding-left: 5px;"><a class=tooltip href="#">Slot1 TG<span><b>TG linked to Slot 1</b></span></a></th>
-        <th align="left" style="padding-left: 5px;"><a class=tooltip href="#">Slot2 TG<span><b>TG linked to Slot 2</b></span></a></th>
+        <th align="left" style="padding-left: 8px;"><a class=tooltip href="#">Connected to Master:<span><b>Connected Master</b></span></a></th>
+        <th align="left" style="padding-left: 8px;"><a class=tooltip href="#">Slot 1 TalkGroup<span><b>TG linked to Slot 1</b></span></a></th>
+        <th align="left" style="padding-left: 8px;"><a class=tooltip href="#">Slot 2 TalkGroup<span><b>TG linked to Slot 2</b></span></a></th>
       </tr>'."\n";
 	
 	echo '    <tr>'."\n";
-	echo '      <td align="left" style="padding-left: 5px;">tgif.network</td>';
-	echo '<td align="left" style="padding-left: 5px;">'.$repeaterid.'</td>';
-	echo '<td align="left" style="padding-left: 5px;">'.$slot1tg.'</td>';
-	echo '<td align="left" style="padding-left: 5px;">'.$slot2tg.'</td>';
+	echo '      <td align="left" style="padding: 8px;">tgif.network<br /><small><a href="http://tgif.network/selfcare.html" target="_new">Your HotSpot/Repeater ID: '.$repeaterid.'</a></td>';
+	echo '<td align="left" style="padding: 8px;">'.$slot1tg.'</td>';
+	echo '<td align="left" style="padding: 8px;">'.$slot2tg.'</td>';
 	echo '</tr>'."\n";
 	echo '  </table>'."\n";
-	echo '  <br />'."\n";
     }
 }
 ?>
