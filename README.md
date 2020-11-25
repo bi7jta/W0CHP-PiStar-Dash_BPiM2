@@ -80,10 +80,14 @@ website](https://w0chp.net) for not following very simple instructions.**
 
 ### Main Dashboard
 
+(click for larger image)
+
 ![alt text](https://w0chp.net/img/W0CHP_Dash.png "W0CHP Dashboard")
 
 
 ### Admin Page
+
+(click for larger image)
 
 ![alt text](https://w0chp.net/img/W0CHP_Admin.png "W0CHP Admin Page")
 
