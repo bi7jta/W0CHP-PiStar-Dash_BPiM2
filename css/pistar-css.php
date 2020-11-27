@@ -119,7 +119,7 @@ table {
 }
 
 table th {
-    font-family: 'Inconsolata', monospace;
+    font-family:  'Source Sans Pro', sans-serif;
     font-weight: 600;
     text-shadow: 1px 1px <?php echo $tableHeadDropShaddow; ?>;
     text-decoration: none;
