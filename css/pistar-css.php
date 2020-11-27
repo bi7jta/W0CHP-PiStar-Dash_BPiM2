@@ -706,14 +706,13 @@ input.toggle-round-flat:focus + label {
 }
 
 /* Tame Firefox Buttons */
-/*
 @-moz-document url-prefix() {
     select,
     input {
         margin : 0;
         padding : 0;
         border-width : 1px;
-        font : 12px 'Source Sans Pro', sans-serif;
+        font : 14px 'Source Sans Pro', sans-serif;
     }
     input[type="button"], button, input[type="submit"] {
         padding : 0px 3px 0px 3px;
@@ -721,4 +720,38 @@ input.toggle-round-flat:focus + label {
         -moz-border-radius : 3px 3px 3px 3px;
     }
 }
-*/
+textarea, input[type='text'] {
+	font-size: 15px;
+	font-family: 'Inconsolata', monospace;
+	border: 1px solid black;
+	padding: 5px;
+	margin 3px;
+}
+
+input[type=button], input[type=submit], input[type=reset], input[type=radio] {
+    font-size: 15px;
+    font-family: 'Source Sans Pro', sans-serif;
+    border: 1px solid black;
+    color: black;
+    background-color: #f1f1f1;
+    padding: 5px;
+    text-decoration: none;
+    margin: 3px;
+    cursor: pointer;
+}
+
+input[type=button]:hover, input[type=submit]:hover, input[type=reset]:hover {
+  background-color: #555555;
+  color: white;
+}
+
+select {
+  background-color: #f1f1f1;
+    font-family: 'Inconsolata', monospace;
+    font-size: 15px;
+    border: 1px solid black;
+    color: black;
+    padding: 2px;
+    text-decoration: none;
+    margin: 2px;
+}
