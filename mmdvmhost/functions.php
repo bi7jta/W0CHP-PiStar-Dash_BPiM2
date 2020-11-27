@@ -654,6 +654,9 @@ function getHeardList($logLines) {
 	else if(strpos($logLine,"overflow in the DMR slot RF queue")) {
 	    continue;
 	}
+    else if(strpos($logLine,"overflow in the System Fusion RF queue")) {
+        continue;
+    }
 	else if(strpos($logLine,"non repeater RF header received")) {
 	    continue;
 	}
