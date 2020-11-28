@@ -1,6 +1,9 @@
 <?php
 include_once('css-base.php');
 ?>
+
+@import url('https://fonts.googleapis.com/css2?family=Inconsolata:ital,wght@0,400;0,500;0,600;0,700;1,500;1,600;1,700&family=Source+Sans+Pro:ital,wght@0,400;0,600;0,700;1,400;1,600;1,700&display=swap');
+
 .container {
     width: 100%;
     text-align: left;
@@ -14,7 +17,7 @@ include_once('css-base.php');
 }
 
 body, font {
-    font: 16px sans-serif;
+    font: 18px 'Source Sans Pro', sans-serif;
     color: #ffffff;
     -webkit-text-size-adjust: none;
     -moz-text-size-adjust: none;
@@ -26,7 +29,7 @@ body, font {
     background : <?php echo $backgroundBanners; ?>;
     text-decoration : none;
     color : <?php echo $textBanners; ?>;
-    font-family : sans-serif;
+    font-family : 'Source Sans Pro', sans-serif;
     text-align : left;
     padding : 5px 0px 5px 0px;
     border-radius: 10px 10px 0 0;
@@ -68,7 +71,7 @@ body, font {
 
 .contentwide h2 {
     color: #<?php echo $textContent; ?>;
-    font: 1em sans-serif;
+    font: 1em 'Source Sans Pro', sans-serif;
     text-align: center;
     font-weight: bold;
     padding: 0px;
@@ -79,7 +82,7 @@ body, font {
     background : <?php echo $backgroundBanners; ?>;
     text-decoration : none;
     color : <?php echo $textBanners; ?>;
-    font-family : sans-serif;
+    font-family : 'Source Sans Pro', sans-serif;
     font-size : 9px;
     text-align : center;
     padding : 10px 0 10px 0;
@@ -115,13 +118,13 @@ table {
     text-decoration: none;
     color: #ffffff;
     background: #000000;
-    font-family: sans-serif;
+    font-family: 'Source Sans Pro', sans-serif;
     width: 100%;
     white-space: nowrap;
 }
 
 table th {
-    font-family: monospace;
+    font-family: 'Inconsolata', monospace;
     text-shadow: 1px 1px <?php echo $tableHeadDropShaddow; ?>;
     text-decoration: none;
     color : <?php echo $textBanners; ?>;
@@ -139,10 +142,11 @@ table tr:nth-child(odd) {
 
 table td {
     color: #000000;
-    font-family: monospace;
+    font-family: 'Inconsolata', monospace;
     text-decoration: none;
     border: 1px solid #000000;
     overflow-x: hidden;
+    font-weight: 600;
 }
 
 body {
@@ -158,7 +162,6 @@ a {
 a:link, a:visited {
     text-decoration: none;
     color: #0000e0;
-    font-weight: normal;
 }
 
 a.tooltip, a.tooltip:link, a.tooltip:visited, a.tooltip:active  {
@@ -192,7 +195,7 @@ a.tooltip:hover span {
     color: #000000;
     border:1px solid #000000;
     background: #f7f7f7;
-    font: 12px sans-serif; 
+    font: 12px 'Source Sans Pro', sans-serif; 
     text-align: left;
 }
 
@@ -243,7 +246,7 @@ a.tooltip2:hover span {
     color: #000000;
     border:1px solid #000000;
     background: #f7f7f7;
-    font: 12px sans-serif; 
+    font: 12px 'Source Sans Pro', sans-serif; 
     text-align: left;
 }
 
@@ -279,7 +282,7 @@ ul li a {
     float:left;
     color: #999;
     cursor: pointer;
-    font: 900 14px/22px "Arial", Helvetica, sans-serif;
+    font: 900 14px/22px "Arial", Helvetica, 'Source Sans Pro', sans-serif;
 }
 
 ul li a span {
@@ -384,7 +387,7 @@ input.toggle-round-flat:focus + label {
 /* Links inside the navbar */
 .navbar a {
     float: right;
-    font-family : sans-serif;
+    font-family : 'Source Sans Pro', sans-serif;
     font-size: 14px;
     color: <?php echo $textNavbar; ?>;
     text-align: center;
@@ -462,7 +465,7 @@ input.toggle-round-flat:focus + label {
     padding: 0;
     display: inline-block;
     padding: 1px 10px;
-    font-family : sans-serif;
+    font-family : 'Source Sans Pro', sans-serif;
     font-size: 14px;
     color: <?php echo $textNavbar; ?>;
     text-align: center;
@@ -709,7 +712,7 @@ input.toggle-round-flat:focus + label {
         margin : 0;
         padding : 0;
         border-width : 1px;
-        font : 12px sans-serif;
+        font : 12px 'Source Sans Pro', sans-serif;
     }
     input[type="button"], button, input[type="submit"] {
         padding : 0px 3px 0px 3px;
