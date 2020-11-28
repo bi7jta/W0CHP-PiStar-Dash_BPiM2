@@ -1,4 +1,4 @@
-# ABOUT
+#  About the `W0CHP` Pi-Star Dashboard
 
 **DO NOT contact me for support, bugs, etc...**
 
