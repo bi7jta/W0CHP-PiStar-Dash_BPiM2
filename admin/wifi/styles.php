@@ -1,6 +1,8 @@
 <?php
 include_once('../../css/css-base.php');
 ?>
+@import url('https://fonts.googleapis.com/css2?family=Inconsolata:ital,wght@0,400;0,500;0,600;0,700;1,500;1,600;1,700&family=Source+Sans+Pro:ital,wght@0,400;0,600;0,700;1,400;1,600;1,700&display=swap');
+
 body {
 	background-color: <?php echo $backgroundBanners; ?>;
 }
@@ -74,7 +76,7 @@ input[type=button]:hover,input[type=submit]:hover {
 	border-left: 1px solid;
 	float: left;
         border-bottom:1px solid;
-	font-family: "Courier New", Courier, monospace;
+	font-family: 'Inconsolata', monospace;
 }
 
 .wifiinfo {
@@ -84,7 +86,7 @@ input[type=button]:hover,input[type=submit]:hover {
 	border-right: 1px solid;
 	text-align: left;
         border-bottom:1px solid;
-	font-family: "Courier New", Courier, monospace;
+	font-family: 'Inconsolata', monospace;
 }
 
 .intheader {

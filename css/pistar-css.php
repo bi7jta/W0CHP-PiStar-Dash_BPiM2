@@ -741,8 +741,8 @@ input[type=button], input[type=submit], input[type=reset], input[type=radio] {
 }
 
 input[type=button]:hover, input[type=submit]:hover, input[type=reset]:hover {
-  background-color: #555555;
-  color: white;
+    color: <?php echo $textNavbarHover; ?>;
+    background-color: <?php echo $backgroundNavbarHover; ?>;
 }
 
 select {
