@@ -1,13 +1,15 @@
-#  About the `W0CHP` Pi-Star Dashboard
+#  About the `W0CHP` Pi-Star Dashboard, and Warnings
 
 **DO NOT contact me for support, bugs, etc...**
 
 This is my *personal* and highly customized Pi-Star dashboard, and related
 binaries, forked from F1RMB, which was forked from Andy, MW0MWZ's original
 code.  I offer ZERO support. This is here for your hacking and enjoyment, and
-you're fully on your own. Use at your own risk, and DO NOT ask me for support.
+you're fully on your own. *Use at your own risk*, and DO NOT ask me for support.
 Nor should you file/report any bugs etc. on any officlal Pi-Star medium...this
 is not Andy's code!!!
+
+If you ask me to support, **I will ignore you.**
 
 ## Features and enhancements (not an exhaustive list)
 
