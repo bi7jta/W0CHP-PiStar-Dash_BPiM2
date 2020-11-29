@@ -307,6 +307,7 @@ require_once($_SERVER['DOCUMENT_ROOT'].'/config/ircddblocal.php');
 	    else {
                 $ysfHostFile = fopen("/usr/local/etc/YSFHosts.txt", "r");
                 $ysfLinkedToTxt = "null";
+		$ysfRoomNo = "null";
                 while (!feof($ysfHostFile)) {
                     $ysfHostFileLine = fgets($ysfHostFile);
                     $ysfRoomTxtLine = preg_split('/;/', $ysfHostFileLine);
@@ -319,7 +320,25 @@ require_once($_SERVER['DOCUMENT_ROOT'].'/config/ircddblocal.php');
                         break;
                     }
                 }
-		
+                $fcsHostFile = fopen("/usr/local/etc/FCSHosts.txt", "r");
+                $ysfLinkedToTxt = "null";
+		$ysfRoomNo = "null";
+                while (!feof($fcsHostFile)) {
+                    $ysfHostFileLine = fgets($fcsHostFile);
+                    $ysfRoomTxtLine = preg_split('/;/', $ysfHostFileLine);
+
+                    if (empty($ysfRoomTxtLine[0]) || empty($ysfRoomTxtLine[1]))
+                        continue;
+
+                    if (($ysfRoomTxtLine[0] == $ysfLinkedTo) || ($ysfRoomTxtLine[1] == $ysfLinkedTo)) {
+                        $ysfLinkedToTxt = $ysfRoomTxtLine[1];
+			$ysfRoomNo = $ysfRoomTxtLine[0];
+                        break;
+                    }
+                }
+		fclose($ysfHostFile);
+		fclose($fcsHostFile);
+
 		if ($ysfLinkedToTxt != "null") {
 		    //$ysfLinkedToTxt = "Room: ".$ysfLinkedToTxt;
 		    $ysfLinkState = ' [In Room]';
@@ -334,7 +353,12 @@ require_once($_SERVER['DOCUMENT_ROOT'].'/config/ircddblocal.php');
 		
                 $ysfLinkedToTxt = str_replace('_', ' ', $ysfLinkedToTxt);
             }
-	    
+
+	    if ($ysfRoomNo != "null") {
+                $ysfTableData = $ysfLinkedToTxt."<br />(".$ysfRoomNo.")";
+            } else {
+	        $ysfTableData = $ysfLinkedToTxt;
+	    }
 	    $ysfLinkedToTooltip = $ysfLinkStateTooltip.$ysfLinkedToTxt;
             if (strlen($ysfLinkedToTxt) > 25) {
 		$ysfLinkedToTxt = substr($ysfLinkedToTxt, 0, 23) . '..';
@@ -342,10 +366,10 @@ require_once($_SERVER['DOCUMENT_ROOT'].'/config/ircddblocal.php');
             echo "<br />\n";
             echo "<table>\n";
 	    echo "<tr><th colspan=\"2\">".$lang['ysf_net']."".$ysfLinkState."</th></tr>\n";
-	    echo "<tr><td colspan=\"2\"style=\"background: #ffffff;\" title=\"".$ysfLinkedToTooltip."\">".$ysfLinkedToTxt."</td></tr>\n";
+	    echo "<tr><td colspan=\"2\"style=\"background: #ffffff;\" title=\"".$ysfLinkedToTooltip."\">".$ysfTableData."</td></tr>\n";
             echo "</table>\n";
 	}
-	
+
 	$testYSF2DMR = 0;
 	if ( isset($_SESSION['YSF2DMRConfigs']['Enabled']['Enabled']) ) {
 	    $testYSF2DMR = $_SESSION['YSF2DMRConfigs']['Enabled']['Enabled'];
