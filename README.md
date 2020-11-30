@@ -38,11 +38,11 @@ If you ask me to support, **I will ignore you.**
 
         sudo bash ./W0CHP-pistar -h
 ...to familiarize yourself with the available options/arguments:
-  	-h,   --help                     Display this help text.
-  	-id,  --install-dashboard        Install W0CHP dashboard.
-  	-idn  --install-dashboard-nocss  Install W0CHP dashboard WITHOUT stylesheet.
-  	-rd,  --restore-dashboard        Restore original dashboard.
-  	-s,   --status                   Display current install, original or W0CHP installations.
+        -h,   --help                     Display this help text.
+        -id,  --install-dashboard        Install W0CHP dashboard.
+        -idn  --install-dashboard-nocss  Install W0CHP dashboard WITHOUT stylesheet.
+        -rd,  --restore-dashboard        Restore original dashboard.
+        -s,   --status                   Display current install, original or W0CHP installations.
 
 5. When ready to install, run the above command again with the option/argument you wish...e.g:
 
@@ -50,7 +50,7 @@ If you ask me to support, **I will ignore you.**
 
 (...to install the dashboard only).
 
-## Notes about custom CSS you may have applied
+## Notes about custom CSS you may have previously applied
 
 * When using the `-id` or `-ia` options, the W0CHP CSS is installed, and any of your custom CSS settings
   before installing the W0CHP dashboard, are backed up in the event you want to restore the official dashboard
