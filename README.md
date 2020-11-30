@@ -48,11 +48,11 @@ If you ask me to support, **I will ignore you.**
 
         sudo bash ./W0CHP-pistar -id
 
-(...to install the dashboard only).
+(...to install the dashboard with W0CHP CSS).
 
 ## Notes about custom CSS you may have previously applied
 
-* When using the `-id` or `-ia` options, the W0CHP CSS is installed, and any of your custom CSS settings
+* When using the `-id` option, the W0CHP CSS is installed, and any of your custom CSS settings
   before installing the W0CHP dashboard, are backed up in the event you want to restore the official dashboard
   (see last bullet point). This is done because the CSS in the official Pi-Star is incompatible. You can still
   manually map/change your CSS back when running W0CHP-Dash (see third bullet for details).
@@ -70,7 +70,7 @@ If you ask me to support, **I will ignore you.**
   (completely different CSS mappings). Since this is for my personal use, I haven't added any logic to suck-in
   the user CSS values to the new mappings.
 * If you had customized CSS settings before installing the W0CHP dashboard, they will be restored when
-  using the `-ra` or `-rd` options.
+  using the `-rd` option.
 
 ## Screenshots
 
