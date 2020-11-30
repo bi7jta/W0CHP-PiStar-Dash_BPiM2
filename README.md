@@ -21,6 +21,7 @@ If you ask me to support, **I will ignore you.**
 * Connected FCS and YSF reflector names and numerical ID both shown in dashboard left panel.
 * Ability to configure POCSAG hangtime from the config page.
 * Additional hardware and system information displayed in top header.
+* Better dasboard mobile device view.
 * Much more. See [screenshots below](#screenshots).
 
 ## To install the `W0CHP` Pi-Star Dashboard
@@ -92,7 +93,7 @@ If you ask me to support, **I will ignore you.**
 
 (click for larger image)
 
-![alt text](https://w0chp.net/img/W0CHP_Mobile.png "W0CHP Mobile Page")
+![alt text](https://w0chp.net/img/W0CHP_Mobile.png "W0CHP Mobile Page" =800x)
 
 ### Configuration Page
 
