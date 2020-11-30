@@ -38,8 +38,6 @@ If you ask me to support, **I will ignore you.**
 
         sudo bash ./W0CHP-pistar -h
 ...to familiarize yourself with the available options/arguments:
-	W0CHP-pistar usage:
-
   	-h,   --help                     Display this help text.
   	-id,  --install-dashboard        Install W0CHP dashboard.
   	-idn  --install-dashboard-nocss  Install W0CHP dashboard WITHOUT stylesheet.
