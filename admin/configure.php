@@ -15,9 +15,9 @@ if (!isset($_SESSION) || !is_array($_SESSION)) {
 $cpuTempCRaw = exec('cat /sys/class/thermal/thermal_zone0/temp');
 if ($cpuTempCRaw > 1000) { $cpuTempC = round($cpuTempCRaw / 1000, 1); } else { $cpuTempC = round($cpuTempCRaw, 1); }
 $cpuTempF = round(+$cpuTempC * 9 / 5 + 32, 1);
-if ($cpuTempC < 55) { $cpuTempHTML = "<td style=\"background: #1d1\">".$cpuTempC."&deg;C/".$cpuTempF."&deg;F</td>\n"; }
-if ($cpuTempC >= 55) { $cpuTempHTML = "<td style=\"background: #fa0\">".$cpuTempC."&deg;C/".$cpuTempF."&deg;F</td>\n"; }
-if ($cpuTempC >= 69) { $cpuTempHTML = "<td style=\"background: #f00\">".$cpuTempC."&deg;C/".$cpuTempF."&deg;F</td>\n"; }
+if ($cpuTempC < 55) { $cpuTempHTML = "<td style=\"background: #1d1\">".$cpuTempF."&deg;F/".$cpuTempC."&deg;C</td>\n"; }
+if ($cpuTempC >= 55) { $cpuTempHTML = "<td style=\"background: #fa0\">".$cpuTempF."&degFC/".$cpuTempC."&deg;C</td>\n"; }
+if ($cpuTempC >= 69) { $cpuTempHTML = "<td style=\"background: #f00\">".$cpuTempF."&deg;F/".$cpuTempC."&deg;C</td>\n"; }
 
 // Pull in some config
 require_once('config/config.php');
