@@ -358,7 +358,7 @@ require_once($_SERVER['DOCUMENT_ROOT'].'/config/ircddblocal.php');
             } else {
                 $ysfTableData = $ysfLinkedToTxt."<br />(".$ysfRoomNo.")";
 	    }
-	    $ysfLinkedToTooltip = $ysfLinkStateTooltip.$ysfLinkedToTxt." (".$ysfRoomNo.")";
+	    $ysfLinkedToTooltip = $ysfLinkStateTooltip.$ysfLinkedToTxt;
             if (strlen($ysfLinkedToTxt) > 25) {
 		$ysfLinkedToTxt = substr($ysfLinkedToTxt, 0, 23) . '..';
 	    }
