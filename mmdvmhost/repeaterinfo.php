@@ -307,7 +307,6 @@ require_once($_SERVER['DOCUMENT_ROOT'].'/config/ircddblocal.php');
 	    else {
                 $ysfHostFile = fopen("/usr/local/etc/YSFHosts.txt", "r");
                 $ysfLinkedToTxt = "null";
-		$ysfRoomNo = "null";
                 while (!feof($ysfHostFile)) {
                     $ysfHostFileLine = fgets($ysfHostFile);
                     $ysfRoomTxtLine = preg_split('/;/', $ysfHostFileLine);
@@ -316,13 +315,14 @@ require_once($_SERVER['DOCUMENT_ROOT'].'/config/ircddblocal.php');
 			continue;
 		    
                     if (($ysfRoomTxtLine[0] == $ysfLinkedTo) || ($ysfRoomTxtLine[1] == $ysfLinkedTo)) {
+			$ysfRoomNo = "YSF".$ysfRoomTxtLine[0];
                         $ysfLinkedToTxt = $ysfRoomTxtLine[1];
                         break;
                     }
                 }
+		fclose($ysfHostFile);
                 $fcsHostFile = fopen("/usr/local/etc/FCSHosts.txt", "r");
                 $ysfLinkedToTxt = "null";
-		$ysfRoomNo = "null";
                 while (!feof($fcsHostFile)) {
                     $ysfHostFileLine = fgets($fcsHostFile);
                     $ysfRoomTxtLine = preg_split('/;/', $ysfHostFileLine);
@@ -336,7 +336,6 @@ require_once($_SERVER['DOCUMENT_ROOT'].'/config/ircddblocal.php');
                         break;
                     }
                 }
-		fclose($ysfHostFile);
 		fclose($fcsHostFile);
 
 		if ($ysfLinkedToTxt != "null") {
@@ -354,12 +353,12 @@ require_once($_SERVER['DOCUMENT_ROOT'].'/config/ircddblocal.php');
                 $ysfLinkedToTxt = str_replace('_', ' ', $ysfLinkedToTxt);
             }
 
-	    if ($ysfRoomNo != "null") {
-                $ysfTableData = $ysfLinkedToTxt."<br />(".$ysfRoomNo.")";
-            } else {
+            if (empty($ysfRoomNo) || ($ysfRoomNo == "null")) {
 	        $ysfTableData = $ysfLinkedToTxt;
+            } else {
+                $ysfTableData = $ysfLinkedToTxt."<br />(".$ysfRoomNo.")";
 	    }
-	    $ysfLinkedToTooltip = $ysfLinkStateTooltip.$ysfLinkedToTxt;
+	    $ysfLinkedToTooltip = $ysfLinkStateTooltip.$ysfLinkedToTxt." (".$ysfRoomNo.")";
             if (strlen($ysfLinkedToTxt) > 25) {
 		$ysfLinkedToTxt = substr($ysfLinkedToTxt, 0, 23) . '..';
 	    }
