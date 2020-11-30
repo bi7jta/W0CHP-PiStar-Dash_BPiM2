@@ -20,6 +20,7 @@ If you ask me to support, **I will ignore you.**
 * YSF link manager now enabled for YSF2DMR mode as well; gives the ability to change links/rooms on-the-fly.
 * Connected FCS and YSF reflector names and numerical ID both shown in dashboard left panel.
 * Ability to configure POCSAG hangtime from the config page.
+* Additional hardware and system information displayed in top header.
 * Much more. See [screenshots below](#screenshots).
 
 ## To install the `W0CHP` Pi-Star Dashboard
