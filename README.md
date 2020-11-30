@@ -87,3 +87,14 @@ If you ask me to support, **I will ignore you.**
 
 ![alt text](https://w0chp.net/img/W0CHP_Admin.png "W0CHP Admin Page")
 
+### Dashboard on Mobile Device
+
+(click for larger image)
+
+![alt text](https://w0chp.net/img/W0CHP_Mobile.png "W0CHP Mobile Page")
+
+### Configuration Page
+
+This image is too enormous to embed here, ut you can [view it separately](https://w0chp.net/img/W0CHP_Config.png).
+
+
