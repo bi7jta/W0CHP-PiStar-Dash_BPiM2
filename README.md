@@ -93,7 +93,7 @@ If you ask me to support, **I will ignore you.**
 
 (click for larger image)
 
-![alt text](https://w0chp.net/img/W0CHP_Mobile.png =800 "W0CHP Mobile Page")
+![alt text](https://w0chp.net/img/W0CHP_Mobile.png "W0CHP Mobile Page")
 
 ### Configuration Page
 
