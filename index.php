@@ -166,7 +166,6 @@ checkSessionValidity();
 			include 'dstarrepeater/active_reflector_links.php';	// dstarrepeater gateway config
 			echo '</div>'."\n";
 			include 'dstarrepeater/link_manager.php';		// D-Star Link Manager
-			echo "<br />\n";
 		    }
 		    
 		    echo '<script type="text/javascript">'."\n";
