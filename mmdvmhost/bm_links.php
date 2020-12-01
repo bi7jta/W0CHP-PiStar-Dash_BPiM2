@@ -66,15 +66,15 @@ if ( $testMMDVModeDMR == 1 ) {
             foreach($bmStaticTGListJson as $staticTG) {
                 if (getConfigItem("DMR Network", "Slot1", $_SESSION['MMDVMHostConfigs']) && $staticTG->slot == "1") {
                     $bmStaticTGname = exec("grep -w \"$staticTG->talkgroup\" /usr/local/etc/BM_TGs.json | cut -d\":\" -f2- | tr -cd \"'[:alnum:] -\"");
-                    $bmStaticTGList .= "TG".$staticTG->talkgroup." ".$bmStaticTGname." (".$staticTG->slot.")<br />";
+                    $bmStaticTGList .= "TG".$staticTG->talkgroup." ".$bmStaticTGname."<span style='float:right;'>(".$staticTG->slot.")</span>";
                 }
                 else if (getConfigItem("DMR Network", "Slot2", $_SESSION['MMDVMHostConfigs']) && $staticTG->slot == "2") {
                     $bmStaticTGname = exec("grep -w \"$staticTG->talkgroup\" /usr/local/etc/BM_TGs.json | cut -d\":\" -f2- | tr -cd \"'[:alnum:] -\"");
-                    $bmStaticTGList .= "TG".$staticTG->talkgroup." ".$bmStaticTGname." (".$staticTG->slot.")<br />";
+                    $bmStaticTGList .= "TG".$staticTG->talkgroup." ".$bmStaticTGname."<span style='float:right;'>(".$staticTG->slot.")</span><br />";
                 }
                 else if (getConfigItem("DMR Network", "Slot1", $_SESSION['MMDVMHostConfigs']) == "0" && getConfigItem("DMR Network", "Slot2", $_SESSION['MMDVMHostConfigs']) && $staticTG->slot == "0") {
                     $bmStaticTGname = exec("grep -w \"$staticTG->talkgroup\" /usr/local/etc/BM_TGs.json | cut -d\":\" -f2- | tr -cd \"'[:alnum:] -\"");
-                    $bmStaticTGList .= "TG".$staticTG->talkgroup." ".$bmStaticTGname."<br />";
+                    $bmStaticTGList .= "TG".$staticTG->talkgroup."<span style='float:right;'>(".$staticTG->slot.")</span><br />";
                 }
             }
             $bmStaticTGList = wordwrap($bmStaticTGList, 135, "\n");
@@ -85,16 +85,16 @@ if ( $testMMDVModeDMR == 1 ) {
             foreach($bmDynamicTGListJson as $dynamicTG) {
                 if (getConfigItem("DMR Network", "Slot1", $_SESSION['MMDVMHostConfigs']) && $dynamicTG->slot == "1") {
                     $bmDynamicTGname = exec("grep -w \"$dynamicTG->talkgroup\" /usr/local/etc/BM_TGs.json | cut -d\":\" -f2- | tr -cd \"'[:alnum:] -\"");
-                    $bmDynamicTGList .= "TG".$dynamicTG->talkgroup." ".$bmDynamicTGname." (".$dynamicTG->slot.")<br />";
+                    $bmDynamicTGList .= "TG".$dynamicTG->talkgroup." ".$bmDynamicTGname."<span style='float:right;'>(".$dynamicTG->slot.")</span><br />";
 
                 }
                 else if (getConfigItem("DMR Network", "Slot2", $_SESSION['MMDVMHostConfigs']) && $dynamicTG->slot == "2") {
                     $bmDynamicTGname = exec("grep -w \"$dynamicTG->talkgroup\" /usr/local/etc/BM_TGs.json | cut -d\":\" -f2- | tr -cd \"'[:alnum:] -\"");
-                    $bmDynamicTGList .= "TG".$dynamicTG->talkgroup." ".$bmDynamicTGname." (".$dynamicTG->slot.")<br />";
+                    $bmDynamicTGList .= "TG".$dynamicTG->talkgroup." ".$bmDynamicTGname."<span style='float:right;'>(".$dynamicTG->slot.")</span><br />";
                 }
                 else if (getConfigItem("DMR Network", "Slot1", $_SESSION['MMDVMHostConfigs']) == "0" && getConfigItem("DMR Network", "Slot2", $_SESSION['MMDVMHostConfigs']) && $dynamicTG->slot == "0") {
                     $bmDynamicTGname = exec("grep -w \"$dynamicTG->talkgroup\" /usr/local/etc/BM_TGs.json | cut -d\":\" -f2- | tr -cd \"'[:alnum:] -\"");
-                    $bmDynamicTGList .= "TG".$dynamicTG->talkgroup." ".$bmDynamicTGname."<br />";
+                    $bmDynamicTGList .= "TG".$dynamicTG->talkgroup."<span style='float:right;'>".$bmDynamicTGname."</span><br />";
                 }
             }
             $bmDynamicTGList = wordwrap($bmDynamicTGList, 135, "\n");
