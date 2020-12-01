@@ -25,7 +25,7 @@ if ($_SERVER["PHP_SELF"] == "/admin/expert/jitter_test.php") {
     if ($_GET['group'] == "brandmeister") { $target = "BM"; }
     if ($_GET['group'] == "dmrplus")      { $target = "DMR+"; }
     if ($_GET['group'] == "hblink")       { $target = "HB"; }
-  } else { $target = "DMR+"; }
+  } else { $target = ""; }
 
   if (!isset($_GET['ajax'])) {
     system('sudo touch /var/log/pi-star/pi-star_icmptest.log > /dev/null 2>&1 &');
@@ -107,9 +107,28 @@ if ($_SERVER["PHP_SELF"] == "/admin/expert/jitter_test.php") {
   <div class="container">
   <?php include './header-menu.inc'; ?>
   <div class="contentwide">
+  <form method="get" action="<?php ($_SERVER["PHP_SELF"]); ?>">
+  <div>Select network to test: 
+	[ BrandMeister: <input type="radio" value="brandmeister" name="group" /> ]
+	[ HB-Link: <input type="radio" value="hblink" name="group" /> ]
+	[ DMR+: <input type="radio" value="dmrplus" name="group" /> ] <input type="submit" name="sumbit" value="Start Test" />
+  </form>
   <table width="100%">
-  <tr><th>Test Running</th></tr>
-  <tr><td align="left"><div id="tail">Starting test, please wait...<br /></div></td></tr>
+  <?php if (empty($target)) { ?>
+  <tr><td>Please select a network above.</td></tr>
+  </table>
+  </div>
+  <div class="footer">
+  Pi-Star web config, &copy; Andy Taylor (MW0MWZ) 2014-<?php echo date("Y"); ?>.<br />
+  Need help? Click <a style="color: #ffffff;" href="https://www.facebook.com/groups/pistarusergroup/" target="_new">here for the Support Group</a><br />
+  Get your copy of Pi-Star from <a style="color: #ffffff;" href="http://www.pistar.uk/downloads/" target="_blank">here</a>.<br />
+  <br />
+  </div>
+  </div>
+  </body>
+  <?php } else { ?> 
+  <tr><th>Test Results</th></tr>
+  <tr><td align="left"><div id="tail">Starting test...<br /></div></td></tr>
   </table>
   </div>
   <div class="footer">
@@ -121,6 +140,7 @@ if ($_SERVER["PHP_SELF"] == "/admin/expert/jitter_test.php") {
   </div>
   </body>
   </html>
+  <?php } ?>
 
 <?php
 }
