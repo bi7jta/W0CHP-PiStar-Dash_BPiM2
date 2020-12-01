@@ -129,6 +129,7 @@
 			<li class="subs"><a href="filemanager.php">File Manager</a></li>
 			<li class="subs"><a href="edit_dashboard.php">CSS Tool</a></li>
 			<li class="subs"><a href="ssh_access.php">SSH Access</a></li>
+			<li class="subs"><a href="jitter_test.php">DMR Jitter Test</a></li>
 		    </ul>
 		</li>
 	    </ul>

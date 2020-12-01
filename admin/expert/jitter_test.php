@@ -1,6 +1,16 @@
 <?php
-// Load the language support
-require_once('../config/language.php');
+
+if (!isset($_SESSION) || !is_array($_SESSION)) {
+    session_id('pistardashsess');
+    session_start();
+
+    include_once $_SERVER['DOCUMENT_ROOT'].'/config/config.php';          // MMDVMDash Config
+    include_once $_SERVER['DOCUMENT_ROOT'].'/mmdvmhost/tools.php';        // MMDVMDash Tools
+    include_once $_SERVER['DOCUMENT_ROOT'].'/mmdvmhost/functions.php';    // MMDVMDash Functions
+    include_once $_SERVER['DOCUMENT_ROOT'].'/config/language.php';        // Translation Code
+    checkSessionValidity();
+}
+
 // Load the Pi-Star Release file
 $pistarReleaseConfig = '/etc/pistar-release';
 $configPistarRelease = array();
@@ -11,15 +21,20 @@ require_once('../config/version.php');
 // Sanity Check that this file has been opened correctly
 if ($_SERVER["PHP_SELF"] == "/admin/expert/jitter_test.php") {
 
+  if (isset($_GET['group'])) {
+    if ($_GET['group'] == "brandmeister") { $target = "BM"; }
+    if ($_GET['group'] == "dmrplus")      { $target = "DMR+"; }
+    if ($_GET['group'] == "hblink")       { $target = "HB"; }
+  } else { $target = "DMR+"; }
+
   if (!isset($_GET['ajax'])) {
     system('sudo touch /var/log/pi-star/pi-star_icmptest.log > /dev/null 2>&1 &');
     system('sudo echo "" > /var/log/pi-star/pi-star_icmptest.log > /dev/null 2>&1 &');
-    system('sudo /usr/local/sbin/pistar-jittertest > /dev/null 2>&1 &');
-    }
+    system('sudo /usr/local/sbin/pistar-jittertest '.$target.' > /dev/null 2>&1 &');
+  }
 
   // Sanity Check Passed.
   header('Cache-Control: no-cache');
-  session_start();
 
   if (!isset($_GET['ajax'])) {
     //unset($_SESSION['update_offset']);
@@ -43,7 +58,7 @@ if ($_SERVER["PHP_SELF"] == "/admin/expert/jitter_test.php") {
         $_SESSION['update_offset'] = 0; //continue at beginning of the new log
       $data = stream_get_contents($handle, -1, $_SESSION['update_offset']);
       $_SESSION['update_offset'] += strlen($data);
-      echo nl2br($data);
+      echo "<pre>$data</pre>";
       }
     else {
       fseek($handle, 0, SEEK_END);
@@ -61,14 +76,15 @@ if ($_SERVER["PHP_SELF"] == "/admin/expert/jitter_test.php") {
     <meta name="robots" content="follow" />
     <meta name="language" content="English" />
     <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
-    <meta name="Author" content="Andrew Taylor (MW0MWZ)" />
-    <meta name="Description" content="Pi-Star Update" />
+    <meta name="Author" content="Andrew Taylor (MW0MWZ), W0CHP" />
+    <meta name="Description" content="Pi-Star Jitter Test" />
     <meta name="KeyWords" content="Pi-Star" />
     <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate" />
     <meta http-equiv="pragma" content="no-cache" />
-<link rel="shortcut icon" href="images/favicon.ico" type="image/x-icon">
+    <link rel="shortcut icon" href="images/favicon.ico" type="image/x-icon">
     <meta http-equiv="Expires" content="0" />
-    <title>Pi-Star - <?php echo $lang['digital_voice']." ".$lang['dashboard']." - ".$lang['update'];?></title>
+    <title>Pi-Star - <?php echo $lang['digital_voice']." ".$lang['dashboard']." - Jitter Test";?></title>
+    <link rel="stylesheet" type="text/css" href="/css/font-awesome-4.7.0/css/font-awesome.min.css" />
     <link rel="stylesheet" type="text/css" href="../css/pistar-css.php" />
     <script type="text/javascript" src="//code.jquery.com/jquery-1.8.2.min.js"></script>
     <script type="text/javascript" src="//creativecouple.github.com/jquery-timing/jquery-timing.min.js"></script>
