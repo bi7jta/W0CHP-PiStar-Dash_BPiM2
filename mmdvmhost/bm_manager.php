@@ -53,8 +53,37 @@ if ( $testMMDVModeDMR == 1 ) {
     
     if ((substr($dmrMasterHost, 0, 2) == "BM") && ($bmEnabled == true)) {
 	// OK this is Brandmeister, get some config and output the HTML
-	
 	// If there is a BM API Key
+        // Static TG handling...
+        $sanitizedKey = str_replace('$', '\$', $_SESSION['BMAPIKey']);
+	// Drop all static:
+	$bmStaticDropAllCmd = ("/bin/bash /usr/local/sbin/pistar-bm_static_tgs_dropall $sanitizedKey $dmrID");
+	if (isset($_POST["tgStaticDropAll"])) {
+	    exec($bmStaticDropAllCmd);
+            // Output to the browser
+            echo '<b>BrandMeister Manager</b>'."\n";
+            echo "<table>\n<tr><th>Command Output</th></tr>\n<tr><td>";
+            print "All Static Talkgroups Dropped!";
+            echo "</td></tr>\n</table>\n";
+            echo "<br />\n";
+            // Clean up...
+            unset($_POST);
+            echo '<script type="text/javascript">setTimeout(function() { window.location=window.location;},3000);</script>';
+	}
+	// re-add all static
+        $bmStaticAddAllCmd = ("/bin/bash /usr/local/sbin/pistar-bm_static_tgs_addall $sanitizedKey $dmrID");
+        if (isset($_POST["tgStaticReAdd"])) {
+            exec($bmStaticAddAllCmd);
+            // Output to the browser
+            echo '<b>BrandMeister Manager</b>'."\n";
+            echo "<table>\n<tr><th>Command Output</th></tr>\n<tr><td>";
+            print "All Previous Static Talkgroups Re-Added!";
+            echo "</td></tr>\n</table>\n";
+            echo "<br />\n";
+            // Clean up...
+            unset($_POST);
+            echo '<script type="text/javascript">setTimeout(function() { window.location=window.location;},3000);</script>';
+        }
 	$bmAPIurl = 'https://api.brandmeister.network/v1.0/repeater/';
 	if ( !empty($_POST) && ( isset($_POST["dropDyn"]) || isset($_POST["dropQso"]) || isset($_POST["tgSubmit"]))) {  // Data has been posted for this page
 	    // Are we a repeater
@@ -81,6 +110,7 @@ if ( $testMMDVModeDMR == 1 ) {
 		}
 		
 	    }
+
 	    // Build the Query
 	    $postData = '';
 	    if (isset($_POST["tgSubmit"])) { $postData = http_build_query($postDataTG); }
@@ -101,6 +131,7 @@ if ( $testMMDVModeDMR == 1 ) {
 		    'timeout' => 2,
 		),
 	    );
+
 	    $context = stream_context_create($opts);
 	    $result = @file_get_contents($bmAPIurl, false, $context);
 	    $feeback=json_decode($result);
@@ -120,21 +151,23 @@ if ( $testMMDVModeDMR == 1 ) {
 		echo '<b>BrandMeister Manager</b>'."\n";
 		echo '<form action="'.htmlentities($_SERVER['PHP_SELF']).'" method="post">'."\n";
 		echo '<table>'."\n";
-		echo '<tr>
+		echo '<tr><th colspan="4">Static Tools</th><th rowspan="2">Other Tools</th></tr><tr>
         <th><a class=tooltip href="#">Enter Static Talkgroup:<span><b>Enter the Talkgroup number</b></span></a></th>
         <th><a class=tooltip href="#">Slot<span><b>Where to link/unlink</b></span></a></th>
         <th><a class=tooltip href="#">Add / Remove<span><b>Add or Remove</b></span></a></th>
-        <th><a class=tooltip href="#">Action<span><b>Take Action</b></span></a></th>
-        <th><a class=tooltip href="#">Tools<span><b>Tools</b></span></a></th>
+        <th><a class=tooltip href="#">Mass Talkgroup Management<span><b>Mass Talkgroup Management</b></span></a></th>
       </tr>'."\n";
 		echo '    <tr>';
 		echo '<td><input type="text" id="tgNr" name="tgNr" size="10" maxlength="7" oninput="enableOnNonEmpty(\'tgNr\', \'tgSubmit\', \'tgAdd\', \'tgDel\'); return false;"/></td>';
 		echo '<td><input type="radio" id="ts1" name="TS" value="1" '.((getConfigItem("General", "Duplex", $_SESSION['MMDVMHostConfigs']) == "1") ? '' : '').'/><label for="ts1"/>TS1</label> <input type="radio" id="ts2" name="TS" value="2" checked="checked"/><label for="ts2"/>TS2</td>';
-		echo '<td><input type="radio" id="tgAdd" name="TGmgr" value="ADD" checked="checked" /><label for="tgAdd">Add</label> <input type="radio" id="tgDel" name="TGmgr" value="DEL" checked="checked" /><label for="tgDel">Delete</label></td>';
-		echo '<td><input type="submit" value="Modify Static" id="tgSubmit" name="tgSubmit"/></td>';
-		echo '<td><input type="submit" value="Drop QSO" title="Drop current QSO" name="dropQso" /><input type="submit" value="Drop All Dyn." title="Drop all dynamic groups" name="dropDyn" /></td>';
+		echo '<td><input type="radio" id="tgAdd" name="TGmgr" value="ADD" checked="checked" /><label for="tgAdd">Add</label> <input type="radio" id="tgDel" name="TGmgr" value="DEL" checked="checked" /><label for="tgDel">Delete</label>&nbsp;<input type="submit" value="Add/Delete Static" id="tgSubmit" name="tgSubmit"/></td>';
+		echo '<td><input type="submit" value="Drop All Static" id="tgStaticDropAll" name="tgStaticDropAll"/>';
+		echo '<input type="submit" value="Re-Add All Last Static" id="tgStaticReAdd" name="tgStaticReAdd"/></td>';
+		echo '<td><input type="submit" value="Drop QSO" title="Drop current QSO" name="dropQso" /><br />';
+		echo '<input type="submit" value="Drop All Dynamic" title="Drop all dynamic groups" name="dropDyn" /></td>';
 		echo '</tr>'."\n";
 		echo '  </table>'."\n";
+		echo '</form>'."\n";
 		echo '  <br /><hr style="color:inherit;height:0px;border-bottom:1px;"/>'."\n";
 	    }
 	}
