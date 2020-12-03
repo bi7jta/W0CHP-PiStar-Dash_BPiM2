@@ -13,9 +13,9 @@ done
 echo "All Previous Static Talk Groups Re-Added!\n"
 
 # delete unused file
-sudo mount -o remount,rw /
+mount -o remount,rw /
 rm -f /var/www/dashboard/.bm_tgs.json.saved
-sudo sync
-sudo mount -o remount,ro /
+sync
+mount -o remount,ro /
 
 exit 0
