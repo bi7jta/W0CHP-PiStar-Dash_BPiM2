@@ -12,4 +12,11 @@ while IFS=$'\t' read -r talkgroup slot; do
 done
 echo "All Previous Static Talk Groups Re-Added!\n"
 
+# delete unused file
+systemctl stop cron.service > /dev/null 2<&1
+mount -o remount,rw /
+rm -f /var/www/dashboard/.bm_tgs.json.saved
+systemctl start cron.service > /dev/null 2<&1
+mount -o remount,ro /
+
 exit 0
