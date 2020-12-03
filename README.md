@@ -18,6 +18,9 @@ If you ask me to support, **I will ignore you.**
 * Brandmeiser manager updated to show TG names (in admin page). BM reflector
   functionality removed per <https://news.brandmeister.network/brandmeister-dmr-reflectors-support-ending-by-end-of-2020/>.
 
+* Added the abilty in Brandeister Manager, to mass delete your static talkgroups; and mass re-add the previous
+  static talkgroups.
+
 * RF activity moved to top on dashboard.
 
 * YSF link manager now enabled for YSF2DMR mode as well; gives the ability to change links/rooms on-the-fly.

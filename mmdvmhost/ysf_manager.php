@@ -57,7 +57,7 @@ if (isset($_SESSION['YSFGatewayConfigs']['Remote Commands']['Enable']) && (isset
 		echo "<b>YSF Link Manager</b>\n";
 		echo "<table>\n<tr><th>Command Output</th></tr>\n<tr><td>";
 		echo exec($remoteCommand);
-		echo "</td></tr>\n</table>\n<br />\n";
+		echo "<br />Page reloading...</td></tr>\n</table>\n<br />\n";
 		echo '<script type="text/javascript">setTimeout(function() { window.location=window.location;},2000);</script>';
 	    }
 	}

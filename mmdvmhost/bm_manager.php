@@ -57,13 +57,13 @@ if ( $testMMDVModeDMR == 1 ) {
         // Static TG handling...
         $sanitizedKey = str_replace('$', '\$', $_SESSION['BMAPIKey']);
 	// Drop all static:
-	$bmStaticDropAllCmd = ("/bin/bash /usr/local/sbin/pistar-bm_static_tgs_dropall $sanitizedKey $dmrID");
+	$bmStaticDropAllCmd = ("sudo /usr/local/sbin/pistar-bm_static_tgs_dropall $sanitizedKey $dmrID");
 	if (isset($_POST["tgStaticDropAll"])) {
 	    exec($bmStaticDropAllCmd);
             // Output to the browser
             echo '<b>BrandMeister Manager</b>'."\n";
             echo "<table>\n<tr><th>Command Output</th></tr>\n<tr><td>";
-            print "All Static Talkgroups Dropped!";
+            print "All Static Talkgroups Dropped!<br /> Page reloading...";
             echo "</td></tr>\n</table>\n";
             echo "<br />\n";
             // Clean up...
@@ -71,13 +71,13 @@ if ( $testMMDVModeDMR == 1 ) {
             echo '<script type="text/javascript">setTimeout(function() { window.location=window.location;},3000);</script>';
 	}
 	// re-add all static
-        $bmStaticAddAllCmd = ("/bin/bash /usr/local/sbin/pistar-bm_static_tgs_addall $sanitizedKey $dmrID");
+        $bmStaticAddAllCmd = ("sudo /usr/local/sbin/pistar-bm_static_tgs_addall $sanitizedKey $dmrID");
         if (isset($_POST["tgStaticReAdd"])) {
             exec($bmStaticAddAllCmd);
             // Output to the browser
             echo '<b>BrandMeister Manager</b>'."\n";
             echo "<table>\n<tr><th>Command Output</th></tr>\n<tr><td>";
-            print "All Previous Static Talkgroups Re-Added!";
+            print "All Previous Static Talkgroups Re-Added!<br /> Page reloading...";
             echo "</td></tr>\n</table>\n";
             echo "<br />\n";
             // Clean up...
@@ -140,7 +140,7 @@ if ( $testMMDVModeDMR == 1 ) {
 	    echo "<table>\n<tr><th>Command Output</th></tr>\n<tr><td>";
 	    //echo "Sending command to BrandMeister API";
 	    print "BrandMeister API: ".$feeback->{'message'};
-	    echo "</td></tr>\n</table>\n";
+	    echo "<br />Page reloading...</td></tr>\n</table>\n";
 	    echo "<br />\n";
 	    // Clean up...
 	    unset($_POST);
