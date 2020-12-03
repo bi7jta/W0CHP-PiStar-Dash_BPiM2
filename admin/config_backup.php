@@ -1,6 +1,13 @@
 <?php
+if (isset($_COOKIE['PHPSESSID']))
+{
+    session_id($_COOKIE['PHPSESSID']); 
+}
+if (session_status() != PHP_SESSION_ACTIVE) {
+    session_start();
+}
 
-if (!isset($_SESSION) || !is_array($_SESSION)) {
+if (!isset($_SESSION) || !is_array($_SESSION) || (count($_SESSION, COUNT_RECURSIVE) < 10)) {
     session_id('pistardashsess');
     session_start();
     
@@ -28,9 +35,9 @@ if ($_SERVER["PHP_SELF"] == "/admin/config_backup.php") {
 	    <meta name="robots" content="follow" />
 	    <meta name="language" content="English" />
 	    <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
-	    <meta name="Author" content="Andrew Taylor (MW0MWZ),Chip Cuccio ()" />
+	    <meta name="Author" content="Andrew Taylor (MW0MWZ),Daniel Caujolle-Bert ()" />
 	    <meta name="Description" content="Pi-Star Configuration Backup" />
-	    <meta name="KeyWords" content="MMDVMHost,ircDDBGateway,D-Star,ircDDB,DMRGateway,DMR,YSFGateway,YSF,C4FM,NXDNGateway,NXDN,P25Gateway,P25,Pi-Star,DL5DI,DG9VH,MW0MWZ,W0CHP" />
+	    <meta name="KeyWords" content="MMDVMHost,ircDDBGateway,D-Star,ircDDB,DMRGateway,DMR,YSFGateway,YSF,C4FM,NXDNGateway,NXDN,P25Gateway,P25,Pi-Star,DL5DI,DG9VH,MW0MWZ,F1RMB,W0CHP" />
 	    <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate" />
 	    <meta http-equiv="pragma" content="no-cache" />
 	    <link rel="shortcut icon" href="images/favicon.ico" type="image/x-icon">
@@ -66,43 +73,44 @@ if ($_SERVER["PHP_SELF"] == "/admin/config_backup.php") {
 			    $backupZip = "/tmp/config_backup.zip";
 			    $hostNameInfo = exec('cat /etc/hostname');
 			    
-			    $output .= shell_exec("sudo rm -rf $backupZip 2>&1");
-			    $output .= shell_exec("sudo rm -rf $backupDir 2>&1");
-			    $output .= shell_exec("sudo mkdir $backupDir 2>&1");
+			    $output .= shell_exec("sudo rm -rf $backupZip 2>&1")."\n";
+			    $output .= shell_exec("sudo rm -rf $backupDir 2>&1")."\n";
+			    $output .= shell_exec("sudo mkdir $backupDir 2>&1")."\n";
 			    if (shell_exec('cat /etc/dhcpcd.conf | grep "static ip_address" | grep -v "#"')) {
-				$output .= shell_exec("sudo cp /etc/dhcpcd.conf $backupDir 2>&1");
+				$output .= shell_exec("sudo cp /etc/dhcpcd.conf $backupDir 2>&1")."\n";
 			    }
-			    $output .= shell_exec("sudo cp /etc/wpa_supplicant/wpa_supplicant.conf $backupDir 2>&1");
-			    $output .= shell_exec("sudo cp /etc/pistar-css.ini $backupDir 2>&1");
-			    $output .= shell_exec("sudo cp /etc/aprsgateway $backupDir 2>&1");
-			    $output .= shell_exec("sudo cp /etc/ircddbgateway $backupDir 2>&1");
-			    $output .= shell_exec("sudo cp /etc/mmdvmhost $backupDir 2>&1");
-			    $output .= shell_exec("sudo cp /etc/dstarrepeater $backupDir 2>&1");
-			    $output .= shell_exec("sudo cp /etc/dapnetgateway $backupDir 2>&1");
-			    $output .= shell_exec("sudo cp /etc/p25gateway $backupDir 2>&1");
-			    $output .= shell_exec("sudo cp /etc/ysfgateway $backupDir 2>&1");
-			    $output .= shell_exec("sudo cp /etc/nxdngateway $backupDir 2>&1");
-			    $output .= shell_exec("sudo cp /etc/ysf2dmr $backupDir 2>&1");
-			    $output .= shell_exec("sudo cp /etc/dmrgateway $backupDir 2>&1");
-			    $output .= shell_exec("sudo cp /etc/starnetserver $backupDir 2>&1");
-			    $output .= shell_exec("sudo cp /etc/timeserver $backupDir 2>&1");
-			    $output .= shell_exec("sudo cp /etc/dstar-radio.* $backupDir 2>&1");
-			    $output .= shell_exec("sudo cp /etc/pistar-remote $backupDir 2>&1");
-			    $output .= shell_exec("sudo cp /etc/hosts $backupDir 2>&1");
-			    $output .= shell_exec("sudo cp /etc/hostname $backupDir 2>&1");
-			    $output .= shell_exec("sudo cp /etc/bmapi.key $backupDir 2>&1");
-			    $output .= shell_exec("sudo cp /etc/dapnetapi.key $backupDir 2>&1");
-			    $output .= shell_exec("sudo cp /etc/default/gpsd $backupDir 2>&1");
-			    $output .= shell_exec("sudo cp /etc/tinyfilemanager-auth.php $backupDir 2>&1");
-			    $output .= shell_exec("sudo cp /etc/tinyfilemanager-config.php $backupDir 2>&1");
-			    $output .= shell_exec("sudo cp /usr/local/etc/RSSI.dat $backupDir 2>&1");
-			    $output .= shell_exec("sudo cp /var/www/dashboard/config/ircddblocal.php $backupDir 2>&1");
-			    $output .= shell_exec("sudo cp /var/www/dashboard/config/config.php $backupDir 2>&1");
-			    $output .= shell_exec("sudo cp /var/www/dashboard/config/language.php $backupDir 2>&1");
+			    $output .= shell_exec("sudo cp /etc/wpa_supplicant/wpa_supplicant.conf $backupDir 2>&1")."\n";
+			    $output .= shell_exec("sudo cp /etc/pistar-css.ini $backupDir 2>&1")."\n";
+			    $output .= shell_exec("sudo cp /etc/aprsgateway $backupDir 2>&1")."\n";
+			    $output .= shell_exec("sudo cp /etc/ircddbgateway $backupDir 2>&1")."\n";
+			    $output .= shell_exec("sudo cp /etc/mmdvmhost $backupDir 2>&1")."\n";
+			    $output .= shell_exec("sudo cp /etc/dstarrepeater $backupDir 2>&1")."\n";
+			    $output .= shell_exec("sudo cp /etc/dapnetgateway $backupDir 2>&1")."\n";
+			    $output .= shell_exec("sudo cp /etc/p25gateway $backupDir 2>&1")."\n";
+			    $output .= shell_exec("sudo cp /etc/ysfgateway $backupDir 2>&1")."\n";
+			    $output .= shell_exec("sudo cp /etc/nxdngateway $backupDir 2>&1")."\n";
+			    $output .= shell_exec("sudo cp /etc/ysf2dmr $backupDir 2>&1")."\n";
+			    $output .= shell_exec("sudo cp /etc/dmrgateway $backupDir 2>&1")."\n";
+			    $output .= shell_exec("sudo cp /etc/starnetserver $backupDir 2>&1")."\n";
+			    $output .= shell_exec("sudo cp /etc/timeserver $backupDir 2>&1")."\n";
+			    $output .= shell_exec("sudo cp /etc/dstar-radio.* $backupDir 2>&1")."\n";
+			    $output .= shell_exec("sudo cp /etc/pistar-remote $backupDir 2>&1")."\n";
+			    $output .= shell_exec("sudo cp /etc/hosts $backupDir 2>&1")."\n";
+			    $output .= shell_exec("sudo cp /etc/hostname $backupDir 2>&1")."\n";
+			    $output .= shell_exec("sudo cp /etc/bmapi.key $backupDir 2>&1")."\n";
+			    $output .= shell_exec("sudo cp /etc/dapnetapi.key $backupDir 2>&1")."\n";
+			    $output .= shell_exec("sudo cp /etc/default/gpsd $backupDir 2>&1")."\n";
+			    $output .= shell_exec("sudo cp /etc/tinyfilemanager-auth.php $backupDir 2>&1")."\n";
+			    $output .= shell_exec("sudo cp /etc/tinyfilemanager-config.php $backupDir 2>&1")."\n";
+			    $output .= shell_exec("sudo cp /usr/local/etc/RSSI.dat $backupDir 2>&1")."\n";
+			    $output .= shell_exec("sudo cp /var/www/dashboard/config/ircddblocal.php $backupDir 2>&1")."\n";
+			    $output .= shell_exec("sudo cp /var/www/dashboard/config/config.php $backupDir 2>&1")."\n";
+			    $output .= shell_exec("sudo cp /var/www/dashboard/config/language.php $backupDir 2>&1")."\n";
+			    $output .= shell_exec('sudo find /root/ -maxdepth 1 -name "*Hosts.txt" -exec cp {} /tmp/config_backup \; 2>&1')."\n";
 			    $output .= "Compressing backup files\n";
-			    $output .= shell_exec("sudo zip -j $backupZip $backupDir/* 2>&1");
+			    $output .= shell_exec("sudo zip -j $backupZip $backupDir/* 2>&1")."\n";
 			    $output .= "Starting download\n";
-			    
+
 			    echo "<tr><td align=\"left\"><pre>$output</pre></td></tr>\n";
 			    
 			    if (file_exists($backupZip)) {
@@ -128,7 +136,7 @@ if ($_SERVER["PHP_SELF"] == "/admin/config_backup.php") {
 				ob_clean();
 				flush();
 				readfile($backupZip);
-				exit;
+				exit();
 			    }
 			    
 			};
@@ -201,13 +209,14 @@ if ($_SERVER["PHP_SELF"] == "/admin/config_backup.php") {
 				// Overwrite the configs
 				$output .= "Writing new Config\n";
 				$output .= shell_exec("sudo rm -f /etc/dstar-radio.* 2>&1")."\n";
-				$output .= shell_exec("sudo mv -f /tmp/config_restore/RSSI.dat /usr/local/etc/ 2>&1")."\n";
-				$output .= shell_exec("sudo mv -f /tmp/config_restore/gpsd /etc/default/ 2>&1")."\n";
-				$output .= shell_exec("sudo mv -f /tmp/config_restore/ircddblocal.php /var/www/dashboard/config/ 2>&1")."\n";
-				$output .= shell_exec("sudo mv -f /tmp/config_restore/config.php /var/www/dashboard/config/ 2>&1")."\n";
-				$output .= shell_exec("sudo mv -f /tmp/config_restore/language.php /var/www/dashboard/config/ 2>&1")."\n";
-				$output .= shell_exec("sudo mv -v -f /tmp/config_restore/wpa_supplicant.conf /etc/wpa_supplicant/ 2>&1")."\n";
-				$output .= shell_exec("sudo mv -v -f /tmp/config_restore/* /etc/ 2>&1")."\n";
+				$output .= shell_exec("sudo mv -fv /tmp/config_restore/RSSI.dat /usr/local/etc/ 2>&1")."\n";
+				$output .= shell_exec("sudo mv -fv /tmp/config_restore/gpsd /etc/default/ 2>&1")."\n";
+				$output .= shell_exec("sudo mv -fv /tmp/config_restore/ircddblocal.php /var/www/dashboard/config/ 2>&1")."\n";
+				$output .= shell_exec("sudo mv -fv /tmp/config_restore/config.php /var/www/dashboard/config/ 2>&1")."\n";
+				$output .= shell_exec("sudo mv -fv /tmp/config_restore/language.php /var/www/dashboard/config/ 2>&1")."\n";
+				$output .= shell_exec('sudo find /tmp/config_restore/ -maxdepth 1 -name "*Hosts.txt" -exec mv -fv {} /root \; 2>&1')."\n";
+				$output .= shell_exec("sudo mv -fv /tmp/config_restore/wpa_supplicant.conf /etc/wpa_supplicant/ 2>&1")."\n";
+				$output .= shell_exec("sudo mv -fv /tmp/config_restore/* /etc/ 2>&1")."\n";
 				
 				//Restore the Timezone Config
 				$timeZone = shell_exec('grep date /var/www/dashboard/config/config.php | grep -o "\'.*\'" | sed "s/\'//g"');
@@ -217,6 +226,10 @@ if ($_SERVER["PHP_SELF"] == "/admin/config_backup.php") {
 				//Restore ircDDGBateway Link Manager Password
 				$ircRemotePassword = shell_exec('grep remotePassword /etc/ircddbgateway | awk -F\'=\' \'{print $2}\'');
 				shell_exec('sudo sed -i "/password=/c\\password='.$ircRemotePassword.'" /root/.Remote\ Control');
+				
+				// Update the hosts files
+				$output .= "Updating Hostfiles.\n";
+				shell_exec('sudo /usr/local/sbin/HostFilesUpdate.sh 2>&1');
 				
 				// Make the disk Read-Only
 				shell_exec('sudo mount -o remount,ro / 2>&1');
@@ -291,7 +304,7 @@ if ($_SERVER["PHP_SELF"] == "/admin/config_backup.php") {
 		</div>
 		<div class="footer">
 		    Pi-Star web config, &copy; Andy Taylor (MW0MWZ) 2014-<?php echo date("Y"); ?>.<br />
-		    Enhancements by W0CHP - <?php echo date("Y"); ?>.<br />
+		    &copy; Enhancements by W0CHP and F1RMB 2017-<?php echo date("Y"); ?>.<br />
 		    Need help? Click <a style="color: #ffffff;" href="https://www.facebook.com/groups/pistarusergroup/" target="_new">here for the Support Group</a><br />
 		    or Click <a style="color: #ffffff;" href="https://forum.pistar.uk/" target="_new">here to join the Support Forum</a><br />
 		</div>
