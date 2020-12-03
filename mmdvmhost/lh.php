@@ -19,7 +19,7 @@ include_once $_SERVER['DOCUMENT_ROOT'].'/config/language.php';	      // Translat
     </tr>
 <?php
 $i = 0;
-for ($i = 0;  ($i <= 39); $i++) { //Last 40 calls
+for ($i = 0;  ($i <= 29); $i++) { //Last 30 calls
 	if (isset($lastHeard[$i])) {
 		$listElem = $lastHeard[$i];
 		if ( $listElem[2] ) {

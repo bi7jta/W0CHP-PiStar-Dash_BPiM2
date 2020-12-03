@@ -15,10 +15,11 @@ If you ask me to support, **I will ignore you.**
 
 * Updated UI elements galore, styling, wider, bigger, and mobile-friendly. Better fonts (no MS font references here!).
 
-* Brandmeiser manager updated to show TG names (in admin page). BM reflector
-  functionality removed per <https://news.brandmeister.network/brandmeister-dmr-reflectors-support-ending-by-end-of-2020/>.
+* Brandmeiser Manager updated to show TG names (in admin page).
 
-* Added the abilty in Brandeister Manager, to mass delete your static talkgroups; and mass re-add the previous
+  * BM reflector functionality removed per <https://news.brandmeister.network/brandmeister-dmr-reflectors-support-ending-by-end-of-2020/>.
+
+* Brandeister Manager updated; added ablity to mass delete your static talkgroups; and mass re-add the previous
   static talkgroups.
 
 * RF activity moved to top on dashboard.
