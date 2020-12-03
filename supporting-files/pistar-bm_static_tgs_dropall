@@ -5,12 +5,13 @@
 
 # save current static tgs first...
 mount -o remount,rw /
-cp -a /var/www/dashboard/.bm_tgs.json /var/www/dashboard/.bm_tgs.json.saved
+curl -s "https://api.brandmeister.network/v1.0/repeater/?action=profile&q=$2" -O /var/www/dashboard/.bm_tgs.json.saved
+#cp -a /var/www/dashboard/.bm_tgs.json /var/www/dashboard/.bm_tgs.json.saved
 sync
 mount -o remount,ro /
 
 # do the deed
-cat /var/www/dashboard/.bm_tgs.json |  jq -r '.staticSubscriptions[]|[.talkgroup, .slot] | @tsv' | 
+cat /var/www/dashboard/.bm_tgs.saved |  jq -r '.staticSubscriptions[]|[.talkgroup, .slot] | @tsv' | 
 while IFS=$'\t' read -r talkgroup slot; do
     curl -s \
         --user "$1:" \
