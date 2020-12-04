@@ -327,6 +327,7 @@ input:disabled + label {
 
 input.toggle-round-flat + label {
     padding: 1px;
+    margin: 3px;
     border: 1px solid transparent;
     width: 33px;
     height: 18px;
@@ -751,7 +752,7 @@ select {
     font-size: 15px;
     border: 1px solid black;
     color: black;
-    padding: 2px;
+    padding: 5px;
     text-decoration: none;
-    margin: 2px;
+    margin: 3px;
 }
