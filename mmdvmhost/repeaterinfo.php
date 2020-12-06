@@ -365,7 +365,7 @@ require_once($_SERVER['DOCUMENT_ROOT'].'/config/ircddblocal.php');
             echo "<br />\n";
             echo "<table>\n";
 	    echo "<tr><th colspan=\"2\">".$lang['ysf_net']."".$ysfLinkState."</th></tr>\n";
-	    echo "<tr><td colspan=\"2\"style=\"background: #ffffff;\" title=\"".$ysfLinkedToTooltip."\">".$ysfTableData."</td></tr>\n";
+	    echo "<tr><td colspan=\"2\" style=\"background: #ffffff;\" title=\"".$ysfLinkedToTooltip."\">".$ysfTableData."</td></tr>\n";
             echo "</table>\n";
 	}
 
