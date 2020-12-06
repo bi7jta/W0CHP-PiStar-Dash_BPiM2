@@ -118,6 +118,6 @@ If you ask me to support, **I will ignore you.**
 
 ### Configuration Page
 
-This image is too enormous to embed here, ut you can [view it separately](https://w0chp.net/img/W0CHP_Config.png).
+This image is too enormous to embed here, but you can [view it separately](https://w0chp.net/img/W0CHP_Config.png).
 
 
