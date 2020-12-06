@@ -44,6 +44,7 @@ git_checkUpdateRequired() {
 git_update() {
 	# Set the function variables
 	gitFolder=${1}
+	# get proper W0CHP dash branch user is running...
 	dash_branch="$( git --git-dir=${gitFolder}/.git branch | grep '*' | awk {'print $2'} )"
 
 	# Handle the special case for /usr/loca/sbin
@@ -61,6 +62,8 @@ git_update() {
         	# W0CHP has more than one branch. So depending on what W0CHP branch the user has installed, pull that branch.
         	if [[ ${gitFolder} == "/var/www/dashboard" ]]; then
                 	git --work-tree=${gitFolder} --git-dir=${gitFolder}/.git pull origin ${dash_branch}
+			# restore supporing files in repo for copying
+			git --work-tree=${gitFolder} --git-dir=${gitFolder}/.git reset --hard origin/${dash_branch}
         	else
 			git --work-tree=${gitFolder} --git-dir=${gitFolder}/.git pull origin master
 		fi
@@ -143,12 +146,15 @@ main_function() {
 	git_update /usr/local/sbin
 	echo "Done"
 
-	echo "Updating Hostfiles..."
-	/usr/local/sbin/HostFilesUpdate.sh > /dev/null 2>&1
-	echo "Done"
-
 	echo "Updating Dashboard..."
 	git_update /var/www/dashboard
+	# need to keep W0CHP sbin updated...
+	cp -av /var/www/dashboard/supporting-files/{pistar-bm_static*,HostFilesUpdate.sh,pistar-services,pistar-update} /usr/local/sbin
+	rm -rf /var/www/dashboard/supporting-files
+	echo "Done"
+
+	echo "Updating Hostfiles and Brandmeister Talkgroup Names..."
+	/usr/local/sbin/HostFilesUpdate.sh > /dev/null 2>&1
 	echo "Done"
 
 	echo "Updating PiStar-Firewall..."
