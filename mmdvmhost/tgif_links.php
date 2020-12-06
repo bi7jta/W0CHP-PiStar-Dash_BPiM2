@@ -92,7 +92,7 @@ if ( $testMMDVModeDMR == 1 ) {
       </tr>'."\n";
 	
 	echo '    <tr>'."\n";
-	echo '      <td align="left" style="padding: 8px;">tgif.network<br /><small><a href="http://tgif.network/selfcare.html" target="_new">Your HotSpot/Repeater ID: '.$repeaterid.'</a></td>';
+	echo '      <td align="left" style="padding: 8px;">tgif.network<br /><small>(<a href="http://tgif.network/selfcare.html" target="_new">Your HotSpot/Repeater ID: '.$repeaterid.'</a>)</small></td>';
 	echo '<td align="left" style="padding: 8px;">'.$slot1tg.'</td>';
 	echo '<td align="left" style="padding: 8px;">'.$slot2tg.'</td>';
 	echo '</tr>'."\n";

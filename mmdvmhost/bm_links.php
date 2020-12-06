@@ -110,7 +110,7 @@ if ( $testMMDVModeDMR == 1 ) {
     </tr>'."\n";
 	
 	echo '    <tr>'."\n";
-	echo '     <td align="left" style="padding: 8px;white-space:normal; word-wrap:break; width:200px;">'.$dmrMasterHost.'<br /><small><a href="https://brandmeister.network/?page=hotspot&amp;id='.$dmrID.'" target="_new" title="Click to view your hotspot info on BrandMeister">Your HotSpot/Repeater ID: '.$dmrID.'</a></small></td>';
+	echo '     <td align="left" style="padding: 8px;white-space:normal; word-wrap:break; width:200px;">'.$dmrMasterHost.'<br /><small>(<a href="https://brandmeister.network/?page=hotspot&amp;id='.$dmrID.'" target="_new" title="Click to view your hotspot info on BrandMeister">Your HotSpot/Repeater ID: '.$dmrID.'</a>)</small></td>';
 	echo '     <td align="left" style="padding: 8px;">'.$bmStaticTGList.'</td>';
 	echo '     <td align="left" style="padding: 8px;">'.$bmDynamicTGList.'</td>';
 	echo '    </tr>'."\n";
