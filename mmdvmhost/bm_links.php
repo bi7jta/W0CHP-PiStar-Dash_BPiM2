@@ -59,8 +59,8 @@ if ( $testMMDVModeDMR == 1 ) {
 	// Set some Variable
 	$bmStaticTGList = "";
 	$bmDynamicTGList = "";
-        $bmDynanicTGname = "";
-        $bmDynanicTGexpire = "";
+	$bmDynanicTGname = "";
+	$bmDynanicTGexpire = "";
 	
 	// Pull the information from JSON
 	if (isset($json->staticSubscriptions)) { $bmStaticTGListJson = $json->staticSubscriptions;
