@@ -70,8 +70,8 @@ for ($i = 0;  ($i <= 39); $i++) { //Last 40 calls
 			$duration = $now->getTimestamp() - $dt->getTimestamp();
 			$duration_string = $duration<999 ? round($duration) . "+" : "&infin;";
 			echo "<td colspan =\"3\" style=\"background:#f33;color:#fff;\">TX " . $duration_string . " sec</td>";
-		} else if ($listElem[6] == "SMS") {
-			echo "<td colspan =\"3\" style=\"background:#1d1;\">SMS</td>";
+		} else if ($listElem[6] == "DMR Data") {
+			echo "<td colspan =\"3\" style=\"background:#1d1;\">DMR Data</td>";
 		} else {
 			echo "<td>$listElem[6]</td>";
 
