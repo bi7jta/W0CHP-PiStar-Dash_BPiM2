@@ -31,6 +31,8 @@ function stop_services()
     systemctl stop pistar-watchdog.service > /dev/null 2>&1
     systemctl stop mmdvmhost.service > /dev/null 2>&1
     systemctl stop dstarrepeater.service > /dev/null 2>&1
+    systemctl stop pistar-remote.timer > /dev/null 2>&1
+    systemctl stop pistar-remote.service > /dev/null 2>&1
     sleep 2
     systemctl stop ircddbgateway.service > /dev/null 2>&1
     systemctl stop dapnetgateway.service > /dev/null 2>&1
@@ -89,6 +91,8 @@ function start_services()
     systemctl start dstarrepeater.service > /dev/null 2>&1
     systemctl start pistar-watchdog.service > /dev/null 2>&1
     systemctl start pistar-watchdog.timer > /dev/null 2>&1
+    systemctl start pistar-remote.service > /dev/null 2>&1
+    systemctl start pistar-remote.timer > /dev/null 2>&1
     
     # Restart cron service is fullstop was used before
     systemctl is-active --quiet cron.service || systemctl start cron.service
