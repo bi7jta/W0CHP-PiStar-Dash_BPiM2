@@ -59,7 +59,8 @@ if ( $testMMDVModeDMR == 1 ) {
 	// Set some Variable
 	$bmStaticTGList = "";
 	$bmDynamicTGList = "";
-        $bmDymanicTGname = "";
+        $bmDynanicTGname = "";
+        $bmDynanicTGexpire = "";
 	
 	// Pull the information from JSON
 	if (isset($json->staticSubscriptions)) { $bmStaticTGListJson = $json->staticSubscriptions;
@@ -85,16 +86,15 @@ if ( $testMMDVModeDMR == 1 ) {
             foreach($bmDynamicTGListJson as $dynamicTG) {
                 if (getConfigItem("DMR Network", "Slot1", $_SESSION['MMDVMHostConfigs']) && $dynamicTG->slot == "1") {
                     $bmDynamicTGname = exec("grep -w \"$dynamicTG->talkgroup\" /usr/local/etc/BM_TGs.json | cut -d\":\" -f2- | tr -cd \"'[:alnum:] -\"");
-                    $bmDynamicTGList .= "TG".$dynamicTG->talkgroup." ".$bmDynamicTGname."<span style='float:right;'>(".$dynamicTG->slot.")</span><br />";
-
+	            $bmDynamicTGList .= "TG".$dynamicTG->talkgroup."<span style='float:right;'>".$bmDynamicTGname." (".$dynamicTG->slot.")</span><br /><small style='float:right;'>(Idle timeout: ".date("h:i:s", substr($dynamicTG->timeout, 0, 10)).")</span></small><br /><br />";
                 }
                 else if (getConfigItem("DMR Network", "Slot2", $_SESSION['MMDVMHostConfigs']) && $dynamicTG->slot == "2") {
                     $bmDynamicTGname = exec("grep -w \"$dynamicTG->talkgroup\" /usr/local/etc/BM_TGs.json | cut -d\":\" -f2- | tr -cd \"'[:alnum:] -\"");
-                    $bmDynamicTGList .= "TG".$dynamicTG->talkgroup." ".$bmDynamicTGname."<span style='float:right;'>(".$dynamicTG->slot.")</span><br />";
+	            $bmDynamicTGList .= "TG".$dynamicTG->talkgroup."<span style='float:right;'>".$bmDynamicTGname." (".$dynamicTG->slot.")</span><br /><small style='float:right;'>(Idle timeout: ".date("h:i:s", substr($dynamicTG->timeout, 0, 10)).")</span></small><br /><br />";
                 }
                 else if (getConfigItem("DMR Network", "Slot1", $_SESSION['MMDVMHostConfigs']) == "0" && getConfigItem("DMR Network", "Slot2", $_SESSION['MMDVMHostConfigs']) && $dynamicTG->slot == "0") {
                     $bmDynamicTGname = exec("grep -w \"$dynamicTG->talkgroup\" /usr/local/etc/BM_TGs.json | cut -d\":\" -f2- | tr -cd \"'[:alnum:] -\"");
-                    $bmDynamicTGList .= "TG".$dynamicTG->talkgroup."<span style='float:right;'>".$bmDynamicTGname."</span><br />";
+                    $bmDynamicTGList .= "TG".$dynamicTG->talkgroup."<span style='float:none;'>".$bmDynamicTGname."</span><br />poopExpires ".date("Y-m-d H:i:s", substr("1477020641000", 0, 10));
                 }
             }
             $bmDynamicTGList = wordwrap($bmDynamicTGList, 135, "\n");
