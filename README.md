@@ -19,6 +19,8 @@ If you ask me to support, **I will ignore you.**
 
   * BM reflector functionality removed per <https://news.brandmeister.network/brandmeister-dmr-reflectors-support-ending-by-end-of-2020/>.
 
+* Brandmeister Manager updated; connected dymanic talkgroups now display idle timeout time.
+
 * Brandeister Manager updated; added ablity to mass-drop your static talkgroups; and mass re-add the previously
   linked static talkgroups.
 
