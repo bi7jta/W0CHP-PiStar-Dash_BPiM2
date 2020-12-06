@@ -66,7 +66,7 @@ if ( $testMMDVModeDMR == 1 ) {
             foreach($bmStaticTGListJson as $staticTG) {
                 if (getConfigItem("DMR Network", "Slot1", $_SESSION['MMDVMHostConfigs']) && $staticTG->slot == "1") {
                     $bmStaticTGname = exec("grep -w \"$staticTG->talkgroup\" /usr/local/etc/BM_TGs.json | cut -d\":\" -f2- | tr -cd \"'[:alnum:] -\"");
-                    $bmStaticTGList .= "TG".$staticTG->talkgroup." ".$bmStaticTGname."<span style='float:right;'>(".$staticTG->slot.")</span>";
+                    $bmStaticTGList .= "TG".$staticTG->talkgroup." ".$bmStaticTGname."<span style='float:right;'>(".$staticTG->slot.")</span><br />";
                 }
                 else if (getConfigItem("DMR Network", "Slot2", $_SESSION['MMDVMHostConfigs']) && $staticTG->slot == "2") {
                     $bmStaticTGname = exec("grep -w \"$staticTG->talkgroup\" /usr/local/etc/BM_TGs.json | cut -d\":\" -f2- | tr -cd \"'[:alnum:] -\"");
