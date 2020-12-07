@@ -75,7 +75,7 @@ if ( $testMMDVModeDMR == 1 ) {
         $bmStaticAddAllCmd = ("sudo /usr/local/sbin/pistar-bm_static_tgs_addall $sanitizedKey $dmrID");
         if (isset($_POST["tgStaticReAdd"])) {
 	    // make certain that a previous saves/dropped file actually exits
-	    if (!file_exists("/var/www/dashboard/.bm_tgs.json.saved")) {
+	    if (file_exists("/var/www/dashboard/.bm_tgs.json.saved")) {
             	exec($bmStaticAddAllCmd);
             	// Output to the browser
             	echo '<b>BrandMeister Manager</b>'."\n";
@@ -91,7 +91,7 @@ if ( $testMMDVModeDMR == 1 ) {
             	// Output to the browser
             	echo '<b>BrandMeister Manager</b>'."\n";
             	echo "<table>\n<tr><th>Command Output</th></tr>\n<tr><td>";
-            	print "No Previous Static Talkgroups Dropped. Nothing To Ddd!!<br /> Page reloading...";
+            	print "No Previous Static Talkgroups Dropped. Nothing To Do!!<br /> Page reloading...";
             	echo "</td></tr>\n</table>\n";
             	echo "<br />\n";
             	// Clean up...
