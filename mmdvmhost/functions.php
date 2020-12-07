@@ -184,7 +184,7 @@ function isDAPNETGatewayConnected() {
     $logLines1 = array();
     $logLines2 = array();
     
-    // Collect last 20 lines 
+    // Collect last 20 lines  - seee getDAPNETGatewayLog() down below for no. of line values (array_slice)
     if (file_exists("/var/log/pi-star/DAPNETGateway-".gmdate("Y-m-d").".log")) {
 	$logPath1 = "/var/log/pi-star/DAPNETGateway-".gmdate("Y-m-d").".log";
 	$logLines1 = preg_split('/\r\n|\r|\n/', `tail -n 5 $logPath1 | cut -d" " -f2- | tac`);
@@ -448,21 +448,22 @@ function getDAPNETGatewayLog($myRIC) {
 
         $logLines = array_filter($logLines);
         $logLinesPersonnal = array_filter($logLinesPersonnal);
-
-        $logLines = array_slice($logLines, 0, 50);
+	// last 20
+        $logLines = array_slice($logLines, 0, 20);
 	
         // Is there any message for my RIC ?
         if (sizeof($logLinesPersonnal) > 0) {
 
             // Add that special separator entry
             array_push($logLines, '<MY_RIC>');
-
-            $logLinesPersonnal = array_slice($logLinesPersonnal, 0, 50);
+	    // last 20
+            $logLinesPersonnal = array_slice($logLinesPersonnal, 0, 20);
             $logLines = array_merge($logLines, $logLinesPersonnal);
         }
     }
     else {
-        $logLines = array_slice($logLines, 0, 50);
+	// last 20	
+        $logLines = array_slice($logLines, 0, 20);
     }
     
     return $logLines;
