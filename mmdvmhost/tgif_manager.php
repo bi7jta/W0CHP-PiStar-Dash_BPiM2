@@ -181,7 +181,7 @@ if ( $dmrID ) {
       <td><input type="radio" id="tgifActionLink" name="tgifAction" value="LINK"  /><label for="linkTGIFRadioButton"/>Link</label> <input type="radio" name="tgifAction" value="UNLINK" checked="checked" />UnLink</td>
       <td><input type="submit" value="Request Change" name="tgifSubmit" /></td>
     </tr>
-    </table><br /><hr style="color:inherit;height:0px;border-bottom:1px;"/>'."\n";
+    </table><br /><hr/>'."\n";
     }
 }
 ?>

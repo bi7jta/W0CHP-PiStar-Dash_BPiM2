@@ -156,7 +156,7 @@ if (isset($_SESSION['YSFGatewayConfigs']['Remote Commands']['Enable']) && (isset
 		    </tr>
 		</table>
 	    </form>
-	    <br /><hr style="color:inherit;height:0px;border-bottom:1px;"/>
+	    <br /><hr/>
 	    <?php
 	}
     }

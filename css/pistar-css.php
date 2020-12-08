@@ -756,3 +756,9 @@ select {
     text-decoration: none;
     margin: 3px;
 }
+
+.hr {
+    border-bottom: 1px solid black;
+    height: 0px;
+}
+

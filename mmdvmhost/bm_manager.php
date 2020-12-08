@@ -303,7 +303,7 @@ if ( $testMMDVModeDMR == 1 ) {
 		echo '  </tr>'."\n";
 		echo '</table>'."\n";
 		echo '</form>'."\n";
-		echo '<br /><hr style="color:inherit;height:0px;border-bottom:1px;"/>'."\n";
+		echo '<br /><hr/>'."\n";
 	    }
 	}
     }
