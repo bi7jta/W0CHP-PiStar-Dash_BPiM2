@@ -40,6 +40,9 @@ If you ask me to support, **I will ignore you.**
 
 * Better dasboard mobile device view.
 
+* Talker Alias (DMR) displayed next to callsign when operator is transmitting (when applicable). This needs a lot of work, yet.
+  (This is on the beta/TalkerAliad branch and nees to be explicity be installes/defined - caveat emptor!).
+
 * Much more. See [screenshots below](#screenshots).
 
 ## To install the `W0CHP` Pi-Star Dashboard
@@ -94,6 +97,10 @@ If you ask me to support, **I will ignore you.**
 
 * If you had customized CSS settings before installing the W0CHP dashboard, they will be restored when
   using the `-rd` option.
+
+## Updating `W0CHP-PiStar-Dash`
+
+Once you install `W0CHP-PiStar-Dash`, is will automatially be kept up-to-date with any new features/versions/etc. This is possible via the native nightly Pi-Star updading process.
 
 ## Screenshots
 
