@@ -15,16 +15,18 @@ If you ask me to support, **I will ignore you.**
 
 * Updated UI elements galore, styling, wider, bigger, and mobile-friendly. Better fonts (no MS font references here!).
 
-* Brandmeiser Manager updated; shows actual connected TG names (in admin page).
+* BrandMeister Manager revamps galore:
 
-  * BM reflector functionality removed per <https://news.brandmeister.network/brandmeister-dmr-reflectors-support-ending-by-end-of-2020/>.
+  * Now shows actual connected talkgroup names.
 
-* Brandmeister Manager updated; connected dynamic talkgroups now display idle-timeout time (due to no TX).
+  * Reflector functionality removed per <https://news.brandmeister.network/brandmeister-dmr-reflectors-support-ending-by-end-of-2020/>.
 
-* Brandeister Manager updated; added ablity to mass-drop your static talkgroups; and mass re-add the previously
-  linked static talkgroups.
+  * Connected dynamic talkgroups now display idle-timeout time (due to no TX).
 
-* Brandmeister manager updated; added ability to batch add/delete up to 5 static talkgroups at a time.
+  * Added ablity to mass-drop your static talkgroups; and mass re-add the previously
+    linked static talkgroups.
+
+   * Added ability to batch add/delete up to 5 static talkgroups at a time (for now)
 
 * DMR JitterTest and related form
 
