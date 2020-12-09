@@ -75,6 +75,16 @@ If you ask me to support, **I will ignore you.**
 
 (...to install the dashboard with W0CHP CSS).
 
+## Updating `W0CHP-PiStar-Dash`
+
+Once you install `W0CHP-PiStar-Dash`, it will automatially be kept up-to-date with any new features/versions/etc. This is made possible via the native, nightly Pi-Star updading process.
+
+## Uninstalling `W0CHP-PiStar-Dash`
+
+Run:
+
+	 sudo bash <path>/W0CHP-pistar -rd
+
 ## Notes about custom CSS you may have previously applied
 
 * When using the `-id` option, the W0CHP CSS is installed, and any of your custom CSS settings
@@ -99,10 +109,6 @@ If you ask me to support, **I will ignore you.**
 
 * If you had customized CSS settings before installing the W0CHP dashboard, they will be restored when
   using the `-rd` option.
-
-## Updating `W0CHP-PiStar-Dash`
-
-Once you install `W0CHP-PiStar-Dash`, is will automatially be kept up-to-date with any new features/versions/etc. This is possible via the native nightly Pi-Star updading process.
 
 ## Screenshots
 
