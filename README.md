@@ -1,4 +1,4 @@
-#  About the `W0CHP` Pi-Star Dashboard, and Warnings
+## About `W0CHP-PiStar-Dash`, and Some Warnings
 
 **DO NOT contact me for support, bugs, etc...**
 
