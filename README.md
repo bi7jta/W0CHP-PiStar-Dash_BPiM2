@@ -118,7 +118,6 @@ Run:
 
 ![alt text](https://w0chp.net/img/W0CHP_Dash.png "W0CHP Dashboard")
 
-
 ### Admin Page
 
 (click for larger image)
