@@ -43,7 +43,7 @@ If you ask me to support, **I will ignore you.**
 * Better dasboard mobile device view.
 
 * Talker Alias (DMR) displayed next to callsign when operator is transmitting (when applicable). This needs a lot of work, yet.
-  (This is on the beta/TalkerAliad branch and nees to be explicity be installes/defined - caveat emptor!).
+  (This is on the beta/TalkerAlias branch, and needs to be explicity be installed/defined - caveat emptor!).
 
 * Much more. See [screenshots below](#screenshots).
 
