@@ -68,9 +68,9 @@ if ( $testMMDVModeDMR == 1 ) {
                 print "All Static Talkgroups Dropped!<br /> Page reloading...";
                 echo "</td></tr>\n</table>\n";
                 echo "<br />\n";
-               // Clean up...
-               unset($_POST);
-               echo '<script type="text/javascript">setTimeout(function() { window.location=window.location;},3000);</script>';
+                // Clean up...
+                unset($_POST);
+                echo '<script type="text/javascript">setTimeout(function() { window.location=window.location;},3000);</script>';
 	    }
 	    // re-add all static
             $bmStaticAddAllCmd = ("sudo /usr/local/sbin/pistar-bm_static_tgs_addall $sanitizedKey $dmrID");
