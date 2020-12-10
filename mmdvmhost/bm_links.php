@@ -114,6 +114,9 @@ if ( $testMMDVModeDMR == 1 ) {
 	echo '     <td align="left" style="padding: 8px;">'.$bmStaticTGList.'</td>';
 	echo '     <td align="left" style="padding: 8px;">'.$bmDynamicTGList.'</td>';
 	echo '    </tr>'."\n";
+	echo '    <tr>'."\n";
+	echo '      <td colspan="3"><a href="https://w0chp.net/brandmeister-talkgroups/">List of Available BrandMeister Talkgroups (sortable)</a></td>'."\n";
+	echo '    </tr>'."\n";
 	echo '  </table>'."\n";
     }
 }
