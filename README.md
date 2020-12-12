@@ -77,7 +77,9 @@ If you ask me to support, **I will ignore you.**
 
 ## Updating `W0CHP-PiStar-Dash`
 
-Once you install `W0CHP-PiStar-Dash`, it will automatially be kept up-to-date with any new features/versions/etc. This is made possible via the native, nightly Pi-Star updading process.
+Once you install `W0CHP-PiStar-Dash`, it will automatially be kept up-to-date
+with any new features/versions/etc. This is made possible via the native,
+nightly Pi-Star updading process.
 
 ## Uninstalling `W0CHP-PiStar-Dash`
 
@@ -90,9 +92,9 @@ Run:
 * When using the `-id` option, the W0CHP CSS is installed, and any of your custom CSS settings
   before installing the W0CHP dashboard, are backed up in the event you want to restore the official dashboard
   (see last bullet point). This is done because the CSS in the official Pi-Star is incompatible. You can still
-  manually map/change your CSS back when running W0CHP-Dash (see third bullet for details).
+  manually map/change your CSS back when running `W0CHP-PiStar-Dash` (see third bullet for details).
 
-* If you are already running W0CHP-Dash, AND you have custom or W0CHP-Dash CSS, no CSS changes, no matter which
+* If you are already running `W0CHP-PiStar-Dash`, AND you have custom or `W0CHP-PiStar-Dash` CSS, no CSS changes, no matter which
   option you run this command with.
 
 * When using the `-idn` option, your custom CSS settings are backed up (in the event you want to revert back
