@@ -99,7 +99,7 @@ Run:
 
 * When using the `-idn` option, your custom CSS settings are backed up (in the event you want to revert back
   to the official dashboard -- see last bullet point), and the W0CHP dashboard uses the standard Pi-Star colors.
-  This means that if you want your previous custom CSS applied the W0CHP dashboard, you will need to manually
+  This means that if you want your previous custom CSS applied to the W0CHP dashboard, you will need to manually
   customize your colors; You can reference the color values you had previously used, by viewing the backup file of
   your custom CSS...
 
