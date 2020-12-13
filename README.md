@@ -73,7 +73,7 @@ If you ask me to support, **I will ignore you.**
 
         sudo bash ./W0CHP-pistar -id
 
-(...to install the dashboard with W0CHP CSS).
+(...to install the dashboard with `W0CHP` CSS).
 
 ## Updating `W0CHP-PiStar-Dash`
 
@@ -89,8 +89,8 @@ Run:
 
 ## Notes about custom CSS you may have previously applied
 
-* When using the `-id` option, the W0CHP CSS is installed, and any of your custom CSS settings
-  before installing the W0CHP dashboard, are backed up in the event you want to restore the official dashboard
+* When using the `-id` option, the `W0CHP` CSS is installed, and any of your custom CSS settings
+  before installing the `W0CHP` dashboard, are backed up in the event you want to restore the official dashboard
   (see last bullet point). This is done because the CSS in the official Pi-Star is incompatible. You can still
   manually map/change your CSS back when running `W0CHP-PiStar-Dash` (see third bullet for details).
 
@@ -98,18 +98,18 @@ Run:
   option you run this command with.
 
 * When using the `-idn` option, your custom CSS settings are backed up (in the event you want to revert back
-  to the official dashboard -- see last bullet point), and the W0CHP dashboard uses the standard Pi-Star colors.
-  This means that if you want your previous custom CSS applied to the W0CHP dashboard, you will need to manually
+  to the official dashboard -- see last bullet point), and the `W0CHP` dashboard uses the standard Pi-Star colors.
+  This means that if you want your previous custom CSS applied to the `W0CHP` dashboard, you will need to manually
   customize your colors; You can reference the color values you had previously used, by viewing the backup file of
   your custom CSS...
 
         /etc/.pistar-css.ini.user
 
-* ...the reason for this, is because the W0CHP dashboard is vastly different than the official upstream version
+* ...the reason for this, is because the `W0CHP` dashboard is vastly different than the official upstream version
   (completely different CSS mappings). Since this is for my personal use, I haven't added any logic to suck-in
   the user CSS values to the new mappings.
 
-* If you had customized CSS settings before installing the W0CHP dashboard, they will be restored when
+* If you had customized CSS settings before installing the `W0CHP` dashboard, they will be restored when
   using the `-rd` option.
 
 ## Screenshots
