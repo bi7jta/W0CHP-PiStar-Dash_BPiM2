@@ -7,7 +7,6 @@ include_once $_SERVER['DOCUMENT_ROOT'].'/config/language.php';	      // Translat
 <b><?php echo $lang['last_heard_list'];?></b>
   <table>
     <tr>
-      <!--<th><a class="tooltip" href="#"><?php echo "#";?><span><b>Row Number</b></span></a></th>-->
       <th><a class="tooltip" href="#"><?php echo $lang['time'];?> (<?php echo date('T')?>)<span><b>Time in <?php echo date('T')?> time zone</b></span></a></th>
       <th><a class="tooltip" href="#"><?php echo $lang['mode'];?><span><b>Transmitted Mode</b></span></a></th>
       <th><a class="tooltip" href="#"><?php echo $lang['callsign'];?><span><b>Callsign</b></span></a></th>
@@ -30,7 +29,6 @@ for ($i = 0;  ($i <= 39); $i++) { //Last 40 calls
                         $dt->setTimeZone($local_tz);
 			$local_time = $dt->format('H:i:s M jS');
 		echo"<tr>";
-		//echo"<td align=\"left\">".(1+$i)."</td>";
 		echo"<td align=\"left\">$local_time</td>";
 		echo"<td align=\"left\">$listElem[1]</td>";
 		if (is_numeric($listElem[2]) || strpos($listElem[2], "openSPOT") !== FALSE) {
@@ -40,10 +38,8 @@ for ($i = 0;  ($i <= 39); $i++) { //Last 40 calls
 		} else {
 			if (strpos($listElem[2],"-") > 0) { $listElem[2] = substr($listElem[2], 0, strpos($listElem[2],"-")); }
 			if ( $listElem[3] && $listElem[3] != '    ' ) {
-				//echo "<td align=\"left\"><a href=\"http://www.qrz.com/db/$listElem[2]\" data-featherlight=\"iframe\" data-featherlight-iframe-min-width=\"90%\" data-featherlight-iframe-max-width=\"90%\" data-featherlight-iframe-width=\"2000\" data-featherlight-iframe-height=\"2000\">$listElem[2]</a>/$listElem[3]</td>";
 				echo "<td align=\"left\"><a href=\"http://www.qrz.com/db/$listElem[2]\" target=\"_blank\">$listElem[2]</a>/$listElem[3]</td>";
 			} else {
-				//echo "<td align=\"left\"><a href=\"http://www.qrz.com/db/$listElem[2]\" data-featherlight=\"iframe\" data-featherlight-iframe-min-width=\"90%\" data-featherlight-iframe-max-width=\"90%\" data-featherlight-iframe-width=\"2000\" data-featherlight-iframe-height=\"2000\">$listElem[2]</a></td>";
 				echo "<td align=\"left\"><a href=\"http://www.qrz.com/db/$listElem[2]\" target=\"_blank\">$listElem[2]</a></td>";
 			}
 		}
