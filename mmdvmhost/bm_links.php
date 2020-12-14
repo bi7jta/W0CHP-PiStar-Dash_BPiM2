@@ -75,7 +75,7 @@ if ( $testMMDVModeDMR == 1 ) {
                 }
                 else if (getConfigItem("DMR Network", "Slot1", $_SESSION['MMDVMHostConfigs']) == "0" && getConfigItem("DMR Network", "Slot2", $_SESSION['MMDVMHostConfigs']) && $staticTG->slot == "0") {
                     $bmStaticTGname = exec("grep -w \"$staticTG->talkgroup\" /usr/local/etc/BM_TGs.json | cut -d\":\" -f2- | tr -cd \"'[:alnum:] -\"");
-                    $bmStaticTGList .= "TG".$staticTG->talkgroup."<span style='float:right;'>(".$staticTG->slot.")</span><br />";
+                    $bmStaticTGList .= "TG".$staticTG->talkgroup." ".$bmStaticTGname." ";
                 }
             }
             $bmStaticTGList = wordwrap($bmStaticTGList, 135, "\n");
@@ -94,7 +94,7 @@ if ( $testMMDVModeDMR == 1 ) {
                 }
                 else if (getConfigItem("DMR Network", "Slot1", $_SESSION['MMDVMHostConfigs']) == "0" && getConfigItem("DMR Network", "Slot2", $_SESSION['MMDVMHostConfigs']) && $dynamicTG->slot == "0") {
                     $bmDynamicTGname = exec("grep -w \"$dynamicTG->talkgroup\" /usr/local/etc/BM_TGs.json | cut -d\":\" -f2- | tr -cd \"'[:alnum:] -\"");
-                    $bmDynamicTGList .= "TG".$dynamicTG->talkgroup."<span style='float:none;'>".$bmDynamicTGname."</span><br /><small style='float:right;'>(Idle timeout: ".date("h:i:s", substr($dynamicTG->timeout, 0, 10)).")</span></small><br /><br />";
+                    $bmDynamicTGList .= "TG".$dynamicTG->talkgroup."<span style='float:right;'>".$bmDynamicTGname."</span><br /><small style='float:right;'>(Idle timeout: ".date("h:i:s", substr($dynamicTG->timeout, 0, 10)).")</span></small><br /><br />";
                 }
             }
             $bmDynamicTGList = wordwrap($bmDynamicTGList, 135, "\n");
