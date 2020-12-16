@@ -17,7 +17,7 @@ If you ask me to support, **I will ignore you.**
 
 * BrandMeister Manager revamps galore:
 
-  * Now shows actual connected talkgroup names.
+  * Now displays connected actual talkgroup names.
 
   * Reflector functionality removed per <https://news.brandmeister.network/brandmeister-dmr-reflectors-support-ending-by-end-of-2020/>.
 
@@ -28,13 +28,15 @@ If you ask me to support, **I will ignore you.**
 
    * Added ability to batch add/delete up to 5 static talkgroups at a time (for now)
 
-* DMR JitterTest and related form
+* TGIF Manager; now displays conneected actual talkgroup names.
+
+* DMR JitterTest and related form added.
 
 * RF activity moved to top on dashboard.
 
 * YSF link manager now enabled for YSF2DMR mode as well; gives the ability to change links/rooms on-the-fly.
 
-* Connected FCS and YSF reflector names and numerical ID both shown in dashboard left panel.
+* Connected FCS and YSF reflector names and numerical ID both displayed in dashboard left panel.
 
 * Ability to configure POCSAG hangtime from the config page.
 
