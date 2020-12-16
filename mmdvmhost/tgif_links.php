@@ -81,8 +81,17 @@ if ( $testMMDVModeDMR == 1 ) {
   if (isset($session_nr)) {
     $repeaterid = $json->sessions[$session_nr]->repeater_id;
     if ($json->sessions[$session_nr]->tg0 == "4000") { $slot1tg = "None"; } else { $slot1tg = "TG".$json->sessions[$session_nr]->tg0; }
+    if ($json->sessions[$session_nr]->tg0 != "4000") {
+        $slot1TGname = exec("grep -w ".$json->sessions[$session_nr]->tg0." /usr/local/etc/tgif-talkgroups.txt | cut -d\":\" -f1 | tr -cd \"'[:alnum:] -\""); 
+    } else {
+	$slot1TGname = "";
+    }
     if ($json->sessions[$session_nr]->tg  == "4000") { $slot2tg = "None"; } else { $slot2tg = "TG".$json->sessions[$session_nr]->tg; }
-
+    if ($json->sessions[$session_nr]->tg != "4000") {
+        $slot2TGname = exec("grep -w ".$json->sessions[$session_nr]->tg." /usr/local/etc/tgif-talkgroups.txt | cut -d\":\" -f1 | tr -cd \"'[:alnum:] -\""); 
+    } else {
+	$slot2TGname = "";
+    }
     echo '<b>Active TGIF Connections</b>
     <table>
       <tr>
@@ -92,9 +101,9 @@ if ( $testMMDVModeDMR == 1 ) {
       </tr>'."\n";
 	
 	echo '    <tr>'."\n";
-	echo '      <td align="left" style="padding: 8px;">tgif.network<br /><small>(<a href="http://tgif.network/selfcare.html" target="_new">Your HotSpot/Repeater ID: '.$repeaterid.'</a>)</small></td>';
-	echo '<td align="left" style="padding: 8px;">'.$slot1tg.'</td>';
-	echo '<td align="left" style="padding: 8px;">'.$slot2tg.'</td>';
+	echo '      <td align="left" style="padding: 8px;white-space:normal; word-wrap:break; width:200px;">tgif.network<br /><small>(<a href="http://tgif.network/selfcare.html" target="_new">Your HotSpot/Repeater ID: '.$repeaterid.'</a>)</small></td>';
+	echo '<td align="left" style="padding: 8px;">'.$slot1tg.'<span style="float:right;">'."$slot1TGname".'</span></td>';
+	echo '<td align="left" style="padding: 8px;">'.$slot2tg.'<span style="float:right;">'."$slot2TGname".'</span></td>';
 	echo '</tr>'."\n";
 	echo '  </table>'."\n";
     }
