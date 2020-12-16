@@ -100,12 +100,15 @@ if ( $testMMDVModeDMR == 1 ) {
         <th align="left" style="padding-left: 8px;"><a class=tooltip href="#">Slot 2 Talkgroup<span><b>TG linked to Slot 2</b></span></a></th>
       </tr>'."\n";
 	
-	echo '    <tr>'."\n";
-	echo '      <td align="left" style="padding: 8px;white-space:normal; word-wrap:break; width:200px;">tgif.network<br /><small>(<a href="http://tgif.network/selfcare.html" target="_new">Your HotSpot/Repeater ID: '.$repeaterid.'</a>)</small></td>';
-	echo '<td align="left" style="padding: 8px;">'.$slot1tg.'<span style="float:right;">'."$slot1TGname".'</span></td>';
-	echo '<td align="left" style="padding: 8px;">'.$slot2tg.'<span style="float:right;">'."$slot2TGname".'</span></td>';
+	echo '<tr>'."\n";
+	echo '  <td align="left" style="padding: 8px;white-space:normal; word-wrap:break; width:200px;">tgif.network<br /><small>(<a href="http://tgif.network/selfcare.html" target="_new">Your HotSpot/Repeater ID: '.$repeaterid.'</a>)</small></td>';
+	echo '  <td align="left" style="padding: 8px;">'.$slot1tg.'<span style="float:right;">'."$slot1TGname".'</span></td>';
+	echo '  <td align="left" style="padding: 8px;">'.$slot2tg.'<span style="float:right;">'."$slot2TGname".'</span></td>';
 	echo '</tr>'."\n";
-	echo '  </table>'."\n";
+        echo '<tr>'."\n";
+        echo '  <td colspan="3"><b><a href="https://w0chp.net/tgif-talkgroups/" target="_blank">List of All TGIF Talkgroups (sortable/searchable/downloadable)...</a></b></td>'."\n";
+        echo '</tr>'."\n";
+	echo '</table>'."\n";
     }
 }
 ?>
