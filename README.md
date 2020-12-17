@@ -6,7 +6,7 @@ This is my *personal* and highly customized Pi-Star dashboard, and related
 binaries, forked from F1RMB, which was forked from Andy, MW0MWZ's original
 code.  I offer ZERO support. This is here for your hacking and enjoyment, and
 you're fully on your own. *Use at your own risk*, and DO NOT ask me for support.
-Nor should you file/report any bugs etc. on any officlal Pi-Star medium...this
+Nor should you file/report any bugs etc. on any official Pi-Star medium...this
 is not Andy's code!!!
 
 If you ask me to support, **I will ignore you.**
@@ -23,12 +23,12 @@ If you ask me to support, **I will ignore you.**
 
   * Connected dynamic talkgroups now display idle-timeout time (due to no TX).
 
-  * Added ablity to mass-drop your static talkgroups; and mass re-add the previously
+  * Added ability to mass-drop your static talkgroups; and mass re-add the previously
     linked static talkgroups.
 
    * Added ability to batch add/delete up to 5 static talkgroups at a time (for now)
 
-* TGIF Manager; now displays conneected actual talkgroup names.
+* TGIF Manager; now displays connected actual talkgroup names.
 
 * DMR JitterTest and related form added.
 
@@ -42,10 +42,10 @@ If you ask me to support, **I will ignore you.**
 
 * Additional hardware and system information displayed in top header.
 
-* Better dasboard mobile device view.
+* Better dashboard mobile device view.
 
 * Talker Alias (DMR) displayed next to callsign when operator is transmitting (when applicable). This needs a lot of work, yet.
-  (This is on the beta/TalkerAlias branch, and needs to be explicity be installed/defined - caveat emptor!).
+  (This is on the beta/TalkerAlias branch, and needs to be explicitly be installed/defined - caveat emptor!).
 
 * Much more. See [screenshots below](#screenshots).
 
@@ -79,9 +79,9 @@ If you ask me to support, **I will ignore you.**
 
 ## Updating `W0CHP-PiStar-Dash`
 
-Once you install `W0CHP-PiStar-Dash`, it will automatially be kept up-to-date
+Once you install `W0CHP-PiStar-Dash`, it will automatically be kept up-to-date
 with any new features/versions/etc. This is made possible via the native,
-nightly Pi-Star updading process.
+nightly Pi-Star updating process.
 
 ## Uninstalling `W0CHP-PiStar-Dash`
 
