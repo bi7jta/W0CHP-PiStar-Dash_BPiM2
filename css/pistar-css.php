@@ -322,7 +322,7 @@ h1 {
 }
 
 input:disabled + label {
-    color: #cccccc;
+    color: #555555;
 }
 
 input.toggle-round-flat + label {
