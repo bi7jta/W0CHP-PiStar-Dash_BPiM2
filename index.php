@@ -181,7 +181,7 @@ checkSessionValidity();
 		}
 	
 		if ($_SERVER["PHP_SELF"] == "/admin/index.php") {               // Admin Only Option	
-                    include "mmdvmhost/mode-pause.php";
+                    include "mmdvmhost/instant-mode-manager.php";
 		}
 
 		if ($_SERVER["PHP_SELF"] == "/admin/index.php") { 		// Admin Only Option
