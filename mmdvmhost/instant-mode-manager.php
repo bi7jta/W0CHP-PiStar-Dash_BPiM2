@@ -112,7 +112,7 @@ if (!empty($_POST) && empty($_POST["mode_sel"])) { //handler for nothing selecte
     print '
     <b>Instant Mode Manager</b>
     <form id="action-form" method="post">
-      <table>
+      <table style="white-space: normal;">
           <tr>
 	    <th>Pause / Resume</th>
 	    <th>Select Mode</th>
