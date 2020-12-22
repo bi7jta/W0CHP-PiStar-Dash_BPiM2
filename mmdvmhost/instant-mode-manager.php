@@ -47,22 +47,6 @@ if (!empty($_POST) && empty($_POST["mode_sel"])) { //handler for nothing selecte
     // Clean up...
     unset($_POST);
     echo '<script type="text/javascript">setTimeout(function() { window.location=window.location;},3000);</script>';
-/*
-} elseif (!empty($_POST) && ($_POST['mode_action'] == "Pause")) { // handler for already paused
-    $mode = ($_POST['mode_sel']); // get selected mode from for post
-    if (file_exists("/var/run/$mode.paused")) {
-        // Output to the browser
-        echo "<b>Instant Mode Manager</b>";
-        echo "<table>\n";
-        echo "  <tr>\n";
-        echo "    <td>$mode already paused! Did you mean to resume $mode?<br />Page Reloading...</td>\n";
-        echo "  </tr>\n";
-        echo "</table>\n";
-        // Clean up...
-        unset($_POST);
-        echo '<script type="text/javascript">setTimeout(function() { window.location=window.location;},3000);</script>';
-    }
-*/
 } elseif
     (!empty($_POST) && ($_POST['mode_action'] == "Pause") && isset($_POST["submit_mode"])) {
     $mode = ($_POST['mode_sel']); // get selected mode from for post
@@ -135,7 +119,7 @@ if (!empty($_POST) && empty($_POST["mode_sel"])) { //handler for nothing selecte
 	    <th>Action</th>
 	  </tr>
           <tr>
-            <td colspan="3">This function allows you to instantly pause/resume radio modes during nets, for quieting, etc.</th>
+            <td colspan="3">This function allows you to instantly pause or resume selected radio modes. Handy for attending nets, quieting a busy mode, to temorarily eliminate "mode monopolization", etc.</td>
           </tr>
 	  <tr>
             <td>
