@@ -179,7 +179,11 @@ checkSessionValidity();
 		    include 'dstarrepeater/ccs_connections.php';			// dstarrepeater gateway config
 		    echo '</div>'."\n";
 		}
-		
+	
+		if ($_SERVER["PHP_SELF"] == "/admin/index.php") {               // Admin Only Option	
+                    include "mmdvmhost/mode-pause.php";
+		}
+
 		if ($_SERVER["PHP_SELF"] == "/admin/index.php") { 		// Admin Only Option
 		    echo '<script type="text/javascript">'."\n";
         	    echo 'function reloadbmConnections(){'."\n";

@@ -30,6 +30,9 @@ If you ask me to support, **I will ignore you.**
 
 * TGIF Manager; now displays connected actual talkgroup names.
 
+* "Instant Mode Manager" added to admin page; allows you to instantly pause or resume selected radio modes. Handy for attending
+  nets, quieting a busy mode, to eliminate "mode monopolization", etc.
+
 * DMR JitterTest and related form added.
 
 * RF activity moved to top on dashboard.
