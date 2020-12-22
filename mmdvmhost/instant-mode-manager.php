@@ -119,7 +119,7 @@ if (!empty($_POST) && empty($_POST["mode_sel"])) { //handler for nothing selecte
 	    <th>Action</th>
 	  </tr>
           <tr>
-            <td colspan="3">This function allows you to instantly pause or resume selected radio modes. Handy for attending nets, quieting a busy mode, to temorarily eliminate "mode monopolization", etc.</td>
+            <td colspan="3">This function allows you to instantly pause or resume selected radio modes. Handy for attending nets, quieting a busy mode, to temporarily eliminate "mode monopolization", etc.</td>
           </tr>
 	  <tr>
             <td>
