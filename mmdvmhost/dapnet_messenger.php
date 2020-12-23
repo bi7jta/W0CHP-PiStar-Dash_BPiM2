@@ -86,7 +86,7 @@ if (isset($_SESSION['DAPNETAPIKeyConfigs']['DAPNETAPI']['USER']) && (empty($_SES
         echo '  <tr>';
         echo '    <td style="vertical-align:middle;padding:5px;">T/RX Group(s):<input style="float:right;" type="text" name="dapToTrxArea" maxlength="50" value="'.$dapnetTrxAreas.'" title="Override the Transmitter Group(s) here." /></tr>';
         echo '  </tr>';
-        echo '</table>'."\n";
+        echo '</table></form>'."\n";
     }
 }
 else {
