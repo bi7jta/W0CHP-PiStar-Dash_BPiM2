@@ -34,7 +34,7 @@ $DMR_paused    = '/var/run/DMR.paused';
 $YSF_paused    = '/var/run/YSF.paused';
 $P25_paused    = '/var/run/P25.paused';
 $NXDN_paused   = '/var/run/NXDN.paused';
-$POCSAG_paused = '/var/run/NXDN.paused';
+$POCSAG_paused = '/var/run/POCSAG.paused';
 
 // take action based on form submission
 if (!empty($_POST["submit_mode"]) && empty($_POST["mode_sel"])) { //handler for nothing selected
