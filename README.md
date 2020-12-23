@@ -142,4 +142,4 @@ This image is too enormous to embed here, but you can [view it separately](https
 
 ## Credits
 
-[Listed here...](https://w0chp.net/w0chp-pistar-dash/#Credits)
+[Listed here...](https://w0chp.net/w0chp-pistar-dash/#credits)
