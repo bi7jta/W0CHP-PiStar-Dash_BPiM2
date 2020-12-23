@@ -27,19 +27,24 @@ $DMR    = ($configmmdvm['DMR']['Enable']);
 $YSF    = ($configmmdvm['System Fusion']['Enable']);
 $P25    = ($configmmdvm['P25']['Enable']);
 $NXDN   = ($configmmdvm['NXDN']['Enable']);
+$POCSAG = ($configmmdvm['POCSAG']['Enable']);
 // pause enabled file pointers
 $DSTAR_paused  = '/var/run/D-Star.paused';
 $DMR_paused    = '/var/run/DMR.paused';
 $YSF_paused    = '/var/run/YSF.paused';
 $P25_paused    = '/var/run/P25.paused';
 $NXDN_paused   = '/var/run/NXDN.paused';
+$POCSAG_paused = '/var/run/NXDN.paused';
 
 // take action based on form submission
 if (!empty($_POST["submit_mode"]) && empty($_POST["mode_sel"])) { //handler for nothing selected
     $mode = ($_POST['mode_sel']); // get selected mode from for post
     // Output to the browser
-    echo "<b>Instant Mode Manager</b>";
+    echo "<b>Instant Mode Manager</b>\n";
     echo "<table>\n";
+    echo "  <tr>\n";
+    echo "    <th>ERROR</th>\n";
+    echo "  </tr>\n";
     echo "  <tr>\n";
     echo "    <td>No Mode Selected; Nothing To Do!<br />Page Reloading...</td>\n";
     echo "  </tr>\n";
@@ -54,6 +59,9 @@ if (!empty($_POST["submit_mode"]) && empty($_POST["mode_sel"])) { //handler for 
         // Output to the browser
         echo "<b>Instant Mode Manager</b>\n";
         echo "<table>\n";
+        echo "  <tr>\n";
+        echo "    <th>ERROR</th>\n";
+        echo "  </tr>\n";
         echo "  <tr>\n";
         echo "    <td>$mode mode already paused! Did you mean to \"resume\" $mode mode?<br />Page Reloading...</td>\n";
         echo "  </tr>\n"; 
@@ -70,6 +78,9 @@ if (!empty($_POST["submit_mode"]) && empty($_POST["mode_sel"])) { //handler for 
         echo "<b>Instant Mode Manager</b>\n";
         echo "<table>\n";
         echo "  <tr>\n";
+        echo "    <th>Status</th>\n";
+        echo "  </tr>\n";
+        echo "  <tr>\n";
         echo "    <td>Selected Mode ($mode) Paused!<br />Page Reloading...</td>\n";
         echo "  </tr>\n";
         echo "</table>\n";
@@ -85,6 +96,9 @@ if (!empty($_POST["submit_mode"]) && empty($_POST["mode_sel"])) { //handler for 
         echo "<b>Instant Mode Manager</b>\n";
         echo "<table>\n";
         echo "  <tr>\n";
+        echo "    <th>ERROR</th>\n";
+        echo "  </tr>\n";
+        echo "  <tr>\n";
         echo "    <td>$mode mode already running! Did you mean to \"pause\" $mode mode?<br />Page Reloading...</td>\n";
         echo "  </tr>\n";
         echo "</table>\n";
@@ -99,6 +113,9 @@ if (!empty($_POST["submit_mode"]) && empty($_POST["mode_sel"])) { //handler for 
         // Output to the browser
         echo "<b>Instant Mode Manager</b>\n";
         echo "<table>\n";
+        echo "  <tr>\n";
+        echo "    <th>Status</th>\n";
+        echo "  </tr>\n";
         echo "  <tr>\n";
         echo "    <td>Selected Mode ($mode) Resumed!<br />Page Reloading...</td>\n";
         echo "  </tr>\n";
@@ -138,7 +155,10 @@ if (!empty($_POST["submit_mode"]) && empty($_POST["mode_sel"])) { //handler for 
             | <input name="mode_sel" '.(($P25=='0' && !file_exists($P25_paused)?'disabled="disabled"':"")).' access="false" id="mode-sel-3"  value="P25" type="radio">
             <label for="mode_sel-3">P25</label> '.(($P25=='0' && file_exists($P25_paused)?" <span style=background:#f93;'>(Paused)</span>":"")).'
             | <input name="mode_sel" '.(($NXDN=='0' && !file_exists($NXDN_paused)?'disabled="disabled"':"")).' access="false" id="mode-sel-4"  value="NXDN" type="radio">
-            <label for="mode_sel-4">NXDN</label> '.(($NXDN=='0' && file_exists($NXDN_paused)?" <span style=background:#f93;'>(Paused)</span>":"")).' ]
+            <label for="mode_sel-4">NXDN</label> '.(($NXDN=='0' && file_exists($NXDN_paused)?" <span style=background:#f93;'>(Paused)</span>":"")).'
+            | <input name="mode_sel" '.(($POCSAG=='0' && !file_exists($POCSAG_paused)?'disabled="disabled"':"")).' access="false" id="mode-sel-5"  value="POCSAG" type="radio">
+            <label for="mode_sel-4">POCSAG</label> '.(($POCSAG=='0' && file_exists($POCSAG_paused)?" <span style=background:#f93;'>(Paused)</span>":"")).' ]
+ 
           </td>
           <td>
             <input type="submit" class="btn-default btn" name="submit_mode" value="Submit" access="false" style="default" id="submit-mode" title="Submit">
