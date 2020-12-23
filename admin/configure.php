@@ -580,7 +580,7 @@ $MYCALL=strtoupper($callsign);
 		<?php
 		if ($_SERVER["PHP_SELF"] == "/admin/configure.php") {
 		// check that no modes are paused. If so, bail and direct user to unpause...
-                $is_paused = glob('/var/run/*.paused');
+                $is_paused = glob('/etc/*.paused');
                 if (!empty($is_paused)) {
                     //HTML output starts here
                     echo '<div class="contentwide">'."\n";
@@ -2200,19 +2200,11 @@ $MYCALL=strtoupper($callsign);
 		    if (empty($_POST['MMDVMModeDMR']) != TRUE ) {
 			if (escapeshellcmd($_POST['MMDVMModeDMR']) == 'ON' )  { $configmmdvm['DMR']['Enable'] = "1"; $configmmdvm['DMR Network']['Enable'] = "1"; $configysf2dmr['Enabled']['Enabled'] = "0";}
 			if (escapeshellcmd($_POST['MMDVMModeDMR']) == 'OFF' ) { $configmmdvm['DMR']['Enable'] = "0"; $configmmdvm['DMR Network']['Enable'] = "0"; }
-			if (file_exists('/var/run/DMR.paused')) {
-			    exec('sudo mount -o remount,rw /');
-			    exec('sudo rm /var/run/DMR.paused');
-			}
 		    }
 		    
 		    // Set MMDVMHost D-Star Mode
 		    if (empty($_POST['MMDVMModeDSTAR']) != TRUE ) {
 			if (escapeshellcmd($_POST['MMDVMModeDSTAR']) == 'ON' )  { $configmmdvm['D-Star']['Enable'] = "1"; $configmmdvm['D-Star Network']['Enable'] = "1"; }
-			if (file_exists('/var/run/D-Star.paused')) {
-			    exec('sudo mount -o remount,rw /');
-			    exec('sudo rm /var/run/D-Star.paused');
-			}
 		if (escapeshellcmd($_POST['MMDVMModeDSTAR']) == 'OFF' ) { $configmmdvm['D-Star']['Enable'] = "0"; $configmmdvm['D-Star Network']['Enable'] = "0"; }
 		    }
 		    
@@ -2220,30 +2212,18 @@ $MYCALL=strtoupper($callsign);
 		    if (empty($_POST['MMDVMModeFUSION']) != TRUE ) {
 			if (escapeshellcmd($_POST['MMDVMModeFUSION']) == 'ON' )  { $configmmdvm['System Fusion']['Enable'] = "1"; $configmmdvm['System Fusion Network']['Enable'] = "1"; $configdmr2ysf['Enabled']['Enabled'] = "0"; }
 			if (escapeshellcmd($_POST['MMDVMModeFUSION']) == 'OFF' ) { $configmmdvm['System Fusion']['Enable'] = "0"; $configmmdvm['System Fusion Network']['Enable'] = "0"; }
-                        if (file_exists('/var/run/YSF.paused')) {
-			    exec('sudo mount -o remount,rw /');
-                            exec('sudo rm /var/run/YSF.paused');
-                        }
 		    }
 		    
 		    // Set MMDVMHost P25 Mode
 		    if (empty($_POST['MMDVMModeP25']) != TRUE ) {
 			if (escapeshellcmd($_POST['MMDVMModeP25']) == 'ON' )  { $configmmdvm['P25']['Enable'] = "1"; $configmmdvm['P25 Network']['Enable'] = "1"; $configysf2p25['Enabled']['Enabled'] = "0"; }
 			if (escapeshellcmd($_POST['MMDVMModeP25']) == 'OFF' ) { $configmmdvm['P25']['Enable'] = "0"; $configmmdvm['P25 Network']['Enable'] = "0"; }
-                        if (file_exists('/var/run/P25.paused')) {
-			    exec('sudo mount -o remount,rw /');
-                            exec('sudo rm /var/run/P25.paused');
-                        }
 		    }
 		    
 		    // Set MMDVMHost NXDN Mode
 		    if (empty($_POST['MMDVMModeNXDN']) != TRUE ) {
 			if (escapeshellcmd($_POST['MMDVMModeNXDN']) == 'ON' )  { $configmmdvm['NXDN']['Enable'] = "1"; $configmmdvm['NXDN Network']['Enable'] = "1"; $configysf2nxdn['Enabled']['Enabled'] = "0"; }
 			if (escapeshellcmd($_POST['MMDVMModeNXDN']) == 'OFF' ) { $configmmdvm['NXDN']['Enable'] = "0"; $configmmdvm['NXDN Network']['Enable'] = "0"; }
-                        if (file_exists('/var/run/NXDN.paused')) {
-			    exec('sudo mount -o remount,rw /');
-                            exec('sudo rm /var/run/NXDN.paused');
-                        }
 		    }
 		    
 		    // Set YSF2DMR Mode
