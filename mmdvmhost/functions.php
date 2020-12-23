@@ -261,10 +261,10 @@ function showMode($mode, $configs) {
 	    }
 	}
     }
-    else if ( ($mode == "YSF XMode") && (getEnabled("System Fusion", $configs) == 1) ) {
+    else if ( ($mode == "YSF X-Mode") && (getEnabled("System Fusion", $configs) == 1) ) {
 	getModeClass( (isProcessRunning("MMDVMHost")) && (isProcessRunning("YSF2DMR") || isProcessRunning("YSF2NXDN") || isProcessRunning("YSF2P25")), true);
     }
-    else if ( ($mode == "DMR XMode") && (getEnabled("DMR", $configs) == 1) ) {
+    else if ( ($mode == "DMR X-Mode") && (getEnabled("DMR", $configs) == 1) ) {
 	getModeClass( (isProcessRunning("MMDVMHost")) && (isProcessRunning("DMR2YSF") || isProcessRunning("DMR2NXDN")), true);
     }
     else if ( ($mode == "YSF2DMR Network") && (getEnabled("System Fusion", $configs) == 1) ) {

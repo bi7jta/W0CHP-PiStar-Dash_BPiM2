@@ -22,8 +22,8 @@ require_once($_SERVER['DOCUMENT_ROOT'].'/config/ircddblocal.php');
     <tr><th colspan="2"><?php echo $lang['modes_enabled'];?></th></tr>
     <tr><?php showMode("D-Star", $_SESSION['MMDVMHostConfigs']);?><?php showMode("DMR", $_SESSION['MMDVMHostConfigs']);?></tr>
     <tr><?php showMode("System Fusion", $_SESSION['MMDVMHostConfigs']);?><?php showMode("P25", $_SESSION['MMDVMHostConfigs']);?></tr>
-    <tr><?php showMode("YSF XMode", $_SESSION['MMDVMHostConfigs']);?><?php showMode("NXDN", $_SESSION['MMDVMHostConfigs']);?></tr>
-    <tr><?php showMode("DMR XMode", $_SESSION['MMDVMHostConfigs']);?><?php showMode("POCSAG", $_SESSION['MMDVMHostConfigs']);?></tr>
+    <tr><?php showMode("YSF X-Mode", $_SESSION['MMDVMHostConfigs']);?><?php showMode("NXDN", $_SESSION['MMDVMHostConfigs']);?></tr>
+    <tr><?php showMode("DMR X-Mode", $_SESSION['MMDVMHostConfigs']);?><?php showMode("POCSAG", $_SESSION['MMDVMHostConfigs']);?></tr>
 </table>
 <br />
 
@@ -34,7 +34,6 @@ require_once($_SERVER['DOCUMENT_ROOT'].'/config/ircddblocal.php');
     <tr><?php showMode("YSF2DMR Network", $_SESSION['MMDVMHostConfigs']);?><?php showMode("NXDN Network", $_SESSION['MMDVMHostConfigs']);?></tr>
     <tr><?php showMode("YSF2NXDN Network", $_SESSION['MMDVMHostConfigs']);?><?php showMode("YSF2P25 Network", $_SESSION['MMDVMHostConfigs']);?></tr>
     <tr><?php showMode("DMR2NXDN Network", $_SESSION['MMDVMHostConfigs']);?><?php showMode("DMR2YSF Network", $_SESSION['MMDVMHostConfigs']);?></tr>
-    <!--  <tr><td style="background:#606060; color:#b0b0b0;"></td><?php showMode("POCSAG Network", $_SESSION['MMDVMHostConfigs']);?></tr> -->
     <tr><?php showMode("", $_SESSION['MMDVMHostConfigs']);?></td><?php showMode("POCSAG Network", $_SESSION['MMDVMHostConfigs']);?></tr>
 </table>
 <br />

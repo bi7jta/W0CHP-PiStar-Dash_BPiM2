@@ -578,8 +578,23 @@ $MYCALL=strtoupper($callsign);
 	    </div>
 	    <div class="contentwide">
 		<?php
-		// Hardware Detail
 		if ($_SERVER["PHP_SELF"] == "/admin/configure.php") {
+		// check that no modes are paused. If so, bail and direct user to unpause...
+                $is_paused = glob('/var/run/*.paused');
+                if (!empty($is_paused)) {
+                    //HTML output starts here
+                    echo '<div class="contentwide">'."\n";
+                    echo '</div>'."\n";
+		    echo '<h1>IMPORTANT:</h1>';
+		    echo '<table><tr><td>';
+		    echo '<p><b>One or more modes have been detected to have been "paused" by you.</b></p>';
+		    echo '<p>You must "resume" all of the modes you have paused to make any configuration changes...</p>';
+		    echo '<p>Go the <a href="/admin/">Admin Page to Resume the mode(s)</a>. Once that\'s completed, this configuration page will be enabled.</p>';
+                    echo '<br />'."\n";
+		    echo '</td></tr></table>';
+                    die();
+                } else {
+		    // Hardware Detail
 		    //HTML output starts here
 		    echo '<div class="contentwide">'."\n";
 		    echo '<script type="text/javascript">'."\n";
@@ -594,7 +609,6 @@ $MYCALL=strtoupper($callsign);
 		    echo '</div>'."\n";
 		    echo '</div>'."\n";
 		    echo '<br />'."\n";
-		    
 		if (!empty($_POST)):
 			 // Make the root filesystem writable
 			 exec('sudo mount -o remount,rw /');
@@ -4564,7 +4578,11 @@ $MYCALL=strtoupper($callsign);
     </body>
 </html>
 
-<?php } else { ?>
+<?php 
+
+  } // end paused check
+
+} else { ?>
     <br />
     <br />
 	</div>
@@ -4577,4 +4595,6 @@ $MYCALL=strtoupper($callsign);
 	</div>
     </body>
 </html>
-<?php } ?>
+<?php 
+} // end script
+?>
