@@ -3,11 +3,10 @@
 **DO NOT contact me for support, bugs, etc...**
 
 This is my *personal* and highly customized Pi-Star dashboard, and related
-binaries, forked from F1RMB, which was forked from Andy, MW0MWZ's original
-code.  I offer ZERO support. This is here for your hacking and enjoyment, and
-you're fully on your own. *Use at your own risk*, and DO NOT ask me for support.
-Nor should you file/report any bugs etc. on any official Pi-Star medium...this
-is not Andy's code!!!
+binaries.  I offer ZERO support. This is here for your hacking and enjoyment,
+and you're fully on your own. *Use at your own risk*, and DO NOT ask me for
+support.  Nor should you file/report any bugs etc. on any official Pi-Star
+medium...this is not Andy's code!!!
 
 If you ask me to support, **I will ignore you.**
 
@@ -141,4 +140,6 @@ Run:
 
 This image is too enormous to embed here, but you can [view it separately](https://w0chp.net/img/W0CHP_Config.png).
 
+## Credits
 
+[Listed here...](https://w0chp.net/w0chp-pistar-dash/#Credits)
