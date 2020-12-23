@@ -585,15 +585,15 @@ $MYCALL=strtoupper($callsign);
                     //HTML output starts here
                     echo '<div class="contentwide">'."\n";
                     echo '</div>'."\n";
-		    echo '<h1>IMPORTANT:</h1>';
-		    echo '<table><tr><td>';
-		    echo '<p><b>One or more modes have been detected to have been "paused" by you.</b></p>';
-		    echo '<p>You must "resume" all of the modes you have paused to make any configuration changes...</p>';
-		    echo '<p>Go the <a href="/admin/">Admin Page to Resume the mode(s)</a>. Once that\'s completed, this configuration page will be enabled.</p>';
+                    echo '<h1>IMPORTANT:</h1>';
+                    echo '<table><tr><td>';
+                    echo '<p><b>One or more modes have been detected to have been "paused" by you.</b></p>';
+                    echo '<p>You must "resume" all of the modes you have paused to make any configuration changes...</p>';
+                    echo '<p>Go the <a href="/admin/">Admin Page to Resume the mode(s)</a>. Once that\'s completed, this configuration page will be enabled.</p>';
                     echo '<br />'."\n";
-		    echo '</td></tr></table>';
+                    echo '</td></tr></table>';
                     die();
-                } else {
+                } else { // no modes paued. continue on! (end of pause check near end of file)
 		    // Hardware Detail
 		    //HTML output starts here
 		    echo '<div class="contentwide">'."\n";
