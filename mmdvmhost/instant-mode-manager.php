@@ -46,7 +46,7 @@ if (!empty($_POST["submit_mode"]) && empty($_POST["mode_sel"])) { //handler for 
     echo "    <th>ERROR</th>\n";
     echo "  </tr>\n";
     echo "  <tr>\n";
-    echo "    <td>No Mode Selected; Nothing To Do!<br />Page Reloading...</td>\n";
+    echo "    <td><p>No Mode Selected; Nothing To Do!<br />Page Reloading...</p></td>\n";
     echo "  </tr>\n";
     echo "</table>\n";
     // Clean up...
@@ -63,7 +63,7 @@ if (!empty($_POST["submit_mode"]) && empty($_POST["mode_sel"])) { //handler for 
         echo "    <th>ERROR</th>\n";
         echo "  </tr>\n";
         echo "  <tr>\n";
-        echo "    <td>$mode mode already paused! Did you mean to \"resume\" $mode mode?<br />Page Reloading...</td>\n";
+        echo "    <td><p>$mode mode already paused! Did you mean to \"resume\" $mode mode?<br />Page Reloading...</p></td>\n";
         echo "  </tr>\n"; 
         echo "</table>\n";
         // Clean up...
@@ -81,7 +81,7 @@ if (!empty($_POST["submit_mode"]) && empty($_POST["mode_sel"])) { //handler for 
         echo "    <th>Status</th>\n";
         echo "  </tr>\n";
         echo "  <tr>\n";
-        echo "    <td>Selected Mode ($mode) Paused!<br />Page Reloading...</td>\n";
+        echo "    <td><p>Selected Mode ($mode) Paused!<br />Page Reloading...</p></td>\n";
         echo "  </tr>\n";
         echo "</table>\n";
         // Clean up...
@@ -99,7 +99,7 @@ if (!empty($_POST["submit_mode"]) && empty($_POST["mode_sel"])) { //handler for 
         echo "    <th>ERROR</th>\n";
         echo "  </tr>\n";
         echo "  <tr>\n";
-        echo "    <td>$mode mode already running! Did you mean to \"pause\" $mode mode?<br />Page Reloading...</td>\n";
+        echo "    <td><p>$mode mode already running! Did you mean to \"pause\" $mode mode?<br />Page Reloading...</p></td>\n";
         echo "  </tr>\n";
         echo "</table>\n";
         // Clean up...
@@ -117,7 +117,7 @@ if (!empty($_POST["submit_mode"]) && empty($_POST["mode_sel"])) { //handler for 
         echo "    <th>Status</th>\n";
         echo "  </tr>\n";
         echo "  <tr>\n";
-        echo "    <td>Selected Mode ($mode) Resumed!<br />Page Reloading...</td>\n";
+        echo "    <td><p>Selected Mode ($mode) Resumed!<br />Page Reloading...,</p></td>\n";
         echo "  </tr>\n";
         echo "</table>\n";
         // Clean up...
