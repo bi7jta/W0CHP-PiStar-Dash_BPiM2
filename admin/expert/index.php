@@ -38,14 +38,13 @@ require_once('../config/version.php');
 	<div class="container">
 <?php
                 // check that no modes are paused. If so, bail and direct user to unpause...
-                $is_paused = glob('/etc/*.paused');
-                $paused_modes = preg_replace('/\/etc\//', '', $is_paused);
-                $paused_modes = preg_replace('/.paused/', '', $paused_modes);
+                $is_paused = glob('/etc/*_paused');
+                $repl_str = array('/\/etc\//', '/_paused/');
+                $paused_modes = preg_replace($repl_str, '', $is_paused);
                 if (!empty($is_paused)) {
                     //HTML output starts here
                     include './header-menu-disabled.inc';
                     echo '<div class="contentwide">'."\n";
-                    echo '</div>'."\n";
                     echo '<h1>IMPORTANT:</h1>';
                     echo '<table><tr><td>';
                     echo '<p><b>One or more modes have been detected to have been "paused" by you</b>:</p>';

@@ -29,12 +29,12 @@ $P25    = ($configmmdvm['P25']['Enable']);
 $NXDN   = ($configmmdvm['NXDN']['Enable']);
 $POCSAG = ($configmmdvm['POCSAG']['Enable']);
 // pause enabled file pointers
-$DSTAR_paused  = '/etc/D-Star.paused';
-$DMR_paused    = '/etc/DMR.paused';
-$YSF_paused    = '/etc/YSF.paused';
-$P25_paused    = '/etc/P25.paused';
-$NXDN_paused   = '/etc/NXDN.paused';
-$POCSAG_paused = '/etc/POCSAG.paused';
+$DSTAR_paused  = '/etc/D-Star_paused';
+$DMR_paused    = '/etc/DMR_paused';
+$YSF_paused    = '/etc/YSF_paused';
+$P25_paused    = '/etc/P25_paused';
+$NXDN_paused   = '/etc/NXDN_paused';
+$POCSAG_paused = '/etc/POCSAG_paused';
 
 // take action based on form submission
 if (!empty($_POST["submit_mode"]) && empty($_POST["mode_sel"])) { //handler for nothing selected
@@ -55,7 +55,7 @@ if (!empty($_POST["submit_mode"]) && empty($_POST["mode_sel"])) { //handler for 
 } elseif
     (!empty($_POST['submit_mode']) && ($_POST['mode_action'] == "Pause")) {
     $mode = ($_POST['mode_sel']); // get selected mode from for post
-    if (file_exists("/etc/$mode.paused")) { //check if already paused
+    if (file_exists("/etc/$mode"."_paused")) { //check if already paused
         // Output to the browser
         echo "<b>Instant Mode Manager</b>\n";
         echo "<table>\n";
@@ -70,10 +70,7 @@ if (!empty($_POST["submit_mode"]) && empty($_POST["mode_sel"])) { //handler for 
         unset($_POST);
         echo '<script type="text/javascript">setTimeout(function() { window.location=window.location;},3000);</script>';
     } else { // looks good!
-        exec('sudo mount -o remount,rw /');
         exec("sudo $mode_cmd $mode Disable"); // pause the seleced $mode
-        exec("sudo touch /etc/$mode.paused"); // create file pointer for paused $mode
-        exec('sudo mount -o remount,ro /');
         // Output to the browser
         echo "<b>Instant Mode Manager</b>\n";
         echo "<table>\n";
@@ -91,7 +88,7 @@ if (!empty($_POST["submit_mode"]) && empty($_POST["mode_sel"])) { //handler for 
 } elseif
     (!empty($_POST['submit_mode']) && ($_POST['mode_action'] == "Resume")) {
     $mode = ($_POST['mode_sel']); // get selected mode from for post
-    if (!file_exists("/etc/$mode.paused")) { //check if already running
+    if (!file_exists("/etc/$mode"."_paused")) { //check if already running
         // Output to the browser
         echo "<b>Instant Mode Manager</b>\n";
         echo "<table>\n";
@@ -106,10 +103,7 @@ if (!empty($_POST["submit_mode"]) && empty($_POST["mode_sel"])) { //handler for 
         unset($_POST);
         echo '<script type="text/javascript">setTimeout(function() { window.location=window.location;},3000);</script>';
     } else { // looks good!
-        exec('sudo mount -o remount,rw /');
         exec("sudo $mode_cmd $mode Enable"); // resume the seleced $mode
-        exec("sudo rm /etc/$mode.paused"); // delete file pointer for paused $mode
-        exec('sudo mount -o remount,ro /');
         // Output to the browser
         echo "<b>Instant Mode Manager</b>\n";
         echo "<table>\n";

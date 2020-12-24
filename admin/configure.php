@@ -561,7 +561,7 @@ $MYCALL=strtoupper($callsign);
     </head>
     <body onload="checkFrequency(); return false;">
 	<div class="container">
-	    <div class="header">
+	    <div class="header"><div style="font-size: 8px; text-align: left; padding-left: 8px; float: left;">Hostname: <?php echo exec('cat /etc/hostname'); ?></div>
 		<div style="font-size: 8px; text-align: right; padding-right: 8px;">Pi-Star:<?php echo $_SESSION['PiStarRelease']['Pi-Star']['Version']?> / <?php echo $lang['dashboard'].": ".$version; ?></div>
 		<h1>Pi-Star <?php echo $lang['digital_voice']." - ".$lang['configuration'];?></h1>
 		<p>
@@ -580,9 +580,9 @@ $MYCALL=strtoupper($callsign);
 		<?php
 		if ($_SERVER["PHP_SELF"] == "/admin/configure.php") {
 		// check that no modes are paused. If so, bail and direct user to unpause...
-                $is_paused = glob('/etc/*.paused');
-		$paused_modes = preg_replace('/\/etc\//', '', $is_paused);
-		$paused_modes = preg_replace('/.paused/', '', $paused_modes);
+                $is_paused = glob('/etc/*_paused');
+                $repl_str = array('/\/etc\//', '/_paused/');
+		$paused_modes = preg_replace($repl_str, '', $is_paused);
                 if (!empty($is_paused)) {
                     //HTML output starts here
                     echo '<div class="contentwide">'."\n";
