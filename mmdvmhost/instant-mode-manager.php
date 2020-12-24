@@ -147,17 +147,17 @@ if (!empty($_POST["submit_mode"]) && empty($_POST["mode_sel"])) { //handler for 
           </td>
           <td>
             [ <input name="mode_sel" '.(($DMR=='0' && !file_exists($DMR_paused)?'disabled="disabled"':"")).' access="false" id="mode-sel-0"  value="DMR" type="radio">
-            <label for="mode_sel-0">DMR</label> '.(($DMR=='0' && file_exists($DMR_paused)?" <span style=background:#f93;'>(Paused)</span>":"")).'
+            <label for="mode-sel-0">DMR</label> '.(($DMR=='0' && file_exists($DMR_paused)?" <span style=background:#f93;'>(Paused)</span>":"")).'
             | <input name="mode_sel" '.(($YSF=='0' && !file_exists($YSF_paused)?'disabled="disabled"':"")).'  access="false" id="mode-sel-1"  value="YSF" type="radio">
-            <label for="mode_sel-1">YSF</label>'.(($YSF=='0' && file_exists($YSF_paused)?" <span style=background:#f93;'>(Paused)</span>":"")).'
+            <label for="mode-sel-1">YSF</label>'.(($YSF=='0' && file_exists($YSF_paused)?" <span style=background:#f93;'>(Paused)</span>":"")).'
             | <input name="mode_sel" '.(($DSTAR=='0' && !file_exists($DSTAR_paused)?'disabled="disabled"':"")).' access="false" id="mode-sel-2"  value="D-Star" type="radio">
-            <label for="mode_sel-2">D-Star</label> '.(($DSTAR=='0' && file_exists($DSTAR_paused)?" <span style=background:#f93;'>(Paused)</span>":"")).'
+            <label for="mode-sel-2">D-Star</label> '.(($DSTAR=='0' && file_exists($DSTAR_paused)?" <span style=background:#f93;'>(Paused)</span>":"")).'
             | <input name="mode_sel" '.(($P25=='0' && !file_exists($P25_paused)?'disabled="disabled"':"")).' access="false" id="mode-sel-3"  value="P25" type="radio">
-            <label for="mode_sel-3">P25</label> '.(($P25=='0' && file_exists($P25_paused)?" <span style=background:#f93;'>(Paused)</span>":"")).'
+            <label for="mode-sel-3">P25</label> '.(($P25=='0' && file_exists($P25_paused)?" <span style=background:#f93;'>(Paused)</span>":"")).'
             | <input name="mode_sel" '.(($NXDN=='0' && !file_exists($NXDN_paused)?'disabled="disabled"':"")).' access="false" id="mode-sel-4"  value="NXDN" type="radio">
-            <label for="mode_sel-4">NXDN</label> '.(($NXDN=='0' && file_exists($NXDN_paused)?" <span style=background:#f93;'>(Paused)</span>":"")).'
+            <label for="mode-sel-4">NXDN</label> '.(($NXDN=='0' && file_exists($NXDN_paused)?" <span style=background:#f93;'>(Paused)</span>":"")).'
             | <input name="mode_sel" '.(($POCSAG=='0' && !file_exists($POCSAG_paused)?'disabled="disabled"':"")).' access="false" id="mode-sel-5"  value="POCSAG" type="radio">
-            <label for="mode_sel-4">POCSAG</label> '.(($POCSAG=='0' && file_exists($POCSAG_paused)?" <span style=background:#f93;'>(Paused)</span>":"")).' ]
+            <label for="mode-sel-5">POCSAG</label> '.(($POCSAG=='0' && file_exists($POCSAG_paused)?" <span style=background:#f93;'>(Paused)</span>":"")).' ]
  
           </td>
           <td>
