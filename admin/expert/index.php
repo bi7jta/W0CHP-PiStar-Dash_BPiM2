@@ -36,9 +36,27 @@ require_once('../config/version.php');
     </head>
     <body>
 	<div class="container">
-	    <?php include './header-menu.inc'; ?>
-	    <div class="contentwide">
-		
+<?php
+	        include './header-menu-disabled.inc';
+                print('<div class="contentwide">');
+                // check that no modes are paused. If so, bail and direct user to unpause...
+                $is_paused = glob('/etc/*.paused');
+                if (!empty($is_paused)) {
+                    //HTML output starts here
+                    echo '<div class="contentwide">'."\n";
+                    echo '</div>'."\n";
+                    echo '<h1>IMPORTANT:</h1>';
+                    echo '<table><tr><td>';
+                    echo '<p><b>One or more modes have been detected to have been "paused" by you.</b></p>';
+                    echo '<p>You must "resume" all of the modes you have paused to make any configuration changes...</p>';
+                    echo '<p>Go the <a href="/admin/">Admin Page to Resume the mode(s)</a>. Once that\'s completed, this configuration page will be enabled.</p>';
+                    echo '<br />'."\n";
+                    echo '</td></tr></table></div>';
+                    die();
+} else {
+	    include './header-menu.inc';
+?>
+            <div class="contentwide">	
 		<table width="100%">
 		    <tr><th>Expert Editors &amp; Tools</th></tr>
 		    <tr><td align="center">
@@ -71,3 +89,9 @@ require_once('../config/version.php');
 	</div>
     </body>
 </html>
+
+<?php
+
+} // end paused mode check
+
+?>
