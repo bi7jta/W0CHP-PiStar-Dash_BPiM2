@@ -117,7 +117,7 @@ if (!empty($_POST["submit_mode"]) && empty($_POST["mode_sel"])) { //handler for 
         echo "    <th>Status</th>\n";
         echo "  </tr>\n";
         echo "  <tr>\n";
-        echo "    <td><p>Selected Mode ($mode) Resumed!<br />Page Reloading...,</p></td>\n";
+        echo "    <td><p>Selected Mode ($mode) Resumed!<br />Page Reloading...</p></td>\n";
         echo "  </tr>\n";
         echo "</table>\n";
         // Clean up...
