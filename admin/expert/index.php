@@ -37,14 +37,13 @@ require_once('../config/version.php');
     <body>
 	<div class="container">
 <?php
-	        include './header-menu-disabled.inc';
-                print('<div class="contentwide">');
                 // check that no modes are paused. If so, bail and direct user to unpause...
                 $is_paused = glob('/etc/*.paused');
                 $paused_modes = preg_replace('/\/etc\//', '', $is_paused);
                 $paused_modes = preg_replace('/.paused/', '', $paused_modes);
                 if (!empty($is_paused)) {
                     //HTML output starts here
+                    include './header-menu-disabled.inc';
                     echo '<div class="contentwide">'."\n";
                     echo '</div>'."\n";
                     echo '<h1>IMPORTANT:</h1>';
