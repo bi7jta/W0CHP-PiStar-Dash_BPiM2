@@ -583,7 +583,7 @@ $MYCALL=strtoupper($callsign);
                 $is_paused = glob('/etc/*_paused');
                 $repl_str = array('/\/etc\//', '/_paused/');
 		$paused_modes = preg_replace($repl_str, '', $is_paused);
-                if (!empty($is_paused)) {
+                if (!empty($is_paused) && $_GET['force'] != true) {
                     //HTML output starts here
                     echo '<div class="contentwide">'."\n";
                     echo '</div>'."\n";

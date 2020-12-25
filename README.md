@@ -14,6 +14,8 @@ If you ask me to support, **I will ignore you.**
 
 * Updated UI elements galore, styling, wider, bigger, and mobile-friendly. Better fonts (no MS font references here!).
 
+* More Last Heard rows displayed (40 vs. 20).
+
 * BrandMeister Manager revamps galore:
 
   * Now displays connected actual talkgroup names.
