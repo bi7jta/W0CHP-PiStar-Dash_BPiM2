@@ -215,6 +215,15 @@ function isDAPNETGatewayConnected() {
     return true;
 }
 
+// show if mode is paused in side modes panel
+function isPaused($mode) {
+    if (file_exists("/etc/".$mode."_paused")) {
+        $paused = true;
+        return $paused;
+    }
+    return false;
+}
+
 function getModeClass($status, $disabled = false) {
     if ($status) {
 	echo '<td class="active-mode-cell" style="width:50%;">';

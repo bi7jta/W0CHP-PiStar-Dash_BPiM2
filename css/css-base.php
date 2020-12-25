@@ -19,6 +19,7 @@ $backgroundServiceCellInactiveColor = "#BB5555";
 $backgroundModeCellDisabledColor = "#606060";
 $backgroundModeCellActiveColor = "#00BB00";
 $backgroundModeCellInactiveColor = "#BB0000";
+$backgroundModeCellPausedColor = "#f93";
 
 $textBanners = "#ffffff";            // Usually white
 $textNavbar = "#ffffff";           	// Navbar text color
@@ -69,6 +70,7 @@ if (file_exists('/etc/pistar-css.ini')) {
     assignCSSValue($backgroundModeCellDisabledColor, $piStarCss['Background']['ModeCellDisabledColor']);
     assignCSSValue($backgroundModeCellActiveColor, $piStarCss['Background']['ModeCellActiveColor']);
     assignCSSValue($backgroundModeCellInactiveColor, $piStarCss['Background']['ModeCellInactiveColor']);
+    assignCSSValue($backgroundModeCellPausedColor, $piStarCss['Background']['ModeCellPausedColor']);
     
     assignCSSValue($textTableHeaderColor, $piStarCss['Text']['TableHeaderColor']);
     assignCSSValue($textBanners, $piStarCss['Text']['BannersColor']); // Usually white

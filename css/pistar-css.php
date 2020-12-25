@@ -698,6 +698,16 @@ input.toggle-round-flat:focus + label {
     background: <?php echo $backgroundModeCellInactiveColor; ?>;
 }
 
+.paused-mode-cell {
+    color: <?php echo $textModeCellActiveColor; ?>;
+    background: <?php echo $backgroundModeCellPausedColor; ?>;
+    width: 50%;
+}
+
+.paused-mode-span {
+    background: <?php echo $backgroundModeCellPausedColor; ?>;
+}
+
 .table-container {
     position: relative;
     /*
