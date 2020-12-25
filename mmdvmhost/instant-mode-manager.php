@@ -133,13 +133,13 @@ if (!empty($_POST["submit_mode"]) && empty($_POST["mode_sel"])) { //handler for 
           <td colspan="3">This function allows you to instantly pause or resume selected radio modes. Handy for attending nets, quieting a busy mode, to temporarily eliminate "mode monopolization", etc.</td>
         </tr>
 	<tr>
-          <td>
+          <td style="white-space:nowrap;">
             <input name="mode_action" access="false" id="pause-res-0" value="Pause" type="radio" checked="checked">
             <label for="pause-res-0">Pause</label>
             <input name="mode_action" access="false" id="pause-res-1"  value="Resume" type="radio">
             <label for="pause-res-1">Resume</label>
           </td>
-          <td>
+          <td style="white-space:nowrap;">
             [ <input name="mode_sel" '.(($DMR=='0' && !file_exists($DMR_paused)?'disabled="disabled"':"")).' access="false" id="mode-sel-0"  value="DMR" type="radio">
             <label for="mode-sel-0">DMR</label> '.(($DMR=='0' && file_exists($DMR_paused)?" <span class='paused-mode-span'>(Paused)</span>":"")).'
             | <input name="mode_sel" '.(($YSF=='0' && !file_exists($YSF_paused)?'disabled="disabled"':"")).'  access="false" id="mode-sel-1"  value="YSF" type="radio">
