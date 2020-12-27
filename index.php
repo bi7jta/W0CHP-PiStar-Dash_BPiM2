@@ -122,12 +122,14 @@ checkSessionValidity();
 		echo 'setTimeout(reloadSysInfo,15000);'."\n";
 		echo '$(window).trigger(\'resize\');'."\n";
 		echo '</script>'."\n";
-		echo '<div id="hwInfo">'."\n";
-		include 'dstarrepeater/hw_info.php';			// Basic System Info
-		echo '</div>'."\n";
-		echo '<div id="sysInfo">'."\n";
-		include 'dstarrepeater/system.php';				// Basic System Info
-		echo '</div>'."\n";
+		if (empty($_POST) && empty($_GET)) {				// only show services on main admin page
+		    echo '<div id="hwInfo">'."\n";
+		    include 'dstarrepeater/hw_info.php';			// Basic System Info
+		    echo '</div>'."\n";
+		    echo '<div id="sysInfo">'."\n";
+		    include 'dstarrepeater/system.php';				// Basic System Info
+		    echo '</div>'."\n";
+                }
 		echo '</div>'."\n";
 	    }
 	    
@@ -150,11 +152,120 @@ checkSessionValidity();
 		echo '</div>'."\n";
 		
 		echo '<div class="content">'."\n";
-		
+
+		// menu/selection set:
+    		// BM check: Get the current DMR Master from the config
+    		$dmrMasterHost = getConfigItem("DMR Network", "Address", $_SESSION['MMDVMHostConfigs']);
+    		if ( $dmrMasterHost == '127.0.0.1' ) {
+        		$dmrMasterHost = $_SESSION['DMRGatewayConfigs']['DMR Network 1']['Address'];
+        		$bmEnabled = ($_SESSION['DMRGatewayConfigs']['DMR Network 1']['Enabled'] != "0" ? true : false);
+    		}
+    		// Make sure the master is a BrandMeister Master
+    		if (($dmrMasterFile = fopen("/usr/local/etc/DMR_Hosts.txt", "r")) != FALSE) {
+        		while (!feof($dmrMasterFile)) {
+            		$dmrMasterLine = fgets($dmrMasterFile);
+            		$dmrMasterHostF = preg_split('/\s+/', $dmrMasterLine);
+            		if ((strpos($dmrMasterHostF[0], '#') === FALSE) && ($dmrMasterHostF[0] != '')) {
+                		if ($dmrMasterHost == $dmrMasterHostF[2]) { $dmrMasterHost = str_replace('_', ' ', $dmrMasterHostF[0]); }
+            		}
+        	    }
+        	    fclose($dmrMasterFile);
+    		} // end BM check
+		// tgif check:
+                if ( $dmrMasterHost == '127.0.0.1' ) {
+                    // DMRGateway, need to check each config
+                    if (($_SESSION['DMRGatewayConfigs']['DMR Network 1']['Address'] == "tgif.network") && ($_SESSION['DMRGatewayConfigs']['DMR Network 1']['Enabled'])) {
+                        $tgif = true;
+                    }
+                    elseif (($_SESSION['DMRGatewayConfigs']['DMR Network 2']['Address'] == "tgif.network") && ($_SESSION['DMRGatewayConfigs']['DMR Network 2']['Enabled'])) {
+                        $tgif = true;
+                    }
+                    elseif (($_SESSION['DMRGatewayConfigs']['DMR Network 3']['Address'] == "tgif.network") && ($_SESSION['DMRGatewayConfigs']['DMR Network 3']['Enabled'])) {
+                        $tgif = true;
+                    }
+                        elseif (($_SESSION['DMRGatewayConfigs']['DMR Network 4']['Address'] == "tgif.network") && ($_SESSION['DMRGatewayConfigs']['DMR Network 4']['Enabled'])) {
+                        $tgif = true;
+                    }
+                    elseif (($_SESSION['DMRGatewayConfigs']['DMR Network 5']['Address'] == "tgif.network") && ($_SESSION['DMRGatewayConfigs']['DMR Network 5']['Enabled'])) {
+                        $tgif = true;
+                    }
+                    elseif ( $dmrMasterHost == 'tgif.network' ) { // no fmrgateway...TGIF is master
+                        $tgif = true;
+                    }
+                } // end tgif check
+		// begin admin selection form
+		if ($_SERVER["PHP_SELF"] == "/admin/index.php") {
+                    echo '<b>Admin Selections<b>';
+		    echo '<form method="post" id="admin_sel" name="admin_sel" action="'.htmlentities($_SERVER['PHP_SELF']).'">';
+                    echo '  <table>';
+		    echo '    <tr>';
+		    echo '      <th>Select a Mode/Network/Service to Manage</th>';
+		    echo '    </tr>';
+		    echo '    <tr>';
+		    echo '      <td>';		
+		    echo '        <button form="admin_sel" type="submit" value="mode_man" name="func">Instant Mode Manager</button>';
+                    $testMMDVModeDSTARnet = getConfigItem("D-Star Network", "Enable", $_SESSION['MMDVMHostConfigs']);
+                    if ( $testMMDVModeDSTARnet == 1 ) {
+                        echo '    <button form="admin_sel" type="submit" value="ds_man" name="func">D-Star</button>';
+                    }
+                    else {
+                        echo '    <button form="admin_sel" disabled="disabled" type="submit" value="ds_man" name="func">D-Star</button>';
+                    }       
+                    $testMMDVModeDMR = getConfigItem("DMR", "Enable", $_SESSION['MMDVMHostConfigs']);
+		    if ((substr($dmrMasterHost, 0, 2) == "BM") && ($bmEnabled == true) && ($testMMDVModeDMR ==1)) {
+		        echo '    <button form="admin_sel" type="submit" value="bm_man" name="func">BrandMeister</button>';
+		    }
+		    else {
+			echo '    <button form="admin_sel" disabled="disabled" type="submit" value="bm_man" name="func">BrandMeister</button>';
+		    }
+                    if ($tgif = true && $testMMDVModeDMR ==1) {
+		        echo '    <button form="admin_sel" type="submit" value="tgif_man" name="func">TGIF</button>';
+		    }
+		    else {
+			 echo '   <button form="admin_sel" disabled="disabled" type="submit" value="tgif_man" name="func">TGIF</button>';
+		    }
+                    $testMMDVModeYSF = getConfigItem("System Fusion", "Enable", $_SESSION['MMDVMHostConfigs']);
+		    if ($testMMDVModeYSF == 1) {
+		        echo '    <button form="admin_sel" type="submit" value="ysf_man" name="func">YSF</button>';
+		    }
+		    else {
+		        echo '    <button form="admin_sel" disabled="disabled" type="submit" value="ysf_man" name="func">YSF</button>';
+		    }
+                    $testMMDVModeP25 = getConfigItem("P25", "Enable", $_SESSION['MMDVMHostConfigs']);
+                    if ($testMMDVModeP25 == 1) {
+		    	echo '    <button form="admin_sel" type="submit" value="p25_man" name="func">P25</button>';
+		    }
+		    else {
+		    	echo '    <button form="admin_sel" disabled="disabled" type="submit" value="p25_man" name="func">P25</button>';
+		    }
+                    $testMMDVModeP25 = getConfigItem("NXDN", "Enable", $_SESSION['MMDVMHostConfigs']);
+                    if ($testMMDVModeNXDN == 1) {
+		    	echo '    <button form="admin_sel" type="submit" value="nxdn_man" name="func">NXDN</button>';
+		    }
+		    else {
+		    	echo '    <button form="admin_sel" disabled="disabled" type="submit" value="nxdn_man" name="func">NXDN</button>';
+		    }
+                    $testMMDVModePOCSAG = getConfigItem("POCSAG", "Enable", $_SESSION['MMDVMHostConfigs']);
+		    if ($testMMDVModePOCSAG == 1) {
+		        echo '    <button form="admin_sel" type="submit" value="pocsag_man" name="func">POCSAG</button>';
+		    }
+		    else {
+		        echo '    <button form="admin_sel" disabled="disabled" type="submit" value="pocsag_man" name="func">POCSAG</button>';
+		    }
+		    echo '      </td>';
+		    echo '    </tr>';
+		    echo '    <tr>';
+		    echo '      <td style="white-space:normal;">Note: Modes/networks/services not globally enabled or are paused, are not selectable here until they are enabled or resumed from pause.</td>';
+		    echo '    </tr>';
+		    echo '  </table>';
+		    echo ' </form>';
+		    echo '<hr />';
+		}
+
 		$testMMDVModeDSTARnet = getConfigItem("D-Star Network", "Enable", $_SESSION['MMDVMHostConfigs']);
 		if ( $testMMDVModeDSTARnet == 1 ) {				// If D-Star network is enabled, add these extra features.
 		    
-		    if ($_SERVER["PHP_SELF"] == "/admin/index.php") { 		// Admin Only Option
+		    if ($_SERVER["PHP_SELF"] == "/admin/index.php" && $_POST["func"] == "ds_man") {	// Admin Only Option (D-Star Mgr)
 			echo '<script type="text/javascript">'."\n";
 			echo 'function reloadrefLinks(){'."\n";
 			echo '  $("#refLinks").load("/dstarrepeater/active_reflector_links.php",function(){ setTimeout(reloadrefLinks,2500) });'."\n";
@@ -180,11 +291,11 @@ checkSessionValidity();
 		    echo '</div>'."\n";
 		}
 	
-		if ($_SERVER["PHP_SELF"] == "/admin/index.php") {               // Admin Only Option	
+		if ($_SERVER["PHP_SELF"] == "/admin/index.php" && $_POST["func"] == "mode_man" || $_GET["func"] == "mode_man") {	// Admin Only Option (instant mode mgr)	
                     include "mmdvmhost/instant-mode-manager.php";
 		}
 
-		if ($_SERVER["PHP_SELF"] == "/admin/index.php") { 		// Admin Only Option
+		if ($_SERVER["PHP_SELF"] == "/admin/index.php" && $_POST["func"] == "bm_man" || $_GET["func"] == "bm_man") { 		// Admin Only Option (BM links )
 		    echo '<script type="text/javascript">'."\n";
         	    echo 'function reloadbmConnections(){'."\n";
         	    echo '  $("#bmConnects").load("/mmdvmhost/bm_links.php",function(){ setTimeout(reloadbmConnections,15000) });'."\n";
@@ -196,11 +307,11 @@ checkSessionValidity();
 		    include 'mmdvmhost/bm_links.php';                       // BM Links
 		    echo '</div>'."\n";
 		}
-		if ($_SERVER["PHP_SELF"] == "/admin/index.php") {               // Admin Only Options
+		if ($_SERVER["PHP_SELF"] == "/admin/index.php" && $_POST["func"] == "bm_man" || $_GET["func"] == "bm_man") {		// Admin Only Options (BM mgr)
                     include 'mmdvmhost/bm_manager.php';                     // BM DMR Link Manager
 		}
 		
-		if ($_SERVER["PHP_SELF"] == "/admin/index.php") { 		// Admin Only Option
+		if ($_SERVER["PHP_SELF"] == "/admin/index.php" && $_POST["func"] == "tgif_man" || $_GET["func"] == "tgif_man") {	// Admin Only Option (tgif links)
 		    echo '<script type="text/javascript">'."\n";
         	    echo 'function reloadtgifConnections(){'."\n";
         	    echo '  $("#tgifConnects").load("/mmdvmhost/tgif_links.php",function(){ setTimeout(reloadtgifConnections,15000) });'."\n";
@@ -212,25 +323,25 @@ checkSessionValidity();
 		    include 'mmdvmhost/tgif_links.php';			// TGIF Links
 		    echo '</div>'."\n";
 		}
-		if ($_SERVER["PHP_SELF"] == "/admin/index.php") {               // Admin Only Options
+		if ($_SERVER["PHP_SELF"] == "/admin/index.php" && $_POST["func"] == "tgif_man" || $_GET["func"] == "tgif_man") {	// Admin Only Options (tgi mgr)
                     include 'mmdvmhost/tgif_manager.php';			// TGIF DMR Link Manager
 		}
 		
 		// Check if YSF is Enabled
 		if (isset($_SESSION['YSFGatewayConfigs']['YSF Network']['Enable']) == 1) {
-		    if ($_SERVER["PHP_SELF"] == "/admin/index.php") { 	// Admin Only Option
+		    if ($_SERVER["PHP_SELF"] == "/admin/index.php" && $_POST["func"] == "ysf_man" || $_GET["func"] == "ysf_man") { 	// Admin Only Options (ysf mgr)
 			include 'mmdvmhost/ysf_manager.php';		// YSF Links
 		    }
 		}
 		$testMMDVModeP25net = getConfigItem("P25 Network", "Enable", $_SESSION['MMDVMHostConfigs']);
 		if ( $testMMDVModeP25net == 1 ) {				// If P25 network is enabled, add these extra features.
-		    if ($_SERVER["PHP_SELF"] == "/admin/index.php") { 	// Admin Only Option
+		    if ($_SERVER["PHP_SELF"] == "/admin/index.php" && $_POST["func"] == "p25_man" || $_GET["func"] == "p25_man") { 	// Admin Only Option *p25 mgr)
 			include 'mmdvmhost/p25_manager.php';		// P25 Links
 		    }
 		}
 		$testMMDVModeNXDNnet = getConfigItem("NXDN Network", "Enable", $_SESSION['MMDVMHostConfigs']);
 		if ( $testMMDVModeNXDNnet == 1 ) {				// If NXDN network is enabled, add these extra features.
-		    if ($_SERVER["PHP_SELF"] == "/admin/index.php") { 	// Admin Only Option
+		    if ($_SERVER["PHP_SELF"] == "/admin/index.php" && $_POST["func"] == "nxdn_man" || $_GET["func"] == "nxdn_man") { 	// Admin Only Option (nxdn mgr)
 			include 'mmdvmhost/nxdn_manager.php';		// NXDN Links
 		    }
 		}
@@ -269,49 +380,55 @@ checkSessionValidity();
 		echo 'ltxto = setTimeout(reloadLocalTX,1500);'."\n";
 		echo '$(window).trigger(\'resize\');'."\n";
 		echo '</script>'."\n";
-	
-		echo '<div id="localTxs">'."\n";
-		include 'mmdvmhost/localtx.php';				// MMDVMDash Local Trasmissions
-		echo '</div>'."\n";
-		echo "<br />\n";
 
-		echo '<div id="lastHeard">'."\n";
-		include 'mmdvmhost/lh.php';					// MMDVMDash Last Herd
-		echo '</div>'."\n";
-		
-		// If POCSAG is enabled, show the information pannel
+		if (empty($_POST) && empty($_GET)) {  // only show localtx and lastheard on main admin page (not sections)
+		    echo '<div id="localTxs">'."\n";
+		    include 'mmdvmhost/localtx.php';				// MMDVMDash Local Trasmissions
+		    echo '</div>'."\n";
+		    echo "<br />\n";
+
+		    echo '<div id="lastHeard">'."\n";
+		    include 'mmdvmhost/lh.php';					// MMDVMDash Last Heard
+		    echo '</div>'."\n";
+		}
+
+		// If POCSAG is enabled, show the information panel
 		$testMMDVModePOCSAG = getConfigItem("POCSAG Network", "Enable", $_SESSION['MMDVMHostConfigs']);
 		if ( $testMMDVModePOCSAG == 1 ) {
-		    if ($_SERVER["PHP_SELF"] == "/admin/index.php") {  // Admin Only Options
+		    if ($_SERVER["PHP_SELF"] == "/admin/index.php" && $_POST["func"] == "pocsag_man" || $_GET["func"] == "pocsag_man") {  // Admin Only Options (pocsag mgr)
 			echo "<br />\n";
 			echo '<div id="dapnetMsgr">'."\n";
 			include 'mmdvmhost/dapnet_messenger.php';
 			echo '</div>'."\n";
 		    }
-		    $myOrigin = ($_SERVER["PHP_SELF"] == "/admin/index.php" ? "admin" : "other");
+
+                    if ( $testMMDVModePOCSAG == 1 ) {
+                        if (empty($_POST) && empty($_GET) || ($_POST["func"] == "pocsag_man" || $_GET["func"] == "pocsag_man")) { // display pages in pocsag mgr or main admin only with no other func requested
+		            $myOrigin = ($_SERVER["PHP_SELF"] == "/admin/index.php" ? "admin" : "other");
 		    
-		    echo '<script type="text/javascript">'."\n";
-		    echo 'var pagesto;'."\n";
-		    echo 'function setPagesAutorefresh(obj) {'."\n";
-	            echo '    if (obj.checked) {'."\n";
-	            echo '        pagesto = setTimeout(reloadPages, 5000, "?origin='.$myOrigin.'");'."\n";
-	            echo '    }'."\n";
-	            echo '    else {'."\n";
-	            echo '        clearTimeout(pagesto);'."\n";
-	            echo '    }'."\n";
-                    echo '}'."\n";
-		    echo 'function reloadPages(OptStr){'."\n";
-		    echo '    $("#Pages").load("/mmdvmhost/pages.php"+OptStr, function(){ pagesto = setTimeout(reloadPages, 5000, "?origin='.$myOrigin.'") });'."\n";
-		    echo '}'."\n";
-		    echo 'pagesto = setTimeout(reloadPages, 5000, "?origin='.$myOrigin.'");'."\n";
-		    echo '$(window).trigger(\'resize\');'."\n";
-		    echo '</script>'."\n";
-		    echo "<br />\n";
-		    echo '<div id="Pages">'."\n";
-		    include 'mmdvmhost/pages.php';				// POCSAG Messages
-		    echo '</div>'."\n";
-		}
-		
+		            echo '<script type="text/javascript">'."\n";
+		            echo 'var pagesto;'."\n";
+		            echo 'function setPagesAutorefresh(obj) {'."\n";
+	                    echo '    if (obj.checked) {'."\n";
+	                    echo '        pagesto = setTimeout(reloadPages, 5000, "?origin='.$myOrigin.'");'."\n";
+	                    echo '    }'."\n";
+	                    echo '    else {'."\n";
+	                    echo '        clearTimeout(pagesto);'."\n";
+	                    echo '    }'."\n";
+                            echo '}'."\n";
+		            echo 'function reloadPages(OptStr){'."\n";
+		            echo '    $("#Pages").load("/mmdvmhost/pages.php"+OptStr, function(){ pagesto = setTimeout(reloadPages, 5000, "?origin='.$myOrigin.'") });'."\n";
+		            echo '}'."\n";
+		            echo 'pagesto = setTimeout(reloadPages, 5000, "?origin='.$myOrigin.'");'."\n";
+		            echo '$(window).trigger(\'resize\');'."\n";
+		            echo '</script>'."\n";
+		            echo "<br />\n";
+		            echo '<div id="Pages">'."\n";
+		            include 'mmdvmhost/pages.php';				// POCSAG Messages
+		            echo '</div>'."\n";
+		        }
+		    }
+	        }
 	    }
 	    else if (file_exists('/etc/dstar-radio.dstarrepeater')) {
 		echo '<div class="contentwide">'."\n";
@@ -328,7 +445,7 @@ checkSessionValidity();
 		include 'dstarrepeater/active_reflector_links.php';		// dstarrepeater gateway config
 		echo '</div>'."\n";
 		echo '<br />'."\n";
-		if ($_SERVER["PHP_SELF"] == "/admin/index.php") {		// Admin Only Options
+		if ($_SERVER["PHP_SELF"] == "/admin/index.php" && $_POST["func"] == "ds_link_man") {	// Admin Only Options  (D-star link mgr)
 		    include 'dstarrepeater/link_manager.php';		// D-Star Link Manager
 		    echo "<br />\n";
 		}

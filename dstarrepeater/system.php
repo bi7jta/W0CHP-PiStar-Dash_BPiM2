@@ -46,4 +46,3 @@ function getServiceStatusClass($active) {
 	<td class="<?php getServiceStatusClass(isProcessRunning('DAPNETGateway')); ?>">DAPNETGateway</td>
     </tr>
 </table>
-<br />

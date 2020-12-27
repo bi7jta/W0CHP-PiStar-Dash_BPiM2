@@ -63,15 +63,14 @@ if (isset($_SESSION['DAPNETAPIKeyConfigs']['DAPNETAPI']['USER']) && (empty($_SES
         echo "</td></tr>\n</table>\n";
 	
         unset($_POST); // Cleanup
-        echo '<script type="text/javascript">setTimeout(function() { window.location=window.location;},5000);</script>';
+        echo '<script type="text/javascript">setTimeout(function() { window.location=window.location;},3000);</script>';
 	
     }
     else {
 	$dapnetTrxAreas = (isset($_SESSION['DAPNETAPIKeyConfigs']['DAPNETAPI']['TRXAREA']) && (! empty($_SESSION['DAPNETAPIKeyConfigs']['DAPNETAPI']['TRXAREA'])) ? $_SESSION['DAPNETAPIKeyConfigs']['DAPNETAPI']['TRXAREA'] : "");
         
-	echo '<hr />'."\n";
         echo '<b>DAPNET Messenger</b>'."\n";
-        echo '<form action="'.htmlentities($_SERVER['PHP_SELF']).'" method="post">'."\n";
+        echo '<form action="'.htmlentities($_SERVER['PHP_SELF']).'?func=pocsag_man"  method="post">'."\n";
         echo '<table>
 		<tr>
 			<th><a class=tooltip href="#">To<span><b>Enter the destination callsign and Trx Area(s)</b>You can set many callsigns and transmitter areas, comma separated</span></a></th>

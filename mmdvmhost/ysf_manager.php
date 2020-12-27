@@ -65,7 +65,7 @@ if (isset($_SESSION['YSFGatewayConfigs']['Remote Commands']['Enable']) && (isset
 	    // Output HTML
 	?>
     	    <b>YSF Link Manager</b>
-	    <form action="//<?php echo htmlentities($_SERVER['HTTP_HOST']).htmlentities($_SERVER['PHP_SELF']); ?>" method="post">
+	    <form action="//<?php echo htmlentities($_SERVER['HTTP_HOST']).htmlentities($_SERVER['PHP_SELF']); ?>?func=ysf_man" method="post">
 		<table>
 		    <tr>
 			<th width="150"><a class="tooltip" href="#">Reflector<span><b>Reflector</b></span></a></th>
@@ -151,12 +151,12 @@ if (isset($_SESSION['YSFGatewayConfigs']['Remote Commands']['Enable']) && (isset
 			    <input type="radio" name="Link" value="UNLINK" checked="checked"  />UnLink
 			</td>
 			<td>
+			    <input type="hidden" name="func" value="ysf_man" />
 			    <input type="submit" name="ysfMgrSubmit" value="Request Change" />
 			</td>
 		    </tr>
 		</table>
 	    </form>
-	    <br /><hr/>
 	    <?php
 	}
     }

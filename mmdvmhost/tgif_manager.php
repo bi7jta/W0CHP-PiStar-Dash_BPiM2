@@ -167,7 +167,7 @@ if ( $dmrID ) {
     }
     else { // Do this when we are not handling post data
 	echo '<b>TGIF Manager</b>'."\n";
-	echo '<form action="'.htmlentities($_SERVER['PHP_SELF']).'" method="post">'."\n";
+	echo '<form action="'.htmlentities($_SERVER['PHP_SELF']).'?func=tgif_man" method="post">'."\n";
 	echo '<table>
     <tr>
       <th><a class=tooltip href="#">Enter Static Talkgroup:<span><b>Enter the Talkgroup number</b></span></a></th>
@@ -181,7 +181,7 @@ if ( $dmrID ) {
       <td><input type="radio" id="tgifActionLink" name="tgifAction" value="LINK"  /><label for="linkTGIFRadioButton"/>Link</label> <input type="radio" name="tgifAction" value="UNLINK" checked="checked" />UnLink</td>
       <td><input type="submit" value="Request Change" name="tgifSubmit" /></td>
     </tr>
-    </table></form><br /><hr/>'."\n";
+    </table></form>'."\n";
     }
 }
 ?>

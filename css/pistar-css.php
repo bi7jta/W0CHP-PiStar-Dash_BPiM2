@@ -380,6 +380,48 @@ input.toggle-round-flat:focus + label {
     z-index: 5;
 }
 
+textarea, input[type='text'] {
+        font-size: 15px;
+        font-family: 'Inconsolata', monospace;
+        border: 1px solid black;
+        padding: 5px;
+        margin 3px;
+}
+
+input[type=button], input[type=submit], input[type=reset], input[type=radio], button {
+    font-size: 15px;
+    font-family: 'Source Sans Pro', sans-serif;
+    border: 1px solid black;
+    color: black;
+    background-color: #f1f1f1;
+    padding: 5px;
+    text-decoration: none;
+    margin: 3px;
+    cursor: pointer;
+}
+
+input[type=button]:hover, input[type=submit]:hover, input[type=reset]:hover, button:hover {
+    color: <?php echo $textNavbarHover; ?>;
+    background-color: <?php echo $backgroundNavbarHover; ?>;
+}
+
+button:disabled {
+    color: <?php echo $textModeCellDisabledColor; ?>;
+    background: <?php echo $backgroundModeCellDisabledColor; ?>;
+    cursor: default;
+}
+
+select {
+  background-color: #f1f1f1;
+    font-family: 'Inconsolata', monospace;
+    font-size: 15px;
+    border: 1px solid black;
+    color: black;
+    padding: 5px;
+    text-decoration: none;
+    margin: 3px;
+}
+
 /* put the same color as in left vertical status */
 .navbar {
     overflow: hidden;
@@ -730,41 +772,6 @@ input.toggle-round-flat:focus + label {
         border-radius : 3px 3px 3px 3px;
         -moz-border-radius : 3px 3px 3px 3px;
     }
-}
-textarea, input[type='text'] {
-	font-size: 15px;
-	font-family: 'Inconsolata', monospace;
-	border: 1px solid black;
-	padding: 5px;
-	margin 3px;
-}
-
-input[type=button], input[type=submit], input[type=reset], input[type=radio] {
-    font-size: 15px;
-    font-family: 'Source Sans Pro', sans-serif;
-    border: 1px solid black;
-    color: black;
-    background-color: #f1f1f1;
-    padding: 5px;
-    text-decoration: none;
-    margin: 3px;
-    cursor: pointer;
-}
-
-input[type=button]:hover, input[type=submit]:hover, input[type=reset]:hover {
-    color: <?php echo $textNavbarHover; ?>;
-    background-color: <?php echo $backgroundNavbarHover; ?>;
-}
-
-select {
-  background-color: #f1f1f1;
-    font-family: 'Inconsolata', monospace;
-    font-size: 15px;
-    border: 1px solid black;
-    color: black;
-    padding: 5px;
-    text-decoration: none;
-    margin: 3px;
 }
 
 hr {

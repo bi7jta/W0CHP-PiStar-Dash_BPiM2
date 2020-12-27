@@ -265,7 +265,7 @@ if ( $testMMDVModeDMR == 1 ) {
 	    else { // Do this when we are not handling post data
 	        if (isset($_SESSION['BMAPIKey'])) {
 		    echo '<b>BrandMeister Manager</b>'."\n";
-		    echo '<form action="'.htmlentities($_SERVER['PHP_SELF']).'" method="post">'."\n";
+		    echo '<form id="bm_man" action="'.htmlentities($_SERVER['PHP_SELF']."?func=bm_man").'" method="post">'."\n";
 		    echo '<table style="white-space: normal;">'."\n";
 		    echo '  <tr>'."\n";
 		    echo '    <th colspan="3">Single Static Talkgroup Tools</th>'."\n";
@@ -303,7 +303,6 @@ if ( $testMMDVModeDMR == 1 ) {
 		    echo '  </tr>'."\n";
 		    echo '</table>'."\n";
 		    echo '</form>'."\n";
-		    echo '<br /><hr/>'."\n";
 	        }
 	    }
         }
