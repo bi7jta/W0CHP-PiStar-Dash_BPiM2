@@ -321,10 +321,6 @@ h1 {
     outline: none;
 }
 
-input:disabled + label {
-    color: #555555;
-}
-
 input.toggle-round-flat + label {
     padding: 1px;
     margin: 3px;
@@ -436,9 +432,20 @@ input[type=button]:hover, input[type=submit]:hover, input[type=reset]:hover, but
 }
 
 button:disabled {
+    opacity: 0.4;
+    cursor: not-allowed;
+    color: #fff;
+    background: #000;
+/*
     color: <?php echo $textModeCellDisabledColor; ?>;
     background: <?php echo $backgroundModeCellDisabledColor; ?>;
-    cursor: default;
+*/
+}
+
+input:disabled + label {
+    color: #000;
+    opacity: 0.6;
+    cursor: not-allowed;
 }
 
 select {
