@@ -56,7 +56,7 @@ require_once($_SERVER['DOCUMENT_ROOT'].'/config/ircddblocal.php');
 	if (isset($lastHeard[0])) {
 	    $listElem = $lastHeard[0];
 	    if ( $listElem[2] && $listElem[6] == null && $listElem[5] !== 'RF') {
-		echo "<td style=\"background:#f33; color:#ffffff; font-weight:bold;\">TX: $listElem[1]</span></td>";
+		echo "<td style=\"background:#f33; color:#ffffff; font-weight:bold;\">TX: $listElem[1]</td>";
 	    }
 	    else {
 	        if (getActualMode($lastHeard, $_SESSION['MMDVMHostConfigs']) === 'idle') {
@@ -109,7 +109,7 @@ require_once($_SERVER['DOCUMENT_ROOT'].'/config/ircddblocal.php');
 	    }
 	}
 	else {
-	    echo "<td style=\"background:#0b0; color:#030;\">Standby</td>";
+	    echo "<td style=\"background:#0b0; color:#030;\">Idle</td>";
 	}
 	?>
         </tr>
