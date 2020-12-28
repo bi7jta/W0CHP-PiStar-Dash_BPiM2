@@ -109,7 +109,7 @@ require_once($_SERVER['DOCUMENT_ROOT'].'/config/ircddblocal.php');
 	    }
 	}
 	else {
-	    echo "<td style=\"background:#0b0; color:#030;\">Standby</td>";
+	    echo "<td style=\"background:#0b0; color:#030;\">Idle</td>";
 	}
 	?>
         </tr>
