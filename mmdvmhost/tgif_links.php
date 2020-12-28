@@ -82,13 +82,13 @@ if ( $testMMDVModeDMR == 1 ) {
     $repeaterid = $json->sessions[$session_nr]->repeater_id;
     if ($json->sessions[$session_nr]->tg0 == "4000") { $slot1tg = "None"; } else { $slot1tg = "TG".$json->sessions[$session_nr]->tg0; }
     if ($json->sessions[$session_nr]->tg0 != "4000") {
-        $slot1TGname = exec("grep -w ".$json->sessions[$session_nr]->tg0." /usr/local/etc/tgif-talkgroups.txt | cut -d\":\" -f1 | tr -cd \"'[:alnum:] -\""); 
+        $slot1TGname = exec("grep -w ".$json->sessions[$session_nr]->tg0." /usr/local/etc/tgif-talkgroups.txt | cut -d\":\" -f1 | tr -cd \"'[:alnum:]\/ -\""); 
     } else {
 	$slot1TGname = "";
     }
     if ($json->sessions[$session_nr]->tg  == "4000") { $slot2tg = "None"; } else { $slot2tg = "TG".$json->sessions[$session_nr]->tg; }
     if ($json->sessions[$session_nr]->tg != "4000") {
-        $slot2TGname = exec("grep -w ".$json->sessions[$session_nr]->tg." /usr/local/etc/tgif-talkgroups.txt | cut -d\":\" -f1 | tr -cd \"'[:alnum:] -\""); 
+        $slot2TGname = exec("grep -w ".$json->sessions[$session_nr]->tg." /usr/local/etc/tgif-talkgroups.txt | cut -d\":\" -f1 | tr -cd \"'[:alnum:]\/ -\""); 
     } else {
 	$slot2TGname = "";
     }
