@@ -321,10 +321,6 @@ h1 {
     outline: none;
 }
 
-input:disabled + label {
-    color: #555555;
-}
-
 input.toggle-round-flat + label {
     padding: 1px;
     margin: 3px;
@@ -378,6 +374,89 @@ input.toggle-round-flat:focus + label {
     padding: 1px;
     border: 1px solid <?php echo $backgroundBanners; ?>;
     z-index: 5;
+}
+
+.mode_flex {
+    display: flex; 
+    text-align: center;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+.mode_flex button {
+    flex-basis: 25%;
+    flex-shrink: 0;
+    text-align: center;
+    justify-content: center;
+    flex-grow: 1;
+    font-family: 'Source Sans Pro', sans-serif;
+    border: 1px solid black;
+    color: black;
+    background-color: #f1f1f1;
+    padding: 2px;
+
+}
+
+.mode_flex button > span  {
+    align-items: center; 
+    flex-wrap: wrap;
+    display: flex; 
+    justify-content: center;
+    margin: 3px;
+    text-align: center;
+}
+
+textarea, input[type='text'] {
+        font-size: 15px;
+        font-family: 'Inconsolata', monospace;
+        border: 1px solid black;
+        padding: 5px;
+        margin 3px;
+}
+
+input[type=button], input[type=submit], input[type=reset], input[type=radio], button {
+    font-size: 15px;
+    font-family: 'Source Sans Pro', sans-serif;
+    border: 1px solid black;
+    color: black;
+    background-color: #f1f1f1;
+    padding: 5px;
+    text-decoration: none;
+    margin: 3px;
+    cursor: pointer;
+}
+
+input[type=button]:hover, input[type=submit]:hover, input[type=reset]:hover, button:hover {
+    color: <?php echo $textNavbarHover; ?>;
+    background-color: <?php echo $backgroundNavbarHover; ?>;
+}
+
+button:disabled {
+    opacity: 0.4;
+    cursor: not-allowed;
+    color: #fff;
+    background: #000;
+/*
+    color: <?php echo $textModeCellDisabledColor; ?>;
+    background: <?php echo $backgroundModeCellDisabledColor; ?>;
+*/
+}
+
+input:disabled + label {
+    color: #000;
+    opacity: 0.6;
+    cursor: not-allowed;
+}
+
+select {
+  background-color: #f1f1f1;
+    font-family: 'Inconsolata', monospace;
+    font-size: 15px;
+    border: 1px solid black;
+    color: black;
+    padding: 5px;
+    text-decoration: none;
+    margin: 3px;
 }
 
 /* put the same color as in left vertical status */
@@ -731,41 +810,6 @@ input.toggle-round-flat:focus + label {
         -moz-border-radius : 3px 3px 3px 3px;
     }
 }
-textarea, input[type='text'] {
-	font-size: 15px;
-	font-family: 'Inconsolata', monospace;
-	border: 1px solid black;
-	padding: 5px;
-	margin 3px;
-}
-
-input[type=button], input[type=submit], input[type=reset], input[type=radio] {
-    font-size: 15px;
-    font-family: 'Source Sans Pro', sans-serif;
-    border: 1px solid black;
-    color: black;
-    background-color: #f1f1f1;
-    padding: 5px;
-    text-decoration: none;
-    margin: 3px;
-    cursor: pointer;
-}
-
-input[type=button]:hover, input[type=submit]:hover, input[type=reset]:hover {
-    color: <?php echo $textNavbarHover; ?>;
-    background-color: <?php echo $backgroundNavbarHover; ?>;
-}
-
-select {
-  background-color: #f1f1f1;
-    font-family: 'Inconsolata', monospace;
-    font-size: 15px;
-    border: 1px solid black;
-    color: black;
-    padding: 5px;
-    text-decoration: none;
-    margin: 3px;
-}
 
 hr {
   display: block;
@@ -775,3 +819,4 @@ hr {
   margin: 1em 0;
   padding: 0; 
 }
+
