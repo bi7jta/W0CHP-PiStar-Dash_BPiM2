@@ -226,9 +226,10 @@ checkSessionValidity();
 			 echo '   <button form="admin_sel" disabled="disabled" type="submit" value="tgif_man" name="func"><span>TGIF Manager</span></button>';
 		    }
 		    //echo '      </div>';
-		    //echo '      <div class="mode_flex">';		
+		    //echo '      <div class="mode_flex">';
                     $testMMDVModeYSF = getConfigItem("System Fusion", "Enable", $_SESSION['MMDVMHostConfigs']);
-		    if ($testMMDVModeYSF == 1) {
+                    $testDMR2YSF = $_SESSION['DMR2YSFConfigs']['Enabled']['Enabled'];
+            	    if ($testMMDVModeYSF == 1 || $testDMR2YSF == 1) {
 		        echo '    <button form="admin_sel" type="submit" value="ysf_man" name="func"><span>YSF Manager</span></button>';
 		    }
 		    else {
