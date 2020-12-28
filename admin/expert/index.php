@@ -52,7 +52,7 @@ require_once('../config/version.php');
                         echo "<h2>$mode</h2>";
                     }
                     echo '<p>You must "resume" all of the modes you have paused in order to make any configuration changes...</p>';
-                    echo '<p>Go the <a href="/admin/">Admin Page to Resume the paused mode(s)</a>. Once that\'s completed, this configuration page will be enabled.</p>';
+                    echo '<p>Go the <a href="/admin/?func=mode_man">Instant Mode Manager page to Resume the paused mode(s)</a>. Once that\'s completed, this configuration page will be enabled.</p>';
                     echo '<br />'."\n";
                     echo '</td></tr></table></div>';
                     die();
