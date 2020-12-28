@@ -158,8 +158,8 @@ if ( $dmrID ) {
 	echo '<b>TGIF Manager</b>'."\n";
 	echo "<table>\n<tr><th>Command Output</th></tr>\n<tr><td>";
 	//echo "Sending command to TGIF API";
-	echo "TGIF API: ".((isset($_POST["tgifNumber"]) && !empty($_POST["tgifNumber"])) ? "Talkgroup ".preg_replace("/[^0-9]/", "", $_POST["tgifNumber"]) : "Current Talkgroup")." ".(($command == "Link") ? "linked on" : "unlinked from")." slot ".($targetSlot + 1)." (command status: ".httpStatusText($result).").";
-	echo "<br />Page reloading...</td></tr>\n</table>\n";
+	echo "<p>TGIF API: ".((isset($_POST["tgifNumber"]) && !empty($_POST["tgifNumber"])) ? "Talkgroup ".preg_replace("/[^0-9]/", "", $_POST["tgifNumber"]) : "Current Talkgroup")." ".(($command == "Link") ? "linked on" : "unlinked from")." slot ".($targetSlot + 1)." (command status: ".httpStatusText($result).").";
+	echo "<br />Page reloading...</p></td></tr>\n</table>\n";
 	echo "<br />\n";
 	// Clean up...
 	unset($_POST);

@@ -380,6 +380,36 @@ input.toggle-round-flat:focus + label {
     z-index: 5;
 }
 
+.mode_flex {
+    display: flex; 
+    text-align: center;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+.mode_flex button {
+    flex-basis: 25%;
+    flex-shrink: 0;
+    text-align: center;
+    justify-content: center;
+    flex-grow: 1;
+    font-family: 'Source Sans Pro', sans-serif;
+    border: 1px solid black;
+    color: black;
+    background-color: #f1f1f1;
+    padding: 2px;
+
+}
+
+.mode_flex button > span  {
+    align-items: center; 
+    flex-wrap: wrap;
+    display: flex; 
+    justify-content: center;
+    margin: 3px;
+    text-align: center;
+}
+
 textarea, input[type='text'] {
         font-size: 15px;
         font-family: 'Inconsolata', monospace;
@@ -782,3 +812,4 @@ hr {
   margin: 1em 0;
   padding: 0; 
 }
+

@@ -40,25 +40,27 @@ if (isset($_SESSION['YSFGatewayConfigs']['Remote Commands']['Enable']) && (isset
 	    else {
 		echo "<b>YSF Link Manager</b>\n";
 		echo "<table>\n<tr><th>Command Output</th></tr>\n<tr><td>";
-		echo "Somthing wrong with your input, (Neither Link nor Unlink Sent) - please try again";
+		echo "<p>Somthing wrong with your input, (Neither Link nor Unlink Sent) - please try again</p>";
 		echo "</td></tr>\n</table>\n<br />\n";
 		unset($_POST);
-		echo '<script type="text/javascript">setTimeout(function() { window.location=window.location;},2000);</script>';
+		echo '<script type="text/javascript">setTimeout(function() { window.location=window.location;},3000);</script>';
 	    }
 	    if (empty($_POST['ysfLinkHost'])) {
 		echo "<b>YSF Link Manager</b>\n";
 		echo "<table>\n<tr><th>Command Output</th></tr>\n<tr><td>";
-		echo "Somthing wrong with your input, (No target specified) -  please try again";
+		echo "<p>Somthing wrong with your input, (No target specified) -  please try again</p>";
 		echo "</td></tr>\n</table>\n<br />\n";
 		unset($_POST);
-		echo '<script type="text/javascript">setTimeout(function() { window.location=window.location;},2000);</script>';
+		echo '<script type="text/javascript">setTimeout(function() { window.location=window.location;},3000);</script>';
 	    }
 	    if (isset($remoteCommand)) {
 		echo "<b>YSF Link Manager</b>\n";
 		echo "<table>\n<tr><th>Command Output</th></tr>\n<tr><td>";
+		echo "<p>";
 		echo exec($remoteCommand);
 		echo "<br />Page reloading...</td></tr>\n</table>\n<br />\n";
-		echo '<script type="text/javascript">setTimeout(function() { window.location=window.location;},2000);</script>';
+		echo "</p>";
+		echo '<script type="text/javascript">setTimeout(function() { window.location=window.location;},3000);</script>';
 	    }
 	}
 	else {

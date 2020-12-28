@@ -58,8 +58,10 @@ if (isset($_SESSION['DAPNETAPIKeyConfigs']['DAPNETAPI']['USER']) && (empty($_SES
         
         // Output to the browser
         echo '<b>DAPNET Messenger</b>'."\n";
-        echo "<table>\n<tr><th>Command Output</th></tr>\n<tr><td>";
+        echo "<table>\n<tr><th>Command Output</th></tr>\n<tr><td style='white-space:normal;'>";
+	echo "<p>";
         print $resultapi;
+	echo "</p>";
         echo "</td></tr>\n</table>\n";
 	
         unset($_POST); // Cleanup
