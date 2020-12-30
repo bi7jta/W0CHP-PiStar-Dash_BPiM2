@@ -93,7 +93,7 @@ for ($i = 0;  ($i <= 39); $i++) { //Last 40 calls
   </table>
     <div style="float: right; vertical-align: bottom; padding-top: 5px;">
 	<div class="grid-container" style="display: inline-grid; grid-template-columns: auto 40px; padding: 1px; grid-column-gap: 5px;">
-	    <div class="grid-item" style="padding-top: 3px;" >Auto Refresh
+	    <div class="grid-item" style="padding-top: 3px;" >Auto-Refresh
 	    </div>
 	    <div class="grid-item" >
 		<div> <input id="toggle-lh-autorefresh" class="toggle toggle-round-flat" type="checkbox" name="lh-autorefresh" value="ON" checked="checked" aria-checked="true" aria-label="Auto-Refresh" onchange="setLHAutorefresh(this)" /><label for="toggle-lh-autorefresh" ></label>
