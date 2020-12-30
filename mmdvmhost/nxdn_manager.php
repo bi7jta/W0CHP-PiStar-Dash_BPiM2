@@ -66,7 +66,7 @@ if ( $testMMDVModeNXDN == 1 ) {
 	    // Output HTML
 ?>
     		<b>NXDN Link Manager</b>
-		<form action="//<?php echo htmlentities($_SERVER['HTTP_HOST']).htmlentities($_SERVER['PHP_SELF']); ?>" method="post">
+		<form action="//<?php echo htmlentities($_SERVER['HTTP_HOST']).htmlentities($_SERVER['PHP_SELF']); ?>?func=nxdn_man" method="post">
 		    <table>
 			<tr>
 			    <th width="150"><a class="tooltip" href="#">Reflector<span><b>Reflector</b></span></a></th>

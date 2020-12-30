@@ -122,7 +122,7 @@ if (!empty($_POST["submit_mode"]) && empty($_POST["mode_sel"])) { //handler for 
     // no form post: output html...
     print '
     <b>Instant Mode Manager</b>'."\n".'
-    <form id="action-form" action="'.htmlentities($_SERVER['PHP_SELF']).'" method="post">
+    <form id="action-form" action="'.htmlentities($_SERVER['PHP_SELF']).'?func=mode_man" method="post">
       <table style="white-space: normal;">
         <tr>
 	  <th>Pause / Resume</th>
@@ -154,6 +154,7 @@ if (!empty($_POST["submit_mode"]) && empty($_POST["mode_sel"])) { //handler for 
             <label for="mode-sel-5">POCSAG'.(($POCSAG=='0' && file_exists($POCSAG_paused)?" <span class='paused-mode-span'>(Paused)</span>":"")).'</label> ]
           </td>
           <td>
+            <input type="hidden" name="func" value="mode_man">
             <input type="submit" class="btn-default btn" name="submit_mode" value="Submit" access="false" style="default" id="submit-mode" title="Submit">
           </td>
         </tr>

@@ -81,7 +81,7 @@ if ($_SERVER["PHP_SELF"] == "/admin/index.php") {
     else { //else:
 ?>
         <b><?php echo $lang['d-star_link_manager'];?></b>
-	<form action="//<?php echo htmlentities($_SERVER['HTTP_HOST']).htmlentities($_SERVER['PHP_SELF']); ?>" method="post">
+	<form action="//<?php echo htmlentities($_SERVER['HTTP_HOST']).htmlentities($_SERVER['PHP_SELF']); ?>?func=ds_man" method="post">
 	    <table>
 		<tr>
 		    <th width="150"><a class="tooltip" href="#">Radio Module<span><b>Radio Module</b></span></a></th>

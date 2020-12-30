@@ -65,7 +65,7 @@ if ( $testMMDVModeDMR == 1 ) {
                 // Output to the browser
                 echo '<b>BrandMeister Manager</b>'."\n";
                 echo "<table>\n<tr><th>Command Output</th></tr>\n<tr><td>";
-                print "All Static Talkgroups Dropped!<br /> Page reloading...";
+                print "<p>All Static Talkgroups Dropped!<br /> Page reloading...</p>";
                 echo "</td></tr>\n</table>\n";
                 echo "<br />\n";
                 // Clean up...
@@ -81,7 +81,7 @@ if ( $testMMDVModeDMR == 1 ) {
             	    // Output to the browser
             	    echo '<b>BrandMeister Manager</b>'."\n";
             	    echo "<table>\n<tr><th>Command Output</th></tr>\n<tr><td>";
-            	    print "All Previous Static Talkgroups Re-Added!<br /> Page reloading...";
+            	    print "<p>All Previous Static Talkgroups Re-Added!<br /> Page reloading...</p>";
             	    echo "</td></tr>\n</table>\n";
             	    echo "<br />\n";
             	    // Clean up...
@@ -92,7 +92,7 @@ if ( $testMMDVModeDMR == 1 ) {
             	    // Output to the browser
             	    echo '<b>BrandMeister Manager</b>'."\n";
             	    echo "<table>\n<tr><th>Command Output</th></tr>\n<tr><td>";
-            	    print "No Previous Static Talkgroups Dropped. Nothing To Do!!<br /> Page reloading...";
+            	    print "<p>No Previous Static Talkgroups Dropped. Nothing To Do!!<br /> Page reloading...</p>";
             	    echo "</td></tr>\n</table>\n";
             	    echo "<br />\n";
             	    // Clean up...
@@ -116,7 +116,7 @@ if ( $testMMDVModeDMR == 1 ) {
                     // Output to the browser
                     echo '<b>BrandMeister Manager</b>'."\n";
                     echo "<table>\n<tr><th>Command Output</th></tr>\n<tr><td>";
-                    print "No talkgroups defined! <br /> Page reloading...";
+                    print "<p>No talkgroups defined! <br /> Page reloading...</p>";
                     echo "</td></tr>\n</table>\n";
                     echo "<br />\n";
                     // Clean up...
@@ -137,7 +137,7 @@ if ( $testMMDVModeDMR == 1 ) {
                             // Output to the browser
                             echo '<b>BrandMeister Manager</b>'."\n";
                             echo "<table>\n<tr><th>Command Output</th></tr>\n<tr><td>";
-                            print "No more than 5 talkgroups can be defined at a time! <br /> Page reloading...";
+                            print "<p>No more than 5 talkgroups can be defined at a time! <br /> Page reloading...</p>";
                             echo "</td></tr>\n</table>\n";
                             echo "<br />\n";
                             // Clean up...
@@ -156,7 +156,7 @@ if ( $testMMDVModeDMR == 1 ) {
                             // Output to the browser
                             echo '<b>BrandMeister Manager</b>'."\n";
                             echo "<table>\n<tr><th>Command Output</th></tr>\n<tr><td>";
-                            print "All Submitted Static Talkgroups Added to slot ".$_POST['massTGslotSelected']."!<br /> Page reloading...<br />";
+                            print "<p>All Submitted Static Talkgroups Added to slot ".$_POST['massTGslotSelected']."!<br /> Page reloading...</p>";
                             echo "</td></tr>\n</table>\n";
                             echo "<br />\n";
                             // Clean up...
@@ -173,7 +173,7 @@ if ( $testMMDVModeDMR == 1 ) {
                             // Output to the browser
                             echo '<b>BrandMeister Manager</b>'."\n";
                             echo "<table>\n<tr><th>Command Output</th></tr>\n<tr><td>";
-                            print "No more than 5 talkgroups can be defined at a time! <br /> Page reloading...";
+                            print "<p>No more than 5 talkgroups can be defined at a time! <br /> Page reloading...</p>";
                             echo "</td></tr>\n</table>\n";
                             echo "<br />\n";
                             // Clean up...
@@ -191,7 +191,7 @@ if ( $testMMDVModeDMR == 1 ) {
                             // Output to the browser
                             echo '<b>BrandMeister Manager</b>'."\n";
                             echo "<table>\n<tr><th>Command Output</th></tr>\n<tr><td>";
-                            print "All Submitted Static Talkgroups Deleted from slot ".$_POST['massTGslotSelected']."!<br /> Page reloading...<br />";
+                            print "<p>All Submitted Static Talkgroups Deleted from slot ".$_POST['massTGslotSelected']."!<br /> Page reloading...</p>";
                             echo "</td></tr>\n</table>\n";
                             echo "<br />\n";
                             // Clean up...
@@ -265,7 +265,7 @@ if ( $testMMDVModeDMR == 1 ) {
 	    else { // Do this when we are not handling post data
 	        if (isset($_SESSION['BMAPIKey'])) {
 		    echo '<b>BrandMeister Manager</b>'."\n";
-		    echo '<form action="'.htmlentities($_SERVER['PHP_SELF']).'" method="post">'."\n";
+		    echo '<form id="bm_man" action="'.htmlentities($_SERVER['PHP_SELF']."?func=bm_man").'" method="post">'."\n";
 		    echo '<table style="white-space: normal;">'."\n";
 		    echo '  <tr>'."\n";
 		    echo '    <th colspan="3">Single Static Talkgroup Tools</th>'."\n";
@@ -303,7 +303,6 @@ if ( $testMMDVModeDMR == 1 ) {
 		    echo '  </tr>'."\n";
 		    echo '</table>'."\n";
 		    echo '</form>'."\n";
-		    echo '<br /><hr/>'."\n";
 	        }
 	    }
         }

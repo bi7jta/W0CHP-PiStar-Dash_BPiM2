@@ -40,32 +40,34 @@ if (isset($_SESSION['YSFGatewayConfigs']['Remote Commands']['Enable']) && (isset
 	    else {
 		echo "<b>YSF Link Manager</b>\n";
 		echo "<table>\n<tr><th>Command Output</th></tr>\n<tr><td>";
-		echo "Somthing wrong with your input, (Neither Link nor Unlink Sent) - please try again";
+		echo "<p>Somthing wrong with your input, (Neither Link nor Unlink Sent) - please try again</p>";
 		echo "</td></tr>\n</table>\n<br />\n";
 		unset($_POST);
-		echo '<script type="text/javascript">setTimeout(function() { window.location=window.location;},2000);</script>';
+		echo '<script type="text/javascript">setTimeout(function() { window.location=window.location;},3000);</script>';
 	    }
 	    if (empty($_POST['ysfLinkHost'])) {
 		echo "<b>YSF Link Manager</b>\n";
 		echo "<table>\n<tr><th>Command Output</th></tr>\n<tr><td>";
-		echo "Somthing wrong with your input, (No target specified) -  please try again";
+		echo "<p>Somthing wrong with your input, (No target specified) -  please try again</p>";
 		echo "</td></tr>\n</table>\n<br />\n";
 		unset($_POST);
-		echo '<script type="text/javascript">setTimeout(function() { window.location=window.location;},2000);</script>';
+		echo '<script type="text/javascript">setTimeout(function() { window.location=window.location;},3000);</script>';
 	    }
 	    if (isset($remoteCommand)) {
 		echo "<b>YSF Link Manager</b>\n";
 		echo "<table>\n<tr><th>Command Output</th></tr>\n<tr><td>";
+		echo "<p>";
 		echo exec($remoteCommand);
 		echo "<br />Page reloading...</td></tr>\n</table>\n<br />\n";
-		echo '<script type="text/javascript">setTimeout(function() { window.location=window.location;},2000);</script>';
+		echo "</p>";
+		echo '<script type="text/javascript">setTimeout(function() { window.location=window.location;},3000);</script>';
 	    }
 	}
 	else {
 	    // Output HTML
 	?>
     	    <b>YSF Link Manager</b>
-	    <form action="//<?php echo htmlentities($_SERVER['HTTP_HOST']).htmlentities($_SERVER['PHP_SELF']); ?>" method="post">
+	    <form action="//<?php echo htmlentities($_SERVER['HTTP_HOST']).htmlentities($_SERVER['PHP_SELF']); ?>?func=ysf_man" method="post">
 		<table>
 		    <tr>
 			<th width="150"><a class="tooltip" href="#">Reflector<span><b>Reflector</b></span></a></th>
@@ -151,12 +153,12 @@ if (isset($_SESSION['YSFGatewayConfigs']['Remote Commands']['Enable']) && (isset
 			    <input type="radio" name="Link" value="UNLINK" checked="checked"  />UnLink
 			</td>
 			<td>
+			    <input type="hidden" name="func" value="ysf_man" />
 			    <input type="submit" name="ysfMgrSubmit" value="Request Change" />
 			</td>
 		    </tr>
 		</table>
 	    </form>
-	    <br /><hr/>
 	    <?php
 	}
     }

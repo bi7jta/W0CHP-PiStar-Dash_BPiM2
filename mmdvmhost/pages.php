@@ -230,7 +230,6 @@ if ((strcmp($origin, "admin") == 0) && isset($_SESSION['DAPNETAPIKeyConfigs'])) 
 		</table>
 	    </div>
 	</div>
-	<br />
 
 <?php
     } // $myRIC
