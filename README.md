@@ -48,12 +48,23 @@ If you ask me to support, **I will ignore you.**
 
 * Better dashboard mobile device view.
 
-* Talker Alias (DMR) displayed next to callsign when operator is transmitting (when applicable). This needs a lot of work, yet.
-  (This is on the beta/TalkerAlias branch, and needs to be explicitly be installed/defined - caveat emptor!).
+* Talker Alias (DMR) displayed next to callsign when operator is transmitting
+  (when applicable). This needs a lot of work, yet.  (This is on the
+  `TalkerAlias` branch, and needs to be explicitly be installed/defined - caveat
+  emptor...this is buggy!).
+
+* Admin page split up into logical sub-sections/sub-pages, in order to present
+  better feedback messages when making changes. This is still in dev/testing, and
+  requires you to intall the `NewAdmin` branch until the features are eventally
+  merged into `master`.
 
 * Much more. See [screenshots below](#screenshots).
 
-## To install the `W0CHP` Pi-Star Dashboard
+## Installing `W0CHP-PiStar-Dash`
+
+Now that you have been adequately warned about everything and know the rules
+(*and you will heed them, right?*), here are the installation instructions,
+step-by-step:
 
 1. Open an SSH session to your Pi-Star instance.
 
@@ -65,10 +76,13 @@ If you ask me to support, **I will ignore you.**
 
         curl https://repo.w0chp.net/Chipster/W0CHP-Pi-Star-Install/raw/master/W0CHP-pistar -o W0CHP-pistar
 
-4. Run:
+4. Run this to familiarize yourself with the available options/arguments:
 
         sudo bash ./W0CHP-pistar -h
-...to familiarize yourself with the available options/arguments:
+
+    You will be presented with...
+
+
         -h,   --help                     Display this help text.
         -id,  --install-dashboard        Install W0CHP dashboard.
         -idn  --install-dashboard-nocss  Install W0CHP dashboard WITHOUT stylesheet.
@@ -93,30 +107,35 @@ Run:
 
 	 sudo bash <path>/W0CHP-pistar -rd
 
-## Notes about custom CSS you may have previously applied
+...And the original Pi-Star Dashboard will be restored.
 
-* When using the `-id` option, the `W0CHP` CSS is installed, and any of your custom CSS settings
+## Notes about CSS, and custom CSS you may have previously applied
+
+1. When using the `-idn` option, the "normal" Pi-Star colors are used, and no CSS is installed.
+
+2. When using the `-id` option, the `W0CHP` CSS is installed, and any of your custom CSS settings
   before installing the `W0CHP` dashboard, are backed up in the event you want to restore the official dashboard
-  (see last bullet point). This is done because the CSS in the official Pi-Star is incompatible. You can still
-  manually map/change your CSS back when running `W0CHP-PiStar-Dash` (see third bullet for details).
+  (see bullet #4). This is done because the CSS in the official Pi-Star is incompatible. You can still
+  manually map/change your CSS back when running `W0CHP-PiStar-Dash` (see  bullet #4 for details).
 
-* If you are already running `W0CHP-PiStar-Dash`, AND you have custom or `W0CHP-PiStar-Dash` CSS, no CSS changes, no matter which
+3. If you are already running `W0CHP-PiStar-Dash`, AND you have custom or `W0CHP-PiStar-Dash` CSS, no CSS changes, no matter which
   option you run this command with.
 
-* When using the `-idn` option, your custom CSS settings are backed up (in the event you want to revert back
-  to the official dashboard -- see last bullet point), and the `W0CHP` dashboard uses the standard Pi-Star colors.
+4. When using the `-idn` option, your custom CSS settings are backed up (in the event you want to revert back
+  to the official dashboard -- see  bullet #6), and the `W0CHP` dashboard uses the standard Pi-Star colors.
   This means that if you want your previous custom CSS applied to the `W0CHP` dashboard, you will need to manually
   customize your colors; You can reference the color values you had previously used, by viewing the backup file of
   your custom CSS...
 
         /etc/.pistar-css.ini.user
 
-* ...the reason for this, is because the `W0CHP` dashboard is vastly different than the official upstream version
+5. ...the reason for this, is because the `W0CHP` dashboard is vastly different than the official upstream version
   (completely different CSS mappings). Since this is for my personal use, I haven't added any logic to suck-in
   the user CSS values to the new mappings.
 
-* If you had customized CSS settings before installing the `W0CHP` dashboard, they will be restored when
+6. If you had customized CSS settings before installing the `W0CHP` dashboard, they will be restored when
   using the `-rd` option.
+
 
 ## Screenshots
 
