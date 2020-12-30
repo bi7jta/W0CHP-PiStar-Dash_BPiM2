@@ -78,7 +78,11 @@ if ($_SERVER["PHP_SELF"] == "/admin/expert/jitter_test.php") {
 		if (($oldOffset == $_SESSION['update_offset']) && (isset($_SESSION['jittertest-isrunning']) && ($_SESSION['jittertest-isrunning'] == 1)) && ($jitterIsRunning == "NO"))
 		{
 		    unset($_SESSION['jittertest-isrunning']);
-		    echo "<pre>Test Has Ended</pre>";
+		    echo "<pre>
+			--------------
+			Test Complete.
+			--------------
+			</pre>";
 		}
 	    }
 	    else {
