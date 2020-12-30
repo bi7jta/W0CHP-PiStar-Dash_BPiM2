@@ -137,19 +137,29 @@ Run:
 
 ### Main Dashboard
 
-(click for larger image)
-
 ![alt text](https://w0chp.net/img/W0CHP_Dash.png "W0CHP Dashboard")
 
-### Admin Page
+### Admin Pages
 
-(click for larger image)
+#### Main Admin Landing Page
+![alt text](/img/W0CHP_Admin_1.png "W0CHP Admin Page 1")
 
-![alt text](https://w0chp.net/img/W0CHP_Admin.png "W0CHP Admin Page")
+#### "Instant Mode Manager"
+![alt text](/img/W0CHP_Admin_2.png "W0CHP Admin Page 2")
+
+#### BrendMeister Manager
+![alt text](/img/W0CHP_Admin_3.png "W0CHP Admin Page 3")
+
+#### TGIF Manager
+![alt text](/img/W0CHP_Admin_4.png "W0CHP Admin Page 4")
+
+#### YSF Link Manager
+![alt text](/img/W0CHP_Admin_5.png "W0CHP Admin Page 5")
+
+#### POCSAG / DAPNET Messenger
+![alt text](/img/W0CHP_Admin_6.png "W0CHP Admin Page 6")
 
 ### Dashboard on Mobile Device
-
-(click for larger image)
 
 ![alt text](https://w0chp.net/img/W0CHP_Mobile.png "W0CHP Mobile Page")
 
