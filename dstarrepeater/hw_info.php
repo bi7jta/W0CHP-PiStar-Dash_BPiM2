@@ -127,7 +127,7 @@ $sysRamPercent = sprintf('%.2f',($sysRamUsed / $system['mem_info']['MemTotal']) 
     <tr>
 	<td><?php echo php_uname('n');?></td>
 	<td><?php echo php_uname('r');?></td>
-	<td colspan="2"><?php echo exec('/usr/local/bin/platformDetect.sh');?></td>
+	<td colspan="2"><?php echo exec('/usr/local/sbin/pistar-platformDetect.sh');?></td>
 	<td colspan="2">1m:<?php echo $cpuLoad[0];?> / 5m:<?php echo $cpuLoad[1];?> / 15m:<?php echo $cpuLoad[2];?></td>
 	<td colspan="2"><?php echo $sysRamPercent;?>% Used</td>
 	<td colspan="2"><?php echo $rootfs_used;?> Used</td>
