@@ -54,9 +54,7 @@ If you ask me to support, **I will ignore you.**
   emptor...this is buggy!).
 
 * Admin page split up into logical sub-sections/sub-pages, in order to present
-  better feedback messages when making changes. This is still in dev/testing, and
-  requires you to install the `NewAdmin` branch until the features are eventually
-  merged into `master`.
+  better feedback messages when making changes.
 
 * Much more. See [screenshots below](#screenshots).
 

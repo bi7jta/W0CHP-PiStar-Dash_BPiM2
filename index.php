@@ -503,7 +503,7 @@ checkSessionValidity();
 	<div class="footer">
 	   <?php 
 		echo 'Pi-Star / Pi-Star Dashboard, &copy; Andy Taylor (MW0MWZ) 2014-'.date("Y").'<br />'."\n";
-		echo '<a href="https://repo.w0chp.net/Chipster/W0CHP-PiStar-Dash" style="color: #ffffff; text-decoration:underline;">W0CHP-PiStar_Dash</a> enhancements by W0CHP';
+		echo '<a href="https://w0chp.net/w0chp-pistar-dash/" style="color: #ffffff; text-decoration:underline;">W0CHP-PiStar-Dash</a> enhancements by W0CHP';
 	   ?>
 	</div>
 	
