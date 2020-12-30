@@ -55,6 +55,8 @@ If you ask me to support, **I will ignore you.**
 
 * Admin page split up into logical sub-sections/sub-pages, in order to present
   better feedback messages when making changes.
+  * Note: Last-Heard and other dynamic tables are now only displayed in the main admin page.
+    Once entering the sub-pages, the focus is now on the task-at-hand, and the dynamic tables are not displayed.
 
 * Much more. See [screenshots below](#screenshots).
 
