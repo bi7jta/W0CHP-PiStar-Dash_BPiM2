@@ -49,23 +49,37 @@ if ($_SERVER["PHP_SELF"] == "/admin/expert/jitter_test.php") {
     //session_start();
     if (!file_exists('/var/log/pi-star/pi-star_icmptest.log')) {
       exit();
-    }
-
-    $handle = fopen('/var/log/pi-star/pi-star_icmptest.log', 'rb');
-    if (isset($_SESSION['update_offset'])) {
-      fseek($handle, 0, SEEK_END);
-      if ($_SESSION['update_offset'] > ftell($handle)) //log rotated/truncated
-        $_SESSION['update_offset'] = 0; //continue at beginning of the new log
-      $data = stream_get_contents($handle, -1, $_SESSION['update_offset']);
-      $_SESSION['update_offset'] += strlen($data);
-      echo "<pre>$data</pre>";
-      }
-    else {
-      fseek($handle, 0, SEEK_END);
-      $_SESSION['update_offset'] = ftell($handle);
-      }
-  exit();
   }
+
+  if (($handle = fopen('/var/log/pi-star/pi-star_icmptest.log', 'rb')) != false) {
+    if (isset($_SESSION['update_offset'])) {
+	fseek($handle, 0, SEEK_END);
+	if ($_SESSION['update_offset'] > ftell($handle)) { //log rotated/truncated
+	    $_SESSION['update_offset'] = 0; //continue at beginning of the new log
+	}
+
+	$data = stream_get_contents($handle, -1, $_SESSION['update_offset']);
+
+	$jitterIsRunning = shell_exec('ps ax | grep "/usr/local/sbin/pistar-jittertest" | grep -v grep') != null ? "YES" : "NO";
+	$oldOffset = $_SESSION['update_offset'];
+
+	$_SESSION['update_offset'] += strlen($data);
+	echo "<pre>$data</pre>";
+	
+	// we reach the end of the test
+	if (($oldOffset == $_SESSION['update_offset']) && (isset($_SESSION['jittertest-isrunning']) && ($_SESSION['jittertest-isrunning'] == 1)) && ($jitterIsRunning == "NO"))
+	{
+	    unset($_SESSION['jittertest-isrunning']);
+	    echo "<pre>Test Complete</pre>";
+	}
+    }
+    else {
+	fseek($handle, 0, SEEK_END);
+	$_SESSION['update_offset'] = ftell($handle);
+    }
+  }
+  exit();
+}
 
 ?>
   <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
