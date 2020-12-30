@@ -55,16 +55,12 @@ If you ask me to support, **I will ignore you.**
 
 * Admin page split up into logical sub-sections/sub-pages, in order to present
   better feedback messages when making changes. This is still in dev/testing, and
-  requires you to intall the `NewAdmin` branch until the features are eventally
+  requires you to install the `NewAdmin` branch until the features are eventually
   merged into `master`.
 
 * Much more. See [screenshots below](#screenshots).
 
 ## Installing `W0CHP-PiStar-Dash`
-
-Now that you have been adequately warned about everything and know the rules
-(*and you will heed them, right?*), here are the installation instructions,
-step-by-step:
 
 1. Open an SSH session to your Pi-Star instance.
 
