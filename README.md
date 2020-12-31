@@ -70,7 +70,7 @@ If you ask me to support, **I will ignore you.**
 
 3. Run:
 
-        curl https://repo.w0chp.net/Chipster/W0CHP-Pi-Star-Install/raw/master/W0CHP-pistar -o W0CHP-pistar
+        curl https://repo.w0chp.net/Chipster/W0CHP-PiStar-Install/raw/master/W0CHP-pistar -o W0CHP-pistar
 
 4. Run this to familiarize yourself with the available options/arguments:
 
