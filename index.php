@@ -61,7 +61,6 @@ checkSessionValidity();
 	<link rel="stylesheet" type="text/css" href="/css/font-awesome-4.7.0/css/font-awesome.min.css" />
 	<?php include_once "config/browserdetect.php"; ?>
 	<script type="text/javascript" src="/jquery.min.js"></script>
-	<script type="text/javascript" src="/jquery-floatThead.min.js"></script>
 	<script type="text/javascript" src="/functions.js?version=1.706"></script>
 	<script type="text/javascript">
 	 $.ajaxSetup({ cache: false });
