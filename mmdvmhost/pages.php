@@ -236,9 +236,9 @@ if ((strcmp($origin, "admin") == 0) && isset($_SESSION['DAPNETAPIKeyConfigs'])) 
 } // admin
 ?>
 
-<b><?php echo $lang['pocsag_list'];?></b>
 <div>
     <div>
+	<b><?php echo $lang['pocsag_list'];?></b>
 	<div style="display:inline-block;width: 100%;">
 	    <div style="float: right; vertical-align: bottom; padding-top: 5px;">
 		<div class="grid-container" style="display: inline-grid; grid-template-columns: auto 40px; padding: 1px; grid-column-gap: 5px;">
