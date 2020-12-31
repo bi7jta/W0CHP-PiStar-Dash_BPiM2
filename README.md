@@ -147,7 +147,7 @@ Run:
 #### "Instant Mode Manager"
 ![alt text](https://w0chp.net/img/W0CHP_Admin_2.png "W0CHP Admin Page 2")
 
-#### BrendMeister Manager
+#### BrandMeister Manager
 ![alt text](https://w0chp.net/img/W0CHP_Admin_3.png "W0CHP Admin Page 3")
 
 #### TGIF Manager
