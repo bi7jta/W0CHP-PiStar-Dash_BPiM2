@@ -239,6 +239,7 @@ if ((strcmp($origin, "admin") == 0) && isset($_SESSION['DAPNETAPIKeyConfigs'])) 
 <div>
     <div>
 	<div style="display:inline-block;width: 100%;">
+	<b><?php echo $lang['pocsag_list'];?></b>
 	    <div style="float: right; vertical-align: bottom; padding-top: 5px;">
 		<div class="grid-container" style="display: inline-grid; grid-template-columns: auto 40px; padding: 1px; grid-column-gap: 5px;">
 		    <div class="grid-item" style="padding-top: 3px;" >Auto Refresh
@@ -251,7 +252,6 @@ if ((strcmp($origin, "admin") == 0) && isset($_SESSION['DAPNETAPIKeyConfigs'])) 
 	    </div>
 	</div>
 	<!-- Activity -->
-	<b><?php echo $lang['pocsag_list'];?></b><br />
 	<div class="table-container">
 	    <table class="table poc-lh-table">
 		<thead>
