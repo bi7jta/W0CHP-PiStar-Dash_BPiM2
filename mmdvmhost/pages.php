@@ -251,7 +251,7 @@ if ((strcmp($origin, "admin") == 0) && isset($_SESSION['DAPNETAPIKeyConfigs'])) 
 	    </div>
 	</div>
 	<!-- Activity -->
-	<b><?php echo $lang['pocsag_list'];?></b>
+	<b><?php echo $lang['pocsag_list'];?></b><br />
 	<div class="table-container">
 	    <table class="table poc-lh-table">
 		<thead>
