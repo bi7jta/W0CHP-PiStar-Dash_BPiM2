@@ -266,6 +266,6 @@ if ((strcmp($origin, "admin") == 0) && isset($_SESSION['DAPNETAPIKeyConfigs'])) 
 		    <?php listDAPNETGWMessages($logLinesDAPNETGateway, ((strcmp($origin, "admin") == 0) ? true : false)); ?>
 		</tbody>
 	    </table>
- i 	</div>
+	</div>
   </div>
 </div>
