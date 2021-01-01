@@ -30,8 +30,8 @@ $textTableHeaderColor = "#ffffff"; //add to default
 $textServiceCellActiveColor = "#000000";
 $textServiceCellInactiveColor = "#000000";
 $textModeCellDisabledColor = "#b0b0b0";
-$textModeCellActiveColor = "#003300";
-$textModeCellInactiveColor = "#550000";
+$textModeCellActiveColor = "#000000";
+$textModeCellInactiveColor = "#000000";
 
 $bannerDropShaddows = "#303030";     // Banner drop shaddow colour
 $tableHeadDropShaddow = "#8b0000";   // Table Headder drop shaddows
