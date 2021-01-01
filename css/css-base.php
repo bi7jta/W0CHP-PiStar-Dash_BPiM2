@@ -30,11 +30,9 @@ $textTableHeaderColor = "#ffffff"; //add to default
 $textServiceCellActiveColor = "#000000";
 $textServiceCellInactiveColor = "#000000";
 $textModeCellDisabledColor = "#b0b0b0";
-$textModeCellActiveColor = "#000000";
-$textModeCellInactiveColor = "#000000";
+$textModeCellActiveColor = "#003300";
+$textModeCellInactiveColor = "#550000";
 
-$bannerDropShaddows = "#303030";     // Banner drop shaddow colour
-$tableHeadDropShaddow = "#8b0000";   // Table Headder drop shaddows
 $textContent = "#000000";            // Used for the section titles
 $tableRowEvenBg = "#f7f7f7";		// Table Row BG Colour (Even)
 $tableRowOddBg = "#d0d0d0";		// Table Row BG Colour (Odd)
@@ -84,9 +82,6 @@ if (file_exists('/etc/pistar-css.ini')) {
     assignCSSValue($textModeCellActiveColor, $piStarCss['Text']['ModeCellActiveColor']);
     assignCSSValue($textModeCellInactiveColor, $piStarCss['Text']['ModeCellInactiveColor']);
     
-    assignCSSValue($bannerDropShaddows, $piStarCss['Text']['BannersDropColor']); // Banner drop shaddow colour
-
-    assignCSSValue($tableHeadDropShaddow, $piStarCss['Tables']['HeadDropColor']); // Table Headder drop shaddows
     assignCSSValue($tableRowEvenBg, $piStarCss['Tables']['BgEvenColor']); // Table Row BG Colour (Even)
     assignCSSValue($tableRowOddBg, $piStarCss['Tables']['BgOddColor']); // Table Row BG Colour (Odd)
     
