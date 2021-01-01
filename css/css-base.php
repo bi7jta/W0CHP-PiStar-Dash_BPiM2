@@ -30,8 +30,8 @@ $textTableHeaderColor = "#ffffff"; //add to default
 $textServiceCellActiveColor = "#000000";
 $textServiceCellInactiveColor = "#000000";
 $textModeCellDisabledColor = "#b0b0b0";
-$textModeCellActiveColor = "#003300";
-$textModeCellInactiveColor = "#550000";
+$textModeCellActiveColor = "#000000";
+$textModeCellInactiveColor = "#000000";
 
 $textContent = "#000000";            // Used for the section titles
 $tableRowEvenBg = "#f7f7f7";		// Table Row BG Colour (Even)
