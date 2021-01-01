@@ -60,11 +60,11 @@ require_once($_SERVER['DOCUMENT_ROOT'].'/config/ircddblocal.php');
 	    }
 	    else {
 	        if (getActualMode($lastHeard, $_SESSION['MMDVMHostConfigs']) === 'idle') {
-	            echo "<td style=\"background:#0b0; color:#030;\">Idle</td>";
+	            echo "<td style=\"background:#0b0; color:#000;\">Idle</td>";
 	        }
 	        else if (getActualMode($lastHeard, $_SESSION['MMDVMHostConfigs']) === NULL) {
 	            if (isProcessRunning("MMDVMHost")) {
-			echo "<td style=\"background:#0b0; color:#030;\">Idle</td>";
+			echo "<td style=\"background:#0b0; color:#000;\">Idle</td>";
 		    }
 		    else {
 			echo "<td style=\"background:#606060; color:#b0b0b0;\">OFFLINE</td>";
@@ -109,7 +109,7 @@ require_once($_SERVER['DOCUMENT_ROOT'].'/config/ircddblocal.php');
 	    }
 	}
 	else {
-	    echo "<td style=\"background:#0b0; color:#030;\">Idle</td>";
+	    echo "<td style=\"background:#0b0; color:#000;\">Idle</td>";
 	}
 	?>
         </tr>
