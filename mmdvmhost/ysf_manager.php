@@ -66,7 +66,7 @@ if (isset($_SESSION['YSFGatewayConfigs']['Remote Commands']['Enable']) && (isset
 	else {
 	    // Output HTML
 	?>
-    	    <b>YSF Link Manager</b>
+    	<b>YSF Link Manager</b>
 	    <form action="//<?php echo htmlentities($_SERVER['HTTP_HOST']).htmlentities($_SERVER['PHP_SELF']); ?>?func=ysf_man" method="post">
 		<table>
 		    <tr>
@@ -76,7 +76,7 @@ if (isset($_SESSION['YSFGatewayConfigs']['Remote Commands']['Enable']) && (isset
 		    </tr>
 		    <tr>
 			<td>
-			    <select name="ysfLinkHost" style="width:300px;">
+			    <select name="ysfLinkHost" class="ysfHosts-basic-single">
 				<?php
 				if (isset($_SESSION['YSFGatewayConfigs']['Network']['Startup'])) {
 				    $testYSFHost = $_SESSION['YSFGatewayConfigs']['Network']['Startup'];

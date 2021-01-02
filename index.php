@@ -67,6 +67,13 @@ checkSessionValidity();
 	</script>
 	<link href="/featherlight.css" type="text/css" rel="stylesheet" />
 	<script src="/featherlight.js" type="text/javascript" charset="utf-8"></script>
+        <link href="/select2/css/select2.min.css" rel="stylesheet" />
+        <script src="/select2/js/select2.min.js"></script>
+         <script>
+          $(document).ready(function() {
+            $('.ysfHosts-basic-single').select2();
+          });
+        </script>
     </head>
     <body>
 	<div class="container">

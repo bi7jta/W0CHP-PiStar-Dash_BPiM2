@@ -519,6 +519,8 @@ $MYCALL=strtoupper($callsign);
 	<link rel="stylesheet" type="text/css" href="/css/font-awesome-4.7.0/css/font-awesome.min.css" />
 	<link rel="stylesheet" type="text/css" href="/css/pistar-css.php?version=0.994" />
 	<script type="text/javascript" src="/jquery.min.js"></script>
+        <link href="/select2/css/select2.min.css" rel="stylesheet" />
+        <script src="/select2/js/select2.min.js"></script>
 	<script type="text/javascript" src="/functions.js?version=1.706"></script>
 	<script type="text/javascript">
 	 function disablesubmitbuttons() {
@@ -556,7 +558,17 @@ $MYCALL=strtoupper($callsign);
 	     document.getElementById("confLongitude").value = position.coords.longitude.toFixed(5);
 	 }
 	</script>
-	<script type="text/javascript" src="/functions.js?version=1.706"></script>
+        <script>
+          $(document).ready(function() {
+              $('.ysfStartupHost').select2();
+              $('.ysf2dmrMasterHost').select2();
+              $('.dmrMasterHost').select2();
+              $('.dmrMasterHost1').select2();
+              $('.dmrMasterHost2').select2();
+              $('.dmrMasterHost3').select2();
+              $('.dmrMasterHost3Startup').select2();
+          });
+      </script>
     </head>
     <body onload="checkFrequency(); return false;">
 	<div class="container">
@@ -3334,7 +3346,7 @@ $MYCALL=strtoupper($callsign);
                                     <tr>
 				<tr>
 				    <td align="left"><a class="tooltip2" href="#"><?php echo $lang['dmr_master'];?>:<span><b>DMR Master (MMDVMHost)</b>Set your prefered DMR master here</span></a></td>
-				    <td style="text-align: left;"><select name="dmrMasterHost">
+				    <td style="text-align: left;"><select name="dmrMasterHost" class="dmrMasterHost">
 					<?php
 					$testMMDVMdmrMaster = $configmmdvm['DMR Network']['Address'];
 					$testMMDVMdmrMasterPort = $configmmdvm['DMR Network']['Port'];
@@ -3359,7 +3371,7 @@ $MYCALL=strtoupper($callsign);
 				    </tr>
 				    <tr>
 					<td align="left"><a class="tooltip2" href="#"><?php echo $lang['bm_master'];?>:<span><b>BrandMeister Master</b>Set your prefered DMR master here</span></a></td>
-					<td style="text-align: left;" colspan="2"><select name="dmrMasterHost1">
+					<td style="text-align: left;" colspan="2"><select name="dmrMasterHost1" class="dmrMasterHost1">
 					    <?php
 					    $dmrMasterFile1 = fopen("/usr/local/etc/DMR_Hosts.txt", "r");
 					    $testMMDVMdmrMaster1 = $configdmrgateway['DMR Network 1']['Address'];
@@ -3448,7 +3460,7 @@ $MYCALL=strtoupper($callsign);
                                     </tr>
 				    <tr>
 					<td align="left"><a class="tooltip2" href="#"><?php echo $lang['dmr_plus_master'];?>:<span><b>DMR+ Master</b>Set your prefered DMR master here</span></a></td>
-					<td style="text-align: left;" colspan="2"><select name="dmrMasterHost2">
+					<td style="text-align: left;" colspan="2"><select name="dmrMasterHost2" class="dmrMasterHost2">
 					    <?php
 					    $dmrMasterFile2 = fopen("/usr/local/etc/DMR_Hosts.txt", "r");
 					    $testMMDVMdmrMaster2= $configdmrgateway['DMR Network 2']['Address'];
@@ -3532,7 +3544,7 @@ $MYCALL=strtoupper($callsign);
                                     </tr>
                                     <tr>
 					<td align="left"><a class="tooltip2" href="#"><?php echo $lang['xlx_master'];?>:<span><b>XLX Master</b>Set your prefered XLX master here</span></a></td>
-					<td style="text-align: left;" colspan="2"><select name="dmrMasterHost3">
+					<td style="text-align: left;" colspan="2"><select name="dmrMasterHost3" class="dmrMasterHost3">
 					    <?php
 					    $dmrMasterFile3 = fopen("/usr/local/etc/DMR_Hosts.txt", "r");
 					    $testMMDVMdmrMaster3 = "";
@@ -3557,7 +3569,7 @@ $MYCALL=strtoupper($callsign);
 				    <?php if (isset($configdmrgateway['XLX Network 1']['Startup'])) { ?>
 					<tr>
 					    <td align="left"><a class="tooltip2" href="#"><?php echo $lang['xlx_startup_tg'];?>:<span><b>XLX Startup TG</b></span></a></td>
-					    <td align="left" colspan="2"><select name="dmrMasterHost3Startup">
+					    <td align="left" colspan="2"><select name="dmrMasterHost3Startup" class="dmrMasterHost3Startup">
 						<?php
 						if (isset($configdmrgateway['XLX Network 1']['Startup'])) {
 						    echo '      <option value="None">None</option>'."\n";
@@ -3919,7 +3931,7 @@ $MYCALL=strtoupper($callsign);
 				</tr>
 				<tr>
 				    <td align="left"><a class="tooltip2" href="#"><?php echo $lang['ysf_startup_host'];?>:<span><b>YSF Host</b>Set your prefered YSF Host here</span></a></td>
-				    <td colspan="2" style="text-align: left;"><select name="ysfStartupHost">
+				    <td colspan="2" style="text-align: left;"><select class="ysfStartupHost" name="ysfStartupHost">
 					<?php
 					if (isset($configysfgateway['Network']['Startup'])) {
 					    $testYSFHost = $configysfgateway['Network']['Startup'];
