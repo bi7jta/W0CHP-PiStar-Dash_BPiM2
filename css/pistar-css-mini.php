@@ -9,11 +9,6 @@ include_once('css-base.php');
     text-align: left;
     margin: auto;
     background : <?php echo $backgroundContent; ?>;
-    border-radius: 10px 10px 10px 10px;
-    -webkit-border-radius: 10px 10px 10px 10px; 
-    -khtml-border-radius: 10px 10px 10px 10px;
-    -ms-border-radius: 10px 10px 10px 10px;
-    box-shadow: 3px 3px 3px #707070;
 }
 
 body, font {
@@ -32,10 +27,6 @@ body, font {
     font-family : 'Source Sans Pro', sans-serif;
     text-align : left;
     padding : 5px 0px 5px 0px;
-    border-radius: 10px 10px 0 0;
-    -webkit-border-radius: 10px 10px 0px 0px; 
-    -khtml-border-radius: 10px 10px 0px 0px;
-    -ms-border-radius: 10px 10px 0px 0px;
  }
 
 .nav {
@@ -86,10 +77,6 @@ body, font {
     font-size : 9px;
     text-align : center;
     padding : 10px 0 10px 0;
-    border-radius: 0 0 10px 10px;
-    -webkit-border-radius: 0px 0px 10px 10px; 
-    -khtml-border-radius: 0px 0px 10px 10px;
-    -ms-border-radius: 0px 0px 10px 10px;
     clear : both;
 }
 
@@ -125,7 +112,6 @@ table {
 
 table th {
     font-family: 'Inconsolata', monospace;
-    text-shadow: 1px 1px <?php echo $tableHeadDropShaddow; ?>;
     text-decoration: none;
     color : <?php echo $textBanners; ?>;
     background: <?php echo $backgroundBanners; ?>;
@@ -171,20 +157,17 @@ a.tooltip, a.tooltip:link, a.tooltip:visited, a.tooltip:active  {
 }
 
 a.tooltip:hover {
-    text-shadow: none;
     text-decoration: none;
     color: #FFFFFF;
     background: transparent;
 }
 
 a.tooltip span {
-    text-shadow: none;
     text-decoration: none;
     display: none;
 }
 
 a.tooltip:hover span {
-    text-shadow: none;
     text-decoration: none;
     display: block;
     position: absolute;
@@ -200,7 +183,6 @@ a.tooltip:hover span {
 }
 
 a.tooltip span b {
-    text-shadow: none;
     text-decoration: none;
     display: block;
     color: #000000;
@@ -214,7 +196,6 @@ a.tooltip span b {
 }
 
 a.tooltip2, a.tooltip2:link, a.tooltip2:visited, a.tooltip2:active  {
-    text-shadow: none;
     text-decoration: none;
     position: relative;
     font-weight: bold;
@@ -222,20 +203,17 @@ a.tooltip2, a.tooltip2:link, a.tooltip2:visited, a.tooltip2:active  {
 }
 
 a.tooltip2:hover {
-    text-shadow: none;
     text-decoration: none;
     color: #000000;
     background: transparent;
 }
 
 a.tooltip2 span {
-    text-shadow: none;
     text-decoration: none;
     display: none;
 }
 
 a.tooltip2:hover span {
-    text-shadow: none;
     text-decoration: none;
     display: block;
     position: absolute;
@@ -251,7 +229,6 @@ a.tooltip2:hover span {
 }
 
 a.tooltip2 span b {
-    text-shadow: none;
     text-decoration: none;
     display: block;
     color: #000000;
@@ -302,7 +279,6 @@ ul.mmenu li a.current span, ul.mmenu li a:hover span {
 }
 
 h1 {
-    text-shadow: 2px 2px <?php echo $bannerDropShaddows; ?>;
     text-align: center;
 }
 
@@ -439,7 +415,6 @@ input.toggle-round-flat:focus + label {
     width: 170px;
     opacity: 0;
     visibility: hidden;
-    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
 }
 
 .mainnav ul {
@@ -560,7 +535,6 @@ input.toggle-round-flat:focus + label {
     left: 170px;
     opacity: 0;
     visibility: hidden;
-    box-shadow: 0px -123px 16px 0px rgba(0,0,0,0.2);
 }
 
 .menuconfig .menuadmin .menudashboard .menuupdate .menuupgrade .menupower .menulogs .menubackup .menuexpert .menureset .menusysinfo {
