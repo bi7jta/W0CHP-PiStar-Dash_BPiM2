@@ -320,7 +320,7 @@ input.toggle-round-flat + label:before {
     left: 1px;
     bottom: 1px;
     right: 1px;
-    background-color: #fff;
+    background-color: #999;
     background: <?php echo $backgroundContent; ?>;
     border-radius: 10px;
     transition: background 0.4s;
@@ -331,18 +331,18 @@ input.toggle-round-flat + label:after {
     left: 2px;
     bottom: 2px;
     width: 16px;
-    background-color: #dddddd;
+    background-color:  #999;
     border-radius: 12px;
     transition: margin 0.4s, background 0.4s;
 }
 
 input.toggle-round-flat:checked + label {
-    background-color: <?php echo $backgroundBanners; ?>;
+    background-color: #ddd;
 }
 
 input.toggle-round-flat:checked + label:after {
     margin-left: 14px;
-    background-color: <?php echo $backgroundBanners; ?>;
+    background-color: #fff;
 }
 
 input.toggle-round-flat:focus + label {
