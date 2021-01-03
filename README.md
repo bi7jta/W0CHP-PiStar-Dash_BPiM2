@@ -8,7 +8,9 @@ and you're fully on your own. *Use at your own risk*, and DO NOT ask me for
 support.  Nor should you file/report any bugs etc. on any official Pi-Star
 medium...this is not an oficial Pi-Star release.
 
-If you ask me to support, **I will ignore you.**
+If you ask me to support, **I will ignore you.** It's strongly recommended that
+you read and heed the [rules and
+caveats](https://w0chp.net/w0chp-pistar-dash/#the-rules-and-caveats----important).
 
 ## Features and enhancements (not an exhaustive list)
 
