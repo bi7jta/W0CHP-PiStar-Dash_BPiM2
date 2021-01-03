@@ -39,8 +39,8 @@ if ($_SERVER["PHP_SELF"] == "/admin/expert/ssh_access.php") {
     <title>Pi-Star - <?php echo $lang['digital_voice']." ".$lang['dashboard']." - SSH";?></title>
     <link rel="stylesheet" type="text/css" href="../css/pistar-css.php" />
     <link rel="stylesheet" type="text/css" href="/css/font-awesome-4.7.0/css/font-awesome.min.css" />
-    <script type="text/javascript" src="https://code.jquery.com/jquery-1.8.2.min.js"></script>
-    <script type="text/javascript" src="https:////creativecouple.github.com/jquery-timing/jquery-timing.min.js"></script>
+    <script type="text/javascript" src="/jquery.min.js"></script>
+    <script type="text/javascript" src="/jquery-timing.min.js"></script>
   </head>
   <body>
   <div class="container">
