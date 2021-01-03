@@ -71,7 +71,7 @@ checkSessionValidity();
         <script src="/select2/js/select2.min.js"></script>
          <script>
           $(document).ready(function() {
-            $('.ysfHosts-basic-single').select2();
+            $('.ysfLinkHost').select2();
           });
         </script>
     </head>

@@ -71,12 +71,12 @@ if (isset($_SESSION['YSFGatewayConfigs']['Remote Commands']['Enable']) && (isset
 		<table>
 		    <tr>
 			<th width="150"><a class="tooltip" href="#">Reflector<span><b>Reflector</b></span></a></th>
-			<th width="150"><a class="tooltip" href="#">Link / Unlink<span><b>Link or unlink</b></span></a></th>
+			<th width="150"><a class="tooltip" href="#">Link / Un-link<span><b>Link or Un-link</b></span></a></th>
 			<th width="150"><a class="tooltip" href="#">Action<span><b>Action</b></span></a></th>
 		    </tr>
 		    <tr>
 			<td>
-			    <select name="ysfLinkHost" class="ysfHosts-basic-single">
+			    <select name="ysfLinkHost" class="ysfLinkHost">
 				<?php
 				if (isset($_SESSION['YSFGatewayConfigs']['Network']['Startup'])) {
 				    $testYSFHost = $_SESSION['YSFGatewayConfigs']['Network']['Startup'];
@@ -150,7 +150,7 @@ if (isset($_SESSION['YSFGatewayConfigs']['Remote Commands']['Enable']) && (isset
 			</td>
 			<td>
 			    <input type="radio" name="Link" value="LINK" />Link
-			    <input type="radio" name="Link" value="UNLINK" checked="checked"  />UnLink
+			    <input type="radio" name="Link" value="UNLINK" checked="checked"  />Un-Link
 			</td>
 			<td>
 			    <input type="hidden" name="func" value="ysf_man" />
