@@ -12,15 +12,18 @@ If you ask me to support, **I will ignore you.**
 
 ## Features and enhancements (not an exhaustive list)
 
-* Updated UI elements galore, styling, wider, bigger, and mobile-friendly. Better fonts (no MS font references here!).
+* Updated UI elements galore, styling, wider, bigger, and mobile-friendly
+  dashboard/last-heard. Better fonts.
 
 * More Last Heard rows displayed (40 vs. 20).
+
+* Searchable drop-downs for massive host lists in configuration/admin pages.
 
 * BrandMeister Manager revamps galore:
 
   * Now displays connected actual talkgroup names.
 
-  * Reflector functionality removed per <https://news.brandmeister.network/brandmeister-dmr-reflectors-support-ending-by-end-of-2020/>.
+  * Reflector functionality removed per [BrandMeister's announcement](https://news.brandmeister.network/brandmeister-dmr-reflectors-support-ending-by-end-of-2020/).
 
   * Connected dynamic talkgroups now display idle-timeout time (due to no TX).
 
@@ -46,33 +49,33 @@ If you ask me to support, **I will ignore you.**
 
 * Additional hardware and system information displayed in top header.
 
-* Better dashboard mobile device view.
+* Admin page split up into logical sub-sections/sub-pages, in order to present
+  better feedback messages when making changes.
+  * Note: Last-Heard and other dynamic tables are now only displayed in the main admin page.
+    Once entering the sub-pages, the focus is now on the task-at-hand, and the dynamic tables are not displayed.
 
 * Talker Alias (DMR) displayed next to callsign when operator is transmitting
   (when applicable). This needs a lot of work, yet.  (This is on the
   `TalkerAlias` branch, and needs to be explicitly be installed/defined - caveat
   emptor...this is buggy!).
 
-* Admin page split up into logical sub-sections/sub-pages, in order to present
-  better feedback messages when making changes.
-  * Note: Last-Heard and other dynamic tables are now only displayed in the main admin page.
-    Once entering the sub-pages, the focus is now on the task-at-hand, and the dynamic tables are not displayed.
-
 * Much more. See [screenshots below](#screenshots).
 
 ## Installing `W0CHP-PiStar-Dash`
 
-1. Open an SSH session to your Pi-Star instance.
+1. Make a backup of your configuration - just in case.
 
-2. Run:
-
-        rpi-rw
+2. Open an SSH session to your Pi-Star instance.
 
 3. Run:
 
+        rpi-rw
+
+4. Run:
+
         curl https://repo.w0chp.net/Chipster/W0CHP-PiStar-Install/raw/master/W0CHP-pistar -o W0CHP-pistar
 
-4. Run this to familiarize yourself with the available options/arguments:
+5. Run this to familiarize yourself with the available options/arguments:
 
         sudo bash ./W0CHP-pistar -h
 
@@ -85,7 +88,7 @@ If you ask me to support, **I will ignore you.**
         -rd,  --restore-dashboard        Restore original dashboard.
         -s,   --status                   Display current install, original or W0CHP installations.
 
-5. When ready to install, run the above command again with the option/argument you wish...e.g:
+6. When ready to install, run the above command again with the option/argument you wish...e.g:
 
         sudo bash ./W0CHP-pistar -id
 
