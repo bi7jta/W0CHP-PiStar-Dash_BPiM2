@@ -92,7 +92,7 @@ If you ask me to support, **I will ignore you.**
 
         sudo bash ./W0CHP-pistar -id
 
-(...to install the dashboard with `W0CHP` CSS).
+    (...to install the dashboard with `W0CHP` CSS).
 
 ## Updating `W0CHP-PiStar-Dash`
 
