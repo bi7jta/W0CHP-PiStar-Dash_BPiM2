@@ -14,12 +14,11 @@ caveats](https://w0chp.net/w0chp-pistar-dash/#the-rules-and-caveats----important
 
 ## Features and enhancements (not an exhaustive list)
 
-* Updated UI elements galore, styling, wider, bigger, and mobile-friendly
-  dashboard/last-heard. Better fonts.
+* Updated user interface elements galore, styling, wider, bigger, updated fonts, etc.
 
 * More Last Heard rows displayed (40 vs. 20).
 
-* Searchable drop-downs for massive host lists in configuration/admin pages.
+* Searchable drop-downs for massive host lists in configuration/admin pages. E.g. YSF Hosts, XLX Hosts, DMR Hosts, etc.
 
 * BrandMeister Manager revamps galore:
 
