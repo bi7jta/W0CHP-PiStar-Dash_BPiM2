@@ -120,7 +120,8 @@ if ( $testMMDVModeDMR == 1 ) {
     }
 }
 
-if ( $dmrID ) {
+if (empty($dmrID) == false)
+{
     // Work out if the data has been posted or not
     if ( !empty($_POST) && isset($_POST["tgifSubmit"]) ) { // Data has been posted for this page
 	// Are we a repeater
