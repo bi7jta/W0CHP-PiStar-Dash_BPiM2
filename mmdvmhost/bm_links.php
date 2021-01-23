@@ -51,7 +51,7 @@ if ( $testMMDVModeDMR == 1 ) {
 	fclose($dmrMasterFile);
     }
     
-    if ((substr($dmrMasterHost, 0, 2) == "BM") && ($bmEnabled == true)) {
+    if ((substr($dmrMasterHost, 0, 3) == "BM ") && ($bmEnabled == true)) {
 	// Use BM API to get information about current TGs
 	$jsonContext = stream_context_create(array('http'=>array('timeout' => 2, 'header' => 'User-Agent: Pi-Star '.$_SESSION['PiStarRelease']['Pi-Star']['Version'].'W0CHP-Dashboard for '.$dmrID) )); // Add Timout and User Agent to include DMRID
 	$json = json_decode(@file_get_contents("https://api.brandmeister.network/v1.0/repeater/?action=PROFILE&q=$dmrID", true, $jsonContext));
