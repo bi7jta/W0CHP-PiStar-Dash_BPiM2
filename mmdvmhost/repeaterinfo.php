@@ -54,11 +54,24 @@ require_once($_SERVER['DOCUMENT_ROOT'].'/config/ircddblocal.php');
 	<?php
 	// TRX Status code
 	if (isset($lastHeard[0])) {
-	    $listElem = $lastHeard[0];
-	    if ( $listElem[2] && $listElem[6] == null && $listElem[5] !== 'RF') {
-		echo "<td style=\"background:#f33; color:#ffffff; font-weight:bold;\">TX: $listElem[1]</td>";
+	    $isTXing = false;
+	    
+	    // Go through the whole LH array, backward, looking for transmission.
+	    for (end($lastHeard); (($currentKey = key($lastHeard)) !== null); prev($lastHeard)) {
+		    $listElem = current($lastHeard);
+		
+		    if ($listElem[2] && ($listElem[6] == null) && ($listElem[5] !== 'RF')) {
+		        $isTXing = true;
+		    
+		        // Get rid of 'Slot x' for DMR, as it is meaningless, when 2 slots are txing at the same time.
+		        $txMode = preg_split('#\s+#', $listElem[1])[0];
+		        echo "<td style=\"background:#f33; color:#ffffff; font-weight:bold;\">TX: $txMode</td>";
+		        break;
+            }     
 	    }
-	    else {
+	    
+	    if ($isTXing == false) {
+		    $listElem = $lastHeard[0];
 	        if (getActualMode($lastHeard, $_SESSION['MMDVMHostConfigs']) === 'idle') {
 	            echo "<td style=\"background:#0b0; color:#000;\">Idle</td>";
 	        }
