@@ -86,6 +86,7 @@ if ($_SERVER["PHP_SELF"] == "/admin/config_backup.php") {
 			    $output .= shell_exec("sudo cp /etc/mmdvmhost $backupDir 2>&1")."\n";
 			    $output .= shell_exec("sudo cp /etc/dstarrepeater $backupDir 2>&1")."\n";
 			    $output .= shell_exec("sudo cp /etc/dapnetgateway $backupDir 2>&1")."\n";
+                            $output .= shell_exec("sudo cp /etc/pistar-css.ini $backupDir 2>&1");
 			    $output .= shell_exec("sudo cp /etc/p25gateway $backupDir 2>&1")."\n";
 			    $output .= shell_exec("sudo cp /etc/ysfgateway $backupDir 2>&1")."\n";
 			    $output .= shell_exec("sudo cp /etc/nxdngateway $backupDir 2>&1")."\n";

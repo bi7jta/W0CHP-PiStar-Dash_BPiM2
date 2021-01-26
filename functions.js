@@ -18,21 +18,27 @@ function checkPass(){                   //used in confirm matching password entr
     document.getElementById('submitpwd').setAttribute("disabled","disabled");
   }
 }
-function enableOnNonEmpty() {
-    if (arguments.length >= 2)
-    {
-	var ti = document.getElementById(arguments[0]);
-	if(ti.value.replace(/ /g,'') != '') {
-	    for (i = 1; i < arguments.length; i++) {
-		document.getElementById(arguments[i]).removeAttribute("disabled");
-	    }
+function CheckPSK(psk) {
+	if(psk.value.length > 0 && psk.value.length < 8) {
+		psk.style.background='#FFD0D0';
+		document.getElementById('Save').disabled = true;
+	} else {
+		psk.style.background='#D0FFD0';
+		document.getElementById('Save').disabled = false;
 	}
-	else {
-	    for (i = 1; i < arguments.length; i++) {
-		document.getElementById(arguments[i]).setAttribute("disabled", "disabled");
-	    }
-	}
-    }
+}
+function checkPskMatch(){                   //used in confirm matching psk entries
+  var psk1 = document.getElementById('psk1');
+  var psk2 = document.getElementById('psk2');
+  var goodColor = "#66cc66";
+  var badColor = "#ff6666";
+  if((psk1.value != '') && (psk1.value == psk2.value)){
+    psk2.style.backgroundColor = goodColor;
+    document.getElementById('submitpsk').removeAttribute("disabled");
+  }else{
+    psk2.style.backgroundColor = badColor;
+    document.getElementById('submitpsk').setAttribute("disabled","disabled");
+  }
 }
 function checkFrequency(){
   // Set the colours
@@ -87,4 +93,246 @@ function checkFrequency(){
     if (145.8 <= intFreqPOCSAG && intFreqPOCSAG <= 146) { pocsagFrequency.style.backgroundColor = badColor; }
     if (435 <= intFreqPOCSAG && intFreqPOCSAG <= 438)   { pocsagFrequency.style.backgroundColor = badColor; }
   }
+}
+function toggleDMRCheckbox(event) {
+  switch(document.getElementById('aria-toggle-dmr').getAttribute('aria-checked')) {
+    case "true":
+      document.getElementById('aria-toggle-dmr').setAttribute('aria-checked', "false");
+      //document.getElementById('toggle-dmr').click();
+      break;
+    case "false":
+      document.getElementById('aria-toggle-dmr').setAttribute('aria-checked', "true");
+      //document.getElementById('toggle-dmr').click();
+      break;
+  }
+  if(event.keyCode == '32') { document.getElementById('aria-toggle-dmr').click(); }
+}
+function toggleDSTARCheckbox(event) {
+  switch(document.getElementById('aria-toggle-dstar').getAttribute('aria-checked')) {
+    case "true":
+      document.getElementById('aria-toggle-dstar').setAttribute('aria-checked', "false");
+      //document.getElementById('toggle-dstar').click();
+      break;
+    case "false":
+      document.getElementById('aria-toggle-dstar').setAttribute('aria-checked', "true");
+      //document.getElementById('toggle-dstar').click();
+      break;
+  }
+  if(event.keyCode == '32') { document.getElementById('aria-toggle-dstar').click(); }
+}
+function toggleYSFCheckbox(event) {
+  switch(document.getElementById('aria-toggle-ysf').getAttribute('aria-checked')) {
+    case "true":
+      document.getElementById('aria-toggle-ysf').setAttribute('aria-checked', "false");
+      //document.getElementById('toggle-ysf').click();
+      break;
+    case "false":
+      document.getElementById('aria-toggle-ysf').setAttribute('aria-checked', "true");
+      //document.getElementById('toggle-ysf').click();
+      break;
+  }
+  if(event.keyCode == '32') { document.getElementById('aria-toggle-ysf').click(); }
+}
+function toggleP25Checkbox(event) {
+  switch(document.getElementById('aria-toggle-p25').getAttribute('aria-checked')) {
+    case "true":
+      document.getElementById('aria-toggle-p25').setAttribute('aria-checked', "false");
+      //document.getElementById('toggle-p25').click();
+      break;
+    case "false":
+      document.getElementById('aria-toggle-p25').setAttribute('aria-checked', "true");
+      //document.getElementById('toggle-p25').click();
+      break;
+  }
+  if(event.keyCode == '32') { document.getElementById('aria-toggle-p25').click(); }
+}
+function toggleNXDNCheckbox(event) {
+  switch(document.getElementById('aria-toggle-nxdn').getAttribute('aria-checked')) {
+    case "true":
+      document.getElementById('aria-toggle-nxdn').setAttribute('aria-checked', "false");
+      //document.getElementById('toggle-nxdn').click();
+      break;
+    case "false":
+      document.getElementById('aria-toggle-nxdn').setAttribute('aria-checked', "true");
+      //document.getElementById('toggle-nxdn').click();
+      break;
+  }
+  if(event.keyCode == '32') { document.getElementById('aria-toggle-nxdn').click(); }
+}
+function toggleYSF2DMRCheckbox(event) {
+  switch(document.getElementById('aria-toggle-ysf2dmr').getAttribute('aria-checked')) {
+    case "true":
+      document.getElementById('aria-toggle-ysf2dmr').setAttribute('aria-checked', "false");
+      //document.getElementById('toggle-ysf2dmr').click();
+      break;
+    case "false":
+      document.getElementById('aria-toggle-ysf2dmr').setAttribute('aria-checked', "true");
+      //document.getElementById('toggle-ysf2dmr').click();
+      break;
+  }
+  if(event.keyCode == '32') { document.getElementById('aria-toggle-ysf2dmr').click(); }
+}
+function toggleYSF2NXDNCheckbox(event) {
+  switch(document.getElementById('aria-toggle-ysf2nxdn').getAttribute('aria-checked')) {
+    case "true":
+      document.getElementById('aria-toggle-ysf2nxdn').setAttribute('aria-checked', "false");
+      //document.getElementById('toggle-ysf2nxdn').click();
+      break;
+    case "false":
+      document.getElementById('aria-toggle-ysf2nxdn').setAttribute('aria-checked', "true");
+      //document.getElementById('toggle-ysf2nxdn').click();
+      break;
+  }
+  if(event.keyCode == '32') { document.getElementById('aria-toggle-ysf2nxdn').click(); }
+}
+function toggleYSF2P25Checkbox(event) {
+  switch(document.getElementById('aria-toggle-ysf2p25').getAttribute('aria-checked')) {
+    case "true":
+      document.getElementById('aria-toggle-ysf2p25').setAttribute('aria-checked', "false");
+      //document.getElementById('toggle-ysf2p25').click();
+      break;
+    case "false":
+      document.getElementById('aria-toggle-ysf2p25').setAttribute('aria-checked', "true");
+      //document.getElementById('toggle-ysf2p25').click();
+      break;
+  }
+  if(event.keyCode == '32') { document.getElementById('aria-toggle-ysf2p25').click(); }
+}
+function toggleDMR2YSFCheckbox(event) {
+  switch(document.getElementById('aria-toggle-dmr2ysf').getAttribute('aria-checked')) {
+    case "true":
+      document.getElementById('aria-toggle-dmr2ysf').setAttribute('aria-checked', "false");
+      //document.getElementById('toggle-dmr2ysf').click();
+      break;
+    case "false":
+      document.getElementById('aria-toggle-dmr2ysf').setAttribute('aria-checked', "true");
+      //document.getElementById('toggle-dmr2ysf').click();
+      break;
+  }
+  if(event.keyCode == '32') { document.getElementById('aria-toggle-dmr2ysf').click(); }
+}
+function toggleDMR2NXDNCheckbox(event) {
+  switch(document.getElementById('aria-toggle-dmr2nxdn').getAttribute('aria-checked')) {
+    case "true":
+      document.getElementById('aria-toggle-dmr2nxdn').setAttribute('aria-checked', "false");
+      //document.getElementById('toggle-dmr2nxdn').click();
+      break;
+    case "false":
+      document.getElementById('aria-toggle-dmr2nxdn').setAttribute('aria-checked', "true");
+      //document.getElementById('toggle-dmr2nxdn').click();
+      break;
+  }
+  if(event.keyCode == '32') { document.getElementById('aria-toggle-dmr2nxdn').click(); }
+}
+function togglePOCSAGCheckbox(event) {
+  switch(document.getElementById('aria-toggle-pocsag').getAttribute('aria-checked')) {
+    case "true":
+      document.getElementById('aria-toggle-pocsag').setAttribute('aria-checked', "false");
+      //document.getElementById('toggle-pocsag').click();
+      break;
+    case "false":
+      document.getElementById('aria-toggle-pocsag').setAttribute('aria-checked', "true");
+      //document.getElementById('toggle-pocsag').click();
+      break;
+  }
+  if(event.keyCode == '32') { document.getElementById('aria-toggle-pocsag').click(); }
+}
+function toggleDmrGatewayNet1EnCheckbox(event) {
+  switch(document.getElementById('aria-toggle-dmrGatewayNet1En').getAttribute('aria-checked')) {
+    case "true":
+      document.getElementById('aria-toggle-dmrGatewayNet1En').setAttribute('aria-checked', "false");
+      break;
+    case "false":
+      document.getElementById('aria-toggle-dmrGatewayNet1En').setAttribute('aria-checked', "true");
+      break;
+  }
+  if(event.keyCode == '32') { document.getElementById('aria-toggle-dmrGatewayNet1En').click(); }
+}
+function toggleDmrGatewayNet2EnCheckbox(event) {
+  switch(document.getElementById('aria-toggle-dmrGatewayNet2En').getAttribute('aria-checked')) {
+    case "true":
+      document.getElementById('aria-toggle-dmrGatewayNet2En').setAttribute('aria-checked', "false");
+      break;
+    case "false":
+      document.getElementById('aria-toggle-dmrGatewayNet2En').setAttribute('aria-checked', "true");
+      break;
+  }
+  if(event.keyCode == '32') { document.getElementById('aria-toggle-dmrGatewayNet2En').click(); }
+}
+function toggleDmrGatewayXlxEnCheckbox(event) {
+  switch(document.getElementById('aria-toggle-dmrGatewayXlxEn').getAttribute('aria-checked')) {
+    case "true":
+      document.getElementById('aria-toggle-dmrGatewayXlxEn').setAttribute('aria-checked', "false");
+      break;
+    case "false":
+      document.getElementById('aria-toggle-dmrGatewayXlxEn').setAttribute('aria-checked', "true");
+      break;
+  }
+  if(event.keyCode == '32') { document.getElementById('aria-toggle-dmrGatewayXlxEn').click(); }
+}
+function toggleDmrEmbeddedLCOnly(event) {
+  switch(document.getElementById('aria-toggle-dmrEmbeddedLCOnly').getAttribute('aria-checked')) {
+    case "true":
+      document.getElementById('aria-toggle-dmrEmbeddedLCOnly').setAttribute('aria-checked', "false");
+      break;
+    case "false":
+      document.getElementById('aria-toggle-dmrEmbeddedLCOnly').setAttribute('aria-checked', "true");
+      break;
+  }
+  if(event.keyCode == '32') { document.getElementById('aria-toggle-dmrEmbeddedLCOnly').click(); }
+}
+function toggleDmrDumpTAData(event) {
+  switch(document.getElementById('aria-toggle-dmrDumpTAData').getAttribute('aria-checked')) {
+    case "true":
+      document.getElementById('aria-toggle-dmrDumpTAData').setAttribute('aria-checked', "false");
+      break;
+    case "false":
+      document.getElementById('aria-toggle-dmrDumpTAData').setAttribute('aria-checked', "true");
+      break;
+  }
+  if(event.keyCode == '32') { document.getElementById('aria-toggle-dmrDumpTAData').click(); }
+}
+function toggleHostFilesYSFUpper(event) {
+  switch(document.getElementById('aria-toggle-confHostFilesYSFUpper').getAttribute('aria-checked')) {
+    case "true":
+      document.getElementById('aria-toggle-confHostFilesYSFUpper').setAttribute('aria-checked', "false");
+      break;
+    case "false":
+      document.getElementById('aria-toggle-confHostFilesYSFUpper').setAttribute('aria-checked', "true");
+      break;
+  }
+  if(event.keyCode == '32') { document.getElementById('aria-toggle-confHostFilesYSFUpper').click(); }
+}
+function toggleWiresXCommandPassthrough(event) {
+  switch(document.getElementById('aria-toggle-confWiresXCommandPassthrough').getAttribute('aria-checked')) {
+    case "true":
+      document.getElementById('aria-toggle-confWiresXCommandPassthrough').setAttribute('aria-checked', "false");
+      break;
+    case "false":
+      document.getElementById('aria-toggle-confWiresXCommandPassthrough').setAttribute('aria-checked', "true");
+      break;
+  }
+  if(event.keyCode == '32') { document.getElementById('aria-toggle-confWiresXCommandPassthrough').click(); }
+}
+function toggleDstarTimeAnnounce(event) {
+  switch(document.getElementById('aria-toggle-timeAnnounce').getAttribute('aria-checked')) {
+    case "true":
+      document.getElementById('aria-toggle-timeAnnounce').setAttribute('aria-checked', "false");
+      break;
+    case "false":
+      document.getElementById('aria-toggle-timeAnnounce').setAttribute('aria-checked', "true");
+      break;
+  }
+  if(event.keyCode == '32') { document.getElementById('aria-toggle-timeAnnounce').click(); }
+}
+function toggleDstarDplusHostfiles(event) {
+  switch(document.getElementById('aria-toggle-dplusHostFiles').getAttribute('aria-checked')) {
+    case "true":
+      document.getElementById('aria-toggle-dplusHostFiles').setAttribute('aria-checked', "false");
+      break;
+    case "false":
+      document.getElementById('aria-toggle-dplusHostFiles').setAttribute('aria-checked', "true");
+      break;
+  }
+  if(event.keyCode == '32') { document.getElementById('aria-toggle-dplusHostFiles').click(); }
 }
