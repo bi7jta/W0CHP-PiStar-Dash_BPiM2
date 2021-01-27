@@ -27,6 +27,10 @@ require_once('config/ircddblocal.php');
 require_once('config/language.php');
 $cpuLoad = sys_getloadavg();
 
+// Load the pistar-release file
+$pistarReleaseConfig = '/etc/pistar-release';
+$configPistarRelease = parse_ini_file($pistarReleaseConfig, true);
+
 // Load the dstarrepeater config file
 $configdstar = getNoSectionsConfigContent('/etc/dstarrepeater');
 
@@ -633,49 +637,46 @@ $MYCALL=strtoupper($callsign);
 			 // Make the root filesystem writable
 			 exec('sudo mount -o remount,rw /');
 		    
-		    if (isset($_POST['adminPasswordUpdate'])) {
-			echo "<table>\n";
-			echo "<tr><th>Working...</th></tr>\n";
-			echo "<tr><td>Updating Password...</td></tr>\n";
-			echo "</table>\n";
-			
-			// Admin Password Change
-			if (empty($_POST['adminPassword']) != TRUE ) {
-			    $rollAdminPass0 = 'htpasswd -b /var/www/.htpasswd pi-star '.escapeshellcmd($_POST['adminPassword']);
-			    exec($rollAdminPass0);
-			    $rollAdminPass2 = 'sudo echo -e "'.escapeshellcmd($_POST['adminPassword']).'\n'.escapeshellcmd($_POST['adminPassword']).'" | sudo passwd pi-star';
-			    exec($rollAdminPass2);
-			    
-			    // File Manager password
-			    $fmAuth = '<?php'."\n".'$auth_users = array('."\n".'\'root\' => \''.password_hash(escapeshellcmd($_POST['adminPassword']), PASSWORD_DEFAULT).'\','."\n".'\'pi-star\' => \''.password_hash(escapeshellcmd($_POST['adminPassword']), PASSWORD_DEFAULT).'\''."\n".');'."\n".'?>'."\n";
-			    if (($fd = fopen('/etc/tinyfilemanager-auth.php', "w"))) {
-				@fwrite($fd, $fmAuth);
-				fclose($fd);
-			    }
-			    
-			    exec('sudo chown www-data:www-data '.$fmAuth.'');
-			    exec('sudo chmod 664 '.$fmAuth.'');
-			    
-			    echo "<br />\n";
-			    echo "<table>\n";
-			    echo "<tr><th>Done</th></tr>\n";
-			    echo "<tr><td>Password Updated...</td><tr>\n";
-			    echo "</table>\n";
-			    unset($_POST);
-			}
+	// Admin Password Change
+	if (empty($_POST['adminPassword']) != TRUE ) {
+	  $rollAdminPass0 = 'htpasswd -b /var/www/.htpasswd pi-star \''.stripslashes(trim($_POST['adminPassword'])).'\'';
+	  system($rollAdminPass0);
+	  $rollAdminPass2 = 'sudo echo -e \''.stripslashes(trim($_POST['adminPassword'])).'\n'.stripslashes(trim($_POST['adminPassword'])).'\' | sudo passwd pi-star';
+	  system($rollAdminPass2);
+	  unset($_POST);
+	  echo "<table>\n";
+	  echo "<tr><th>Working...</th></tr>\n";
+	  echo "<tr><td>Applying your configuration changes...</td></tr>\n";
+	  echo "</table>\n";
+	  echo '<script type="text/javascript">setTimeout(function() { window.location=window.location;},5000);</script>';
+	  echo "<br />\n</div>\n";
+          echo "<div class=\"footer\">\nPi-Star web config, &copy; Andy Taylor (MW0MWZ) 2014-".date("Y").".<br />\n";
+          echo "Need help? Click <a style=\"color: #ffffff;\" href=\"https://www.facebook.com/groups/pistarusergroup/\" target=\"_new\">here for the Support Group</a><br />\n";
+          echo "Get your copy of Pi-Star from <a style=\"color: #ffffff;\" href=\"http://www.pistar.uk/downloads/\" target=\"_blank\">here</a>.<br />\n";
+          echo "<br />\n</div>\n</div>\n</body>\n</html>\n";
+	  die();
+	  }
 
-         	// AutoAP PSK Change
-        	if (empty($_POST['autoapPsk']) != TRUE ) {
-        	  $rollAutoApPsk = 'sudo sed -i "/wpa_passphrase=/c\\wpa_passphrase='.$_POST['autoapPsk'].'" /etc/hostapd/hostapd.conf';
-	          system($rollAutoApPsk);
-        	  }
+	// AutoAP PSK Change
+	if (empty($_POST['autoapPsk']) != TRUE ) {
+	  $rollAutoApPsk = 'sudo sed -i "/wpa_passphrase=/c\\wpa_passphrase='.$_POST['autoapPsk'].'" /etc/hostapd/hostapd.conf';
+	  system($rollAutoApPsk);
+	  unset($_POST);
+	  echo "<table>\n";
+	  echo "<tr><th>Working...</th></tr>\n";
+	  echo "<tr><td>Applying your configuration changes...</td></tr>\n";
+	  echo "</table>\n";
+	  echo '<script type="text/javascript">setTimeout(function() { window.location=window.location;},5000);</script>';
+	  echo "<br />\n</div>\n";
+          echo "<div class=\"footer\">\nPi-Star web config, &copy; Andy Taylor (MW0MWZ) 2014-".date("Y").".<br />\n";
+          echo "Need help? Click <a style=\"color: #ffffff;\" href=\"https://www.facebook.com/groups/pistarusergroup/\" target=\"_new\">here for the Support Group</a><br />\n";
+          echo "Get your copy of Pi-Star from <a style=\"color: #ffffff;\" href=\"http://www.pistar.uk/downloads/\" target=\"_blank\">here</a>.<br />\n";
+          echo "<br />\n</div>\n</div>\n</body>\n</html>\n";
+	  die();
+	  }
 	
-			// Make the root filesystem writable
-			exec('sudo mount -o remount,ro /');
-			
 			echo '<script type="text/javascript">setTimeout(function() { window.location=window.location;},3000);</script>';
 			die();
-		    }
 		    
 		    // Stop Cron (occasionally remounts root as RO - would be bad if it did this at the wrong time....)
 		    exec('sudo systemctl stop cron.service > /dev/null 2>/dev/null &');			//Cron
