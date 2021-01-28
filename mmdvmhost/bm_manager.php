@@ -220,13 +220,13 @@ if ( $testMMDVModeDMR == 1 ) {
 	        if ( ($_POST["TGmgr"] == "DEL") && (isset($_POST["tgSubmit"])) ) { $bmAPIurl = $bmAPIurl."talkgroup/?action=DEL&id=".$dmrID; }
 	        if ( (isset($_POST["tgNr"])) && (isset($_POST["tgSubmit"])) ) { $targetTG = preg_replace("/[^0-9]/", "", $_POST["tgNr"]); }
 	        // Build the Data
-	        if ( (!isset($_POST["dropDyn"])) && (!isset($_POST["dropQso"])) ) {
-		    if (isset($_POST["tgSubmit"])) {
-		        $postDataTG = array(
-			    'talkgroup' => $targetTG,
-			    'timeslot' => $targetSlot,
-		        );
-		    }	
+            if ( (!isset($_POST["dropDyn"])) && (!isset($_POST["dropQso"])) && isset($targetTG) ) {
+		        if (isset($_POST["tgSubmit"])) {
+		            $postDataTG = array(
+			        'talkgroup' => $targetTG,
+			        'timeslot' => $targetSlot,
+		             );
+		        }	
 	        }
 	        // Build the Query
 	        $postData = '';
@@ -255,7 +255,7 @@ if ( $testMMDVModeDMR == 1 ) {
 	        echo '<b>BrandMeister Manager</b>'."\n";
 	        echo "<table>\n<tr><th>Command Output</th></tr>\n<tr><td>";
 	        //echo "Sending command to BrandMeister API";
-	        print "BrandMeister API: ".$feeback->{'message'};
+            if (isset($feeback)) { print "BrandMeister API: ".$feeback->{'message'}; } else { print "BrandMeister API: No Response"; }
 	        echo "<br />Page reloading...</td></tr>\n</table>\n";
 	        echo "<br />\n";
 	        // Clean up...
