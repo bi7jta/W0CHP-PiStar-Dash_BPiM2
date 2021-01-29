@@ -888,28 +888,21 @@ $MYCALL=strtoupper($callsign);
 			$configysfgateway['Info']['Description'] = '"'.$newConfDesc2.'"';
 			$confignxdngateway['Info']['Description'] = '"'.$newConfDesc2.'"';
 		    }
-		    
-		    // Set the URL
-		    if (empty($_POST['confURL']) != TRUE ) {
-			$newConfURL = strtolower(preg_replace('/[^A-Za-z0-9\.\?\#\+\=\%\&\_\,\-\/\:]/', '', $_POST['confURL']));
-			
-			if (escapeshellcmd($_POST['urlAuto']) == 'auto') {
-			    $txtURL = "http://www.qrz.com/db/".strtoupper(escapeshellcmd($_POST['confCallsign']));
-			    $configircddb['url'] = $txtURL;
-			}
-			
-			if (escapeshellcmd($_POST['urlAuto']) == 'man')  { 
-			    $txtURL = $newConfURL;
-			    $configircddb['url'] = $newConfURL;
-			}
-			
-			$configmmdvm['Info']['URL'] = '"'.$txtURL.'"';
-			$configysf2dmr['Info']['URL'] = '"'.$txtURL.'"';
-			$configysf2nxdn['Info']['URL'] = '"'.$txtURL.'"';
-			$configysf2p25['Info']['URL'] = '"'.$txtURL.'"';
-			$confignxdn2dmr['Info']['URL'] = '"'.$txtURL.'"';
-			$configdmrgateway['Info']['URL'] = '"'.$txtURL.'"';
-		    }
+		   
+	            // Set the URL
+	            if (empty($_POST['confURL']) != TRUE ) {
+	                $newConfURL = strtolower(preg_replace('/[^A-Za-z0-9\.\s\,\-\/\:]/', '', $_POST['confURL']));
+	                if (escapeshellcmd($_POST['urlAuto']) == 'auto') { $txtURL = "https://www.qrz.com/db/".strtoupper(escapeshellcmd($_POST['confCallsign'])); }
+	                if (escapeshellcmd($_POST['urlAuto']) == 'man')  { $txtURL = $newConfURL; }
+	                if (escapeshellcmd($_POST['urlAuto']) == 'auto') { $rollURL0 = 'sudo sed -i "/url=/c\\url=https://www.qrz.com/db/'.strtoupper(escapeshellcmd($_POST['confCallsign'])).'" /etc/ircddbgateway';  }
+	                if (escapeshellcmd($_POST['urlAuto']) == 'man') { $rollURL0 = 'sudo sed -i "/url=/c\\url='.$newConfURL.'" /etc/ircddbgateway'; }
+                        $configmmdvm['Info']['URL'] = $txtURL;
+	                $configysf2dmr['Info']['URL'] = $txtURL;
+	                $configysf2nxdn['Info']['URL'] = $txtURL;
+	                $configysf2p25['Info']['URL'] = $txtURL;
+	                $configdmrgateway['Info']['URL'] = $txtURL;
+	                system($rollURL0);
+	            } 
 		    
 		    // Set the APRS Server for APRSGateway
 		    if (empty($_POST['selectedAPRSHost']) != TRUE ) {
