@@ -335,24 +335,16 @@ function getYSFGatewayLog() {
     $logLines2 = array();
     if (file_exists(YSFGATEWAYLOGPATH."/".YSFGATEWAYLOGPREFIX."-".gmdate("Y-m-d").".log")) {
 	$logPath1 = YSFGATEWAYLOGPATH."/".YSFGATEWAYLOGPREFIX."-".gmdate("Y-m-d").".log";
-	//$logLines1 = explode("\n", `egrep -h "repeater|Starting|Opening YSF|Disconnect|Connect|Automatic|Disconnecting|Reverting|Linked" $logPath1 | tail -250`);
 	$logLines1 = preg_split('/\r\n|\r|\n/', `grep -E "onnection to|onnect to|ink|isconnect|Opening YSF network" $logPath1 | sed '/Linked to MMDVM/d' | sed '/Link successful to MMDVM/d' | sed '/*Link/d' | tail -1`);
     }
     $logLines1 = array_filter($logLines1);
-    //$logLines1 = array_slice($logLines1, -250);
-    //if (sizeof($logLines1) < 250) {
     if (sizeof($logLines1) == 0) {
 	if (file_exists(YSFGATEWAYLOGPATH."/".YSFGATEWAYLOGPREFIX."-".gmdate("Y-m-d", time() - 86340).".log")) {
 	    $logPath2 = YSFGATEWAYLOGPATH."/".YSFGATEWAYLOGPREFIX."-".gmdate("Y-m-d", time() - 86340).".log";
-	    //$logLines2 = explode("\n", `egrep -h "repeater|Starting|Opening YSF|Disconnect|Connect|Automatic|Disconnecting|Reverting|Linked" $logPath2 | tail -250`);
 	    $logLines1 = preg_split('/\r\n|\r|\n/', `grep -E "onnection to|onnect to|ink|isconnect|Opening YSF network" $logPath2 | sed '/Linked to MMDVM/d' | sed '/Link successful to MMDVM/d' | sed '/*Link/d' | tail -1`);
 	}
 	$logLines2 = array_filter($logLines2);
     }
-    //$logLines2 = array_slice($logLines2, -250);
-    //$logLines = $logLines1 + $logLines2;
-    //$logLines = array_slice($logLines, -250);
-    //return $logLines;
     if (sizeof($logLines1) == 0) {
 	$logLines = $logLines2;
     }
@@ -1021,7 +1013,9 @@ function getDSTARLinks() {
 		$linkDest	= $linx[4][0];
 		$linkDir	= $linx[5][0];
 	    }
-	    $out = "Linked to <b>" . $linkDest . "</b><br />\n(" . $protocol . " " . $linkDir . ")";
+		if (strtolower(substr($linkDir, 0, 2)) == "in") { $linkDir = "In"; }
+		if (strtolower(substr($linkDir, 0, 3)) == "out") { $linkDir = "Out"; }
+        $out = $linkDest." ".$protocol."/".$linkDir;
 	}
     }
     fclose($linkLog);
@@ -1155,12 +1149,12 @@ function getActualLink($logLines, $mode) {
 		    if (strpos($logLine,"Linked to")) {
 			$to = preg_replace('/[^0-9]/', '', substr($logLine, 44, 5));
 			$to = preg_replace('/[^0-9]/', '', $to);
-			return "Linked to TG".$to;
+            return "TG ".$to;
 		    }
 		    if (strpos($logLine,"Linked at start")) {
 			$to = preg_replace('/[^0-9]/', '', substr($logLine, 55, 5));
 			$to = preg_replace('/[^0-9]/', '', $to);
-			return "Linked to TG".$to;
+            return "TG ".$to;
 		    }
 		    if (strpos($logLine,"Starting NXDNGateway")) {
 			return "Not Linked";
@@ -1191,12 +1185,12 @@ function getActualLink($logLines, $mode) {
 		    if (strpos($logLine,"Linked to")) {
 			$to = preg_replace('/[^0-9]/', '', substr($logLine, 44, 5));
 			$to = preg_replace('/[^0-9]/', '', $to);
-			return "Linked to TG".$to;
+            return "TG ".$to;
 		    }
 		    if (strpos($logLine,"Linked at startup to")) {
 			$to = preg_replace('/[^0-9]/', '', substr($logLine, 55, 5));
 			$to = preg_replace('/[^0-9]/', '', $to);
-			return "Linked to TG".$to;
+            return "TG ".$to;
 		    }
 		    if (strpos($logLine,"Starting P25Gateway")) {
 			return "Not Linked";
@@ -1239,52 +1233,6 @@ function getActualReflector($logLines, $mode) {
     return "No Ref";
 }
 
-// Not used - to be removed
-//function getActiveYSFReflectors($logLines) {
-// 00000000001111111111222222222233333333334444444444555555555566666666667777777777888888888899999999990000000000111111111122
-// 01234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901
-// D: 2016-06-11 19:09:31.371 Have reflector status reply from 89164/FUSIONBE2       /FusionBelgium /002
-//	$reflectors = Array();
-//	$reflectorlist = Array();
-//	foreach ($logLines as $logLine) {
-//		if (strpos($logLine, "Have reflector status reply from")) {
-//			$timestamp = substr($logLine, 3, 19);
-//			$timestamp2 = new DateTime($timestamp);
-//			$now =  new DateTime();
-//			$timestamp2->add(new DateInterval('PT2H'));
-//			if ($now->format('U') <= $timestamp2->format('U')) {
-//				$str = substr($logLine, 60);
-//				$id = strtok($str, "/");
-//				$name = strtok("/");
-//				$description = strtok("/");
-//				$concount = strtok("/");
-//				if(!(array_search($name, $reflectors) > -1)) {
-//					array_push($reflectors,$name);
-//					array_push($reflectorlist, array($name, $description, $id, $concount, $timestamp));
-//				}
-//			}
-//		}
-//	}
-//	array_multisort($reflectorlist);
-//	return $reflectorlist;
-//}
-
-// Not used - to be removed
-function getName($callsign) {
-        $callsign = trim($callsign);
-        if (strpos($callsign,"-")) {
-                $callsign = substr($callsign,0,strpos($callsign,"-"));
-        }
-        exec("grep ".$callsign." ".DMRIDDATPATH, $output);
-        $delimiter =" ";
-        if (strpos($output[0],"\t")) {
-        $delimiter = "\t";
-        }
-        $name = substr($output[0], strpos($output[0],$delimiter)+1);
-        $name = substr($name, strpos($name,$delimiter)+1);
-        return $name;
-}
-
 //Some basic inits
 if (!in_array($_SERVER["PHP_SELF"],array('/mmdvmhost/bm_links.php','/mmdvmhost/bm_manager.php'),true)) {
     $logLinesMMDVM = getMMDVMLog();
@@ -1294,21 +1242,16 @@ if (!in_array($_SERVER["PHP_SELF"],array('/mmdvmhost/bm_links.php','/mmdvmhost/b
     
     // Only need these in repeaterinfo.php
     if (strpos($_SERVER["PHP_SELF"], 'repeaterinfo.php') !== false || strpos($_SERVER["PHP_SELF"], 'index.php') !== false) {
-	//$YSFGatewayconfigs = getYSFGatewayConfig();
 	$logLinesYSFGateway = getYSFGatewayLog();
 	$reverseLogLinesYSFGateway = $logLinesYSFGateway;
 	array_multisort($reverseLogLinesYSFGateway,SORT_DESC);
-	//$P25Gatewayconfigs = getP25GatewayConfig();
 	$logLinesP25Gateway = getP25GatewayLog();
-	//$reverseLogLinesP25Gateway = array_reverse(getP25GatewayLog());
-	//$NXDNGatewayconfigs = getNXDNGatewayConfig();
 	$logLinesNXDNGateway = getNXDNGatewayLog();
-	//$reverseLogLinesNXDNGateway = array_reverse(getNXDNGatewayLog());
     }
     
     // Only need these in index.php
     if (strpos($_SERVER["PHP_SELF"], 'index.php') !== false || strpos($_SERVER["PHP_SELF"], 'pages.php') !== false) {
-	// Will separate personnal and global messages only in Admin page, if MY_RIC is defined in dapnetapi.key.
+	// Will separate personal and global messages only in Admin page, if MY_RIC is defined in dapnetapi.key.
         $origin = (isset($_GET['origin']) ? $_GET['origin'] : (isset($myOrigin) ? $myOrigin : "unknown"));
         
 	$logLinesDAPNETGateway = getDAPNETGatewayLog(($origin == "admin" ? (isset($_SESSION['DAPNETAPIKeyConfigs']) ? getConfigItem("DAPNETAPI", "MY_RIC", $_SESSION['DAPNETAPIKeyConfigs']) : null) : null));
