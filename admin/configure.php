@@ -704,6 +704,7 @@ $MYCALL=strtoupper($callsign);
 		    exec('sudo systemctl stop dmr2nxdn.service > /dev/null 2>/dev/null &');		// DMR2YSF
 		    exec('sudo systemctl stop dmrgateway.service > /dev/null 2>/dev/null &');		// DMRGateway
 		    exec('sudo systemctl stop dapnetgateway.service > /dev/null 2>/dev/null &');		// DAPNetGateway
+                    system('sudo systemctl stop aprsgateway.service > /dev/null 2>/dev/null &');		// APRSGateway
 		    
 		    echo "<table>\n";
 		    echo "<tr><th>Working...</th></tr>\n";
@@ -913,6 +914,10 @@ $MYCALL=strtoupper($callsign);
 			$configysf2dmr['aprs.fi']['Enable'] = "0";
 			$configysf2nxdn['aprs.fi']['Enable'] = "0";
 			$configysf2p25['aprs.fi']['Enable'] = "0";
+                        if ($configPistarRelease['Pi-Star']['Version'] >= "4.1.4") {
+                            $rollAPRSGatewayHost = 'sudo sed -i "/Server=/c\\Server='.escapeshellcmd($_POST['selectedAPRSHost']).'" /etc/aprsgateway';
+                            system($rollAPRSGatewayHost);
+                        }
 		    }
 		    
 		    // Set ircDDBGateway and TimeServer language
@@ -1234,6 +1239,25 @@ $MYCALL=strtoupper($callsign);
 			$configysf2nxdn['Info']['Description'] = $newCallsignUpper."_Pi-Star";
 			$configysf2p25['Info']['Description'] = $newCallsignUpper."_Pi-Star";
 			$confignxdn2dmr['Info']['Description'] = $newCallsignUpper."_Pi-Star";
+                        if ($configPistarRelease['Pi-Star']['Version'] >= "4.1.4") {
+	                    $rollAPRSGatewayCallsign = 'sudo sed -i "/Callsign=/c\\Callsign='.$newCallsignUpper.'" /etc/aprsgateway';
+	                    system($rollAPRSGatewayCallsign);
+	                    $rollAPRSGatewayPassword = 'sudo sed -i "/Password=/c\\Password='.aprspass($newCallsignUpper).'" /etc/aprsgateway';
+	                    system($rollAPRSGatewayPassword);
+	                    $rollircDDBGatewayAprsPort = 'sudo sed -i "/aprsPort=/c\\aprsPort=8673" /etc/ircddbgateway';
+	                    system($rollircDDBGatewayAprsPort);
+	                    unset($configs['aprsPassword']);
+	                    $rollircDDBGatewayAprsPass = 'sudo sed -i "/aprsPassword/d" /etc/ircddbgateway';
+	                    system($rollircDDBGatewayAprsPass);
+	                    $rollAPRSGatewayEnable = 'sudo sed -i "/Enabled=/c\\Enabled=1" /etc/aprsgateway';
+	                    system($rollAPRSGatewayEnable);
+	                }
+
+	                // If ircDDBGateway config supports APRS Password
+	                if (isset($configs['aprsPassword'])) {
+		            $rollircDDBGatewayAprsPassword = 'sudo sed -i "/aprsPassword=/c\\aprsPassword='.aprspass($newCallsignUpper).'" /etc/ircddbgateway';
+		            system($rollircDDBGatewayAprsPassword);
+	                }
 			
 			exec($rollDASHBOARDcall);
 			exec($rollTIMESERVERcall);
@@ -2848,6 +2872,7 @@ $MYCALL=strtoupper($callsign);
 		    exec('sudo systemctl start dmr2nxdn.service > /dev/null 2>/dev/null &');		// DMR2NXDN
 		    exec('sudo systemctl start dmrgateway.service > /dev/null 2>/dev/null &');		// DMRGateway
 		    exec('sudo systemctl start dapnetgateway.service > /dev/null 2>/dev/null &');		// DAPNetGateway
+                    system('sudo systemctl start aprsgateway.service > /dev/null 2>/dev/null &');		// APRSGateway
 		    
 		    // Set the system timezone
 		    if (empty($_POST['systemTimezone']) != TRUE) {
