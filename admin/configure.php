@@ -3978,9 +3978,7 @@ $MYCALL=strtoupper($callsign);
 					    $ysfHostsLine = fgets($ysfHosts);
 					    $ysfHost = preg_split('/;/', $ysfHostsLine);
 					    if ((strpos($ysfHost[0], '#') === FALSE ) && ($ysfHost[0] != '')) {
-						if ( ($testYSFHost == $ysfHost[0]) || ($testYSFHost == $ysfHost[1]) ) {
-						    echo "      <option value=\"$ysfHost[0],$ysfHost[1]\" selected=\"selected\">YSF$ysfHost[0] - ".htmlspecialchars($ysfHost[1])." - ".htmlspecialchars($ysfHost[2])."</option>\n";
-						}
+                                                if ($testYSFHost == $ysfHost[1]) { echo "      <option value=\"$ysfHost[0],$ysfHost[1]\" selected=\"selected\">YSF$ysfHost[0] - ".htmlspecialchars($ysfHost[1])." - ".htmlspecialchars($ysfHost[2])."</option>\n"; }
 						else {
 						    echo "      <option value=\"$ysfHost[0],$ysfHost[1]\">YSF$ysfHost[0] - ".htmlspecialchars($ysfHost[1])." - ".htmlspecialchars($ysfHost[2])."</option>\n";
 						}
@@ -3993,9 +3991,7 @@ $MYCALL=strtoupper($callsign);
 						$ysfHostsLine = fgets($fcsHosts);
 						$ysfHost = preg_split('/;/', $ysfHostsLine);
 						if (substr($ysfHost[0], 0, 3) == "FCS") {
-						    if ( ($testYSFHost == $ysfHost[0]) || ($testYSFHost == $ysfHost[1]) ) { 
-							echo "      <option value=\"$ysfHost[0],$ysfHost[0]\" selected=\"selected\">$ysfHost[0] - ".htmlspecialchars($ysfHost[1])."</option>\n";
-						    }
+                                                    if ($testYSFHost == $ysfHost[0]) { echo "      <option value=\"$ysfHost[0],$ysfHost[0]\" selected=\"selected\">$ysfHost[0] - ".htmlspecialchars($ysfHost[1])."</option>\n"; }
 						    else {
 							echo "      <option value=\"$ysfHost[0],$ysfHost[0]\">$ysfHost[0] - ".htmlspecialchars($ysfHost[1])."</option>\n";
 						    }
