@@ -118,9 +118,7 @@ if (isset($_SESSION['YSFGatewayConfigs']['Remote Commands']['Enable']) && (isset
 					if (strlen($ysfHost[1]) >= 30) {
 					    $ysfHost[1] = substr($ysfHost[1], 0, 27)."...";
 					}
-					if ( ($testYSFHost == $ysfHost[0]) || ($testYSFHost == $ysfHost[1]) ) {
-					    echo "      <option value=\"YSF$ysfHost[0]\" selected=\"selected\">YSF$ysfHost[0] - ".htmlspecialchars($ysfHost[1])." - ".htmlspecialchars($ysfHost[2])."</option>\n";
-					}
+                                        if ($testYSFHost == $ysfHost[1]) { echo "      <option value=\"YSF$ysfHost[0]\" selected=\"selected\">YSF$ysfHost[0] - ".htmlspecialchars($ysfHost[1])." - ".htmlspecialchars($ysfHost[2])."</option>\n"; }
 					else {
 					    echo "      <option value=\"YSF$ysfHost[0]\">YSF$ysfHost[0] - ".htmlspecialchars($ysfHost[1])." - ".htmlspecialchars($ysfHost[2])."</option>\n";
 					}
@@ -136,9 +134,7 @@ if (isset($_SESSION['YSFGatewayConfigs']['Remote Commands']['Enable']) && (isset
 					    if (strlen($ysfHost[1]) >= 30) {
 						$ysfHost[1] = substr($ysfHost[1], 0, 27)."...";
 					    }
-					    if ( ($testYSFHost == $ysfHost[0]) || ($testYSFHost == $ysfHost[1]) ) {
-						echo "      <option value=\"$ysfHost[0]\" selected=\"selected\">$ysfHost[0] - ".htmlspecialchars($ysfHost[1])."</option>\n";
-					    }
+                                            if ($testYSFHost == $ysfHost[0]) { echo "      <option value=\"$ysfHost[0]\" selected=\"selected\">$ysfHost[0] - ".htmlspecialchars($ysfHost[1])."</option>\n"; }
 					    else {
 						echo "      <option value=\"$ysfHost[0]\">$ysfHost[0] - ".htmlspecialchars($ysfHost[1])."</option>\n";
 					    }
