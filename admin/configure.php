@@ -2560,7 +2560,10 @@ $MYCALL=strtoupper($callsign);
 		    $configysf2dmr['Log']['DisplayLevel'] = "0";
 		    $configysf2dmr['Log']['FileLevel'] = "0";
 		    if (!isset($configysf2dmr['aprs.fi']['Enable'])) { $configysf2dmr['aprs.fi']['Enable'] = "0"; }
-		    
+		    if (!isset($configysf2dmr['YSF Network']['WiresXMakeUpper'])) { $configysf2dmr['YSF Network']['WiresXMakeUpper'] = "1"; }
+	        if (!isset($configysf2dmr['YSF Network']['DT1'])) { $configysf2dmr['YSF Network']['DT1'] = "1,34,97,95,43,3,17,0,0,0"; }
+	        if (!isset($configysf2dmr['YSF Network']['DT2'])) { $configysf2dmr['YSF Network']['DT2'] = "0,0,0,0,108,32,28,32,3,8"; }
+ 
 		    // Add missing options to DMR2NXDN
 		    $configdmr2nxdn['Log']['DisplayLevel'] = "0";
 		    $configdmr2nxdn['Log']['FileLevel'] = "0";
@@ -2581,7 +2584,10 @@ $MYCALL=strtoupper($callsign);
 		    $configysf2nxdn['Log']['FileRoot'] = "YSF2NXDN";
 		    if (!isset($configysf2nxdn['aprs.fi']['Enable'])) { $configysf2nxdn['aprs.fi']['Enable'] = "0"; }
 		    if (!isset($configysf2nxdn['aprs.fi']['APIKey'])) { $configysf2nxdn['aprs.fi']['APIKey'] = "ApiKey"; }
-		    
+          	if (!isset($configysf2nxdn['YSF Network']['WiresXMakeUpper'])) { $configysf2nxdn['YSF Network']['WiresXMakeUpper'] = "1"; }
+	        if (!isset($configysf2nxdn['YSF Network']['DT1'])) { $configysf2nxdn['YSF Network']['DT1'] = "1,34,97,95,43,3,17,0,0,0"; }
+	        if (!isset($configysf2nxdn['YSF Network']['DT2'])) { $configysf2nxdn['YSF Network']['DT2'] = "0,0,0,0,108,32,28,32,3,8"; }
+ 
 		    // Add missing options to NXDN2YSF
 		    $confignxdn2dmr['Log']['DisplayLevel'] = "0";
 		    $confignxdn2dmr['Log']['FileLevel'] = "0";
@@ -2600,7 +2606,10 @@ $MYCALL=strtoupper($callsign);
 		    $configysf2p25['Log']['FilePath'] = "/var/log/pi-star";
 		    $configysf2p25['Log']['FileRoot'] = "YSF2P25";
 		    if (isset($configysf2p25['aprs.fi'])) { unset($configysf2p25['aprs.fi']); }
-		    
+            if (!isset($configysf2p25['YSF Network']['WiresXMakeUpper'])) { $configysf2p25['YSF Network']['WiresXMakeUpper'] = "1"; }
+            if (!isset($configysf2p25['YSF Network']['DT1'])) { $configysf2p25['YSF Network']['DT1'] = "1,34,97,95,43,3,17,0,0,0"; }
+            if (!isset($configysf2p25['YSF Network']['DT2'])) { $configysf2p25['YSF Network']['DT2'] = "0,0,0,0,108,32,28,32,3,8"; }
+
 		    // Clean up for NXDN Gateway
 		    if (file_exists('/etc/nxdngateway')) {
 			if (isset($confignxdngateway['Network']['HostsFile'])) {
@@ -2636,16 +2645,76 @@ $MYCALL=strtoupper($callsign);
 			if(!isset($confignxdngateway['APRS']['Port'])) { $confignxdngateway['APRS']['Port'] = "8673"; }
 			if(!isset($confignxdngateway['APRS']['Suffix'])) { $confignxdngateway['APRS']['Suffix'] = "N"; }
 			if(!isset($confignxdngateway['APRS']['Description'])) { $confignxdngateway['APRS']['Description'] = "APRS for NXDN Gateway"; }
-			// GPSd stuff
-			if(!isset($confignxdngateway['GPSD']['Enable'])) { $confignxdngateway['GPSD']['Enable'] = "0"; }
-			if(!isset($confignxdngateway['GPSD']['Address'])) { $confignxdngateway['GPSD']['Address'] = "127.0.0.1"; }
-			if(!isset($confignxdngateway['GPSD']['Port'])) { $confignxdngateway['GPSD']['Port'] = "2947"; }
 		    }
 		    
-		    // Clean up legacy options
-		    if (isset($configdmrgateway['XLX Network 1'])) { unset($configdmrgateway['XLX Network 1']); }
-		    if (isset($configdmrgateway['XLX Network 2'])) { unset($configdmrgateway['XLX Network 2']); }
-		    
+	// Clean up legacy options
+	$dmrGatewayVer = exec("DMRGateway -v | awk {'print $3'} | cut -c 1-8");
+	if ($dmrGatewayVer > 20170924) {
+		unset($configdmrgateway['XLX Network 1']);
+		unset($configdmrgateway['XLX Network 2']);
+	}
+
+	// Add P25Gateway Options
+	$p25GatewayVer = exec("P25Gateway -v | awk {'print $3'} | cut -c 1-8");
+	if ($p25GatewayVer > 20200502) {
+		if (!isset($configp25gateway['Remote Commands']['Enable'])) { $configp25gateway['Remote Commands']['Enable'] = "1"; }
+		if (!isset($configp25gateway['Remote Commands']['Port'])) { $configp25gateway['Remote Commands']['Port'] = "6074"; }
+	}
+
+	// Add NXDNGateway Options
+	$nxdnGatewayVer = exec("NXDNGateway -v | awk {'print $3'} | cut -c 1-8");
+	if ($nxdnGatewayVer > 20200502) {
+		if (!isset($confignxdngateway['Remote Commands']['Enable'])) { $confignxdngateway['Remote Commands']['Enable'] = "1"; }
+		if (!isset($confignxdngateway['Remote Commands']['Port'])) { $confignxdngateway['Remote Commands']['Port'] = "6075"; }
+	}
+
+	// Migrate YSFGateway Config
+	$ysfGatewayVer = exec("YSFGateway -v | awk {'print $3'} | cut -c 1-8");
+	if ($ysfGatewayVer > 20180303) {
+		if (isset($configysfgateway['Network']['Startup'])) { $ysfTmpStartup = $configysfgateway['Network']['Startup']; }
+		if (!isset($configysfgateway['aprs.fi']['Enable'])) { $configysfgateway['aprs.fi']['Enable'] = "1"; }
+		//unset($configysfgateway['Network']);
+		if (isset($ysfTmpStartup)) { $configysfgateway['Network']['Startup'] = $ysfTmpStartup; }
+		if (!isset($configysfgateway['Network']['InactivityTimeout'])) { $configysfgateway['Network']['InactivityTimeout'] = "0"; }
+		if (!isset($configysfgateway['Network']['Revert'])) { $configysfgateway['Network']['Revert'] = "0"; }
+		$configysfgateway['Network']['Debug'] = "0";
+		$configysfgateway['YSF Network']['Enable'] = "1";
+		$configysfgateway['YSF Network']['Port'] = "42000";
+		$configysfgateway['YSF Network']['Hosts'] = "/usr/local/etc/YSFHosts.txt";
+		$configysfgateway['YSF Network']['ReloadTime'] = "60";
+		$configysfgateway['YSF Network']['ParrotAddress'] = "127.0.0.1";
+		$configysfgateway['YSF Network']['ParrotPort'] = "42012";
+		$configysfgateway['YSF Network']['YSF2DMRAddress'] = "127.0.0.1";
+		$configysfgateway['YSF Network']['YSF2DMRPort'] = "42013";
+		$configysfgateway['YSF Network']['YSF2NXDNAddress'] = "127.0.0.1";
+		$configysfgateway['YSF Network']['YSF2NXDNPort'] = "42014";
+		$configysfgateway['YSF Network']['YSF2P25Address'] = "127.0.0.1";
+		$configysfgateway['YSF Network']['YSF2P25Port'] = "42015";
+		$configysfgateway['FCS Network']['Enable'] = "1";
+		$configysfgateway['FCS Network']['Port'] = "42001";
+		$configysfgateway['FCS Network']['Rooms'] = "/usr/local/etc/FCSHosts.txt";
+	}
+	if ($ysfGatewayVer > 20200502) {
+		if (!isset($configysfgateway['Remote Commands']['Enable'])) { $configysfgateway['Remote Commands']['Enable'] = "1"; }
+		if (!isset($configysfgateway['Remote Commands']['Port'])) { $configysfgateway['Remote Commands']['Port'] = "6073"; }
+	}
+	if ($ysfGatewayVer > 20200907) {
+		if (!isset($configysfgateway['General']['Debug'])) { $configysfgateway['General']['Debug'] = "0"; }
+		if (!isset($configysfgateway['GPSD']['Enable'])) { $configysfgateway['GPSD']['Enable'] = "0"; }
+		if (!isset($configysfgateway['GPSD']['Address'])) { $configysfgateway['GPSD']['Address'] = "127.0.0.1"; }
+		if (!isset($configysfgateway['GPSD']['Port'])) { $configysfgateway['GPSD']['Port'] = "2947"; }
+		if (!isset($configysfgateway['APRS']['Enable'])) { $configysfgateway['APRS']['Enable'] = "0"; }
+		if (!isset($configysfgateway['APRS']['Address'])) { $configysfgateway['APRS']['Address'] = "127.0.0.1"; }
+		if (!isset($configysfgateway['APRS']['Port'])) { $configysfgateway['APRS']['Port'] = "8673"; }
+		if (!isset($configysfgateway['APRS']['Description'])) { $configysfgateway['APRS']['Description'] = $configysfgateway['Info']['Name']."_".$configysfgateway['General']['Suffix']; }
+		if (!isset($configysfgateway['APRS']['Suffix'])) { $configysfgateway['APRS']['Suffix'] = "Y"; }
+		if (isset($configysfgateway['Mobile GPS'])) { unset($configysfgateway['Mobile GPS']); }
+		if (isset($configysfgateway['aprs.fi'])) { unset($configysfgateway['aprs.fi']); }
+	}
+	if ($ysfGatewayVer > 20210130) {
+		if (isset($configysfgateway['APRS']['Enable'])) { $configysfgateway['APRS']['Enable'] = "1"; }
+	}
+ 
 		    // Add missing P25Gateway Options
 		    if (!isset($configp25gateway['Remote Commands']['Enable'])) { $configp25gateway['Remote Commands']['Enable'] = "1"; }
 		    if (!isset($configp25gateway['Remote Commands']['Port'])) { $configp25gateway['Remote Commands']['Port'] = "6074"; }
