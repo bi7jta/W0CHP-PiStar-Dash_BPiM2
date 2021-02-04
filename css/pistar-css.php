@@ -342,7 +342,7 @@ input.toggle-round-flat:checked + label {
 
 input.toggle-round-flat:checked + label:after {
     margin-left: 14px;
-    background-color: #fff;
+    background-color: <?php echo $backgroundBanners; ?>
 }
 
 input.toggle-round-flat:focus + label {
