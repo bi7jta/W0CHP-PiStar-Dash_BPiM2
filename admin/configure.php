@@ -662,7 +662,9 @@ $MYCALL=strtoupper($callsign);
         	if (empty($_POST['autoapPsk']) != TRUE ) {
         	  $rollAutoApPsk = 'sudo sed -i "/wpa_passphrase=/c\\wpa_passphrase='.$_POST['autoapPsk'].'" /etc/hostapd/hostapd.conf';
 	          system($rollAutoApPsk);
-            }
+        	  $rollAutoApWPA = 'sudo sed -i "/wpa=/c\\wpa=2" /etc/hostapd/hostapd.conf';
+          	  system($rollAutoApWPA);
+                }
 
 			// Make the root filesystem R/O
 			exec('sudo mount -o remount,ro /');
