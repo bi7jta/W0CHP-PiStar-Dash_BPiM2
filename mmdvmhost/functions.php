@@ -1,6 +1,13 @@
 <?php
+if (isset($_COOKIE['PHPSESSID']))
+{
+    session_id($_COOKIE['PHPSESSID']); 
+}
+if (session_status() != PHP_SESSION_ACTIVE) {
+    session_start();
+}
 
-if (!isset($_SESSION) || !is_array($_SESSION)) {
+if (!isset($_SESSION) || !is_array($_SESSION) || (count($_SESSION, COUNT_RECURSIVE) < 10)) {
     session_id('pistardashsess');
     session_start();
 }
@@ -18,9 +25,12 @@ function checkSessionValidity() {
 	global $callsign;
 	
 	if (empty($callsign)) {
-	    include_once $_SERVER['DOCUMENT_ROOT'].'/config/ircddblocal.php';
-	}
-	$_SESSION['MYCALL'] = strtoupper($callsign);
+           include $_SERVER['DOCUMENT_ROOT'].'/config/ircddblocal.php';
+           $_SESSION['MYCALL'] = strtoupper($callsign);
+       }
+       else {
+           $_SESSION['MYCALL'] = strtoupper($callsign);
+	   }
     }
 
     if ((!isset($_SESSION['BMAPIKey']) || (count($_SESSION['BMAPIKey'], COUNT_RECURSIVE) < 1)) && file_exists('/etc/bmapi.key')) {
@@ -33,6 +43,7 @@ function checkSessionValidity() {
 	    }
 	}
     }
+
     loadSessionConfigFile('DAPNETAPIKeyConfigs', '/etc/dapnetapi.key');
     loadSessionConfigFile('PiStarRelease', '/etc/pistar-release');
     if (!isset($_SESSION['MMDVMHostConfigs']) || (count($_SESSION['MMDVMHostConfigs'], COUNT_RECURSIVE) < 2)) {
@@ -42,10 +53,15 @@ function checkSessionValidity() {
 	global $gatewayConfigPath;
 
 	if (empty($gatewayConfigPath)) {
-	    include_once $_SERVER['DOCUMENT_ROOT'].'/config/ircddblocal.php';
+	    include $_SERVER['DOCUMENT_ROOT'].'/config/ircddblocal.php';
+	    $_SESSION['ircDDBConfigs'] = getNoSectionsConfigContent($gatewayConfigPath);
 	}
-	$_SESSION['ircDDBConfigs'] = getNoSectionsConfigContent($gatewayConfigPath);
+	else {
+	    $_SESSION['ircDDBConfigs'] = getNoSectionsConfigContent($gatewayConfigPath);
+	}
+
     }
+
     loadSessionConfigFile('DStarRepeaterConfigs', '/etc/dstarrepeater');
     loadSessionConfigFile('DMRGatewayConfigs', '/etc/dmrgateway');
     loadSessionConfigFile('YSFGatewayConfigs', '/etc/ysfgateway');
@@ -64,6 +80,30 @@ function checkSessionValidity() {
     if (!isset($_SESSION['DvModemTCXOFreq']) || (count($_SESSION['DvModemTCXOFreq'], COUNT_RECURSIVE) < 1)) {
 	$_SESSION['DvModemTCXOFreq'] = getDVModemTCXOFreq();
     }
+    loadSessionConfigFile('CSSConfigs', '/etc/pistar-css.ini');
+    if (isset($_SESSION['CSSConfigs']))
+    {
+       if (isset($_SESSION['CSSConfigs']['BannerH1']['Enabled']) && ($_SESSION['CSSConfigs']['BannerH1']['Enabled'] != "0")) {
+           global $piStarCssBannerH1;
+            $piStarCssBannerH1 = $_SESSION['CSSConfigs']['BannerH1']['Text'];
+       }
+       else
+       {
+           if (isset($piStarCssBannerH1)) {
+               unset($piStarCssBannerH1);
+           }
+       }
+       if (isset($_SESSION['CSSConfigs']['BannerExtText']['Enabled']) && ($_SESSION['CSSConfigs']['BannerExtText']['Enabled'] != "0")) {
+           global $piStarCssBannerExtTxt;
+            $piStarCssBannerExtTxt = $_SESSION['CSSConfigs']['BannerExtText']['Text'];
+       }
+       else
+       {
+           if (isset($piStarCssBannerExtTxt)) {
+               unset($piStarCssBannerExtTxt);
+           }
+       }
+   }
 }
 
 function get_string_between($string, $start, $end) {
@@ -184,7 +224,7 @@ function isDAPNETGatewayConnected() {
     $logLines1 = array();
     $logLines2 = array();
     
-    // Collect last 20 lines  - seee getDAPNETGatewayLog() down below for no. of line values (array_slice)
+    // Collect last 20 lines  - see getDAPNETGatewayLog() down below for no. of line values (array_slice)
     if (file_exists("/var/log/pi-star/DAPNETGateway-".gmdate("Y-m-d").".log")) {
 	$logPath1 = "/var/log/pi-star/DAPNETGateway-".gmdate("Y-m-d").".log";
 	$logLines1 = preg_split('/\r\n|\r|\n/', `tail -n 5 $logPath1 | cut -d" " -f2- | tac`);
@@ -361,13 +401,13 @@ function getP25GatewayLog() {
     $logLines2 = array();
     if (file_exists(P25GATEWAYLOGPATH."/".P25GATEWAYLOGPREFIX."-".gmdate("Y-m-d").".log")) {
 	$logPath1 = P25GATEWAYLOGPATH."/".P25GATEWAYLOGPREFIX."-".gmdate("Y-m-d").".log";
-	$logLines1 = preg_split('/\r\n|\r|\n/', `egrep -h "ink|Starting" $logPath1 | cut -d" " -f2- | tail -1`);
+    $logLines1 = preg_split('/\r\n|\r|\n/', `egrep -h "ink|itched|Starting" $logPath1 | cut -d" " -f2- | tail -1`);
     }
     $logLines1 = array_filter($logLines1);
     if (sizeof($logLines1) == 0) {
         if (file_exists(P25GATEWAYLOGPATH."/".P25GATEWAYLOGPREFIX."-".gmdate("Y-m-d", time() - 86340).".log")) {
-            $logPath2 = P25GATEWAYLOGPATH."/".P25GATEWAYLOGPREFIX."-".gmdate("Y-m-d", time() - 86340).".log";
-	    $logLines2 = preg_split('/\r\n|\r|\n/', `egrep -h "ink|Starting" $logPath2 | cut -d" " -f2- | tail -1`);
+        $logPath2 = P25GATEWAYLOGPATH."/".P25GATEWAYLOGPREFIX."-".gmdate("Y-m-d", time() - 86340).".log";
+        $logLines2 = preg_split('/\r\n|\r|\n/', `egrep -h "ink|itched|Starting" $logPath2 | cut -d" " -f2- | tail -1`);
         }
 	$logLines2 = array_filter($logLines2);
     }
@@ -387,13 +427,13 @@ function getNXDNGatewayLog() {
     $logLines2 = array();
     if (file_exists("/var/log/pi-star/NXDNGateway-".gmdate("Y-m-d").".log")) {
 	$logPath1 = "/var/log/pi-star/NXDNGateway-".gmdate("Y-m-d").".log";
-	$logLines1 = preg_split('/\r\n|\r|\n/', `egrep -h "ink|Starting" $logPath1 | cut -d" " -f2- | tail -1`);
+    $logLines1 = preg_split('/\r\n|\r|\n/', `egrep -h "ink|itched|Starting" $logPath1 | cut -d" " -f2- | tail -1`);
     }
     $logLines1 = array_filter($logLines1);
     if (sizeof($logLines1) == 0) {
         if (file_exists("/var/log/pi-star/NXDNGateway-".gmdate("Y-m-d", time() - 86340).".log")) {
 	    $logPath2 = "/var/log/pi-star/NXDNGateway-".gmdate("Y-m-d", time() - 86340).".log";
-	    $logLines2 = preg_split('/\r\n|\r|\n/', `egrep -h "ink|Starting" $logPath2 | cut -d" " -f2- | tail -1`);
+        $logLines2 = preg_split('/\r\n|\r|\n/', `egrep -h "ink|itched|Starting" $logPath2 | cut -d" " -f2- | tail -1`);
         }
 	$logLines2 = array_filter($logLines2);
     }
@@ -564,11 +604,11 @@ function getDVModemTCXOFreq() {
     if (!$logLine) { $logLine = exec("grep \"".$logSearchString."\" ".$logMMDVMPrevious." | tail -1"); }
     
     if ($logLine) {
-        if ((strpos($logLine, 'Mhz') !== false) or (strpos($logLine, 'MHz') !== false)) {
-            $modemTCXOFreq = $logLine;
-            $modemTCXOFreq = preg_replace('/.*(\d{2}\.\d{3,4}\s{0,1}M[Hh]z).*/', "$1", $modemTCXOFreq);
-            $modemTCXOFreq = str_replace("MHz"," MHz", $modemTCXOFreq);
-        }
+       if (strpos($logLine, 'MHz') !== false) {
+           $modemTCXOFreq = $logLine;
+           $modemTCXOFreq = preg_replace('/.*(\d{2}\.\d{3,4}\s{0,1}MHz).*/', "$1", $modemTCXOFreq);
+           $modemTCXOFreq = str_replace("MHz"," MHz", $modemTCXOFreq);
+       }
     }
     return $modemTCXOFreq;
 }
@@ -647,6 +687,9 @@ function getHeardList($logLines) {
 	else if(strpos($logLine,"invalid access")) {
 	    continue;
 	}
+    else if(strpos($logLine,"packet received from an invalid source")) {
+        continue;
+    }
 	else if(strpos($logLine,"received RF header for wrong repeater")) {
 	    continue;
 	}
@@ -675,25 +718,25 @@ function getHeardList($logLines) {
             continue;
 	}
 
-
-		if(strpos($logLine, "end of") || strpos($logLine, "watchdog has expired") || strpos($logLine, "ended RF data") || strpos($logLine, "ended network") || strpos($logLine, "RF user has timed out") || strpos($logLine, "transmission lost") || strpos($logLine, "POCSAG")) {
-			$lineTokens = explode(", ",$logLine);
-			if (array_key_exists(2,$lineTokens)) {
-				$duration = strtok($lineTokens[2], " ");
-			}
-			if (array_key_exists(3,$lineTokens)) {
-				$loss = $lineTokens[3];
-			}
-			// The change to this code was causing all FCS traffic to always show TOut rather than the timer.
-			// This version should still show time-out when needed, AND show the time if it exists.
-			if (strpos($logLine,"RF user has timed out") || strpos($logLine,"watchdog has expired")) {
-				if (array_key_exists(2,$lineTokens) && strpos($lineTokens[2], "seconds")) {
-					$duration = strtok($lineTokens[2], " "); 
-				} else { 
-					$duration = "TOut";
-				}
-				$ber = "??%";
-			} 
+       if(strpos($logLine, "end of") || strpos($logLine, "watchdog has expired") || strpos($logLine, "ended RF data") || strpos($logLine, "ended network") || strpos($logLine, "RF user has timed out") || strpos($logLine, "transmission lost") || strpos($logLine, "POCSAG")) {
+           $lineTokens = explode(", ",$logLine);
+           if (array_key_exists(2,$lineTokens)) {
+               $duration = strtok($lineTokens[2], " ");
+           }
+           if (array_key_exists(3,$lineTokens)) {
+               $loss = $lineTokens[3];
+           }
+           // The change to this code was causing all FCS traffic to always show TOut rather than the timer.
+           // This version should still show time-out when needed, AND show the time if it exists.
+           if (strpos($logLine,"RF user has timed out") || strpos($logLine,"watchdog has expired")) {
+               if (array_key_exists(2, $lineTokens) && strpos($lineTokens[2], "seconds")) {
+                   $duration = strtok($lineTokens[2], " "); 
+               }
+               else { 
+                   $duration = "TMOUT";
+               }
+               $ber = "??%";
+           }
 	    // if RF-Packet with no BER reported (e.g. YSF Wires-X commands) then RSSI is in LOSS position
 	    if (startsWith($loss,"RSSI")) {
 		$lineTokens[4] = $loss; //move RSSI to the position expected on code below
@@ -1013,8 +1056,8 @@ function getDSTARLinks() {
 		$linkDest	= $linx[4][0];
 		$linkDir	= $linx[5][0];
 	    }
-		if (strtolower(substr($linkDir, 0, 2)) == "in") { $linkDir = "In"; }
-		if (strtolower(substr($linkDir, 0, 3)) == "out") { $linkDir = "Out"; }
+        if (strtolower(substr($linkDir, 0, 2)) == "in") { $linkDir = "In"; }
+        if (strtolower(substr($linkDir, 0, 3)) == "out") { $linkDir = "Out"; }
         $out = $linkDest." ".$protocol."/".$linkDir;
 	}
     }
@@ -1099,7 +1142,7 @@ function getActualLink($logLines, $mode) {
 			    $to = str_replace(' ', '', str_replace('-', '', $to));
 			}
 		    }
-		    if (strpos($logLine,"Automatic (re-)connection to")) {
+            else if (strpos($logLine,"Automatic (re-)connection to")) {
 			if (strpos($logLine,"Automatic (re-)connection to FCS")) {
 			    $to = substr($logLine, 56, 8);
 			}
@@ -1107,22 +1150,22 @@ function getActualLink($logLines, $mode) {
                   	    $to = substr($logLine, 56, 5);
 			}
 		    }
-		    if (strpos($logLine,"Connect to")) {
+            else if (strpos($logLine,"Connect to")) {
 			$to = substr($logLine, 38, 5);
 		    }
-		    if (strpos($logLine,"Automatic connection to")) {
+			else if (strpos($logLine,"Automatic connection to")) {
 			$to = substr($logLine, 51, 5);
 		    }
-		    if (strpos($logLine,"Disconnect via DTMF")) {
+			else if (strpos($logLine,"Disconnect via DTMF")) {
 			$to = "Not Linked";
 		    }
-		    if (strpos($logLine,"Opening YSF network connection")) {
+			else if (strpos($logLine,"Opening YSF network connection")) {
 			$to = "Not Linked";
 		    }
-		    if (strpos($logLine,"Link has failed")) {
+			else if (strpos($logLine,"Link has failed")) {
 			$to = "Not Linked";
 		    }
-		    if (strpos($logLine,"DISCONNECT Reply")) {
+			else if (strpos($logLine,"DISCONNECT Reply")) {
 			$to = "Not Linked";
 		    }
 		    if ($to !== "") {
@@ -1143,29 +1186,34 @@ function getActualLink($logLines, $mode) {
             // 2000-01-01 00:00:00.000 Unlinked from reflector 10100 by M1ABC
             // 2000-01-01 00:00:00.000 Linked to reflector 10200 by M1ABC
             // 2000-01-01 00:00:00.000 No response from 10200, unlinking
+            // **
+            // ** Latest NXDNGateway
+            // **
+            // 2020-11-04 08:47:48.297 Statically linked to reflector 65000
+            // 2020-11-04 08:47:48.297 Switched to reflector 65000 due to network activity
+            // 2020-11-04 08:47:48.297 Switched to reflector 65000 due to RF activity from M1ABC
+            // 2020-11-04 08:47:48.297 Switched to reflector 65000 by remote command
+            // 2020-11-04 08:47:48.297 Unlinking from reflector 65000 by M1ABC
+            // 2020-11-04 08:47:48.297 Unlinking from 65000 due to inactivity
+            // 2020-11-04 08:47:48.297 Unlinked from reflector 65000 by remote command
             if (isProcessRunning("NXDNGateway")) {
 		foreach($logLines as $logLine) {
 		    $to = "";
-		    if (strpos($logLine,"Linked to")) {
-			$to = preg_replace('/[^0-9]/', '', substr($logLine, 44, 5));
-			$to = preg_replace('/[^0-9]/', '', $to);
-            return "TG ".$to;
-		    }
-		    if (strpos($logLine,"Linked at start")) {
+            if (strpos($logLine, "Statically linked to")) {
 			$to = preg_replace('/[^0-9]/', '', substr($logLine, 55, 5));
 			$to = preg_replace('/[^0-9]/', '', $to);
-            return "TG ".$to;
+            return "TG".$to;
 		    }
-		    if (strpos($logLine,"Starting NXDNGateway")) {
-			return "Not Linked";
+               else if (strpos($logLine,"Switched to reflector")) {
+                   $to = preg_replace('/[^0-9]/', '', substr($logLine, 46, 5));
+                   $to = preg_replace('/[^0-9]/', '', $to);
+                   return "TG".$to;
 		    }
-		    if (strpos($logLine,"unlinking")) {
-			return "Not Linked";
-		    }
-		    if (strpos($logLine,"Unlinked from")) {
+			else if (strpos($logLine,"Starting NXDNGateway") || strpos($logLine,"Unlinking") || strpos($logLine,"Unlinked")) {
 			return "Not Linked";
 		    }
 		}
+		return "Not Linked";
             } 
 	    else {
 		return "Service Not Started";
@@ -1175,33 +1223,41 @@ function getActualLink($logLines, $mode) {
 	case "P25":
 	    // 00000000001111111111222222222233333333334444444444555555555566666666667777777777888888888899999999990000000000111111111122
 	    // 01234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901
+        // **
+        // ** out of date, not supported anymore by the gateway
+        // **
 	    // 2000-01-01 00:00:00.000 Linked at startup to reflector 10100
 	    // 2000-01-01 00:00:00.000 Unlinked from reflector 10100 by M1ABC
 	    // 2000-01-01 00:00:00.000 Linked to reflector 10200 by M1ABC
 	    // 2000-01-01 00:00:00.000 No response from 10200, unlinking
+        // **
+        // ** Latest P25Gateway
+        // **
+        // 2020-11-04 08:40:35.499 Statically linked to reflector 10100
+        // 2020-11-04 08:40:35.499 Switched to reflector 10100 due to network activity
+        // 2020-11-04 08:40:35.499 Switched to reflector 10100 due to RF activity from M1ABC
+        // 2020-11-04 08:40:35.499 Switched to reflector 10100 by remote command
+        // 2020-11-04 08:40:35.499 Unlinking from 10100 due to inactivity
+        // 2020-11-04 08:40:35.499 Unlinking from reflector 10100 by M1ABC
+        // 2020-11-04 08:40:35.499 Unlinked from reflector 10100 by remote command
 	    if (isProcessRunning("P25Gateway")) {
 		foreach($logLines as $logLine) {
 		    $to = "";
-		    if (strpos($logLine,"Linked to")) {
-			$to = preg_replace('/[^0-9]/', '', substr($logLine, 44, 5));
-			$to = preg_replace('/[^0-9]/', '', $to);
-            return "TG ".$to;
-		    }
-		    if (strpos($logLine,"Linked at startup to")) {
+			if (strpos($logLine, "Statically linked to")) {
 			$to = preg_replace('/[^0-9]/', '', substr($logLine, 55, 5));
 			$to = preg_replace('/[^0-9]/', '', $to);
-            return "TG ".$to;
+            return "TG".$to;
 		    }
-		    if (strpos($logLine,"Starting P25Gateway")) {
-			return "Not Linked";
-		    }
-		    if (strpos($logLine,"unlinking")) {
-			return "Not Linked";
-		    }
-		    if (strpos($logLine,"Unlinked")) {
+            if (strpos($logLine,"Switched to reflector")) {
+                $to = preg_replace('/[^0-9]/', '', substr($logLine, 46, 5));
+                $to = preg_replace('/[^0-9]/', '', $to);
+                return "TG".$to;
+			}
+			if (strpos($logLine,"Starting P25Gateway") || strpos($logLine,"Unlinking") || strpos($logLine,"Unlinked")) {
 			return "Not Linked";
 		    }
 		}
+        return "Not Linked";
 	    } 
 	    else {
 		return "Service Not Started";
