@@ -2111,7 +2111,7 @@ if (!empty($_POST)):
 	if (!isset($configdmrgateway['DMR Network 3']['Debug'])) { $configdmrgateway['DMR Network 3']['Debug'] = "0"; }
 	if (!isset($configdmrgateway['XLX Network']['UserControl'])) { $configdmrgateway['XLX Network']['UserControl'] = "1"; }
 	$dmrGatewayVer = exec("DMRGateway -v | awk {'print $3'} | cut -c 1-8");
-	if ($dmrGatewayVer > 20210131) {
+	if ($dmrGatewayVer > 20210130) {
 		if (!isset($configdmrgateway['DMR Network 1']['Location'])) { $configdmrgateway['DMR Network 1']['Location'] = "1"; }
 		if (!isset($configdmrgateway['DMR Network 2']['Location'])) { $configdmrgateway['DMR Network 2']['Location'] = "0"; }
 		if (!isset($configdmrgateway['DMR Network 3']['Location'])) { $configdmrgateway['DMR Network 3']['Location'] = "0"; }
