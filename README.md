@@ -22,18 +22,18 @@ caveats](https://w0chp.net/w0chp-pistar-dash/#the-rules-and-caveats----important
 
 * BrandMeister Manager revamps galore:
 
-  * Now displays connected actual talkgroup names.
+  * Now displays connected actual talk group names.
 
   * Reflector functionality removed per [BrandMeister's announcement](https://news.brandmeister.network/brandmeister-dmr-reflectors-support-ending-by-end-of-2020/).
 
-  * Connected dynamic talkgroups now display idle-timeout time (due to no TX).
+  * Connected dynamic talk groups now display idle-timeout time (due to no TX).
 
-  * Added ability to mass-drop your static talkgroups; and mass re-add the previously
-    linked static talkgroups.
+  * Added ability to mass-drop your static talk groups; and mass re-add the previously
+    linked static talk groups.
 
-   * Added ability to batch add/delete up to 5 static talkgroups at a time (for now)
+   * Added ability to batch add/delete up to 5 static talk groups at a time (for now)
 
-* TGIF Manager; now displays connected actual talkgroup names.
+* TGIF Manager; now displays connected actual talk group names.
 
 * "Instant Mode Manager" added to admin page; allows you to instantly pause or resume selected radio modes. Handy for attending
   nets, quieting a busy mode, to temporarily eliminate "mode monopolization", etc.
@@ -46,7 +46,7 @@ caveats](https://w0chp.net/w0chp-pistar-dash/#the-rules-and-caveats----important
 
 * Connected FCS and YSF reflector names and numerical ID both displayed in dashboard left panel.
 
-* Ability to configure POCSAG hangtime from the config page.
+* Ability to configure POCSAG hang-time from the config page.
 
 * Additional hardware and system information displayed in top header.
 
@@ -55,10 +55,17 @@ caveats](https://w0chp.net/w0chp-pistar-dash/#the-rules-and-caveats----important
   * Note: Last-Heard and other dynamic tables are now only displayed in the main admin page.
     Once entering the sub-pages, the focus is now on the task-at-hand, and the dynamic tables are not displayed.
 
-* Talker Alias (DMR) displayed next to callsign when operator is transmitting
-  (when applicable). This needs a lot of work, yet.  (This is on the
-  `TalkerAlias` branch, and needs to be explicitly be installed/defined - caveat
-  emptor...this is buggy!).
+* Test / Unstable Features (not installed by default)
+
+  * Talker Alias (DMR) displayed next to call sign when operator is transmitting
+    (when applicable). This needs a lot of work, yet.  This feature is on the
+  `  TalkerAlias` branch. Caveat emptor...this is buggy!
+
+  * Name Look-ups (DMR): First names are displayed next to call sign. There are two versions/two ways this is performed:
+    The first is via searching through the Pi-Star DMR ID DB, and the second way, is via the Callook.info API by `W1JDD`.
+    The respective name lookup branches are `NameLookups` and `NameLookups-API`. Beware: these are very slow on shitty
+    hardware, and requires *lots* of horsepower. Like the `TalkerAlias` feature/branch listed above, these features are
+    unstable, and still needs quite a bit of work.
 
 * Much more. See [screenshots below](#screenshots).
 
