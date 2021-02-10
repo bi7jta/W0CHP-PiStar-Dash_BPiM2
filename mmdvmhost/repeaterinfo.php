@@ -175,6 +175,7 @@ require_once($_SERVER['DOCUMENT_ROOT'].'/config/ircddblocal.php');
 		if (isset($_SESSION['DMRGatewayConfigs']['DMR Network 5']['Name'])) {
 		    $dmrMasterHost5 = str_replace('_', ' ', $_SESSION['DMRGatewayConfigs']['DMR Network 5']['Name']);
 		}
+        if (isset($configdmrgateway['DMR Network 6']['Name'])) {$dmrMasterHost6 = str_replace('_', ' ', $configdmrgateway['DMR Network 6']['Name']);}
 		while (!feof($dmrMasterFile)) {
 		    $dmrMasterLine = fgets($dmrMasterFile);
 		    $dmrMasterHostF = preg_split('/\s+/', $dmrMasterLine);
@@ -215,14 +216,15 @@ require_once($_SERVER['DOCUMENT_ROOT'].'/config/ircddblocal.php');
 		}
 		if (isset($dmrMasterHost4)) {
 		    if (strlen($dmrMasterHost4) > 25) {
-			$dmrMasterHost4 = substr($dmrMasterHost4, 0, 23) . '..';
+			    $dmrMasterHost4 = substr($dmrMasterHost4, 0, 23) . '..';
 		    }
 		}
 		if (isset($dmrMasterHost5)) {
 		    if (strlen($dmrMasterHost5) > 25) {
-			$dmrMasterHost5 = substr($dmrMasterHost5, 0, 23) . '..';
+			    $dmrMasterHost5 = substr($dmrMasterHost5, 0, 23) . '..';
 		    }
 		}
+        if (isset($dmrMasterHost6)) { if (strlen($dmrMasterHost6) > 25) { $dmrMasterHost6 = substr($dmrMasterHost6, 0, 23) . '..'; } }
 	    }
 	    else {
 		while (!feof($dmrMasterFile)) {
@@ -303,6 +305,11 @@ require_once($_SERVER['DOCUMENT_ROOT'].'/config/ircddblocal.php');
                             echo "<tr><td  style=\"background: #ffffff;\" colspan=\"2\" title=\"".$dmrMasterHost5Tooltip."\">".$dmrMasterHost5."</td></tr>\n";
 			}
 		    }
+			if (isset($configdmrgateway['DMR Network 6']['Enabled'])) {
+				if ($configdmrgateway['DMR Network 6']['Enabled'] == 1) {
+					echo "<tr><td  style=\"background: #ffffff;\" colspan=\"2\">".$dmrMasterHost6."</td></tr>\n";
+				}
+			}
 		}
 		else {
 		    echo "<tr><td  style=\"background: #ffffff;\" colspan=\"2\" title=\"".$dmrMasterHostTooltip."\">".$dmrMasterHost."</td></tr>\n";
