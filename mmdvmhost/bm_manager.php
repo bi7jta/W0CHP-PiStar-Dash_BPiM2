@@ -21,7 +21,17 @@ $testMMDVModeDMR = getConfigItem("DMR", "Enable", $_SESSION['MMDVMHostConfigs'])
 
 if ( $testMMDVModeDMR == 1 ) {
     $bmEnabled = true;
-    
+
+    //setup BM API Key
+    $bmAPIkeyFile = '/etc/bmapi.key';
+    if (file_exists($bmAPIkeyFile) && fopen($bmAPIkeyFile,'r')) {
+      $configBMapi = parse_ini_file($bmAPIkeyFile, true);
+      $bmAPIkey = $configBMapi['key']['apikey'];
+      // Check the BM API Key
+      if ( strlen($bmAPIkey) <= 20 ) { unset($bmAPIkey); }
+      if ( strlen($bmAPIkey) >= 200 ) { $bmAPIkeyV2 = $bmAPIkey; unset($bmAPIkey); }
+    }
+
     // Get the current DMR Master from the config
     $dmrMasterHost = getConfigItem("DMR Network", "Address", $_SESSION['MMDVMHostConfigs']);
     if ( $dmrMasterHost == '127.0.0.1' ) {
@@ -255,7 +265,7 @@ if ( $testMMDVModeDMR == 1 ) {
 	        echo '<b>BrandMeister Manager</b>'."\n";
 	        echo "<table>\n<tr><th>Command Output</th></tr>\n<tr><td>";
 	        //echo "Sending command to BrandMeister API";
-            if (isset($feeback)) { print "BrandMeister API: ".$feeback->{'message'}; } else { print "BrandMeister API: No Response"; }
+            if (isset($feeback)) { print "BrandMeister APIv1: ".$feeback->{'message'}; } else { print "BrandMeister APIv1:  Response"; }
 	        echo "<br />Page reloading...</td></tr>\n</table>\n";
 	        echo "<br />\n";
 	        // Clean up...
@@ -263,7 +273,8 @@ if ( $testMMDVModeDMR == 1 ) {
 	        echo '<script type="text/javascript">setTimeout(function() { window.location=window.location;},3000);</script>';
 	    }
 	    else { // Do this when we are not handling post data
-	        if (isset($_SESSION['BMAPIKey'])) {
+		    // If there is a BM API Key
+            if (isset($bmAPIkey) || isset($bmAPIkeyV2)) {
 		    echo '<b>BrandMeister Manager</b>'."\n";
 		    echo '<form id="bm_man" action="'.htmlentities($_SERVER['PHP_SELF']."?func=bm_man").'" method="post">'."\n";
 		    echo '<table style="white-space: normal;">'."\n";
