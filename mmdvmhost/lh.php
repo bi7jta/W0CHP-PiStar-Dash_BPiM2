@@ -41,7 +41,7 @@ for ($i = 0;  ($i <= 39); $i++) { //Last 40 calls
 			$local_time = $dt->format('H:i:s M jS');
 		echo"<tr>";
 		echo"<td align=\"left\">$local_time</td>";
-		echo"<td align=\"left\">$listElem[1]</td>";
+        echo "<td align=\"left\">".str_replace('Slot ', 'TS', $listElem[1])."</td>";
 		if (is_numeric($listElem[2]) || strpos($listElem[2], "openSPOT") !== FALSE) {
 			echo "<td align=\"left\">$listElem[2]</td>";
 		} elseif (!preg_match('/[A-Za-z].*[0-9]|[0-9].*[A-Za-z]/', $listElem[2])) {
