@@ -120,6 +120,12 @@ if (file_exists('/etc/dapnetgateway')) {
 	if (fopen($configDAPNetConfigFile,'r')) { $configdapnetgw = parse_ini_file($configDAPNetConfigFile, true); }
 }
 
+// APRS Gateway config
+if (file_exists('/etc/aprsgateway')) {
+	$configAPRSconfigFile = '/etc/aprsgateway';
+	if (fopen($configAPRSconfigFile,'r')) { $configaprsgw = parse_ini_file($configAPRSconfigFile, true); }
+}
+
 // Load the dmrgateway config file
 $dmrGatewayConfigFile = '/etc/dmrgateway';
 if (fopen($dmrGatewayConfigFile,'r')) { $configdmrgateway = parse_ini_file($dmrGatewayConfigFile, true); }
@@ -867,10 +873,21 @@ if (!empty($_POST)):
 	  $configysf2nxdn['Info']['Description'] = $newCallsignUpper."_Pi-Star";
 	  $configysf2p25['Info']['Description'] = $newCallsignUpper."_Pi-Star";
 
-	  // If ircDDBGateway config supports APRS Password
-	  if ($configs['aprsPassword']) {
-		  $rollircDDBGatewayAprsPassword = 'sudo sed -i "/aprsPassword=/c\\aprsPassword='.aprspass($newCallsignUpper).'" /etc/ircddbgateway';
-		  system($rollircDDBGatewayAprsPassword);
+	  if ($configPistarRelease['Pi-Star']['Version'] >= "4.1.4") {
+	    $rollAPRSGatewayCallsign = 'sudo sed -i "/Callsign=/c\\Callsign='.$newCallsignUpper.'" /etc/aprsgateway';
+	    system($rollAPRSGatewayCallsign);
+	    $rollAPRSGatewayPassword = 'sudo sed -i "/Password=/c\\Password='.aprspass($newCallsignUpper).'" /etc/aprsgateway';
+	    system($rollAPRSGatewayPassword);
+	    $rollircDDBGatewayAprsPort = 'sudo sed -i "/aprsPort=/c\\aprsPort=8673" /etc/ircddbgateway';
+	    system($rollircDDBGatewayAprsPort);
+	    unset($configs['aprsPassword']);
+	    $rollircDDBGatewayAprsPass = 'sudo sed -i "/aprsPassword/d" /etc/ircddbgateway';
+	    system($rollircDDBGatewayAprsPass);
+	    if (empty($_POST['APRSGatewayEnable']) != TRUE ) {
+	    	if (escapeshellcmd($_POST['APRSGatewayEnable']) == 'ON' )  { $rollAPRSGatewayEnable = 'sudo sed -i "/Enabled=/c\\Enabled=1" /etc/aprsgateway'; }
+	    	if (escapeshellcmd($_POST['APRSGatewayEnable']) == 'OFF' ) { $rollAPRSGatewayEnable = 'sudo sed -i "/Enabled=/c\\Enabled=0" /etc/aprsgateway'; }
+	    }
+	    system($rollAPRSGatewayEnable);
 	  }
 
 	  system($rollGATECALL);
@@ -3018,6 +3035,7 @@ else:
 		$toggleDMR2YSFCheckboxCr		= 'onclick="toggleDMR2YSFCheckbox()"';
 		$toggleDMR2NXDNCheckboxCr		= 'onclick="toggleDMR2NXDNCheckbox()"';
 		$togglePOCSAGCheckboxCr			= 'onclick="togglePOCSAGCheckbox()"';
+        $toggleAPRSGatewayCheckboxCr		= 'onclick="toggleAPRSGatewayCheckbox()"';
 		$toggleDmrGatewayNet1EnCheckboxCr	= 'onclick="toggleDmrGatewayNet1EnCheckbox()"';
 		$toggleDmrGatewayNet2EnCheckboxCr	= 'onclick="toggleDmrGatewayNet2EnCheckbox()"';
 		$toggleDmrGatewayXlxEnCheckboxCr	= 'onclick="toggleDmrGatewayXlxEnCheckbox()"';
@@ -3041,6 +3059,7 @@ else:
 		$toggleDMR2YSFCheckboxCr		= "";
 		$toggleDMR2NXDNCheckboxCr		= "";
 		$togglePOCSAGCheckboxCr			= "";
+        $toggleAPRSGatewayCheckboxCr		= "";
 		$toggleDmrGatewayNet1EnCheckboxCr	= "";
 		$toggleDmrGatewayNet2EnCheckboxCr	= "";
 		$toggleDmrGatewayXlxEnCheckboxCr	= "";
@@ -3315,6 +3334,7 @@ else:
 	<div><input type="button" value="<?php echo $lang['apply'];?>" onclick="submitform()" /><br /><br /></div>
     <?php } ?>
 	<h2><?php echo $lang['general_config'];?></h2>
+    <input type="hidden" name="APRSGatewayEnable" value="OFF" />
     <table>
     <tr>
     <th width="200"><a class="tooltip" href="#"><?php echo $lang['setting'];?><span><b>Setting</b></span></a></th>
@@ -3355,12 +3375,11 @@ else:
 	echo "    </tr>\n";
 	}
 ?>
-    <tr>
-    <td align="left"><a class="tooltip2" href="#"><?php echo $lang['lattitude'];  if (!empty($_SERVER['HTTPS']) && $_SERVER['HTTPS'] != 'off') { echo '<button type="button" onclick="getLocation()">Get</button>'; } ?>:<span><b>Gateway Latitude</b>This is the latitude where the gateway is located (positive number for North, negative number for South)</span></a></td>
+    <td align="left"><a class="tooltip2" href="#"><?php echo $lang['lattitude'];?>:<span><b>Gateway Latitude</b>This is the latitude where the gateway is located (positive number for North, negative number for South) - Set to 0 to hide your hotspot location</span></a></td>
     <td align="left" colspan="2"><input type="text" id="confLatitude" name="confLatitude" size="13" maxlength="9" value="<?php echo $configs['latitude'] ?>" />degrees (positive value for North, negative for South)</td>
     </tr>
     <tr>
-    <td align="left"><a class="tooltip2" href="#"><?php echo $lang['longitude']; if (!empty($_SERVER['HTTPS']) && $_SERVER['HTTPS'] != 'off') { echo '<button type="button" onclick="getLocation()">Get</button>'; } ?>:<span><b>Gateway Longitude</b>This is the longitude where the gateway is located (positive number for East, negative number for West)</span></a></td>
+    <td align="left"><a class="tooltip2" href="#"><?php echo $lang['longitude'];?>:<span><b>Gateway Longitude</b>This is the longitude where the gateway is located (positive number for East, negative number for West) - Set to 0 to hide your hotspot location</span></a></td>
     <td align="left" colspan="2"><input type="text" id="confLongitude" name="confLongitude" size="13" maxlength="9" value="<?php echo $configs['longitude'] ?>" />degrees (positive value for East, negative for West)</td>
     </tr>
     <tr>
@@ -3444,10 +3463,19 @@ else:
     <input type="radio" name="nodeMode" value="prv"<?php if ($configmmdvm['DMR']['SelfOnly'] == 1) {echo ' checked="checked"';} ?> />Private
     <input type="radio" name="nodeMode" value="pub"<?php if ($configmmdvm['DMR']['SelfOnly'] == 0) {echo ' checked="checked"';} ?> />Public</td>
     </tr>
+<?php if (file_exists('/etc/aprsgateway')) {
+    echo "<tr>\n";
+    echo "<td align=\"left\"><a class=\"tooltip2\" href=\"#\">".$lang['aprs_host']." Enable:<span><b>APRS Host Enable</b>Enabling this feature will make your location public.</span></a></td>\n";
+    if ( $configaprsgw['Enabled']['Enabled'] == 1 ) {
+        echo "<td align=\"left\" colspan=\"2\"><div class=\"switch\"><input id=\"toggle-aprsgateway\" class=\"toggle toggle-round-flat\" type=\"checkbox\" name=\"APRSGatewayEnable\" value=\"ON\" checked=\"checked\" aria-hidden=\"true\" tabindex=\"-1\" ".$toggleAPRSGatewayCheckboxCr." /><label id=\"aria-toggle-aprsgateway\" role=\"checkbox\" tabindex=\"0\" aria-label=\"Enable APRS Position Reporting\" aria-checked=\"true\" onKeyPress=\"toggleAPRSGatewayCheckbox()\" onclick=\"toggleAPRSGatewayCheckbox()\" for=\"toggle-aprsgateway\"><font style=\"font-size:0px\">Enable APRS Position Reporting</font></label></div></td>\n";
+    } else {
+        echo "<td align=\"left\" colspan=\"2\"><div class=\"switch\"><input id=\"toggle-aprsgateway\" class=\"toggle toggle-round-flat\" type=\"checkbox\" name=\"APRSGatewayEnable\" value=\"ON\" aria-hidden=\"true\" tabindex=\"-1\" ".$toggleAPRSGatewayCheckboxCr." /><label id=\"aria-toggle-aprsgateway\" role=\"checkbox\" tabindex=\"0\" aria-label=\"Enable APRS Position Reporting\" aria-checked=\"false\" onKeyPress=\"toggleAPRSGatewayCheckbox()\" onclick=\"toggleAPRSGatewayCheckbox()\" for=\"toggle-aprsgateway\"><font style=\"font-size:0px\">Enable APRS Position Reporting</font></label></div></td>\n";
+    }
+} ?>
     <tr>
-    <td align="left"><a class="tooltip2" href="#"><?php echo $lang['aprs_host'];?>:<span><b>APRS Host</b>Set your prefered APRS host here</span></a></td>
+    <td align="left"><a class="tooltip2" href="#"><?php echo $lang['aprs_host'];?>:<span><b>APRS Host</b>Set your prefered APRS host here.</span></a></td>
     <td colspan="2" style="text-align: left;"><select name="selectedAPRSHost">
-<?php
+<?php 
         $testAPSRHost = $configs['aprsHostname'];
     	$aprsHostFile = fopen("/usr/local/etc/APRSHosts.txt", "r");
         while (!feof($aprsHostFile)) {
