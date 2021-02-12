@@ -14,7 +14,6 @@ $lang = array (
   "admin"                       =>  "Skrbniški način",
   "power"                       =>  "Vklop/Izklop",
   "update"                      =>  "Posodobitev",
-  "upgrade"                     =>  "Upgrade",
   "backup_restore"              =>  "Varnostno kopiranje",
   "factory_reset"               =>  "Tovarniške nastavitve",
   "live_logs"                   =>  "Dnevnik",
@@ -29,7 +28,7 @@ $lang = array (
   "p25_config"                  =>  "Nastavitve P25",
   "nxdn_config"                 =>  "Nastavitve NXDN",
   "pocsag_config"               =>  "Nastavitve POCSAG",
-  "gpsd_config"            =>  "GPSd Configuration",
+  "mobilegps_config"            =>  "Mobile GPS Configuration",
   "wifi_config"                 =>  "Nastavitve brezžičnega omrežja",
   "fw_config"                   =>  "Nastavitve požarnega zidu",
   "remote_access_pw"            =>  "Geslo za oddaljeni dostop",
@@ -75,8 +74,6 @@ $lang = array (
   "dmr_plus_network"            =>  "DMR+ omrežje",
   "xlx_master"                  =>  "XLX Master",
   "xlx_enable"                  =>  "XLX Master Enable",
-  "xlx_startup_tg"              =>  "XLX Startup TG",
-  "xlx_startup_module"          =>  "XLX Startup Module",
   "dmr_cc"                      =>  "DMR Barvna Koda (CC)",
   "dmr_embeddedlconly"          =>  "DMR EmbeddedLCOnly",
   "dmr_dumptadata"              =>  "DMR DumpTAData",
@@ -96,10 +93,10 @@ $lang = array (
   // Config Page - NXDN Configuration
   "nxdn_startup_host"            =>  "NXDN zagonski gostitelj",
   "nxdn_ran"                     =>  "NXDN RAN",
-  // Config Page - GPSd Configuration
-  "gpsd_enable"            =>  "GPSd Enable",
-  "gpsd_port"              =>  "GPSd Port",
-  "gpsd_address"                =>  "GPSd Address",
+  // Config Page - MobileGPS Configuration
+  "mobilegps_enable"            =>  "MobileGPS Enable",
+  "mobilegps_port"              =>  "GPS Port",
+  "mobilegps_speed"             =>  "GPS Port Speed",
   // Config Page - Firewall Configuration
   "fw_dash"                     =>  "Dostop do nadzorne plošče",
   "fw_irc"                      =>  "Dostop ircDDBGateway",

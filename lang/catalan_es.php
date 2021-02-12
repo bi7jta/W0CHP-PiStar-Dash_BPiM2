@@ -15,7 +15,6 @@ $lang = array (
   "admin"                       =>  "Administrar",
   "power"                       =>  "Reiniciar/Apagar",
   "update"                      =>  "Actualitzar",
-  "upgrade"                     =>  "Upgrade",
   "backup_restore"              =>  "Fer/Restaurar copia seguretat",
   "factory_reset"               =>  "Restaurar estat de fàbrica",
   "live_logs"                   =>  "Informes-Logs",
@@ -30,7 +29,7 @@ $lang = array (
   "p25_config"                  =>  "Configuració de P25",
   "nxdn_config"                 =>  "Configuració de NXDN",
   "pocsag_config"               =>  "Configuració de POCSAG",
-  "gpsd_config"            =>  "GPSd Configuration",
+  "mobilegps_config"            =>  "Mobile GPS Configuration",
   "wifi_config"                 =>  "Configuració WIFI",
   "fw_config"                   =>  "Configuració del Tallafocs",
   "remote_access_pw"            =>  "Mot clau per acccés remot",
@@ -76,8 +75,6 @@ $lang = array (
   "dmr_plus_network"            =>  "Xarxa DMR+",
   "xlx_master"                  =>  "Master XLX",
   "xlx_enable"                  =>  "Habilitar Master XLX",
-  "xlx_startup_tg"              =>  "XLX Startup TG",
-  "xlx_startup_module"          =>  "XLX Startup Module",
   "dmr_cc"                      =>  "Codi de color DMR",
   "dmr_embeddedlconly"          =>  "DMR EmbeddedLCOnly",
   "dmr_dumptadata"              =>  "DMR DumpTAData",
@@ -97,10 +94,10 @@ $lang = array (
   // Config Page - NXDN Configuration
   "nxdn_startup_host"            =>  "NXDN Arrencant Host",
   "nxdn_ran"                     =>  "NXDN RAN",
-  // Config Page - GPSd Configuration
-  "gpsd_enable"            =>  "GPSd Enable",
-  "gpsd_port"              =>  "GPSd Port",
-  "gpsd_address"                =>  "GPSd Address",
+  // Config Page - MobileGPS Configuration
+  "mobilegps_enable"            =>  "MobileGPS Enable",
+  "mobilegps_port"              =>  "GPS Port",
+  "mobilegps_speed"             =>  "GPS Port Speed",
   // Config Page - Firewall Configuration
   "fw_dash"                     =>  "Panell d'accés",
   "fw_irc"                      =>  "ircDDBGateway Remot",
@@ -134,7 +131,6 @@ $lang = array (
   "ber"                         =>  "BER",
   // POCSAG Specific
   "pocsag_list"                 =>  "DAPNET Gateway Activity",
-  "pocsag_persolist"            =>  "DAPNET Personnal Messages",
   "pocsag_timeslot"             =>  "Time Slot",
   "pocsag_msg"                  =>  "Message",
   // Dashboard - Extra Info
@@ -144,8 +140,8 @@ $lang = array (
   "utot"                        =>  "UTOT", 
   "gtot"                        =>  "GTOT", 
   // Dashboard Front Page / Admin - Section Headders
-  "last_heard_list"             =>  "Últimes 40 trucades rebudes",
-  "local_tx_list"               =>  "Últimes 40 trucades rebudes via radio",
+  "last_heard_list"             =>  "Últimes 20 trucades rebudes",
+  "local_tx_list"               =>  "Últimes 20 trucades rebudes via radio",
   "active_starnet_groups"       =>  "Grups actius Starnet",
   "active_starnet_members"      =>  "Membres actius grup Starnet",
   "d-star_link_manager"         =>  "Gestor d'enllaços D-Star",

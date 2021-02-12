@@ -15,7 +15,6 @@ $lang = array (
   "admin"                       =>  "管理",
   "power"                       =>  "電源",
   "update"                      =>  "更新",
-  "upgrade"                     =>  "Upgrade",
   "backup_restore"              =>  "備份/恢復",
   "factory_reset"               =>  "恢復出廠設定",
   "live_logs"                   =>  "日誌",
@@ -30,7 +29,7 @@ $lang = array (
   "p25_config"                  =>  "P25 設定",
   "nxdn_config"                 =>  "NXDN 設定",
   "pocsag_config"               =>  "POCSAG 設定",
-  "gpsd_config"            =>  "GPSd Configuration",
+  "mobilegps_config"            =>  "Mobile GPS Configuration",
   "fw_config"                   =>  "防火墻設定",
   "remote_access_pw"            =>  "遠程訪問密碼",
   // Config Page - Section General
@@ -75,8 +74,6 @@ $lang = array (
   "dmr_plus_network"            =>  "DMR+ 網絡",
   "xlx_master"                  =>  "XLX 主機 ",
   "xlx_enable"                  =>  "XLX 主機啟用",
-  "xlx_startup_tg"              =>  "XLX Startup TG",
-  "xlx_startup_module"          =>  "XLX Startup Module",
   "dmr_cc"                      =>  "DMR 彩色碼",
   "dmr_embeddedlconly"          =>  "DMR EmbeddedLCOnly",
   "dmr_dumptadata"              =>  "DMR DumpTAData",
@@ -96,10 +93,10 @@ $lang = array (
   // Config Page - NXDN Configuration
   "nxdn_startup_host"            =>  "NXDN 默認服務器",
   "nxdn_ran"                     =>  "NXDN RAN",
-  // Config Page - GPSd Configuration
-  "gpsd_enable"            =>  "GPSd Enable",
-  "gpsd_port"              =>  "GPSd Port",
-  "gpsd_address"                =>  "GPSd Address",
+  // Config Page - MobileGPS Configuration
+  "mobilegps_enable"            =>  "MobileGPS Enable",
+  "mobilegps_port"              =>  "GPS Port",
+  "mobilegps_speed"             =>  "GPS Port Speed",
   // Config Page - Firewall Configuration
   "fw_dash"                     =>  "儀表盤訪問",
   "fw_irc"                      =>  "ircDDBGateway 遠程",
@@ -133,7 +130,6 @@ $lang = array (
   "ber"                         =>  "誤碼率",    // Short version of "Bit Error Rate"
   // POCSAG Specific
   "pocsag_list"                 =>  "DAPNET Gateway Activity",
-  "pocsag_persolist"            =>  "DAPNET Personnal Messages",
   "pocsag_timeslot"             =>  "Time Slot",
   "pocsag_msg"                  =>  "Message",
   // Dashboard - Extra Info
@@ -143,8 +139,8 @@ $lang = array (
   "utot"                        =>  "用户超時",     // Short for User Timeout
   "gtot"                        =>  "組超時",       // Short for Group Timeout
   // Dashboard Front Page / Admin - Section Headders
-  "last_heard_list"             =>  "網關上最後 40 個呼叫",
-  "local_tx_list"               =>  "最後 40 個本地呼叫",
+  "last_heard_list"             =>  "網關上最後 20 個呼叫",
+  "local_tx_list"               =>  "最後 20 個本地呼叫",
   "active_starnet_groups"       =>  "激活 Starnet 組",
   "active_starnet_members"      =>  "激活 Starnet 組成員",
   "d-star_link_manager"         =>  "D-Star 連接管理器",

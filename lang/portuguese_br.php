@@ -14,7 +14,6 @@ $lang = array (
   "admin"                       =>  "Admin",
   "power"                       =>  "Ação",
   "update"                      =>  "Atualizar",
-  "upgrade"                     =>  "Upgrade",
   "backup_restore"              =>  "Backup/Restaurar",
   "factory_reset"               =>  "Reset",
   "live_logs"                   =>  "Logs online",
@@ -29,7 +28,7 @@ $lang = array (
   "p25_config"                  =>  "Configuração do P25",
   "nxdn_config"                 =>  "Configuração do NXDN",
   "pocsag_config"               =>  "Configuração do POCSAG",
-  "gpsd_config"            =>  "GPSd Configuration",
+  "mobilegps_config"            =>  "Mobile GPS Configuration",
   "wifi_config"                 =>  "Configuração do Wireless",
   "fw_config"                   =>  "Configuração do Firewall",
   "remote_access_pw"            =>  "Senha do Acesso Remoto",
@@ -75,8 +74,6 @@ $lang = array (
   "dmr_plus_network"            =>  "DMR+ Network",
   "xlx_master"                  =>  "XLX Master",
   "xlx_enable"                  =>  "XLX Master Enable",
-  "xlx_startup_tg"              =>  "XLX Startup TG",
-  "xlx_startup_module"          =>  "XLX Startup Module",
   "dmr_cc"                      =>  "Código de Cores DMR",
   "dmr_embeddedlconly"          =>  "DMR EmbeddedLCOnly",
   "dmr_dumptadata"              =>  "DMR DumpTAData",
@@ -96,10 +93,10 @@ $lang = array (
   // Config Page - NXDN Configuration
   "nxdn_startup_host"            =>  "Servidor Inicial NXDN",
   "nxdn_ran"                     =>  "NXDN RAN",
-  // Config Page - GPSd Configuration
-  "gpsd_enable"            =>  "GPSd Enable",
-  "gpsd_port"              =>  "GPSd Port",
-  "gpsd_address"                =>  "GPSd Address",
+  // Config Page - MobileGPS Configuration
+  "mobilegps_enable"            =>  "MobileGPS Enable",
+  "mobilegps_port"              =>  "GPS Port",
+  "mobilegps_speed"             =>  "GPS Port Speed",
   // Config Page - Firewall Configuration
   "fw_dash"                     =>  "Acesso ao Painel",
   "fw_irc"                      =>  "Remoto ircDDBGateway",
@@ -133,7 +130,6 @@ $lang = array (
   "ber"                         =>  "BER",        // Short version of "Bit Error Rate"
   // POCSAG Specific
   "pocsag_list"                 =>  "DAPNET Gateway Activity",
-  "pocsag_persolist"            =>  "DAPNET Personnal Messages",
   "pocsag_timeslot"             =>  "Time Slot",
   "pocsag_msg"                  =>  "Message",
   // Dashboard - Extra Info
@@ -143,8 +139,8 @@ $lang = array (
   "utot"                        =>  "UTOT",       // Short for User Timeout
   "gtot"                        =>  "GTOT",       // Short for Group Timeout
   // Dashboard Front Page / Admin - Section Headders
-  "last_heard_list"             =>  "Últimas 40 chamadas via Gateway",
-  "local_tx_list"               =>  "Últimas 40 chamadas por este Gateway",
+  "last_heard_list"             =>  "Últimas 20 chamadas via Gateway",
+  "local_tx_list"               =>  "Últimas 20 chamadas por este Gateway",
   "active_starnet_groups"       =>  "Grupo Ativos na Starnet",
   "active_starnet_members"      =>  "Grupo de Membros Ativos na Starnet",
   "d-star_link_manager"         =>  "Gerenciar Conexão D-Star",

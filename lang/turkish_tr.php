@@ -14,7 +14,6 @@ $lang = array (
   "admin"                       =>  "Yönetici",
   "power"                       =>  "Güç",
   "update"                      =>  "Güncelle",
-  "upgrade"                     =>  "Upgrade",
   "backup_restore"              =>  "Yedekle/Geriyükle",
   "factory_reset"               =>  "Fabrika Ayarları",
   "live_logs"                   =>  "Sistem Günlüğü",
@@ -29,7 +28,7 @@ $lang = array (
   "p25_config"                  =>  "P25 Konfigürasyonu",
   "nxdn_config"                 =>  "NXDN Konfigürasyonu",
   "pocsag_config"               =>  "POCSAG Konfigürasyonu",
-  "gpsd_config"                 =>  "GPSd Configuration",
+  "mobilegps_config"            =>  "Mobile GPS Configuration",
   "wifi_config"                 =>  "Kablosuz Konfigürasyonu",
   "fw_config"                   =>  "Güv.Duv. Konfigürasyonu",
   "remote_access_pw"            =>  "Uzak Erişim Parolası",
@@ -75,8 +74,6 @@ $lang = array (
   "dmr_plus_network"            =>  "DMR+ Ağı",
   "xlx_master"                  =>  "XLX Sunucu",
   "xlx_enable"                  =>  "XLX Sunucu Etkinleştirme",
-  "xlx_startup_tg"              =>  "XLX Startup TG",
-  "xlx_startup_module"          =>  "XLX Startup Module",
   "dmr_cc"                      =>  "DMR Renk Kodu",
   "dmr_embeddedlconly"          =>  "DMR GömülüLC",
   "dmr_dumptadata"              =>  "DMR TAVeriDökümü",
@@ -96,10 +93,10 @@ $lang = array (
   // Config Page - NXDN Configuration
   "nxdn_startup_host"            =>  "NXDN İşletme Ağı",
   "nxdn_ran"                     =>  "NXDN RAN",
-  // Config Page - GPSd Configuration
-  "gpsd_enable"            =>  "GPSd Enable",
-  "gpsd_port"              =>  "GPSd Port",
-  "gpsd_address"                =>  "GPSd Address",
+  // Config Page - MobileGPS Configuration
+  "mobilegps_enable"            =>  "MobileGPS Enable",
+  "mobilegps_port"              =>  "GPS Port",
+  "mobilegps_speed"             =>  "GPS Port Speed",
   // Config Page - Firewall Configuration
   "fw_dash"                     =>  "Pano Erişimi",
   "fw_irc"                      =>  "ircDDBAğGeçidi Erişimi",
@@ -133,7 +130,6 @@ $lang = array (
   "ber"                         =>  "BHO",        // Short version of "Bit Error Rate"
   // POCSAG Specific
   "pocsag_list"                 =>  "DAPNET Ağ Geçidi Etkinliği",
-  "pocsag_persolist"            =>  "DAPNET Personnal Messages",
   "pocsag_timeslot"             =>  "Zaman Aralığı",
   "pocsag_msg"                  =>  "Mesaj",
   // Dashboard - Extra Info

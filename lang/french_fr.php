@@ -6,18 +6,17 @@
 //
 $lang = array (
   // Banner texts
-  "digital_voice"               =>  "Relais Numérique",
-  "configuration"               =>  "Configurat°",
+  "digital_voice"               =>  "Relais numérique",
+  "configuration"               =>  "Configuration",
   "dashboard_for"               =>  "Console pour",
   // Banner links
   "dashboard"                   =>  "Console",
-  "admin"                       =>  "Administrat°",
-  "power"                       =>  "Syst&egrave;me",
+  "admin"                       =>  "Administration",
+  "power"                       =>  "Arr&ecirc;t/Red&eacute;marrage",
   "update"                      =>  "Mise &agrave; jour",
-  "upgrade"                     =>  "Mise &agrave; niveau",
-  "backup_restore"              =>  "Sauvegarde/Restaurat°",
-  "factory_reset"               =>  "R&eacute;glages Usine",
-  "live_logs"                   =>  "Livre de bord",
+  "backup_restore"              =>  "Sauvegarde/Restauration",
+  "factory_reset"               =>  "R&eacute;initialisation Usine",
+  "live_logs"                   =>  "Surveillance des Logs",
   // Config page section headdings
   "hardware_info"               =>  "Informations mat&eacute;rielles de la passerelle",
   "control_software"            =>  "Contr&ocirc;le logiciel",
@@ -29,7 +28,7 @@ $lang = array (
   "p25_config"                  =>  "Configuration P25",
   "nxdn_config"                 =>  "Configuration NXDN",
   "pocsag_config"               =>  "Configuration POCSAG",
-  "gpsd_config"            =>  "GPSd Configuration",
+  "mobilegps_config"            =>  "Mobile GPS Configuration",
   "wifi_config"                 =>  "Configuration R&eacute;seau WIFI",
   "fw_config"                   =>  "Configuration du Firewall",
   "remote_access_pw"            =>  "Mot de passe acc&egrave;s distant",
@@ -66,7 +65,7 @@ $lang = array (
   "radio_type"                  =>  "Mod&egrave;le Radio/Modem",
   "node_type"                   =>  "Type de Node",
   "timezone"                    =>  "Fuseau horaire",
-  "dash_lang"                   =>  "Language de la console",
+  "dash_lang"                   =>  "Langage de la console",
   // Config Page - DMR Configuration
   "dmr_master"                  =>  "Master DMR(MMDVMHost)",
   "bm_master"                   =>  "Master BrandMeister",
@@ -75,8 +74,6 @@ $lang = array (
   "dmr_plus_network"            =>  "R&eacute;seau DMR+",
   "xlx_master"                  =>  "Master XLX",
   "xlx_enable"                  =>  "Master XLX actif",
-  "xlx_startup_tg"              =>  "TG XLX au d&eacute;marrage",
-  "xlx_startup_module"          =>  "Module XLX au d&eacute;marrage",
   "dmr_cc"                      =>  "Code Couleur DMR",
   "dmr_embeddedlconly"          =>  "DMR LC int&eacute;gr&eacute; uniquement",
   "dmr_dumptadata"              =>  "DMR DumpTAData",
@@ -96,10 +93,10 @@ $lang = array (
   // Config Page - NXDN Configuration
   "nxdn_startup_host"            =>  "H&ocirc;te de d&eacute;marrage NXDN",
   "nxdn_ran"                     =>  "NXDN RAN",
-  // Config Page - GPSd Configuration
-  "gpsd_enable"            =>  "GPSd Enable",
-  "gpsd_port"              =>  "GPSd Port",
-  "gpsd_address"                =>  "GPSd Address",
+  // Config Page - MobileGPS Configuration
+  "mobilegps_enable"            =>  "MobileGPS Enable",
+  "mobilegps_port"              =>  "GPS Port",
+  "mobilegps_speed"             =>  "GPS Port Speed",
   // Config Page - Firewall Configuration
   "fw_dash"                     =>  "Acc&egrave;s Console",
   "fw_irc"                      =>  "Commande &agrave; distance ircDDBGateway",
@@ -127,13 +124,12 @@ $lang = array (
   "mode"                        =>  "Mode",
   "callsign"                    =>  "Indicatif ",
   "target"                      =>  "Cible",
-  "src"                         =>  "Src ",        // Short version of "Source"
-  "dur"                         =>  "Dur",        // Short version of "Duration"
-  "loss"                        =>  "Perte",      // short version of "Loss"
+  "src"                         =>  "Source ",        // Short version of "Source"
+  "dur"                         =>  "Dur&eacute;e ",        // Short version of "Duration"
+  "loss"                        =>  "Pertes",
   "ber"                         =>  "BER",        // Short version of "Bit Error Rate"
   // POCSAG Specific
-  "pocsag_list"                 =>  "Activit&eacute; Passerelle DAPNET",
-  "pocsag_persolist"            =>  "Messages Personnels DAPNET",
+  "pocsag_list"                 =>  "DAPNET Gateway Activity",
   "pocsag_timeslot"             =>  "Time Slot",
   "pocsag_msg"                  =>  "Message",
   // Dashboard - Extra Info
