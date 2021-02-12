@@ -560,7 +560,11 @@ if (!empty($_POST)):
 	  $configysf2dmr['aprs.fi']['Enable'] = "0";
 	  $configysf2nxdn['aprs.fi']['Enable'] = "0";
 	  $configysf2p25['aprs.fi']['Enable'] = "0";
+	  if ($configPistarRelease['Pi-Star']['Version'] >= "4.1.4") {
+	    $rollAPRSGatewayHost = 'sudo sed -i "/Server=/c\\Server='.escapeshellcmd($_POST['selectedAPRSHost']).'" /etc/aprsgateway';
+	    system($rollAPRSGatewayHost);
 	  }
+	}
 
 	// Set ircDDBGateway and TimeServer language
 	if (empty($_POST['ircDDBGatewayAnnounceLanguage']) != TRUE) {
