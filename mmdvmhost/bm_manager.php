@@ -60,11 +60,12 @@ if ( $testMMDVModeDMR == 1 ) {
 	}
 	fclose($dmrMasterFile);
     }
-    
-    if ((substr($dmrMasterHost, 0, 3) == "BM ") && ($bmEnabled == true)) {
+   
+    if ((substr($dmrMasterHost, 0, 3) == "BM ") && ($bmEnabled == true) && isset($_SESSION['BMAPIKey'])) { 
 	// OK this is Brandmeister, get some config and output the HTML
 	
 	// If there is a BM API Key
+    $bmAPIkey = $_SESSION['BMAPIKey'];
 	if ( !empty($_POST) && ( isset($_POST["tgStaticDropAll"]) || isset($_POST["tgStaticReAdd"]) || isset($_POST["tgStaticBatch"]))) {  // Data has been posted for this page
             // Static TG handling...
             $sanitizedKey = str_replace('$', '\$', $_SESSION['BMAPIKey']);
@@ -215,6 +216,7 @@ if ( $testMMDVModeDMR == 1 ) {
 	    // begin single TG management / native api funcs
       if ( (isset($bmAPIkey)) && ( !empty($_POST) && ( isset($_POST["dropDyn"]) || isset($_POST["dropQso"]) || isset($_POST["tgSubmit"]) ) ) ) { // Data has been posted for this page
           $bmAPIurl = 'https://api.brandmeister.network/v1.0/repeater/';
+          $bmAPIkey = $_SESSION['BMAPIKey'];
           // Are we a repeater
           if ( getConfigItem("DMR Network", "Slot1", $mmdvmconfigs) == "0" ) {
               unset($_POST["TS"]);
@@ -257,12 +259,12 @@ if ( $testMMDVModeDMR == 1 ) {
           );
           $context = stream_context_create($opts);
           $result = @file_get_contents($bmAPIurl, false, $context);
-          $feeback=json_decode($result);
+          $feedback=json_decode($result);
           // Output to the browser
           echo '<b>BrandMeister Manager</b>'."\n";
           echo "<table>\n<tr><th>Command Output</th></tr>\n<tr><td>";
           //echo "Sending command to BrandMeister API";
-          if (isset($feeback)) { print "BrandMeister APIv1: ".$feeback->{'message'}; } else { print "BrandMeister APIv1: No Responce"; }
+          if (isset($feedback)) { print "BrandMeister APIv1: ".$feedback->{'message'}; } else { print "BrandMeister APIv1: No Response"; }
           echo "</td></tr>\n</table>\n";
           echo "<br />\n";
           // Clean up...
@@ -314,13 +316,13 @@ if ( $testMMDVModeDMR == 1 ) {
           );
           $context = stream_context_create($opts);
           $result = @file_get_contents($bmAPIurl, false, $context);
-          $feeback=json_decode($result);
+          $feedback=json_decode($result);
           // Output to the browser
           echo '<b>BrandMeister Manager</b>'."\n";
           echo "<table>\n<tr><th>Command Output</th></tr>\n<tr><td>";
           //echo "Sending command to BrandMeister API";
-          //if (isset($feeback)) { print "BrandMeister APIv2: ".$feeback->{'message'}; } else { print "BrandMeister APIv2: No Responce"; }
-          if (isset($feeback)) { print "BrandMeister APIv2: OK"; } else { print "BrandMeister APIv2: No Responce"; }
+          //if (isset($feedback)) { print "BrandMeister APIv2: ".$feedback->{'message'}; } else { print "BrandMeister APIv2: No Response"; }
+          if (isset($feedback)) { print "BrandMeister APIv2: OK"; } else { print "BrandMeister APIv2: No Response"; }
           echo "</td></tr>\n</table>\n";
           echo "<br />\n";
           // Clean up...

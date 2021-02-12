@@ -58,8 +58,9 @@ if ( $testMMDVModeDMR == 1 ) {
 	}
 	fclose($dmrMasterFile);
     }
-    
-    if ((substr($dmrMasterHost, 0, 3) == "BM ") && ($bmEnabled == true)) {
+
+    if ((substr($dmrMasterHost, 0, 3) == "BM ") && ($bmEnabled == true) && isset($_SESSION['BMAPIKey'])) { 
+    $bmAPIkey = $_SESSION['BMAPIKey'];
 	// Use BM API to get information about current TGs
 	$jsonContext = stream_context_create(array('http'=>array('timeout' => 2, 'header' => 'User-Agent: Pi-Star '.$_SESSION['PiStarRelease']['Pi-Star']['Version'].'W0CHP-Dashboard for '.$dmrID) )); // Add Timout and User Agent to include DMRID
     if (isset($bmAPIkeyV2)) {
