@@ -346,12 +346,12 @@ if (!empty($_POST)):
 	system('sudo systemctl stop cron.service > /dev/null 2>/dev/null &');			//Cron
 
 	// Stop the DV Services
-	system('sudo systemctl stop dstarrepeater.service > /dev/null 2>/dev/null &');		// D-Star Radio Service
+	system('sudo systemctl stop dstarrepeater.service > /dev/null 2>/dev/null &');	// D-Star Radio Service
 	system('sudo systemctl stop mmdvmhost.service > /dev/null 2>/dev/null &');		// MMDVMHost Radio Service
-	system('sudo systemctl stop ircddbgateway.service > /dev/null 2>/dev/null &');		// ircDDBGateway Service
+	system('sudo systemctl stop ircddbgateway.service > /dev/null 2>/dev/null &');	// ircDDBGateway Service
 	system('sudo systemctl stop timeserver.service > /dev/null 2>/dev/null &');		// Time Server Service
-	system('sudo systemctl stop pistar-watchdog.service > /dev/null 2>/dev/null &');	// PiStar-Watchdog Service
-	system('sudo systemctl stop pistar-remote.service > /dev/null 2>/dev/null &');		// PiStar-Remote Service
+	system('sudo systemctl stop pistar-watchdog.service > /dev/null 2>/dev/null &');// PiStar-Watchdog Service
+	system('sudo systemctl stop pistar-remote.service > /dev/null 2>/dev/null &');	// PiStar-Remote Service
 	system('sudo systemctl stop ysfgateway.service > /dev/null 2>/dev/null &');		// YSFGateway
 	system('sudo systemctl stop ysf2dmr.service > /dev/null 2>/dev/null &');		// YSF2DMR
 	system('sudo systemctl stop ysf2nxdn.service > /dev/null 2>/dev/null &');		// YSF2NXDN
@@ -360,12 +360,13 @@ if (!empty($_POST)):
 	system('sudo systemctl stop ysfparrot.service > /dev/null 2>/dev/null &');		// YSFParrot
 	system('sudo systemctl stop p25gateway.service > /dev/null 2>/dev/null &');		// P25Gateway
 	system('sudo systemctl stop p25parrot.service > /dev/null 2>/dev/null &');		// P25Parrot
-	system('sudo systemctl stop nxdngateway.service > /dev/null 2>/dev/null &');		// NXDNGateway
+	system('sudo systemctl stop nxdngateway.service > /dev/null 2>/dev/null &');	// NXDNGateway
 	system('sudo systemctl stop nxdnparrot.service > /dev/null 2>/dev/null &');		// NXDNParrot
 	system('sudo systemctl stop dmr2ysf.service > /dev/null 2>/dev/null &');		// DMR2YSF
 	system('sudo systemctl stop dmr2nxdn.service > /dev/null 2>/dev/null &');		// DMR2YSF
 	system('sudo systemctl stop dmrgateway.service > /dev/null 2>/dev/null &');		// DMRGateway
-	system('sudo systemctl stop dapnetgateway.service > /dev/null 2>/dev/null &');		// DAPNetGateway
+	system('sudo systemctl stop dapnetgateway.service > /dev/null 2>/dev/null &');	// DAPNetGateway
+    system('sudo systemctl stop aprsgateway.service > /dev/null 2>/dev/null &');	// APRSGateway
 
 	echo "<table>\n";
 	echo "<tr><th>Working...</th></tr>\n";
@@ -2982,9 +2983,9 @@ if (!empty($_POST)):
         }
 
 	// Start the DV Services
-	system('sudo systemctl daemon-reload > /dev/null 2>/dev/null &');			// Restart Systemd to account for any service changes
+	system('sudo systemctl daemon-reload > /dev/null 2>/dev/null &');					// Restart Systemd to account for any service changes
 	system('sudo systemctl start dstarrepeater.service > /dev/null 2>/dev/null &');		// D-Star Radio Service
-	system('sudo systemctl start mmdvmhost.service > /dev/null 2>/dev/null &');		// MMDVMHost Radio Service
+	system('sudo systemctl start mmdvmhost.service > /dev/null 2>/dev/null &');			// MMDVMHost Radio Service
 	system('sudo systemctl start ircddbgateway.service > /dev/null 2>/dev/null &');		// ircDDBGateway Service
 	system('sudo systemctl start timeserver.service > /dev/null 2>/dev/null &');		// Time Server Service
 	system('sudo systemctl start pistar-watchdog.service > /dev/null 2>/dev/null &');	// PiStar-Watchdog Service
@@ -2996,16 +2997,17 @@ if (!empty($_POST)):
 	system('sudo systemctl start ysf2nxdn.service > /dev/null 2>/dev/null &');		// YSF2NXDN
 	system('sudo systemctl start ysf2p25.service > /dev/null 2>/dev/null &');		// YSF2P25
 	system('sudo systemctl start nxdn2dmr.service > /dev/null 2>/dev/null &');		// NXDN2DMR
-	system('sudo systemctl start ysfgateway.service > /dev/null 2>/dev/null &');		// YSFGateway
+	system('sudo systemctl start ysfgateway.service > /dev/null 2>/dev/null &');	// YSFGateway
 	system('sudo systemctl start ysfparrot.service > /dev/null 2>/dev/null &');		// YSFParrot
-	system('sudo systemctl start p25gateway.service > /dev/null 2>/dev/null &');		// P25Gateway
+	system('sudo systemctl start p25gateway.service > /dev/null 2>/dev/null &');	// P25Gateway
 	system('sudo systemctl start p25parrot.service > /dev/null 2>/dev/null &');		// P25Parrot
-	system('sudo systemctl start nxdngateway.service > /dev/null 2>/dev/null &');		// NXDNGateway
-	system('sudo systemctl start nxdnparrot.service > /dev/null 2>/dev/null &');		// NXDNParrot
+	system('sudo systemctl start nxdngateway.service > /dev/null 2>/dev/null &');	// NXDNGateway
+	system('sudo systemctl start nxdnparrot.service > /dev/null 2>/dev/null &');	// NXDNParrot
 	system('sudo systemctl start dmr2ysf.service > /dev/null 2>/dev/null &');		// DMR2YSF
 	system('sudo systemctl start dmr2nxdn.service > /dev/null 2>/dev/null &');		// DMR2NXDN
-	system('sudo systemctl start dmrgateway.service > /dev/null 2>/dev/null &');		// DMRGateway
-	system('sudo systemctl start dapnetgateway.service > /dev/null 2>/dev/null &');		// DAPNetGateway
+	system('sudo systemctl start dmrgateway.service > /dev/null 2>/dev/null &');	// DMRGateway
+	system('sudo systemctl start dapnetgateway.service > /dev/null 2>/dev/null &');	// DAPNetGateway
+    system('sudo systemctl start aprsgateway.service > /dev/null 2>/dev/null &');	// APRSGateway
 
 	// Set the system timezone
 	if (empty($_POST['systemTimezone']) != TRUE ) {
