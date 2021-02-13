@@ -29,13 +29,6 @@ include_once $_SERVER['DOCUMENT_ROOT'].'/config/language.php';        // Transla
 ?>
 <script type="text/javascript" >
  $(function(){
-     $('table.perso-poc-table').floatThead({
-	 position: 'fixed',
-	 scrollContainer: false 
-	 //scrollContainer: function($table){
-	 //    return $table.closest('.table-container');
-	 //}
-     });
      $('table.poc-lh-table').floatThead({
 	 position: 'fixed',
 	 scrollContainer: false
