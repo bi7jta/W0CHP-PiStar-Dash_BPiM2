@@ -1278,15 +1278,15 @@ function getActualReflector($logLines, $mode) {
 	    $from = substr($logLine, strpos($logLine,"from") + 5, strpos($logLine,"to") - strpos($logLine,"from") - 6);
 	    if (strlen($from) == 4 && startsWith($from,"4")) {
 		if ($from == "4000") {
-		    return "No Ref";
+		    return "No Refl.";
 		}
 		else {
-		    return "Ref ".$from;
+		    return "Refl. ".$from;
 		}
 	    }
 	}
     }
-    return "No Ref";
+    return "No Refl.";
 }
 
 //Some basic inits
