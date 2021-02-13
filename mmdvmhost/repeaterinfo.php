@@ -257,14 +257,14 @@ require_once($_SERVER['DOCUMENT_ROOT'].'/config/ircddblocal.php');
 	    echo "<tr><th>TS1</th>";
 	    
 	    if (getConfigItem("DMR Network", "Slot1", $_SESSION['MMDVMHostConfigs']) == 1) {
-		echo "<td class=\"active-mode-cell\">".substr(getActualLink($reverseLogLinesMMDVM, "DMR Slot 1"), -10)."<br /><small>(".substr(getActualReflector($reverseLogLinesMMDVM, "DMR Slot 1"), -10).")</small></td></tr>\n";
+		echo "<td class=\"active-mode-cell\">".substr(getActualLink($reverseLogLinesMMDVM, "DMR Slot 1"), -10)."</td></tr>\n";
 		//echo "<tr><td style=\"background: #ffffff;\" colspan=\"2\">".substr(getActualLink($reverseLogLinesMMDVM, "DMR Slot 1"), -10)."/".substr(getActualReflector($reverseLogLinesMMDVM, "DMR Slot 1"), -10)."</td></tr>\n";    }
 	    //else {
 		//echo "<td class=\"inactive-mode-cell\">disabled</td></tr>\n";
 	    }
 	    echo "<tr><th>TS2</th>";
 	    if (getConfigItem("DMR Network", "Slot2", $_SESSION['MMDVMHostConfigs']) == 1) {
-		echo "<td class=\"active-mode-cell\">".substr(getActualLink($reverseLogLinesMMDVM, "DMR Slot 2"), -10)."<br /><small>(".substr(getActualReflector($reverseLogLinesMMDVM, "DMR Slot 2"), -10).")</small></td></tr>\n";
+		echo "<td class=\"active-mode-cell\">".substr(getActualLink($reverseLogLinesMMDVM, "DMR Slot 2"), -10)."</td></tr>\n";
 		//echo "<tr><td style=\"background: #ffffff;\" colspan=\"2\">".substr(getActualLink($reverseLogLinesMMDVM, "DMR Slot 2"), -10)."/".substr(getActualReflector($reverseLogLinesMMDVM, "DMR Slot 2"), -10)."</td></tr>\n"    }
 	    //else {
 		//echo "<td class=\"inactive-mode-cell\">disabled</td></tr>\n";
