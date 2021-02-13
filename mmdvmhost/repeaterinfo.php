@@ -175,6 +175,9 @@ require_once($_SERVER['DOCUMENT_ROOT'].'/config/ircddblocal.php');
 		if (isset($_SESSION['DMRGatewayConfigs']['DMR Network 5']['Name'])) {
 		    $dmrMasterHost5 = str_replace('_', ' ', $_SESSION['DMRGatewayConfigs']['DMR Network 5']['Name']);
 		}
+		if (isset($_SESSION['DMRGatewayConfigs']['DMR Network 6']['Name'])) {
+		    $dmrMasterHost6 = str_replace('_', ' ', $_SESSION['DMRGatewayConfigs']['DMR Network 6']['Name']);
+		}
         if (isset($configdmrgateway['DMR Network 6']['Name'])) {$dmrMasterHost6 = str_replace('_', ' ', $configdmrgateway['DMR Network 6']['Name']);}
 		while (!feof($dmrMasterFile)) {
 		    $dmrMasterLine = fgets($dmrMasterFile);
@@ -202,6 +205,9 @@ require_once($_SERVER['DOCUMENT_ROOT'].'/config/ircddblocal.php');
 		if (isset($dmrMasterHost5)) {
 		    $dmrMasterHost5Tooltip = $dmrMasterHost5;
 		}
+        if (isset($dmrMasterHost6)) {
+            $dmrMasterHost6Tooltip = $dmrMasterHost6;
+        }
 		if (strlen($xlxMasterHost1) > 25) {
 		    $xlxMasterHost1 = substr($xlxMasterHost1, 0, 23) . '..';
 		}
@@ -251,18 +257,17 @@ require_once($_SERVER['DOCUMENT_ROOT'].'/config/ircddblocal.php');
 	    echo "<tr><th>TS1</th>";
 	    
 	    if (getConfigItem("DMR Network", "Slot1", $_SESSION['MMDVMHostConfigs']) == 1) {
-		echo "<td class=\"active-mode-cell\">enabled</td></tr>\n";
-		echo "<tr><td style=\"background: #ffffff;\" colspan=\"2\">".substr(getActualLink($reverseLogLinesMMDVM, "DMR Slot 1"), -10)."/".substr(getActualReflector($reverseLogLinesMMDVM, "DMR Slot 1"), -10)."</td></tr>\n";    }
-	    else {
-		echo "<td class=\"inactive-mode-cell\">disabled</td></tr>\n";
+		echo "<td class=\"active-mode-cell\">".substr(getActualLink($reverseLogLinesMMDVM, "DMR Slot 1"), -10)."</td></tr>\n";
+		//echo "<tr><td style=\"background: #ffffff;\" colspan=\"2\">".substr(getActualLink($reverseLogLinesMMDVM, "DMR Slot 1"), -10)."/".substr(getActualReflector($reverseLogLinesMMDVM, "DMR Slot 1"), -10)."</td></tr>\n";    }
+	    //else {
+		//echo "<td class=\"inactive-mode-cell\">disabled</td></tr>\n";
 	    }
 	    echo "<tr><th>TS2</th>";
 	    if (getConfigItem("DMR Network", "Slot2", $_SESSION['MMDVMHostConfigs']) == 1) {
-		echo "<td class=\"active-mode-cell\">enabled</td></tr>\n";
-		echo "<tr><td style=\"background: #ffffff;\" colspan=\"2\">".substr(getActualLink($reverseLogLinesMMDVM, "DMR Slot 2"), -10)."/".substr(getActualReflector($reverseLogLinesMMDVM, "DMR Slot 2"), -10)."</td></tr>\n";
-	    }
-	    else {
-		echo "<td class=\"inactive-mode-cell\">disabled</td></tr>\n";
+		echo "<td class=\"active-mode-cell\">".substr(getActualLink($reverseLogLinesMMDVM, "DMR Slot 2"), -10)."</td></tr>\n";
+		//echo "<tr><td style=\"background: #ffffff;\" colspan=\"2\">".substr(getActualLink($reverseLogLinesMMDVM, "DMR Slot 2"), -10)."/".substr(getActualReflector($reverseLogLinesMMDVM, "DMR Slot 2"), -10)."</td></tr>\n"    }
+	    //else {
+		//echo "<td class=\"inactive-mode-cell\">disabled</td></tr>\n";
 	    }
 	    echo "<tr><th colspan=\"2\">".$lang['dmr_master']."</th></tr>\n";
 	    if (getEnabled("DMR Network", $_SESSION['MMDVMHostConfigs']) == 1) {
@@ -305,11 +310,11 @@ require_once($_SERVER['DOCUMENT_ROOT'].'/config/ircddblocal.php');
                             echo "<tr><td  style=\"background: #ffffff;\" colspan=\"2\" title=\"".$dmrMasterHost5Tooltip."\">".$dmrMasterHost5."</td></tr>\n";
 			}
 		    }
-			if (isset($configdmrgateway['DMR Network 6']['Enabled'])) {
-				if ($configdmrgateway['DMR Network 6']['Enabled'] == 1) {
-					echo "<tr><td  style=\"background: #ffffff;\" colspan=\"2\">".$dmrMasterHost6."</td></tr>\n";
-				}
-			}
+	
+		    if (isset($_SESSION['DMRGatewayConfigs']['DMR Network 6']['Enabled'])) {
+			if ($_SESSION['DMRGatewayConfigs']['DMR Network 6']['Enabled'] == 1) {
+                            echo "<tr><td  style=\"background: #ffffff;\" colspan=\"2\" title=\"".$dmrMasterHost6Tooltip."\">".$dmrMasterHost6."</td></tr>\n";			}
+		  }
 		}
 		else {
 		    echo "<tr><td  style=\"background: #ffffff;\" colspan=\"2\" title=\"".$dmrMasterHostTooltip."\">".$dmrMasterHost."</td></tr>\n";
