@@ -200,7 +200,7 @@ checkSessionValidity();
                 } // end tgif check
 		// begin admin selection form
 		if ($_SERVER["PHP_SELF"] == "/admin/index.php") {
-                    echo '<b>Admin Sections<b>';
+                    echo '<b>Admin Sections</b>';
 		    echo '<form method="get" id="admin_sel" name="admin_sel" action="'.htmlentities($_SERVER['PHP_SELF']).'">';
                     echo '  <table>';
 		    echo '    <tr>';
