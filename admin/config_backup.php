@@ -35,7 +35,7 @@ if ($_SERVER["PHP_SELF"] == "/admin/config_backup.php") {
 	    <meta name="robots" content="follow" />
 	    <meta name="language" content="English" />
 	    <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
-	    <meta name="Author" content="Andrew Taylor (MW0MWZ),Daniel Caujolle-Bert ()" />
+	    <meta name="Author" content="Andrew Taylor (MW0MWZ)" />
 	    <meta name="Description" content="Pi-Star Configuration Backup" />
 	    <meta name="KeyWords" content="MMDVMHost,ircDDBGateway,D-Star,ircDDB,DMRGateway,DMR,YSFGateway,YSF,C4FM,NXDNGateway,NXDN,P25Gateway,P25,Pi-Star,DL5DI,DG9VH,MW0MWZ,F1RMB,W0CHP" />
 	    <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate" />
@@ -77,21 +77,26 @@ if ($_SERVER["PHP_SELF"] == "/admin/config_backup.php") {
 			    $output .= shell_exec("sudo rm -rf $backupDir 2>&1")."\n";
 			    $output .= shell_exec("sudo mkdir $backupDir 2>&1")."\n";
 			    if (shell_exec('cat /etc/dhcpcd.conf | grep "static ip_address" | grep -v "#"')) {
-				$output .= shell_exec("sudo cp /etc/dhcpcd.conf $backupDir 2>&1")."\n";
+				    $output .= shell_exec("sudo cp /etc/dhcpcd.conf $backupDir 2>&1")."\n";
 			    }
 			    $output .= shell_exec("sudo cp /etc/wpa_supplicant/wpa_supplicant.conf $backupDir 2>&1")."\n";
-                            $output .= shell_exec("sudo cp /etc/hostapd/hostapd.conf $backupDir 2>&1")."\n";
+                $output .= shell_exec("sudo cp /etc/hostapd/hostapd.conf $backupDir 2>&1")."\n";
 			    $output .= shell_exec("sudo cp /etc/pistar-css.ini $backupDir 2>&1")."\n";
 			    $output .= shell_exec("sudo cp /etc/aprsgateway $backupDir 2>&1")."\n";
 			    $output .= shell_exec("sudo cp /etc/ircddbgateway $backupDir 2>&1")."\n";
 			    $output .= shell_exec("sudo cp /etc/mmdvmhost $backupDir 2>&1")."\n";
 			    $output .= shell_exec("sudo cp /etc/dstarrepeater $backupDir 2>&1")."\n";
 			    $output .= shell_exec("sudo cp /etc/dapnetgateway $backupDir 2>&1")."\n";
-                            $output .= shell_exec("sudo cp /etc/pistar-css.ini $backupDir 2>&1");
+                $output .= shell_exec("sudo cp /etc/pistar-css.ini $backupDir 2>&1");
 			    $output .= shell_exec("sudo cp /etc/p25gateway $backupDir 2>&1")."\n";
 			    $output .= shell_exec("sudo cp /etc/ysfgateway $backupDir 2>&1")."\n";
 			    $output .= shell_exec("sudo cp /etc/nxdngateway $backupDir 2>&1")."\n";
+			    $output .= shell_exec("sudo cp /etc/dmr2nxdn $backupDir 2>&1")."\n";
+			    $output .= shell_exec("sudo cp /etc/dmr2ysf $backupDir 2>&1")."\n";
+			    $output .= shell_exec("sudo cp /etc/nxdn2dmr $backupDir 2>&1")."\n";
 			    $output .= shell_exec("sudo cp /etc/ysf2dmr $backupDir 2>&1")."\n";
+			    $output .= shell_exec("sudo cp /etc/ysf2nxdn $backupDir 2>&1")."\n";
+			    $output .= shell_exec("sudo cp /etc/ysf2p25 $backupDir 2>&1")."\n";
 			    $output .= shell_exec("sudo cp /etc/dmrgateway $backupDir 2>&1")."\n";
 			    $output .= shell_exec("sudo cp /etc/starnetserver $backupDir 2>&1")."\n";
 			    $output .= shell_exec("sudo cp /etc/timeserver $backupDir 2>&1")."\n";
@@ -191,20 +196,8 @@ if ($_SERVER["PHP_SELF"] == "/admin/config_backup.php") {
 				$output .= "Stopping Services.\n";
 				
 				// Stop the DV Services
-				shell_exec('sudo systemctl stop cron.service 2>&1');		//Cron
-				shell_exec('sudo systemctl stop gpsd.service 2>&1');		//GPSd Service
-				shell_exec('sudo systemctl stop aprsgateway.service 2>&1');	//APRSGateway Service
-				shell_exec('sudo systemctl stop dstarrepeater.service 2>&1');	//D-Star Radio Service
-				shell_exec('sudo systemctl stop mmdvmhost.service 2>&1');	//MMDVMHost Radio Service
-				shell_exec('sudo systemctl stop ircddbgateway.service 2>&1');	//ircDDBGateway Service
-				shell_exec('sudo systemctl stop timeserver.service 2>&1');	//Time Server Service
-				shell_exec('sudo systemctl stop pistar-watchdog.service 2>&1');	//PiStar-Watchdog Service
-				shell_exec('sudo systemctl stop pistar-remote.service 2>&1');	//PiStar-Remote Service
-				shell_exec('sudo systemctl stop ysfgateway.service 2>&1');	//YSFGateway
-				shell_exec('sudo systemctl stop ysf2dmr.service 2>&1');		//YSF2DMR
-				shell_exec('sudo systemctl stop p25gateway.service 2>&1');	//P25Gateway
-				shell_exec('sudo systemctl stop dapnetgateway.service 2>&1');	//DAPNETGateway
-				
+			    shell_exec('sudo pistar-services fullstop 2>&1');
+	
 				// Make the disk Writable
 				shell_exec('sudo mount -o remount,rw / 2>&1');
 				
@@ -218,7 +211,7 @@ if ($_SERVER["PHP_SELF"] == "/admin/config_backup.php") {
 				$output .= shell_exec("sudo mv -fv /tmp/config_restore/language.php /var/www/dashboard/config/ 2>&1")."\n";
 				$output .= shell_exec('sudo find /tmp/config_restore/ -maxdepth 1 -name "*Hosts.txt" -exec mv -fv {} /root \; 2>&1')."\n";
 				$output .= shell_exec("sudo mv -fv /tmp/config_restore/wpa_supplicant.conf /etc/wpa_supplicant/ 2>&1")."\n";
-                                $output .= shell_exec("sudo mv -fv /tmp/config_restore/hostapd.conf /etc/hostapd/ 2>&1")."\n";
+                $output .= shell_exec("sudo mv -fv /tmp/config_restore/hostapd.conf /etc/hostapd/ 2>&1")."\n";
 				$output .= shell_exec("sudo mv -fv /tmp/config_restore/* /etc/ 2>&1")."\n";
 				
 				//Restore the Timezone Config
@@ -239,23 +232,8 @@ if ($_SERVER["PHP_SELF"] == "/admin/config_backup.php") {
 				
 				// Start the services
 				$output .= "Starting Services.\n";
-				shell_exec('sudo systemctl start gpsd.service 2>&1');			//GPSd Service
-				shell_exec('sudo systemctl start aprsgateway.service 2>&1');		//APRSGateway Service
-				shell_exec('sudo systemctl start dstarrepeater.service 2>&1');		//D-Star Radio Service
-				shell_exec('sudo systemctl start mmdvmhost.service 2>&1');		//MMDVMHost Radio Service
-				shell_exec('sudo systemctl start ircddbgateway.service 2>&1');		//ircDDBGateway Service
-				shell_exec('sudo systemctl start timeserver.service 2>&1');		//Time Server Service
-				shell_exec('sudo systemctl start pistar-watchdog.service 2>&1');	//PiStar-Watchdog Service
-				shell_exec('sudo systemctl start pistar-remote.service 2>&1');		//PiStar-Remote Service
-				if (substr(exec('grep "pistar-upnp.service" /etc/crontab | cut -c 1'), 0, 1) !== '#') {
-				    shell_exec('sudo systemctl start pistar-upnp.service 2>&1');		//PiStar-UPnP Service
-				}
-				shell_exec('sudo systemctl start ysfgateway.service 2>&1');		//YSFGateway
-				shell_exec('sudo systemctl start ysf2dmr.service 2>&1');		//YSF2DMR
-				shell_exec('sudo systemctl start p25gateway.service 2>&1');		//P25Gateway
-				shell_exec('sudo systemctl start dapnetgateway.service 2>&1');		//DAPNETGateway
-				shell_exec('sudo systemctl start cron.service 2>&1');			//Cron
-				
+			    shell_exec('sudo pistar-services start 2>&1');
+	
 				// Complete
 				$output .= "Configuration Restore Complete.\n";
 			    }
