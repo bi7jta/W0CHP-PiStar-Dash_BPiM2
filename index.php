@@ -233,8 +233,7 @@ checkSessionValidity();
 		    //echo '      </div>';
 		    //echo '      <div class="mode_flex">';
                     $testMMDVModeYSF = getConfigItem("System Fusion", "Enable", $_SESSION['MMDVMHostConfigs']);
-                    $testDMR2YSF = $_SESSION['DMR2YSFConfigs']['Enabled']['Enabled'];
-            	    if ($testMMDVModeYSF == 1 || $testDMR2YSF == 1) {
+            	    if ($testMMDVModeYSF == 1) {
 		        echo '    <button form="admin_sel" type="submit" value="ysf_man" name="func"><span>YSF Manager</span></button>';
 		    }
 		    else {
@@ -336,9 +335,9 @@ checkSessionValidity();
                     include 'mmdvmhost/tgif_manager.php';			// TGIF DMR Link Manager
 		}
 		
-		// Check if YSF is Enabled
-		if (isset($_SESSION['YSFGatewayConfigs']['YSF Network']['Enable']) == 1) {
-		    if ($_SERVER["PHP_SELF"] == "/admin/index.php" && $_POST["func"] == "ysf_man" || $_GET["func"] == "ysf_man") { 	// Admin Only Options (ysf mgr)
+		$testMMDVModeYSFnet = getConfigItem("System Fusion Network", "Enable", $_SESSION['MMDVMHostConfigs']);
+		if ( $testMMDVModeYSFnet == 1 ) {				// If YSF network is enabled, add these extra features.
+		    if ($_SERVER["PHP_SELF"] == "/admin/index.php" && $_POST["func"] == "ysf_man" || $_GET["func"] == "ysf_man") { 	// Admin Only Option
 			include 'mmdvmhost/ysf_manager.php';		// YSF Links
 		    }
 		}
