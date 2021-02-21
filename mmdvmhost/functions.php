@@ -198,9 +198,64 @@ function getConfigItem($section, $key, $configs) {
     return null;
 }
 
+// get APRSGateway Enable Status
+function getAPRSGWenabled() {
+    if ( strpos(file_get_contents("/etc/aprsgateway"),"Enabled=1") !== false ) {
+        return true;
+    } else {
+        return false;
+    }
+}
+
 // returns enabled/disabled-State of mode
 function getEnabled ($mode, $configs) {
     return getConfigItem($mode, "Enable", $configs);
+}
+
+//I: 2021-02-21 13:22:24.213 Opening UDP port on 8673
+//M: 2021-02-21 13:22:24.213 Starting APRSGateway-20210131_Pi-Star_v4
+//M: 2021-02-21 13:22:24.220 Starting the APRS Writer thread
+//M: 2021-02-21 13:22:24.664 Received login banner : # aprsc 2.1.8-gf8824e8
+//M: 2021-02-21 13:22:24.692 Response from APRS server: # logresp W0CHP verified, server T2CAEAST
+//M: 2021-02-21 13:22:24.693 Connected to the APRS server
+//E: 2021-02-21 13:29:13.472 Cannot find address for host...
+//E: 2021-02-21 13:29:13.472 Connect attempt to the APRS server has failed
+//M: 2021-02-21 13:29:13.472 Will attempt to reconnect in 2 minutes
+//M: 2021-02-21 13:32:45.385 Response from APRS server: # logresp W0CHP unverified, server T2NANJING
+//E: 2021-02-21 13:33:49.907 Cannot connect the TCP client socket, err=111
+//E: 2021-02-21 13:33:49.907 Connect attempt to the APRS server has failed
+//M: 2021-02-21 13:33:49.907 Will attempt to reconnect in 2 minutes
+function isAPRSISGagtewayConnected() {
+    $logLines = array();
+    $logLines1 = array();
+    $logLines2 = array();
+
+    if (file_exists("/var/log/pi-star/APRSGateway-".gmdate("Y-m-d").".log")) {
+        $logPath1 = "/var/log/pi-star/APRSGateway-".gmdate("Y-m-d").".log";
+        $logLines1 = preg_split('/\r\n|\r|\n/', `tail -n 5 $logPath1 | cut -d" " -f2- | tac`);
+    }
+    $logLines1 = array_filter($logLines1);
+
+    if (sizeof($logLines1) == 0) {
+        if (file_exists("/var/log/pi-star/APRSGateway-".gmdate("Y-m-d", time() - 86340).".log")) {
+            $logPath2 = "/var/log/pi-star/APRSGateway-".gmdate("Y-m-d", time() - 86340).".log";
+            $logLines2 = preg_split('/\r\n|\r|\n/', `tail -n 5 $logPath2 | cut -d" " -f2- | tac`);
+        }
+
+        $logLines2 = array_filter($logLines2);
+    }
+
+    $logLines = $logLines1 + $logLines2;
+
+    $errorMessages = array('Cannot find address', 'APRS server has failed', 'unverified', 'Cannot connect the TCP');
+
+    foreach($logLines as $dapnetMessageLine) {
+    foreach($errorMessages as $errorLine) {
+        if (strpos($dapnetMessageLine, $errorLine) != FALSE)
+            return false;
+        }
+    }
+    return true;
 }
 
 //M: 2019-03-06 11:17:25.804 Opening DAPNET connection
@@ -233,7 +288,7 @@ function isDAPNETGatewayConnected() {
     $logLines1 = array_filter($logLines1);
 
     if (sizeof($logLines1) == 0) {
-        if (file_exists("/var/log/pi-starDAPNETGateway-".gmdate("Y-m-d", time() - 86340).".log")) {
+        if (file_exists("/var/log/pi-star/DAPNETGateway-".gmdate("Y-m-d", time() - 86340).".log")) {
             $logPath2 = "/var/log/pi-star/DAPNETGateway-".gmdate("Y-m-d", time() - 86340).".log";
             $logLines2 = preg_split('/\r\n|\r|\n/', `tail -n 5 $logPath2 | cut -d" " -f2- | tac`);
         }
@@ -266,83 +321,90 @@ function isPaused($mode) {
 
 function getModeClass($status, $disabled = false) {
     if ($status) {
-	echo '<td class="active-mode-cell" style="width:50%;">';
+	    echo '<td class="active-mode-cell" style="width:50%;">';
     }
     else {
-	if ($disabled) {
-	    echo '<td class="disabled-mode-cell" style="width:50%;">';
-	}
-	else {
-	    echo '<td class="inactive-mode-cell" style="width:50%;">';
-	}
+	    if ($disabled) {
+	        echo '<td class="disabled-mode-cell" style="width:50%;">';
+	    }
+	    else {
+	        echo '<td class="inactive-mode-cell" style="width:50%;">';
+	    }
     }
 }
 
 // shows if mode is enabled or not.
 function showMode($mode, $configs) {
-    if (getEnabled($mode, $configs) == 1) {
-	if ($mode == "D-Star Network") {
-	    getModeClass(isProcessRunning("ircddbgatewayd"));
-	}
-	else if ($mode == "System Fusion Network") {
-	    getModeClass(isProcessRunning("YSFGateway"));
-	}
-	else if ($mode == "P25 Network") {
-	    getModeClass(isProcessRunning("P25Gateway"));
-	}
-	else if ($mode == "NXDN Network") {
-	    getModeClass(isProcessRunning("NXDNGateway"));
-	}
-	else if ($mode == "POCSAG Network") {
-	    getModeClass(isProcessRunning("DAPNETGateway") && (isDAPNETGatewayConnected() == 1));
-	}
-	else if ($mode == "DMR Network") {
-	    if (getConfigItem("DMR Network", "Address", $configs) == '127.0.0.1') {
-		getModeClass(isProcessRunning("DMRGateway"));
-	    }
-	    else {
-		getModeClass(isProcessRunning("MMDVMHost"));
-	    }
-	}
-	else {
-	    if ($mode == "D-Star" || $mode == "DMR" || $mode == "System Fusion" || $mode == "P25" || $mode == "NXDN" || $mode == "POCSAG") {
-		getModeClass(isProcessRunning("MMDVMHost"));
-	    }
-	}
-    }
-    else if ( ($mode == "YSF X-Mode") && (getEnabled("System Fusion", $configs) == 1) ) {
-	getModeClass( (isProcessRunning("MMDVMHost")) && (isProcessRunning("YSF2DMR") || isProcessRunning("YSF2NXDN") || isProcessRunning("YSF2P25")), true);
-    }
-    else if ( ($mode == "DMR X-Mode") && (getEnabled("DMR", $configs) == 1) ) {
-	getModeClass( (isProcessRunning("MMDVMHost")) && (isProcessRunning("DMR2YSF") || isProcessRunning("DMR2NXDN")), true);
-    }
-    else if ( ($mode == "YSF2DMR Network") && (getEnabled("System Fusion", $configs) == 1) ) {
-	getModeClass(isProcessRunning("YSF2DMR"), true);
-    }
-    else if ( ($mode == "YSF2NXDN Network") && (getEnabled("System Fusion", $configs) == 1) ) {
-	getModeClass(isProcessRunning("YSF2NXDN"), true);
-    }
-    else if ( ($mode == "YSF2P25 Network") && (getEnabled("System Fusion", $configs) == 1) ) {
-	getModeClass(isProcessRunning("YSF2P25"), true);
-    }
-    else if ( ($mode == "DMR2NXDN Network") && (getEnabled("DMR", $configs) == 1) ) {
-	getModeClass(isProcessRunning("DMR2NXDN"), true);
-    }
-    else if ( ($mode == "DMR2YSF Network") && (getEnabled("DMR", $configs) == 1) ) {
-	getModeClass(isProcessRunning("DMR2YSF"), true);
-    }
-    else {
-	getModeClass(false, true);
-    }
+    if ($mode == "APRS Network") {
+        if (getAPRSGWenabled() == true) {
+            getModeClass(isProcessRunning("APRSGateway") && (isAPRSISGagtewayConnected() ==1));
+        } else {
+            getModeClass(false,true);
+        }
+    } else
+        if (getEnabled($mode, $configs) == 1) {
+	        if ($mode == "D-Star Network") {
+	            getModeClass(isProcessRunning("ircddbgatewayd"));
+	        }
+	        else if ($mode == "System Fusion Network") {
+	            getModeClass(isProcessRunning("YSFGateway"));
+	        }
+	        else if ($mode == "P25 Network") {
+	            getModeClass(isProcessRunning("P25Gateway"));
+	        }
+	        else if ($mode == "NXDN Network") {
+	            getModeClass(isProcessRunning("NXDNGateway"));
+	        }
+	        else if ($mode == "POCSAG Network") {
+	            getModeClass(isProcessRunning("DAPNETGateway") && (isDAPNETGatewayConnected() == 1));
+	        }
+	        else if ($mode == "DMR Network") {
+	            if (getConfigItem("DMR Network", "Address", $configs) == '127.0.0.1') {
+		            getModeClass(isProcessRunning("DMRGateway"));
+	            }
+	            else {
+		            getModeClass(isProcessRunning("MMDVMHost"));
+	            }
+	        }
+	        else {
+	            if ($mode == "D-Star" || $mode == "DMR" || $mode == "System Fusion" || $mode == "P25" || $mode == "NXDN" || $mode == "POCSAG") {
+		            getModeClass(isProcessRunning("MMDVMHost"));
+	            }
+	        }
+        }
+        else if ( ($mode == "YSF X-Mode") && (getEnabled("System Fusion", $configs) == 1) ) {
+	        getModeClass( (isProcessRunning("MMDVMHost")) && (isProcessRunning("YSF2DMR") || isProcessRunning("YSF2NXDN") || isProcessRunning("YSF2P25")), true);
+        }
+        else if ( ($mode == "DMR X-Mode") && (getEnabled("DMR", $configs) == 1) ) {
+	        getModeClass( (isProcessRunning("MMDVMHost")) && (isProcessRunning("DMR2YSF") || isProcessRunning("DMR2NXDN")), true);
+        }
+        else if ( ($mode == "YSF2DMR Network") && (getEnabled("System Fusion", $configs) == 1) ) {
+	        getModeClass(isProcessRunning("YSF2DMR"), true);
+        }
+        else if ( ($mode == "YSF2NXDN Network") && (getEnabled("System Fusion", $configs) == 1) ) {
+	        getModeClass(isProcessRunning("YSF2NXDN"), true);
+        }
+        else if ( ($mode == "YSF2P25 Network") && (getEnabled("System Fusion", $configs) == 1) ) {
+	        getModeClass(isProcessRunning("YSF2P25"), true);
+        }
+        else if ( ($mode == "DMR2NXDN Network") && (getEnabled("DMR", $configs) == 1) ) {
+	        getModeClass(isProcessRunning("DMR2NXDN"), true);
+        }
+        else if ( ($mode == "DMR2YSF Network") && (getEnabled("DMR", $configs) == 1) ) {
+	        getModeClass(isProcessRunning("DMR2YSF"), true);
+        }
+        else {
+	        getModeClass(false, true);
+        }
     
-    $mode = str_replace("System Fusion", "YSF", $mode);
-    $mode = str_replace("Network", "Net", $mode);
-    if (strpos($mode, 'YSF2') > -1) {
-	$mode = str_replace(" Net", "", $mode);
-    }
-    if (strpos($mode, 'DMR2') > -1) {
-	$mode = str_replace(" Net", "", $mode);
-    }
+        $mode = str_replace("System Fusion", "YSF", $mode);
+        $mode = str_replace("Network", "Net", $mode);
+        if (strpos($mode, 'YSF2') > -1) {
+	        $mode = str_replace(" Net", "", $mode);
+        }
+        if (strpos($mode, 'DMR2') > -1) {
+	        $mode = str_replace(" Net", "", $mode);
+        }
     echo $mode."</td>\n";
 }
 

@@ -44,7 +44,7 @@ require_once($_SERVER['DOCUMENT_ROOT'].'/config/ircddblocal.php');
     <tr><?php showMode("YSF2DMR Network", $_SESSION['MMDVMHostConfigs']);?><?php showMode("NXDN Network", $_SESSION['MMDVMHostConfigs']);?></tr>
     <tr><?php showMode("YSF2NXDN Network", $_SESSION['MMDVMHostConfigs']);?><?php showMode("YSF2P25 Network", $_SESSION['MMDVMHostConfigs']);?></tr>
     <tr><?php showMode("DMR2NXDN Network", $_SESSION['MMDVMHostConfigs']);?><?php showMode("DMR2YSF Network", $_SESSION['MMDVMHostConfigs']);?></tr>
-    <tr><?php showMode("", $_SESSION['MMDVMHostConfigs']);?></td><?php showMode("POCSAG Network", $_SESSION['MMDVMHostConfigs']);?></tr>
+    <tr><?php showMode("APRS Network", $_SESSION['APRSGatewayConfigs']);?><?php showMode("POCSAG Network", $_SESSION['MMDVMHostConfigs']);?></tr>
 </table>
 <br />
 
