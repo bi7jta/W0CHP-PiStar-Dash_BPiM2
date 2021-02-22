@@ -16,6 +16,8 @@ caveats](https://w0chp.net/w0chp-pistar-dash/#the-rules-and-caveats----important
 
 * Updated user interface elements galore, styling, wider, bigger, updated fonts, etc.
 
+* Improved and graphical CSS/color styling configuration page; easily change the look and feel of the dashboard.
+
 * More Last Heard rows displayed (40 vs. 20).
 
 * Searchable drop-downs for massive host lists in configuration/admin pages. E.g. YSF Hosts, XLX Hosts, DMR Hosts, etc.
