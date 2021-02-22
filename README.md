@@ -42,7 +42,7 @@ caveats](https://w0chp.net/w0chp-pistar-dash/#the-rules-and-caveats----important
 
 * RF activity moved to top on dashboard.
 
-* YSF link manager now enabled for YSF2DMR mode as well; gives the ability to change links/rooms on-the-fly.
+* YSF link manager gives the ability to change links/rooms on-the-fly, rather than going through the large (and slow) configuration page.
 
 * Connected FCS and YSF reflector names and numerical ID both displayed in dashboard left panel.
 
