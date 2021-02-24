@@ -925,6 +925,11 @@ if (!empty($_POST)):
 		if (escapeshellcmd($_POST['confircddbEnabled']) == 'OFF' ) {
 			$rollconfircddbEnabled = 'sudo sed -i "/rcddbEnabled=/c\\ircddbEnabled=0" /etc/ircddbgateway';
 		}
+		if (isset($configs['ircddbHostname']) && $configs['ircddbHostname'] == "rr.openquad.net") {
+			$rollconfircddbEnabled = 'sudo sed -i "/rcddbEnabled=/c\\ircddbEnabled=0" /etc/ircddbgateway';
+			$rollconfircddbHostname = 'sudo sed -i "/rcddbHostname=/c\\ircddbHostname=ircv4.openquad.net" /etc/ircddbgateway';
+		}
+		system($rollconfircddbHostname);
 		system($rollconfircddbEnabled);
 	}
 
