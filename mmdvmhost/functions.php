@@ -225,6 +225,8 @@ function getEnabled ($mode, $configs) {
 //E: 2021-02-21 13:33:49.907 Cannot connect the TCP client socket, err=111
 //E: 2021-02-21 13:33:49.907 Connect attempt to the APRS server has failed
 //M: 2021-02-21 13:33:49.907 Will attempt to reconnect in 2 minutes
+//E: 2021-02-24 05:13:21.125 Error returned from recv, err=110
+//E: 2021-02-24 05:13:21.126 Error when reading from the APRS server
 function isAPRSISGagtewayConnected() {
     $logLines = array();
     $logLines1 = array();
@@ -247,7 +249,7 @@ function isAPRSISGagtewayConnected() {
 
     $logLines = $logLines1 + $logLines2;
 
-    $errorMessages = array('Cannot find address', 'APRS server has failed', 'unverified', 'Cannot connect the TCP');
+    $errorMessages = array('Error returned', 'Error when reading from', 'Cannot find address', 'APRS server has failed', 'unverified', 'Cannot connect the TCP');
 
     foreach($logLines as $dapnetMessageLine) {
     foreach($errorMessages as $errorLine) {
