@@ -501,7 +501,7 @@ require_once($_SERVER['DOCUMENT_ROOT'].'/config/ircddblocal.php');
         echo "<tr><th>Pool</th>\n";
         echo "<td style=\"background: #ffffff;\" title=\"".$_SESSION['APRSGatewayConfigs']['APRS-IS']['Server']."\">".substr($_SESSION['APRSGatewayConfigs']['APRS-IS']['Server'], 0, 23)."</td></tr>\n";
         echo "<tr><th colspan='2' >Connected Server</th></tr>\n";
-        echo "<td style=\"background: #ffffff;\" title=\"".getAPRSISserver()."\">".getAPRSISserver()."</td></tr>\n";
+        echo "<td colspan='2' style=\"background: #ffffff;\" title=\"".getAPRSISserver()."\">".getAPRSISserver()."</td></tr>\n";
         echo "</table>\n";
     }
 
