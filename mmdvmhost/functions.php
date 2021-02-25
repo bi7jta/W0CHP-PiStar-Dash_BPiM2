@@ -227,7 +227,7 @@ function getEnabled ($mode, $configs) {
 //M: 2021-02-21 13:33:49.907 Will attempt to reconnect in 2 minutes
 //E: 2021-02-24 05:13:21.125 Error returned from recv, err=110
 //E: 2021-02-24 05:13:21.126 Error when reading from the APRS server
-function isAPRSISGagtewayConnected() {
+function isAPRSISGatewayConnected() {
     $logLines = array();
     $logLines1 = array();
     $logLines2 = array();
@@ -251,13 +251,37 @@ function isAPRSISGagtewayConnected() {
 
     $errorMessages = array('Error returned', 'Error when reading from', 'Cannot find address', 'APRS server has failed', 'unverified', 'Cannot connect the TCP');
 
-    foreach($logLines as $dapnetMessageLine) {
+    foreach($logLines as $aprsMessageLine) {
     foreach($errorMessages as $errorLine) {
-        if (strpos($dapnetMessageLine, $errorLine) != FALSE)
+        if (strpos($aprsMessageLine, $errorLine) != FALSE)
             return false;
         }
     }
     return true;
+}
+
+//M: 2021-02-21 13:22:24.664 Received login banner : # aprsc 2.1.8-gf8824e8
+//M: 2021-02-21 13:22:24.692 Response from APRS server: # logresp W0CHP verified, server T2CAEAST
+//M: 2021-02-21 13:22:24.693 Connected to the APRS server
+function getAPRSISserver() {
+    $logAPRSISNow = "/var/log/pi-star/APRSGateway-".gmdate("Y-m-d").".log";
+    $logAPRSISPrevious = "/var/log/pi-star/APRSGateway-".gmdate("Y-m-d", time() - 86340).".log";
+    $logSearchString = "verified, server";
+    $logLine = '';
+    $APRSISserver = 'Not Connected';
+    
+    $logLine = exec("grep \"".$logSearchString."\" ".$logAPRSISNow." | tail -2");
+    if (!$logLine) {
+	    $logLine = exec("grep \"".$logSearchString."\" ".$logAPRSISPrevious." | tail -2");
+    }
+
+    if ($logLine) {
+        if (strpos($logLine, 'Response from APRS server: # logresp')) {
+            $last_word_start = strrpos($logLine, ' ') + 1; // +1 so we don't include the space in our result
+            $APRSISserver = substr($logLine, $last_word_start); // now get the very last string in the line (server name)
+	    }
+    }
+    return $APRSISserver;
 }
 
 //M: 2019-03-06 11:17:25.804 Opening DAPNET connection
@@ -339,7 +363,7 @@ function getModeClass($status, $disabled = false) {
 function showMode($mode, $configs) {
     if ($mode == "APRS Network") {
         if (getAPRSGWenabled() == true) {
-            getModeClass(isProcessRunning("APRSGateway") && (isAPRSISGagtewayConnected() ==1));
+            getModeClass(isProcessRunning("APRSGateway") && (isAPRSISGatewayConnected() ==1));
         } else {
             getModeClass(false,true);
         }
