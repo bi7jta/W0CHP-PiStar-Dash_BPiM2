@@ -87,7 +87,7 @@ $lang = array (
   "dstar_rpt2"                  =>  "Znak wywoławczy RPT2",
   "dstar_irc_password"          =>  "Hasło zdalnego dostępu",
   "dstar_default_ref"           =>  "Domyślny Reflektor",
-  "aprs_host"                   =>  "APRS Host",
+  "aprs_host"                   =>  "APRS Gateway Host Pool",
   "dstar_irc_lang"              =>  "Język ircDDBGateway",
   "dstar_irc_time"              =>  "Time Announcements",
   // Config Page - YSF Configuration
