@@ -3510,7 +3510,7 @@ else:
     }
 } ?>
     <tr>
-    <td align="left"><a class="tooltip2" href="#"><?php echo $lang['aprs_host'];?>:<span><b>APRS Host Region</b>Set your prefered APRS host region here.</span></a></td>
+    <td align="left"><a class="tooltip2" href="#"><?php echo $lang['aprs_host'];?>:<span><b>APRS Host Pool</b>Set your prefered APRS host pool here.</span></a></td>
     <td colspan="2" style="text-align: left;"><select name="selectedAPRSHost">
 <?php 
         //$testAPSRHost = $configs['aprsHostname']; // I see no def. of this in the upstream code, so we'll define it below by loading & parsing the config...

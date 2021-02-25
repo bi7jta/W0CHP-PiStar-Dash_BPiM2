@@ -498,8 +498,8 @@ require_once($_SERVER['DOCUMENT_ROOT'].'/config/ircddblocal.php');
         echo "<br />\n";
         echo "<table>\n";
         echo "<tr><th colspan='2'>APRS Gateway</th></tr>\n";
-        echo "<tr><th>Host<br />Region</th><td style=\"background: #ffffff;\" title=\"".$_SESSION['APRSGatewayConfigs']['APRS-IS']['Server']."\">".substr($_SESSION['APRSGatewayConfigs']['APRS-IS']['Server'], 0, 23)."</td></tr>\n";
-        echo "<tr><th>Connected<br />Server</th><td style=\"background: #ffffff;\" title=\"".getAPRSISserver()."\">".getAPRSISserver()."</td></tr>\n";
+        echo "<tr><th>Host Pool</th><td style=\"background: #ffffff;\" title=\"".$_SESSION['APRSGatewayConfigs']['APRS-IS']['Server']."\">".substr($_SESSION['APRSGatewayConfigs']['APRS-IS']['Server'], 0, 23)."</td></tr>\n";
+        echo "<tr><th>Connected Server</th><td style=\"background: #ffffff;\" title=\"".getAPRSISserver()."\">".getAPRSISserver()."</td></tr>\n";
 
         echo "</table>\n";
     }
