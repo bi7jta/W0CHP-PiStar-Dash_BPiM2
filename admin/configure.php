@@ -3502,7 +3502,7 @@ else:
 <?php } ?>
 <?php if (file_exists('/etc/aprsgateway')) {
     echo "<tr>\n";
-    echo "<td align=\"left\"><a class=\"tooltip2\" href=\"#\">".$lang['aprs_host']." Enable:<span><b>APRS Gateway Service</b>Enabling this feature will make your location public on the APRS Network.</span></a></td>\n";
+    echo "<td align=\"left\"><a class=\"tooltip2\" href=\"#\">APRS Gateway Service<span><b>APRS Gateway Service</b>Enabling this feature will make your location public on the APRS Network.</span></a></td>\n";
     if ( $configaprsgw['Enabled']['Enabled'] == 1 ) {
         echo "<td align=\"left\" colspan=\"2\"><div class=\"switch\"><input id=\"toggle-aprsgateway\" class=\"toggle toggle-round-flat\" type=\"checkbox\" name=\"APRSGatewayEnable\" value=\"ON\" checked=\"checked\" aria-hidden=\"true\" tabindex=\"-1\" ".$toggleAPRSGatewayCheckboxCr." /><label id=\"aria-toggle-aprsgateway\" role=\"checkbox\" tabindex=\"0\" aria-label=\"Enable APRS Position Reporting\" aria-checked=\"true\" onKeyPress=\"toggleAPRSGatewayCheckbox()\" onclick=\"toggleAPRSGatewayCheckbox()\" for=\"toggle-aprsgateway\"><font style=\"font-size:0px\">Enable APRS Position Reporting</font></label></div></td>\n";
     } else {
@@ -3510,16 +3510,19 @@ else:
     }
 } ?>
     <tr>
-    <td align="left"><a class="tooltip2" href="#"><?php echo $lang['aprs_host'];?>:<span><b>APRS Host</b>Set your prefered APRS host here.</span></a></td>
+    <td align="left"><a class="tooltip2" href="#"><?php echo $lang['aprs_host'];?>:<span><b>APRS Host Region</b>Set your prefered APRS host region here.</span></a></td>
     <td colspan="2" style="text-align: left;"><select name="selectedAPRSHost">
 <?php 
-        $testAPSRHost = $configs['aprsHostname'];
+        //$testAPSRHost = $configs['aprsHostname']; // I see no def. of this in the upstream code, so we'll define it below by loading & parsing the config...
     	$aprsHostFile = fopen("/usr/local/etc/APRSHosts.txt", "r");
+        $aprsGatewayConfigFile = '/etc/aprsgateway';
+        if (fopen($aprsGatewayConfigFile,'r')) { $configaprsgateway = parse_ini_file($aprsGatewayConfigFile, true); }
+        $testAPRSHost = $configaprsgateway['APRS-IS']['Server'];
         while (!feof($aprsHostFile)) {
                 $aprsHostFileLine = fgets($aprsHostFile);
                 $aprsHost = preg_split('/:/', $aprsHostFileLine);
                 if ((strpos($aprsHost[0], ';') === FALSE ) && ($aprsHost[0] != '')) {
-                        if ($testAPSRHost == $aprsHost[0]) { echo "      <option value=\"$aprsHost[0]\" selected=\"selected\">$aprsHost[0]</option>\n"; }
+                        if ($testAPRSHost == $aprsHost[0]) { echo "      <option value=\"$aprsHost[0]\" selected=\"selected\">$aprsHost[0]</option>\n"; }
                         else { echo "      <option value=\"$aprsHost[0]\">$aprsHost[0]</option>\n"; }
                 }
         }
