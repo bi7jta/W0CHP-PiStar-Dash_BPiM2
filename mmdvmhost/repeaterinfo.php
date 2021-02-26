@@ -488,7 +488,7 @@ require_once($_SERVER['DOCUMENT_ROOT'].'/config/ircddblocal.php');
 		if (strlen($dapnetGatewayRemoteAddr) > 25) {
 		    $dapnetGatewayRemoteAddr = substr($dapnetGatewayRemoteAddr, 0, 23) . '..';
 		}
-		echo "<tr><th colspan=\"2\">POCSAG Master</th></tr>\n";
+		echo "<tr><th colspan=\"2\">DAPNET Master</th></tr>\n";
 		echo "<tr><td colspan=\"2\"style=\"background: #ffffff;\" title=\"".$dapnetGatewayRemoteTooltip."\">".$dapnetGatewayRemoteAddr."</td></tr>\n";
 	    }
 	    echo "</table>\n";
