@@ -347,14 +347,14 @@ function isPaused($mode) {
 
 function getModeClass($status, $disabled = false) {
     if ($status) {
-	    echo '<td class="active-mode-cell" style="width:50%;">';
+	    echo '<td class="active-mode-cell" style="width:50%;" title="Active">';
     }
     else {
 	    if ($disabled) {
-	        echo '<td class="disabled-mode-cell" style="width:50%;">';
+	        echo '<td class="disabled-mode-cell" style="width:50%;" title="Disabled">';
 	    }
 	    else {
-	        echo '<td class="inactive-mode-cell" style="width:50%;">';
+	        echo '<td class="inactive-mode-cell" style="width:50%;" title="Inactive">';
 	    }
     }
 }

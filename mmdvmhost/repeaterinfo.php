@@ -21,18 +21,18 @@ require_once($_SERVER['DOCUMENT_ROOT'].'/config/ircddblocal.php');
 <table>
     <tr><th colspan="2"><?php echo $lang['modes_enabled'];?></th></tr>
     <tr>
-      <?php if (isPaused("D-Star")) { echo '<td class="paused-mode-cell" title="Mode Paused">D-Star</td>'; } else { showMode("D-Star", $_SESSION['MMDVMHostConfigs']); } ?>
-      <?php if (isPaused("DMR")) { echo '<td class="paused-mode-cell" title="Mode Paused">DMR</td>'; } else { showMode("DMR", $_SESSION['MMDVMHostConfigs']); } ?></tr>
+      <?php if (isPaused("D-Star")) { echo '<td title="Paused" class="paused-mode-cell" title="Mode Paused">D-Star</td>'; } else { showMode("D-Star", $_SESSION['MMDVMHostConfigs']); } ?>
+      <?php if (isPaused("DMR")) { echo '<td title="Paused" class="paused-mode-cell" title="Mode Paused">DMR</td>'; } else { showMode("DMR", $_SESSION['MMDVMHostConfigs']); } ?></tr>
     <tr>
-      <?php if (isPaused("YSF")) { echo '<td class="paused-mode-cell" title="Mode Paused">YSF</td>'; } else { showMode("System Fusion", $_SESSION['MMDVMHostConfigs']); } ?>
-      <?php if (isPaused("P25")) { echo '<td class="paused-mode-cell" title="Mode Paused">P25</td>'; } else { showMode("P25", $_SESSION['MMDVMHostConfigs']); }?></tr>
+      <?php if (isPaused("YSF")) { echo '<td title="Paused" class="paused-mode-cell" title="Mode Paused">YSF</td>'; } else { showMode("System Fusion", $_SESSION['MMDVMHostConfigs']); } ?>
+      <?php if (isPaused("P25")) { echo '<td title="Paused" class="paused-mode-cell" title="Mode Paused">P25</td>'; } else { showMode("P25", $_SESSION['MMDVMHostConfigs']); }?></tr>
     <tr>
       <?php showMode("YSF X-Mode", $_SESSION['MMDVMHostConfigs']);?>
-      <?php if (isPaused("NXDN")) { echo '<td class="paused-mode-cell" title="Mode Paused">NXDN</td>'; } else { showMode("NXDN", $_SESSION['MMDVMHostConfigs']); } ?>
+      <?php if (isPaused("NXDN")) { echo '<td title="Paused" class="paused-mode-cell" title="Mode Paused">NXDN</td>'; } else { showMode("NXDN", $_SESSION['MMDVMHostConfigs']); } ?>
     </tr>
     <tr>
       <?php showMode("DMR X-Mode", $_SESSION['MMDVMHostConfigs']);?>
-      <?php if (isPaused("POCSAG")) { echo '<td class="paused-mode-cell" title="Mode Paused">POCSAG</td>'; } else { showMode("POCSAG", $_SESSION['MMDVMHostConfigs']); } ?>
+      <?php if (isPaused("POCSAG")) { echo '<td title="Paused" class="paused-mode-cell" title="Mode Paused">POCSAG</td>'; } else { showMode("POCSAG", $_SESSION['MMDVMHostConfigs']); } ?>
     </tr>
 </table>
 <br />
