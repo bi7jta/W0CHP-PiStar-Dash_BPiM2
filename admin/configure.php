@@ -244,7 +244,7 @@ $MYCALL=strtoupper($callsign);
           $('.nxdnStartupHost').select2();
       });
     </script>
-    <script type="text/javascript" src="/functions.js?version=1.710"></script>
+    <script type="text/javascript" src="/functions.js?version=1.720"></script>
 </head>
 <body onload="checkFrequency(); return false;">
 <?php
