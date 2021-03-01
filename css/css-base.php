@@ -19,7 +19,7 @@ $backgroundServiceCellInactiveColor = "#BB5555";
 $backgroundModeCellDisabledColor = "#606060";
 $backgroundModeCellActiveColor = "#00BB00";
 $backgroundModeCellInactiveColor = "#BB0000";
-$backgroundModeCellPausedColor = "#f93";
+$backgroundModeCellPausedColor = "#ff9933";
 
 $textBanners = "#ffffff";            // Usually white
 $textNavbar = "#ffffff";           	// Navbar text color
