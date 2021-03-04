@@ -1,6 +1,13 @@
 <?php
+if (isset($_COOKIE['PHPSESSID']))
+{
+    session_id($_COOKIE['PHPSESSID']); 
+}
+if (session_status() != PHP_SESSION_ACTIVE) {
+    session_start();
+}
 
-if (!isset($_SESSION) || !is_array($_SESSION)) {
+if (!isset($_SESSION) || !is_array($_SESSION) || (count($_SESSION, COUNT_RECURSIVE) < 10)) {
     session_id('pistardashsess');
     session_start();
 }
@@ -16,9 +23,8 @@ require_once('../config/version.php');
 	<meta name="robots" content="follow" />
 	<meta name="language" content="English" />
 	<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
-	<meta name="Author" content="Andrew Taylor (MW0MWZ), Chip Cuccio (W0CHP)" />
 	<meta name="Description" content="Pi-Star Expert Editor" />
-	<meta name="KeyWords" content="MMDVMHost,ircDDBGateway,D-Star,ircDDB,DMRGateway,DMR,YSFGateway,YSF,C4FM,NXDNGateway,NXDN,P25Gateway,P25,Pi-Star,DL5DI,DG9VH,MW0MWZ,W0CHP" />
+	<meta name="KeyWords" content="MMDVMHost,ircDDBGateway,D-Star,ircDDB,DMRGateway,DMR,YSFGateway,YSF,C4FM,NXDNGateway,NXDN,P25Gateway,P25,Pi-Star,DL5DI,DG9VH,MW0MWZ,F1RMB" />
 	<meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate" />
 	<meta http-equiv="pragma" content="no-cache" />
 	<link rel="shortcut icon" href="images/favicon.ico" type="image/x-icon">
@@ -35,11 +41,11 @@ require_once('../config/version.php');
 		
 		<?php
 		$action = isset($_GET['action']) ? $_GET['action'] : '';
-		
+
 		if (strcmp($action, 'stop') == 0) {
 		    $action_msg = 'Stopping Services';
 		}
-		if (strcmp($action, 'fullstop') == 0) {
+		else if (strcmp($action, 'fullstop') == 0) {
 		    $action_msg = 'Stopping Fully Services';
 		}
 		else if (strcmp($action, 'restart') == 0) {
@@ -47,6 +53,9 @@ require_once('../config/version.php');
 		}
 		else if (strcmp($action, 'status') == 0) {
 		    $action_msg = 'Services Status';
+		}
+		else if (strcmp($action, 'updatehostsfiles') == 0) {
+		    $action_msg = 'Updating The Hosts Files';
 		}
 		else {
 		    $action_msg = 'Unknown Action';
@@ -76,7 +85,8 @@ require_once('../config/version.php');
 	    </div>
 	    <div class="footer">
 		Pi-Star web config, &copy; Andy Taylor (MW0MWZ) 2014-<?php echo date("Y"); ?>.<br />
-		Enhancements by W0CHP - <?php echo date("Y"); ?>.<br />
+        Enhancements by W0CHP - <?php echo date("Y"); ?>.<br />
+        Enhancements by W0CHP Daniel Caujolle-Bert (F1RMB) 2017-<?php echo date("Y"); ?>.<br />
 		Need help? Click <a style="color: #ffffff;" href="https://www.facebook.com/groups/pistarusergroup/" target="_new">here for the Support Group</a><br />
 		or Click <a style="color: #ffffff;" href="https://forum.pistar.uk/" target="_new">here to join the Support Forum</a><br />
 	    </div>
