@@ -908,6 +908,12 @@ if (!empty($_POST)):
 	    system($rollAPRSGatewayEnable);
 	  }
 
+      // If ircDDBGateway config supports APRS Password
+      if (isset($configs['aprsPassword'])) {
+              $rollircDDBGatewayAprsPassword = 'sudo sed -i "/aprsPassword=/c\\aprsPassword='.aprspass($newCallsignUpper).'" /etc/ircddbgateway';
+              system($rollircDDBGatewayAprsPassword);
+      }
+
 	  system($rollGATECALL);
 	  system($rollIRCUSER);
 	  system($rollDPLUSLOGIN);
@@ -958,7 +964,8 @@ if (!empty($_POST)):
 	  $newNXDNStartupHost = strtoupper(escapeshellcmd($_POST['nxdnStartupHost']));
 	  if (file_exists('/etc/nxdngateway')) {
 		if ($newNXDNStartupHost === "NONE") {
-			unset($confignxdngateway['Network']['Startup']);
+           if (isset($confignxdngateway['Network']['Startup'])) { unset($confignxdngateway['Network']['Startup']); }
+           if (isset($confignxdngateway['Network']['Static']))  { unset($confignxdngateway['Network']['Static']); }
 		} else {
 			$confignxdngateway['Network']['Startup'] = $newNXDNStartupHost;
 	  	}
@@ -1044,6 +1051,7 @@ if (!empty($_POST)):
 	  if (file_exists('/etc/nxdngateway')) {
 	    if (escapeshellcmd($_POST['ysf2nxdnStartupDstId']) === "none") {
 	      unset($confignxdngateway['Network']['Startup']);
+          unset($confignxdngateway['Network']['Static']);
 	    } else {
 	      $confignxdngateway['Network']['Startup'] = escapeshellcmd($_POST['ysf2nxdnStartupDstId']);
 	    }
@@ -1061,6 +1069,7 @@ if (!empty($_POST)):
 
 	  if ($newYSF2P25StartupHost === "NONE") {
 		  unset($configp25gateway['Network']['Startup']);
+          unset($configp25gateway['Network']['Static']);
 		  unset($configysf2p25['P25 Network']['StartupDstId']);
 	  } else {
 		  $configp25gateway['Network']['Startup'] = $newYSF2P25StartupHost;
@@ -1332,16 +1341,20 @@ if (!empty($_POST)):
 	// Set P25 Hang Timers
 	if (empty($_POST['p25RfHangTime']) != TRUE ) {
 	  $configmmdvm['P25']['ModeHang'] = preg_replace('/[^0-9]/', '', $_POST['p25RfHangTime']);
+      $configp25gateway['Network']['RFHangTime'] = "0";
 	}
 	if (empty($_POST['p25NetHangTime']) != TRUE ) {
 	  $configmmdvm['P25 Network']['ModeHang'] = preg_replace('/[^0-9]/', '', $_POST['p25NetHangTime']);
+      $configp25gateway['Network']['NetHangTime'] = "0";
 	}
 	// Set NXDN Hang Timers
 	if (empty($_POST['nxdnRfHangTime']) != TRUE ) {
 	  $configmmdvm['NXDN']['ModeHang'] = preg_replace('/[^0-9]/', '', $_POST['nxdnRfHangTime']);
+      $confignxdngateway['Network']['RFHangTime'] = "0";
 	}
 	if (empty($_POST['nxdnNetHangTime']) != TRUE ) {
 	  $configmmdvm['NXDN Network']['ModeHang'] = preg_replace('/[^0-9]/', '', $_POST['nxdnNetHangTime']);
+      $confignxdngateway['Network']['NetHangTime'] = "0";
 	}
     // Set POCSAG Hang Timer
 	if (empty($_POST['POCSAGHangTime']) != TRUE ) {
@@ -2274,7 +2287,6 @@ if (!empty($_POST)):
 		$configmmdvm['FM']['ExtAudioBoost'] = "1";
 	}
 	
-
 	// Add missing options to DMR2YSF
 	if (!isset($configdmr2ysf['YSF Network']['FCSRooms'])) { $configdmr2ysf['YSF Network']['FCSRooms'] = "/usr/local/etc/FCSHosts.txt"; }
 	if (!isset($configdmr2ysf['DMR Network']['DefaultDstTG'])) { $configdmr2ysf['DMR Network']['DefaultDstTG'] = "9"; }
@@ -2282,6 +2294,9 @@ if (!empty($_POST)):
 	if (!isset($configdmr2ysf['DMR Network']['TGListFile'])) { $configdmr2ysf['DMR Network']['TGListFile'] = "/usr/local/etc/TGList_YSF.txt"; }
 	$configdmr2ysf['Log']['DisplayLevel'] = "0";
 	$configdmr2ysf['Log']['FileLevel'] = "2";
+	if (!isset($configdmr2ysf['YSF Network']['DT1']))   { $configdmr2ysf['YSF Network']['DT1'] = "1,34,97,95,43,3,17,0,0,0"; }
+	if (!isset($configdmr2ysf['YSF Network']['DT2']))   { $configdmr2ysf['YSF Network']['DT2'] = "0,0,0,0,108,32,28,32,3,8"; }
+	if (!isset($configdmr2ysf['YSF Network']['Debug'])) { $configdmr2ysf['YSF Network']['Debug'] = "0"; }
 
 	// Add missing options to YSFGateway
 	if (!isset($configysfgateway['General']['WiresXMakeUpper'])) { $configysfgateway['General']['WiresXMakeUpper'] = "1"; }
@@ -2328,6 +2343,9 @@ if (!empty($_POST)):
 	$configysf2dmr['Log']['DisplayLevel'] = "0";
 	$configysf2dmr['Log']['FileLevel'] = "0";
 	if (!isset($configysf2dmr['aprs.fi']['Enable'])) { $configysf2dmr['aprs.fi']['Enable'] = "0"; }
+	if (!isset($configysf2dmr['YSF Network']['WiresXMakeUpper'])) { $configysf2dmr['YSF Network']['WiresXMakeUpper'] = "1"; }
+	if (!isset($configysf2dmr['YSF Network']['DT1'])) { $configysf2dmr['YSF Network']['DT1'] = "1,34,97,95,43,3,17,0,0,0"; }
+	if (!isset($configysf2dmr['YSF Network']['DT2'])) { $configysf2dmr['YSF Network']['DT2'] = "0,0,0,0,108,32,28,32,3,8"; }
 
 	// Add missing options to YSF2NXDN
 	$configysf2nxdn['YSF Network']['LocalPort'] = $configysfgateway['YSF Network']['YSF2NXDNPort'];
@@ -2342,6 +2360,9 @@ if (!empty($_POST)):
 	$configysf2nxdn['Log']['FilePath'] = "/var/log/pi-star";
 	$configysf2nxdn['Log']['FileRoot'] = "YSF2NXDN";
 	if (!isset($configysf2nxdn['aprs.fi']['Enable'])) { $configysf2nxdn['aprs.fi']['Enable'] = "0"; }
+	if (!isset($configysf2nxdn['YSF Network']['WiresXMakeUpper'])) { $configysf2nxdn['YSF Network']['WiresXMakeUpper'] = "1"; }
+	if (!isset($configysf2nxdn['YSF Network']['DT1'])) { $configysf2nxdn['YSF Network']['DT1'] = "1,34,97,95,43,3,17,0,0,0"; }
+	if (!isset($configysf2nxdn['YSF Network']['DT2'])) { $configysf2nxdn['YSF Network']['DT2'] = "0,0,0,0,108,32,28,32,3,8"; }
 
 	// Add missing options to YSF2P25
 	$configysf2p25['YSF Network']['LocalPort'] = $configysfgateway['YSF Network']['YSF2P25Port'];
@@ -2356,6 +2377,9 @@ if (!empty($_POST)):
 	$configysf2p25['Log']['FilePath'] = "/var/log/pi-star";
 	$configysf2p25['Log']['FileRoot'] = "YSF2P25";
 	if (isset($configysf2p25['aprs.fi'])) { unset($configysf2p25['aprs.fi']); }
+	if (!isset($configysf2p25['YSF Network']['WiresXMakeUpper'])) { $configysf2p25['YSF Network']['WiresXMakeUpper'] = "1"; }
+	if (!isset($configysf2p25['YSF Network']['DT1'])) { $configysf2p25['YSF Network']['DT1'] = "1,34,97,95,43,3,17,0,0,0"; }
+	if (!isset($configysf2p25['YSF Network']['DT2'])) { $configysf2p25['YSF Network']['DT2'] = "0,0,0,0,108,32,28,32,3,8"; }
 
 	// Clean up for NXDN Gateway
 	if (file_exists('/etc/nxdngateway')) {
@@ -2408,12 +2432,43 @@ if (!empty($_POST)):
 		if (!isset($configp25gateway['Remote Commands']['Enable'])) { $configp25gateway['Remote Commands']['Enable'] = "1"; }
 		if (!isset($configp25gateway['Remote Commands']['Port'])) { $configp25gateway['Remote Commands']['Port'] = "6074"; }
 	}
+	if ($p25GatewayVer > 20210201) {
+		if (isset($configp25gateway['General']['Announcements'])) { unset($configp25gateway['General']['Announcements']); }
+		if (!isset($configp25gateway['Log']['DisplayLevel'])) { $configp25gateway['Log']['DisplayLevel'] = "1"; }
+		if (!isset($configp25gateway['Log']['FileLevel'])) { $configp25gateway['Log']['FileLevel'] = "1"; }
+		if (!isset($configp25gateway['Network']['P252DMRAddress'])) { $configp25gateway['Network']['P252DMRAddress'] = "127.0.0.1"; }
+		if (!isset($configp25gateway['Network']['P252DMRPort'])) { $configp25gateway['Network']['P252DMRPort'] = "42012"; }
+		if (isset($configp25gateway['Network']['Startup'])) {
+			$configp25gateway['Network']['Static'] = $configp25gateway['Network']['Startup'];
+			unset($configp25gateway['Network']['Startup']);
+		}
+	}
 
 	// Add NXDNGateway Options
 	$nxdnGatewayVer = exec("NXDNGateway -v | awk {'print $3'} | cut -c 1-8");
 	if ($nxdnGatewayVer > 20200502) {
 		if (!isset($confignxdngateway['Remote Commands']['Enable'])) { $confignxdngateway['Remote Commands']['Enable'] = "1"; }
 		if (!isset($confignxdngateway['Remote Commands']['Port'])) { $confignxdngateway['Remote Commands']['Port'] = "6075"; }
+	}
+	if ($nxdnGatewayVer > 20210131) {
+		if (isset($confignxdngateway['aprs.fi'])) { unset($confignxdngateway['aprs.fi']); }
+		if (isset($confignxdngateway['Mobile GPS'])) { unset($confignxdngateway['Mobile GPS']); }
+		if (!isset($confignxdngateway['General']['RptProtocol'])) { $confignxdngateway['General']['RptProtocol'] = "Icom"; }
+		if (!isset($confignxdngateway['Log']['DisplayLevel'])) { $confignxdngateway['Log']['DisplayLevel'] = "1"; }
+		if (!isset($confignxdngateway['Log']['FileLevel'])) { $confignxdngateway['Log']['FileLevel'] = "1"; }
+		if (!isset($confignxdngateway['APRS']['Enable'])) { $confignxdngateway['APRS']['Enable'] = "1"; }
+		if (!isset($confignxdngateway['APRS']['Address'])) { $confignxdngateway['APRS']['Address'] = "127.0.0.1"; }
+		if (!isset($confignxdngateway['APRS']['Port'])) { $confignxdngateway['APRS']['Port'] = "8673"; }
+		if (!isset($confignxdngateway['APRS']['Suffix'])) { $confignxdngateway['APRS']['Suffix'] = "N"; }
+		if (!isset($confignxdngateway['APRS']['Description'])) { $confignxdngateway['APRS']['Description'] = $configysfgateway['Info']['Name']."_".$configysfgateway['General']['Suffix']; }
+		if (isset($confignxdngateway['APRS']['Description'])) { $confignxdngateway['APRS']['Description'] = $configysfgateway['Info']['Name']."_".$configysfgateway['General']['Suffix']; }
+		if (!isset($confignxdngateway['GPSD']['Enable'])) { $confignxdngateway['GPSD']['Enable'] = "0"; }
+		if (!isset($confignxdngateway['GPSD']['Address'])) { $confignxdngateway['GPSD']['Address'] = "127.0.0.1"; }
+		if (!isset($confignxdngateway['GPSD']['Port'])) { $confignxdngateway['GPSD']['Port'] = "2947"; }
+		if (isset($confignxdngateway['Network']['Startup'])) {
+			$confignxdngateway['Network']['Static'] = $confignxdngateway['Network']['Startup'];
+			unset($confignxdngateway['Network']['Startup']);
+		}
 	}
 
 	// Migrate YSFGateway Config
@@ -2455,9 +2510,13 @@ if (!empty($_POST)):
 		if (!isset($configysfgateway['APRS']['Address'])) { $configysfgateway['APRS']['Address'] = "127.0.0.1"; }
 		if (!isset($configysfgateway['APRS']['Port'])) { $configysfgateway['APRS']['Port'] = "8673"; }
 		if (!isset($configysfgateway['APRS']['Description'])) { $configysfgateway['APRS']['Description'] = $configysfgateway['Info']['Name']."_".$configysfgateway['General']['Suffix']; }
+		if (isset($configysfgateway['APRS']['Description'])) { $configysfgateway['APRS']['Description'] = $configysfgateway['Info']['Name']."_".$configysfgateway['General']['Suffix']; }
 		if (!isset($configysfgateway['APRS']['Suffix'])) { $configysfgateway['APRS']['Suffix'] = "Y"; }
 		if (isset($configysfgateway['Mobile GPS'])) { unset($configysfgateway['Mobile GPS']); }
 		if (isset($configysfgateway['aprs.fi'])) { unset($configysfgateway['aprs.fi']); }
+	}
+	if ($ysfGatewayVer > 20210130) {
+		if (isset($configysfgateway['APRS']['Enable'])) { $configysfgateway['APRS']['Enable'] = "1"; }
 	}
 
 	// Add the DAPNet Config
@@ -2501,9 +2560,9 @@ if (!empty($_POST)):
 				if (!isset($configysfgateway['Mobile GPS']['Port'])) { $configysfgateway['Mobile GPS']['Port'] = "7834"; }
 			}
 			// Add missing lines to NXDNGateway Config
-			if (!isset($confignxdngateway['Mobile GPS']['Enable'])) { $confignxdngateway['Mobile GPS']['Enable'] = "0"; }
-			if (!isset($confignxdngateway['Mobile GPS']['Address'])) { $confignxdngateway['Mobile GPS']['Address'] = "127.0.0.1"; }
-			if (!isset($confignxdngateway['Mobile GPS']['Port'])) { $confignxdngateway['Mobile GPS']['Port'] = "7834"; }
+			//if (!isset($confignxdngateway['Mobile GPS']['Enable'])) { $confignxdngateway['Mobile GPS']['Enable'] = "0"; }
+			//if (!isset($confignxdngateway['Mobile GPS']['Address'])) { $confignxdngateway['Mobile GPS']['Address'] = "127.0.0.1"; }
+			//if (!isset($confignxdngateway['Mobile GPS']['Port'])) { $confignxdngateway['Mobile GPS']['Port'] = "7834"; }
 
 			// Clean up MobilGPS config
 			system('sudo sed -i "/Daemon=/c\\Daemon=0" /etc/mobilegps');
@@ -2516,12 +2575,12 @@ if (!empty($_POST)):
 			if (escapeshellcmd($_POST['mobilegps_enable']) == 'ON' )  {
 				$configmmdvm['Mobile GPS']['Enable'] = "1";
 				if (isset($configysfgateway['Mobile GPS']['Enable'])) { $configysfgateway['Mobile GPS']['Enable'] = "1"; }
-				$confignxdngateway['Mobile GPS']['Enable'] = "1";
+				if (isset($confignxdngateway['Mobile GPS']['Enable'])) { $confignxdngateway['Mobile GPS']['Enable'] = "1"; }
 				system('sudo sed -i "/Enabled=/c\\Enabled=1" /etc/mobilegps');
 			} else {
 				$configmmdvm['Mobile GPS']['Enable'] = "0";
 				if (isset($configysfgateway['Mobile GPS']['Enable'])) { $configysfgateway['Mobile GPS']['Enable'] = "0"; }
-				$confignxdngateway['Mobile GPS']['Enable'] = "0";
+				if (isset($confignxdngateway['Mobile GPS']['Enable'])) { $confignxdngateway['Mobile GPS']['Enable'] = "0"; }
 				system('sudo sed -i "/Enabled=/c\\Enabled=0" /etc/mobilegps');
 			}
 		}
@@ -4388,7 +4447,9 @@ $p25Hosts = fopen("/usr/local/etc/P25Hosts.txt", "r");
     <td align="left"><a class="tooltip2" href="#"><?php echo $lang['p25_startup_host'];?>:<span><b>P25 Host</b>Set your prefered P25 Host here</span></a></td>
     <td style="text-align: left;"><select name="p25StartupHost" class="p25StartupHost">
 <?php
-	if (isset($configp25gateway['Network']['Startup'])) { $testP25Host = $configp25gateway['Network']['Startup']; } else { $testP25Host = "none"; }
+    if (isset($configp25gateway['Network']['Startup'])) { $testP25Host = $configp25gateway['Network']['Startup']; }
+    elseif (isset($configp25gateway['Network']['Static'])) { $testP25Host = $configp25gateway['Network']['Static']; }
+    else { $testP25Host = "none"; }
 	if ($testP25Host == "") { echo "      <option value=\"none\" selected=\"selected\">None</option>\n"; }
         else { echo "      <option value=\"none\">None</option>\n"; }
 	if ($testP25Host == "10") { echo "      <option value=\"10\" selected=\"selected\">10 - Parrot</option>\n"; }
@@ -4439,8 +4500,10 @@ $p25Hosts = fopen("/usr/local/etc/P25Hosts.txt", "r");
         <td style="text-align: left;"><select name="nxdnStartupHost" class="nxdnStartupHost">
 <?php
 	if (file_exists('/etc/nxdngateway')) {
-		$nxdnHosts = fopen("/usr/local/etc/NXDNHosts.txt", "r");
-		if (isset($confignxdngateway['Network']['Startup'])) { $testNXDNHost = $confignxdngateway['Network']['Startup']; } else { $testNXDNHost = ""; }
+	   $nxdnHosts = fopen("/usr/local/etc/NXDNHosts.txt", "r");
+       if (isset($confignxdngateway['Network']['Startup'])) { $testNXDNHost = $confignxdngateway['Network']['Startup']; }
+       elseif (isset($confignxdngateway['Network']['Static'])) { $testNXDNHost = $confignxdngateway['Network']['Static']; }
+       else { $testNXDNHost = ""; }
 		if ($testNXDNHost == "") { echo "      <option value=\"none\" selected=\"selected\">None</option>\n"; }
 	        else { echo "      <option value=\"none\">None</option>\n"; }
 		if ($testNXDNHost == "10") { echo "      <option value=\"10\" selected=\"selected\">10 - Parrot</option>\n"; }
