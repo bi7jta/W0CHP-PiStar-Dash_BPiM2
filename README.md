@@ -56,6 +56,7 @@ caveats](https://w0chp.net/w0chp-pistar-dash/#the-rules-and-caveats----important
   better feedback messages when making changes.
   * Note: Last-Heard and other dynamic tables are now only displayed in the main admin page.
     Once entering the sub-pages, the focus is now on the task-at-hand, and the dynamic tables are not displayed.
+  * The original (and cluttered) single-page admin layout is still attainable, if you prefer. It is installed via the `OldAdmin` branch.
 
 * Test / Unstable Features (not installed by default)
 
