@@ -36,7 +36,7 @@ $lang = array (
   "setting"                     =>  "Setari",
   "value"                       =>  "Valoare",
   "apply"                       =>  "Salvare Setari",
-  // Config Page - Gateway Hardware Information
+  // Config Page - Hardware Information
   "hostname"                    =>  "Denumire Detinator",
   "kernel"                      =>  "Nucleu",
   "platform"                    =>  "Platforma",

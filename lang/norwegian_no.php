@@ -18,7 +18,7 @@ $lang = array (
   "factory_reset"               =>  "Tilbakestill",
   "live_logs"                   =>  "Live Logg",
   // Config page section headdings
-  "hardware_info"               =>  "Gateway Hardware Informasjon",
+  "hardware_info"               =>  "Hardware Informasjon",
   "control_software"            =>  "Kontroller Programvare",
   "mmdvmhost_config"            =>  "MMDVMHost Konfigurasjon",
   "general_config"              =>  "Generel Konfigurasjon",
@@ -36,7 +36,7 @@ $lang = array (
   "setting"                     =>  "Innstillinger",
   "value"                       =>  "Verdi",
   "apply"                       =>  "Bruk endringer",
-  // Config Page - Gateway Hardware Information
+  // Config Page - Hardware Information
   "hostname"                    =>  "Vertsnavn",
   "kernel"                      =>  "Kernel",
   "platform"                    =>  "Platform",
@@ -109,10 +109,10 @@ $lang = array (
   "modes_enabled"               =>  "Modes Aktivert",
   "net_status"                  =>  "Nettverk Status",
   "internet"                    =>  "Internett",
-  "radio_info"                  =>  "Radio Info",
+  "radio_info"                  =>  "Radio Status",
   "dstar_repeater"              =>  "D-Star Repeater",
   "dstar_net"                   =>  "D-Star Nettverk",
-  "dmr_repeater"                =>  "DMR Repeater",
+  "dmr_repeater"                =>  "DMR Status",
   "dmr_master"                  =>  "DMR Master",
   "ysf_net"                     =>  "YSF Nettverk",
   "p25_radio"                   =>  "P25 Radio",
@@ -129,7 +129,7 @@ $lang = array (
   "loss"                        =>  "Loss",
   "ber"                         =>  "BER",        // Short version of "Bit Error Rate"
   // POCSAG Specific
-  "pocsag_list"                 =>  "DAPNET Gateway Activity",
+  "pocsag_list"                 =>  "DAPNET Activity",
   "pocsag_timeslot"             =>  "Time Slot",
   "pocsag_msg"                  =>  "Message",
   // Dashboard - Extra Info
@@ -145,6 +145,6 @@ $lang = array (
   "active_starnet_members"      =>  "Aktive Starnet Gruppe medlemer",
   "d-star_link_manager"         =>  "D-Star Link Manager",
   "d-star_link_status"          =>  "D-Star Link Informasjon",
-  "service_status"              =>  "Service Status"
+  "service_status"              =>  "Process Status"
 );
 ?>

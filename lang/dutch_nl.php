@@ -35,7 +35,7 @@ $lang = array (
   "setting"                     =>  "Instelling",
   "value"                       =>  "Waarde",
   "apply"                       =>  "Toepassen",
-  // Config Page - Gateway Hardware Information
+  // Config Page - Hardware Information
   "hostname"                    =>  "Hostnaam",
   "kernel"                      =>  "Kernel",
   "platform"                    =>  "Platform",
@@ -128,7 +128,7 @@ $lang = array (
   "loss"                        =>  "Verlies", 
   "ber"                         =>  "BER",        // Short version of "Bit Error Rate"
   // POCSAG Specific
-  "pocsag_list"                 =>  "DAPNET Gateway Activity",
+  "pocsag_list"                 =>  "DAPNET Activity",
   "pocsag_timeslot"             =>  "Time Slot",
   "pocsag_msg"                  =>  "Message",
   // Dashboard - Extra Info
@@ -144,6 +144,6 @@ $lang = array (
   "active_starnet_members"      =>  "Actieve Starnet groepsleden",
   "d-star_link_manager"         =>  "D-Star Link Manager",
   "d-star_link_status"          =>  "D-Star Link Informatie",
-  "service_status"              =>  "Service Status"
+  "service_status"              =>  "Process Status"
 );
 ?>

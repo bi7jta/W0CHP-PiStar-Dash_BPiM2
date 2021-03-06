@@ -36,7 +36,7 @@ $lang = array (
   "setting"                     =>  "Ayar",
   "value"                       =>  "Değer",
   "apply"                       =>  "Değişiklikleri Uygula",
-  // Config Page - Gateway Hardware Information
+  // Config Page - Hardware Information
   "hostname"                    =>  "Sistem Adı",
   "kernel"                      =>  "Çekirdek Sürümü",
   "platform"                    =>  "Altyapı",

@@ -38,7 +38,7 @@ $lang = array (
   "setting"                     =>  "設定項目",
   "value"                       =>  "設定内容",
   "apply"                       =>  "更新",
-  // Config Page - Gateway Hardware Information
+  // Config Page - Hardware Information
   "hostname"                    =>  "ホスト名",
   "kernel"                      =>  "カーネル",
   "platform"                    =>  "マイコン",

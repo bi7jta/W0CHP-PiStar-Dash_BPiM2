@@ -18,7 +18,7 @@ $lang = array (
   "factory_reset"               =>  "Factory Reset",
   "live_logs"                   =>  "Live Logs",
   // Config page section headdings
-  "hardware_info"               =>  "Gateway Hardware Information",
+  "hardware_info"               =>  "Hardware Information",
   "control_software"            =>  "Control Software",
   "mmdvmhost_config"            =>  "MMDVMHost Configuration",
   "general_config"              =>  "General Configuration",
@@ -36,7 +36,7 @@ $lang = array (
   "setting"                     =>  "Setting",
   "value"                       =>  "Value",
   "apply"                       =>  "Apply Changes",
-  // Config Page - Gateway Hardware Information
+  // Config Page - Hardware Information
   "hostname"                    =>  "Hostname",
   "kernel"                      =>  "Kernel",
   "platform"                    =>  "Platform",
@@ -106,13 +106,13 @@ $lang = array (
   "password"                    =>  "Password",
   "set_password"                =>  "Set Password",
   // Dashboard Front Page - Repeater Info Pannel
-  "modes_enabled"               =>  "Modes Enabled",
+  "modes_enabled"               =>  "Mode Status",
   "net_status"                  =>  "Network Status",
   "internet"                    =>  "Internet",
-  "radio_info"                  =>  "Radio Info",
+  "radio_info"                  =>  "Radio Status",
   "dstar_repeater"              =>  "D-Star Repeater",
   "dstar_net"                   =>  "D-Star Network",
-  "dmr_repeater"                =>  "DMR Repeater",
+  "dmr_repeater"                =>  "DMR Status",
   "dmr_master"                  =>  "DMR Master",
   "ysf_net"                     =>  "YSF Network",
   "p25_radio"                   =>  "P25 Radio",
@@ -129,7 +129,7 @@ $lang = array (
   "loss"                        =>  "Loss",
   "ber"                         =>  "BER",        // Short version of "Bit Error Rate"
   // POCSAG Specific
-  "pocsag_list"                 =>  "DAPNET Gateway Activity",
+  "pocsag_list"                 =>  "DAPNET Activity",
   "pocsag_timeslot"             =>  "Time Slot",
   "pocsag_msg"                  =>  "Message",
   // Dashboard - Extra Info
@@ -145,6 +145,6 @@ $lang = array (
   "active_starnet_members"      =>  "Active Starnet Group Members",
   "d-star_link_manager"         =>  "D-Star Link Manager",
   "d-star_link_status"          =>  "D-Star Link Information",
-  "service_status"              =>  "Service Status"
+  "service_status"              =>  "Process Status"
 );
 ?>

@@ -36,7 +36,7 @@ $lang = array (
   "setting"                     =>  "Settaggi",
   "value"                       =>  "Valori",
   "apply"                       =>  "Applicare le modifiche",
-  // Config Page - Gateway Hardware Information
+  // Config Page - Hardware Information
   "hostname"                    =>  "Hostname",
   "kernel"                      =>  "Kernel",
   "platform"                    =>  "Platform",
@@ -112,7 +112,7 @@ $lang = array (
   "radio_info"                  =>  "Info Radio",
   "dstar_repeater"              =>  "D-Star Repeater",
   "dstar_net"                   =>  "D-Star Network",
-  "dmr_repeater"                =>  "DMR Repeater",
+  "dmr_repeater"                =>  "DMR Status",
   "dmr_master"                  =>  "DMR Master",
   "ysf_net"                     =>  "YSF Network",
   "p25_radio"                   =>  "P25 Radio",
@@ -129,7 +129,7 @@ $lang = array (
   "loss"                        =>  "Loss",
   "ber"                         =>  "BER",        // Short version of "Bit Error Rate"
   // POCSAG Specific
-  "pocsag_list"                 =>  "DAPNET Gateway Activity",
+  "pocsag_list"                 =>  "DAPNET Activity",
   "pocsag_timeslot"             =>  "Time Slot",
   "pocsag_msg"                  =>  "Message",
   // Dashboard - Extra Info

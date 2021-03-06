@@ -37,7 +37,7 @@ $lang = array (
   "setting"                     =>  "Configuració",
   "value"                       =>  "Valor",
   "apply"                       =>  "Aplicar",
-  // Config Page - Gateway Hardware Information
+  // Config Page - Hardware Information
   "hostname"                    =>  "Nom de l'amfitrió",
   "kernel"                      =>  "Kernel",
   "platform"                    =>  "Plataforma",

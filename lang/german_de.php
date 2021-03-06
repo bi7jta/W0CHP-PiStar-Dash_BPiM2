@@ -18,7 +18,7 @@ $lang = array (
   "factory_reset"               =>  "Werkseinstellung",
   "live_logs"                   =>  "Protokoll",
   // Config page section headdings
-  "hardware_info"               =>  "Gateway Hardware Information",
+  "hardware_info"               =>  "Hardware Information",
   "control_software"            =>  "Kontrollsoftware",
   "mmdvmhost_config"            =>  "MMDVMHost Konfiguration",
   "general_config"              =>  "Basis Konfiguration",
@@ -36,7 +36,7 @@ $lang = array (
   "setting"                     =>  "Einstellung",
   "value"                       =>  "Wert",
   "apply"                       =>  "Speichern",
-  // Config Page - Gateway Hardware Information
+  // Config Page - Hardware Information
   "hostname"                    =>  "Rechnername",
   "kernel"                      =>  "Kernel",
   "platform"                    =>  "Plattform",
@@ -109,7 +109,7 @@ $lang = array (
   "modes_enabled"               =>  "Aktive Modi",
   "net_status"                  =>  "Netzwerk Status",
   "internet"                    =>  "Internet",
-  "radio_info"                  =>  "Radio Info",
+  "radio_info"                  =>  "Radio Status",
   "dstar_repeater"              =>  "D-Star Relais",
   "dstar_net"                   =>  "D-Star Netzwerk",
   "dmr_repeater"                =>  "DMR Relais",
@@ -129,7 +129,7 @@ $lang = array (
   "loss"                        =>  "Verlust",
   "ber"                         =>  "BER",        // Short version of "Bit Error Rate"
   // POCSAG Specific
-  "pocsag_list"                 =>  "DAPNET Gateway Activity",
+  "pocsag_list"                 =>  "DAPNET Activity",
   "pocsag_timeslot"             =>  "Time Slot",
   "pocsag_msg"                  =>  "Message",
   // Dashboard - Extra Info
@@ -145,6 +145,6 @@ $lang = array (
   "active_starnet_members"      =>  "Aktive Starnet Gruppen Mitglieder",
   "d-star_link_manager"         =>  "D-Star Link Manager",
   "d-star_link_status"          =>  "D-Star Link Information",
-  "service_status"              =>  "Service Status"
+  "service_status"              =>  "Process Status"
   );
 ?>

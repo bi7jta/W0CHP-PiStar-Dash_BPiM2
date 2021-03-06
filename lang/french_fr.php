@@ -36,7 +36,7 @@ $lang = array (
   "setting"                     =>  "Param&egrave;tres",
   "value"                       =>  "Valeur",
   "apply"                       =>  "Appliquer les modifications",
-  // Config Page - Gateway Hardware Information
+  // Config Page - Hardware Information
   "hostname"                    =>  "Nom d'h&ocirc;te",
   "kernel"                      =>  "Kernel",
   "platform"                    =>  "Plateforme",
@@ -129,7 +129,7 @@ $lang = array (
   "loss"                        =>  "Pertes",
   "ber"                         =>  "BER",        // Short version of "Bit Error Rate"
   // POCSAG Specific
-  "pocsag_list"                 =>  "DAPNET Gateway Activity",
+  "pocsag_list"                 =>  "DAPNET Activity",
   "pocsag_timeslot"             =>  "Time Slot",
   "pocsag_msg"                  =>  "Message",
   // Dashboard - Extra Info

@@ -36,7 +36,7 @@ $lang = array (
   "setting"                     =>  "Nastavitev",
   "value"                       =>  "Vrednost",
   "apply"                       =>  "Potrdi spremembe",
-  // Config Page - Gateway Hardware Information
+  // Config Page - Hardware Information
   "hostname"                    =>  "Ime gostitelja",
   "kernel"                      =>  "Jedro",
   "platform"                    =>  "Platforma",
