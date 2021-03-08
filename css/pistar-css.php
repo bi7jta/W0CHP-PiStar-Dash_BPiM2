@@ -260,7 +260,7 @@ ul li a {
     float:left;
     color: #999;
     cursor: pointer;
-    font: 900 14px/22px 'Source Sans Pro', sans-serif;
+    font: 600 14px/22px 'Source Sans Pro', sans-serif;
 }
 
 ul li a span {
@@ -450,11 +450,6 @@ select {
     text-align: center;
     padding: 5px 8px;
     text-decoration: none;
-    -webkit-transition: all 0.25s ease-out;
-    -moz-transition: all 0.25s ease-out;
-    -ms-transition: all 0.25s ease-out;
-    -o-transition: all 0.25s ease-out;
-    transition: all 0.25s ease-out;
 }
 
 .dropdown .dropbutton {
@@ -501,11 +496,6 @@ select {
 .mainnav ul {
     padding: 0;
     list-style: none;
-    -webkit-transition: all 0.25s ease-out;
-    -moz-transition: all 0.25s ease-out;
-    -ms-transition: all 0.25s ease-out;
-    -o-transition: all 0.25s ease-out;
-    transition: all 0.25s ease-out;
 }
 
 .mainnav li {
