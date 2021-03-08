@@ -282,7 +282,16 @@ checkSessionValidity();
 			include 'mmdvmhost/nxdn_manager.php';		// NXDN Links
 		    }
 		}
-	
+
+		$testMMDVModePOCSAG = getConfigItem("POCSAG Network", "Enable", $_SESSION['MMDVMHostConfigs']);
+		if ( $testMMDVModePOCSAG == 1 ) {
+		    if ($_SERVER["PHP_SELF"] == "/admin/index.php" && $_POST["func"] == "pocsag_man" || $_GET["func"] == "pocsag_man") {  // Admin Only Options (pocsag mgr)
+			    echo '<div id="dapnetMsgr">'."\n";
+			    include 'mmdvmhost/dapnet_messenger.php';
+			    echo '</div>'."\n";
+		    }
+        }
+
 		// begin admin selection form
 		if ($_SERVER["PHP_SELF"] == "/admin/index.php") {
             if (!empty($_POST) || !empty($_GET)) { echo '<br /><hr />'; }
@@ -353,7 +362,7 @@ checkSessionValidity();
 		    echo '    </tr>';
 		    echo '  </table>';
 		    echo ' </form>';
-		    if (empty($_POST) && empty($_GET)) { echo '<hr />'; }
+		    if (empty($_POST) && empty($_GET) || ($_POST["func"] == "pocsag_man" || $_GET["func"] == "pocsag_man")) { echo '<hr />'; }
 		}
 
 		echo '<script type="text/javascript">'."\n";
@@ -403,43 +412,32 @@ checkSessionValidity();
 		}
 
 		// If POCSAG is enabled, show the information panel
-		$testMMDVModePOCSAG = getConfigItem("POCSAG Network", "Enable", $_SESSION['MMDVMHostConfigs']);
-		if ( $testMMDVModePOCSAG == 1 ) {
-		    if ($_SERVER["PHP_SELF"] == "/admin/index.php" && $_POST["func"] == "pocsag_man" || $_GET["func"] == "pocsag_man") {  // Admin Only Options (pocsag mgr)
-			echo "<br />\n";
-			echo '<div id="dapnetMsgr">'."\n";
-			include 'mmdvmhost/dapnet_messenger.php';
-			echo '</div>'."\n";
-		    }
-
-                    if ( $testMMDVModePOCSAG == 1 ) {
-                        if (empty($_POST) && empty($_GET) || ($_POST["func"] == "pocsag_man" || $_GET["func"] == "pocsag_man")) { // display pages in pocsag mgr or main admin only with no other func requested
-		            $myOrigin = ($_SERVER["PHP_SELF"] == "/admin/index.php" ? "admin" : "other");
+        if ( $testMMDVModePOCSAG == 1 ) {
+            if (empty($_POST) && empty($_GET) || ($_POST["func"] == "pocsag_man" || $_GET["func"] == "pocsag_man")) { // display pages in pocsag mgr or main admin only with no other func requested
+	            $myOrigin = ($_SERVER["PHP_SELF"] == "/admin/index.php" ? "admin" : "other");
 		    
-		            echo '<script type="text/javascript">'."\n";
-		            echo 'var pagesto;'."\n";
-		            echo 'function setPagesAutorefresh(obj) {'."\n";
-	                    echo '    if (obj.checked) {'."\n";
-	                    echo '        pagesto = setTimeout(reloadPages, 5000, "?origin='.$myOrigin.'");'."\n";
-	                    echo '    }'."\n";
-	                    echo '    else {'."\n";
-	                    echo '        clearTimeout(pagesto);'."\n";
-	                    echo '    }'."\n";
-                            echo '}'."\n";
-		            echo 'function reloadPages(OptStr){'."\n";
-		            echo '    $("#Pages").load("/mmdvmhost/pages.php"+OptStr, function(){ pagesto = setTimeout(reloadPages, 5000, "?origin='.$myOrigin.'") });'."\n";
-		            echo '}'."\n";
-		            echo 'pagesto = setTimeout(reloadPages, 5000, "?origin='.$myOrigin.'");'."\n";
-		            echo '$(window).trigger(\'resize\');'."\n";
-		            echo '</script>'."\n";
-		            echo "<br />\n";
-		            echo '<div id="Pages">'."\n";
-		            include 'mmdvmhost/pages.php';				// POCSAG Messages
-		            echo '</div>'."\n";
-		        }
+		        echo '<script type="text/javascript">'."\n";
+		        echo 'var pagesto;'."\n";
+		        echo 'function setPagesAutorefresh(obj) {'."\n";
+	            echo '    if (obj.checked) {'."\n";
+	            echo '        pagesto = setTimeout(reloadPages, 5000, "?origin='.$myOrigin.'");'."\n";
+	            echo '    }'."\n";
+	            echo '    else {'."\n";
+	            echo '        clearTimeout(pagesto);'."\n";
+	            echo '    }'."\n";
+                echo '}'."\n";
+		        echo 'function reloadPages(OptStr){'."\n";
+		        echo '    $("#Pages").load("/mmdvmhost/pages.php"+OptStr, function(){ pagesto = setTimeout(reloadPages, 5000, "?origin='.$myOrigin.'") });'."\n";
+		        echo '}'."\n";
+		        echo 'pagesto = setTimeout(reloadPages, 5000, "?origin='.$myOrigin.'");'."\n";
+		        echo '$(window).trigger(\'resize\');'."\n";
+		        echo '</script>'."\n";
+		        echo '<div id="Pages">'."\n";
+		        include 'mmdvmhost/pages.php';				// POCSAG Messages
+		        echo '</div>'."\n";
 		    }
-	        }
-	    }
+		}
+    }
 	    else if (file_exists('/etc/dstar-radio.dstarrepeater')) {
 		echo '<div class="contentwide">'."\n";
 		include 'dstarrepeater/gateway_software_config.php';		// dstarrepeater gateway config
