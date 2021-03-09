@@ -313,7 +313,7 @@ checkSessionValidity();
                         echo '    <button form="admin_sel" disabled="disabled" type="submit" value="ds_man" name="func"><span>D-Star Manager</span></button>';
                     }       
                     $testMMDVModeDMR = getConfigItem("DMR", "Enable", $_SESSION['MMDVMHostConfigs']);
-		    if ((substr($dmrMasterHost, 0, 2) == "BM") && ($bmEnabled == true) && ($testMMDVModeDMR ==1)) {
+		    if (($bmEnabled == true) && ($testMMDVModeDMR ==1)) {
 		        echo '    <button form="admin_sel" type="submit" value="bm_man" name="func"><span>BrandMeister Manager</span></button>';
 		    }
 		    else {
