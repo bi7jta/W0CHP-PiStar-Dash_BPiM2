@@ -432,7 +432,7 @@ checkSessionValidity();
 		        echo 'pagesto = setTimeout(reloadPages, 5000, "?origin='.$myOrigin.'");'."\n";
 		        echo '$(window).trigger(\'resize\');'."\n";
 		        echo '</script>'."\n";
-		        echo '<div id="Pages">'."\n";
+		        echo '<br />'."\n".'<div id="Pages">'."\n";
 		        include 'mmdvmhost/pages.php';				// POCSAG Messages
 		        echo '</div>'."\n";
 		    }
