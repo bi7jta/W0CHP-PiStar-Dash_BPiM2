@@ -2516,7 +2516,7 @@ if (!empty($_POST)):
 		if (isset($configysfgateway['aprs.fi'])) { unset($configysfgateway['aprs.fi']); }
 	}
 	if ($ysfGatewayVer > 20210130) {
-		if (isset($configysfgateway['APRS']['Enable'])) { $configysfgateway['APRS']['Enable'] = "1"; }
+		if (!isset($configysfgateway['APRS']['Enable'])) { $configysfgateway['APRS']['Enable'] = "1"; }
 	}
 
 	// Add the DAPNet Config
