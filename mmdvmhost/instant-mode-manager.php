@@ -20,6 +20,8 @@ $mode_cmd = '/usr/local/sbin/pistar-mmdvmhost-module';
 
 $mmdvmConfigFile = '/etc/mmdvmhost';
 $configmmdvm = parse_ini_file($mmdvmConfigFile, true);
+$aprsConfigFile = '/etc/aprsgateway';
+$configaprsgw = parse_ini_file($aprsConfigFile, true);
 
 // check status of supported modes
 $DSTAR  = ($configmmdvm['D-Star']['Enable']);
@@ -28,6 +30,7 @@ $YSF    = ($configmmdvm['System Fusion']['Enable']);
 $P25    = ($configmmdvm['P25']['Enable']);
 $NXDN   = ($configmmdvm['NXDN']['Enable']);
 $POCSAG = ($configmmdvm['POCSAG']['Enable']);
+$APRS   = ($configaprsgw['Enabled']['Enabled']);
 // pause enabled file pointers
 $DSTAR_paused  = '/etc/D-Star_paused';
 $DMR_paused    = '/etc/DMR_paused';
@@ -35,6 +38,7 @@ $YSF_paused    = '/etc/YSF_paused';
 $P25_paused    = '/etc/P25_paused';
 $NXDN_paused   = '/etc/NXDN_paused';
 $POCSAG_paused = '/etc/POCSAG_paused';
+$APRS_paused   = '/etc/APRS_paused';
 
 // take action based on form submission
 if (!empty($_POST["submit_mode"]) && empty($_POST["mode_sel"])) { //handler for nothing selected
