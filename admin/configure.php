@@ -341,6 +341,8 @@ if (!empty($_POST)):
 	if (empty($_POST['autoapPsk']) != TRUE ) {
 	  $rollAutoApPsk = 'sudo sed -i "/wpa_passphrase=/c\\wpa_passphrase='.$_POST['autoapPsk'].'" /etc/hostapd/hostapd.conf';
 	  system($rollAutoApPsk);
+	  $rollAutoApWPA = 'sudo sed -i "/wpa=/c\\wpa=2" /etc/hostapd/hostapd.conf';
+	  system($rollAutoApWPA);
 	  unset($_POST);
 	  echo "<table>\n";
 	  echo "<tr><th>Working...</th></tr>\n";
@@ -908,11 +910,11 @@ if (!empty($_POST)):
 	    system($rollAPRSGatewayEnable);
 	  }
 
-      // If ircDDBGateway config supports APRS Password
-      if (isset($configs['aprsPassword'])) {
-              $rollircDDBGatewayAprsPassword = 'sudo sed -i "/aprsPassword=/c\\aprsPassword='.aprspass($newCallsignUpper).'" /etc/ircddbgateway';
-              system($rollircDDBGatewayAprsPassword);
-      }
+	  // If ircDDBGateway config supports APRS Password
+	  if (isset($configs['aprsPassword'])) {
+		  $rollircDDBGatewayAprsPassword = 'sudo sed -i "/aprsPassword=/c\\aprsPassword='.aprspass($newCallsignUpper).'" /etc/ircddbgateway';
+		  system($rollircDDBGatewayAprsPassword);
+	  }
 
 	  system($rollGATECALL);
 	  system($rollIRCUSER);
@@ -945,6 +947,7 @@ if (!empty($_POST)):
           if ($newP25StartupHost === "NONE") {
 		  unset($configp25gateway['Network']['Startup']);
 		  unset($configysf2p25['P25 Network']['StartupDstId']);
+		  unset($configp25gateway['Network']['Static']);
 	  } else {
 		  $configp25gateway['Network']['Startup'] = $newP25StartupHost;
 		  $configysf2p25['P25 Network']['StartupDstId'] = $newP25StartupHost;
@@ -964,8 +967,8 @@ if (!empty($_POST)):
 	  $newNXDNStartupHost = strtoupper(escapeshellcmd($_POST['nxdnStartupHost']));
 	  if (file_exists('/etc/nxdngateway')) {
 		if ($newNXDNStartupHost === "NONE") {
-           if (isset($confignxdngateway['Network']['Startup'])) { unset($confignxdngateway['Network']['Startup']); }
-           if (isset($confignxdngateway['Network']['Static']))  { unset($confignxdngateway['Network']['Static']); }
+			if (isset($confignxdngateway['Network']['Startup'])) { unset($confignxdngateway['Network']['Startup']); }
+			if (isset($confignxdngateway['Network']['Static']))  { unset($confignxdngateway['Network']['Static']); }
 		} else {
 			$confignxdngateway['Network']['Startup'] = $newNXDNStartupHost;
 	  	}
@@ -1031,11 +1034,13 @@ if (!empty($_POST)):
 	  $configysf2dmr['DMR Network']['Address'] = $ysf2dmrMasterHostArr[0];
 	  $configysf2dmr['DMR Network']['Password'] = '"'.$ysf2dmrMasterHostArr[1].'"';
 	  $configysf2dmr['DMR Network']['Port'] = $ysf2dmrMasterHostArr[2];
-	  if (empty($_POST['bmHSSecurity']) != TRUE ) {
-	    $configysf2dmr['DMR Network']['Password'] = '"'.$_POST['bmHSSecurity'].'"';
-	    $configModem['BrandMeister']['Password'] = '"'.$_POST['bmHSSecurity'].'"';
-	  } else {
-	    unset ($configModem['BrandMeister']['Password']);
+	  if (isset($_POST['bmHSSecurity'])) {
+		  if (empty($_POST['bmHSSecurity']) != TRUE ) {
+			  $configysf2dmr['DMR Network']['Password'] = '"'.$_POST['bmHSSecurity'].'"';
+			  $configModem['BrandMeister']['Password'] = '"'.$_POST['bmHSSecurity'].'"';
+		  } else {
+			  unset ($configModem['BrandMeister']['Password']);
+		  }
 	  }
 	}
 
@@ -1051,10 +1056,10 @@ if (!empty($_POST)):
 	  if (file_exists('/etc/nxdngateway')) {
 	    if (escapeshellcmd($_POST['ysf2nxdnStartupDstId']) === "none") {
 	      unset($confignxdngateway['Network']['Startup']);
-          unset($confignxdngateway['Network']['Static']);
+	      unset($confignxdngateway['Network']['Static']);
 	    } else {
 	      $confignxdngateway['Network']['Startup'] = escapeshellcmd($_POST['ysf2nxdnStartupDstId']);
-	    }
+	    }		  
 	  }
 	}
 
@@ -1069,7 +1074,7 @@ if (!empty($_POST)):
 
 	  if ($newYSF2P25StartupHost === "NONE") {
 		  unset($configp25gateway['Network']['Startup']);
-          unset($configp25gateway['Network']['Static']);
+		  unset($configp25gateway['Network']['Static']);
 		  unset($configysf2p25['P25 Network']['StartupDstId']);
 	  } else {
 		  $configp25gateway['Network']['Startup'] = $newYSF2P25StartupHost;
@@ -1151,11 +1156,13 @@ if (!empty($_POST)):
 	  $configmmdvm['DMR Network']['Address'] = $dmrMasterHostArr[0];
 	  $configmmdvm['DMR Network']['Password'] = '"'.$dmrMasterHostArr[1].'"';
 	  $configmmdvm['DMR Network']['Port'] = $dmrMasterHostArr[2];
-	  if (empty($_POST['bmHSSecurity']) != TRUE ) {
-		  $configModem['BrandMeister']['Password'] = '"'.$_POST['bmHSSecurity'].'"';
-		  if ($dmrMasterHostArr[0] != '127.0.0.1') { $configmmdvm['DMR Network']['Password'] = '"'.$_POST['bmHSSecurity'].'"'; }
-	  } else {
-		  unset ($configModem['BrandMeister']['Password']);
+	  if (isset($_POST['bmHSSecurity'])) {
+		  if (empty($_POST['bmHSSecurity']) != TRUE ) {
+			  $configModem['BrandMeister']['Password'] = '"'.$_POST['bmHSSecurity'].'"';
+			  if ($dmrMasterHostArr[0] != '127.0.0.1') { $configmmdvm['DMR Network']['Password'] = '"'.$_POST['bmHSSecurity'].'"'; }
+		  } else {
+			  unset ($configModem['BrandMeister']['Password']);
+		  }
 	  }
 
 		if (substr($dmrMasterHostArr[3], 0, 2) == "BM") {
@@ -1164,6 +1171,9 @@ if (!empty($_POST)):
 			unset ($configmmdvm['DMR Network']['Local']);
 			unset ($configysf2dmr['DMR Network']['Options']);
 			unset ($configysf2dmr['DMR Network']['Local']);
+			if (isset($configModem['BrandMeister']['Password'])) {
+				$configmmdvm['DMR Network']['Password'] = '"'.str_replace('"', "", $configModem['BrandMeister']['Password']).'"';
+			}
 		}
 
 		// DMR Gateway
@@ -1200,7 +1210,7 @@ if (!empty($_POST)):
 		}
 
 		// Set the DMR+ / HBLink Options= line
-        if ((substr($dmrMasterHostArr[3], 0, 4) == "DMR+") || (substr($dmrMasterHostArr[3], 0, 3) == "HB_") || (substr($dmrMasterHostArr[3], 0, 8) == "FreeDMR_")) {
+		if ((substr($dmrMasterHostArr[3], 0, 4) == "DMR+") || (substr($dmrMasterHostArr[3], 0, 3) == "HB_") || (substr($dmrMasterHostArr[3], 0, 8) == "FreeDMR_")) {
 			unset ($configmmdvm['DMR Network']['Local']);
 			unset ($configysf2dmr['DMR Network']['Local']);
 			if (empty($_POST['dmrNetworkOptions']) != TRUE ) {
@@ -3025,7 +3035,8 @@ if (!empty($_POST)):
                 $configModemContent .= "[".$configModemSection."]\n";
                 // append the values
                 foreach($configModemValues as $modemKey=>$modemValue) {
-                        $configModemContent .= $modemKey."=".$modemValue."\n";
+			if ($modemKey == "Password") { $configModemContent .= $modemKey."=".'"'.str_replace('"', "", $modemValue).'"'."\n"; }
+			else { $configModemContent .= $modemKey."=".$modemValue."\n"; }
                         }
                         $configModemContent .= "\n";
                 }
@@ -3123,7 +3134,7 @@ else:
 		$toggleDMR2YSFCheckboxCr		= 'onclick="toggleDMR2YSFCheckbox()"';
 		$toggleDMR2NXDNCheckboxCr		= 'onclick="toggleDMR2NXDNCheckbox()"';
 		$togglePOCSAGCheckboxCr			= 'onclick="togglePOCSAGCheckbox()"';
-        $toggleAPRSGatewayCheckboxCr		= 'onclick="toggleAPRSGatewayCheckbox()"';
+		$toggleAPRSGatewayCheckboxCr		= 'onclick="toggleAPRSGatewayCheckbox()"';
 		$toggleDmrGatewayNet1EnCheckboxCr	= 'onclick="toggleDmrGatewayNet1EnCheckbox()"';
 		$toggleDmrGatewayNet2EnCheckboxCr	= 'onclick="toggleDmrGatewayNet2EnCheckbox()"';
 		$toggleDmrGatewayXlxEnCheckboxCr	= 'onclick="toggleDmrGatewayXlxEnCheckbox()"';
@@ -3147,7 +3158,7 @@ else:
 		$toggleDMR2YSFCheckboxCr		= "";
 		$toggleDMR2NXDNCheckboxCr		= "";
 		$togglePOCSAGCheckboxCr			= "";
-        $toggleAPRSGatewayCheckboxCr		= "";
+		$toggleAPRSGatewayCheckboxCr		= "";
 		$toggleDmrGatewayNet1EnCheckboxCr	= "";
 		$toggleDmrGatewayNet2EnCheckboxCr	= "";
 		$toggleDmrGatewayXlxEnCheckboxCr	= "";
@@ -4230,7 +4241,7 @@ $ysfHosts = fopen("/usr/local/etc/YSFHosts.txt", "r"); ?>
                 $ysfHostsLine = fgets($ysfHosts);
                 $ysfHost = preg_split('/;/', $ysfHostsLine);
                 if ((strpos($ysfHost[0], '#') === FALSE ) && ($ysfHost[0] != '')) {
-                        if ( ($testYSFHost == $ysfHost[0]) || ($testYSFHost == $ysfHost[1]) ) { echo "      <option value=\"$ysfHost[0],$ysfHost[1]\" selected=\"selected\">YSF$ysfHost[0] - ".htmlspecialchars($ysfHost[1])." - ".htmlspecialchars($ysfHost[2])."</option>\n"; }
+                        if ($testYSFHost == $ysfHost[1]) { echo "      <option value=\"$ysfHost[0],$ysfHost[1]\" selected=\"selected\">YSF$ysfHost[0] - ".htmlspecialchars($ysfHost[1])." - ".htmlspecialchars($ysfHost[2])."</option>\n"; }
 			else { echo "      <option value=\"$ysfHost[0],$ysfHost[1]\">YSF$ysfHost[0] - ".htmlspecialchars($ysfHost[1])." - ".htmlspecialchars($ysfHost[2])."</option>\n"; }
                 }
         }
@@ -4241,7 +4252,7 @@ $ysfHosts = fopen("/usr/local/etc/YSFHosts.txt", "r"); ?>
                         $ysfHostsLine = fgets($fcsHosts);
                         $ysfHost = preg_split('/;/', $ysfHostsLine);
 			if (substr($ysfHost[0], 0, 3) == "FCS") {
-                                if ( ($testYSFHost == $ysfHost[0]) || ($testYSFHost == $ysfHost[1]) ) { echo "      <option value=\"$ysfHost[0],$ysfHost[0]\" selected=\"selected\">$ysfHost[0] - ".htmlspecialchars($ysfHost[1])."</option>\n"; }
+                                if ($testYSFHost == $ysfHost[0]) { echo "      <option value=\"$ysfHost[0],$ysfHost[0]\" selected=\"selected\">$ysfHost[0] - ".htmlspecialchars($ysfHost[1])."</option>\n"; }
                                 else { echo "      <option value=\"$ysfHost[0],$ysfHost[0]\">$ysfHost[0] - ".htmlspecialchars($ysfHost[1])."</option>\n"; }
                         }
                 }
