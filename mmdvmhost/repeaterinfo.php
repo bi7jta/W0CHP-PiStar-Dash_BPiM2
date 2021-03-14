@@ -39,12 +39,30 @@ require_once($_SERVER['DOCUMENT_ROOT'].'/config/ircddblocal.php');
 
 <table>
     <tr><th colspan="2"><?php echo $lang['net_status'];?></th></tr>
-    <tr><?php showMode("D-Star Network", $_SESSION['MMDVMHostConfigs']);?><?php showMode("DMR Network", $_SESSION['MMDVMHostConfigs']);?></tr>
-    <tr><?php showMode("System Fusion Network", $_SESSION['MMDVMHostConfigs']);?><?php showMode("P25 Network", $_SESSION['MMDVMHostConfigs']);?></tr>
-    <tr><?php showMode("YSF2DMR Network", $_SESSION['MMDVMHostConfigs']);?><?php showMode("NXDN Network", $_SESSION['MMDVMHostConfigs']);?></tr>
-    <tr><?php showMode("YSF2NXDN Network", $_SESSION['MMDVMHostConfigs']);?><?php showMode("YSF2P25 Network", $_SESSION['MMDVMHostConfigs']);?></tr>
-    <tr><?php showMode("DMR2NXDN Network", $_SESSION['MMDVMHostConfigs']);?><?php showMode("DMR2YSF Network", $_SESSION['MMDVMHostConfigs']);?></tr>
-    <tr><?php showMode("APRS Network", $_SESSION['APRSGatewayConfigs']);?><?php showMode("POCSAG Network", $_SESSION['MMDVMHostConfigs']);?></tr>
+    <tr>
+      <?php showMode("D-Star Network", $_SESSION['MMDVMHostConfigs']);?>
+      <?php showMode("DMR Network", $_SESSION['MMDVMHostConfigs']);?>
+    </tr>
+    <tr>
+      <?php showMode("System Fusion Network", $_SESSION['MMDVMHostConfigs']);?>
+      <?php showMode("P25 Network", $_SESSION['MMDVMHostConfigs']);?>
+    </tr>
+    <tr>
+      <?php showMode("YSF2DMR Network", $_SESSION['MMDVMHostConfigs']);?>
+      <?php showMode("NXDN Network", $_SESSION['MMDVMHostConfigs']);?>
+    </tr>
+    <tr>
+      <?php showMode("YSF2NXDN Network", $_SESSION['MMDVMHostConfigs']);?>
+      <?php showMode("YSF2P25 Network", $_SESSION['MMDVMHostConfigs']);?>
+    </tr>
+    <tr>
+      <?php showMode("DMR2NXDN Network", $_SESSION['MMDVMHostConfigs']);?>
+      <?php showMode("DMR2YSF Network", $_SESSION['MMDVMHostConfigs']);?>
+    </tr>
+    <tr>
+      <?php if (isPaused("APRS")) { echo '<td title="Paused" class="paused-mode-cell" title="Mode Paused">APRS Net</td>'; } else { showMode("APRS Network", $_SESSION['APRSGatewayConfigs']); }?>
+      <?php showMode("POCSAG Network", $_SESSION['MMDVMHostConfigs']);?>
+    </tr>
 </table>
 <br />
 

@@ -151,7 +151,9 @@ if (!empty($_POST["submit_mode"]) && empty($_POST["mode_sel"])) { //handler for 
             | <input name="mode_sel" '.(($NXDN=='0' && !file_exists($NXDN_paused)?'disabled="disabled"':"")).' access="false" id="mode-sel-4"  value="NXDN" type="radio">
             <label for="mode-sel-4">NXDN'.(($NXDN=='0' && file_exists($NXDN_paused)?" <span class='paused-mode-span'>(Paused)</span>":"")).'</label>
             | <input name="mode_sel" '.(($POCSAG=='0' && !file_exists($POCSAG_paused)?'disabled="disabled"':"")).' access="false" id="mode-sel-5"  value="POCSAG" type="radio">
-            <label for="mode-sel-5">POCSAG'.(($POCSAG=='0' && file_exists($POCSAG_paused)?" <span class='paused-mode-span'>(Paused)</span>":"")).'</label> ]
+            <label for="mode-sel-5">POCSAG'.(($POCSAG=='0' && file_exists($POCSAG_paused)?" <span class='paused-mode-span'>(Paused)</span>":"")).'</label>
+             | <input name="mode_sel" '.(($APRS=='0' && !file_exists($APRS_paused)?'disabled="disabled"':"")).' access="false" id="mode-sel-6"  value="APRS" type="radio">
+            <label for="mode-sel-6">APRS'.(($APRS=='0' && file_exists($APRS_paused)?" <span class='paused-mode-span'>(Paused)</span>":"")).'</label> ]
           </td>
           <td>
             <input type="hidden" name="func" value="mode_man">
