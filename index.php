@@ -180,22 +180,22 @@ checkSessionValidity();
                 if ( $dmrMasterHost == '127.0.0.1' ) {
                     // DMRGateway, need to check each config
                     if (($_SESSION['DMRGatewayConfigs']['DMR Network 1']['Address'] == "tgif.network") && ($_SESSION['DMRGatewayConfigs']['DMR Network 1']['Enabled'])) {
-                        $tgif = true;
+                        $tgifEnabled = true;
                     }
                     elseif (($_SESSION['DMRGatewayConfigs']['DMR Network 2']['Address'] == "tgif.network") && ($_SESSION['DMRGatewayConfigs']['DMR Network 2']['Enabled'])) {
-                        $tgif = true;
+                        $tgifEnabled = true;
                     }
                     elseif (($_SESSION['DMRGatewayConfigs']['DMR Network 3']['Address'] == "tgif.network") && ($_SESSION['DMRGatewayConfigs']['DMR Network 3']['Enabled'])) {
-                        $tgif = true;
+                        $tgifEnabled = true;
                     }
                         elseif (($_SESSION['DMRGatewayConfigs']['DMR Network 4']['Address'] == "tgif.network") && ($_SESSION['DMRGatewayConfigs']['DMR Network 4']['Enabled'])) {
-                        $tgif = true;
+                        $tgifEnabled = true;
                     }
                     elseif (($_SESSION['DMRGatewayConfigs']['DMR Network 5']['Address'] == "tgif.network") && ($_SESSION['DMRGatewayConfigs']['DMR Network 5']['Enabled'])) {
-                        $tgif = true;
+                        $tgifEnabled = true;
                     }
                     elseif ( $dmrMasterHost == 'tgif.network' ) { // no dmrgateway...TGIF is master
-                        $tgif = true;
+                        $tgifEnabled = true;
                     }
                 } // end tgif check
 
@@ -313,13 +313,13 @@ checkSessionValidity();
                         echo '    <button form="admin_sel" disabled="disabled" type="submit" value="ds_man" name="func"><span>D-Star Manager</span></button>';
                     }       
                     $testMMDVModeDMR = getConfigItem("DMR", "Enable", $_SESSION['MMDVMHostConfigs']);
-		    if ((substr($dmrMasterHost, 0, 2) == "BM") || ($bmEnabled == true) && ($testMMDVModeDMR ==1)) {
+		    if ($bmEnabled == true && $testMMDVModeDMR ==1) {
 		        echo '    <button form="admin_sel" type="submit" value="bm_man" name="func"><span>BrandMeister Manager</span></button>';
 		    }
 		    else {
 			echo '    <button form="admin_sel" disabled="disabled" type="submit" value="bm_man" name="func"><span>BrandMeister Manager</span></button>';
 		    }
-                    if ($tgif = true && $testMMDVModeDMR ==1) {
+                    if ($tgifEnabled = true && $testMMDVModeDMR ==1) {
 		        echo '    <button form="admin_sel" type="submit" value="tgif_man" name="func"><span>TGIF Manager</span></button>';
 		    }
 		    else {
