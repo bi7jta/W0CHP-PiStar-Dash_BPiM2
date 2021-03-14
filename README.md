@@ -12,7 +12,7 @@ If you ask me to support, **I will ignore you.** It's strongly recommended that
 you read and heed the [rules and
 caveats](https://w0chp.net/w0chp-pistar-dash/#the-rules-and-caveats----important).
 
-## Features and enhancements (not an exhaustive list)
+## Features, Enhancements and Omissions (not an exhaustive list)
 
 * Updated user interface elements galore, styling, wider, bigger, updated fonts, etc.
 
@@ -71,6 +71,25 @@ caveats](https://w0chp.net/w0chp-pistar-dash/#the-rules-and-caveats----important
     unstable, and still needs quite a bit of work.
 
 * Much more. See [screenshots below](#screenshots).
+
+### Features in Official Pi-Star Which are Intentionally Omitted in `W0CHP-PiStar-Dash`
+
+* Upgrade notice/nag in header (unnecessary and hacky).
+
+* "GPS" link in Call Sign column of dashboard (superfluous and unreliable).
+
+* Selectable Call Sign link to either QRZ.com or RadioID.com (both services
+  suck, and the implementation of this feature is poor and unintuitive. Left
+  the original function linking to QRZ.com).
+
+* No reboot/shutdown nag screen/warning from admin page (Superfluous; you
+  click it, it will reboot/shutdown without warning.).
+
+* Yellow DMR Mode cell in left panel when there's a DMR network password/login
+  issue (poor/inaccurate and taxing implementation, and is a superfluous "idiot
+  light" for the dumb and ignorant hams. Also, can confuse power users that
+  utilize my Instant Mode Manager, where the default cell is amber colored for
+  paused modes [color is user-configurable].).
 
 ## Installing `W0CHP-PiStar-Dash`
 
