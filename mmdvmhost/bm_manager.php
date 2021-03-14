@@ -87,7 +87,7 @@ if ( $testMMDVModeDMR == 1 ) {
             $bmStaticAddAllCmd = ("sudo /usr/local/sbin/pistar-bm_static_tgs_addall $sanitizedKey $dmrID");
             if (isset($_POST["tgStaticReAdd"])) {
 	        // make certain that a previous saves/dropped file actually exits
-	        if (file_exists("/var/www/dashboard/.bm_tgs.json.saved")) {
+	        if (file_exists("/etc/.bm_tgs.json.saved")) {
             	    exec($bmStaticAddAllCmd);
             	    // Output to the browser
             	    echo '<b>BrandMeister Manager</b>'."\n";
