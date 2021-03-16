@@ -666,7 +666,7 @@ if (!empty($_POST)):
 	  $configysfgateway['Info']['TXFrequency'] = $newFREQtx;
 	  $configysfgateway['General']['Suffix'] = "RPT";
 	  $configysf2dmr['Info']['RXFrequency'] = $newFREQrx;
-	  $configysf2dmr['Info']['TXFrequency'] = $newFREQtx;
+	  $configysf2dmr['Info']['TXFrequency'] = $newFREQrx;
 	  $configysf2dmr['YSF Network']['Suffix'] = "RPT";
 	  $configysf2nxdn['Info']['RXFrequency'] = $newFREQrx;
 	  $configysf2nxdn['Info']['TXFrequency'] = $newFREQtx;
