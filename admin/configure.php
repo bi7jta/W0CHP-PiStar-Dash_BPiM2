@@ -285,7 +285,6 @@ $paused_modes = preg_replace($repl_str, '', $is_paused);
 if (!empty($is_paused) && $_GET['force'] != true) {
     //HTML output starts here
     echo '<div class="contentwide">'."\n";
-    echo '</div>'."\n";
     echo '<h1>IMPORTANT:</h1>';
     echo '<table><tr><td>';
     echo '<p><b>One or more modes have been detected to have been "paused" by you</b>:</p>';
@@ -296,6 +295,18 @@ if (!empty($is_paused) && $_GET['force'] != true) {
     echo '<p>Go the <a href="/admin/?func=mode_man">Instant Mode Manager page to Resume the paused mode(s)</a>. Once that\'s completed, this configuration page will be enabled.</p>';
     echo '<br />'."\n";
     echo '</td></tr></table>';
+    echo '<br />';
+    echo '</div>';
+    echo '<div class="footer">';
+    echo 'Pi-Star web config, &copy; Andy Taylor (MW0MWZ) 2014-'.date("Y").'.<br />';
+    echo 'Enhancements by W0CHP - '. date("Y").'<br />';
+    echo 'Need help? Click <a style="color: #ffffff;" href="https://www.facebook.com/groups/pistarusergroup/" target="_new">here for the Support Group</a><br />';
+    echo 'Get your copy of Pi-Star from <a style="color: #ffffff;" href="http://www.pistar.uk/downloads/" target="_blank">here</a>.<br />';
+    echo '<br />';
+    echo '</div>';
+    echo '</div>';
+    echo '</body>';
+    echo '</html>';
     die();
 } else { // no modes paued. continue on! (end of pause check near end of file)
 if ($_SERVER["PHP_SELF"] == "/admin/configure.php") {
