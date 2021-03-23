@@ -198,18 +198,18 @@ function getConfigItem($section, $key, $configs) {
     return null;
 }
 
-// get APRSGateway Enable Status
-function getAPRSGWenabled() {
-    if ( strpos(file_get_contents("/etc/aprsgateway"),"Enabled=1") !== false ) {
-        return true;
-    } else {
-        return false;
-    }
-}
-
-// returns enabled/disabled-State of mode
+// returns enabled/disabled-State of MMDVM modes
 function getEnabled ($mode, $configs) {
     return getConfigItem($mode, "Enable", $configs);
+}
+
+// return enabled/disabled state of other services (APRSgw, X-mode services, etc.)
+function getServiceEnabled ($configs) {
+    if ( strpos(file_get_contents($configs),"Enabled=1") !== false ) {
+        return 1;
+    } else {
+        return 0;
+    }
 }
 
 //I: 2021-02-21 13:22:24.213 Opening UDP port on 8673
@@ -362,7 +362,7 @@ function getModeClass($status, $disabled = false) {
 // shows if mode is enabled or not.
 function showMode($mode, $configs) {
     if ($mode == "APRS Network") {
-        if (getAPRSGWenabled() == true) {
+        if (getServiceEnabled('/etc/aprsgateway') == 1) {
             getModeClass(isProcessRunning("APRSGateway") && (isAPRSISGatewayConnected() ==1));
         } else {
             getModeClass(false,true);
@@ -404,20 +404,20 @@ function showMode($mode, $configs) {
         else if ( ($mode == "DMR X-Mode") && (getEnabled("DMR", $configs) == 1) ) {
 	        getModeClass( (isProcessRunning("MMDVMHost")) && (isProcessRunning("DMR2YSF") || isProcessRunning("DMR2NXDN")), true);
         }
-        else if ( ($mode == "YSF2DMR Network") && (getEnabled("System Fusion", $configs) == 1) ) {
-	        getModeClass(isProcessRunning("YSF2DMR"), true);
+        else if ( ($mode == "YSF2DMR Network") && (getServiceEnabled('/etc/ysf2dmr') == 1) ) {
+	        getModeClass(isProcessRunning("YSF2DMR"));
         }
-        else if ( ($mode == "YSF2NXDN Network") && (getEnabled("System Fusion", $configs) == 1) ) {
-	        getModeClass(isProcessRunning("YSF2NXDN"), true);
+        else if ( ($mode == "YSF2NXDN Network") && (getServiceEnabled('/etc/ysf2nxdn') == 1) ) {
+	        getModeClass(isProcessRunning("YSF2NXDN"));
         }
-        else if ( ($mode == "YSF2P25 Network") && (getEnabled("System Fusion", $configs) == 1) ) {
-	        getModeClass(isProcessRunning("YSF2P25"), true);
+        else if ( ($mode == "YSF2P25 Network") && (getServiceEnabled('/etc/ysf2p25') == 1) ) {
+	        getModeClass(isProcessRunning("YSF2P25"));
         }
-        else if ( ($mode == "DMR2NXDN Network") && (getEnabled("DMR", $configs) == 1) ) {
-	        getModeClass(isProcessRunning("DMR2NXDN"), true);
+        else if ( ($mode == "DMR2NXDN Network") && (getServiceEnabled('/etc/dmr2nxdn') == 1) ) {
+	        getModeClass(isProcessRunning("DMR2NXDN"));
         }
-        else if ( ($mode == "DMR2YSF Network") && (getEnabled("DMR", $configs) == 1) ) {
-	        getModeClass(isProcessRunning("DMR2YSF"), true);
+        else if ( ($mode == "DMR2YSF Network") && (getServiceEnabled('/etc/dmr2ysf') == 1) ) {
+	        getModeClass(isProcessRunning("DMR2YSF"));
         }
         else {
 	        getModeClass(false, true);
