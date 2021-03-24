@@ -80,9 +80,9 @@ if (isset($_SESSION['DAPNETAPIKeyConfigs']['DAPNETAPI']['USER']) && (empty($_SES
 			<th><a class=tooltip href="#">Action<span><b>Send the message</b></span></a></th>
 		</tr>'."\n";
         echo '  <tr>';
-        echo '    <td style="vertical-align:middle;padding:5px;">Callsign(s):<input type="text" style="float:right;" name="dapToCallsign" maxlength="70" title="Define the Callsign(s) here." value="" /></td>';
-        echo '    <td rowspan="2"><textarea maxlength="'.$maxlength.'" name="dapMsgContent" cols="53" rows="3" style="padding:5px;overflow:scroll;" value="" /></textarea></td>';
-        echo '    <td rowspan="2" style="vertical-align:middle;padding:5px;"><input type="submit" value="Send" name="dapSubmit" /></td>';
+        echo '    <td><input type="text" name="dapToCallsign" size="8" maxlength="70" title="Define the Callsign(s) here." value="" /></td>';
+        echo '    <td rowspan="2"><textarea maxlength="'.$maxlength.'" name="dapMsgContent" cols="48" rows="3" style="overflow:scroll; min-width:410px; min-height:60px;" value="" " /></textarea></td>';
+        echo '    <td rowspan="2" style="vertical-align:bottom;padding:5px;"><input type="submit" value="Send" name="dapSubmit" /></td>';
         echo '  </tr>'."\n";
         echo '  <tr>';
         echo '    <td style="vertical-align:middle;padding:5px;">T/RX Group(s):<input style="float:right;" type="text" name="dapToTrxArea" maxlength="50" value="'.$dapnetTrxAreas.'" title="Override the Transmitter Group(s) here." /></tr>';
