@@ -194,10 +194,6 @@ Run:
 #### POCSAG / DAPNET Messenger
 ![alt text](https://w0chp.net/img/W0CHP_Admin_6.png "W0CHP Admin Page 6")
 
-### Dashboard on Mobile Device
-
-![alt text](https://w0chp.net/img/W0CHP_Mobile.png "W0CHP Mobile Page")
-
 ### Configuration Page
 
 This image is too enormous to embed here, but you can [view it separately](https://w0chp.net/img/W0CHP_Config.png).
