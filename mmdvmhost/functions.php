@@ -269,10 +269,16 @@ function getAPRSISserver() {
     $logSearchString = "verified, server";
     $logLine = '';
     $APRSISserver = 'Not Connected';
-    
-    $logLine = exec("grep \"".$logSearchString."\" ".$logAPRSISNow." | tail -2");
-    if (!$logLine) {
-	    $logLine = exec("grep \"".$logSearchString."\" ".$logAPRSISPrevious." | tail -2");
+    $LogError = "Cannot Open Log";
+
+    if (file_exists($logAPRSISNow) || file_exists($logAPRSISPrevious)) {
+        $logLine = exec("grep \"".$logSearchString."\" ".$logAPRSISNow." | tail -2");
+        if (!$logLine) {
+	        $logLine = exec("grep \"".$logSearchString."\" ".$logAPRSISPrevious." | tail -2");
+        }
+    } else
+        {
+        return $LogError;
     }
 
     if ($logLine) {
