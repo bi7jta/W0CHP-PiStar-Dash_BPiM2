@@ -272,9 +272,9 @@ function getAPRSISserver() {
     $LogError = "Cannot Open Log";
 
     if (file_exists($logAPRSISNow) || file_exists($logAPRSISPrevious)) {
-        $logLine = exec("grep \"".$logSearchString."\" ".$logAPRSISNow." | tail -2");
+		$logLine = exec("tail -2 $logAPRSISNow | grep \"".$logSearchString."\" ");
         if (!$logLine) {
-	        $logLine = exec("grep \"".$logSearchString."\" ".$logAPRSISPrevious." | tail -2");
+			$logLine = exec("tail -2 $logAPRSISPrevious | grep \"".$logSearchString."\" ");
         }
     } else
         {
