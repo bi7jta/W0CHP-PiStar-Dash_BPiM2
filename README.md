@@ -18,7 +18,7 @@ caveats](https://w0chp.net/w0chp-pistar-dash/#the-rules-and-caveats----important
 
 * Improved and graphical CSS/color styling configuration page; easily change the look and feel of the dashboard.
 
-* More Last Heard rows displayed (40 vs. 20).
+* User-Configurable number of displayed Last Heard dashboard rows (defaults to 40, the maximum).
 
 * Searchable drop-downs for massive host lists in configuration/admin pages. E.g. YSF Hosts, XLX Hosts, DMR Hosts, etc.
 
