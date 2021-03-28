@@ -127,6 +127,7 @@ require_once('../config/version.php');
 		    $fileContent = "[Background]\nPageColor=#edf0f5\nContentColor=#ffffff\nBannersColor=#dd4b39\nNavbarColor=#242d31\nNavbarHoverColor=#a60000\nDropdownColor=#f9f9f9\nDropdownHoverColor=#d0d0d0\nServiceCellActiveColor=#11DD11\nServiceCellInactiveColor=#BB5555\nModeCellDisabledColor=#606060\nModeCellActiveColor=#00BB00\nModeCellInactiveColor=#BB0000\nModeCellPausedColor=#ff9933\nNavPanelColor=#242d31\n\n";
 		    $fileContent .= "[Text]\nTableHeaderColor=#ffffff\nBannersColor=#ffffff\nNavbarColor=#ffffff\nNavbarHoverColor=#ffffff\nDropdownColor=#000000\nDropdownHoverColor=#000000\nServiceCellActiveColor=#000000\nServiceCellInactiveColor=#000000\nModeCellDisabledColor=#b0b0b0\nModeCellActiveColor=#003300\nModeCellInactiveColor=#550000\n\n";
 		    $fileContent .= "[Tables]\nBgEvenColor=#f7f7f7\nBgOddColor=#d0d0d0\n\n";
+		    $fileContent .= "[DashboardRows]\nLastHeard=40\n\n";
 		    $fileContent .= "[Content]\nTextColor=#000000\n\n";
 		    $fileContent .= "[BannerH2]\nEnabled=0\nText=Some Text\n\n";
 		    $fileContent .= "[BannerExtText]\nEnabled=0\nText=Some long text entry\n";
@@ -316,7 +317,7 @@ require_once('../config/version.php');
 		
 		//parse the ini file using default parse_ini_file() PHP function
 		$parsed_ini = parse_ini_file($filepath, true);
-		
+
 		echo '<form action="" method="post">'."\n";
 
 		// Colorpicker

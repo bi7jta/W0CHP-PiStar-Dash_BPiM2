@@ -3,6 +3,22 @@ include_once $_SERVER['DOCUMENT_ROOT'].'/config/config.php';          // MMDVMDa
 include_once $_SERVER['DOCUMENT_ROOT'].'/mmdvmhost/tools.php';        // MMDVMDash Tools
 include_once $_SERVER['DOCUMENT_ROOT'].'/mmdvmhost/functions.php';    // MMDVMDash Functions
 include_once $_SERVER['DOCUMENT_ROOT'].'/config/language.php';	      // Translation Code
+
+// Check if the config file exists
+if (file_exists('/etc/pistar-css.ini')) {
+    // Use the values from the file
+    $piStarCssFile = '/etc/pistar-css.ini';
+    if (fopen($piStarCssFile,'r')) { $piStarCss = parse_ini_file($piStarCssFile, true); }
+
+    // Set the Values from the config file
+    if (isset($piStarCss['DashboardRows']['LastHeard'])) { $lastHeardRows = $piStarCss['DashboardRows']['LastHeard']; }
+    else { $lastHeardRows = "40"; }
+    if ($lastHeardRows > 40) { $lastHeardRows = "40"; }
+} else {
+    // Default values
+    $lastHeardRows = "40";
+}
+
 ?>
 <input type="hidden" name="lh-autorefresh" value="OFF" />
     <div style="float: right; vertical-align: bottom; padding-top: 5px;">
@@ -29,7 +45,7 @@ include_once $_SERVER['DOCUMENT_ROOT'].'/config/language.php';	      // Translat
     </tr>
 <?php
 $i = 0;
-for ($i = 0;  ($i <= 39); $i++) { //Last 40 calls
+for ($i = 0;  ($i <= $lastHeardRows - 1); $i++) {
 	if (isset($lastHeard[$i])) {
 		$listElem = $lastHeard[$i];
 		if ( $listElem[2] ) {
