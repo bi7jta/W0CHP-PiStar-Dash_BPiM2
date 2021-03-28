@@ -516,7 +516,7 @@ require_once($_SERVER['DOCUMENT_ROOT'].'/config/ircddblocal.php');
 	    echo "</table>\n";
 	}
 
-    if (getServiceEnabled('/etc/aprsgateway') == 1)  { // Hide APRS-IS GW info when GW not enabled
+    if (getServiceEnabled('/etc/aprsgateway') == 1 || isPaused("APRS"))  { // Hide APRS-IS GW info when GW not enabled
         echo "<br />\n";
         echo "<table>\n";
         echo "<tr><th colspan='2'>APRS Gateway Status</th></tr>\n";
