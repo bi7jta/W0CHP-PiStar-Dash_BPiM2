@@ -159,7 +159,7 @@ require_once($_SERVER['DOCUMENT_ROOT'].'/config/ircddblocal.php');
 
 	<?php
 	$testMMDVModeDSTAR = getConfigItem("D-Star", "Enable", $_SESSION['MMDVMHostConfigs']);
-	if ( $testMMDVModeDSTAR == 1 ) { //Hide the D-Star Reflector information when D-Star Network not enabled.
+	if ( $testMMDVModeDSTAR == 1 || isPaused("D-Star") ) { //Hide the D-Star Reflector information when D-Star Network not enabled.
 	    echo "<br />\n";
 	    echo "<table>\n";
 	    echo "<tr><th colspan=\"2\">".$lang['dstar_repeater']."</th></tr>\n";
@@ -172,12 +172,20 @@ require_once($_SERVER['DOCUMENT_ROOT'].'/config/ircddblocal.php');
         if ($configs['ircddbEnabled']) {
 	        echo "<tr><th>IRC</th><td style=\"background: #ffffff;\">".substr($configs['ircddbHostname'], 0 ,16)."</td></tr>\n";
         }
-	    echo "<tr><td colspan=\"2\" style=\"background: #ffffff;\">".getActualLink($reverseLogLinesMMDVM, "D-Star")."</td></tr>\n";
+        if (isPaused("D-Star")) {
+	    	echo "<tr><td colspan=\"2\" style=\"background: #ffffff;\">Mode Paused</td></tr>\n";
+		} else {
+	    	echo "<tr><td colspan=\"2\" style=\"background: #ffffff;\">".getActualLink($reverseLogLinesMMDVM, "D-Star")."</td></tr>\n";
+		}
 	    echo "</table>\n";
 	}
 	
 	$testMMDVModeDMR = getConfigItem("DMR", "Enable", $_SESSION['MMDVMHostConfigs']);
-	if ( $testMMDVModeDMR == 1 ) { //Hide the DMR information when DMR mode not enabled.
+	if ( $testMMDVModeDMR == 1 || isPaused("DMR") ) { //Hide the DMR information when DMR mode not enabled.
+		if (isPaused("DMR")) {
+			$dmrMasterHost = "Mode Paused";
+			$dmrMasterHostTooltip = $dmrMasterHost;
+		} else {
 	    $dmrMasterFile = fopen("/usr/local/etc/DMR_Hosts.txt", "r");
 	    $dmrMasterHost = getConfigItem("DMR Network", "Address", $_SESSION['MMDVMHostConfigs']);
 	    $dmrMasterPort = getConfigItem("DMR Network", "Port", $_SESSION['MMDVMHostConfigs']);
@@ -270,7 +278,7 @@ require_once($_SERVER['DOCUMENT_ROOT'].'/config/ircddblocal.php');
 		}
 	    }
 	    fclose($dmrMasterFile);
-	    
+	    }
 	    echo "<br />\n";
 	    echo "<table>\n";
 	    echo "<tr><th colspan=\"2\">".$lang['dmr_repeater']."</th></tr>\n";
@@ -352,9 +360,13 @@ require_once($_SERVER['DOCUMENT_ROOT'].'/config/ircddblocal.php');
 	if ( isset($_SESSION['DMR2YSFConfigs']['Enabled']['Enabled']) ) {
 	    $testDMR2YSF = $_SESSION['DMR2YSFConfigs']['Enabled']['Enabled'];
 	}
-	if ( $testMMDVModeYSF == 1 || (isset($testDMR2YSF) && $testDMR2YSF == 1) ) { //Hide the YSF information when System Fusion Network mode not enabled.
+	if ( $testMMDVModeYSF == 1 || isPaused("YSF") || (isset($testDMR2YSF) && $testDMR2YSF == 1) ) { //Hide the YSF information when System Fusion Network mode not enabled.
+		if (isPaused("YSF")) {
+			$ysfLinkedTo = "Mode Paused";
+			$ysfLinkStateTooltip = $ysfLinkedTo;
+		} else {
             $ysfLinkedTo = getActualLink($reverseLogLinesYSFGateway, "YSF");
-	    
+		}
 	    if ($ysfLinkedTo == 'Not Linked' || $ysfLinkedTo == 'Service Not Started') {
                 $ysfLinkedToTxt = $ysfLinkedTo;
 		$ysfLinkState = '';
@@ -418,11 +430,11 @@ require_once($_SERVER['DOCUMENT_ROOT'].'/config/ircddblocal.php');
             if (strlen($ysfLinkedToTxt) > 25) {
 		$ysfLinkedToTxt = substr($ysfLinkedToTxt, 0, 23) . '..';
 	    }
-            echo "<br />\n";
-            echo "<table>\n";
+        echo "<br />\n";
+        echo "<table>\n";
 	    echo "<tr><th colspan=\"2\">".$lang['ysf_net']."".$ysfLinkState."</th></tr>\n";
 	    echo "<tr><td colspan=\"2\" style=\"background: #ffffff;\" title=\"".$ysfLinkedToTooltip."\">".$ysfTableData."</td></tr>\n";
-            echo "</table>\n";
+        echo "</table>\n";
 	}
 
 	$testYSF2DMR = 0;
@@ -458,7 +470,7 @@ require_once($_SERVER['DOCUMENT_ROOT'].'/config/ircddblocal.php');
 	
 	$testMMDVModeP25 = getConfigItem("P25 Network", "Enable", $_SESSION['MMDVMHostConfigs']);
 	if ( isset($_SESSION['YSF2P25Configs']['Enabled']['Enabled']) ) { $testYSF2P25 = $_SESSION['YSF2P25Configs']['Enabled']['Enabled']; }
-	if ( $testMMDVModeP25 == 1 || $testYSF2P25 ) { //Hide the P25 information when P25 Network mode not enabled.
+	if ( $testMMDVModeP25 == 1 || $testYSF2P25 || isPaused("P25") ) { //Hide the P25 information when P25 Network mode not enabled.
 	    echo "<br />\n";
 	    echo "<table>\n";
 	    if (getConfigItem("P25", "NAC", $_SESSION['MMDVMHostConfigs'])) {
@@ -466,7 +478,11 @@ require_once($_SERVER['DOCUMENT_ROOT'].'/config/ircddblocal.php');
 		echo "<tr><th style=\"width:70px\">NAC</th><td>".getConfigItem("P25", "NAC", $_SESSION['MMDVMHostConfigs'])."</td></tr>\n";
 	    }
 	    echo "<tr><th colspan=\"2\">".$lang['p25_net']."</th></tr>\n";
-	    echo "<tr><td colspan=\"2\"style=\"background: #ffffff;\">".getActualLink($logLinesP25Gateway, "P25")."</td></tr>\n";
+		if (isPaused("P25")) {
+	    	echo "<tr><td colspan=\"2\"style=\"background: #ffffff;\">Mode Paused</td></tr>\n";
+		} else {
+	    	echo "<tr><td colspan=\"2\"style=\"background: #ffffff;\">".getActualLink($logLinesP25Gateway, "P25")."</td></tr>\n";
+		}
 	    echo "</table>\n";
 	}
 	
@@ -481,7 +497,7 @@ require_once($_SERVER['DOCUMENT_ROOT'].'/config/ircddblocal.php');
 		$testDMR2NXDN = 1;
 	    }
 	}
-	if ( $testMMDVModeNXDN == 1 || isset($testYSF2NXDN) || isset($testDMR2NXDN) ) { //Hide the NXDN information when NXDN Network mode not enabled.
+	if ( $testMMDVModeNXDN == 1 || isset($testYSF2NXDN) || isset($testDMR2NXDN) || isPaused("NXDN") ) { //Hide the NXDN information when NXDN Network mode not enabled.
 	    echo "<br />\n";
 	    echo "<table>\n";
 	    if (getConfigItem("NXDN", "RAN", $_SESSION['MMDVMHostConfigs'])) {
@@ -489,11 +505,15 @@ require_once($_SERVER['DOCUMENT_ROOT'].'/config/ircddblocal.php');
 		echo "<tr><th style=\"width:70px\">RAN</th><td>".getConfigItem("NXDN", "RAN", $_SESSION['MMDVMHostConfigs'])."</td></tr>\n";
 	    }
 	    echo "<tr><th colspan=\"2\">".$lang['nxdn_net']."</th></tr>\n";
-	    if (file_exists('/etc/nxdngateway')) {
-		echo "<tr><td colspan=\"2\"style=\"background: #ffffff;\">".getActualLink($logLinesNXDNGateway, "NXDN")."</td></tr>\n";
-	    }
-	    else {
-        echo "<tr><td colspan=\"2\"style=\"background: #ffffff;\">TG65000</td></tr>\n";
+        if (isPaused("NXDN")) {
+			echo "<tr><td colspan=\"2\"style=\"background: #ffffff;\">Mode Paused</td></tr>\n";
+        } else {
+	    	if (file_exists('/etc/nxdngateway')) {
+				echo "<tr><td colspan=\"2\"style=\"background: #ffffff;\">".getActualLink($logLinesNXDNGateway, "NXDN")."</td></tr>\n";
+	    	}
+	    	else {
+        		echo "<tr><td colspan=\"2\"style=\"background: #ffffff;\">TG65000</td></tr>\n";
+			}
 	    }
 	    echo "</table>\n";
 	}
@@ -505,8 +525,8 @@ require_once($_SERVER['DOCUMENT_ROOT'].'/config/ircddblocal.php');
 	    echo "<tr><th colspan=\"2\">POCSAG Status</th></tr>\n";
 	    echo "<tr><th>TX</th><td style=\"background: #ffffff;\">".getMHZ(getConfigItem("POCSAG", "Frequency", $_SESSION['MMDVMHostConfigs']))."</td></tr>\n";
 		if (isPaused("POCSAG")) {
-			$dapnetGatewayRemoteAddr = "Service Paused";
-			$dapnetGatewayRemoteTooltip = "Service Paused";
+			$dapnetGatewayRemoteAddr = "Mode Paused";
+			$dapnetGatewayRemoteTooltip = $dapnetGatewayRemoteAddr;
 		} else {
 	    	if (isset($_SESSION['DAPNETGatewayConfigs']['DAPNET']['Address'])) {
 				$dapnetGatewayRemoteAddr = $_SESSION['DAPNETGatewayConfigs']['DAPNET']['Address'];
