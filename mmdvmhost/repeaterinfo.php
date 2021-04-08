@@ -60,8 +60,8 @@ require_once($_SERVER['DOCUMENT_ROOT'].'/config/ircddblocal.php');
       <?php showMode("DMR2YSF Network", $_SESSION['MMDVMHostConfigs']);?>
     </tr>
     <tr>
-      <?php if (isPaused("APRS")) { echo '<td title="Paused" class="paused-mode-cell" title="Mode Paused">APRS Net</td>'; } else { showMode("APRS Network", $_SESSION['APRSGatewayConfigs']); }?>
       <?php showMode("POCSAG Network", $_SESSION['MMDVMHostConfigs']);?>
+      <?php if (isPaused("APRS")) { echo '<td title="Paused" class="paused-mode-cell" title="Mode Paused">APRS Net</td>'; } else { showMode("APRS Network", $_SESSION['APRSGatewayConfigs']); }?>
     </tr>
 </table>
 <br />
