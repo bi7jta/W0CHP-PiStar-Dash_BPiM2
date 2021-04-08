@@ -499,20 +499,25 @@ require_once($_SERVER['DOCUMENT_ROOT'].'/config/ircddblocal.php');
 	}
 	
 	$testMMDVModePOCSAG = getConfigItem("POCSAG Network", "Enable", $_SESSION['MMDVMHostConfigs']);
-	if ( $testMMDVModePOCSAG == 1 ) { //Hide the POCSAG information when POCSAG Network mode not enabled.
+	if ( $testMMDVModePOCSAG == 1 || isPaused("POCSAG")) { //Hide the POCSAG information when POCSAG Network mode not enabled.
 	    echo "<br />\n";
 	    echo "<table>\n";
 	    echo "<tr><th colspan=\"2\">POCSAG Status</th></tr>\n";
 	    echo "<tr><th>TX</th><td style=\"background: #ffffff;\">".getMHZ(getConfigItem("POCSAG", "Frequency", $_SESSION['MMDVMHostConfigs']))."</td></tr>\n";
-	    if (isset($_SESSION['DAPNETGatewayConfigs']['DAPNET']['Address'])) {
-		$dapnetGatewayRemoteAddr = $_SESSION['DAPNETGatewayConfigs']['DAPNET']['Address'];
-	        $dapnetGatewayRemoteTooltip = $dapnetGatewayRemoteAddr;
-		if (strlen($dapnetGatewayRemoteAddr) > 25) {
-		    $dapnetGatewayRemoteAddr = substr($dapnetGatewayRemoteAddr, 0, 23) . '..';
+		if (isPaused("POCSAG")) {
+			$dapnetGatewayRemoteAddr = "Service Paused";
+			$dapnetGatewayRemoteTooltip = "Service Paused";
+		} else {
+	    	if (isset($_SESSION['DAPNETGatewayConfigs']['DAPNET']['Address'])) {
+				$dapnetGatewayRemoteAddr = $_SESSION['DAPNETGatewayConfigs']['DAPNET']['Address'];
+	        	$dapnetGatewayRemoteTooltip = $dapnetGatewayRemoteAddr;
+				if (strlen($dapnetGatewayRemoteAddr) > 25) {
+		    		$dapnetGatewayRemoteAddr = substr($dapnetGatewayRemoteAddr, 0, 23) . '..';
+				}
+			}
 		}
 		echo "<tr><th colspan=\"2\">DAPNET Master</th></tr>\n";
 		echo "<tr><td colspan=\"2\"style=\"background: #ffffff;\" title=\"".$dapnetGatewayRemoteTooltip."\">".$dapnetGatewayRemoteAddr."</td></tr>\n";
-	    }
 	    echo "</table>\n";
 	}
 
