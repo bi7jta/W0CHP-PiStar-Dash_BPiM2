@@ -91,47 +91,47 @@ require_once($_SERVER['DOCUMENT_ROOT'].'/config/ircddblocal.php');
 	    if ($isTXing == false) {
 		    $listElem = $lastHeard[0];
 	        if (getActualMode($lastHeard, $_SESSION['MMDVMHostConfigs']) === 'idle') {
-	            echo "<td style=\"background:#0b0; color:#000;\">Idle</td>";
+	            echo "<td style=\"background:#0b0; color:#000;font-weight:bold\">Idle</td>";
 	        }
 	        else if (getActualMode($lastHeard, $_SESSION['MMDVMHostConfigs']) === NULL) {
 	            if (isProcessRunning("MMDVMHost")) {
-			echo "<td style=\"background:#0b0; color:#000;\">Idle</td>";
+			echo "<td style=\"background:#0b0; color:#000;font-weight:bold\">Idle</td>";
 		    }
 		    else {
-			echo "<td style=\"background:#606060; color:#b0b0b0;\">OFFLINE</td>";
+			echo "<td style=\"background:#606060; color:#b0b0b0;font-weight:bold\">OFFLINE</td>";
 		    }
 	        }
 	        else if ($listElem[2] && $listElem[6] == null && getActualMode($lastHeard, $_SESSION['MMDVMHostConfigs']) === 'D-Star') {
-	            echo "<td style=\"background:#4aa361;\">RX: D-Star</td>";
+	            echo "<td style=\"background:#4aa361;font-weight:bold\">RX: D-Star</td>";
 	        }
 	        else if (getActualMode($lastHeard, $_SESSION['MMDVMHostConfigs']) === 'D-Star') {
-	            echo "<td style=\"background:#ade;\">Standby: D-Star</td>";
+	            echo "<td style=\"background:#ade;font-weight:bold\">Standby: D-Star</td>";
 	        }
 	        else if ($listElem[2] && $listElem[6] == null && getActualMode($lastHeard, $_SESSION['MMDVMHostConfigs']) === 'DMR') {
-	            echo "<td style=\"background:#4aa361; color:#ffffff; font-weight:bold;\">RX: DMR</td>";
+	            echo "<td style=\"background:#4aa361; color:#ffffff; font-weight:bold\">RX: DMR</td>";
 	        }
 	        else if (getActualMode($lastHeard, $_SESSION['MMDVMHostConfigs']) === 'DMR') {
-	            echo "<td style=\"background:#f93;\">Standby: DMR</td>";
+	            echo "<td style=\"background:#f93;font-weight:bold\">Standby: DMR</td>";
 	        }
 	        else if ($listElem[2] && $listElem[6] == null && getActualMode($lastHeard, $_SESSION['MMDVMHostConfigs']) === 'YSF') {
 	            echo "<td style=\"background:#4aa361; color:#ffffff; font-weight:bold\">RX: YSF</td>";
 	        }
 	        else if (getActualMode($lastHeard, $_SESSION['MMDVMHostConfigs']) === 'YSF') {
-	            echo "<td style=\"background:#ff9;\">Standby: YSF</td>";
+	            echo "<td style=\"background:#ff9;font-weight:bold\">Standby: YSF</td>";
 	        }
 	        else if ($listElem[2] && $listElem[6] == null && getActualMode($lastHeard, $_SESSION['MMDVMHostConfigs']) === 'P25') {
-        	    echo "<td style=\"background:#4aa361;\">RX: P25</td>";
+        	    echo "<td style=\"background:#4aa361;font-weight:bold\">RX: P25</td>";
         	}
         	else if (getActualMode($lastHeard, $_SESSION['MMDVMHostConfigs']) === 'P25') {
-        	    echo "<td style=\"background:#f9f;\">Standby: P25</td>";
+        	    echo "<td style=\"background:#f9f;font-weight:bold\">Standby: P25</td>";
         	}
-		else if ($listElem[2] && $listElem[6] == null && getActualMode($lastHeard, $_SESSION['MMDVMHostConfigs']) === 'NXDN') {
-        	    echo "<td style=\"background:#4aa361;\">RX: NXDN</td>";
+			else if ($listElem[2] && $listElem[6] == null && getActualMode($lastHeard, $_SESSION['MMDVMHostConfigs']) === 'NXDN') {
+        	    echo "<td style=\"background:#4aa361;font-weight:bold\">RX: NXDN</td>";
         	}
         	else if (getActualMode($lastHeard, $_SESSION['MMDVMHostConfigs']) === 'NXDN') {
-        	    echo "<td style=\"background:#c9f;\">Standby: NXDN</td>";
+        	    echo "<td style=\"background:#c9f;font-weight:bold\">Standby: NXDN</td>";
         	}
-		else if (getActualMode($lastHeard, $_SESSION['MMDVMHostConfigs']) === 'POCSAG') {
+			else if (getActualMode($lastHeard, $_SESSION['MMDVMHostConfigs']) === 'POCSAG') {
         	    echo "<td style=\"color:#fff; background:#f33; font-weight:bold\">POCSAG Activity</td>";
         	}
         	else {
@@ -140,7 +140,7 @@ require_once($_SERVER['DOCUMENT_ROOT'].'/config/ircddblocal.php');
 	    }
 	}
 	else {
-	    echo "<td style=\"background:#0b0; color:#000;\">Idle</td>";
+	    echo "<td style=\"background:#0b0; color:#000;font-weight:bold\">Idle</td>";
 	}
 	?>
         </tr>
