@@ -268,24 +268,18 @@ function getAPRSISserver() {
     $logAPRSISPrevious = "/var/log/pi-star/APRSGateway-".gmdate("Y-m-d", time() - 86340).".log";
     $logSearchString = "verified, server";
     $logLine = '';
-    $APRSgwPaused = "Service Paused";
     $APRSISserver = 'Not Connected';
     $LogError = "Cannot Open Log";
 
-	if (isPaused("APRS")) {
-		return $APRSgwPaused;
-	} else
-		{
-    	if (file_exists($logAPRSISNow) || file_exists($logAPRSISPrevious)) {
-			$logLine = exec("tail -2 $logAPRSISNow | grep \"".$logSearchString."\" ");
-        	if (!$logLine) {
-				$logLine = exec("tail -2 $logAPRSISPrevious | grep \"".$logSearchString."\" ");
-        	}
-    	} else
-        	{
-        	return $LogError;
-    	}
-	}
+    if (file_exists($logAPRSISNow) || file_exists($logAPRSISPrevious)) {
+		$logLine = exec("tail -2 $logAPRSISNow | grep \"".$logSearchString."\" ");
+       	if (!$logLine) {
+			$logLine = exec("tail -2 $logAPRSISPrevious | grep \"".$logSearchString."\" ");
+       	}
+    } else
+       	{
+       	return $LogError;
+    }
 
     if ($logLine) {
         if (strpos($logLine, 'Response from APRS server: # logresp')) {
