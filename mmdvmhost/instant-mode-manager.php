@@ -143,21 +143,22 @@ if (!empty($_POST["submit_mode"]) && empty($_POST["mode_sel"])) { //handler for 
             <input name="mode_action" access="false" id="pause-res-1"  value="Resume" type="radio">
             <label for="pause-res-1">Resume</label>
           </td>
-          <td style="white-space:nowrap;">
-            [ <input name="mode_sel" '.(($DMR=='0' && !file_exists($DMR_paused)?'disabled="disabled"':"")).' access="false" id="mode-sel-0"  value="DMR" type="radio">
+          <td style="white-space:nowrap;"><br />
+            <input name="mode_sel" '.(($DMR=='0' && !file_exists($DMR_paused)?'disabled="disabled"':"")).' access="false" id="mode-sel-0"  value="DMR" type="radio">
             <label for="mode-sel-0">DMR'.(($DMR=='0' && file_exists($DMR_paused)?" <span class='paused-mode-span'>(Paused)</span>":"")).'</label>
-            | <input name="mode_sel" '.(($YSF=='0' && !file_exists($YSF_paused)?'disabled="disabled"':"")).'  access="false" id="mode-sel-1"  value="YSF" type="radio">
+            &nbsp;| <input name="mode_sel" '.(($YSF=='0' && !file_exists($YSF_paused)?'disabled="disabled"':"")).'  access="false" id="mode-sel-1"  value="YSF" type="radio">
             <label for="mode-sel-1">YSF'.(($YSF=='0' && file_exists($YSF_paused)?" <span class='paused-mode-span'>(Paused)</span>":"")).'</label>
-            | <input name="mode_sel" '.(($DSTAR=='0' && !file_exists($DSTAR_paused)?'disabled="disabled"':"")).' access="false" id="mode-sel-2"  value="D-Star" type="radio">
+            &nbsp;| <input name="mode_sel" '.(($DSTAR=='0' && !file_exists($DSTAR_paused)?'disabled="disabled"':"")).' access="false" id="mode-sel-2"  value="D-Star" type="radio">
             <label for="mode-sel-2">D-Star'.(($DSTAR=='0' && file_exists($DSTAR_paused)?" <span class='paused-mode-span'>(Paused)</span>":"")).'</label>
-            | <input name="mode_sel" '.(($P25=='0' && !file_exists($P25_paused)?'disabled="disabled"':"")).' access="false" id="mode-sel-3"  value="P25" type="radio">
+            &nbsp;| <input name="mode_sel" '.(($P25=='0' && !file_exists($P25_paused)?'disabled="disabled"':"")).' access="false" id="mode-sel-3"  value="P25" type="radio">
             <label for="mode-sel-3">P25'.(($P25=='0' && file_exists($P25_paused)?" <span class='paused-mode-span'>(Paused)</span>":"")).'</label>
-            | <input name="mode_sel" '.(($NXDN=='0' && !file_exists($NXDN_paused)?'disabled="disabled"':"")).' access="false" id="mode-sel-4"  value="NXDN" type="radio">
+            &nbsp;| <input name="mode_sel" '.(($NXDN=='0' && !file_exists($NXDN_paused)?'disabled="disabled"':"")).' access="false" id="mode-sel-4"  value="NXDN" type="radio">
             <label for="mode-sel-4">NXDN'.(($NXDN=='0' && file_exists($NXDN_paused)?" <span class='paused-mode-span'>(Paused)</span>":"")).'</label>
-            | <input name="mode_sel" '.(($POCSAG=='0' && !file_exists($POCSAG_paused)?'disabled="disabled"':"")).' access="false" id="mode-sel-5"  value="POCSAG" type="radio">
+			<br /><br />
+            <input name="mode_sel" '.(($POCSAG=='0' && !file_exists($POCSAG_paused)?'disabled="disabled"':"")).' access="false" id="mode-sel-5"  value="POCSAG" type="radio">
             <label for="mode-sel-5">POCSAG'.(($POCSAG=='0' && file_exists($POCSAG_paused)?" <span class='paused-mode-span'>(Paused)</span>":"")).'</label>
-             | <input name="mode_sel" '.(($APRS=='0' && !file_exists($APRS_paused)?'disabled="disabled"':"")).' access="false" id="mode-sel-6"  value="APRS" type="radio">
-            <label for="mode-sel-6">APRS'.(($APRS=='0' && file_exists($APRS_paused)?" <span class='paused-mode-span'>(Paused)</span>":"")).'</label> ]
+            &nbsp;| <input name="mode_sel" '.(($APRS=='0' && !file_exists($APRS_paused)?'disabled="disabled"':"")).' access="false" id="mode-sel-6"  value="APRS" type="radio">
+            <label for="mode-sel-6">APRS'.(($APRS=='0' && file_exists($APRS_paused)?" <span class='paused-mode-span'>(Paused)</span>":"")).'</label><br /><br />
           </td>
           <td>
             <input type="hidden" name="func" value="mode_man">
