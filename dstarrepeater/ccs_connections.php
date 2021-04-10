@@ -60,7 +60,6 @@ if (exec('grep "CCS link" '.$linkLogPath.' | wc -l') >= 1) {
 	}
 	?>
     </table>
-    <br />
 <?php
 }
 

@@ -59,19 +59,19 @@ if ($_SERVER["PHP_SELF"] == "/admin/index.php") {
 		echo "<b>D-Star Link Manager</b>\n";
 		echo "<table>\n<tr><th>Command Output</th></tr>\n<tr><td>";
 		echo exec($linkCommand);
-		echo "</td></tr>\n</table><br /><hr style='color:inherit;height:0px;border-bottom:1px;'/>\n";
+		echo "</td></tr>\n</table>\n";
 	    }
 	    if ($module == $targetRef && $_POST["Link"] == "LINK") {	// Sanity Check Failed
 		echo "<b>D-Star Link Manager</b>\n";
 		echo "<table>\n<tr><th>Command Output</th></tr>\n<tr><td>";
 		echo "Cannot link to myself - Aborting link request!";
-		echo "</td></tr>\n</table><br /><hr style='color:inherit;height:0px;border-bottom:1px;'/>\n";
+		echo "</td></tr>\n</table>\n";
 	    }
 	    if ($_POST["Link"] == "UNLINK") {				// Allow Unlink no matter what
 		echo "<b>D-Star Link Manager</b>\n";
 		echo "<table>\n<tr><th>Command Output</th></tr>\n<tr><td>";
 		echo exec($unlinkCommand);
-		echo "</td></tr>\n</table><br /><hr style='color:inherit;height:0px;border-bottom:1px;'/>\n";
+		echo "</td></tr>\n</table>\n";
 	    }
 	}
 	
@@ -199,7 +199,7 @@ if ($_SERVER["PHP_SELF"] == "/admin/index.php") {
 			<input type="submit" name="dstrMgrSubmit" value="Request Change" />
 		    </td>
 		</tr>
-	    </table><br /><hr style='color:inherit;height:0px;border-bottom:1px;'/>
+	    </table>
 	</form>
 <?php
     } //endif;
@@ -223,7 +223,7 @@ if ($_SERVER["PHP_SELF"] == "/admin/index.php") {
 	    $counter++;
 	}
 	
-	echo "</table><br /><hr style='color:inherit;height:0px;border-bottom:1px;'/>\n";
+	echo "</table>\n";
     }
 }
 ?>
