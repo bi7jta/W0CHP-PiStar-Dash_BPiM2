@@ -404,31 +404,33 @@ function showMode($mode, $configs) {
 	            }
 	        }
         }
-        else if ( ($mode == "YSF X-Mode") && (getEnabled("System Fusion", $configs) == 1) ) {
-	        getModeClass( (isProcessRunning("MMDVMHost")) && (isProcessRunning("YSF2DMR") || isProcessRunning("YSF2NXDN") || isProcessRunning("YSF2P25")), true);
-        }
-        else if ( ($mode == "DMR X-Mode") && (getEnabled("DMR", $configs) == 1) ) {
-	        getModeClass( (isProcessRunning("MMDVMHost")) && (isProcessRunning("DMR2YSF") || isProcessRunning("DMR2NXDN")), true);
-        }
-        else if ( ($mode == "YSF2DMR Network") && (getServiceEnabled('/etc/ysf2dmr') == 1) ) {
-	        getModeClass(isProcessRunning("YSF2DMR"));
-        }
-        else if ( ($mode == "YSF2NXDN Network") && (getServiceEnabled('/etc/ysf2nxdn') == 1) ) {
-	        getModeClass(isProcessRunning("YSF2NXDN"));
-        }
-        else if ( ($mode == "YSF2P25 Network") && (getServiceEnabled('/etc/ysf2p25') == 1) ) {
-	        getModeClass(isProcessRunning("YSF2P25"));
-        }
-        else if ( ($mode == "DMR2NXDN Network") && (getServiceEnabled('/etc/dmr2nxdn') == 1) ) {
-	        getModeClass(isProcessRunning("DMR2NXDN"));
-        }
-        else if ( ($mode == "DMR2YSF Network") && (getServiceEnabled('/etc/dmr2ysf') == 1) ) {
-	        getModeClass(isProcessRunning("DMR2YSF"));
-        }
-        else {
-	        getModeClass(false, true);
-        }
-    
+    	else if ( ($mode == "YSF XMode") && (getEnabled("System Fusion", $configs) == 1) ) {
+			getModeClass((isProcessRunning("MMDVMHost") && (isProcessRunning("YSF2DMR") || isProcessRunning("YSF2NXDN") || isProcessRunning("YSF2P25"))),
+		    	($_SESSION['YSF2DMRConfigs']['Enabled']['Enabled'] || $_SESSION['YSF2NXDNConfigs']['Enabled']['Enabled'] || $_SESSION['YSF2P25Configs']['Enabled']['Enabled']) == false);
+    	}
+    	else if ( ($mode == "DMR XMode") && (getEnabled("DMR", $configs) == 1) ) {
+			getModeClass((isProcessRunning("MMDVMHost") && (isProcessRunning("DMR2YSF") || isProcessRunning("DMR2NXDN"))),
+		    	($_SESSION['DMR2YSFConfigs']['Enabled']['Enabled'] || $_SESSION['DMR2NXDNConfigs']['Enabled']['Enabled']) == false);
+    	}
+    	else if ( ($mode == "YSF2DMR Network") && (getEnabled("System Fusion", $configs) == 1) ) {
+			getModeClass(isProcessRunning("YSF2DMR"), ($_SESSION['YSF2DMRConfigs']['Enabled']['Enabled']) == false);
+    	}
+    	else if ( ($mode == "YSF2NXDN Network") && (getEnabled("System Fusion", $configs) == 1) ) {
+			getModeClass(isProcessRunning("YSF2NXDN"), ($_SESSION['YSF2NXDNConfigs']['Enabled']['Enabled']) == false);
+    	}
+    	else if ( ($mode == "YSF2P25 Network") && (getEnabled("System Fusion", $configs) == 1) ) {
+			getModeClass(isProcessRunning("YSF2P25"), ($_SESSION['YSF2P25Configs']['Enabled']['Enabled']) == false);
+    	}
+    	else if ( ($mode == "DMR2NXDN Network") && (getEnabled("DMR", $configs) == 1) ) {
+			getModeClass(isProcessRunning("DMR2NXDN"), ($_SESSION['DMR2NXDNConfigs']['Enabled']['Enabled']) == false);
+    	}
+    	else if ( ($mode == "DMR2YSF Network") && (getEnabled("DMR", $configs) == 1) ) {
+			getModeClass(isProcessRunning("DMR2YSF"), ($_SESSION['DMR2YSFConfigs']['Enabled']['Enabled']) == false);
+    	}
+    	else {
+			getModeClass(false, true);
+    	}
+
         $mode = str_replace("System Fusion", "YSF", $mode);
         $mode = str_replace("Network", "Net", $mode);
         if (strpos($mode, 'YSF2') > -1) {
