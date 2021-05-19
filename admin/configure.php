@@ -1215,8 +1215,7 @@ if (!empty($_POST)):
 		}
 
 		// Set the DMR+ / HBLink Options= line
-		if ((substr($dmrMasterHostArr[3], 0, 4) == "DMR+") || (substr($dmrMasterHostArr[3], 0, 3) == "HB_") || (substr($dmrMasterHostArr[3], 0, 9) == "FreeStar_") || (substr($dmrMasterHostArr[3], 0, 8) == "FreeDMR_")) {
-
+		if ((substr($dmrMasterHostArr[3], 0, 4) == "DMR+") || (substr($dmrMasterHostArr[3], 0, 3) == "HB_") || (substr($dmrMasterHostArr[3], 0, 3) == "FD_") || (substr($dmrMasterHostArr[3], 0, 8) == "FreeDMR_")) {
 			unset ($configmmdvm['DMR Network']['Local']);
 			unset ($configysf2dmr['DMR Network']['Local']);
 			if (empty($_POST['dmrNetworkOptions']) != TRUE ) {
@@ -3955,7 +3954,7 @@ else:
       <a href="http://www.freedmr.uk/index.php/dashboard/options-calculator/" target="_new" style="color: #000;">FreeDMR Options Calculator</a>
     </td>
     </tr>'."\n";}
-    if ((substr($dmrMasterNow, 0, 4) == "DMR+") || (substr($dmrMasterNow, 0, 3) == "HB_") || (substr($dmrMasterNow, 0, 9) == "FreeStar_")) {
+    if ((substr($dmrMasterNow, 0, 4) == "DMR+") || (substr($dmrMasterNow, 0, 3) == "HB_") || (substr($dmrMasterNow, 0, 3) == "FD_")) {
       echo '    <tr>
     <td align="left"><a class="tooltip2" href="#">DMR Options:<span><b>DMR Network</b>Set your options= for DMR here</span></a></td>
     <td align="left">
