@@ -99,13 +99,9 @@ caveats](https://w0chp.net/w0chp-pistar-dash/#the-rules-and-caveats----important
 
 3. Run:
 
-        rpi-rw
-
-4. Run:
-
         curl https://repo.w0chp.net/Chipster/W0CHP-PiStar-Install/raw/master/W0CHP-pistar -o W0CHP-pistar
 
-5. Run this to familiarize yourself with the available options/arguments:
+4. Run this to familiarize yourself with the available options/arguments:
 
         sudo bash ./W0CHP-pistar -h
 
@@ -118,7 +114,7 @@ caveats](https://w0chp.net/w0chp-pistar-dash/#the-rules-and-caveats----important
         -rd,  --restore-dashboard        Restore original dashboard.
         -s,   --status                   Display current install, original or W0CHP installations.
 
-6. When ready to install, run the above command again with the option/argument you wish...e.g:
+5. When ready to install, run the above command again with the option/argument you wish...e.g:
 
         sudo bash ./W0CHP-pistar -id
 
