@@ -1913,8 +1913,8 @@ if (!empty($_POST)):
 
 	// Set the Dashboard Public
 	if (empty($_POST['dashAccess']) != TRUE ) {
-	  $publicDashboard = 'sudo sed -i \'/$DAEMON -a $ipVar 80/c\\\t\t$DAEMON -a $ipVar 80 80 TCP > /dev/null 2>&1 &\' /usr/local/sbin/pistar-upnp.service';
-	  $privateDashboard = 'sudo sed -i \'/$DAEMON -a $ipVar 80/ s/^#*/#/\' /usr/local/sbin/pistar-upnp.service';
+	  $publicDashboard = 'sudo sed -i \'/$DAEMON -e $hostVar -a $ipVar 80/c\\\t\t$DAEMON -e $hostVar -a $ipVar 80 80 TCP $timeOut > /dev/null 2>&1\' /usr/local/sbin/pistar-upnp.service';
+	  $privateDashboard = 'sudo sed -i \'/$DAEMON -e $hostVar -a $ipVar 80/ s/^#*/#/\' /usr/local/sbin/pistar-upnp.service';
 
 	  if (escapeshellcmd($_POST['dashAccess']) == 'PUB' ) { system($publicDashboard); }
 	  if (escapeshellcmd($_POST['dashAccess']) == 'PRV' ) { system($privateDashboard); }
@@ -1922,8 +1922,8 @@ if (!empty($_POST)):
 
 	// Set the ircDDBGateway Remote Public
 	if (empty($_POST['ircRCAccess']) != TRUE ) {
-	  $publicRCirc = 'sudo sed -i \'/$DAEMON -a $ipVar 10022/c\\\t\t$DAEMON -a $ipVar 10022 10022 UDP > /dev/null 2>&1 &\' /usr/local/sbin/pistar-upnp.service';
-	  $privateRCirc = 'sudo sed -i \'/$DAEMON -a $ipVar 10022/ s/^#*/#/\' /usr/local/sbin/pistar-upnp.service';
+	  $publicRCirc = 'sudo sed -i \'/$DAEMON -e $hostVar -a $ipVar 10022/c\\\t\t$DAEMON -e $hostVar -a $ipVar 10022 10022 UDP $timeOut > /dev/null 2>&1\' /usr/local/sbin/pistar-upnp.service';
+	  $privateRCirc = 'sudo sed -i \'/$DAEMON -e $hostVar -a $ipVar 10022/ s/^#*/#/\' /usr/local/sbin/pistar-upnp.service';
 
 	  if (escapeshellcmd($_POST['ircRCAccess']) == 'PUB' ) { system($publicRCirc); }
 	  if (escapeshellcmd($_POST['ircRCAccess']) == 'PRV' ) { system($privateRCirc); }
@@ -1931,8 +1931,8 @@ if (!empty($_POST)):
 
 	// Set SSH Access Public
 	if (empty($_POST['sshAccess']) != TRUE ) {
-	  $publicSSH = 'sudo sed -i \'/$DAEMON -a $ipVar 22/c\\\t\t$DAEMON -a $ipVar 22 22 TCP > /dev/null 2>&1 &\' /usr/local/sbin/pistar-upnp.service';
-	  $privateSSH = 'sudo sed -i \'/$DAEMON -a $ipVar 22/ s/^#*/#/\' /usr/local/sbin/pistar-upnp.service';
+	  $publicSSH = 'sudo sed -i \'/$DAEMON -e $hostVar -a $ipVar 22/c\\\t\t$DAEMON -e $hostVar -a $ipVar 22 22 TCP $timeOut > /dev/null 2>&1\' /usr/local/sbin/pistar-upnp.service';
+	  $privateSSH = 'sudo sed -i \'/$DAEMON -e $hostVar -a $ipVar 22/ s/^#*/#/\' /usr/local/sbin/pistar-upnp.service';
 
 	  if (escapeshellcmd($_POST['sshAccess']) == 'PUB' ) { system($publicSSH); }
 	  if (escapeshellcmd($_POST['sshAccess']) == 'PRV' ) { system($privateSSH); }
@@ -4673,7 +4673,8 @@ $p25Hosts = fopen("/usr/local/etc/P25Hosts.txt", "r");
     <tr>
     <td align="left"><a class="tooltip2" href="#"><?php echo $lang['fw_dash'];?>:<span><b>Dashboard Access</b>Do you want the dashboard access to be publicly available? This modifies the uPNP firewall configuration.</span></a></td>
     <?php
-	$testPrvPubDash = exec('sudo sed -n 32p /usr/local/sbin/pistar-upnp.service | cut -c 1');
+	$testPrvPubDash = exec('sudo grep "80 80" /usr/local/sbin/pistar-upnp.service | cut -c 1');
+
 	if (substr($testPrvPubDash, 0, 1) === '#') {
 		echo "   <td align=\"left\" colspan=\"2\"><input type=\"radio\" name=\"dashAccess\" value=\"PRV\" checked=\"checked\" />Private <input type=\"radio\" name=\"dashAccess\" value=\"PUB\" />Public</td>\n";
 		}
@@ -4685,7 +4686,8 @@ $p25Hosts = fopen("/usr/local/etc/P25Hosts.txt", "r");
     <tr>
     <td align="left"><a class="tooltip2" href="#"><?php echo $lang['fw_irc'];?>:<span><b>ircDDBGateway Remote</b>Do you want the ircDDBGateway remote control access to be publicly available? This modifies the uPNP firewall Configuration.</span></a></td>
     <?php
-	$testPrvPubIRC = exec('sudo sed -n 33p /usr/local/sbin/pistar-upnp.service | cut -c 1');
+	$testPrvPubIRC = exec('sudo grep "10022 10022" /usr/local/sbin/pistar-upnp.service | cut -c 1');
+
 	if (substr($testPrvPubIRC, 0, 1) === '#') {
 		echo "   <td align=\"left\" colspan=\"2\"><input type=\"radio\" name=\"ircRCAccess\" value=\"PRV\" checked=\"checked\" />Private <input type=\"radio\" name=\"ircRCAccess\" value=\"PUB\" />Public</td>\n";
 		}
@@ -4697,7 +4699,8 @@ $p25Hosts = fopen("/usr/local/etc/P25Hosts.txt", "r");
     <tr>
     <td align="left"><a class="tooltip2" href="#"><?php echo $lang['fw_ssh'];?>:<span><b>SSH Access</b>Do you want access to be publicly available over SSH (used for support issues)? This modifies the uPNP firewall Configuration.</span></a></td>
     <?php
-	$testPrvPubSSH = exec('sudo sed -n 31p /usr/local/sbin/pistar-upnp.service | cut -c 1');
+	$testPrvPubSSH = exec('sudo grep "22 22" /usr/local/sbin/pistar-upnp.service | cut -c 1');
+
 	if (substr($testPrvPubSSH, 0, 1) === '#') {
 		echo "   <td align=\"left\" colspan=\"2\"><input type=\"radio\" name=\"sshAccess\" value=\"PRV\" checked=\"checked\" />Private <input type=\"radio\" name=\"sshAccess\" value=\"PUB\" />Public</td>\n";
 		}
