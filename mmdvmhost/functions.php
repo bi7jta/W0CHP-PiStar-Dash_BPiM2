@@ -283,8 +283,8 @@ function getAPRSISserver() {
 
     if ($logLine) {
         if (strpos($logLine, 'Response from APRS server: # logresp')) {
-            $last_word_start = strrpos($logLine, ' ') + 1; // +1 so we don't include the space in our result
-            $APRSISserver = substr($logLine, $last_word_start); // now get the very last string in the line (server name)
+            preg_match('/(?<=, server )\S+/i', $logLine, $match);
+            $APRSISserver = $match[0];
 	    }
     }
     return $APRSISserver;
