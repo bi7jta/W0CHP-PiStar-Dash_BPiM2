@@ -417,7 +417,7 @@ if (!empty($_POST)):
 	  exec('sudo git --work-tree=/var/www/dashboard --git-dir=/var/www/dashboard/.git reset --hard origin/master');
           echo '<script type="text/javascript">setTimeout(function() { window.location=window.location;},5000);</script>';
 	  // Make the root filesystem read-only
-          system('sudo mount -o remount,ro /');
+          system('sudo sync && sudo sync && sudo sync && sudo mount -o remount,ro /');
 	  echo "<br />\n</div>\n";
           echo "<div class=\"footer\">\nPi-Star web config, &copy; Andy Taylor (MW0MWZ) 2014-".date("Y").".<br />\n";
 		  echo '<a href="https://w0chp.net/w0chp-pistar-dash/" style="color: #ffffff; text-decoration:underline;">W0CHP-PiStar-Dash</a> enhancements by W0CHP';
@@ -3129,7 +3129,8 @@ if (!empty($_POST)):
 	echo '<script type="text/javascript">setTimeout(function() { window.location=window.location;},7500);</script>';
 
 	// Make the root filesystem read-only
-	system('sudo mount -o remount,ro /');
+	system('sudo sync && sudo sync && sudo sync && sudo mount -o remount,ro /');
+
 
 else:
 	// Output the HTML Form here
