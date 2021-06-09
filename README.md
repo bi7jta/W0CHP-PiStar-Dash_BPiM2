@@ -90,6 +90,7 @@ caveats](https://w0chp.net/w0chp-pistar-dash/#the-rules-and-caveats----important
   light" for the dumb and ignorant hams. Also, can confuse power users that
   utilize my Instant Mode Manager, where the default cell is amber colored for
   paused modes [color is user-configurable].).
+  Instead, the *actual* network name is highlighted in red when there's a login issue (courtesy of F1RMB's excellent code).
 
 ## Installing `W0CHP-PiStar-Dash`
 
