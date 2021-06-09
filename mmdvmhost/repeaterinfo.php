@@ -37,7 +37,7 @@ function GetActiveConnectionStyle($masterStates, $key) {
     if (count($masterStates)) {
 	if (isset($masterStates[$key])) {
 	    if (($masterStates[$key] == "n/a") || ($masterStates[$key] == "disc")) {
-		return "style=\"background: #b00; color: #fff;\"";
+		return "class=\"inactive-mode-cell\"";
 	    }
 	}
     }
