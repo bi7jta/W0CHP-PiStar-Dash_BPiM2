@@ -17,6 +17,52 @@ include_once $_SERVER['DOCUMENT_ROOT'].'/mmdvmhost/functions.php';    // MMDVMDa
 include_once $_SERVER['DOCUMENT_ROOT'].'/config/language.php';	      // Translation Code
 require_once($_SERVER['DOCUMENT_ROOT'].'/config/ircddblocal.php');
 
+function FillConnectionStatus(&$destArray, $remoteEnabled, $remotePort) {
+    if (($remoteEnabled == 1) && ($remotePort != 0)) {
+	$remoteOutput = null;
+	$remoteRetval = null;
+	exec('/usr/local/bin/RemoteCommand '.$remotePort.' status', $remoteOutput, $remoteRetval);
+	if (($remoteRetval == 0) && (count($remoteOutput) >= 2)) {
+	    $tok = strtok($remoteOutput[1], " \n\t");
+	    while ($tok !== false) {
+		$keysValues = explode(":", $tok);
+		$destArray[$keysValues[0]] = $keysValues[1];
+		$tok = strtok(" \n\t");
+	    }
+	}
+    }
+}
+
+function GetActiveConnectionStyle($masterStates, $key) {
+    if (count($masterStates)) {
+	if (isset($masterStates[$key])) {
+	    if (($masterStates[$key] == "n/a") || ($masterStates[$key] == "disc")) {
+		return "style=\"background: #b00; color: #fff;\"";
+	    }
+	}
+    }
+    return "style=\"background: #ffffff;\"";
+}
+
+
+//
+// Grab networks status from MMDVMHost and DMRGateway
+//
+$remoteMMDVMResults = [];
+$remoteDMRGResults = [];
+
+if (isProcessRunning("MMDVMHost")) {
+    $cfgItemEnabled = getConfigItem("Remote Control", "Enable", $_SESSION['MMDVMHostConfigs']);
+    $cfgItemPort = getConfigItem("Remote Control", "Port", $_SESSION['MMDVMHostConfigs']);
+    FillConnectionStatus($remoteMMDVMResults, (isset($cfgItemEnabled) ? $cfgItemEnabled : 0), (isset($cfgItemPort) ? $cfgItemPort : 0));
+}
+
+if (isProcessRunning("DMRGateway")) {
+    $remoteCommandEnabled = (isset($_SESSION['DMRGatewayConfigs']['Remote Control']) ? $_SESSION['DMRGatewayConfigs']['Remote Control']['Enable'] : 0);
+    $remoteCommandPort = (isset($_SESSION['DMRGatewayConfigs']['Remote Control']) ? $_SESSION['DMRGatewayConfigs']['Remote Control']['Port'] : 0);
+    FillConnectionStatus($remoteDMRGResults, $remoteCommandEnabled, $remoteCommandPort);
+}
+
 ?>
 <table>
     <tr><th colspan="2"><?php echo $lang['modes_enabled'];?></th></tr>
@@ -160,6 +206,7 @@ require_once($_SERVER['DOCUMENT_ROOT'].'/config/ircddblocal.php');
 	<?php
 	$testMMDVModeDSTAR = getConfigItem("D-Star", "Enable", $_SESSION['MMDVMHostConfigs']);
 	if ( $testMMDVModeDSTAR == 1 || isPaused("D-Star") ) { //Hide the D-Star Reflector information when D-Star Network not enabled.
+ 	    $linkedTo = getActualLink($reverseLogLinesMMDVM, "D-Star");
 	    echo "<br />\n";
 	    echo "<table>\n";
 	    echo "<tr><th colspan=\"2\">".$lang['dstar_repeater']."</th></tr>\n";
@@ -175,7 +222,7 @@ require_once($_SERVER['DOCUMENT_ROOT'].'/config/ircddblocal.php');
         if (isPaused("D-Star")) {
 	    	echo "<tr><td colspan=\"2\" style=\"background: #ffffff;\">Mode Paused</td></tr>\n";
 		} else {
-	    	echo "<tr><td colspan=\"2\" style=\"background: #ffffff;\">".getActualLink($reverseLogLinesMMDVM, "D-Star")."</td></tr>\n";
+		    echo "<tr><td colspan=\"2\" ".GetActiveConnectionStyle($remoteMMDVMResults, "dstar")." title=\"".$linkedTo."\">".$linkedTo."</td></tr>\n";
 		}
 	    echo "</table>\n";
 	}
@@ -311,35 +358,39 @@ require_once($_SERVER['DOCUMENT_ROOT'].'/config/ircddblocal.php');
 				if ( strpos($xlxMasterHost1, 'Linking') !== false ) { $xlxMasterHost1 = str_replace('Linking ', '', $xlxMasterHost1); }
 				else if ( strpos($xlxMasterHost1, 'Unlinking') !== false ) { $xlxMasterHost1 = "XLX Not Linked"; }
 				else if ( strpos($xlxMasterHost1, 'Logged') !== false ) { $xlxMasterHost1 = "XLX Not Linked"; }
-			echo "<tr><td  style=\"background: #ffffff;\" colspan=\"2\" title=\"".$xlxMasterHost1."\">".$xlxMasterHost1."</td></tr>\n";
+			echo "<tr><td ".GetActiveConnectionStyle($remoteDMRGResults, "xlx")." colspan=\"2\" title=\"".$xlxMasterHost1Tooltip."\">".$xlxMasterHost1."</td></tr>\n";
+
                     }
 		    if ($_SESSION['DMRGatewayConfigs']['DMR Network 1']['Enabled'] == 1) {
-			echo "<tr><td  style=\"background: #ffffff;\" colspan=\"2\" title=\"".$dmrMasterHost1Tooltip."\">".$dmrMasterHost1."</td></tr>\n";
+			echo "<tr><td ".GetActiveConnectionStyle($remoteDMRGResults, "net1")." colspan=\"2\" title=\"".$dmrMasterHost1Tooltip."\">".$dmrMasterHost1."</td></tr>\n";
 		    }
 		    if ($_SESSION['DMRGatewayConfigs']['DMR Network 2']['Enabled'] == 1) {
-			echo "<tr><td  style=\"background: #ffffff;\" colspan=\"2\" title=\"".$dmrMasterHost2Tooltip."\">".$dmrMasterHost2."</td></tr>\n";
+			echo "<tr><td ".GetActiveConnectionStyle($remoteDMRGResults, "net2")." colspan=\"2\" title=\"".$dmrMasterHost2Tooltip."\">".$dmrMasterHost2."</td></tr>\n";
 		    }
 		    if ($_SESSION['DMRGatewayConfigs']['DMR Network 3']['Enabled'] == 1) {
-			echo "<tr><td  style=\"background: #ffffff;\" colspan=\"2\" title=\"".$dmrMasterHost3Tooltip."\">".$dmrMasterHost3."</td></tr>\n";
+			echo "<tr><td ".GetActiveConnectionStyle($remoteDMRGResults, "net3")." colspan=\"2\" title=\"".$dmrMasterHost3Tooltip."\">".$dmrMasterHost3."</td></tr>\n";
 		    }
 		    if (isset($_SESSION['DMRGatewayConfigs']['DMR Network 4']['Enabled'])) {
 			if ($_SESSION['DMRGatewayConfigs']['DMR Network 4']['Enabled'] == 1) {
-                            echo "<tr><td  style=\"background: #ffffff;\" colspan=\"2\" title=\"".$dmrMasterHost4Tooltip."\">".$dmrMasterHost4."</td></tr>\n";
+                            echo "<tr><td ".GetActiveConnectionStyle($remoteDMRGResults, "net4")." colspan=\"2\" title=\"".$dmrMasterHost4Tooltip."\">".$dmrMasterHost4."</td></tr>\n";
+
 			}
 		    }
 		    if (isset($_SESSION['DMRGatewayConfigs']['DMR Network 5']['Enabled'])) {
 			if ($_SESSION['DMRGatewayConfigs']['DMR Network 5']['Enabled'] == 1) {
-                            echo "<tr><td  style=\"background: #ffffff;\" colspan=\"2\" title=\"".$dmrMasterHost5Tooltip."\">".$dmrMasterHost5."</td></tr>\n";
+                            echo "<tr><td ".GetActiveConnectionStyle($remoteDMRGResults, "net5")." colspan=\"2\" title=\"".$dmrMasterHost5Tooltip."\">".$dmrMasterHost5."</td></tr>\n";
+
 			}
 		    }
 	
 		    if (isset($_SESSION['DMRGatewayConfigs']['DMR Network 6']['Enabled'])) {
 			if ($_SESSION['DMRGatewayConfigs']['DMR Network 6']['Enabled'] == 1) {
-                            echo "<tr><td  style=\"background: #ffffff;\" colspan=\"2\" title=\"".$dmrMasterHost6Tooltip."\">".$dmrMasterHost6."</td></tr>\n";			}
+                            echo "<tr><td ".GetActiveConnectionStyle($remoteDMRGResults, "net6")." colspan=\"2\" title=\"".$dmrMasterHost6Tooltip."\">".$dmrMasterHost6."</td></tr>\n";
+			}
 		  }
 		}
 		else {
-		    echo "<tr><td  style=\"background: #ffffff;\" colspan=\"2\" title=\"".$dmrMasterHostTooltip."\">".$dmrMasterHost."</td></tr>\n";
+		    echo "<tr><td ".GetActiveConnectionStyle($remoteDMRGResults, "dmr")." colspan=\"2\" title=\"".$dmrMasterHostTooltip."\">".$dmrMasterHost."</td></tr>\n";
 		}
 	    }
 	    else {
@@ -473,7 +524,8 @@ require_once($_SERVER['DOCUMENT_ROOT'].'/config/ircddblocal.php');
 		if (isPaused("P25")) {
 	    	echo "<tr><td colspan=\"2\"style=\"background: #ffffff;\">Mode Paused</td></tr>\n";
 		} else {
-	    	echo "<tr><td colspan=\"2\"style=\"background: #ffffff;\">".getActualLink($logLinesP25Gateway, "P25")."</td></tr>\n";
+		    echo "<tr><td colspan=\"2\" ".GetActiveConnectionStyle($remoteMMDVMResults, "p25").">".getActualLink($logLinesP25Gateway, "P25")."</td></tr>\n";
+
 		}
 	    echo "</table>\n";
 	}
@@ -501,10 +553,10 @@ require_once($_SERVER['DOCUMENT_ROOT'].'/config/ircddblocal.php');
 			echo "<tr><td colspan=\"2\"style=\"background: #ffffff;\">Mode Paused</td></tr>\n";
         } else {
 	    	if (file_exists('/etc/nxdngateway')) {
-				echo "<tr><td colspan=\"2\"style=\"background: #ffffff;\">".getActualLink($logLinesNXDNGateway, "NXDN")."</td></tr>\n";
+				echo "<tr><td colspan=\"2\" ".GetActiveConnectionStyle($remoteMMDVMResults, "nxdn")." >".getActualLink($logLinesNXDNGateway, "NXDN")."</td></tr>\n";
 	    	}
 	    	else {
-        		echo "<tr><td colspan=\"2\"style=\"background: #ffffff;\">TG65000</td></tr>\n";
+				echo "<tr><td colspan=\"2\" ".GetActiveConnectionStyle($remoteMMDVMResults, "nxdn")." >TG65000</td></tr>\n";
 			}
 	    }
 	    echo "</table>\n";

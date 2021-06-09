@@ -283,8 +283,8 @@ function getAPRSISserver() {
 
     if ($logLine) {
         if (strpos($logLine, 'Response from APRS server: # logresp')) {
-            preg_match('/(?<=, server )\S+/i', $logLine, $match);
-            $APRSISserver = $match[0];
+            preg_match('/(?<=, server )\S+/i', $logLine, $match); // find server name in log line after "verified, server" string.
+            $APRSISserver = str_replace(",", "", $match[0]); // remove occasional commas after server name
 	    }
     }
     return $APRSISserver;

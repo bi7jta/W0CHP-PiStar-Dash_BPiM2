@@ -141,6 +141,15 @@ if (file_exists('/etc/dstar-radio.mmdvmhost')) {
 	if (fopen($modemConfigFileMMDVMHost,'r')) { $configModem = parse_ini_file($modemConfigFileMMDVMHost, true); }
 }
 
+##
+## Check for DMRGateway RemoteCommand
+##
+if (!isset($configdmrgateway['Remote Control'])) {
+    $configdmrgateway['Remote Control']['Enable'] = "1";
+    $configdmrgateway['Remote Control']['Port'] = "7643";
+    $configdmrgateway['Remote Control']['Address'] = "127.0.0.1";
+}
+
 function aprspass ($callsign) {
 	$stophere = strpos($callsign, '-');
 	if ($stophere) $callsign = substr($callsign, 0, $stophere);
