@@ -6,7 +6,7 @@ This is my *personal* and highly customized Pi-Star dashboard, and related
 binaries.  I offer ZERO support. This is here for your hacking and enjoyment,
 and you're fully on your own. *Use at your own risk*, and DO NOT ask me for
 support.  Nor should you file/report any bugs etc. on any official Pi-Star
-medium...this is not an oficial Pi-Star release.
+medium...this is not an official Pi-Star release.
 
 If you ask me to support, **I will ignore you.** It's strongly recommended that
 you read and heed the [rules and
@@ -81,6 +81,10 @@ caveats](https://w0chp.net/w0chp-pistar-dash/#the-rules-and-caveats----important
 * Selectable Call Sign link to either QRZ.com or RadioID.com (both services
   suck, and the implementation of this feature is poor and unintuitive. Left
   the original function linking to QRZ.com).
+
+* CPU Temp. in header; when CPU is running "cool" or "normal" recommended temps, the cell background
+  is no longer colored green. Only when the CPU is running beyond recommended temps, is the cell colored
+  orange or red.
 
 * No reboot/shutdown nag screen/warning from admin page (Superfluous; you
   click it, it will reboot/shutdown without warning.).
