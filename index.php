@@ -245,7 +245,7 @@ checkSessionValidity();
 		    echo '</div>'."\n";
 		}
 		if ($_SERVER["PHP_SELF"] == "/admin/index.php" && $_POST["func"] == "bm_man" || $_GET["func"] == "bm_man") {		// Admin Only Options (BM mgr)
-                    include 'mmdvmhost/bm_manager.php';                     // BM DMR Link Manager
+			include 'mmdvmhost/bm_manager.php';                     // BM DMR Link Manager
 		}
 		
 		if ($_SERVER["PHP_SELF"] == "/admin/index.php" && $_POST["func"] == "tgif_man" || $_GET["func"] == "tgif_man") {	// Admin Only Option (tgif links)
@@ -254,32 +254,33 @@ checkSessionValidity();
         	    echo '  $("#tgifConnects").load("/mmdvmhost/tgif_links.php",function(){ setTimeout(reloadtgifConnections,15000) });'."\n";
         	    echo '}'."\n";
         	    echo 'setTimeout(reloadtgifConnections,15000);'."\n";
-		    echo '$(window).trigger(\'resize\');'."\n";
+				echo '$(window).trigger(\'resize\');'."\n";
         	    echo '</script>'."\n";
         	    echo '<div id="tgifConnects">'."\n";
 		    include 'mmdvmhost/tgif_links.php';			// TGIF Links
 		    echo '</div>'."\n";
 		}
 		if ($_SERVER["PHP_SELF"] == "/admin/index.php" && $_POST["func"] == "tgif_man" || $_GET["func"] == "tgif_man") {	// Admin Only Options (tgi mgr)
-                    include 'mmdvmhost/tgif_manager.php';			// TGIF DMR Link Manager
+        	include 'mmdvmhost/tgif_manager.php';			// TGIF DMR Link Manager
 		}
 		
-		$testMMDVModeYSFnet = getConfigItem("System Fusion Network", "Enable", $_SESSION['MMDVMHostConfigs']);
-		if ( $testMMDVModeYSFnet == 1 ) {				// If YSF network is enabled, add these extra features.
+        $testMMDVModeYSF = getConfigItem("System Fusion", "Enable", $_SESSION['MMDVMHostConfigs']);
+        $testDMR2YSF = $_SESSION['DMR2YSFConfigs']['Enabled']['Enabled'];
+        if ($testMMDVModeYSF == 1 || $testDMR2YSF == 1) {
 		    if ($_SERVER["PHP_SELF"] == "/admin/index.php" && $_POST["func"] == "ysf_man" || $_GET["func"] == "ysf_man") { 	// Admin Only Option
-			include 'mmdvmhost/ysf_manager.php';		// YSF Links
+				include 'mmdvmhost/ysf_manager.php';		// YSF Links
 		    }
 		}
 		$testMMDVModeP25net = getConfigItem("P25 Network", "Enable", $_SESSION['MMDVMHostConfigs']);
 		if ( $testMMDVModeP25net == 1 ) {				// If P25 network is enabled, add these extra features.
 		    if ($_SERVER["PHP_SELF"] == "/admin/index.php" && $_POST["func"] == "p25_man" || $_GET["func"] == "p25_man") { 	// Admin Only Option *p25 mgr)
-			include 'mmdvmhost/p25_manager.php';		// P25 Links
+				include 'mmdvmhost/p25_manager.php';		// P25 Links
 		    }
 		}
 		$testMMDVModeNXDNnet = getConfigItem("NXDN Network", "Enable", $_SESSION['MMDVMHostConfigs']);
 		if ( $testMMDVModeNXDNnet == 1 ) {				// If NXDN network is enabled, add these extra features.
 		    if ($_SERVER["PHP_SELF"] == "/admin/index.php" && $_POST["func"] == "nxdn_man" || $_GET["func"] == "nxdn_man") { 	// Admin Only Option (nxdn mgr)
-			include 'mmdvmhost/nxdn_manager.php';		// NXDN Links
+				include 'mmdvmhost/nxdn_manager.php';		// NXDN Links
 		    }
 		}
 
@@ -327,8 +328,9 @@ checkSessionValidity();
 		    }
 		    //echo '      </div>';
 		    //echo '      <div class="mode_flex">';
-                    $testMMDVModeYSF = getConfigItem("System Fusion", "Enable", $_SESSION['MMDVMHostConfigs']);
-            	    if ($testMMDVModeYSF == 1) {
+        	$testMMDVModeYSF = getConfigItem("System Fusion", "Enable", $_SESSION['MMDVMHostConfigs']);
+        	$testDMR2YSF = $_SESSION['DMR2YSFConfigs']['Enabled']['Enabled'];
+        	if ($testMMDVModeYSF == 1 || $testDMR2YSF == 1) {
 		        echo '    <button form="admin_sel" type="submit" value="ysf_man" name="func"><span>YSF Manager</span></button>';
 		    }
 		    else {
