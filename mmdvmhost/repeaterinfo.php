@@ -362,32 +362,23 @@ if (isProcessRunning("DMRGateway")) {
 
                     }
 		    if ($_SESSION['DMRGatewayConfigs']['DMR Network 1']['Enabled'] == 1) {
-			echo "<tr><td ".GetActiveConnectionStyle($remoteDMRGResults, "net1")." colspan=\"2\" title=\"".$dmrMasterHost1Tooltip."\">".$dmrMasterHost1."</td></tr>\n";
+		        echo "<tr><td ".GetActiveConnectionStyle($remoteDMRGResults, "net1")." colspan=\"2\" title=\"".$dmrMasterHost1Tooltip."\">".$dmrMasterHost1."</td></tr>\n";
 		    }
 		    if ($_SESSION['DMRGatewayConfigs']['DMR Network 2']['Enabled'] == 1) {
-			echo "<tr><td ".GetActiveConnectionStyle($remoteDMRGResults, "net2")." colspan=\"2\" title=\"".$dmrMasterHost2Tooltip."\">".$dmrMasterHost2."</td></tr>\n";
+			    echo "<tr><td ".GetActiveConnectionStyle($remoteDMRGResults, "net2")." colspan=\"2\" title=\"".$dmrMasterHost2Tooltip."\">".$dmrMasterHost2."</td></tr>\n";
 		    }
 		    if ($_SESSION['DMRGatewayConfigs']['DMR Network 3']['Enabled'] == 1) {
-			echo "<tr><td ".GetActiveConnectionStyle($remoteDMRGResults, "net3")." colspan=\"2\" title=\"".$dmrMasterHost3Tooltip."\">".$dmrMasterHost3."</td></tr>\n";
+			    echo "<tr><td ".GetActiveConnectionStyle($remoteDMRGResults, "net3")." colspan=\"2\" title=\"".$dmrMasterHost3Tooltip."\">".$dmrMasterHost3."</td></tr>\n";
 		    }
-		    if (isset($_SESSION['DMRGatewayConfigs']['DMR Network 4']['Enabled'])) {
 			if ($_SESSION['DMRGatewayConfigs']['DMR Network 4']['Enabled'] == 1) {
-                            echo "<tr><td ".GetActiveConnectionStyle($remoteDMRGResults, "net4")." colspan=\"2\" title=\"".$dmrMasterHost4Tooltip."\">".$dmrMasterHost4."</td></tr>\n";
-
-			}
+                echo "<tr><td ".GetActiveConnectionStyle($remoteDMRGResults, "net4")." colspan=\"2\" title=\"".$dmrMasterHost4Tooltip."\">".$dmrMasterHost4."</td></tr>\n";
 		    }
-		    if (isset($_SESSION['DMRGatewayConfigs']['DMR Network 5']['Enabled'])) {
 			if ($_SESSION['DMRGatewayConfigs']['DMR Network 5']['Enabled'] == 1) {
-                            echo "<tr><td ".GetActiveConnectionStyle($remoteDMRGResults, "net5")." colspan=\"2\" title=\"".$dmrMasterHost5Tooltip."\">".$dmrMasterHost5."</td></tr>\n";
-
-			}
+                echo "<tr><td ".GetActiveConnectionStyle($remoteDMRGResults, "net5")." colspan=\"2\" title=\"".$dmrMasterHost5Tooltip."\">".$dmrMasterHost5."</td></tr>\n";
 		    }
-	
-		    if (isset($_SESSION['DMRGatewayConfigs']['DMR Network 6']['Enabled'])) {
 			if ($_SESSION['DMRGatewayConfigs']['DMR Network 6']['Enabled'] == 1) {
-                            echo "<tr><td ".GetActiveConnectionStyle($remoteDMRGResults, "net6")." colspan=\"2\" title=\"".$dmrMasterHost6Tooltip."\">".$dmrMasterHost6."</td></tr>\n";
+                echo "<tr><td ".GetActiveConnectionStyle($remoteDMRGResults, "net6")." colspan=\"2\" title=\"".$dmrMasterHost6Tooltip."\">".$dmrMasterHost6."</td></tr>\n";
 			}
-		  }
 		}
 		else {
 		    echo "<tr><td ".GetActiveConnectionStyle($remoteDMRGResults, "dmr")." colspan=\"2\" title=\"".$dmrMasterHostTooltip."\">".$dmrMasterHost."</td></tr>\n";
