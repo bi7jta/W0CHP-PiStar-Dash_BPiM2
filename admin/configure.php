@@ -504,6 +504,14 @@ if (!empty($_POST)):
 	  system($rollconfDefRefAuto);
 	  }
 
+	// Set random (working) CCS host.
+	if (configs['ccsEnabled'] == "1") {
+	  $activeCCS = array("CCS701"=>"CCS701","CCS702"=>"CCS702","CCS704"=>"CCS704");
+	  shuffle($activeCCS);
+	  $rollCCS = 'sudo sed -i "/ccsHost=/c\\ccsHost='.$activeCCS[0].'" /etc/ircddbgateway';
+	  system($rollCCS);
+	}
+
 	// Set the Latitude
 	if (empty($_POST['confLatitude']) != TRUE ) {
 	  $newConfLatitude = preg_replace('/[^0-9\.\-]/', '', $_POST['confLatitude']);
@@ -931,7 +939,6 @@ if (!empty($_POST)):
 	  }
 
 	  system($rollGATECALL);
-	  system($rollIRCUSER);
 	  system($rollDPLUSLOGIN);
 	  system($rollDASHBOARDcall);
 	  system($rollTIMESERVERcall);
@@ -950,8 +957,9 @@ if (!empty($_POST)):
 		if (isset($configs['ircddbHostname']) && $configs['ircddbHostname'] == "rr.openquad.net") {
 			$rollconfircddbEnabled = 'sudo sed -i "/rcddbEnabled=/c\\ircddbEnabled=0" /etc/ircddbgateway';
 			$rollconfircddbHostname = 'sudo sed -i "/rcddbHostname=/c\\ircddbHostname=ircv4.openquad.net" /etc/ircddbgateway';
+			system($rollconfircddbHostname);
+
 		}
-		system($rollconfircddbHostname);
 		system($rollconfircddbEnabled);
 	}
 
