@@ -1978,7 +1978,6 @@ if (!empty($_POST)):
 	  $uPNPsvcOn = 'sudo systemctl enable pistar-upnp.timer';
 	  $uPNPsvcOff = 'sudo systemctl disable pistar-upnp.timer';
 	  $uPNPsvcStart = '(systemctl stop pistar-upnp.service && systemctl start pistar-upnp.service) &';
-
 	  $uPNPsvcStop = 'systemctl stop pistar-upnp.service';
 
 	  if (escapeshellcmd($_POST['uPNP']) == 'ON' )  { system($uPNPon); system($uPNPsvcOn); system($uPNPsvcStart); }
