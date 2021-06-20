@@ -580,11 +580,13 @@ if (isProcessRunning("DMRGateway")) {
         echo "<br />\n";
         echo "<table>\n";
         echo "<tr><th colspan='2'>APRS Gateway Status</th></tr>\n";
-        echo "<tr><td style=\"background: #ffffff;\" title=\"Host Pool\"colspan=\"2\">".substr($_SESSION['APRSGatewayConfigs']['APRS-IS']['Server'], 0, 23)."</td></tr>\n";
+        echo "<tr><th colspan='2' >Host Pool</th></tr>\n";
+        echo "<tr><td colspan='2' style=\"background: #ffffff;\" title=\"".$_SESSION['APRSGatewayConfigs']['APRS-IS']['Server']."\">".substr($_SESSION['APRSGatewayConfigs']['APRS-IS']['Server'], 0, 23)."</td></tr>\n";
+        echo "<tr><th colspan='2'>Server</th></tr>\n";
         if (isPaused("APRS")) {
-            echo "<tr><td style=\"background: #ffffff;\" title=\"Service Paused\" colspan=\"2\">Service Paused</td></tr>\n";
+            echo "<tr><td colspan='2' style=\"background: #ffffff;\" title=\"Service Paused\">Service Paused</td></tr>\n";
                 } else {
-                echo "<tr><td style=\"background: #ffffff;\" title=\"Server\" colspan=\"2\">".getAPRSISserver()."</td></tr>\n";
+                echo "<tr><td colspan='2' style=\"background: #ffffff;\" title=\"".getAPRSISserver()."\">".getAPRSISserver()."</td></tr>\n";
                 }
         echo "</table>\n";
     }
