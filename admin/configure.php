@@ -1977,7 +1977,8 @@ if (!empty($_POST)):
 	  $uPNPoff = 'sudo sed -i \'/pistar-upnp.service/ s/^#*/#/\' /etc/crontab';
 	  $uPNPsvcOn = 'sudo systemctl enable pistar-upnp.timer';
 	  $uPNPsvcOff = 'sudo systemctl disable pistar-upnp.timer';
-	  $uPNPsvcStart = 'systemctl stop pistar-upnp.service && systemctl start pistar-upnp.service';
+	  $uPNPsvcStart = '(systemctl stop pistar-upnp.service && systemctl start pistar-upnp.service) &';
+
 	  $uPNPsvcStop = 'systemctl stop pistar-upnp.service';
 
 	  if (escapeshellcmd($_POST['uPNP']) == 'ON' )  { system($uPNPon); system($uPNPsvcOn); system($uPNPsvcStart); }
@@ -3137,9 +3138,6 @@ if (!empty($_POST)):
 	system('sudo systemctl start timeserver.service > /dev/null 2>/dev/null &');		// Time Server Service
 	system('sudo systemctl start pistar-watchdog.service > /dev/null 2>/dev/null &');	// PiStar-Watchdog Service
 	system('sudo systemctl start pistar-remote.service > /dev/null 2>/dev/null &');		// PiStar-Remote Service
-	if (empty($_POST['uPNP']) != TRUE ) {
-		if (escapeshellcmd($_POST['uPNP']) == 'ON' ) { system('sudo systemctl start pistar-upnp.service > /dev/null 2>/dev/null &'); }
-	}
 	system('sudo systemctl start ysf2dmr.service > /dev/null 2>/dev/null &');		// YSF2DMR
 	system('sudo systemctl start ysf2nxdn.service > /dev/null 2>/dev/null &');		// YSF2NXDN
 	system('sudo systemctl start ysf2p25.service > /dev/null 2>/dev/null &');		// YSF2P25
