@@ -580,9 +580,7 @@ if (isProcessRunning("DMRGateway")) {
         echo "<br />\n";
         echo "<table>\n";
         echo "<tr><th colspan='2'>APRS Gateway Status</th></tr>\n";
-        echo "<tr><th>Host Pool</th></tr>\n";
         echo "<tr><td style=\"background: #ffffff;\" title=\"".$_SESSION['APRSGatewayConfigs']['APRS-IS']['Server']."\">".substr($_SESSION['APRSGatewayConfigs']['APRS-IS']['Server'], 0, 23)."</td></tr>\n";
-        echo "<tr><th>Server</th></tr>\n";
         if (isPaused("APRS")) {
             echo "<tr><td style=\"background: #ffffff;\" title=\"Service Paused\">Service Paused</td></tr>\n";
                 } else {
