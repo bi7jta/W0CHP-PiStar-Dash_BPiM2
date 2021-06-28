@@ -128,6 +128,7 @@ table td {
     font-weight: 500;
     text-decoration: none;
     border: 1px solid #000000;
+    font-size: 1.05em;
 }
 
 body {

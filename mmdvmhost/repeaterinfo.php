@@ -566,8 +566,8 @@ if (isProcessRunning("DMRGateway")) {
 	    	if (isset($_SESSION['DAPNETGatewayConfigs']['DAPNET']['Address'])) {
 				$dapnetGatewayRemoteAddr = $_SESSION['DAPNETGatewayConfigs']['DAPNET']['Address'];
 	        	$dapnetGatewayRemoteTooltip = $dapnetGatewayRemoteAddr;
-				if (strlen($dapnetGatewayRemoteAddr) > 25) {
-		    		$dapnetGatewayRemoteAddr = substr($dapnetGatewayRemoteAddr, 0, 23) . '..';
+				if (strlen($dapnetGatewayRemoteAddr) > 23) {
+		    		$dapnetGatewayRemoteAddr = substr($dapnetGatewayRemoteAddr, 0, 20) . '..';
 				}
 			}
 		}
