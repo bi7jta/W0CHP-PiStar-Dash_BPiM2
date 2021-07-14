@@ -35,7 +35,7 @@ caveats](https://w0chp.net/w0chp-pistar-dash/#the-rules-and-caveats----important
 
    * Added ability to batch add/delete up to 5 static talk groups at a time (for now)
 
-* TGIF Manager; now displays connected actual talk group names.
+* TGIF Manager; now displays connected actual talk group names. (**NOTE**: Since TGIF has moved to a new platform with no API available, this currently does not work until TGIF's API is made avaiable.)
 
 * "Instant Mode Manager" added to admin page; allows you to instantly pause or resume selected radio modes. Handy for attending
   nets, quieting a busy mode, to temporarily eliminate "mode monopolization", etc.
