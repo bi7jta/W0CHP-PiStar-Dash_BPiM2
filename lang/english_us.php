@@ -139,8 +139,8 @@ $lang = array (
   "utot"                        =>  "UTOT",       // Short for User Timeout
   "gtot"                        =>  "GTOT",       // Short for Group Timeout
   // Dashboard Front Page / Admin - Section Headders
-  "last_heard_list"             =>  "Gateway Activity",
-  "local_tx_list"               =>  "Local RF Activity",
+  "last_heard_list"             =>  "Network Activity",
+  "local_tx_list"               =>  "RF Activity",
   "active_starnet_groups"       =>  "Active Starnet Groups",
   "active_starnet_members"      =>  "Active Starnet Group Members",
   "d-star_link_manager"         =>  "D-Star Link Manager",
