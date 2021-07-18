@@ -24,7 +24,7 @@ require_once('../config/version.php');
 	<meta name="language" content="English" />
 	<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
 	<meta name="Description" content="Pi-Star Expert Editor" />
-	<meta name="KeyWords" content="MMDVMHost,ircDDBGateway,D-Star,ircDDB,DMRGateway,DMR,YSFGateway,YSF,C4FM,NXDNGateway,NXDN,P25Gateway,P25,Pi-Star,DL5DI,DG9VH,MW0MWZ,F1RMB" />
+	<meta name="KeyWords" content="MMDVMHost,ircDDBGateway,D-Star,ircDDB,DMRGateway,DMR,YSFGateway,YSF,C4FM,NXDNGateway,NXDN,P25Gateway,P25,Pi-Star,DL5DI,DG9VH,MW0MWZ" />
 	<meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate" />
 	<meta http-equiv="pragma" content="no-cache" />
 	<link rel="shortcut icon" href="images/favicon.ico" type="image/x-icon" />
@@ -69,7 +69,6 @@ require_once('../config/version.php');
 			echo '<script type="text/javascript">'."\n";
 			echo 'function loadServicesExec(optStr){'."\n";
 			echo '  $("#service_result").load("/admin/expert/services_exec.php"+optStr);'."\n";
-			echo '  setTimeout(function() { window.location="/admin/expert/index.php";}, ("'.$action.'" == "status" ? 30000: 10000));'."\n";
 			echo '}'."\n";
 			echo 'setTimeout(loadServicesExec, 100, "?action='.$action.'");'."\n";
 			echo '$(window).trigger(\'resize\');'."\n";
