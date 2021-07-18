@@ -344,7 +344,7 @@ function isDAPNETGatewayConnected() {
 
 // show if mode is paused in side modes panel
 function isPaused($mode) {
-    if (file_exists("/etc/".$mode."_paused")) {
+    if (file_exists("/etc/".$mode."_paused") && (getEnabled($mode, $configs) == 0) ) {
         $paused = true;
         return $paused;
     }
