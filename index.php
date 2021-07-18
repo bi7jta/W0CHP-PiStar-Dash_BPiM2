@@ -284,7 +284,7 @@ checkSessionValidity();
 		    }
 		}
 
-		$testMMDVModePOCSAG = getConfigItem("POCSAG Network", "Enable", $_SESSION['MMDVMHostConfigs']);
+		$testMMDVModePOCSAG = getConfigItem("POCSAG", "Enable", $_SESSION['MMDVMHostConfigs']);
 		if ( $testMMDVModePOCSAG == 1 ) {
 		    if ($_SERVER["PHP_SELF"] == "/admin/index.php" && $_POST["func"] == "pocsag_man" || $_GET["func"] == "pocsag_man") {  // Admin Only Options (pocsag mgr)
 			    echo '<div id="dapnetMsgr">'."\n";
