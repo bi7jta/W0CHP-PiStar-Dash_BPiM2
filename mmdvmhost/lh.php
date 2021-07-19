@@ -50,11 +50,16 @@ for ($i = 0;  ($i <= $lastHeardRows - 1); $i++) {
 		$listElem = $lastHeard[$i];
 		if ( $listElem[2] ) {
 			$utc_time = $listElem[0];
-                        $utc_tz =  new DateTimeZone('UTC');
-                        $local_tz = new DateTimeZone(date_default_timezone_get ());
-                        $dt = new DateTime($utc_time, $utc_tz);
-                        $dt->setTimeZone($local_tz);
-			$local_time = $dt->format('H:i:s M jS');
+            $utc_tz =  new DateTimeZone('UTC');
+            $local_tz = new DateTimeZone(date_default_timezone_get ());
+            $dt = new DateTime($utc_time, $utc_tz);
+            $dt->setTimeZone($local_tz);
+        	$local_time = $dt->format('H:i:s M jS');
+			// YSF sometimes has malformed calls with a space and freeform text...address these
+			if (preg_match('/ /', $listElem[2])) {
+				$listElem[2] = preg_replace('/ .*$/', "", $listElem[2]);
+			}
+			// end cheesy YSF hack
 		echo"<tr>";
 		echo"<td align=\"left\">$local_time</td>";
         echo "<td align=\"left\">".str_replace('Slot ', 'TS', $listElem[1])."</td>";
