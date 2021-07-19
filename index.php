@@ -70,6 +70,7 @@ checkSessionValidity();
          <script>
           $(document).ready(function() {
             $('.ysfLinkHost').select2();
+            $('.RefName').select2();
           });
         </script>
     </head>

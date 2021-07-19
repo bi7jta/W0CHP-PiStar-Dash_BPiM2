@@ -251,6 +251,7 @@ $MYCALL=strtoupper($callsign);
           $('.ysf2p25StartupDstId').select2();
           $('.p25StartupHost').select2();
           $('.nxdnStartupHost').select2();
+          $('.confDefRef').select2();
       });
     </script>
     <script type="text/javascript" src="/functions.js?version=1.720"></script>
@@ -4139,7 +4140,7 @@ else:
     </tr>
     <tr>
     <td align="left"><a class="tooltip2" href="#"><?php echo $lang['dstar_default_ref'];?>:<span><b>Default Reflector</b>Used for setting the default reflector.</span></a></td>
-    <td align="left" colspan="1"><select name="confDefRef"
+    <td align="left" colspan="1"><select name="confDefRef" class="confDefRef" 
 	onchange="if (this.options[this.selectedIndex].value == 'customOption') {
 	  toggleField(this,this.nextSibling);
 	  this.selectedIndex='0';

@@ -116,7 +116,7 @@ if ($_SERVER["PHP_SELF"] == "/admin/index.php") {
 			</select>
 		    </td>
 		    <td>
-			<select name="RefName"
+			<select name="RefName" class="RefName"
 				onchange="if (this.options[this.selectedIndex].value == 'customOption') {
 				      toggleField(this,this.nextSibling);
 				      this.selectedIndex='0';
