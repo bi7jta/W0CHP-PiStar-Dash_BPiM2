@@ -127,7 +127,7 @@ table td {
     font-family: 'Inconsolata', monospace;
     font-weight: 500;
     text-decoration: none;
-    border: .5px solid #555555;
+    border: .5px solid #777777;
     font-size: 1.05em;
 }
 
