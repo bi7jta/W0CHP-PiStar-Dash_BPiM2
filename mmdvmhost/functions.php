@@ -404,11 +404,11 @@ function showMode($mode, $configs) {
 	            }
 	        }
         }
-    	else if ( ($mode == "YSF XMode") && (getEnabled("System Fusion", $configs) == 1) ) {
+    	else if ( ($mode == "YSF X-Mode") && (getEnabled("System Fusion", $configs) == 1) ) {
 			getModeClass((isProcessRunning("MMDVMHost") && (isProcessRunning("YSF2DMR") || isProcessRunning("YSF2NXDN") || isProcessRunning("YSF2P25"))),
 		    	($_SESSION['YSF2DMRConfigs']['Enabled']['Enabled'] || $_SESSION['YSF2NXDNConfigs']['Enabled']['Enabled'] || $_SESSION['YSF2P25Configs']['Enabled']['Enabled']) == false);
     	}
-    	else if ( ($mode == "DMR XMode") && (getEnabled("DMR", $configs) == 1) ) {
+    	else if ( ($mode == "DMR X-Mode") && (getEnabled("DMR", $configs) == 1) ) {
 			getModeClass((isProcessRunning("MMDVMHost") && (isProcessRunning("DMR2YSF") || isProcessRunning("DMR2NXDN"))),
 		    	($_SESSION['DMR2YSFConfigs']['Enabled']['Enabled'] || $_SESSION['DMR2NXDNConfigs']['Enabled']['Enabled']) == false);
     	}
