@@ -16,7 +16,7 @@ include_once $_SERVER['DOCUMENT_ROOT'].'/config/language.php';	      // Translat
 include_once $_SERVER['DOCUMENT_ROOT'].'/mmdvmhost/tools.php';
 
 function getServiceStatusClass($active) {
-    echo (($active) ? 'active-service-cell' : 'inactive-service-cell');
+    echo (($active) ? 'active-mode-cell' : 'disabled-mode-cell');
 }
 
 ?>
