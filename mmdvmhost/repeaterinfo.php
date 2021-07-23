@@ -129,7 +129,7 @@ if (isProcessRunning("DMRGateway")) {
 		    
 		        // Get rid of 'Slot x' for DMR, as it is meaningless, when 2 slots are txing at the same time.
 		        $txMode = preg_split('#\s+#', $listElem[1])[0];
-		        echo "<td style=\"background:#f33; color:#ffffff; font-weight:bold;\">TX: $txMode</td>";
+		        echo "<td style=\"background:#F012BE; color:#ffffff; font-weight:bold;\">TX: $txMode</td>";
 		        break;
             }     
 	    }
