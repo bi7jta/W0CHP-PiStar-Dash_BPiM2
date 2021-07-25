@@ -24,7 +24,6 @@ require_once('config/version.php');
 require_once('mmdvmhost/functions.php');
 require_once('config/ircddblocal.php');
 require_once('config/language.php');
-$cpuLoad = sys_getloadavg();
 
 // Load the pistar-release file
 $pistarReleaseConfig = '/etc/pistar-release';

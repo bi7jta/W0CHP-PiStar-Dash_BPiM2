@@ -102,7 +102,21 @@ if ($cpuTempC >= 69) { $cpuTempHTML = "<td style=\"background: #f00\">".$cpuTemp
 
 require_once($_SERVER['DOCUMENT_ROOT'].'/config/language.php');        // Translation Code
 
-$cpuLoad = sys_getloadavg();
+// Gather CPU Loads
+//$cpuLoad = sys_getloadavg();
+$stat1 = file('/proc/stat'); 
+sleep(1); 
+$stat2 = file('/proc/stat'); 
+$info1 = explode(" ", preg_replace("!cpu +!", "", $stat1[0])); 
+$info2 = explode(" ", preg_replace("!cpu +!", "", $stat2[0])); 
+$dif = array(); 
+$dif['user'] = $info2[0] - $info1[0]; 
+$dif['nice'] = $info2[1] - $info1[1]; 
+$dif['sys'] = $info2[2] - $info1[2]; 
+$dif['idle'] = $info2[3] - $info1[3]; 
+$total = array_sum($dif); 
+$cpuLoad = array(); 
+foreach($dif as $x=>$y) $cpuLoad[$x] = round($y / $total * 100, 1);
 
 // Retrieve server information
 $system = system_information();
@@ -128,7 +142,7 @@ $sysRamPercent = sprintf('%.2f',($sysRamUsed / $system['mem_info']['MemTotal']) 
 	<td><?php echo php_uname('n');?></td>
 	<td><?php echo php_uname('r');?></td>
 	<td colspan="2"><?php echo exec('/usr/local/sbin/pistar-platformDetect.sh');?></td>
-	<td colspan="2">1m:<?php echo $cpuLoad[0];?> / 5m:<?php echo $cpuLoad[1];?> / 15m:<?php echo $cpuLoad[2];?></td>
+	<td colspan="2">User: <?php echo $cpuLoad['user'];?>% / Nice: <?php echo $cpuLoad['nice'];?>% / Sys: <?php echo $cpuLoad['sys'];?>% / Idle: <?php echo $cpuLoad['idle'];?>%</td>
 	<td colspan="2"><?php echo $sysRamPercent;?>% Used</td>
 	<td colspan="2"><?php echo $rootfs_used;?> Used</td>
 	<?php echo $cpuTempHTML; ?>
