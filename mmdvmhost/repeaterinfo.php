@@ -178,7 +178,7 @@ if (isProcessRunning("DMRGateway")) {
         	    echo "<td style=\"background:#c9f;font-weight:bold\">Standby: NXDN</td>";
         	}
 			else if (getActualMode($lastHeard, $_SESSION['MMDVMHostConfigs']) === 'POCSAG') {
-        	    echo "<td style=\"color:#fff; background:#f33; font-weight:bold\">POCSAG Activity</td>";
+        	    echo "<td style=\"color:#fff; background:#F012BE; font-weight:bold\">POCSAG Activity</td>";
         	}
         	else {
         	    echo "<td>".getActualMode($lastHeard, $_SESSION['MMDVMHostConfigs'])."</td>";
