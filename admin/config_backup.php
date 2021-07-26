@@ -107,8 +107,7 @@ if ($_SERVER["PHP_SELF"] == "/admin/config_backup.php") {
 			    $output .= shell_exec("sudo cp /etc/bmapi.key $backupDir 2>&1")."\n";
 			    $output .= shell_exec("sudo cp /etc/dapnetapi.key $backupDir 2>&1")."\n";
 			    $output .= shell_exec("sudo cp /etc/default/gpsd $backupDir 2>&1")."\n";
-			    $output .= shell_exec("sudo cp /etc/tinyfilemanager-auth.php $backupDir 2>&1")."\n";
-			    $output .= shell_exec("sudo cp /etc/tinyfilemanager-config.php $backupDir 2>&1")."\n";
+			    $output .= shell_exec("sudo cp /etc/*_paused $backupDir 2>&1")."\n";
 			    $output .= shell_exec("sudo cp /usr/local/etc/RSSI.dat $backupDir 2>&1")."\n";
 			    $output .= shell_exec("sudo cp /var/www/dashboard/config/ircddblocal.php $backupDir 2>&1")."\n";
 			    $output .= shell_exec("sudo cp /var/www/dashboard/config/config.php $backupDir 2>&1")."\n";
@@ -212,6 +211,7 @@ if ($_SERVER["PHP_SELF"] == "/admin/config_backup.php") {
 				$output .= shell_exec('sudo find /tmp/config_restore/ -maxdepth 1 -name "*Hosts.txt" -exec mv -fv {} /root \; 2>&1')."\n";
 				$output .= shell_exec("sudo mv -fv /tmp/config_restore/wpa_supplicant.conf /etc/wpa_supplicant/ 2>&1")."\n";
                 $output .= shell_exec("sudo mv -fv /tmp/config_restore/hostapd.conf /etc/hostapd/ 2>&1")."\n";
+				$output .= shell_exec("sudo mv -fv /tmp/config_restore/*_paused /etc/ 2>&1")."\n";
 				$output .= shell_exec("sudo mv -fv /tmp/config_restore/* /etc/ 2>&1")."\n";
 				
 				//Restore the Timezone Config
