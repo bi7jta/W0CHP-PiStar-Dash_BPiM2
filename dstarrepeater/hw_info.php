@@ -128,7 +128,7 @@ $sysRamPercent = sprintf('%.2f',($sysRamUsed / $system['mem_info']['MemTotal']) 
 
 ?>
 <h2><?php echo $lang['hardware_info'];?></h2>
-<table>
+<table style="white-space:normal; word-wrap:break;">
     <tr>
 	<th><a class="tooltip" href="#"><?php echo $lang['hostname'];?><br /><span><b>System IP Address:<br /><?php echo str_replace(',', ',<br />', exec('hostname -I'));?></b></span></a></th>
 	<th><a class="tooltip" href="#"><?php echo $lang['kernel'];?><span><b>Release</b>This is the version<br />number of the Linux Kernel running<br />on this Raspberry Pi.</b></span></a></th>
