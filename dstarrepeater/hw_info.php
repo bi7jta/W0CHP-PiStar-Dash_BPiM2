@@ -130,7 +130,7 @@ $sysRamPercent = sprintf('%.2f',($sysRamUsed / $system['mem_info']['MemTotal']) 
 <h2><?php echo $lang['hardware_info'];?></h2>
 <table style="white-space:normal; word-wrap:break;">
     <tr>
-    <th><a class="tooltip" href="#">Current Time/Date (<?php echo date('T')?>)<span><b>Current time &amp; date</b><span></a></th>
+    <th><a class="tooltip" href="#">Current Time (<?php echo date('T')?>)<span><b>Current Time</b><span></a></th>
 	<th><a class="tooltip" href="#"><?php echo $lang['hostname'];?><br /><span><b>System IP Address:<br /><?php echo str_replace(',', ',<br />', exec('hostname -I'));?></b></span></a></th>
 	<th><a class="tooltip" href="#"><?php echo $lang['kernel'];?><span><b>Release</b>This is the version<br />number of the Linux Kernel running<br />on this Raspberry Pi.</b></span></a></th>
 	<th colspan="2"><a class="tooltip" href="#"><?php echo $lang['platform'];?><span><b>Uptime:<br /><?php echo str_replace(',', ',<br />', exec('uptime -p'));?></b></span></a></th>
