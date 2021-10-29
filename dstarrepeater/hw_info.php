@@ -131,6 +131,8 @@ $sysRamPercent = sprintf('%.2f',($sysRamUsed / $system['mem_info']['MemTotal']) 
 <table style="white-space:normal; word-wrap:break;">
     <tr>
 	<th><a class="tooltip" href="#"><?php echo $lang['hostname'];?><br /><span><b>System IP Address:<br /><?php echo str_replace(',', ',<br />', exec('hostname -I'));?></b></span></a></th>
+    <th><a class="tooltip" href="#">Current Date/Time<span><b>Current date
+&amp; time</b><span></a></th>
 	<th><a class="tooltip" href="#"><?php echo $lang['kernel'];?><span><b>Release</b>This is the version<br />number of the Linux Kernel running<br />on this Raspberry Pi.</b></span></a></th>
 	<th colspan="2"><a class="tooltip" href="#"><?php echo $lang['platform'];?><span><b>Uptime:<br /><?php echo str_replace(',', ',<br />', exec('uptime -p'));?></b></span></a></th>
 	<th colspan="2"><a class="tooltip" href="#"><?php echo $lang['cpu_load'];?><span><b>CPU Load</b></span></a></th>
@@ -140,6 +142,26 @@ $sysRamPercent = sprintf('%.2f',($sysRamUsed / $system['mem_info']['MemTotal']) 
     </tr>
     <tr>
 	<td><?php echo php_uname('n');?></td>
+	<td>    <script type= "text/javascript">
+$(document).ready(function() {
+
+    function update() {
+      $.ajax({
+       type: 'POST',
+       url: '/dstarrepeater/datetime.php',
+       timeout: 1000,
+       success: function(data) {
+          $("#timer").html(data); 
+          window.setTimeout(update, 1000);
+       }
+      });
+     }
+     update();
+
+});
+</script>
+
+<div id="timer"> </div></td>
 	<td><?php echo php_uname('r');?></td>
 	<td colspan="2"><?php echo exec('/usr/local/sbin/pistar-platformDetect.sh');?></td>
 	<td colspan="2">User: <?php echo $cpuLoad['user'];?>% / Sys: <?php echo $cpuLoad['sys'];?>% / Nice: <?php echo $cpuLoad['nice'];?>% / Idle: <?php echo $cpuLoad['idle'];?>%</td>
