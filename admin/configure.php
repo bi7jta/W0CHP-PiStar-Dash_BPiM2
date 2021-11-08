@@ -149,6 +149,18 @@ if (!isset($configdmrgateway['Remote Control'])) {
     $configdmrgateway['Remote Control']['Address'] = "127.0.0.1";
 }
 
+// New MMDVMHost uart stuff
+if (!isset($configmmdvm['Modem']['Protocol']) ||
+!isset($configmmdvm['Modem']['UARTPort']) ||
+!isset($configmmdvm['Modem']['UARTSpeed'])) {
+    $configmmdvm['Modem']['Protocol'] = "uart";
+    $configmmdvm['Modem']['UARTPort'] = $configmmdvm['Modem']['Port'];
+    $configmmdvm['Modem']['UARTSpeed'] = 115200;
+}
+
+//
+// Build APRS password from callsign
+//
 function aprspass ($callsign) {
 	$stophere = strpos($callsign, '-');
 	if ($stophere) $callsign = substr($callsign, 0, $stophere);
