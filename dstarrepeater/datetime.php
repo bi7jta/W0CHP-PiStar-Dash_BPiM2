@@ -1,6 +1,6 @@
 <?php
 
-  $msg = date('H:i:s M dS');
+  $msg = date('H:i:s M jS');
   echo $msg;
 
  ?>
