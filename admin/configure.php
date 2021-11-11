@@ -1051,7 +1051,12 @@ if (!empty($_POST)):
 		}
 	  	else {
 			$configysfgateway['Network']['Startup'] = $newYSFStartupHostArr[1];
-			$configdmr2ysf['DMR Network']['DefaultDstTG'] = str_replace("FCS", "1", $newYSFStartupHostArr[0]);
+			if (substr( $newYSFStartupHostArr[0], 0, 3 ) !== "FCS") {
+				$configdmr2ysf['DMR Network']['DefaultDstTG'] = $newYSFStartupHostArr[0];
+			} else {
+				$configdmr2ysf['DMR Network']['DefaultDstTG'] = "9";
+			}
+			//$configdmr2ysf['DMR Network']['DefaultDstTG'] = str_replace("FCS", "1", $newYSFStartupHostArr[0]);
 		}
 	  } else {
 	  	if ($newYSFStartupHostArr[0] == "none") {
@@ -1060,7 +1065,12 @@ if (!empty($_POST)):
 		}
 	  	else {
 			$configysfgateway['Network']['Startup'] = $newYSFStartupHostArr[0];
-			$configdmr2ysf['DMR Network']['DefaultDstTG'] = str_replace("FCS", "1", $newYSFStartupHostArr[0]);
+			if (substr( $newYSFStartupHostArr[0], 0, 3 ) !== "FCS") {
+				$configdmr2ysf['DMR Network']['DefaultDstTG'] = $newYSFStartupHostArr[0];
+			} else {
+				$configdmr2ysf['DMR Network']['DefaultDstTG'] = "9";
+			}
+			//$configdmr2ysf['DMR Network']['DefaultDstTG'] = str_replace("FCS", "1", $newYSFStartupHostArr[0]);
 		}
 	  }
 	}
