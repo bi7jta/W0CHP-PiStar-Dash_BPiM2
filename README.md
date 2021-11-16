@@ -195,7 +195,7 @@ Run:
 #### POCSAG / DAPNET Messenger
 ![alt text](https://w0chp.net/img/W0CHP_Admin_6.png "W0CHP Admin Page 6")
 
-#### S-Star Manager
+#### D-Star Manager
 ![alt text](https://w0chp.net/img/W0CHP_Admin_6.png "W0CHP Admin Page 7")
 
 ### Configuration Page
