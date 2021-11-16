@@ -180,7 +180,7 @@ Run:
 #### Main Admin Landing Page
 ![alt text](https://w0chp.net/img/W0CHP_Admin_1.png "W0CHP Admin Page 1")
 
-#### "Instant Mode Manager"
+#### Instant Mode Manager
 ![alt text](https://w0chp.net/img/W0CHP_Admin_2.png "W0CHP Admin Page 2")
 
 #### BrandMeister Manager
@@ -194,6 +194,9 @@ Run:
 
 #### POCSAG / DAPNET Messenger
 ![alt text](https://w0chp.net/img/W0CHP_Admin_6.png "W0CHP Admin Page 6")
+
+#### S-Star Manager
+![alt text](https://w0chp.net/img/W0CHP_Admin_6.png "W0CHP Admin Page 7")
 
 ### Configuration Page
 
