@@ -344,7 +344,7 @@ checkSessionValidity();
 		    else {
 		    	echo '    <button form="admin_sel" disabled="disabled" type="submit" value="p25_man" name="func"><span>P25 Manager</span></button>';
 		    }
-                    $testMMDVModeP25 = getConfigItem("NXDN", "Enable", $_SESSION['MMDVMHostConfigs']);
+                    $testMMDVModeNXDN = getConfigItem("NXDN", "Enable", $_SESSION['MMDVMHostConfigs']);
                     if ($testMMDVModeNXDN == 1 && !isPaused("NXDN")) {
 		    	echo '    <button form="admin_sel" type="submit" value="nxdn_man" name="func"><span>NXDN Manager</span></button>';
 		    }
