@@ -449,18 +449,18 @@ function getMMDVMLog() {
     $logLines2 = array();
     if (file_exists(MMDVMLOGPATH."/".MMDVMLOGPREFIX."-".gmdate("Y-m-d").".log")) {
 	$logPath = MMDVMLOGPATH."/".MMDVMLOGPREFIX."-".gmdate("Y-m-d").".log";
-	$logLines1 = explode("\n", `egrep -h "from|end|watchdog|lost" $logPath | sed '/\(CSBK\|overflow\|Downlink\)/d' | tail -350`);
+	$logLines1 = explode("\n", `egrep -h "from|end|watchdog|lost" $logPath | sed '/\(CSBK\|overflow\|Downlink\)/d' | tail -400`);
     }
-    $logLines1 = array_slice($logLines1, -350);
+    $logLines1 = array_slice($logLines1, -400);
     if (sizeof($logLines1) < 350) {
 	if (file_exists(MMDVMLOGPATH."/".MMDVMLOGPREFIX."-".gmdate("Y-m-d", time() - 86340).".log")) {
 	    $logPath = MMDVMLOGPATH."/".MMDVMLOGPREFIX."-".gmdate("Y-m-d", time() - 86340).".log";
-	    $logLines2 = explode("\n", `egrep -h "from|end|watchdog|lost" $logPath | sed '/\(CSBK\|overflow\|Downlink\)/d' | tail -350`);
+	    $logLines2 = explode("\n", `egrep -h "from|end|watchdog|lost" $logPath | sed '/\(CSBK\|overflow\|Downlink\)/d' | tail -400`);
 	}
     }
-    $logLines2 = array_slice($logLines2, -350);
+    $logLines2 = array_slice($logLines2, -400);
     $logLines = $logLines1 + $logLines2;
-    $logLines = array_slice($logLines, -350);
+    $logLines = array_slice($logLines, -400);
     return $logLines;
 }
 
