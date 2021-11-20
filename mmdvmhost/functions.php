@@ -655,7 +655,7 @@ function getDVModemFirmware() {
 	else if (strpos($logLine, 'description: Nano_hotSPOT-')) {
 	    $modemFirmware = "MMDVM_HS:".ltrim(strtok(substr($logLine, 80, 12), ' '), 'v');
 	}
-	else if (strpos($logLine, 'description: Nano_hotSPOT-') && strpos($logLine, 'dual ADF7021')) {
+	else if (strpos($logLine, 'description: Nano_hotSPOT-') && (strpos($logLine, 'dual'))) {
 	    $modemFirmware = "HS_Dual_Hat:".ltrim(strtok(substr($logLine, 80, 12), ' '), 'v');
 	}
 	else if (strpos($logLine, 'description: OpenGD77_HS ')) {
