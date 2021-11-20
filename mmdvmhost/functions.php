@@ -621,6 +621,7 @@ function getDAPNETGatewayLog($myRIC) {
 // I: 1970-01-01 00:00:00.000 MMDVM protocol version: 1, description: D2RG_MMDVM_HS-v1.4.17 20190529 14.7456MHz ADF7021 FW by CA6JAU GitID #cc451c4
 // I: 1970-01-01 00:00:00.000 MMDVM protocol version: 1, description: Nano_hotSPOT-v1.3.3 20180224 ADF7021 FW by CA6JAU GitID #62323e7
 // I: 1970-01-01 00:00:00.000 MMDVM protocol version: 1, description: Nano-Spot-v1.3.3 20180224 ADF7021 FW by CA6JAU GitID #62323e7
+// I: 2021-11-20 01:17:57.475 MMDVM protocol version: 1, description: Nano_hotSPOT-v1.5.2 20201108 14.7456MHz dual ADF7021 FW by CA6JAU GitID #69d0879
 // I: 1970-01-01 00:00:00.000 MMDVM protocol version: 1, description: Nano_DV-v1.4.3 20180716 12.2880MHz ADF7021 FW by CA6JAU GitID #6729d23
 // I: 2020-01-08 09:23:22.268 MMDVM protocol version: 1, description: OpenGD77_HS v0.0.73 GitID #ce8217f
 // I: 2020-11-12 06:00:38.552 MMDVM protocol version: 1, description: MMDVM_HS-v1.5.2 20201108 14.7456MHz dual ADF7021 FW by CA6JAU GitID #89daa20
@@ -653,6 +654,9 @@ function getDVModemFirmware() {
 	}
 	else if (strpos($logLine, 'description: Nano_hotSPOT-')) {
 	    $modemFirmware = "MMDVM_HS:".ltrim(strtok(substr($logLine, 80, 12), ' '), 'v');
+	}
+	else if (strpos($logLine, 'description: Nano_hotSPOT-') && strpos($logLine, 'dual ADF7021')) {
+	    $modemFirmware = "HS_Dual_Hat:".ltrim(strtok(substr($logLine, 80, 12), ' '), 'v');
 	}
 	else if (strpos($logLine, 'description: OpenGD77_HS ')) {
 	    $modemFirmware = "OpenGD77:".strtok(substr($logLine, 79, 12), ' ');
