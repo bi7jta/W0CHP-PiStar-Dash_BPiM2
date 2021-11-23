@@ -376,7 +376,7 @@ checkSessionValidity();
 		    echo '      </div></td>';
 		    echo '    </tr>';
 		    echo '    <tr>';
-		    echo '      <td style="white-space:normal;">Note: Modes/networks/services not globally enabled, or are paused by you, are not selectable here until they are enabled or resumed from pause.</td>';
+		    echo '      <td style="white-space:normal;">Note: Modes/networks/services not globally enabled, or that are paused, are not selectable here until they are enabled or resumed from pause.</td>';
 		    echo '    </tr>';
 		    echo '  </table>';
 		    echo ' </form>';
