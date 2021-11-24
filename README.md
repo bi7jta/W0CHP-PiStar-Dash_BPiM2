@@ -61,9 +61,8 @@ caveats](https://w0chp.net/w0chp-pistar-dash/#the-rules-and-caveats----important
 * Test / Unstable Features (not installed by default)
   * Talker Alias (DMR) displayed next to call sign when operator is transmitting
     (when applicable). This needs a lot of work, yet.  This feature is on the
-  `  TalkerAlias` branch. Caveat emptor...this is buggy!
+  ` TalkerAlias` branch. Caveat emptor...this is buggy!
   * Name Look-ups: First names are displayed next to call sign. There are two versions/two ways this is performed:
-
     * DMR (and other modes if call sign is in DMR database): This method searches through the local Pi-Star DMR ID database.
       The caveat here, is that this method relies on hams having a DMR ID for non-DMR modes.
     * All Modes: This method looks up each callsign and displays the first name via an API call to the Callook.info service, by `W1JDD`.
