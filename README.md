@@ -65,13 +65,10 @@ caveats](https://w0chp.net/w0chp-pistar-dash/#the-rules-and-caveats----important
   `  TalkerAlias` branch. Caveat emptor...this is buggy!
 
   * Name Look-ups: First names are displayed next to call sign. There are two versions/two ways this is performed:
-
     * DMR (and other modes if call sign is in DMR database): This method searches through the local Pi-Star DMR ID database.
       The caveat here, is that this method relies on hams having a DMR ID for non-DMR modes.
-
     * All Modes: This method looks up each callsign and displays the first name via an API call to the  Callook.info service, by `W1JDD`.
       The caveat here, is that Callook.info only works with USA call signs.
-
     * The aforementioned respective name lookup branches are `NameLookups` and `NameLookups-API`. Beware: these are very slow on shitty
       hardware, and requires *lots* of horsepower. Like the `TalkerAlias` feature/branch listed above, these features are
       unstable, and still needs quite a bit of work.
