@@ -426,14 +426,24 @@ input:disabled + label {
 }
 
 select {
-  background-color: #f1f1f1;
+    background-color: #f1f1f1;
     font-family: 'Inconsolata', monospace;
-    font-size: 15px;
+    font-size: 16px;
     border: 1px solid black;
     color: black;
     padding: 5px;
     text-decoration: none;
     margin: 3px;
+}
+
+.select2-selection__rendered {
+  font-family: 'Inconsolata', monospace;
+  font-size: 16px;
+}
+
+.select2-results__options{
+  font-size:16px !important;
+  font-family: 'Inconsolata', monospace;
 }
 
 /* put the same color as in left vertical status */
@@ -767,7 +777,7 @@ select {
         margin : 0;
         padding : 0;
         border-width : 1px;
-        font : 14px 'Source Sans Pro', sans-serif;
+        font : 14px 'Inconsolata', monospace;
     }
     input[type="button"], button, input[type="submit"] {
         padding : 0px 3px 0px 3px;
