@@ -1,3 +1,3 @@
 <?php
-$version = '20211123_01-W0CHP';
+$version = '20211124_01-W0CHP';
 ?>
