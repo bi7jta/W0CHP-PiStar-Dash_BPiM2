@@ -113,11 +113,12 @@ caveats](https://w0chp.net/w0chp-pistar-dash/#the-rules-and-caveats----important
 
     You will be presented with...
 
-
         -h,   --help                     Display this help text.
         -id,  --install-dashboard        Install W0CHP dashboard.
         -idc  --install-dashboard-css    Install W0CHP dashboard WITH custom stylesheet.
         -rd,  --restore-dashboard        Restore original dashboard.
+        -dfw  --disable-firewall         Disable Pi-Star firewall rules and allow all traffic
+        -efw  --enable-firewall          Enable Pi-Star firewall rules to defaults and only allow required traffic
         -s,   --status                   Display current install, original or W0CHP installations.
 
 5. When ready to install, run the above command again with the option/argument you wish...e.g:
