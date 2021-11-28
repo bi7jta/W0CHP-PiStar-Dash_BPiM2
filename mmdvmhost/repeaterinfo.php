@@ -137,11 +137,11 @@ if (isProcessRunning("DMRGateway")) {
 	    if ($isTXing == false) {
 		    $listElem = $lastHeard[0];
 	        if (getActualMode($lastHeard, $_SESSION['MMDVMHostConfigs']) === 'idle') {
-	            echo "<td style=\"background:#0b0; color:#fff;font-weight:bold\">Idle</td>";
+	            echo "<td style=\"background:#0b0; color:#000;font-weight:bold\">Idle</td>";
 	        }
 	        else if (getActualMode($lastHeard, $_SESSION['MMDVMHostConfigs']) === NULL) {
 	            if (isProcessRunning("MMDVMHost")) {
-			echo "<td style=\"background:#0b0; color:#fff;font-weight:bold\">Idle</td>";
+			echo "<td style=\"background:#0b0; color:#000;font-weight:bold\">Idle</td>";
 		    }
 		    else {
 			echo "<td style=\"background:#606060; color:#b0b0b0;font-weight:bold\">OFFLINE</td>";
