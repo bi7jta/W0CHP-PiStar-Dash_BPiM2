@@ -10,14 +10,6 @@ if (!isset($_SESSION) || !is_array($_SESSION)) {
     checkSessionValidity();
 }
 
-// Get the CPU temp and colour the box accordingly...
-$cpuTempCRaw = exec('cat /sys/class/thermal/thermal_zone0/temp');
-if ($cpuTempCRaw > 1000) { $cpuTempC = round($cpuTempCRaw / 1000, 1); } else { $cpuTempC = round($cpuTempCRaw, 1); }
-$cpuTempF = round(+$cpuTempC * 9 / 5 + 32, 1);
-if ($cpuTempC < 55) { $cpuTempHTML = "<td style=\"background: inherit\">".$cpuTempF."&deg;F/".$cpuTempC."&deg;C</td>\n"; }
-if ($cpuTempC >= 55) { $cpuTempHTML = "<td style=\"background: #fa0\">".$cpuTempF."&deg;F/".$cpuTempC."&deg;C</td>\n"; }
-if ($cpuTempC >= 69) { $cpuTempHTML = "<td style=\"background: #f00\">".$cpuTempF."&deg;F/".$cpuTempC."&deg;C</td>\n"; }
-
 // Pull in some config
 require_once('config/config.php');
 require_once('config/version.php');
@@ -338,17 +330,6 @@ if ($_SERVER["PHP_SELF"] == "/admin/configure.php") {
     // Hardware Detail
 	//HTML output starts here
      echo '<div class="contentwide">'."\n";
-	 echo '<script type="text/javascript">'."\n";
-	 echo 'function reloadHwInfo(){'."\n";
-	 echo '  $("#hwInfo").load("/dstarrepeater/hw_info.php",function(){ setTimeout(reloadHwInfo, 15000) });'."\n";
-	 echo '}'."\n";
-	 echo 'setTimeout(reloadHwInfo, 15000);'."\n";
-	 echo '$(window).trigger(\'resize\');'."\n";
-	 echo '</script>'."\n";
-	 echo '<div id="hwInfo">'."\n";
-	 include 'dstarrepeater/hw_info.php';
-	 echo '</div>'."\n";
-	 echo '<br />'."\n";
 if (!empty($_POST)):
 	// Make the root filesystem writable
 	system('sudo mount -o remount,rw /');
