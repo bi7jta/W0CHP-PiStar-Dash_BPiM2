@@ -94,8 +94,8 @@ $rootfs_used = (@exec("df --block-size=1m /|awk {'print $5'}|tail -1"));
 
 // Get the CPU temp and colour the box accordingly...
 $cpuTempCRaw = exec('cat /sys/class/thermal/thermal_zone0/temp');
-if ($cpuTempCRaw > 1000) { $cpuTempC = round($cpuTempCRaw / 1000, 1); } else { $cpuTempC = round($cpuTempCRaw, 1); }
-$cpuTempF = round(+$cpuTempC * 9 / 5 + 32, 1);
+if ($cpuTempCRaw > 1000) { $cpuTempC = sprintf('%.0f',round($cpuTempCRaw / 1000, 1)); } else { $cpuTempC = sprintf('%.0f',round($cpuTempCRaw, 1)); }
+$cpuTempF = sprintf('%.0f',round(+$cpuTempC * 9 / 5 + 32, 1));
 if ($cpuTempC < 55) { $cpuTempHTML = "<td style=\"background: inherit\">".$cpuTempF."&deg;F/".$cpuTempC."&deg;C</td>\n"; }
 if ($cpuTempC >= 55) { $cpuTempHTML = "<td style=\"background: #fa0\">".$cpuTempF."&deg;F/".$cpuTempC."&deg;C</td>\n"; }
 if ($cpuTempC >= 69) { $cpuTempHTML = "<td style=\"background: #f00\">".$cpuTempF."&deg;F/".$cpuTempC."&deg;C</td>\n"; }
@@ -116,7 +116,7 @@ $dif['sys'] = $info2[2] - $info1[2];
 $dif['idle'] = $info2[3] - $info1[3]; 
 $total = array_sum($dif); 
 $cpuLoad = array(); 
-foreach($dif as $x=>$y) $cpuLoad[$x] = round($y / $total * 100, 1);
+foreach($dif as $x=>$y) $cpuLoad[$x] = sprintf('%.0f',round($y / $total * 100, 1));
 
 // Retrieve server information
 $system = system_information();
@@ -124,7 +124,7 @@ $system = system_information();
 // get ram
 $sysRamUsed = $system['mem_info']['MemTotal'] - $system['mem_info']['MemFree'] - $system['mem_info']['Buffers'] - $system['mem_info']['Cached'];
 // format ram in percent
-$sysRamPercent = sprintf('%.2f',($sysRamUsed / $system['mem_info']['MemTotal']) * 100);
+$sysRamPercent = sprintf('%.0f',($sysRamUsed / $system['mem_info']['MemTotal']) * 100);
 
 ?>
 <h2><?php echo $lang['hardware_info'];?></h2>
