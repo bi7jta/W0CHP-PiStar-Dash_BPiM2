@@ -19,6 +19,25 @@ function getServiceStatusClass($active) {
     echo (($active) ? 'active-mode-cell' : 'disabled-mode-cell');
 }
 
+// upnp test
+function UPnPenabled() {
+    $testupnp = exec('grep "pistar-upnp.service" /etc/crontab | cut -c 1');
+    if (substr($testupnp, 0, 1) === '#') {
+        return 0;
+    } else {
+        return 1;
+    }
+}
+
+// Autp AP test
+function autoAPenabled() {
+if (file_exists('/etc/hostap.off')) {
+        return 0;
+    } else {
+        return 1;
+    }
+}
+
 ?>
 <table style="table-layout: fixed;">
     <tr>
@@ -32,6 +51,14 @@ function getServiceStatusClass($active) {
 	<td class="<?php getServiceStatusClass(isProcessRunning('P25Gateway')); ?>">P25Gateway</td>
     </tr>
     <tr>
+	<?php if(UPnPenabled() == 1) { print '    <td class="active-mode-cell">UPnP</td>'; } else { print '    <td class="disabled-mode-cell">UPnP</td>'; } ?>
+	<?php if(autoAPenabled() == 1) { print '   <td class="active-mode-cell">Auto AP</td>'; } else { print '    <td class="disabled-mode-cell">Auto AP</td>'; } ?>
+	<td class="<?php getServiceStatusClass(isProcessRunning('ntpd')); ?>">NTPd</td>
+	<td class="<?php getServiceStatusClass(isProcessRunning('NXDNParrot')); ?>">NXDNParrot</td>
+    <!-- <td class="<?php getServiceStatusClass(isProcessRunning('DGIdGateway')); ?>">DG-ID Gateway</td> -->
+	<td class="<?php getServiceStatusClass(isProcessRunning('')); ?>"></td>
+	</tr>
+    <tr>
 	<td class="<?php getServiceStatusClass(isProcessRunning('dstarrepeaterd')); ?>">DStarRepeater</td>
 	<td class="<?php getServiceStatusClass(isProcessRunning('YSFParrot')); ?>">YSFParrot</td>
 	<td class="<?php getServiceStatusClass(isProcessRunning('P25Parrot')); ?>">P25Parrot</td>
@@ -42,7 +69,7 @@ function getServiceStatusClass($active) {
 	<td class="<?php getServiceStatusClass(isProcessRunning('timeserverd')); ?>">TimeServer</td>
 	<td class="<?php getServiceStatusClass(isProcessRunning('/usr/local/sbin/pistar-watchdog',true)); ?>">PiStar-Watchdog</td>
 	<td class="<?php getServiceStatusClass(isProcessRunning('/usr/local/sbin/pistar-remote',true)); ?>">PiStar-Remote</td>
-	<td class="<?php getServiceStatusClass(isProcessRunning('/usr/local/sbin/pistar-keeper',true)); ?>">PiStar-Keeper (UK only)</td>
+	<td class="<?php getServiceStatusClass(isProcessRunning('/usr/local/sbin/pistar-keeper',true)); ?>">PiStar-Keeper</td>
 	<td class="<?php getServiceStatusClass(isProcessRunning('DAPNETGateway')); ?>">DAPNETGateway</td>
     </tr>
 </table>

@@ -131,7 +131,7 @@ checkSessionValidity();
 		if (empty($_POST) && empty($_GET)) {				// only show services on main admin page
 		    echo '<div id="hwInfo">'."\n";
 		    include 'dstarrepeater/hw_info.php';			// Basic System Info
-		    echo '</div>'."\n";
+		    echo '</div><br />'."\n";
 		    echo '<div id="sysInfo">'."\n";
 		    include 'dstarrepeater/system.php';				// Basic System Info
 		    echo '</div>'."\n";

@@ -145,6 +145,6 @@ $lang = array (
   "active_starnet_members"      =>  "Aktive Starnet Gruppe medlemer",
   "d-star_link_manager"         =>  "D-Star Link Manager",
   "d-star_link_status"          =>  "D-Star Link Informasjon",
-  "service_status"              =>  "Process Status"
+  "service_status"              =>  "Process and Services Status"
 );
 ?>
