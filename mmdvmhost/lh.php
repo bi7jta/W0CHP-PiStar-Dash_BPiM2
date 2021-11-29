@@ -12,13 +12,11 @@ if (file_exists('/etc/pistar-css.ini')) {
 
     // Set the Values from the config file
     if (isset($piStarCss['DashboardRows']['LastHeard'])) { $lastHeardRows = $piStarCss['DashboardRows']['LastHeard']; }
-    else { $lastHeardRows = "40"; }
-    if ($lastHeardRows > 40) { $lastHeardRows = "40"; }
-} else {
+        if ($lastHeardRows > 100) { $lastHeardRows = "100"; } // need an internal limit
+    } else {
     // Default values
     $lastHeardRows = "40";
 }
-
 ?>
 <input type="hidden" name="lh-autorefresh" value="OFF" />
     <div style="float: right; vertical-align: bottom; padding-top: 5px;">
