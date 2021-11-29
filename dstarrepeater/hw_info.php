@@ -98,7 +98,7 @@ $rootfs_used = (@exec("df --block-size=1m /|awk {'print $5'}|tail -1"));
 $cpuTempCRaw = exec('cat /sys/class/thermal/thermal_zone0/temp');
 if ($cpuTempCRaw > 1000) { $cpuTempC = sprintf('%.0f',round($cpuTempCRaw / 1000, 1)); } else { $cpuTempC = sprintf('%.0f',round($cpuTempCRaw, 1)); }
 $cpuTempF = sprintf('%.0f',round(+$cpuTempC * 9 / 5 + 32, 1));
-if ($cpuTempC < 59) { $cpuTempHTML = "<td style=\"background: inherit\">".$cpuTempF."&deg;F/".$cpuTempC."&deg;C</td>\n"; }
+if ($cpuTempC <= 59) { $cpuTempHTML = "<td style=\"background: inherit\">".$cpuTempF."&deg;F/".$cpuTempC."&deg;C</td>\n"; }
 if ($cpuTempC >= 60) { $cpuTempHTML = "<td style=\"background: #fa0\">".$cpuTempF."&deg;F/".$cpuTempC."&deg;C</td>\n"; }
 if ($cpuTempC >= 80) { $cpuTempHTML = "<td style=\"background: #f00\">".$cpuTempF."&deg;F/".$cpuTempC."&deg;C</td>\n"; }
 
