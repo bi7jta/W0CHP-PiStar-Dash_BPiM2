@@ -55,21 +55,21 @@ if (file_exists('/etc/hostap.off')) {
 	<?php if(autoAPenabled() == 1) { print '   <td class="active-mode-cell">Auto AP</td>'; } else { print '    <td class="disabled-mode-cell">Auto AP</td>'; } ?>
 	<td class="<?php getServiceStatusClass(isProcessRunning('ntpd')); ?>">NTPd</td>
 	<td class="<?php getServiceStatusClass(isProcessRunning('NXDNParrot')); ?>">NXDNParrot</td>
-    <!-- <td class="<?php getServiceStatusClass(isProcessRunning('DGIdGateway')); ?>">DG-ID Gateway</td> -->
-	<td class="<?php getServiceStatusClass(isProcessRunning('')); ?>"></td>
+	<td class="<?php getServiceStatusClass(isProcessRunning('APRSGateway')); ?>">APRSGateway</td>
 	</tr>
     <tr>
 	<td class="<?php getServiceStatusClass(isProcessRunning('dstarrepeaterd')); ?>">DStarRepeater</td>
 	<td class="<?php getServiceStatusClass(isProcessRunning('YSFParrot')); ?>">YSFParrot</td>
 	<td class="<?php getServiceStatusClass(isProcessRunning('P25Parrot')); ?>">P25Parrot</td>
 	<td class="<?php getServiceStatusClass(isProcessRunning('gpsd')); ?>">GPSd</td>
-	<td class="<?php getServiceStatusClass(isProcessRunning('APRSGateway')); ?>">APRSGateway</td>
+	<td class="<?php getServiceStatusClass(isProcessRunning('DAPNETGateway')); ?>">DAPNETGateway</td>
     </tr>
     <tr>
 	<td class="<?php getServiceStatusClass(isProcessRunning('timeserverd')); ?>">TimeServer</td>
 	<td class="<?php getServiceStatusClass(isProcessRunning('/usr/local/sbin/pistar-watchdog',true)); ?>">PiStar-Watchdog</td>
 	<td class="<?php getServiceStatusClass(isProcessRunning('/usr/local/sbin/pistar-remote',true)); ?>">PiStar-Remote</td>
 	<td class="<?php getServiceStatusClass(isProcessRunning('/usr/local/sbin/pistar-keeper',true)); ?>">PiStar-Keeper</td>
-	<td class="<?php getServiceStatusClass(isProcessRunning('DAPNETGateway')); ?>">DAPNETGateway</td>
+	<!-- <td class="<?php getServiceStatusClass(isProcessRunning('DGIdGateway')); ?>">DG-ID Gateway</td> -->
+	<td class="<?php getServiceStatusClass(isProcessRunning('')); ?>"></td>
     </tr>
 </table>
