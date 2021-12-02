@@ -205,10 +205,10 @@ function formatSize( $bytes ) {
 			$YSFGateway_Ver = exec('/usr/local/bin/YSFGateway -v | cut -d\' \' -f 3-');
 			echo "  <tr>";getStatusClass(isProcessRunning("YSFGateway"), true); echo "YSFGateway</td><td align=\"left\">".$YSFGateway_Ver."</td></tr>\n";
 		    }
-		    //if (is_executable('/usr/local/bin/DGIdGateway')) {
-			//$DGIdGateway_Ver = exec('/usr/local/bin/DGIdGateway -v | cut -d\' \' -f 3-');
-			//echo "  <tr>";getStatusClass(isProcessRunning("DGIdGateway"), true); echo "DGIdGateway</td><td align=\"left\">".$DGIdGateway_Ver."</td></tr>\n";
-		    //}
+		    if (is_executable('/usr/local/bin/DGIdGateway')) {
+			$DGIdGateway_Ver = exec('/usr/local/bin/DGIdGateway -v | cut -d\' \' -f 3-');
+			echo "  <tr>";getStatusClass(isProcessRunning("DGIdGateway"), true); echo "DGIdGateway</td><td align=\"left\">".$DGIdGateway_Ver."</td></tr>\n";
+		    }
 		    if (is_executable('/usr/local/bin/YSF2DMR')) {
 			$YSF2DMR_Ver = exec('/usr/local/bin/YSF2DMR -v | cut -d\' \' -f 3-');
 			echo "  <tr>";getStatusClass(isProcessRunning("YSF2DMR"), true); echo "YSF2DMR</td><td align=\"left\">".$YSF2DMR_Ver."</td></tr>\n";
@@ -228,6 +228,10 @@ function formatSize( $bytes ) {
 		    if (is_executable('/usr/local/bin/NXDNGateway')) {
 			$NXDNGateway_Ver = exec('/usr/local/bin/NXDNGateway -v | cut -d\' \' -f 3-');
 			echo "  <tr>";getStatusClass(isProcessRunning("NXDNGateway"), true); echo "NXDNGateway</td><td align=\"left\">".$NXDNGateway_Ver."</td></tr>\n";
+		    }
+		    if (is_executable('/usr/local/bin/NXDN2DMR')) {
+			$NXDN2DMR_Ver = exec('/usr/local/bin/NXDN2DMR -v | cut -d\' \' -f 3-');
+			echo "  <tr>";getStatusClass(isProcessRunning("NXDN2DMR"), true); echo "NXDN2DMR</td><td align=\"left\">".$NXDN2DMR_Ver."</td></tr>\n";
 		    }
 		    if (is_executable('/usr/local/bin/DAPNETGateway')) {
 			$DAPNETGateway_Ver = exec('/usr/local/bin/DAPNETGateway -v | cut -d\' \' -f 3-');
