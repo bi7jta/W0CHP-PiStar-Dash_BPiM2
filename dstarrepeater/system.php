@@ -63,10 +63,10 @@ if (file_exists('/etc/hostap.off')) {
   <div class="grid-item <?php getServiceStatusClass(isProcessRunning('gpsd')); ?>">GPSd</div> 
   <div class="grid-item <?php getServiceStatusClass(isProcessRunning('DAPNETGateway')); ?>">DAPNETGateway</div> 
   <div class="grid-item <?php getServiceStatusClass(isProcessRunning('timeserverd')); ?>">TimeServer</div>
-  <div class="grid-item <?php getServiceStatusClass(isProcessRunning('APRSGateway')); ?>">APRSGateway</div> 
   <div class="grid-item <?php getServiceStatusClass(isProcessRunning('/usr/local/sbin/pistar-watchdog',true)); ?>">PiStar-Watchdog</div> 
-
   <div class="grid-item <?php getServiceStatusClass(isProcessRunning('/usr/local/sbin/pistar-remote',true)); ?>">PiStar-Remote</div> 
+
+  <div class="grid-item <?php getServiceStatusClass(isProcessRunning('cron')); ?>">Cron</div>
   <div class="grid-item <?php getServiceStatusClass(isProcessRunning('/usr/local/sbin/pistar-keeper',true)); ?>">PiStar-Keeper</div>
   <div class="grid-item <?php getServiceStatusClass(isProcessRunning('DGIdGateway')); ?>">DG-ID Gateway</div> 
   <div class="grid-item <?php getServiceStatusClass(isProcessRunning('DMR2YSF')); ?>">DMR2YSF</div>
