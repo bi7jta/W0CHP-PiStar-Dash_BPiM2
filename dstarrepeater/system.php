@@ -39,37 +39,39 @@ if (file_exists('/etc/hostap.off')) {
 }
 
 ?>
-<table style="table-layout: fixed;">
-    <tr>
-	<th colspan="5"><?php echo $lang['service_status'];?></th>
-    </tr>
-    <tr>
-	<td class="<?php getServiceStatusClass(isProcessRunning('MMDVMHost')); ?>">MMDVMHost</td>
-	<td class="<?php getServiceStatusClass(isProcessRunning('DMRGateway')); ?>">DMRGateway</td>
-	<td class="<?php getServiceStatusClass(isProcessRunning('ircddbgatewayd')); ?>">ircDDBGateway</td>
-	<td class="<?php getServiceStatusClass(isProcessRunning('YSFGateway')); ?>">YSFGateway</td>
-	<td class="<?php getServiceStatusClass(isProcessRunning('P25Gateway')); ?>">P25Gateway</td>
-    </tr>
-    <tr>
-	<?php if(UPnPenabled() == 1) { print '    <td class="active-mode-cell">UPnP</td>'; } else { print '    <td class="disabled-mode-cell">UPnP</td>'; } ?>
-	<?php if(autoAPenabled() == 1) { print '   <td class="active-mode-cell">Auto AP</td>'; } else { print '    <td class="disabled-mode-cell">Auto AP</td>'; } ?>
-	<td class="<?php getServiceStatusClass(isProcessRunning('ntpd')); ?>">NTPd</td>
-	<td class="<?php getServiceStatusClass(isProcessRunning('NXDNParrot')); ?>">NXDNParrot</td>
-	<td class="<?php getServiceStatusClass(isProcessRunning('APRSGateway')); ?>">APRSGateway</td>
-	</tr>
-    <tr>
-	<td class="<?php getServiceStatusClass(isProcessRunning('dstarrepeaterd')); ?>">DStarRepeater</td>
-	<td class="<?php getServiceStatusClass(isProcessRunning('YSFParrot')); ?>">YSFParrot</td>
-	<td class="<?php getServiceStatusClass(isProcessRunning('P25Parrot')); ?>">P25Parrot</td>
-	<td class="<?php getServiceStatusClass(isProcessRunning('gpsd')); ?>">GPSd</td>
-	<td class="<?php getServiceStatusClass(isProcessRunning('DAPNETGateway')); ?>">DAPNETGateway</td>
-    </tr>
-    <tr>
-	<td class="<?php getServiceStatusClass(isProcessRunning('timeserverd')); ?>">TimeServer</td>
-	<td class="<?php getServiceStatusClass(isProcessRunning('/usr/local/sbin/pistar-watchdog',true)); ?>">PiStar-Watchdog</td>
-	<td class="<?php getServiceStatusClass(isProcessRunning('/usr/local/sbin/pistar-remote',true)); ?>">PiStar-Remote</td>
-	<td class="<?php getServiceStatusClass(isProcessRunning('/usr/local/sbin/pistar-keeper',true)); ?>">PiStar-Keeper</td>
-	<!-- <td class="<?php getServiceStatusClass(isProcessRunning('DGIdGateway')); ?>">DG-ID Gateway</td> -->
-	<td class="<?php getServiceStatusClass(isProcessRunning('')); ?>"></td>
-    </tr>
-</table>
+
+<div><b><?php echo $lang['service_status'];?></b><br /></div>
+<div class="status-grid">
+  <div class="grid-item <?php getServiceStatusClass(isProcessRunning('MMDVMHost')); ?>">MMDVMHost</div>
+  <div class="grid-item <?php getServiceStatusClass(isProcessRunning('DMRGateway')); ?>">DMRGateway</div>
+  <div class="grid-item <?php getServiceStatusClass(isProcessRunning('ircddbgatewayd')); ?>">ircDDBGateway</div>  
+  <div class="grid-item <?php getServiceStatusClass(isProcessRunning('YSFGateway')); ?>">YSFGateway</div>
+  <div class="grid-item <?php getServiceStatusClass(isProcessRunning('YSF2DMR')); ?>">YSF2DMR</div>
+  <div class="grid-item <?php if(UPnPenabled() == 1) { print 'active-mode-cell'; } else { print 'disabled-mode-cell'; } ?>">UPnP</div>  
+  <div class="grid-item <?php if(autoAPenabled() == 1) { print 'active-mode-cell'; } else { print 'disabled-mode-cell'; } ?>">Auto AP</div>
+
+  <div class="grid-item <?php getServiceStatusClass(isProcessRunning('ntpd')); ?>">NTPd</div>
+  <div class="grid-item <?php getServiceStatusClass(isProcessRunning('NXDNGateway')); ?>">NXDNGateway</div> 
+  <div class="grid-item <?php getServiceStatusClass(isProcessRunning('NXDNParrot')); ?>">NXDNParrot</div> 
+  <div class="grid-item <?php getServiceStatusClass(isProcessRunning('NXDN2DMR')); ?>">NXDN2DMR</div> 
+  <div class="grid-item <?php getServiceStatusClass(isProcessRunning('APRSGateway')); ?>">APRSGateway</div>
+  <div class="grid-item <?php getServiceStatusClass(isProcessRunning('dstarrepeaterd')); ?>">DStarRepeater</div> 
+  <div class="grid-item <?php getServiceStatusClass(isProcessRunning('YSFParrot')); ?>">YSFParrot</div>
+
+  <div class="grid-item <?php getServiceStatusClass(isProcessRunning('P25Gateway')); ?>">P25Gateway</div> 
+  <div class="grid-item <?php getServiceStatusClass(isProcessRunning('P25Parrot')); ?>">P25Parrot</div> 
+  <div class="grid-item <?php getServiceStatusClass(isProcessRunning('gpsd')); ?>">GPSd</div> 
+  <div class="grid-item <?php getServiceStatusClass(isProcessRunning('DAPNETGateway')); ?>">DAPNETGateway</div> 
+  <div class="grid-item <?php getServiceStatusClass(isProcessRunning('timeserverd')); ?>">TimeServer</div>
+  <div class="grid-item <?php getServiceStatusClass(isProcessRunning('APRSGateway')); ?>">APRSGateway</div> 
+  <div class="grid-item <?php getServiceStatusClass(isProcessRunning('/usr/local/sbin/pistar-watchdog',true)); ?>">PiStar-Watchdog</div> 
+
+  <div class="grid-item <?php getServiceStatusClass(isProcessRunning('/usr/local/sbin/pistar-remote',true)); ?>">PiStar-Remote</div> 
+  <div class="grid-item <?php getServiceStatusClass(isProcessRunning('/usr/local/sbin/pistar-keeper',true)); ?>">PiStar-Keeper</div>
+  <div class="grid-item <?php getServiceStatusClass(isProcessRunning('DGIdGateway')); ?>">DG-ID Gateway</div> 
+  <div class="grid-item <?php getServiceStatusClass(isProcessRunning('DMR2YSF')); ?>">DMR2YSF</div>
+  <div class="grid-item <?php getServiceStatusClass(isProcessRunning('YSF2P25')); ?>">YSF2P25</div>
+  <div class="grid-item <?php getServiceStatusClass(isProcessRunning('YSF2NXDN')); ?>">YSF2NXDN</div>
+  <div class="grid-item <?php getServiceStatusClass(isProcessRunning('DMR2NXDN')); ?>">DMR2NXDN</div>
+</div>
+

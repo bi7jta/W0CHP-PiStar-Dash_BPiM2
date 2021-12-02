@@ -795,3 +795,18 @@ hr {
   padding: 0; 
 }
 
+.status-grid {
+  display: grid;
+  grid-template-columns: auto auto auto auto auto auto auto;
+  grid-template-rows: auto auto auto auto;
+  border: 2px solid black;
+  background : <?php echo $backgroundBanners; ?>;
+  padding: 1px;
+}
+
+.grid-item {
+  padding: 1px;
+  text-align: center;
+  margin: 1px;
+}
+
