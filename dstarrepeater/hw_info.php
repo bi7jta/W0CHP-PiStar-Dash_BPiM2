@@ -163,7 +163,7 @@ $(document).ready(function() {
 
 <div id="timer"> </div></td>
 	<td><?php echo php_uname('n');?></td>
-	<td colspan="2"><?php echo exec('/usr/local/sbin/pistar-platformDetect.sh');?></td>
+	<td colspan="2"><?php echo exec('/usr/local/sbin/latformDetect.sh');?></td>
 	<td><?php echo php_uname('r');?></td>
 	<td colspan="2">User: <?php echo $cpuLoad['user'];?>% / Sys: <?php echo $cpuLoad['sys'];?>% / Nice: <?php echo $cpuLoad['nice'];?>% / Idle: <?php echo $cpuLoad['idle'];?>%</td>
 	<td colspan="2"><?php echo $sysRamPercent;?>% Used</td>
