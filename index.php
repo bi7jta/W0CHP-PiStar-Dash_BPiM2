@@ -245,7 +245,7 @@ checkSessionValidity();
 		}
 	
 		if ($_SERVER["PHP_SELF"] == "/admin/index.php" && $_POST["func"] == "mode_man" || $_GET["func"] == "mode_man") {	// Admin Only Option (instant mode mgr)	
-                    include "mmdvmhost/instant-mode-manager.php";
+                    include "admin/instant-mode-manager.php";
 		}
 
 		if ($_SERVER["PHP_SELF"] == "/admin/index.php" && $_POST["func"] == "bm_man" || $_GET["func"] == "bm_man") { 		// Admin Only Option (BM links )
