@@ -56,53 +56,73 @@ if (!empty($_POST["submit_service"]) && empty($_POST["service_sel"])) { //handle
         echo '<script type="text/javascript">setTimeout(function() { window.location=window.location;},3000);</script>';
     } else { // looks good!
 		if ($mode == "Cron") { exec($cron_disable); } elseif ($mode == "Firewall") { exec($fw_disable); } else {}
-        // Output to the browser
-        echo "<b>System Manager</b>\n";
-        echo "<table>\n";
-        echo "  <tr>\n";
-        echo "    <th>Status</th>\n";
-        echo "  </tr>\n";
-        echo "  <tr>\n";
-        echo "    <td><p>Selected Service ($mode) Disabled!<br />Page Reloading...</p></td>\n";
-        echo "  </tr>\n";
-        echo "</table>\n";
-        // Clean up...
-        unset($_POST);
-        echo '<script type="text/javascript">setTimeout(function() { window.location=window.location;},3000);</script>';
-    }
-} elseif
-    (!empty($_POST['submit_service']) && ($_POST['service_action'] == "Enable")) {
-    $mode = ($_POST['service_sel']); // get selected mode from for post
-    if ($mode == "Cron" && (getCronState() == 1) || $mode == "Firewall" && (getFWstate() == 1)) { //check if already enabled
-        // Output to the browser
-        echo "<b>System Manager</b>\n";
-        echo "<table>\n";
-        echo "  <tr>\n";
-        echo "    <th>ERROR</th>\n";
-        echo "  </tr>\n";
-        echo "  <tr>\n";
-        echo "    <td><p>$mode already enabled! Did you mean to \"disable\" $mode?<br />Page Reloading...</p></td>\n";
-        echo "  </tr>\n";
-        echo "</table>\n";
-        // Clean up...
-        unset($_POST);
-        echo '<script type="text/javascript">setTimeout(function() { window.location=window.location;},3000);</script>';
-    } else { // looks good!
-		if ($mode == "Cron") { exec($cron_enable); } elseif ($mode == "Firewall") { exec($fw_enable); } else {}
-        // Output to the browser
-        echo "<b>System Manager</b>\n";
-        echo "<table>\n";
-        echo "  <tr>\n";
-        echo "    <th>Status</th>\n";
-        echo "  </tr>\n";
-        echo "  <tr>\n";
-        echo "    <td><p>Selected Service ($mode) Enabled!<br />Page Reloading...</p></td>\n";
-        echo "  </tr>\n";
-        echo "</table>\n";
-        // Clean up...
-        unset($_POST);
-        echo '<script type="text/javascript">setTimeout(function() { window.location=window.location;},3000);</script>';
-    }
+            // Output to the browser
+            echo "<b>System Manager</b>\n";
+            echo "<table>\n";
+            echo "  <tr>\n";
+            echo "    <th>Status</th>\n";
+            echo "  </tr>\n";
+            echo "  <tr>\n";
+            echo "    <td><p>Selected Service ($mode) Disabled!<br />Page Reloading...</p></td>\n";
+            echo "  </tr>\n";
+            echo "</table>\n";
+            // Clean up...
+            unset($_POST);
+            echo '<script type="text/javascript">setTimeout(function() { window.location=window.location;},3000);</script>';
+        }
+    } elseif
+        (!empty($_POST['submit_service']) && ($_POST['service_action'] == "Enable")) {
+        $mode = ($_POST['service_sel']); // get selected mode from for post
+        if ($mode == "Cron" && (getCronState() == 1) || $mode == "Firewall" && (getFWstate() == 1)) { //check if already enabled
+            // Output to the browser
+            echo "<b>System Manager</b>\n";
+            echo "<table>\n";
+            echo "  <tr>\n";
+            echo "    <th>ERROR</th>\n";
+            echo "  </tr>\n";
+            echo "  <tr>\n";
+            echo "    <td><p>$mode already enabled! Did you mean to \"disable\" $mode?<br />Page Reloading...</p></td>\n";
+            echo "  </tr>\n";
+            echo "</table>\n";
+            // Clean up...
+            unset($_POST);
+            echo '<script type="text/javascript">setTimeout(function() { window.location=window.location;},3000);</script>';
+        } else { // looks good!
+		    if ($mode == "Cron") {
+                exec($cron_enable);
+                // Output to the browser
+                echo "<b>System Manager</b>\n";
+                echo "<table>\n";
+                echo "  <tr>\n";
+                echo "    <th>Status</th>\n";
+                echo "  </tr>\n";
+                echo "  <tr>\n";
+                echo "    <td><p>Selected Service ($mode) Enabled!<br />Page Reloading...</p></td>\n";
+                echo "  </tr>\n";
+                echo "</table>\n";
+                // Clean up...
+                unset($_POST);
+                echo '<script type="text/javascript">setTimeout(function() { window.location=window.location;},3000);</script>';
+            } elseif ($mode == "Firewall") {
+                // Output to the browser
+                echo "<b>System Manager</b>\n";
+                echo "<table>\n";
+                echo "  <tr>\n";
+                echo "    <th>Status</th>\n";
+                echo "  </tr>\n";
+                echo "  <tr>\n";
+                echo "    <td><p>Selected Service ($mode) Enabled!<br />Page Reloading...</p></td>\n";
+                echo "  </tr>\n";
+                echo "</table>\n";
+                // Clean up...
+                unset($_POST);
+                echo '<script type="text/javascript">setTimeout(function() { window.location=window.location;},3000);</script>';
+    		    // the FW delays page loads - exec after status message...
+	    	    sleep(5);
+                exec($fw_enable);
+                } else {
+            }
+       }
 } else {
     // no form post: output html...
     print '
@@ -114,30 +134,30 @@ if (!empty($_POST["submit_service"]) && empty($_POST["service_sel"])) { //handle
 	  <th>Select Service</th>
 	  <th>Action</th>
 	</tr>
-        <tr>
-          <td colspan="3">This function allows you to instantly disable or enable system services. For advanced users!</td>
-        </tr>
+    <tr>
+      <td colspan="3">This function allows you to instantly disable or enable system services. For advanced users!</td>
+    </tr>
 	<tr>
-          <td>
-            <input name="service_action" access="false" id="en-dis-0" value="Disable" type="radio" checked="checked">
-            <label for="en-dis-0">Disable</label>
-            <input name="service_action" access="false" id="en-dis-1"  value="Enable" type="radio">
-            <label for="en-dis-1">Enable</label>
-          </td>
-          <td>
-            <input name="service_sel" id="service-sel-0" value="Firewall" type="radio">
-            <label for="service-sel-0">Firewall'.((getFWstate()=='0'?" <span class='paused-mode-span'>(Disabled)</span>":"")).'</label>
-            &nbsp;| <input name="service_sel" id="service-sel-1"  value="Cron" type="radio">
-            <label for="service-sel-1">Cron'.((getCronState()=='0'?" <span class='paused-mode-span'>(Disabled)</span>":"")).'</label>
-            <br />
-          </td>
-          <td>
-            <input type="hidden" name="func" value="sys_man">
-            <input type="submit" class="btn-default btn" name="submit_service" value="Submit" access="false" style="default" id="submit-service" title="Submit">
-          </td>
-        </tr>
-      </table>
-    </form>
+      <td>
+        <input name="service_action" access="false" id="en-dis-0" value="Disable" type="radio" checked="checked">
+        <label for="en-dis-0">Disable</label>
+        <input name="service_action" access="false" id="en-dis-1"  value="Enable" type="radio">
+        <label for="en-dis-1">Enable</label>
+      </td>
+      <td>
+        <input name="service_sel" id="service-sel-0" value="Firewall" type="radio">
+        <label for="service-sel-0">Firewall'.((getFWstate()=='0'?" <span class='paused-mode-span'>(Disabled)</span>":"")).'</label>
+        &nbsp;| <input name="service_sel" id="service-sel-1"  value="Cron" type="radio">
+        <label for="service-sel-1">Cron'.((getCronState()=='0'?" <span class='paused-mode-span'>(Disabled)</span>":"")).'</label>
+        <br />
+      </td>
+      <td>
+        <input type="hidden" name="func" value="sys_man">
+        <input type="submit" class="btn-default btn" name="submit_service" value="Submit" access="false" style="default" id="submit-service" title="Submit">
+    </td>
+    </tr>
+  </table>
+</form>
 ';
 }
 
