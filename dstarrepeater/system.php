@@ -15,29 +15,6 @@ include_once $_SERVER['DOCUMENT_ROOT'].'/config/ircddblocal.php';
 include_once $_SERVER['DOCUMENT_ROOT'].'/config/language.php';	      // Translation Code
 include_once $_SERVER['DOCUMENT_ROOT'].'/mmdvmhost/tools.php';
 
-function getServiceStatusClass($active) {
-    echo (($active) ? 'active-mode-cell' : 'disabled-mode-cell');
-}
-
-// upnp test
-function UPnPenabled() {
-    $testupnp = exec('grep "pistar-upnp.service" /etc/crontab | cut -c 1');
-    if (substr($testupnp, 0, 1) === '#') {
-        return 0;
-    } else {
-        return 1;
-    }
-}
-
-// Autp AP test
-function autoAPenabled() {
-if (file_exists('/etc/hostap.off')) {
-        return 0;
-    } else {
-        return 1;
-    }
-}
-
 ?>
 
 <div><b><?php echo $lang['service_status'];?></b><br /></div>
@@ -47,8 +24,8 @@ if (file_exists('/etc/hostap.off')) {
   <div class="grid-item <?php getServiceStatusClass(isProcessRunning('ircddbgatewayd')); ?>">ircDDBGateway</div>  
   <div class="grid-item <?php getServiceStatusClass(isProcessRunning('YSFGateway')); ?>">YSFGateway</div>
   <div class="grid-item <?php getServiceStatusClass(isProcessRunning('YSF2DMR')); ?>">YSF2DMR</div>
-  <div class="grid-item <?php if(UPnPenabled() == 1) { print 'active-mode-cell'; } else { print 'disabled-mode-cell'; } ?>">UPnP</div>  
-  <div class="grid-item <?php if(autoAPenabled() == 1) { print 'active-mode-cell'; } else { print 'disabled-mode-cell'; } ?>">Auto AP</div>
+  <div class="grid-item <?php getServiceStatusClass(UPnPenabled()) ?>">UPnP</div>  
+  <div class="grid-item <?php getServiceStatusClass(autoAPenabled()) ?>">Auto AP</div>
 
   <div class="grid-item <?php getServiceStatusClass(isProcessRunning('ntpd')); ?>">NTPd</div>
   <div class="grid-item <?php getServiceStatusClass(isProcessRunning('NXDNGateway')); ?>">NXDNGateway</div> 

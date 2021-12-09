@@ -351,6 +351,29 @@ function isPaused($mode) {
     return false;
 }
 
+function getServiceStatusClass($active) { // status panels in admin section
+    echo (($active) ? 'active-mode-cell' : 'disabled-mode-cell');
+}
+
+// upnp test
+function UPnPenabled() {
+    $testupnp = exec('grep "pistar-upnp.service" /etc/crontab | cut -c 1');
+    if (substr($testupnp, 0, 1) === '#') {
+        return 0;
+    } else {
+        return 1;
+    }
+}
+
+// Autp AP test
+function autoAPenabled() {
+if (file_exists('/etc/hostap.off')) {
+        return 0;
+    } else {
+        return 1;
+    }
+}
+
 function getModeClass($status, $disabled = false) {
     if ($status) {
 	    echo '<td class="active-mode-cell" style="width:50%;" title="Active">';
