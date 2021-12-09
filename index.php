@@ -248,6 +248,10 @@ checkSessionValidity();
                     include "admin/instant-mode-manager.php";
 		}
 
+		if ($_SERVER["PHP_SELF"] == "/admin/index.php" && $_POST["func"] == "sys_man" || $_GET["func"] == "sys_man") {	// Admin Only Option (system mgr)	
+                    include "admin/system-manager.php";
+		}
+
 		if ($_SERVER["PHP_SELF"] == "/admin/index.php" && $_POST["func"] == "bm_man" || $_GET["func"] == "bm_man") { 		// Admin Only Option (BM links )
 		    echo '<script type="text/javascript">'."\n";
         	    echo 'function reloadbmConnections(){'."\n";
@@ -373,6 +377,7 @@ checkSessionValidity();
 		    else {
 		        echo '    <button form="admin_sel" disabled="disabled" type="submit" value="pocsag_man" name="func"><span>POCSAG Manager</span></button>';
 		    }
+		    echo '    <button form="admin_sel" type="submit" value="sys_man" name="func"><span>System Manager</span></button>';
 		    echo '      </div></td>';
 		    echo '    </tr>';
 		    echo '    <tr>';

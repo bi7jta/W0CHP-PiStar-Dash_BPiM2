@@ -351,11 +351,30 @@ function isPaused($mode) {
     return false;
 }
 
-function getServiceStatusClass($active) { // status panels in admin section
+// firewall status
+function getFWstate () {
+    if ( strpos(file_get_contents('/etc/iptables.rules'),"LOGNDROP") !== false ) {
+        return 1;
+    } else {
+        return 0;
+    }
+}
+
+// cron status
+function getCronState () {
+    if (isProcessRunning('cron') == 1) {
+        return 1;
+    } else {
+        return 0;
+    }
+}
+
+// services status for admin page top status grid
+function getServiceStatusClass($active) {
     echo (($active) ? 'active-mode-cell' : 'disabled-mode-cell');
 }
 
-// upnp test
+// upnp state
 function UPnPenabled() {
     $testupnp = exec('grep "pistar-upnp.service" /etc/crontab | cut -c 1');
     if (substr($testupnp, 0, 1) === '#') {
@@ -365,7 +384,7 @@ function UPnPenabled() {
     }
 }
 
-// Autp AP test
+// Autp AP state
 function autoAPenabled() {
 if (file_exists('/etc/hostap.off')) {
         return 0;

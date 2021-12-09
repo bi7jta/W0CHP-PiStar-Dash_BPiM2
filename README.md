@@ -18,7 +18,7 @@ caveats](https://w0chp.net/w0chp-pistar-dash/#the-rules-and-caveats----important
 
 * Improved and graphical CSS/color styling configuration page; easily change the look and feel of the dashboard.
 
-* User-Configurable number of displayed Last Heard dashboard rows (defaults to 40, the maximum).
+* User-Configurable number of displayed Last Heard dashboard rows (defaults to 40, and 100 is the maximum).
 
 * Searchable drop-downs for massive host lists in configuration/admin pages. E.g. YSF Hosts, XLX Hosts, DMR Hosts, etc.
 
@@ -39,6 +39,12 @@ caveats](https://w0chp.net/w0chp-pistar-dash/#the-rules-and-caveats----important
 
 * "Instant Mode Manager" added to admin page; allows you to instantly pause or resume selected radio modes. Handy for attending
   nets, quieting a busy mode, to temporarily eliminate "mode monopolization", etc.
+
+* "System Manager" added to admin page; allows you to instantly:
+
+  * Disable / Enable the intrusive and slow Pi-Star Firewall.
+  
+  * Disable / Enable Cron, in order to prevent updates and Pi-Star services restarting during middle-of-the-night/early AM operation.
 
 * DMR JitterTest and related form added.
 
