@@ -111,8 +111,8 @@ function formatSize( $bytes ) {
 	<title>Pi-Star - <?php echo $lang['digital_voice']." ".$lang['dashboard']." - ".$lang['update'];?></title>
 	<link rel="stylesheet" type="text/css" href="/css/pistar-css.php" />
 	<link rel="stylesheet" type="text/css" href="/css/font-awesome-4.7.0/css/font-awesome.min.css" />
-	<script type="text/javascript" src="/jquery.min.js"></script>
-	<script type="text/javascript" src="/jquery-timing.min.js"></script>
+	<script type="text/javascript" src="/js/jquery.min.js"></script>
+	<script type="text/javascript" src="/js/jquery-timing.min.js"></script>
 	<style>  
 	 .progress .bar + .bar {
 	     -webkit-box-shadow: inset 1px 0 0 rgba(0, 0, 0, 0.15), inset 0 -1px 0 rgba(0, 0, 0, 0.15);
