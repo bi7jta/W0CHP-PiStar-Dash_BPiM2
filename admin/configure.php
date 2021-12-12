@@ -383,6 +383,7 @@ if (!empty($_POST)):
 	system('sudo systemctl stop pistar-watchdog.service > /dev/null 2>/dev/null &');// PiStar-Watchdog Service
 	system('sudo systemctl stop pistar-remote.service > /dev/null 2>/dev/null &');	// PiStar-Remote Service
 	system('sudo systemctl stop ysfgateway.service > /dev/null 2>/dev/null &');		// YSFGateway
+	system('sudo systemctl stop dgidgateway.service > /dev/null 2>/dev/null &');	// DGIdGateway
 	system('sudo systemctl stop ysf2dmr.service > /dev/null 2>/dev/null &');		// YSF2DMR
 	system('sudo systemctl stop ysf2nxdn.service > /dev/null 2>/dev/null &');		// YSF2NXDN
 	system('sudo systemctl stop ysf2p25.service > /dev/null 2>/dev/null &');		// YSF2P25
@@ -3392,6 +3393,7 @@ if (!empty($_POST)):
 	system('sudo systemctl start ysf2nxdn.service > /dev/null 2>/dev/null &');		// YSF2NXDN
 	system('sudo systemctl start ysf2p25.service > /dev/null 2>/dev/null &');		// YSF2P25
 	system('sudo systemctl start nxdn2dmr.service > /dev/null 2>/dev/null &');		// NXDN2DMR
+    system('sudo systemctl start dgidgateway.service > /dev/null 2>/dev/null &');	// DGIdGateway
 	system('sudo systemctl start ysfgateway.service > /dev/null 2>/dev/null &');	// YSFGateway
 	system('sudo systemctl start ysfparrot.service > /dev/null 2>/dev/null &');		// YSFParrot
 	system('sudo systemctl start p25gateway.service > /dev/null 2>/dev/null &');	// P25Gateway
