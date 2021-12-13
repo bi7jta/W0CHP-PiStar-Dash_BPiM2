@@ -619,7 +619,7 @@ select {
     visibility: hidden;
 }
 
-.menuconfig .menuadmin .menudashboard .menuupdate .menuupgrade .menupower .menulogs .menubackup .menuexpert .menureset .menusysinfo {
+.menuconfig .menuadmin .menudashboard .menulive .menuupdate .menuupgrade .menupower .menulogs .menubackup .menuexpert .menureset .menusysinfo {
     position: relative;
 }
 
@@ -686,6 +686,14 @@ select {
     padding-right: 0.2em;
 }
 
+.menulive:before {
+    content: "\f21e";
+    font-family: FontAwesome;
+    font-style: normal;
+    font-weight: normal;
+    text-decoration: inherit;
+    padding-right: 0.2em;
+}
 .menubackup:before {
     content: "\f187";
     font-family: FontAwesome;

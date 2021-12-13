@@ -92,6 +92,7 @@ checkSessionValidity();
 			} ?>
 			<a class="menuadmin" href="/admin/"><?php echo $lang['admin'];?></a>
 			<a class="menudashboard" href="/"><?php echo $lang['dashboard'];?></a>
+			<a class="menulive" href="/live/">Live Caller</a>
 		    </div> 
 		</p>
 	    </div>
@@ -387,10 +388,29 @@ checkSessionValidity();
 		    echo ' </form>';
 		    if (empty($_POST) && empty($_GET) || ($_POST["func"] == "pocsag_man" || $_GET["func"] == "pocsag_man")) { echo '<hr />'; }
 		}
-
+    /*
+    echo '<script type="text/javascript">'."\n";
+    echo 'function LiveCallerDetails(){'."\n";
+    echo '  $("#liveCallerDeets").load("/mmdvmhost/live_caller_table.php");'."\n";
+    echo '}'."\n";
+    echo 'setInterval(function(){LiveCallerDetails()}, 1500);'."\n";
+    echo '$(window).trigger(\'resize\');'."\n";
+    echo '</script>'."\n";
+    echo '<div id="liveCallerDeets">'."\n";
+    include 'mmdvmhost/live_caller_table.php';
+    echo '</div>'."\n";
+    echo "<br />\n";
+    */
 		echo '<script type="text/javascript">'."\n";
 		echo 'var lhto;'."\n";
 		echo 'var ltxto'."\n";
+		//echo 'var livecaller'."\n";
+
+        /*
+		echo 'function reloadLiveCaller(){'."\n";
+		echo '  $("#liveCallerDeets").load("/mmdvmhost/live_caller_table.php",function(){ livecaller = setTimeout(reloadLiveCaller,1500) });'."\n";
+		echo '}'."\n";
+        */
 			
 		echo 'function reloadLocalTX(){'."\n";
 		echo '  $("#localTxs").load("/mmdvmhost/localtx.php",function(){ ltxto = setTimeout(reloadLocalTX,1500) });'."\n";
@@ -400,7 +420,18 @@ checkSessionValidity();
 		echo '  $("#lastHeard").load("/mmdvmhost/lh.php",function(){ lhto = setTimeout(reloadLastHeard,1500) });'."\n";
 		echo '}'."\n";
 		
-    		echo 'function setLHAutorefresh(obj) {'."\n";
+            /*
+     		echo 'function setLCautorefresh(obj) {'."\n";
+    		echo '    if (obj.checked) {'."\n";
+    		echo '        livecaller = setTimeout(reloadLiveCaller,1500,1500);'."\n";
+    		echo '    }'."\n";
+    		echo '    else {'."\n";
+    		echo '        clearTimeout(livecaller);'."\n";
+    		echo '    }'."\n";
+    		echo '}'."\n";
+            */
+
+	   		echo 'function setLHAutorefresh(obj) {'."\n";
     		echo '    if (obj.checked) {'."\n";
     		echo '        lhto = setTimeout(reloadLastHeard,1500);'."\n";
     		echo '    }'."\n";
@@ -409,7 +440,7 @@ checkSessionValidity();
     		echo '    }'."\n";
     		echo '}'."\n";
 		
-		echo 'function setLocalTXAutorefresh(obj) {'."\n";
+			echo 'function setLocalTXAutorefresh(obj) {'."\n";
     		echo '    if (obj.checked) {'."\n";
     		echo '        ltxto = setTimeout(reloadLocalTX,1500);'."\n";
     		echo '    }'."\n";
@@ -420,6 +451,7 @@ checkSessionValidity();
 		
 		echo 'lhto = setTimeout(reloadLastHeard,1500);'."\n";
 		echo 'ltxto = setTimeout(reloadLocalTX,1500);'."\n";
+		//echo 'livecaller = setTimeout(reloadLiveCaller,1500);'."\n";
 		echo '$(window).trigger(\'resize\');'."\n";
 		echo '</script>'."\n";
 
