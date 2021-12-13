@@ -57,7 +57,7 @@ if ($listElem[5] == "RF"){
             $dt = new DateTime($utc_time, $utc_tz);
             $duration = $now->getTimestamp() - $dt->getTimestamp();
             $duration_string = $duration<999 ? round($duration) . "+" : "&infin;";
-            $duration = "<td style=\"background:#f33;color:#fff;\">TX " . $duration_string . " sec</td>";
+            $duration = "<td style=\"background:#F012BE;color:#fff;\">TX " . $duration_string . " sec</td>";
         } else if ($listElem[6] == "DMR Data") {
             $duration =  "<td style=\"background: #1d1;color:#fff;\">DMR Data</td>";
         } else {
