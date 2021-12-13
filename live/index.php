@@ -15,12 +15,12 @@
         /*  Pr0nHub/W0CHP Color Pallete FTW! \o/ ;^) */
         @import url('/css/fonts.css');
         body {
-          background-color: #292929;
+          background-color: #1B1B1B;
         }
         .live-page-wrapper {
           margin-right: auto;
           margin-left: auto;
-          background-color: #292929;
+          background-color: #1B1B1B;
           font-family: 'Inconsolata', monospace;
         }
 
@@ -45,7 +45,7 @@
         }
 
         .dark-column {
-          background-color: #292929;
+          background-color: #1B1B1B;
           padding: 20px;
           flex-grow: 1;
           align-items: baseline;
