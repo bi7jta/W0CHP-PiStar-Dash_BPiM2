@@ -50,6 +50,7 @@ if ($_SERVER["PHP_SELF"] == "/admin/power.php") {
 			    <a class="menubackup" href="/admin/config_backup.php"><?php echo $lang['backup_restore'];?></a>
 			    <a class="menuupdate" href="/admin/update.php"><?php echo $lang['update'];?></a>
 			    <a class="menuadmin" href="/admin/"><?php echo $lang['admin'];?></a>
+				<a class="menulive" href="/live/">Live Caller</a>
 			    <a class="menudashboard" href="/"><?php echo $lang['dashboard'];?></a>
 			</div>
 		    </p>

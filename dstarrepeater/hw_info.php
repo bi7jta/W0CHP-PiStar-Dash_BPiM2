@@ -11,23 +11,6 @@ if (!isset($_SESSION) || !is_array($_SESSION)) {
     checkSessionValidity();
 }
 
-
-
-// Retrieve server information
-//$system = system_information();
-
-function getStatusClass($status, $disabled = false) {
-    if ($status) {
-	echo '<td class="active-mode-cell" align="left">';
-    }
-    else {
-	if ($disabled)
-	    echo '<td class="disabled-mode-cell" align="left">';
-	else
-	    echo '<td class="inactive-mode-cell" align="left">';
-    }
-}
-
 function system_information() {
     @list($system, $host, $kernel) = preg_split('/[\s,]+/', php_uname('a'), 5);
     $meminfo = false;

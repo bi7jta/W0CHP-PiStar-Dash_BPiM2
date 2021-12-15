@@ -91,8 +91,8 @@ checkSessionValidity();
 			    echo ' <a class="menulogs" href="/admin/live_modem_log.php">'.$lang['live_logs'].'</a>'."\n";
 			} ?>
 			<a class="menuadmin" href="/admin/"><?php echo $lang['admin'];?></a>
-			<a class="menudashboard" href="/"><?php echo $lang['dashboard'];?></a>
 			<a class="menulive" href="/live/">Live Caller</a>
+			<a class="menudashboard" href="/"><?php echo $lang['dashboard'];?></a>
 		    </div> 
 		</p>
 	    </div>

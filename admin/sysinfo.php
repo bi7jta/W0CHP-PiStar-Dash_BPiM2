@@ -16,21 +16,6 @@ require_once('config/language.php');
 require_once('config/version.php');
 include_once('mmdvmhost/tools.php');
 
-// Retrieve server information
-//$system = system_information();
-
-function getStatusClass($status, $disabled = false) {
-    if ($status) {
-	echo '<td class="active-mode-cell" align="left">';
-    }
-    else {
-	if ($disabled)
-	    echo '<td class="disabled-mode-cell" align="left">';
-	else
-	    echo '<td class="inactive-mode-cell" align="left">';
-    }
-}
-
 function system_information() {
     @list($system, $host, $kernel) = preg_split('/[\s,]+/', php_uname('a'), 5);
     $meminfo = false;
@@ -149,6 +134,7 @@ function formatSize( $bytes ) {
 			<a class="menuupdate" href="/admin/update.php"><?php echo $lang['update'];?></a>
 			<a class="menupower" href="/admin/power.php"><?php echo $lang['power'];?></a>
 			<a class="menuadmin" href="/admin/"><?php echo $lang['admin'];?></a>
+            <a class="menulive" href="/live/">Live Caller</a>
 			<a class="menudashboard" href="/"><?php echo $lang['dashboard'];?></a>
 		    </div> 
 		</p>

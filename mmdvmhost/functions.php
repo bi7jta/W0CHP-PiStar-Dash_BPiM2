@@ -370,6 +370,19 @@ function getCronState () {
     }
 }
 
+// status classes used in hw_info.php and sysinfo.php
+function getStatusClass($status, $disabled = false) {
+    if ($status) {
+    echo '<td class="active-mode-cell" align="left">';
+    }
+    else {
+    if ($disabled)
+        echo '<td class="disabled-mode-cell" align="left">';
+    else
+        echo '<td class="inactive-mode-cell" align="left">';
+    }
+}
+
 // services status for admin page top status grid
 function getServiceStatusClass($active) {
     echo (($active) ? 'active-mode-cell' : 'disabled-mode-cell');
