@@ -8,7 +8,7 @@ and you're fully on your own. *Use at your own risk*, and DO NOT ask me for
 support.  Nor should you file/report any bugs etc. on any official Pi-Star
 medium...this is not an official Pi-Star release.
 
-If you ask me to support, **I will ignore you.** It's strongly recommended that
+If you ask me to support, **I will ignore you.** It's *strongly* recommended that
 you read and heed the [rules and
 caveats](https://w0chp.net/w0chp-pistar-dash/#the-rules-and-caveats----important).
 
@@ -17,6 +17,8 @@ caveats](https://w0chp.net/w0chp-pistar-dash/#the-rules-and-caveats----important
 * Updated user interface elements galore, styling, wider, bigger, updated fonts, etc.
 
 * Improved and graphical CSS/color styling configuration page; easily change the look and feel of the dashboard.
+
+* Live Caller screen; similar to a "virtual Nextion screen"; shows current caller information in real-time.
 
 * User-Configurable number of displayed Last Heard dashboard rows (defaults to 40, and 100 is the maximum).
 
@@ -205,6 +207,9 @@ Run:
 
 #### D-Star Manager
 ![alt text](https://w0chp.net/img/W0CHP_Admin_6.png "W0CHP Admin Page 7")
+
+#### Live Caller Screen
+![alt-text](https://w0chp.net/img/W0CHP_Live_Caller.png "Live Caller Screen")
 
 ### Configuration Page
 
