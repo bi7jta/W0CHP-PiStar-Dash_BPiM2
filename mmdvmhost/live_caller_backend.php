@@ -160,7 +160,7 @@ $duration = "";
   <div class='row'>
     <div class='column'>
       <div class='footer-column' style="color: #808080; font-size: 14px;">
-        <a href="/" style="color: #808080;">Main Dashboard.</a>
+        <a href="/" style="color: #808080;">Main Dashboard</a>
       </div>
     </div>
 
