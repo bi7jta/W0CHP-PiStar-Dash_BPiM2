@@ -47,7 +47,15 @@
         .dark-column {
           background-color: #1B1B1B;
           padding: 20px;
-          flex-grow: 1;
+          flex-grow: 3;
+          align-items: baseline;
+          align-content: stretch;
+        }
+
+        .footer-column {
+          background-color: #111111;
+          padding: 20px;
+          flex-grow: 2;
           align-items: baseline;
           align-content: stretch;
         }

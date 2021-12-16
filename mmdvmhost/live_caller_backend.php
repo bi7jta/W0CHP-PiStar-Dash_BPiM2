@@ -156,4 +156,19 @@ $duration = "";
       </div>
     </div>
   </div>
+
+  <div class='row'>
+    <div class='column'>
+      <div class='footer-column' style="color: #808080; font-size: 14px;">
+        <a href="/" style="color: #808080;">Main Dashboard.</a>
+      </div>
+    </div>
+
+    <div class='column'>
+      <div class='footer-column' style="color: #808080; font-size: 14px;">
+        <span style="float: right;">Hostname: <?php echo exec('cat /etc/hostname'); ?></span>
+      </div>
+    </div>
+  </div>
+
 </div>
