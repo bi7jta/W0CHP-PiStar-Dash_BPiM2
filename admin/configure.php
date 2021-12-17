@@ -203,8 +203,8 @@ $MYCALL=strtoupper($callsign);
 	<link rel="stylesheet" type="text/css" href="/css/font-awesome-4.7.0/css/font-awesome.min.css" />
 	<link rel="stylesheet" type="text/css" href="/css/pistar-css.php?version=0.997" />
 	<script type="text/javascript" src="/js/jquery.min.js"></script>
-    <link href="/select2/css/select2.min.css" rel="stylesheet" />
-    <script src="/select2/js/select2.min.js"></script>
+    <link href="/js/select2/css/select2.min.css" rel="stylesheet" />
+    <script src="/js/select2/js/select2.min.js"></script>
     <script type="text/javascript">
 	function disablesubmitbuttons() {
 		var inputs = document.getElementsByTagName('input');
@@ -3985,7 +3985,7 @@ else:
         while (!feof($dmrMasterFile)) {
                 $dmrMasterLine = fgets($dmrMasterFile);
                 $dmrMasterHost = preg_split('/\s+/', $dmrMasterLine);
-                if ((strpos($dmrMasterHost[0], '#') === FALSE ) && (substr($dmrMasterHost[0], 0, 3) != "XLX") && ($dmrMasterHost[0] != '')) {
+                if ((strpos($dmrMasterHost[0], '#') === FALSE ) && ($dmrMasterHost[0] != '')) {
                         if (($testMMDVMdmrMaster == $dmrMasterHost[2]) && ($testMMDVMdmrMasterPort == $dmrMasterHost[4])) { echo "      <option value=\"$dmrMasterHost[2],$dmrMasterHost[3],$dmrMasterHost[4],$dmrMasterHost[0]\" selected=\"selected\">$dmrMasterHost[0]</option>\n"; $dmrMasterNow = $dmrMasterHost[0]; }
                         else { echo "      <option value=\"$dmrMasterHost[2],$dmrMasterHost[3],$dmrMasterHost[4],$dmrMasterHost[0]\">$dmrMasterHost[0]</option>\n"; }
                 }

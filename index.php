@@ -65,8 +65,8 @@ checkSessionValidity();
 	<script type="text/javascript">
 	 $.ajaxSetup({ cache: false });
 	</script>
-        <link href="/select2/css/select2.min.css" rel="stylesheet" />
-        <script src="/select2/js/select2.min.js"></script>
+        <link href="/js/select2/css/select2.min.css" rel="stylesheet" />
+        <script src="/js/select2/js/select2.min.js"></script>
          <script>
           $(document).ready(function() {
             $('.ysfLinkHost').select2();
