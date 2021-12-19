@@ -128,7 +128,7 @@ require_once('../config/version.php');
 		    $fileContent .= "[Text]\nTextColor=#000000\nTableHeaderColor=#ffffff\nBannersColor=#ffffff\nNavbarColor=#ffffff\nNavbarHoverColor=#ffffff\nDropdownColor=#000000\nDropdownHoverColor=#000000\nServiceCellActiveColor=#000000\nServiceCellInactiveColor=#000000\nModeCellDisabledColor=#b0b0b0\nModeCellActiveColor=#003300\nModeCellInactiveColor=#550000\n\n";
 		    $fileContent .= "[BannerH2]\nEnabled=0\nText=Some Text\n\n";
 		    $fileContent .= "[BannerExtText]\nEnabled=0\nText=Some long text entry\n\n";
-		    $fileContent .= "[ExtraSettings]\nLastHeard=40\nFontSize=18\n\n";
+		    $fileContent .= "[ExtraSettings]\nLastHeardRows=40\nFontSize=18\n\n";
 		    fwrite($outFile, $fileContent);
 		    fclose($outFile);
 		    
