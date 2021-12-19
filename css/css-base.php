@@ -20,6 +20,9 @@ $backgroundModeCellDisabledColor = "#606060";
 $backgroundModeCellActiveColor = "#00BB00";
 $backgroundModeCellInactiveColor = "#BB0000";
 $backgroundModeCellPausedColor = "#ff9933";
+$tableRowEvenBg = "#f7f7f7";		// Table Row BG Colour (Even)
+$tableRowOddBg = "#d0d0d0";		// Table Row BG Colour (Odd)
+
 
 $textBanners = "#ffffff";            // Usually white
 $textNavbar = "#ffffff";           	// Navbar text color
@@ -34,10 +37,12 @@ $textModeCellActiveColor = "#000000";
 $textModeCellInactiveColor = "#000000";
 
 $textContent = "#000000";            // Used for the section titles
-$tableRowEvenBg = "#f7f7f7";		// Table Row BG Colour (Even)
-$tableRowOddBg = "#d0d0d0";		// Table Row BG Colour (Odd)
 
-// Assign $value to $var only when it's sets, otherwise use default value.
+// extras
+$fontSize = "18";  // Default font size used across most of the dashboard
+$lastHeardRows = "40";
+
+// Assign $value to $var only when it's set, otherwise use default value.
 // That avoids messing when pistar-css.ini has changed.
 function assignCSSValue(&$var, $value) {
     if (isset($value)) {
@@ -70,6 +75,10 @@ if (file_exists('/etc/pistar-css.ini')) {
     assignCSSValue($backgroundModeCellInactiveColor, $piStarCss['Background']['ModeCellInactiveColor']);
     assignCSSValue($backgroundModeCellPausedColor, $piStarCss['Background']['ModeCellPausedColor']);
     
+    assignCSSValue($tableRowEvenBg, $piStarCss['Background']['TableRowBgEvenColor']); // Table Row BG Colour (Even)
+    assignCSSValue($tableRowOddBg, $piStarCss['Background']['TableRowBgOddColor']); // Table Row BG Colour (Odd)
+
+    assignCSSValue($textContent, $piStarCss['Text']['TextColor']); // Used for the section titles
     assignCSSValue($textTableHeaderColor, $piStarCss['Text']['TableHeaderColor']);
     assignCSSValue($textBanners, $piStarCss['Text']['BannersColor']); // Usually white
     assignCSSValue($textNavbar, $piStarCss['Text']['NavbarColor']); // Navbar text color
@@ -82,9 +91,8 @@ if (file_exists('/etc/pistar-css.ini')) {
     assignCSSValue($textModeCellActiveColor, $piStarCss['Text']['ModeCellActiveColor']);
     assignCSSValue($textModeCellInactiveColor, $piStarCss['Text']['ModeCellInactiveColor']);
     
-    assignCSSValue($tableRowEvenBg, $piStarCss['Tables']['BgEvenColor']); // Table Row BG Colour (Even)
-    assignCSSValue($tableRowOddBg, $piStarCss['Tables']['BgOddColor']); // Table Row BG Colour (Odd)
+    assignCSSValue($lastHeardRows, $piStarCss['ExtraSettings']['LastHeardRows']); // # of last heard rows to display
+    assignCSSValue($fontSize, $piStarCss['ExtraSettings']['FontSize']); // Used for the main table font size
     
-    assignCSSValue($textContent, $piStarCss['Content']['TextColor']); // Used for the section titles
 }
 ?>

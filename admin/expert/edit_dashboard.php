@@ -124,13 +124,11 @@ require_once('../config/version.php');
 		if (!file_exists('/etc/pistar-css.ini')) {
 		    //The source file does not exist, lets create it....
 		    $outFile = fopen("/tmp/bW1kd4jg6b3N0DQo.tmp", "w") or die("Unable to open file!"); //#bf0707
-		    $fileContent = "[Background]\nPageColor=#edf0f5\nContentColor=#ffffff\nBannersColor=#dd4b39\nNavbarColor=#242d31\nNavbarHoverColor=#a60000\nDropdownColor=#f9f9f9\nDropdownHoverColor=#d0d0d0\nServiceCellActiveColor=#11DD11\nServiceCellInactiveColor=#BB5555\nModeCellDisabledColor=#606060\nModeCellActiveColor=#00BB00\nModeCellInactiveColor=#BB0000\nModeCellPausedColor=#ff9933\nNavPanelColor=#242d31\n\n";
-		    $fileContent .= "[Text]\nTableHeaderColor=#ffffff\nBannersColor=#ffffff\nNavbarColor=#ffffff\nNavbarHoverColor=#ffffff\nDropdownColor=#000000\nDropdownHoverColor=#000000\nServiceCellActiveColor=#000000\nServiceCellInactiveColor=#000000\nModeCellDisabledColor=#b0b0b0\nModeCellActiveColor=#003300\nModeCellInactiveColor=#550000\n\n";
-		    $fileContent .= "[Tables]\nBgEvenColor=#f7f7f7\nBgOddColor=#d0d0d0\n\n";
-		    $fileContent .= "[DashboardRows]\nLastHeard=40\n\n";
-		    $fileContent .= "[Content]\nTextColor=#000000\n\n";
+		    $fileContent = "[Background]\nPageColor=#edf0f5\nContentColor=#ffffff\nBannersColor=#dd4b39\nNavbarColor=#242d31\nNavbarHoverColor=#a60000\nDropdownColor=#f9f9f9\nDropdownHoverColor=#d0d0d0\nServiceCellActiveColor=#11DD11\nServiceCellInactiveColor=#BB5555\nModeCellDisabledColor=#606060\nModeCellActiveColor=#00BB00\nModeCellInactiveColor=#BB0000\nModeCellPausedColor=#ff9933\nNavPanelColor=#242d31\nTableRowBgEvenColor=#f7f7f7\nTableRowBgOddColor=#d0d0d0\n\n";
+		    $fileContent .= "[Text]\nTextColor=#000000\nTableHeaderColor=#ffffff\nBannersColor=#ffffff\nNavbarColor=#ffffff\nNavbarHoverColor=#ffffff\nDropdownColor=#000000\nDropdownHoverColor=#000000\nServiceCellActiveColor=#000000\nServiceCellInactiveColor=#000000\nModeCellDisabledColor=#b0b0b0\nModeCellActiveColor=#003300\nModeCellInactiveColor=#550000\n\n";
 		    $fileContent .= "[BannerH2]\nEnabled=0\nText=Some Text\n\n";
-		    $fileContent .= "[BannerExtText]\nEnabled=0\nText=Some long text entry\n";
+		    $fileContent .= "[BannerExtText]\nEnabled=0\nText=Some long text entry\n\n";
+		    $fileContent .= "[ExtraSettings]\nLastHeard=40\nFontSize=18\n\n";
 		    fwrite($outFile, $fileContent);
 		    fclose($outFile);
 		    
@@ -329,21 +327,24 @@ require_once('../config/version.php');
 		    // keep the section as hidden text so we can update once the form submitted
 		    echo "<input type=\"hidden\" value=\"$section\" name=\"$section\" />\n";
 		    echo "<table>\n";
-		    echo "<tr><th colspan=\"2\">$section</th></tr>\n";
+		    echo "<tr><th colspan=\"3\">$section</th></tr>\n";
 		    // print all other values as input fields, so can edit. 
 		    // note the name='' attribute it has both section and key
 		    foreach($values as $key=>$value) {
-			if (endsWith($key, 'Color')) {
-			    echo "<tr><td align=\"right\" width=\"30%\">$key</td><td align=\"left\"><input type=\"text\" class=\"colorwell\" name=\"{$section}[$key]\" value=\"$value\" /></td></tr>\n";
-			}
-			else {
-			    echo "<tr><td align=\"right\" width=\"30%\">$key</td><td align=\"left\"><input type=\"text\" name=\"{$section}[$key]\" value=\"$value\" /></td></tr>\n";
-			    }
+			    if (endsWith($key, 'Color')) {
+			        echo "<tr><td align=\"right\" style='padding-left:10em;width:150px;'>$key</td><td align=\"left\" colspan='2'><input type=\"text\" class=\"colorwell\" name=\"{$section}[$key]\" value=\"$value\" /></td></tr>\n";
+			    } elseif (endsWith($key, 'Size')) {
+			        echo "<tr><td align=\"right\" style='padding-left:10em;width:150px;'>$key</td><td align=\"left\"><input type=\"text\" name=\"{$section}[$key]\" value=\"$value\" size='3' maxlength='2' /></td><td align='left' style='word-wrap: break-word;white-space: normal;'>(the font size, in pixels, used across most of the Dashboard; default is 18 pixels.)</td></tr>\n";
+			    } elseif (endsWith($key, 'Heard')) {
+			        echo "<tr><td align=\"right\" style='padding-left:15em;width:150px;'>$key</td><td align=\"left\"><input type=\"text\" name=\"{$section}[$key]\" value=\"$value\" size='3' maxlength='3' /></td><td align='left' style='word-wrap: break-word;white-space: normal;'>(The number of rows displayed on the Dashboard; default is 40 rows, and 100 rows is the maximum allowed.)</td></tr>\n";
+		        } else {
+			        echo "<tr><td align=\"right\" style='padding-left:15em;width:150px;'>$key</td><td align=\"left\" colspan='2'><input type=\"text\" name=\"{$section}[$key]\" value=\"$value\" /></td></tr>\n";
+                }
 		    }
 		    echo "</table>\n";
 		    echo '<input type="submit" value="'.$lang['apply'].'" />'."\n";
 		    echo "<br />\n";
-		}
+        }
 		echo "</form>";
 		echo "<br /><br />\n";
 		echo 'If you took it all too far and now it makes you feel sick, click below to reset the values to default.'."\n";

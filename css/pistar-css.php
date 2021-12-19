@@ -128,7 +128,7 @@ table td {
     font-weight: 500;
     text-decoration: none;
     border: .5px solid #777777;
-    font-size: 1.05em;
+    font-size: <?php echo "$fontSize"; ?>px;
 }
 
 body {

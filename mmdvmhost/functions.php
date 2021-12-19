@@ -711,58 +711,58 @@ function getDVModemFirmware() {
     
     if ($logLine) {
 	if (strpos($logLine, 'description: MMDVM_HS_Dual_Hat-')) {
-	    $modemFirmware = "HS_Dual_Hat:".strtok(substr($logLine, 85, 12), ' ');
+	    $modemFirmware = "HS_Dual_Hat<br />".strtok(substr($logLine, 85, 12), ' ');
 	}
 	else if (strpos($logLine, 'description: OpenGD77 Hotspot')) {
-	    $modemFirmware = "OpenGD77:".strtok(substr($logLine, 83, 12), ' ');
+	    $modemFirmware = "OpenGD77<br />".strtok(substr($logLine, 83, 12), ' ');
 	}
 	else if (strpos($logLine, 'description: D2RG_MMDVM_HS-')) {
-	    $modemFirmware = "HS_Hat:".strtok(substr($logLine, 81, 12), ' ');
+	    $modemFirmware = "HS_Hat<br />".strtok(substr($logLine, 81, 12), ' ');
 	}
 	else if (strpos($logLine, 'description: MMDVM_HS_Hat-')) {
-	    $modemFirmware = "HS_Hat:".strtok(substr($logLine, 80, 12), ' ');
+	    $modemFirmware = "HS_Hat<br />".strtok(substr($logLine, 80, 12), ' ');
 	}
     else if (strpos($logLine, 'description: Nano_hotSPOT-') && (strpos($logLine, '14.7456MHz dual'))) {
-        $modemFirmware = "HS_Dual_Hat:".ltrim(strtok(substr($logLine, 80, 12), ' '), 'v');
+        $modemFirmware = "NanoSpot_DualHat<br />".strtok(substr($logLine, 80, 12), ' ');
     }
     else if (strpos($logLine, 'description: Nano_hotSPOT-')) {
-        $modemFirmware = "MMDVM_HS:".ltrim(strtok(substr($logLine, 80, 12), ' '), 'v');
+        $modemFirmware = "NanoSpot<br />".ltrim(strtok(substr($logLine, 80, 12), ' '), 'v');
     }
 	else if (strpos($logLine, 'description: OpenGD77_HS ')) {
-	    $modemFirmware = "OpenGD77:".strtok(substr($logLine, 79, 12), ' ');
+	    $modemFirmware = "OpenGD77<br />".strtok(substr($logLine, 79, 12), ' ');
 	}
-        else if (strpos($logLine, 'description: MMDVM_HS-') && (strpos($logLine, 'dual'))) {
-            $modemFirmware = "MMDVM_HS_Dplx:".ltrim(strtok(substr($logLine, 76, 12), ' '), 'v');
-        }
+    else if (strpos($logLine, 'description: MMDVM_HS-') && (strpos($logLine, 'dual'))) {
+        $modemFirmware = "MMDVM_HS_Dplx<br />".ltrim(strtok(substr($logLine, 76, 12), ' '), 'v');
+    }
 	else if (strpos($logLine, 'description: MMDVM_HS-')) {
-	    $modemFirmware = "MMDVM_HS:".ltrim(strtok(substr($logLine, 76, 12), ' '), 'v');
+	    $modemFirmware = "MMDVM_HS<br />".ltrim(strtok(substr($logLine, 76, 12), ' '), 'v');
 	}
 	else if (strpos($logLine, 'description: Nano-Spot-')) {
-	    $modemFirmware = "NanoSpot:".strtok(substr($logLine, 77, 12), ' ');
+	    $modemFirmware = "NanoSpot<br />".strtok(substr($logLine, 77, 12), ' ');
 	}
 	else if (strpos($logLine, 'description: MMDVM_MDO ')) {
-	    $modemFirmware = "MMDVM_MDO:".ltrim(strtok(substr($logLine, 85, 12), ' '), 'v');
+	    $modemFirmware = "MMDVM_MDO<br />".ltrim(strtok(substr($logLine, 85, 12), ' '), 'v');
 	}
 	else if (strpos($logLine, 'description: ZUMspot ')) {
-	    $modemFirmware = "ZUMspot:".strtok(substr($logLine, 83, 12), ' ');
+	    $modemFirmware = "ZUMspot<br />".strtok(substr($logLine, 83, 12), ' ');
 	}
 	else if (strpos($logLine, 'description: Nano_DV-')) {
-	    $modemFirmware = "NanoDV:".strtok(substr($logLine, 75, 12), ' ');
+	    $modemFirmware = "NanoDV<br />".strtok(substr($logLine, 75, 12), ' ');
 	}
 	else if (strpos($logLine, 'description: ZUMspot-')) {
-	    $modemFirmware = "ZUMspot:".strtok(substr($logLine, 75, 12), ' ');
+	    $modemFirmware = "ZUMspot<br />".strtok(substr($logLine, 75, 12), ' ');
 	}
 	else if (strpos($logLine, 'description: MMDVM_HS')) {
-	    $modemFirmware = "MMDVM_HS:".ltrim(substr($logLine, 84, 8), 'v');
+	    $modemFirmware = "MMDVM_HS<br />".ltrim(substr($logLine, 84, 8), 'v');
 	}
 	else if (strpos($logLine, 'description: MMDVM ')) {
-	    $modemFirmware = "MMDVM:".substr($logLine, 73, 8);
+	    $modemFirmware = "MMDVM<br />".substr($logLine, 73, 8);
 	}
 	else if (strpos($logLine, 'DVMEGA')) {
 	    $modemFirmware = substr($logLine, 67, 15);
 	}
 	else if (strpos($logLine, 'description: SkyBridge-')) {
-		$modemFirmware = "SkyBrg:".strtok(substr($logLine, 77, 12), ' ');	
+		$modemFirmware = "SkyBridge<br />".strtok(substr($logLine, 77, 12), ' ');	
     }
 	}
     return $modemFirmware;
