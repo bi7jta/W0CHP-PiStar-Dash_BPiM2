@@ -11,7 +11,7 @@ if (file_exists('/etc/pistar-css.ini')) {
     if (fopen($piStarCssFile,'r')) { $piStarCss = parse_ini_file($piStarCssFile, true); }
 
     // Set the Values from the config file
-    if (isset($piStarCss['DashboardRows']['LastHeard'])) { $lastHeardRows = $piStarCss['DashboardRows']['LastHeard']; }
+    if (isset($piStarCss['ExtraSettings']['LastHeardRows'])) { $lastHeardRows = $piStarCss['ExtraSettings']['LastHeardRows']; }
         if ($lastHeardRows > 100) { $lastHeardRows = "100"; } // need an internal limit
     } else {
     // Default values
