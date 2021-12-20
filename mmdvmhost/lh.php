@@ -60,7 +60,7 @@ for ($i = 0;  ($i <= $lastHeardRows - 1); $i++) {
                 if (constant("TIME_FORMAT") == "24") {
                     $local_time = $dt->format('H:i:s M. jS');
                 } else {
-                    $local_time = $dt->format('h:i:s A M. jS');
+                    $local_time = $dt->format('g:i:s A M. jS');
                 }
                 // YSF sometimes has malformed calls with a space and freeform text...address these
                 if (preg_match('/ /', $listElem[2])) {

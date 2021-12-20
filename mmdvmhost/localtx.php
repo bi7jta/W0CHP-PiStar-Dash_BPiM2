@@ -45,7 +45,7 @@ for ($i = 0; $i < count($localTXList); $i++) {
                             if (constant("TIME_FORMAT") == "24") {
                                 $local_time = $dt->format('H:i:s M. jS');
                             } else {
-                                $local_time = $dt->format('h:i:s A M. jS');
+                                $local_time = $dt->format('g:i:s A M. jS');
                             }
 			echo"<tr>";
 			echo"<td align=\"left\">$local_time</td>";
