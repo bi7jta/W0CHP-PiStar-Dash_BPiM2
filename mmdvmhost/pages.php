@@ -131,7 +131,11 @@ function listDAPNETGWMessages($logLinesDAPNETGateway, $tillMYRIC) {
 	$local_tz = new DateTimeZone(date_default_timezone_get ());
 	$dt = new DateTime($utc_time, $utc_tz);
 	$dt->setTimeZone($local_tz);
-	$local_time = $dt->format('H:i:s M jS');
+    if (constant("TIME_FORMAT") == "24") {
+        $local_time = $dt->format('H:i:s M. jS');
+    } else {
+        $local_time = $dt->format('g:i:s A M. jS');
+    }
 	$pocsag_timeslot = $dapnetMessageArr["6"];
 	$pocsag_ric = str_replace(',', '', $dapnetMessageArr["8"]);
 	// Fix incorrectly truncated strings containing double quotes
