@@ -4,6 +4,22 @@ include_once $_SERVER['DOCUMENT_ROOT'].'/config/config.php';          // MMDVMDa
 include_once $_SERVER['DOCUMENT_ROOT'].'/mmdvmhost/tools.php';        // MMDVMDash Tools
 include_once $_SERVER['DOCUMENT_ROOT'].'/mmdvmhost/functions.php';    // MMDVMDash Functions
 
+if (constant("TIME_FORMAT") == "24") {
+    $local_time = date('H:i:s M. jS');
+    } else {
+    $local_time = date('h:i:s A M. jS');
+}
+
+// Get the CPU temp and colour the box accordingly...
+// Values/thresholds gathered from: 
+// <https://www.rs-online.com/designspark/how-does-raspberry-pi-deal-with-overheating>
+$cpuTempCRaw = exec('cat /sys/class/thermal/thermal_zone0/temp');
+if ($cpuTempCRaw > 1000) { $cpuTempC = sprintf('%.0f',round($cpuTempCRaw / 1000, 1)); } else { $cpuTempC = sprintf('%.0f',round($cpuTempCRaw, 1)); }
+$cpuTempF = sprintf('%.0f',round(+$cpuTempC * 9 / 5 + 32, 1));
+if ($cpuTempC <= 59) { $cpuTempHTML = "<span style=\"background: inherit\">".$cpuTempF."&deg;F / ".$cpuTempC."&deg;C</span>\n"; }
+if ($cpuTempC >= 60) { $cpuTempHTML = "<span style=\"background: #fa0\">".$cpuTempF."&deg;F / ".$cpuTempC."&deg;C</span>\n"; }
+if ($cpuTempC >= 80) { $cpuTempHTML = "<apan style=\"background: #f00\">".$cpuTempF."&deg;F / ".$cpuTempC."&deg;C</span>\n"; }
+
 function search($array, $key, $value)
 {
     $results = array();
@@ -32,11 +48,6 @@ for ($i = 0;  ($i <= 0); $i++) { //Last 20  calls
                         $local_tz = new DateTimeZone(date_default_timezone_get ());
                         $dt = new DateTime($utc_time, $utc_tz);
                         $dt->setTimeZone($local_tz);
-                        if (constant("TIME_FORMAT") == "24") {
-                            $local_time = date('H:i:s M. jS');
-                        } else {
-                            $local_time = date('h:i:s A M. jS');
-                        }
         }
     }
 }
@@ -64,12 +75,11 @@ if ($listElem[5] == "RF"){
             $duration = $now->getTimestamp() - $dt->getTimestamp();
             $duration_string = $duration<999 ? round($duration) . "+" : "&infin;";
             $duration = "<span style=\"color:#f33;\">TX " . $duration_string . " sec</span>";
-        } else if ($listElem[6] == "DMR Data") {
-            $duration =  "<span style=\"color: #1d1;\">DMR Data</span>";
-        } else {
-            $duration = $listElem[6]."s";
-
-		}
+            } else if ($listElem[6] == "DMR Data") {
+                $duration =  "<span style=\"color: #1d1;\">DMR Data</span>";
+            } else {
+                $duration = $listElem[6]."s";
+		    }
 
 if ($listElem[7] == null) { $loss = "&nbsp;&nbsp;&nbsp;";
 			}elseif (floatval($listElem[7]) < 1) { $loss = "<span>".$listElem[7]."</span>";
@@ -158,6 +168,15 @@ $duration = "";
         TX Duration: <span style="color:#D8D8D8;"><?php echo $duration ?></span><br />
         Packet Loss: <span style="color:#D8D8D8;"><?php echo $loss ?></span><br />
         Bit Error Rate: <span style="color:#D8D8D8;"><?php echo $ber ?></span>
+      </div>
+    </div>
+  </div>
+
+  <div class='row'>
+    <div class='column'>
+      <div class='dark-column' style="color: #808080; font-size: 20px; font-weight: bold;">
+        <div>Hotspot Time: <span style="color:#D8D8D8;"><?php echo $local_time; ?></span></div>
+        <div>CPU Temp:  <span style="color:#D8D8D8;"><?php echo $cpuTempHTML; ?></span></div>
       </div>
     </div>
   </div>
