@@ -52,7 +52,11 @@ include_once $_SERVER['DOCUMENT_ROOT'].'/config/language.php';	      // Translat
                 $local_tz = new DateTimeZone(date_default_timezone_get ());
                 $dt = new DateTime($utc_time, $utc_tz);
                 $dt->setTimeZone($local_tz);
-                $local_time = $dt->format('H:i:s M jS');
+                if (constant("TIME_FORMAT") == "24") {
+                    $local_time = date('H:i:s M. jS');
+                } else {
+                    $local_time = date('h:i:s A M. jS');
+                }
                 print "<td align=\"left\">$local_time</td>";
 		print "<td align=\"left\" width=\"180\"><a href=\"http://www.qrz.com/db/$MyCallLink\" target=\"_blank\">$MyCall</a>";
 		//print "<td align=\"left\" width=\"180\"><a href=\"http://www.qrz.com/db/$MyCallLink\" data-featherlight=\"iframe\" data-featherlight-iframe-min-width=\"90%\" data-featherlight-iframe-max-width=\"90%\" data-featherlight-iframe-width=\"2000\" data-featherlight-iframe-height=\"2000\">$MyCall</a>";

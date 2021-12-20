@@ -31,9 +31,14 @@ for ($i = 0;  ($i <= 0); $i++) { //Last 20 calls
                         $local_tz = new DateTimeZone(date_default_timezone_get ());
                         $dt = new DateTime($utc_time, $utc_tz);
                         $dt->setTimeZone($local_tz);
-                        $local_time = $dt->format('H:i:s M jS');
-						$local_time = $dt->format('H:i:s M-j');
-}}}
+                        if (constant("TIME_FORMAT") == "24") {
+                            $local_time = date('H:i:s M. jS');
+                        } else {
+                            $local_time = date('h:i:s A M. jS');
+                        }
+        }
+    }
+}
 
 if ( substr($listElem[4], 0, 6) === 'CQCQCQ' ) {
 			$target = $listElem[4];

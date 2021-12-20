@@ -110,7 +110,11 @@ include_once $_SERVER['DOCUMENT_ROOT'].'/config/language.php';	      // Translat
                             $local_tz = new DateTimeZone(date_default_timezone_get ());
                             $dt = new DateTime($utc_time, $utc_tz);
                             $dt->setTimeZone($local_tz);
-                            $local_time = $dt->format('H:i:s M jS');
+                            if (constant("TIME_FORMAT") == "24") {
+                                $local_time = date('H:i:s M. jS');
+                            } else {
+                                $local_time = date('h:i:s A M. jS');
+                            }
 			    print "<td>$local_time</td>";
 			    print "</tr>\n";
                     	    $tr = 0;
@@ -161,7 +165,11 @@ include_once $_SERVER['DOCUMENT_ROOT'].'/config/language.php';	      // Translat
                             $local_tz = new DateTimeZone(date_default_timezone_get ());
                             $dt = new DateTime($utc_time, $utc_tz);
                             $dt->setTimeZone($local_tz);
-                            $local_time = $dt->format('H:i:s M jS');
+                            if (constant("TIME_FORMAT") == "24") {
+                                $local_time = date('H:i:s M. jS');
+                            } else {
+                                $local_time = date('h:i:s A M. jS');
+                            }
 			    print "<td>$local_time</td>";
 			    print "</tr>\n";
                     	    //$tr = 0;
@@ -206,7 +214,11 @@ include_once $_SERVER['DOCUMENT_ROOT'].'/config/language.php';	      // Translat
                         $local_tz = new DateTimeZone(date_default_timezone_get ());
                         $dt = new DateTime($utc_time, $utc_tz);
                         $dt->setTimeZone($local_tz);
-                        $local_time = $dt->format('H:i:s M jS');
+                        if (constant("TIME_FORMAT") == "24") {
+                            $local_time = date('H:i:s M. jS');
+                        } else {
+                            $local_time = date('h:i:s A M. jS');
+                        }
                         print "<td>$local_time</td>";
                         print "</tr>\n";
                     }

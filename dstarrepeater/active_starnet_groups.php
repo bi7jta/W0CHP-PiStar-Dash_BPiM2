@@ -136,7 +136,11 @@ if ($active >= 1) {
                     $local_tz = new DateTimeZone(date_default_timezone_get ());
                     $dt = new DateTime($utc_time, $utc_tz);
                     $dt->setTimeZone($local_tz);
-                    $local_time = $dt->format('H:i:s M jS');
+                    if (constant("TIME_FORMAT") == "24") {
+                        $local_time = date('H:i:s M. jS');
+                    } else {
+                        $local_time = date('h:i:s A M. jS');
+                    }
 		    $groupz = str_replace(' ', '&nbsp;', substr($gcall,0,8));
 		    $ucall = str_replace(' ', '', substr($ucall,0,8));
 		    print "<tr>";
