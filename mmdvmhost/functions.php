@@ -81,6 +81,7 @@ function checkSessionValidity() {
     if (!isset($_SESSION['DvModemTCXOFreq']) || (count($_SESSION['DvModemTCXOFreq'], COUNT_RECURSIVE) < 1)) {
 	$_SESSION['DvModemTCXOFreq'] = getDVModemTCXOFreq();
     }
+    loadSessionConfigFile('CSSConfigs', '/etc/pistar-css.ini');
 }
 
 function get_string_between($string, $start, $end) {
