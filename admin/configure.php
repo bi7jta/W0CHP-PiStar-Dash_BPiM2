@@ -3414,7 +3414,12 @@ if (!empty($_POST)):
 		$rollTimeZoneConfig = 'sudo sed -i "/date_default_timezone_set/c\\date_default_timezone_set(\''.escapeshellcmd($_POST['systemTimezone']).'\')\;" /var/www/dashboard/config/config.php';
 		system($rollTimeZoneConfig);
 	}
-
+    // 12 or 24 hour time?
+	if (empty($_POST['systemTimeFormat']) != TRUE ) {
+		$rollTimeFormatConfig = 'sudo sed -i "/define(\'TIME_FORMAT\', /c\\\define(\'TIME_FORMAT\', \''.escapeshellcmd($_POST['systemTimeFormat']).'\')\;" /var/www/dashboard/config/config.php';
+		system($rollTimeFormatConfig);
+	}
+    
 	// Start Cron (occasionally remounts root as RO - would be bad if it did this at the wrong time....)
 	system('sudo systemctl start cron.service > /dev/null 2>/dev/null &');			//Cron
 
@@ -3921,9 +3926,9 @@ else:
         ?>
     </select></td>
     </tr>
-    <tr>
+    <tr colspan="3">
     <td align="left"><a class="tooltip2" href="#"><?php echo $lang['timezone'];?>:<span><b>System TimeZone</b>Set the system timezone</span></a></td>
-    <td style="text-align: left;" colspan="2"><select name="systemTimezone">
+    <td style="text-align: left;"><select name="systemTimezone">
 <?php
   exec('timedatectl list-timezones', $tzList);
   if (!in_array("UTC", $tzList)) { array_push($tzList, "UTC"); }
@@ -3934,6 +3939,9 @@ else:
     }
 ?>
     </select></td>
+    <td width="300">Time Format: 
+    <input type="radio" name="systemTimeFormat" value="24" <?php if (constant("TIME_FORMAT") == "24") {  echo 'checked="checked"'; } ?> />24 Hour
+    <input type="radio" name="systemTimeFormat" value="12" <?php if (constant("TIME_FORMAT") == "12") { echo 'checked="checked"'; } ?> />12 Hour
     </tr>
 <?php
     $lang_dir = './lang';

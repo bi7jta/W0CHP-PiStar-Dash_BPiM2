@@ -24,4 +24,5 @@ define("TEMPERATUREHIGHLEVEL", "");
 define("REBOOTMMDVM", "");
 define("REBOOTSYS", "");
 define("HALTSYS", "");
+define('TIME_FORMAT', '24');
 ?>

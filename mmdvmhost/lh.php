@@ -57,7 +57,11 @@ for ($i = 0;  ($i <= $lastHeardRows - 1); $i++) {
                 $local_tz = new DateTimeZone(date_default_timezone_get ());
                 $dt = new DateTime($utc_time, $utc_tz);
                 $dt->setTimeZone($local_tz);
-                $local_time = $dt->format('H:i:s M jS');
+                if (constant("TIME_FORMAT") == "24") {
+                    $local_time = $dt->format('H:i:s M. jS');
+                } else {
+                    $local_time = $dt->format('h:i:s A M. jS');
+                }
                 // YSF sometimes has malformed calls with a space and freeform text...address these
                 if (preg_match('/ /', $listElem[2])) {
                     $listElem[2] = preg_replace('/ .*$/', "", $listElem[2]);
