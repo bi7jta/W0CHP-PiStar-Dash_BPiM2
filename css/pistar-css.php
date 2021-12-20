@@ -81,7 +81,7 @@ body, font {
     overflow-x: scroll;
     color: #00ff00;
     background: #000000;
-    font-size: 12px
+    font-size: 17px
 }
 
 table {
