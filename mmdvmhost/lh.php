@@ -21,6 +21,9 @@ if (file_exists('/etc/pistar-css.ini')) {
             $lastHeardRows = "40";
         }
     }
+} else { // no css file...
+    // Default values
+    $lastHeardRows = "40";
 }
 ?>
 <input type="hidden" name="lh-autorefresh" value="OFF" />
