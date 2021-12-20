@@ -16,9 +16,9 @@ if (constant("TIME_FORMAT") == "24") {
 $cpuTempCRaw = exec('cat /sys/class/thermal/thermal_zone0/temp');
 if ($cpuTempCRaw > 1000) { $cpuTempC = sprintf('%.0f',round($cpuTempCRaw / 1000, 1)); } else { $cpuTempC = sprintf('%.0f',round($cpuTempCRaw, 1)); }
 $cpuTempF = sprintf('%.0f',round(+$cpuTempC * 9 / 5 + 32, 1));
-if ($cpuTempC <= 59) { $cpuTempHTML = "<span style=\"background: inherit\">".$cpuTempF."&deg;F / ".$cpuTempC."&deg;C</span>\n"; }
-if ($cpuTempC >= 60) { $cpuTempHTML = "<span style=\"background: #fa0\">".$cpuTempF."&deg;F / ".$cpuTempC."&deg;C</span>\n"; }
-if ($cpuTempC >= 80) { $cpuTempHTML = "<apan style=\"background: #f00\">".$cpuTempF."&deg;F / ".$cpuTempC."&deg;C</span>\n"; }
+if ($cpuTempC <= 59) { $cpuTempHTML = "<span style=\"color: inherit\">".$cpuTempF."&deg;F / ".$cpuTempC."&deg;C</span>\n"; }
+if ($cpuTempC >= 60) { $cpuTempHTML = "<span style=\"color: #fa0\">".$cpuTempF."&deg;F / ".$cpuTempC."&deg;C</span>\n"; }
+if ($cpuTempC >= 80) { $cpuTempHTML = "<apan style=\"color: #f00\">".$cpuTempF."&deg;F / ".$cpuTempC."&deg;C</span>\n"; }
 
 function search($array, $key, $value)
 {
