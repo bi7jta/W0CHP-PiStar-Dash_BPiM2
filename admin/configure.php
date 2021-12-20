@@ -3804,7 +3804,7 @@ else:
     <tr>
     <td align="left"><a class="tooltip2" href="#"><?php echo $lang['url'];?>:<span><b>Gateway URL</b>The URL used to access this dashboard</span></a></td>
     <td align="left"><input type="text" name="confURL" size="30" maxlength="30" value="<?php echo $configs['url'] ?>" /></td>
-    <td width="300">
+    <td align="left">
     <input type="radio" name="urlAuto" value="auto"<?php if (strpos($configs['url'], 'www.qrz.com/db/'.$configmmdvm['General']['Callsign']) !== FALSE) {echo ' checked="checked"';} ?> />Auto
     <input type="radio" name="urlAuto" value="man"<?php if (strpos($configs['url'], 'www.qrz.com/db/'.$configmmdvm['General']['Callsign']) == FALSE) {echo ' checked="checked"';} ?> />Manual</td>
     </tr>
@@ -3939,7 +3939,7 @@ else:
     }
 ?>
     </select></td>
-    <td width="300">Time Format: 
+    <td align="left">Time Format: 
     <input type="radio" name="systemTimeFormat" value="24" <?php if (constant("TIME_FORMAT") == "24") {  echo 'checked="checked"'; } ?> />24 Hour
     <input type="radio" name="systemTimeFormat" value="12" <?php if (constant("TIME_FORMAT") == "12") { echo 'checked="checked"'; } ?> />12 Hour
     </tr>
