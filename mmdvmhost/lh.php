@@ -8,14 +8,19 @@ include_once $_SERVER['DOCUMENT_ROOT'].'/config/language.php';	      // Translat
 if (file_exists('/etc/pistar-css.ini')) {
     // Use the values from the file
     $piStarCssFile = '/etc/pistar-css.ini';
-    if (fopen($piStarCssFile,'r')) { $piStarCss = parse_ini_file($piStarCssFile, true); }
-
-    // Set the Values from the config file
-    if (isset($piStarCss['ExtraSettings']['LastHeardRows'])) { $lastHeardRows = $piStarCss['ExtraSettings']['LastHeardRows']; }
-        if ($lastHeardRows > 100) { $lastHeardRows = "100"; } // need an internal limit
-    } else {
-    // Default values
-    $lastHeardRows = "40";
+    if (fopen($piStarCssFile,'r')) {
+        $piStarCss = parse_ini_file($piStarCssFile, true);
+        // Set the Values from the config file
+        if (isset($piStarCss['ExtraSettings']['LastHeardRows'])) {
+            $lastHeardRows = $piStarCss['ExtraSettings']['LastHeardRows'];
+            if ($lastHeardRows > 100) {  
+                $lastHeardRows = "100";  // need an internal limit
+            }
+        } else {
+            // Default values
+            $lastHeardRows = "40";
+        }
+    }
 }
 ?>
 <input type="hidden" name="lh-autorefresh" value="OFF" />
