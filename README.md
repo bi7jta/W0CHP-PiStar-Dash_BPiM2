@@ -18,9 +18,19 @@ caveats](https://w0chp.net/w0chp-pistar-dash/#the-rules-and-caveats----important
 
 * Improved and graphical CSS/color styling configuration page; easily change the look and feel of the dashboard.
 
-* Live Caller screen; similar to a "virtual Nextion screen"; shows current caller information in real-time.
+* "Live Caller" screen; similar to a "virtual Nextion screen"; displays current caller information in real-time.
 
 * User-Configurable number of displayed Last Heard dashboard rows (defaults to 40, and 100 is the maximum).
+
+* User-Configurable font size for most of the pertinent dashboard information.
+
+* Reorganized and sectioned configuration page for better usability.
+
+* XLX Hosts are now searchable/selectable in DMR Master selection in configuration page.
+
+* System process status reorganized into clean grid pattern, with more core service status being displayed.
+
+* User-Configurable 24 or 12 hour time display across the dashboard.
 
 * Searchable drop-downs for massive host lists in configuration/admin pages. E.g. YSF Hosts, XLX Hosts, DMR Hosts, etc.
 
