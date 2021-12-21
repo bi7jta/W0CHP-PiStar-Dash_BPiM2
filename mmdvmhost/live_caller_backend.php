@@ -6,7 +6,7 @@ include_once $_SERVER['DOCUMENT_ROOT'].'/mmdvmhost/functions.php';    // MMDVMDa
 
 if (constant("TIME_FORMAT") == "24") {
     $local_time = date('H:i:s M. jS');
-    } else {
+} else {
     $local_time = date('h:i:s A M. jS');
 }
 
@@ -19,23 +19,6 @@ $cpuTempF = sprintf('%.0f',round(+$cpuTempC * 9 / 5 + 32, 1));
 if ($cpuTempC <= 59) { $cpuTempHTML = "<span style=\"color: inherit\">".$cpuTempF."&deg;F / ".$cpuTempC."&deg;C</span>\n"; }
 if ($cpuTempC >= 60) { $cpuTempHTML = "<span style=\"color: #fa0\">".$cpuTempF."&deg;F / ".$cpuTempC."&deg;C</span>\n"; }
 if ($cpuTempC >= 80) { $cpuTempHTML = "<apan style=\"color: #f00\">".$cpuTempF."&deg;F / ".$cpuTempC."&deg;C</span>\n"; }
-
-function search($array, $key, $value)
-{
-    $results = array();
-
-    if (is_array($array)) {
-        if (isset($array[$key]) && $array[$key] == $value) {
-            $results[] = $array;
-        }
-
-        foreach ($array as $subarray) {
-            $results = array_merge($results, search($subarray, $key, $value));
-        }
-    }
-
-    return $results;
-}
 
 $i = 0;
 for ($i = 0;  ($i <= 0); $i++) { //Last 20  calls
