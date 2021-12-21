@@ -483,26 +483,32 @@ function getMMDVMLog() {
     if (file_exists(MMDVMLOGPATH."/".MMDVMLOGPREFIX."-".gmdate("Y-m-d").".log")) {
         $logPath = MMDVMLOGPATH."/".MMDVMLOGPREFIX."-".gmdate("Y-m-d").".log";
         if (!file_exists("/etc/.GETNAMES")) {
-            $logLines1 = explode("\n", `tail -1500 $logPath | sed '/\(CSBK\|overflow\|Downlink\|Valid\|Invalid\)/d' | egrep -h "from|end|watchdog|lost"`);
+            $logLines1 = explode("\n", `egrep -h "from|end|watchdog|lost" $logPath | sed '/\(CSBK\|overflow\|Downlink\|Valid\|Invalid\)/d'`);
+            $lineNos = sizeof($logLines1);
             $logLines1 = array_slice($logLines1, -1500);
         } else {
             $logLines1 = explode("\n", `tail -500 $logPath | sed '/\(CSBK\|overflow\|Downlink\|Valid\|Invalid\)/d' | egrep -h "from|end|watchdog|lost"`);
+            $lineNos = sizeof($logLines1);
             $logLines1 = array_slice($logLines1, -500);
         }
     }
-    if (sizeof($logLines1) < 25) {
-        if (file_exists(MMDVMLOGPATH."/".MMDVMLOGPREFIX."-".gmdate("Y-m-d", time() - 86340).".log")) {
+    if ($lineNos < 500) {
+        if (file_exists(MMDVMLOGPATH."/".MMDVMLOGPREFIX."-".gmdate("Y-m-d", time() - 86340).".log")) {                                                                             
             $logPath = MMDVMLOGPATH."/".MMDVMLOGPREFIX."-".gmdate("Y-m-d", time() - 86340).".log";
             if (!file_exists("/etc/.GETNAMES")) {
-                $logLines2 = explode("\n", `tail -1500 $logPath | sed '/\(CSBK\|overflow\|Downlink\|Valid\|Invalid\)/d' | egrep -h "from|end|watchdog|lost"`);
-                $logLines2 = array_slice($logLines2, -1500);
-            } else {
                 $logLines2 = explode("\n", `tail -500 $logPath | sed '/\(CSBK\|overflow\|Downlink\|Valid\|Invalid\)/d' | egrep -h "from|end|watchdog|lost"`);
                 $logLines2 = array_slice($logLines2, -500);
+            } else {
+                $logLines2 = explode("\n", `tail -250 $logPath | sed '/\(CSBK\|overflow\|Downlink\|Valid\|Invalid\)/d' | egrep -h "from|end|watchdog|lost"`);
+                $logLines2 = array_slice($logLines2, -250);
             }
         }
     }
-    $logLines = $logLines1 + $logLines2;
+    if ($lineNos < 500) {
+        $logLines = $logLines1 + $logLines2;
+    } else {
+        $logLines = $logLines1;
+    }
     if (!file_exists("/etc/.GETNAMES")) {
         $logLines = array_slice($logLines, -1500);
     } else {
