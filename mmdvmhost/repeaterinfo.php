@@ -17,6 +17,25 @@ include_once $_SERVER['DOCUMENT_ROOT'].'/mmdvmhost/functions.php';    // MMDVMDa
 include_once $_SERVER['DOCUMENT_ROOT'].'/config/language.php';	      // Translation Code
 require_once($_SERVER['DOCUMENT_ROOT'].'/config/ircddblocal.php');
 
+// Check if the config file exists
+if (file_exists('/etc/pistar-css.ini')) {
+    // Use the values from the file
+    $piStarCssFile = '/etc/pistar-css.ini';
+    if (fopen($piStarCssFile,'r')) {
+        $piStarCss = parse_ini_file($piStarCssFile, true);
+        // Set the Values from the config file
+        if (isset($piStarCss['Background']['TableRowBgEvenColor'])) {
+            $tableRowEvenBg = $piStarCss['Background']['TableRowBgEvenColor'];
+        } else {
+            // Default values
+            $tableRowEvenBg = "#FFFFFF";
+        }
+    }
+} else { // no css file...
+    // Default values
+    $tableRowEvenBg = "#FFFFFF";
+}
+
 function FillConnectionStatus(&$destArray, $remoteEnabled, $remotePort) {
     if (($remoteEnabled == 1) && ($remotePort != 0)) {
 	$remoteOutput = null;
@@ -34,16 +53,16 @@ function FillConnectionStatus(&$destArray, $remoteEnabled, $remotePort) {
 }
 
 function GetActiveConnectionStyle($masterStates, $key) {
+    global $tableRowEvenBg;
     if (count($masterStates)) {
-	if (isset($masterStates[$key])) {
-	    if (($masterStates[$key] == "n/a") || ($masterStates[$key] == "disc")) {
-		return "class=\"inactive-mode-cell\"";
+	    if (isset($masterStates[$key])) {
+	        if (($masterStates[$key] == "n/a") || ($masterStates[$key] == "disc")) {
+		        return "class=\"inactive-mode-cell\"";
+	        }
 	    }
-	}
     }
-    return "style=\"background: #ffffff;\"";
+    return "style='background: $tableRowEvenBg;'";
 }
-
 
 //
 // Grab networks status from MMDVMHost and DMRGateway
@@ -190,16 +209,16 @@ if (isProcessRunning("DMRGateway")) {
 	}
 	?>
         </tr>
-	<tr><th>TX</th><td style="background: #ffffff;"><?php echo getMHZ(getConfigItem("Info", "TXFrequency", $_SESSION['MMDVMHostConfigs'])); ?></td></tr>
-	<tr><th>RX</th><td style="background: #ffffff;"><?php echo getMHZ(getConfigItem("Info", "RXFrequency", $_SESSION['MMDVMHostConfigs'])); ?></td></tr>
+	<tr><th>TX</th><td style="background: <?php echo $tableRowEvenBg; ?>;"><?php echo getMHZ(getConfigItem("Info", "TXFrequency", $_SESSION['MMDVMHostConfigs'])); ?></td></tr>
+	<tr><th>RX</th><td style="background: <?php echo $tableRowEvenBg; ?>;"><?php echo getMHZ(getConfigItem("Info", "RXFrequency", $_SESSION['MMDVMHostConfigs'])); ?></td></tr>
 	<?php
 	if (isset($_SESSION['DvModemFWVersion'])) {
-	    echo '<tr><th>FW</th><td style="background: #ffffff;">'.$_SESSION['DvModemFWVersion'].'</td></tr>'."\n";
+	    echo '<tr><th>FW</th><td style="background: '.$tableRowEvenBg.';">'.$_SESSION['DvModemFWVersion'].'</td></tr>'."\n";
 	}
 	?>
 	<?php
 	if ($_SESSION['DvModemTCXOFreq']) {
-	    echo '<tr><th>TCXO</th><td style="background: #ffffff;">'.$_SESSION['DvModemTCXOFreq'].'</td></tr>'."\n";
+	    echo '<tr><th>TCXO</th><td style="background: '.$tableRowEvenBg.';">'.$_SESSION['DvModemTCXOFreq'].'</td></tr>'."\n";
 	} ?>
 </table>
 
@@ -210,17 +229,17 @@ if (isProcessRunning("DMRGateway")) {
 	    echo "<br />\n";
 	    echo "<table>\n";
 	    echo "<tr><th colspan=\"2\">".$lang['dstar_repeater']."</th></tr>\n";
-	    echo "<tr><th>RPT1</th><td style=\"background: #ffffff;\">".str_replace(' ', '&nbsp;', $_SESSION['DStarRepeaterConfigs']['callsign'])."</td></tr>\n";
-	    echo "<tr><th>RPT2</th><td style=\"background: #ffffff;\">".str_replace(' ', '&nbsp;', $_SESSION['DStarRepeaterConfigs']['gateway'])."</td></tr>\n";
+	    echo "<tr><th>RPT1</th><td style=\"background: $tableRowEvenBg;\">".str_replace(' ', '&nbsp;', $_SESSION['DStarRepeaterConfigs']['callsign'])."</td></tr>\n";
+	    echo "<tr><th>RPT2</th><td style=\"background: $tableRowEvenBg;\">".str_replace(' ', '&nbsp;', $_SESSION['DStarRepeaterConfigs']['gateway'])."</td></tr>\n";
 	    echo "<tr><th colspan=\"2\">".$lang['dstar_net']."</th></tr>\n";
         if ($configs['aprsEnabled']) {
-	        echo "<tr><th>APRS</th><td style=\"background: #ffffff;\">".substr($configs['aprsHostname'], 0, 16)."</td></tr>\n";
+	        echo "<tr><th>APRS</th><td style=\"background: $tableRowEvenBg;\">".substr($configs['aprsHostname'], 0, 16)."</td></tr>\n";
         }
         if ($configs['ircddbEnabled']) {
-	        echo "<tr><th>IRC</th><td style=\"background: #ffffff;\">".substr($configs['ircddbHostname'], 0 ,16)."</td></tr>\n";
+	        echo "<tr><th>IRC</th><td style=\"background: $tableRowEvenBg;\">".substr($configs['ircddbHostname'], 0 ,16)."</td></tr>\n";
         }
         if (isPaused("D-Star")) {
-	    	echo "<tr><td colspan=\"2\" style=\"background: #ffffff;\">Mode Paused</td></tr>\n";
+	    	echo "<tr><td colspan=\"2\" style=\"background: $tableRowEvenBg;\">Mode Paused</td></tr>\n";
 		} else {
 		    echo "<tr><td colspan=\"2\" ".GetActiveConnectionStyle($remoteMMDVMResults, "dstar")." title=\"".$linkedTo."\">".$linkedTo."</td></tr>\n";
 		}
@@ -329,20 +348,20 @@ if (isProcessRunning("DMRGateway")) {
 	    echo "<br />\n";
 	    echo "<table>\n";
 	    echo "<tr><th colspan=\"2\">".$lang['dmr_repeater']."</th></tr>\n";
-	    echo "<tr><th>DMR ID</th><td style=\"background: #ffffff;\">".getConfigItem("General", "Id", $_SESSION['MMDVMHostConfigs'])."</td></tr>\n";
-	    echo "<tr><th>DMR CC</th><td style=\"background: #ffffff;\">".getConfigItem("DMR", "ColorCode", $_SESSION['MMDVMHostConfigs'])."</td></tr>\n";
+	    echo "<tr><th>DMR ID</th><td style=\"background: $tableRowEvenBg;\">".getConfigItem("General", "Id", $_SESSION['MMDVMHostConfigs'])."</td></tr>\n";
+	    echo "<tr><th>DMR CC</th><td style=\"background: $tableRowEvenBg;\">".getConfigItem("DMR", "ColorCode", $_SESSION['MMDVMHostConfigs'])."</td></tr>\n";
 	    echo "<tr><th>TS1</th>";
 	    
 	    if (getConfigItem("DMR Network", "Slot1", $_SESSION['MMDVMHostConfigs']) == 1) {
 		    echo "<td class=\"active-mode-cell\" title='Time Slot 1 Enabled'>".substr(getActualLink($reverseLogLinesMMDVM, "DMR Slot 1"), -10)."</td></tr>\n";
-		    //echo "<tr><td style=\"background: #ffffff;\" colspan=\"2\">".substr(getActualLink($reverseLogLinesMMDVM, "DMR Slot 1"), -10)."/".substr(getActualReflector($reverseLogLinesMMDVM, "DMR Slot 1"), -10)."</td></tr>\n";    }
+		    //echo "<tr><td style=\"background: $tableRowEvenBg;\" colspan=\"2\">".substr(getActualLink($reverseLogLinesMMDVM, "DMR Slot 1"), -10)."/".substr(getActualReflector($reverseLogLinesMMDVM, "DMR Slot 1"), -10)."</td></tr>\n";    }
 	    } else {
 		    echo "<td class=\"inactive-mode-cell\" title='Time Slot 1 disabled'>Disabled</td></tr>\n";
 	    }
 	    echo "<tr><th>TS2</th>";
 	    if (getConfigItem("DMR Network", "Slot2", $_SESSION['MMDVMHostConfigs']) == 1) {
 		    echo "<td class=\"active-mode-cell\" title='Time Slot 2 Enabled'>".substr(getActualLink($reverseLogLinesMMDVM, "DMR Slot 2"), -10)."</td></tr>\n";
-		    //echo "<tr><td style=\"background: #ffffff;\" colspan=\"2\">".substr(getActualLink($reverseLogLinesMMDVM, "DMR Slot 2"), -10)."/".substr(getActualReflector($reverseLogLinesMMDVM, "DMR Slot 2"), -10)."</td></tr>\n"    }
+		    //echo "<tr><td style=\"background: $tableRowEvenBg;\" colspan=\"2\">".substr(getActualLink($reverseLogLinesMMDVM, "DMR Slot 2"), -10)."/".substr(getActualReflector($reverseLogLinesMMDVM, "DMR Slot 2"), -10)."</td></tr>\n"    }
 	    } else {
 		    echo "<td class=\"inactive-mode-cell\" title='Time Slot 2 disabled'>Disabled</td></tr>\n";
 	    }
@@ -350,7 +369,7 @@ if (isProcessRunning("DMRGateway")) {
 	    if (getEnabled("DMR Network", $_SESSION['MMDVMHostConfigs']) == 1) {
 		if ($dmrMasterHost == '127.0.0.1') {
 		    if ((isset($_SESSION['DMRGatewayConfigs']['XLX Network 1']['Enabled'])) && ($_SESSION['DMRGatewayConfigs']['XLX Network 1']['Enabled'] == 1)) {
-			echo "<tr><td  style=\"background: #ffffff;\" colspan=\"2\" title=\"".$xlxMasterHost1Tooltip."\">".$xlxMasterHost1."</td></tr>\n";
+			echo "<tr><td  style=\"background: $tableRowEvenBg;\" colspan=\"2\" title=\"".$xlxMasterHost1Tooltip."\">".$xlxMasterHost1."</td></tr>\n";
 		    }
                     if ( !isset($_SESSION['DMRGatewayConfigs']['XLX Network 1']['Enabled']) && isset($_SESSION['DMRGatewayConfigs']['XLX Network']['Enabled']) && $_SESSION['DMRGatewayConfigs']['XLX Network']['Enabled'] == 1) {
 				if (file_exists("/var/log/pi-star/DMRGateway-".gmdate("Y-m-d").".log")) { $xlxMasterHost1 = exec('grep \'XLX, Linking\|XLX, Unlinking\|XLX, Logged\' /var/log/pi-star/DMRGateway-'.gmdate("Y-m-d").'.log | tail -1 | awk \'{print $5 " " $8 " " $9}\''); }
@@ -467,7 +486,7 @@ if (isProcessRunning("DMRGateway")) {
         echo "<br />\n";
         echo "<table>\n";
 	    echo "<tr><th colspan=\"2\">".$lang['ysf_net']."".$ysfLinkState."</th></tr>\n";
-	    echo "<tr><td colspan=\"2\" style=\"background: #ffffff;\" title=\"".$ysfLinkedToTooltip."\">".$ysfTableData."</td></tr>\n";
+	    echo "<tr><td colspan=\"2\" style=\"background: $tableRowEvenBg;\" title=\"".$ysfLinkedToTooltip."\">".$ysfTableData."</td></tr>\n";
         echo "</table>\n";
 	}
 
@@ -496,9 +515,9 @@ if (isProcessRunning("DMRGateway")) {
             echo "<br />\n";
             echo "<table>\n";
             echo "<tr><th colspan=\"2\">YSF2DMR</th></tr>\n";
-	    echo "<tr><th>DMR ID</th><td style=\"background: #ffffff;\">".$_SESSION['YSF2DMRConfigs']['DMR Network']['Id']."</td></tr>\n";
+	    echo "<tr><th>DMR ID</th><td style=\"background: $tableRowEvenBg;\">".$_SESSION['YSF2DMRConfigs']['DMR Network']['Id']."</td></tr>\n";
 	    echo "<tr><th colspan=\"2\">YSF2".$lang['dmr_master']."</th></tr>\n";
-            echo "<tr><td colspan=\"2\"style=\"background: #ffffff;\" title=\"".$dmrMasterHostTooltip."\">".$dmrMasterHost."</td></tr>\n";
+            echo "<tr><td colspan=\"2\"style=\"background: $tableRowEvenBg;\" title=\"".$dmrMasterHostTooltip."\">".$dmrMasterHost."</td></tr>\n";
             echo "</table>\n";
 	}
 	
@@ -513,7 +532,7 @@ if (isProcessRunning("DMRGateway")) {
 	    }
 	    echo "<tr><th colspan=\"2\">".$lang['p25_net']."</th></tr>\n";
 		if (isPaused("P25")) {
-	    	echo "<tr><td colspan=\"2\"style=\"background: #ffffff;\">Mode Paused</td></tr>\n";
+	    	echo "<tr><td colspan=\"2\"style=\"background: $tableRowEvenBg;\">Mode Paused</td></tr>\n";
 		} else {
 		    echo "<tr><td colspan=\"2\" ".GetActiveConnectionStyle($remoteMMDVMResults, "p25").">".getActualLink($logLinesP25Gateway, "P25")."</td></tr>\n";
 
@@ -541,7 +560,7 @@ if (isProcessRunning("DMRGateway")) {
 	    }
 	    echo "<tr><th colspan=\"2\">".$lang['nxdn_net']."</th></tr>\n";
         if (isPaused("NXDN")) {
-			echo "<tr><td colspan=\"2\"style=\"background: #ffffff;\">Mode Paused</td></tr>\n";
+			echo "<tr><td colspan=\"2\"style=\"background: $tableRowEvenBg;\">Mode Paused</td></tr>\n";
         } else {
 	    	if (file_exists('/etc/nxdngateway')) {
 				echo "<tr><td colspan=\"2\" ".GetActiveConnectionStyle($remoteMMDVMResults, "nxdn")." >".getActualLink($logLinesNXDNGateway, "NXDN")."</td></tr>\n";
@@ -558,7 +577,7 @@ if (isProcessRunning("DMRGateway")) {
 	    echo "<br />\n";
 	    echo "<table>\n";
 	    echo "<tr><th colspan=\"2\">POCSAG Status</th></tr>\n";
-	    echo "<tr><th>TX</th><td style=\"background: #ffffff;\">".getMHZ(getConfigItem("POCSAG", "Frequency", $_SESSION['MMDVMHostConfigs']))."</td></tr>\n";
+	    echo "<tr><th>TX</th><td style=\"background: $tableRowEvenBg;\">".getMHZ(getConfigItem("POCSAG", "Frequency", $_SESSION['MMDVMHostConfigs']))."</td></tr>\n";
 		if (isPaused("POCSAG")) {
 			$dapnetGatewayRemoteAddr = "Mode Paused";
 			$dapnetGatewayRemoteTooltip = $dapnetGatewayRemoteAddr;
@@ -572,7 +591,7 @@ if (isProcessRunning("DMRGateway")) {
 			}
 		}
 		echo "<tr><th colspan=\"2\">DAPNET Master</th></tr>\n";
-		echo "<tr><td colspan=\"2\"style=\"background: #ffffff;\" title=\"".$dapnetGatewayRemoteTooltip."\">".$dapnetGatewayRemoteAddr."</td></tr>\n";
+		echo "<tr><td colspan=\"2\"style=\"background: $tableRowEvenBg;\" title=\"".$dapnetGatewayRemoteTooltip."\">".$dapnetGatewayRemoteAddr."</td></tr>\n";
 	    echo "</table>\n";
 	}
 
@@ -581,12 +600,12 @@ if (isProcessRunning("DMRGateway")) {
         echo "<table>\n";
         echo "<tr><th colspan='2'>APRS Gateway Status</th></tr>\n";
         echo "<tr><th colspan='2' >Host Pool</th></tr>\n";
-        echo "<tr><td colspan='2' style=\"background: #ffffff;\" title=\"".$_SESSION['APRSGatewayConfigs']['APRS-IS']['Server']."\">".substr($_SESSION['APRSGatewayConfigs']['APRS-IS']['Server'], 0, 23)."</td></tr>\n";
+        echo "<tr><td colspan='2' style=\"background: $tableRowEvenBg;\" title=\"".$_SESSION['APRSGatewayConfigs']['APRS-IS']['Server']."\">".substr($_SESSION['APRSGatewayConfigs']['APRS-IS']['Server'], 0, 23)."</td></tr>\n";
         echo "<tr><th colspan='2'>Server</th></tr>\n";
         if (isPaused("APRS")) {
-            echo "<tr><td colspan='2' style=\"background: #ffffff;\" title=\"Service Paused\">Service Paused</td></tr>\n";
+            echo "<tr><td colspan='2' style=\"background: $tableRowEvenBg;\" title=\"Service Paused\">Service Paused</td></tr>\n";
                 } else {
-                echo "<tr><td colspan='2' style=\"background: #ffffff;\" title=\"".getAPRSISserver()."\">".getAPRSISserver()."</td></tr>\n";
+                echo "<tr><td colspan='2' style=\"background: $tableRowEvenBg;\" title=\"".getAPRSISserver()."\">".getAPRSISserver()."</td></tr>\n";
                 }
         echo "</table>\n";
     }
