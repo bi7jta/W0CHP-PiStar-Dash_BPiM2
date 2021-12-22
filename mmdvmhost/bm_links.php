@@ -42,6 +42,14 @@ if (file_exists('/etc/pistar-css.ini')) {
     $tableRowOddBg = "";
 }
 
+
+// honor time format settings
+if (constant("TIME_FORMAT") == "24") {
+    $local_time = 'H:i:s';
+} else {
+    $local_time = 'h:i:s A';
+}
+
 // BM uses stupid comments in TG names. Delete them...
 function StripStupidComments($target) {
     $stupid_bm = ['/ - 10 Minute Limit/', '/ NOT A CALL CHANNEL/', '/ NO NETS(.*?)/', '/ - .*/'];
@@ -131,15 +139,15 @@ if ( $testMMDVModeDMR == 1 ) {
             foreach($bmDynamicTGListJson as $dynamicTG) {
                 if (getConfigItem("DMR Network", "Slot1", $_SESSION['MMDVMHostConfigs']) && $dynamicTG->slot == "1") {
                     $bmDynamicTGname = exec("grep -w \"$dynamicTG->talkgroup\" /usr/local/etc/BM_TGs.json | cut -d\":\" -f2- | tr -cd \"'[:alnum:]\/ -\"");
-	            $bmDynamicTGList .= "TG".$dynamicTG->talkgroup."<span style='float:right;'>".StripStupidComments($bmDynamicTGname)." (".$dynamicTG->slot.")</span><br /><small style='float:right;'>(Idle timeout: ".date("h:i:s", substr($dynamicTG->timeout, 0, 10))." ".date('T').")</span></small><br /><br />";
+	            $bmDynamicTGList .= "TG".$dynamicTG->talkgroup."<span style='float:right;'>".StripStupidComments($bmDynamicTGname)." (".$dynamicTG->slot.")</span><br /><small style='float:right;'>(Idle timeout: ".date("$local_time", substr($dynamicTG->timeout, 0, 10))." ".date('T').")</span></small><br /><br />";
                 }
                 else if (getConfigItem("DMR Network", "Slot2", $_SESSION['MMDVMHostConfigs']) && $dynamicTG->slot == "2") {
                     $bmDynamicTGname = exec("grep -w \"$dynamicTG->talkgroup\" /usr/local/etc/BM_TGs.json | cut -d\":\" -f2- | tr -cd \"'[:alnum:]\/ -\"");
-	            $bmDynamicTGList .= "TG".$dynamicTG->talkgroup."<span style='float:right;'>".StripStupidComments($bmDynamicTGname)." (".$dynamicTG->slot.")</span><br /><small style='float:right;'>(Idle timeout: ".date("h:i:s", substr($dynamicTG->timeout, 0, 10))." ".date('T').")</span></small><br /><br />";
+	            $bmDynamicTGList .= "TG".$dynamicTG->talkgroup."<span style='float:right;'>".StripStupidComments($bmDynamicTGname)." (".$dynamicTG->slot.")</span><br /><small style='float:right;'>(Idle timeout: ".date("$local_time", substr($dynamicTG->timeout, 0, 10))." ".date('T').")</span></small><br /><br />";
                 }
                 else if (getConfigItem("DMR Network", "Slot1", $_SESSION['MMDVMHostConfigs']) == "0" && getConfigItem("DMR Network", "Slot2", $_SESSION['MMDVMHostConfigs']) && $dynamicTG->slot == "0") {
                     $bmDynamicTGname = exec("grep -w \"$dynamicTG->talkgroup\" /usr/local/etc/BM_TGs.json | cut -d\":\" -f2- | tr -cd \"'[:alnum:]\/ -\"");
-                    $bmDynamicTGList .= "TG".$dynamicTG->talkgroup."<span style='float:right;'>".StripStupidComments($bmDynamicTGname)."</span><br /><small style='float:right;'>(Idle timeout: ".date("h:i:s", substr($dynamicTG->timeout, 0, 10)).")</span></small><br /><br />";
+                    $bmDynamicTGList .= "TG".$dynamicTG->talkgroup."<span style='float:right;'>".StripStupidComments($bmDynamicTGname)."</span><br /><small style='float:right;'>(Idle timeout: ".date("$local_time", substr($dynamicTG->timeout, 0, 10)).")</span></small><br /><br />";
                 }
             }
             $bmDynamicTGList = wordwrap($bmDynamicTGList, 135, "\n");
