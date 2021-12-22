@@ -44,7 +44,7 @@ if (file_exists('/etc/pistar-css.ini')) {
 
 // BM uses stupid comments in TG names. Delete them...
 function StripStupidComments($target) {
-    $stupid_bm = ['/ - 10 Minute Limit/', '/ NOT A CALL CHANNEL/', '/ NO NETS\!\!\!/', '/ - .*/'];
+    $stupid_bm = ['/ - 10 Minute Limit/', '/ NOT A CALL CHANNEL/', '/ NO NETS(.*?)/', '/ - .*/'];
     $clean = preg_replace($stupid_bm, "", $target);
     return $clean;
 }
