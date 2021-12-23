@@ -492,7 +492,7 @@ function getMMDVMLog() {
             $logLines1 = array_slice($logLines1, -150);
         }
     }
-    if ($lineNos < 25) {
+    if ($lineNos < 150) {
         if (file_exists(MMDVMLOGPATH."/".MMDVMLOGPREFIX."-".gmdate("Y-m-d", time() - 86340).".log")) {                                                                             
             $logPath = MMDVMLOGPATH."/".MMDVMLOGPREFIX."-".gmdate("Y-m-d", time() - 86340).".log";
             if (!file_exists("/etc/.GETNAMES")) {
@@ -504,7 +504,7 @@ function getMMDVMLog() {
             }
         }
     }
-    if ($lineNos < 25) {
+    if ($lineNos < 150) {
         $logLines = $logLines1 + $logLines2;
     } else {
         $logLines = $logLines1;
