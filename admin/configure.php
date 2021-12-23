@@ -138,9 +138,10 @@ if (file_exists('/etc/dstar-radio.mmdvmhost')) {
 	if (fopen($modemConfigFileMMDVMHost,'r')) { $configModem = parse_ini_file($modemConfigFileMMDVMHost, true); }
 }
 
-##
-## Check for DMRGateway RemoteCommand
-##
+//
+// Check for DMRGateway RemoteCommand and enable if it isn't...
+// This is needed for DMR network panel status, login issues, etc.
+//`
 if (!isset($configdmrgateway['Remote Control'])) {
     $configdmrgateway['Remote Control']['Enable'] = "1";
     $configdmrgateway['Remote Control']['Port'] = "7643";
