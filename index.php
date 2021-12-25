@@ -77,8 +77,8 @@ checkSessionValidity();
     <body>
 	<div class="container">
 	    <div class="header">
-               <div style="font-size: 9px; text-align: left; padding-left: 8px; float: left;">Hostname: <?php echo exec('cat /etc/hostname'); ?></div>
-		<div style="font-size: 9px; text-align: right; padding-right: 8px;">Pi-Star: <?php echo $_SESSION['PiStarRelease']['Pi-Star']['Version']?> / <?php echo $lang['dashboard'].": ".$version; echo(exec('/usr/local/sbin/pistar-check4updates')); ?></div>
+               <div style="font-size: 10px; text-align: left; padding-left: 8px; float: left;">Hostname: <?php echo exec('cat /etc/hostname'); ?></div>
+		<div style="font-size: 10px; text-align: right; padding-right: 8px;">Pi-Star: <?php echo $_SESSION['PiStarRelease']['Pi-Star']['Version']?> / <?php echo $lang['dashboard'].": ".$version; echo(exec('/usr/local/sbin/pistar-check4updates')); ?></div>
 		<h1>Pi-Star <?php echo $lang['digital_voice']." ".$lang['dashboard_for']." ".$_SESSION['MYCALL']; ?></h1>
 		
 		<p>
