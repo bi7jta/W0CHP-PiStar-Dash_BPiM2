@@ -82,7 +82,7 @@ body, font {
     overflow-x: scroll;
     color: #00ff00;
     background: #000000;
-    font-size: <?php echo "$fontSize"; ?>px;
+    font-size: 18px;
 }
 
 table {
