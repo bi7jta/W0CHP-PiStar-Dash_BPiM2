@@ -96,7 +96,8 @@ caveats](https://w0chp.net/w0chp-pistar-dash/#the-rules-and-caveats----important
 
 ### Features in Official Pi-Star Which are Intentionally Omitted in `W0CHP-PiStar-Dash`
 
-* Upgrade notice/nag in header (unnecessary and hacky).
+* Upgrade notice/nag in header (unnecessary and a hacky implementation). This has been replaced by my own
+  unobtrusive dashboard update notifier; displayed in the upper-right hand side of the top header.
 
 * "GPS" link in Call Sign column of dashboard (superfluous and unreliable).
 
