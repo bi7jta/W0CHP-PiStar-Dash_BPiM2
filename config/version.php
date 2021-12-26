@@ -1,6 +1,6 @@
 <?php
 // Enhanced version status; W0CHP
-$ver_no = '20211226_01-W0CHP';
+$ver_no = '20211226_02-W0CHP';
 //
 //
 //
