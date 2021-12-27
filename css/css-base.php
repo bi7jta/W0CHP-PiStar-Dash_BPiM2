@@ -23,7 +23,6 @@ $backgroundModeCellPausedColor = "#ff9933";
 $tableRowEvenBg = "#f7f7f7";		// Table Row BG Colour (Even)
 $tableRowOddBg = "#d0d0d0";		// Table Row BG Colour (Odd)
 
-
 $textBanners = "#ffffff";            // Usually white
 $textNavbar = "#ffffff";           	// Navbar text color
 $textNavbarHover = "#ffffff";       // Navbar hover color
@@ -37,6 +36,7 @@ $textModeCellActiveColor = "#000000";
 $textModeCellInactiveColor = "#000000";
 
 $textContent = "#000000";            // Used for the section titles
+$textLinks = "#0000e0";
 
 // extras
 $fontSize = "18";  // Default font size used across most of the dashboard
@@ -79,6 +79,7 @@ if (file_exists('/etc/pistar-css.ini')) {
     assignCSSValue($tableRowOddBg, $piStarCss['Background']['TableRowBgOddColor']); // Table Row BG Colour (Odd)
 
     assignCSSValue($textContent, $piStarCss['Text']['TextColor']); // Used for the section titles
+    assignCSSValue($textLinks, $piStarCss['Text']['TextLinkColor']); // Used for the hyperlinks
     assignCSSValue($textTableHeaderColor, $piStarCss['Text']['TableHeaderColor']);
     assignCSSValue($textBanners, $piStarCss['Text']['BannersColor']); // Usually white
     assignCSSValue($textNavbar, $piStarCss['Text']['NavbarColor']); // Navbar text color
