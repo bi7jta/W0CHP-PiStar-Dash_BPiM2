@@ -67,10 +67,17 @@ checkSessionValidity();
 	</script>
         <link href="/js/select2/css/select2.min.css" rel="stylesheet" />
         <script src="/js/select2/js/select2.min.js"></script>
-         <script>
+         <script type="text/javascript">
           $(document).ready(function() {
             $('.ysfLinkHost').select2();
             $('.RefName').select2();
+          });
+        </script>
+        <script>
+        $(document).ready(function(){
+          setInterval(function(){
+              $("#CheckUpdate").load(window.location.href + " #CheckUpdate" );
+              }, 60000);
           });
         </script>
     </head>
@@ -78,7 +85,7 @@ checkSessionValidity();
 	<div class="container">
 	    <div class="header">
                <div style="font-size: 10px; text-align: left; padding-left: 8px; float: left;">Hostname: <?php echo exec('cat /etc/hostname'); ?></div>
-		<div style="font-size: 10px; text-align: right; padding-right: 8px;">Pi-Star: <?php echo $_SESSION['PiStarRelease']['Pi-Star']['Version'].'<br />';?> <?php echo $lang['dashboard'].": ".$version; echo(exec('/usr/local/sbin/pistar-check4updates')); ?></div>
+		<div style="font-size: 10px; text-align: right; padding-right: 8px;">Pi-Star: <?php echo $_SESSION['PiStarRelease']['Pi-Star']['Version'].'<br />';?><div id="CheckUpdate"><?php echo $lang['dashboard'].": ".$version; echo(exec('/usr/local/sbin/pistar-check4updates')); ?></div></div>
 		<h1>Pi-Star <?php echo $lang['digital_voice']." ".$lang['dashboard_for']." ".$_SESSION['MYCALL']; ?></h1>
 		
 		<p>
