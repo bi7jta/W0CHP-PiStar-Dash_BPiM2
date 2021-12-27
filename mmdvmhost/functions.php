@@ -487,24 +487,24 @@ function getMMDVMLog() {
             $lineNos = sizeof($logLines1);
             $logLines1 = array_slice($logLines1, -1500);
         } else {
-            $logLines1 = explode("\n", `tail -150 $logPath | sed '/\(CSBK\|overflow\|Downlink\|Valid\|Invalid\|\Talker\)/d' | egrep -h "from|end|watchdog|lost"`);
+            $logLines1 = explode("\n", `tail -500 $logPath | sed '/\(CSBK\|overflow\|Downlink\|Valid\|Invalid\|\Talker\)/d' | egrep -h "from|end|watchdog|lost"`);
             $lineNos = sizeof($logLines1);
-            $logLines1 = array_slice($logLines1, -150);
+            $logLines1 = array_slice($logLines1, -500);
         }
     }
-    if ($lineNos < 150) {
+    if ($lineNos < 1500) {
         if (file_exists(MMDVMLOGPATH."/".MMDVMLOGPREFIX."-".gmdate("Y-m-d", time() - 86340).".log")) {                                                                             
             $logPath = MMDVMLOGPATH."/".MMDVMLOGPREFIX."-".gmdate("Y-m-d", time() - 86340).".log";
             if (!file_exists("/etc/.GETNAMES")) {
-                $logLines2 = explode("\n", `tail -500 $logPath | sed '/\(CSBK\|overflow\|Downlink\|Valid\|Invalid\|\Talker\)/d' | egrep -h "from|end|watchdog|lost"`);
-                $logLines2 = array_slice($logLines2, -500);
+                $logLines2 = explode("\n", `tail -1500 $logPath | sed '/\(CSBK\|overflow\|Downlink\|Valid\|Invalid\|\Talker\)/d' | egrep -h "from|end|watchdog|lost"`);
+                $logLines2 = array_slice($logLines2, -1500);
             } else {
-                $logLines2 = explode("\n", `tail -150 $logPath | sed '/\(CSBK\|overflow\|Downlink\|Valid\|Invalid\|\Talker\)/d' | egrep -h "from|end|watchdog|lost"`);
-                $logLines2 = array_slice($logLines2, -150);
+                $logLines2 = explode("\n", `tail -250 $logPath | sed '/\(CSBK\|overflow\|Downlink\|Valid\|Invalid\|\Talker\)/d' | egrep -h "from|end|watchdog|lost"`);
+                $logLines2 = array_slice($logLines2, -250);
             }
         }
     }
-    if ($lineNos < 150) {
+    if ($lineNos < 1500) {
         $logLines = $logLines1 + $logLines2;
     } else {
         $logLines = $logLines1;
