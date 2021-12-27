@@ -77,7 +77,7 @@ checkSessionValidity();
         $(document).ready(function(){
           setInterval(function(){
               $("#CheckUpdate").load(window.location.href + " #CheckUpdate" );
-              }, 60000);
+              }, 50000);
           });
         </script>
     </head>
