@@ -283,6 +283,7 @@ ul.mmenu li a.current span, ul.mmenu li a:hover span {
 
 h1 {
     text-align: center;
+    font-weight: 600;
 }
 
 /* CSS Toggle Code here */
