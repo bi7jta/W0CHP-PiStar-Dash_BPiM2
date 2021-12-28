@@ -125,15 +125,12 @@ caveats](https://w0chp.net/w0chp-pistar-dash/#the-rules-and-caveats----important
 
 2. Open an SSH session to your Pi-Star instance.
 
-3. Run:
+3. Run this to familiarize yourself with the available options/arguments:
 
-        curl https://repo.w0chp.net/Chipster/W0CHP-PiStar-Install/raw/master/W0CHP-pistar -o W0CHP-pistar
-
-4. Run this to familiarize yourself with the available options/arguments:
-
-        sudo bash ./W0CHP-pistar -h
+        curl -Ls https://w0chp.net/WPSD-Installer | sudo env NO_SELF_UPDATE=1 bash -s -- -h
 
     You will be presented with...
+
 
         -h,   --help                     Display this help text.
         -id,  --install-dashboard        Install W0CHP dashboard.
@@ -143,11 +140,11 @@ caveats](https://w0chp.net/w0chp-pistar-dash/#the-rules-and-caveats----important
         -efw  --enable-firewall          Enable Pi-Star firewall rules to defaults and only allow required traffic
         -s,   --status                   Display current install, original or W0CHP installations.
 
-5. When ready to install, run the above command again with the option/argument you wish...e.g:
+4. When ready to install, run the above command again with the option/argument you wish...e.g:
 
-        sudo bash ./W0CHP-pistar -id
+        curl -Ls https://w0chp.net/WPSD-Installer | sudo env NO_SELF_UPDATE=1 bash -s -- -id
 
-    (...to install the dashboard *without* `W0CHP` CSS).
+    (...to install the dashboard *without* the `W0CHP` custom CSS)
 
 ## Updating `W0CHP-PiStar-Dash`
 
