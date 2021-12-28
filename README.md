@@ -194,37 +194,44 @@ Run:
 
 ### Main Dashboard
 
-![alt text](https://w0chp.net/img/W0CHP_Dash.png "W0CHP Dashboard")
+### Main Dashboard
+![alt text](https://w0chp.net/img/WPSD_Dashboard.png "W0CHP Dashboard")
 
 ### Admin Pages
 
 #### Main Admin Landing Page
-![alt text](https://w0chp.net/img/W0CHP_Admin_1.png "W0CHP Admin Page 1")
+![alt text](https://w0chp.net/img/WPSD_Admin.png "W0CHP Admin Page")
 
 #### Instant Mode Manager
-![alt text](https://w0chp.net/img/W0CHP_Admin_2.png "W0CHP Admin Page 2")
+![alt text](https://w0chp.net/img/WPSD_IMM.png "W0CHP Instant Mode Manager")
 
 #### BrandMeister Manager
-![alt text](https://w0chp.net/img/W0CHP_Admin_3.png "W0CHP Admin Page 3")
-
-#### TGIF Manager
-![alt text](https://w0chp.net/img/W0CHP_Admin_4.png "W0CHP Admin Page 4")
+![alt text](https://w0chp.net/img/WPSD_BMman.png "W0CHP BrandMeister Manager")
 
 #### YSF Link Manager
-![alt text](https://w0chp.net/img/W0CHP_Admin_5.png "W0CHP Admin Page 5")
+![alt text](https://w0chp.net/img/WPSD_YSFman.png "W0CHP YSF Manager")
 
 #### POCSAG / DAPNET Messenger
-![alt text](https://w0chp.net/img/W0CHP_Admin_6.png "W0CHP Admin Page 6")
+![alt text](https://w0chp.net/img/WPSD_POCSAGman.png "W0CHP DAPNET Manager")
 
 #### D-Star Manager
-![alt text](https://w0chp.net/img/W0CHP_Admin_6.png "W0CHP Admin Page 7")
+![alt text](https://w0chp.net/img/WPSD_DSman.png "W0CHP D-Star Manager")
+
+#### P25 Manager
+![alt text](https://w0chp.net/img/WPSD_P25man.png "W0CHP P25 Manager")
+
+#### NXDN Manager
+![alt text](https://w0chp.net/img/WPSD_NXDNman.png "W0CHP NXDN Manager")
+
+#### System Manager
+![alt text](https://w0chp.net/img/WPSD_SYSman.png "W0CHP System Manager")
 
 #### Live Caller Screen
-![alt-text](https://w0chp.net/img/W0CHP_Live_Caller.png "Live Caller Screen")
+![alt-text](https://w0chp.net/img/WPSD_LC.png "Live Caller Screen")
 
 ### Configuration Page
 
-This image is too enormous to embed here, but you can [view it separately](https://w0chp.net/img/W0CHP_Config.png).
+This image is too enormous to embed here, but you can [view it separately](https://w0chp.net/img/WPSD_Config.png).
 
 ## Credits
 
