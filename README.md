@@ -156,7 +156,7 @@ nightly Pi-Star updating process.
 
 Run:
 
-	 sudo bash <path>/W0CHP-pistar -rd
+	 curl -Ls https://w0chp.net/WPSD-Installer | sudo env NO_SELF_UPDATE=1 bash -s -- -rd
 
 ...And the original Pi-Star Dashboard will be restored.
 
