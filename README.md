@@ -194,7 +194,6 @@ Run:
 
 ### Main Dashboard
 
-### Main Dashboard
 ![alt text](https://w0chp.net/img/WPSD_Dashboard.png "W0CHP Dashboard")
 
 ### Admin Pages
