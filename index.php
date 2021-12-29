@@ -17,6 +17,7 @@ $MYCALL = strtoupper($callsign);
 $_SESSION['MYCALL'] = $MYCALL;
 
 // Clear session data (page {re}load);
+// Clear session data (page {re}load);
 unset($_SESSION['BMAPIKey']);
 unset($_SESSION['DAPNETAPIKeyConfigs']);
 unset($_SESSION['PiStarRelease']);
@@ -25,6 +26,7 @@ unset($_SESSION['ircDDBConfigs']);
 unset($_SESSION['DStarRepeaterConfigs']);
 unset($_SESSION['DMRGatewayConfigs']);
 unset($_SESSION['YSFGatewayConfigs']);
+unset($_SESSION['DGIdGatewayConfigs']);
 unset($_SESSION['DAPNETGatewayConfigs']);
 unset($_SESSION['YSF2DMRConfigs']);
 unset($_SESSION['YSF2NXDNConfigs']);
@@ -36,6 +38,7 @@ unset($_SESSION['NXDNGatewayConfigs']);
 unset($_SESSION['P25GatewayConfigs']);
 unset($_SESSION['DvModemFWVersion']);
 unset($_SESSION['DvModemTCXOFreq']);
+unset($_SESSION['CSSConfigs']);
 
 checkSessionValidity();
 
