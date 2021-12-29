@@ -146,6 +146,9 @@ caveats](https://w0chp.net/w0chp-pistar-dash/#the-rules-and-caveats----important
 
     (...to install the dashboard *without* the `W0CHP` custom CSS)
 
+5. Important: You **must** run the aforementioned commands with the exact syntax. Note the spaces and extra `--` (dashes), etc.
+   Otherwise, the commands will fail.
+
 ## Updating `W0CHP-PiStar-Dash`
 
 Once you install `W0CHP-PiStar-Dash`, it will automatically be kept up-to-date
