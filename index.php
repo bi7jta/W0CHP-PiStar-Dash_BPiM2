@@ -17,7 +17,6 @@ $MYCALL = strtoupper($callsign);
 $_SESSION['MYCALL'] = $MYCALL;
 
 // Clear session data (page {re}load);
-// Clear session data (page {re}load);
 unset($_SESSION['BMAPIKey']);
 unset($_SESSION['DAPNETAPIKeyConfigs']);
 unset($_SESSION['PiStarRelease']);
