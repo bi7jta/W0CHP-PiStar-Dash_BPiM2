@@ -153,6 +153,10 @@ if (isset($_SESSION['YSFGatewayConfigs']['Remote Commands']['Enable']) && (isset
 			    <input type="submit" name="ysfMgrSubmit" value="Request Change" />
 			</td>
 		    </tr>
+            <tr>
+            <td colspan="3">
+                [ <b><a href="https://w0chp.net/ysf-reflectors/" target="_blank">List of YSF Reflectors (searchable/downloadable)</a></b> |
+                <b><a href="https://w0chp.net/fcs-reflectors/" target="_blank">List of FCS Reflectors (searchable/downloadable)</a></b> ]
 		</table>
 	    </form>
 	    <?php
