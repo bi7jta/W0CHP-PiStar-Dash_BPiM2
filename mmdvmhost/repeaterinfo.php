@@ -99,6 +99,11 @@ if (isProcessRunning("DMRGateway")) {
       <?php showMode("DMR X-Mode", $_SESSION['MMDVMHostConfigs']);?>
       <?php if (isPaused("POCSAG")) { echo '<td class="paused-mode-cell" title="Mode Paused">POCSAG</td>'; } else { showMode("POCSAG", $_SESSION['MMDVMHostConfigs']); } ?>
     </tr>
+      <?php if (isPaused("M17")) { echo '<td colspan="2" class="paused-mode-cell" title="Mode Paused">M17</td>'; } else { showMode("M17", $_SESSION['MMDVMHostConfigs']); } ?>
+      <?php if (isPaused("FM")) { echo '<td colspan="2" class="paused-mode-cell" title="Mode Paused">FM</td>'; } else { showMode("FM", $_SESSION['MMDVMHostConfigs']); } ?>
+    </tr>
+ 
+    <tr> 
 </table>
 <br />
 
@@ -110,15 +115,19 @@ if (isProcessRunning("DMRGateway")) {
     </tr>
     <tr>
       <?php showMode("System Fusion Network", $_SESSION['MMDVMHostConfigs']);?>
-      <?php showMode("P25 Network", $_SESSION['MMDVMHostConfigs']);?>
+      <?php showMode("DG-ID Network", $_SESSION['MMDVMHostConfigs']);?>
     </tr>
     <tr>
       <?php showMode("YSF2DMR Network", $_SESSION['MMDVMHostConfigs']);?>
-      <?php showMode("NXDN Network", $_SESSION['MMDVMHostConfigs']);?>
+      <?php showMode("YSF2NXDN Network", $_SESSION['MMDVMHostConfigs']);?>
     </tr>
     <tr>
-      <?php showMode("YSF2NXDN Network", $_SESSION['MMDVMHostConfigs']);?>
       <?php showMode("YSF2P25 Network", $_SESSION['MMDVMHostConfigs']);?>
+      <?php showMode("P25 Network", $_SESSION['MMDVMHostConfigs']);?>
+    </tr>
+    <tr>
+      <?php showMode("NXDN Network", $_SESSION['MMDVMHostConfigs']);?>
+      <?php showMode("M17 Network", $_SESSION['MMDVMHostConfigs']);?>
     </tr>
     <tr>
       <?php showMode("DMR2NXDN Network", $_SESSION['MMDVMHostConfigs']);?>

@@ -406,6 +406,13 @@ function showMode($mode, $configs) {
         } else {
             getModeClass(false,true);
         }
+    }
+    else if ($mode == "DG-ID Network") {
+        if (getServiceEnabled('/etc/dgidgateway') == 1) {
+            getModeClass(isProcessRunning("DGIdGateway"));
+        } else {
+            getModeClass(false,true);
+        }
     } else
         if (getEnabled($mode, $configs) == 1) {
 	        if ($mode == "D-Star Network") {
@@ -420,6 +427,9 @@ function showMode($mode, $configs) {
 	        else if ($mode == "NXDN Network") {
 	            getModeClass(isProcessRunning("NXDNGateway"));
 	        }
+	        else if ($mode == "M17 Network") {
+	            getModeClass(isProcessRunning("M17Gateway"));
+	        }
 	        else if ($mode == "POCSAG Network") {
 	            getModeClass(isProcessRunning("DAPNETGateway") && (isDAPNETGatewayConnected() == 1));
 	        }
@@ -432,7 +442,7 @@ function showMode($mode, $configs) {
 	            }
 	        }
 	        else {
-	            if ($mode == "D-Star" || $mode == "DMR" || $mode == "System Fusion" || $mode == "P25" || $mode == "NXDN" || $mode == "POCSAG") {
+	            if ($mode == "D-Star" || $mode == "DMR" || $mode == "System Fusion" || $mode == "P25" || $mode == "NXDN" || $mode == "POCSAG" || $mode == "M17" || $mode == "FM") {
 		            getModeClass(isProcessRunning("MMDVMHost"));
 	            }
 	        }
