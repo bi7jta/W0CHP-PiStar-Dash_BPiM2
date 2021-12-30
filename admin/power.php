@@ -38,6 +38,11 @@ if ($_SERVER["PHP_SELF"] == "/admin/power.php") {
 	    <title>Pi-Star - <?php echo $lang['digital_voice']." ".$lang['dashboard']." - ".$lang['power'];?></title>
 	    <link rel="stylesheet" type="text/css" href="/css/font-awesome-4.7.0/css/font-awesome.min.css" />
 	    <link rel="stylesheet" type="text/css" href="/css/pistar-css.php" />
+        <script type="text/javascript" src="/js/jquery.min.js"></script>
+        <script type="text/javascript" src="/js/functions.js?version=1.720"></script>
+        <script type="text/javascript">
+          $.ajaxSetup({ cache: false });
+        </script>
 	</head>
 	<body>
 	    <div class="container">
@@ -46,6 +51,26 @@ if ($_SERVER["PHP_SELF"] == "/admin/power.php") {
 		    <h1>Pi-Star <?php echo $lang['digital_voice']." - ".$lang['power'];?></h1>
 		    <p>
 			<div class="navbar">
+              <script type= "text/javascript">
+               $(document).ready(function() {
+
+                 function update() {
+                   $.ajax({
+                     type: 'POST',
+                     url: '/dstarrepeater/datetime.php',
+                     timeout: 1000,
+                     success: function(data) {
+                       $("#timer").html(data); 
+                       window.setTimeout(update, 1000);
+                     }
+                   });
+                 }
+                 update();
+               });
+              </script>
+              <div style="font-size:14px; text-align: left; padding-left: 8px; padding-top:7px; float: left;">Current Hotspot Time (<?php echo date('T')?>):
+                <span id="timer"></span>
+            </div>
 			    <a class="menuconfig" href="/admin/configure.php"><?php echo $lang['configuration'];?></a>
 			    <a class="menubackup" href="/admin/config_backup.php"><?php echo $lang['backup_restore'];?></a>
 			    <a class="menuupdate" href="/admin/update.php"><?php echo $lang['update'];?></a>

@@ -102,6 +102,26 @@ if ($_SERVER["PHP_SELF"] == "/admin/live_modem_log.php") {
 	      <h1>Pi-Star <?php echo $lang['digital_voice']." - ".$lang['live_logs'];?></h1>
 	      <p>
 		  <div class="navbar">
+              <script type= "text/javascript">
+               $(document).ready(function() {
+
+                 function update() {
+                   $.ajax({
+                     type: 'POST',
+                     url: '/dstarrepeater/datetime.php',
+                     timeout: 1000,
+                     success: function(data) {
+                       $("#timer").html(data); 
+                       window.setTimeout(update, 1000);
+                     }
+                   });
+                 }
+                 update();
+               });
+              </script>
+              <div style="font-size:14px; text-align: left; padding-left: 8px; padding-top:7px; float: left;">Current Hotspot Time (<?php echo date('T')?>): 
+                <span id="timer"></span>
+            </div>
 		      <a class="menuconfig" href="/admin/configure.php"><?php echo $lang['configuration'];?></a>
 		      <a class="menubackup" href="/admin/config_backup.php"><?php echo $lang['backup_restore'];?></a>
 		      <a class="menupower" href="/admin/power.php"><?php echo $lang['power'];?></a>

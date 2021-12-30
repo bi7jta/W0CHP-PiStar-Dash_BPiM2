@@ -287,6 +287,27 @@ if ( (file_exists('/etc/dstar-radio.mmdvmhost') && $configmmdvm['DMR']['Enable']
 <h1>Pi-Star <?php echo $lang['digital_voice']." - ".$lang['configuration'];?></h1>
 		<p>
 		    <div class="navbar">
+            <div class="navbar">
+              <script type= "text/javascript">
+               $(document).ready(function() {
+
+                 function update() {
+                   $.ajax({
+                     type: 'POST',
+                     url: '/dstarrepeater/datetime.php',
+                     timeout: 1000,
+                     success: function(data) {
+                       $("#timer").html(data); 
+                       window.setTimeout(update, 1000);
+                     }
+                   });
+                 }
+                 update();
+               });
+              </script>
+              <div style="font-size:14px; text-align: left; padding-left: 8px; padding-top:7px; float: left;">Current Hotspot Time (<?php echo date('T')?>):
+                <span id="timer"></span>
+            </div>
 			<a class="menureset" href="javascript:factoryReset();"><?php echo $lang['factory_reset'];?></a>
 			<a class="menubackup" href="/admin/config_backup.php"><?php echo $lang['backup_restore'];?></a>
 			<a class="menuupdate" href="/admin/update.php"><?php echo $lang['update'];?></a>

@@ -126,10 +126,30 @@ function formatSize( $bytes ) {
     <body>
 	<div class="container">
 	    <div class="header">
-		<div style="font-size: 10px; text-align: left; padding-left: 8px; float: left;">Hostname: <?php echo exec('cat /etc/hostname'); ?></div><div style="font-size: 10px; text-align: right; padding-right: 8px;">Pi-Star: <?php echo $_SESSION['PiStarRelease']['Pi-Star']['Version'].'<br />';?>  <?php echo $lang['dashboard'].": ".$version; echo(exec('/usr/local/sbin/pistar-check4updates'));</div>
+		<div style="font-size: 10px; text-align: left; padding-left: 8px; float: left;">Hostname: <?php echo exec('cat /etc/hostname'); ?></div><div style="font-size: 10px; text-align: right; padding-right: 8px;">Pi-Star: <?php echo $_SESSION['PiStarRelease']['Pi-Star']['Version'].'<br />';?>  <?php echo $lang['dashboard'].": ".$version; echo(exec('/usr/local/sbin/pistar-check4updates'));?></div>
 		<h1>Pi-Star <?php echo $lang['digital_voice']." ".$lang['dashboard']." - SysInfo";?></h1>
 		<p>
 		    <div class="navbar">
+              <script type= "text/javascript">
+               $(document).ready(function() {
+
+                 function update() {
+                   $.ajax({
+                     type: 'POST',
+                     url: '/dstarrepeater/datetime.php',
+                     timeout: 1000,
+                     success: function(data) {
+                       $("#timer").html(data); 
+                       window.setTimeout(update, 1000);
+                     }
+                   });
+                 }
+                 update();
+               });
+              </script>
+              <div style="font-size:14px; text-align: left; padding-left: 8px; padding-top:7px; float: left;">Current Hotspot Time (<?php echo date('T')?>): 
+                <span id="timer"></span>
+            </div>
 			<a class="menuconfig" href="/admin/configure.php"><?php echo $lang['configuration'];?></a>
 			<a class="menuupdate" href="/admin/update.php"><?php echo $lang['update'];?></a>
 			<a class="menupower" href="/admin/power.php"><?php echo $lang['power'];?></a>

@@ -155,24 +155,6 @@ if ( $testMMDVModeDMR == 1 ) {
         } else { $bmDynamicTGList = "No Talkgroups Linked"; }
 	
 	echo '<b>Active BrandMeister Connections</b>
-<script type= "text/javascript">
-$(document).ready(function() {
-
-    function update() {
-      $.ajax({
-       type: \'POST\',
-       url: \'/dstarrepeater/datetime.php\',
-       timeout: 1000,
-       success: function(data) {
-          $("#timer").html(data); 
-          window.setTimeout(update, 1000);
-       }
-      });
-     }
-     update();
-
-});
-</script>
   <table>
     <tr>
       <th align="left" style="padding-left: 8px;"><a class=tooltip href="#">Connected to Master:<span><b>Connected Master</b></span></a></th>
@@ -181,9 +163,9 @@ $(document).ready(function() {
     </tr>'."\n";
 	
 	echo '    <tr>'."\n";
-	echo '     <td rowspan="2" align="left" style="padding: 8px;white-space:normal; word-wrap:break; width:200px;">'.$dmrMasterHost.'<br /><small>(<a href="https://brandmeister.network/?page=hotspot&amp;id='.$dmrID.'" target="_new" title="Click to view your hotspot info on BrandMeister">Your HotSpot/Repeater ID: '.$dmrID.'</a>)</small></td>';
-	echo '     <td rowspan="2" align="left" style="padding: 8px;">'.$bmStaticTGList.'</td>';
-	echo '     <td style="height:50px;background:'.$tableRowOddBg.';">Current Time:<br /><strong><div id="timer"> </div></strong></td></tr><tr><td  align="left" style="height:auto;padding: 8px; background:'.$tableRowEvenBg.';">'.$bmDynamicTGList.'</td>';
+	echo '     <td align="left" style="padding: 8px;white-space:normal; word-wrap:break; width:200px;">'.$dmrMasterHost.'<br /><small>(<a href="https://brandmeister.network/?page=hotspot&amp;id='.$dmrID.'" target="_new" title="Click to view your hotspot info on BrandMeister">Your HotSpot/Repeater ID: '.$dmrID.'</a>)</small></td>';
+	echo '     <td align="left" style="padding: 8px;">'.$bmStaticTGList.'</td>';
+	echo '     <td align="left" style="height:auto;padding: 8px; background:'.$tableRowEvenBg.';">'.$bmDynamicTGList.'</td>';
 	echo '    </tr>'."\n";
 	echo '    <tr>'."\n";
 	echo '      <td colspan="3"><b><a href="https://w0chp.net/brandmeister-talkgroups/" target="_blank">List of All BrandMeister Talkgroups (sortable/searchable/downloadable)...</a></b></td>'."\n";
