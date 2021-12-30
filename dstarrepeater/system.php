@@ -29,6 +29,7 @@ include_once $_SERVER['DOCUMENT_ROOT'].'/mmdvmhost/tools.php';
 
   <div class="grid-item <?php getServiceStatusClass(isProcessRunning('cron')); ?>">Cron</div>
   <div class="grid-item <?php getServiceStatusClass(isProcessRunning('NXDNGateway')); ?>">NXDNGateway</div> 
+  <div class="grid-item <?php getServiceStatusClass(isProcessRunning('M17Gateway')); ?>">M17Gateway</div> 
   <div class="grid-item <?php getServiceStatusClass(isProcessRunning('NXDNParrot')); ?>">NXDNParrot</div> 
   <div class="grid-item <?php getServiceStatusClass(isProcessRunning('NXDN2DMR')); ?>">NXDN2DMR</div> 
   <div class="grid-item <?php getServiceStatusClass(isProcessRunning('APRSGateway')); ?>">APRSGateway</div>
