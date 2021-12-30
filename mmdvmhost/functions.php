@@ -340,7 +340,7 @@ function getFWstate () {
 
 // cron status
 function getCronState () {
-    if (isProcessRunning("cron") == 1) {
+    if (isProcessRunning('cron') == 1) {
         return 1;
     } else {
         return 0;
