@@ -51,5 +51,6 @@ include_once $_SERVER['DOCUMENT_ROOT'].'/mmdvmhost/tools.php';
   <div class="grid-item <?php getServiceStatusClass(isProcessRunning('YSF2P25')); ?>">YSF2P25</div>
   <div class="grid-item <?php getServiceStatusClass(isProcessRunning('YSF2NXDN')); ?>">YSF2NXDN</div>
   <div class="grid-item <?php getServiceStatusClass(isProcessRunning('DMR2NXDN')); ?>">DMR2NXDN</div>
+  <div class="grid-item <?php getServiceStatusClass(isProcessRunning('ntpd')); ?>">NTPd</div>
 </div>
 
