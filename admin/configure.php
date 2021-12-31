@@ -308,7 +308,7 @@ if ( (file_exists('/etc/dstar-radio.mmdvmhost') && $configmmdvm['DMR']['Enable']
                  update();
                });
               </script>
-              <div style="font-size:<?php echo($TextFontSize);?>px; text-align: left; padding-left: 8px; padding-top:7px; float: left;">Current Hotspot Time (<?php echo date('T')?>):
+              <div style="font-size:<?php echo($TextFontSize);?>px; text-align: left; padding-left: 8px; padding-top: 5px; float: left;">Current Hotspot Time (<?php echo date('T')?>):
                 <span id="timer"></span>
             </div>
 			<a class="menureset" href="javascript:factoryReset();"><?php echo $lang['factory_reset'];?></a>
