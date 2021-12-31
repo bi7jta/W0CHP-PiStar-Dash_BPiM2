@@ -104,10 +104,14 @@ if ($_SERVER["PHP_SELF"] == "/admin/live_modem_log.php") {
 		  <div class="navbar">
               <script type= "text/javascript">
                $(document).ready(function() {
+                 setInterval(function() {
+                   $("#timer").load("/dstarrepeater/datetime.php");
+                   }, 1000);
 
                  function update() {
                    $.ajax({
-                     type: 'POST',
+                     type: 'GET',
+                     cache: false,
                      url: '/dstarrepeater/datetime.php',
                      timeout: 1000,
                      success: function(data) {
