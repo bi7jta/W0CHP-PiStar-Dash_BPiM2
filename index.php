@@ -113,7 +113,7 @@ checkSessionValidity();
                  update();
                });
               </script>
-              <div style="font-size:<?php echo($TextFontSize);?>px; text-align: left; padding-left: 8px; padding-top:7px; float: left;">Current Hotspot Time (<?php echo date('T')?>): 
+              <div style="font-size:<?php echo($TextFontSize);?>px; text-align: left; padding-left: 8px; padding-top: 5px; float: left;">Current Hotspot Time (<?php echo date('T')?>): 
                 <span id="timer"></span>
             </div>
 			<a class="menuconfig" href="/admin/configure.php"><?php echo $lang['configuration'];?></a>
