@@ -121,7 +121,7 @@ caveats](https://w0chp.net/w0chp-pistar-dash/#the-rules-and-caveats----important
 
 ## Installing `W0CHP-PiStar-Dash`
 
-1. Make a backup of your configuration - just in case.
+1. Make a backup of your configuration if you wish -- just in case.
 
 2. Open an SSH session to your Pi-Star instance.
 
