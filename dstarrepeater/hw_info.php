@@ -75,7 +75,8 @@ $sysRamPercent = exec("free -h | tail -2 | head -1 | awk {'print $3'} | sed 's/M
 <h2><?php echo $lang['hardware_info'];?></h2>
 <table style="white-space:normal; word-wrap:break;">
     <tr>
-	<th><a class="tooltip" href="#"><?php echo $lang['hostname'];?><br /><span><b>System IP Address:<br /><?php echo str_replace(',', ',<br />', exec('hostname -I'));?></b></span></a></th>
+	<th><a class="tooltip" href="#"><?php echo $lang['hostname'];?><br /><span><b>System Hostname:<br /><?php echo str_replace(',', ',<br />', exec('hostname'));?></b></span></a></th>
+	<th><a class="tooltip" href="#">IP Address<br /><span><b>System IP Address:<br /><?php echo str_replace(',', ',<br />', exec('hostname -I'));?></b></span></a></th>
 	<th><a class="tooltip" href="#"><?php echo $lang['platform'];?><span><b>Uptime:<br /><?php echo str_replace(',', ',<br />', exec('uptime -p'));?></b></span></a></th>
 	<th><a class="tooltip" href="#"><?php echo $lang['kernel'];?><span><b>Release</b>This is the version<br />number of the Linux Kernel running<br />on this Raspberry Pi.</b></span></a></th>
 	<th><a class="tooltip" href="#"><?php echo $lang['cpu_load'];?><span><b>CPU Load</b></span></a></th>
@@ -85,6 +86,7 @@ $sysRamPercent = exec("free -h | tail -2 | head -1 | awk {'print $3'} | sed 's/M
     </tr>
     <tr>
 	<td><?php echo php_uname('n');?></td>
+	<td><?php echo $_SERVER['SERVER_ADDR'];?></td>
 	<td><?php echo exec('/usr/local/sbin/platformDetect.sh');?></td>
 	<td><?php echo php_uname('r');?></td>
 	<td>User: <?php echo $cpuLoad['user'];?>% / Sys: <?php echo $cpuLoad['sys'];?>% / Nice: <?php echo $cpuLoad['nice'];?>%</td>
