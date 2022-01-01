@@ -25,46 +25,8 @@ function system_information() {
         }
     }
     return array('date' => date('Y-m-d H:i:s T'),
-                 'mem_info' => $meminfo,
-                 'partitions' => disk_list()
+                 'mem_info' => $meminfo
     );
-}
-
-function disk_list() {
-    $partitions = array();
-    // Fetch partition information from df command
-    // I would have used disk_free_space() and disk_total_space() here but
-    // there appears to be no way to get a list of partitions in PHP?
-    $output = array();
-    @exec('df --block-size=1', $output);
-    foreach($output as $line) {
-        $columns = array();
-        foreach(explode(' ', $line) as $column) {
-            $column = trim($column);
-            if($column != '') $columns[] = $column;
-        }
-        
-        // Only process 6 column rows
-        // (This has the bonus of ignoring the first row which is 7)
-        if(count($columns) == 6) {
-            $partition = $columns[5];
-            $partitions[$partition]['Temporary']['bool'] = in_array($columns[0], array('tmpfs', 'devtmpfs'));
-            $partitions[$partition]['Partition']['text'] = $partition;
-            $partitions[$partition]['FileSystem']['text'] = $columns[0];
-            if(is_numeric($columns[1]) && is_numeric($columns[2]) && is_numeric($columns[3])) {
-                $partitions[$partition]['Size']['value'] = $columns[1];
-                $partitions[$partition]['Free']['value'] = $columns[3];
-                $partitions[$partition]['Used']['value'] = $columns[2];
-            }
-            else {
-                // Fallback if we don't get numerical values
-                $partitions[$partition]['Size']['text'] = $columns[1];
-                $partitions[$partition]['Used']['text'] = $columns[2];
-                $partitions[$partition]['Free']['text'] = $columns[3];
-            }
-        }
-    }
-    return $partitions;
 }
 
 function formatSize( $bytes ) {
@@ -84,8 +46,6 @@ $cpuTempF = sprintf('%.0f',round(+$cpuTempC * 9 / 5 + 32, 1));
 if ($cpuTempC <= 59) { $cpuTempHTML = "<td style=\"background: inherit\">".$cpuTempF."&deg;F / ".$cpuTempC."&deg;C</td>\n"; }
 if ($cpuTempC >= 60) { $cpuTempHTML = "<td style=\"background: #fa0\">".$cpuTempF."&deg;F / ".$cpuTempC."&deg;C</td>\n"; }
 if ($cpuTempC >= 80) { $cpuTempHTML = "<td style=\"background: #f00\">".$cpuTempF."&deg;F / ".$cpuTempC."&deg;C</td>\n"; }
-
-require_once($_SERVER['DOCUMENT_ROOT'].'/config/language.php');        // Translation Code
 
 // Gather CPU Loads
 //$cpuLoad = sys_getloadavg();
