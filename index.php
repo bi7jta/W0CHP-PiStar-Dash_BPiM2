@@ -118,6 +118,7 @@ checkSessionValidity();
             </div>
 			<a class="menuconfig" href="/admin/configure.php"><?php echo $lang['configuration'];?></a>
 			<?php if ($_SERVER["PHP_SELF"] == "/admin/index.php") {
+                echo ' <a class="menuexpert" href="/admin/expert/">Expert</a>'."\n";
 			    echo ' <a class="menuupdate" href="/admin/update.php">'.$lang['update'].'</a>'."\n";
 			    echo ' <a class="menupower" href="/admin/power.php">'.$lang['power'].'</a>'."\n";
 			    echo ' <a class="menusysinfo" href="/admin/sysinfo.php">Sysinfo</a>'."\n";
