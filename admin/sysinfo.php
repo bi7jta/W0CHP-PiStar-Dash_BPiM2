@@ -240,7 +240,7 @@ function formatSize( $bytes ) {
 			echo "  <tr>";getStatusClass(isProcessRunning("NXDNGateway"), true); echo "NXDNGateway</td><td align=\"left\">".$NXDNGateway_Ver."</td></tr>\n";
 		    }
 		    if (is_executable('/usr/local/bin/M17Gateway')) {
-			$M17ateway_Ver = exec('/usr/local/bin/M17Gateway -v | cut -d\' \' -f 3-');
+			$M17Gateway_Ver = exec('/usr/local/bin/M17Gateway -v | cut -d\' \' -f 3-');
 			echo "  <tr>";getStatusClass(isProcessRunning("M17Gateway"), true); echo "M17Gateway</td><td align=\"left\">".$M17Gateway_Ver."</td></tr>\n";
 		    }
 		    if (is_executable('/usr/local/bin/NXDN2DMR')) {
