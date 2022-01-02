@@ -367,7 +367,7 @@ function isDGIdGatewayConnected() {
 
     $logLines = $logLines1 + $logLines2;
 
-    $errorMessages = array('Lost link to MMDVM', 'Login failed', 'Error returned from recv');
+    $errorMessages = array('Lost link to MMDVM' , 'Lost link to YSFGateway');
     
     foreach($logLines as $dgidMessageLine) {
 		foreach($errorMessages as $errorLine) {
