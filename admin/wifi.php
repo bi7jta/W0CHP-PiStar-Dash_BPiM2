@@ -65,7 +65,7 @@ switch($page) {
 			$strHWAddress = $result[1];
 		}
 		if(strpos($strWlan0, "UP") !== false && strpos($strWlan0, "RUNNING") !== false) {
-			$strStatus = '<span style="color:green">Interface is up</span>';
+			$strStatus = '<span style="color:#6f0;background:black;">Interface is up</span>';
 				//Cant get these unless we are connected :)
 				if (strpos($strWlan0,'inet addr:') !== false) {
 					preg_match('/inet addr:([0-9.]+)/i',$strWlan0,$result);
@@ -135,7 +135,7 @@ switch($page) {
 				$strWifiChan = ConvertToChannel(str_replace(".", "", $strWifiChan)); }
 		}
 		else {
-			$strStatus = '<span style="color:red">Interface is down</span>';
+			$strStatus = '<span style="color:#EE4B2B;background:black;">Interface is down</span>';
 		}
 		if(isset($_POST['ifdown_wlan0'])) {
 			exec('ifconfig wlan0 | grep -i running | wc -l',$test);
