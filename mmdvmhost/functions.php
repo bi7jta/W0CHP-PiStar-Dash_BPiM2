@@ -343,7 +343,12 @@ function isDAPNETGatewayConnected() {
 //M: 2022-01-02 12:36:02.761 Link successful to MMDVM 
 //M: 2022-01-02 13:30:04.841 Linked to YSFGateway
 //M: 2022-01-02 12:36:58.363 Lost link to YSFGateway 
-//M: 2022-01-02 12:42:32.053 Lost link to MMDVM 
+//M: 2022-01-02 12:42:32.053 Lost link to MMDVM
+//M: 2022-01-02 18:01:31.065 DG-ID set to 0 (YSF: YSFGateway) via RF 
+//M: 2022-01-02 18:01:37.554 *** 1 bleep! 
+//M: 2022-01-02 18:04:17.222 DG-ID set to None via timeout 
+//M: 2022-01-02 18:04:17.222 *** 2 bleep! 
+//M: 2022-01-02 18:05:06.413 DG-ID set to 0 (YSF: YSFGateway) via Network 
 function isDGIdGatewayConnected() {
     $logLines = array();
     $logLines1 = array();
@@ -379,6 +384,106 @@ function isDGIdGatewayConnected() {
     return true;
 }
 
+function getDGIdLinks() {
+    $logDGIdGWNow = "/var/log/pi-star/DGIdGateway-".gmdate("Y-m-d").".log";
+    $logDGIdPrevious = "/var/log/pi-star/DGIdGateway-".gmdate("Y-m-d", time() - 86340).".log";
+    $logSearchString = "DG-ID";
+    $logLine = '';
+    $linkedDGId = 'Not Linked';
+    $LogError = "Cannot Open Log";
+
+    if (file_exists($logDGIdGWNow) || file_exists($logDGIdPrevious)) {
+		$logLine = exec("tail -10 $logDGIdGWNow | grep \"".$logSearchString."\" ");
+       	if (!$logLine) {
+			$logLine = exec("tail -10 $logDGIdPrevious | grep \"".$logSearchString."\" ");
+       	}
+    } else
+       	{
+       	return $LogError;
+    }
+
+    if ($logLine) {
+        if (strpos($logLine, 'DG-ID set to')) {
+            preg_match('/(?<=to )\S+(.*)/i', $logLine, $match); // find DG-ID # in log line after "set to" string.
+            $linkedDGId = str_replace("(", "<br />(", $match[0]); // remove occasional comma
+            $linkedDGId = str_replace("via", "<br />via", $linkedDGId); // remove occasional comma
+            $linkedDGId = "DG-ID: $linkedDGId";
+	    }
+    }
+    return $linkedDGId;
+}
+
+
+function getM17GatewayLog() {
+    // Open Logfile and copy loglines into LogLines-Array()
+    $logLines = array();
+	$logLines1 = array();
+	$logLines2 = array();
+    if (file_exists("/var/log/pi-star/M17Gateway-".gmdate("Y-m-d").".log")) {
+		$logPath1 = "/var/log/pi-star/M17Gateway-".gmdate("Y-m-d").".log";
+		$logLines1 = preg_split('/\r\n|\r|\n/', `egrep -h "ink|Starting|witched" $logPath1 | cut -d" " -f2- | tail -1`);
+    }
+	$logLines1 = array_filter($logLines1);
+    if (sizeof($logLines1) == 0) {
+        if (file_exists("/var/log/pi-star/M17Gateway-".gmdate("Y-m-d", time() - 86340).".log")) {
+    		$logPath2 = "/var/log/pi-star/M17Gateway-".gmdate("Y-m-d", time() - 86340).".log";
+			$logLines2 = preg_split('/\r\n|\r|\n/', `egrep -h "ink|Starting|witched" $logPath2 | cut -d" " -f2- | tail -1`);
+        }
+		$logLines2 = array_filter($logLines2);
+   }
+	if (sizeof($logLines1) == 0) { $logLines = $logLines2; } else { $logLines = $logLines1; }
+        return array_filter($logLines);
+}
+
+//M: 2022-01-02 12:32:41.238 Opening YSF network connection 
+//I: 2022-01-02 12:32:41.238 Opening UDP port on 42026 
+//M: 2022-01-02 12:32:41.238      Linking at startup 
+//M: 2022-01-02 12:32:41.238 Starting DGIdGateway-20210922_W0CHP 
+//M: 2022-01-02 12:32:42.605 Link successful to MMDVM 
+//M: 2022-01-02 12:32:49.537 DG-ID set to 0 (YSF: YSFGateway) via RF 
+//M: 2022-01-02 12:32:50.619 *** 3 bleep! 
+//M: 2022-01-02 12:33:41.263 Lost link to YSFGateway 
+//M: 2022-01-02 12:34:49.656 DG-ID set to None via timeout 
+//M: 2022-01-02 12:34:49.656 *** 2 bleep! 
+//M: 2022-01-02 12:35:58.284 Opening YSF network connection 
+//I: 2022-01-02 12:35:58.284 Opening UDP port on 4200 
+//I: 2022-01-02 12:35:58.315 Loaded 1241 YSF reflectors 
+//M: 2022-01-02 12:35:58.315 Opening IMRS network connection 
+//I: 2022-01-02 12:35:58.343 Opening UDP port on 21110 
+//M: 2022-01-02 12:35:58.344 Added YSF Gateway to DG-ID 0 (Static) 
+//M: 2022-01-02 12:35:58.344 Opening YSF network connection 
+//I: 2022-01-02 12:35:58.344 Opening UDP port on 42026 
+//M: 2022-01-02 12:35:58.344      Linking at startup 
+//M: 2022-01-02 12:35:58.344 Starting DGIdGateway-20210922_W0CHP 
+//M: 2022-01-02 12:36:02.761 Link successful to MMDVM 
+//M: 2022-01-02 13:30:04.841 Linked to YSFGateway
+//M: 2022-01-02 12:36:58.363 Lost link to YSFGateway 
+//M: 2022-01-02 12:42:32.053 Lost link to MMDVM
+//M: 2022-01-02 18:01:31.065 DG-ID set to 0 (YSF: YSFGateway) via RF 
+//M: 2022-01-02 18:01:37.554 *** 1 bleep! 
+//M: 2022-01-02 18:04:17.222 DG-ID set to None via timeout 
+//M: 2022-01-02 18:04:17.222 *** 2 bleep! 
+//M: 2022-01-02 18:05:06.413 DG-ID set to 0 (YSF: YSFGateway) via Network 
+function getDGIdGatewayLog() {
+    // Open Logfile and copy loglines into LogLines-Array()
+    $logLines = array();
+	$logLines1 = array();
+	$logLines2 = array();
+    if (file_exists("/var/log/pi-star/DGIdGateway-".gmdate("Y-m-d").".log")) {
+		$logPath1 = "/var/log/pi-star/DGIdGateway-".gmdate("Y-m-d").".log";
+		$logLines1 = preg_split('/\r\n|\r|\n/', `egrep -h "linked|Added|via" $logPath1 | cut -d" " -f2- | tail -1`);
+    }
+	$logLines1 = array_filter($logLines1);
+    if (sizeof($logLines1) == 0) {
+        if (file_exists("/var/log/pi-star/DGiDGateway-".gmdate("Y-m-d", time() - 86340).".log")) {
+    		$logPath2 = "/var/log/pi-star/DGIdGateway-".gmdate("Y-m-d", time() - 86340).".log";
+			$logLines2 = preg_split('/\r\n|\r|\n/', `egrep -h "linked|Added|via" $logPath2 | cut -d" " -f2- | tail -1`);
+        }
+		$logLines2 = array_filter($logLines2);
+   }
+	if (sizeof($logLines1) == 0) { $logLines = $logLines2; } else { $logLines = $logLines1; }
+        return array_filter($logLines);
+}
 
 // show if mode is paused in side modes panel
 function isPaused($mode) {

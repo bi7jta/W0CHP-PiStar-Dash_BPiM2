@@ -499,6 +499,15 @@ if (isProcessRunning("DMRGateway")) {
         echo "</table>\n";
 	}
 
+    if (getServiceEnabled('/etc/dgidgateway') == 1 )  { // Hide DGId GW info when GW not enabled
+        echo "<br />\n";
+        echo "<table>\n";
+        echo "<tr><th colspan='2'>DG-ID Gateway Status</th></tr>\n";
+        echo "<tr><th colspan='2'>DG-ID Link:</th></tr>\n";
+        echo "<tr><td colspan='2' style=\"background: $tableRowEvenBg;\" title=\"".getDGIdLinks()."\">".getDGIdLinks()."</td></tr>\n";
+        echo "</table>\n";
+    }
+
 	$testYSF2DMR = 0;
 	if ( isset($_SESSION['YSF2DMRConfigs']['Enabled']['Enabled']) ) {
 	    $testYSF2DMR = $_SESSION['YSF2DMRConfigs']['Enabled']['Enabled'];
