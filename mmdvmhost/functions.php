@@ -341,6 +341,7 @@ function isDAPNETGatewayConnected() {
 //M: 2022-01-02 12:35:58.344      Linking at startup 
 //M: 2022-01-02 12:35:58.344 Starting DGIdGateway-20210922_W0CHP 
 //M: 2022-01-02 12:36:02.761 Link successful to MMDVM 
+//M: 2022-01-02 13:30:04.841 Linked to YSFGateway
 //M: 2022-01-02 12:36:58.363 Lost link to YSFGateway 
 //M: 2022-01-02 12:42:32.053 Lost link to MMDVM 
 function isDGIdGatewayConnected() {
