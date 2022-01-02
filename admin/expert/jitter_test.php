@@ -31,6 +31,8 @@ if ($_SERVER["PHP_SELF"] == "/admin/expert/jitter_test.php") {
     if ($_GET['group'] == "brandmeister") { $target = "BM"; }
     if ($_GET['group'] == "dmrplus")      { $target = "DMR+"; }
     if ($_GET['group'] == "hblink")       { $target = "HB"; }
+    if ($_GET['group'] == "freedmr")      { $target = "FreeDMR"; }
+    if ($_GET['group'] == "xlx")          { $target = "XLX"; }
   } else { $target = ""; }
 
     if (!isset($_GET['ajax'])) {
@@ -133,15 +135,22 @@ if ($_SERVER["PHP_SELF"] == "/admin/expert/jitter_test.php") {
   <div class="container">
   <?php include './header-menu.inc'; ?>
   <div class="contentwide">
-  <form method="get" action="<?php ($_SERVER["PHP_SELF"]); ?>">
-  <div>Select network to test: 
-	[ BrandMeister: <input type="radio" value="brandmeister" name="group" /> |
-	HB-Link: <input type="radio" value="hblink" name="group" /> |
-	DMR+: <input type="radio" value="dmrplus" name="group" /> ] <input type="submit" name="sumbit" value="Start Test" />
-  </form>
   <table width="100%">
   <?php if (empty($target)) { ?>
-  <tr><td>Please select a network above.</td></tr>
+  <tr><th>Network Jitter Test</th></tr>
+  <tr><td>
+  <form method="get" action="<?php ($_SERVER["PHP_SELF"]); ?>">
+  <p>Select network to test:
+    [ BrandMeister:<input type="radio" value="brandmeister" name="group" /> |
+    HB-Link:<input type="radio" value="hblink" name="group" /> |
+    FreeDMR:<input type="radio" value="freedmr" name="group" /> |
+    XLX Hosts:<input type="radio" value="xlx" name="group" /> |
+    DMR+:<input type="radio" value="dmrplus" name="group" /> ]
+    <input type="submit" name="sumbit" value="Start Test" />
+    </p>
+  </form>
+  </td</tr>
+  <tr><td><p><b>Please select a network above.</b></p></td></tr>
   </table>
   </div>
   <div class="footer">
@@ -151,8 +160,22 @@ if ($_SERVER["PHP_SELF"] == "/admin/expert/jitter_test.php") {
   </div>
   </div>
   </body>
-  <?php } else { ?> 
-  <tr><th>Test Results</th></tr>
+  <?php } else { ?>
+
+  <tr><th>DMR Network Jitter Test</th></tr>
+  <tr><td>
+  <form method="get" action="<?php ($_SERVER["PHP_SELF"]); ?>">
+  <p>Select network to test:
+    [ BrandMeister:<input type="radio" value="brandmeister" name="group" /> |
+    HB-Link:<input type="radio" value="hblink" name="group" /> |
+    FreeDMR:<input type="radio" value="freedmr" name="group" /> |
+    XLX Hosts:<input type="radio" value="xlx" name="group" /> |
+    DMR+:<input type="radio" value="dmrplus" name="group" /> ]
+    <input type="submit" name="sumbit" value="Start Test" />
+    </p>
+  </form>
+  </td</tr>
+  <tr><td><b>Test Results:</b></td></tr>
   <tr><td align="left"><div id="tail">Starting test...<br /></div></td></tr>
   </table>
   </div>
