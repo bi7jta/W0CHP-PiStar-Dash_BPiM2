@@ -320,6 +320,65 @@ function isDAPNETGatewayConnected() {
     return true;
 }
 
+//M: 2022-01-02 12:32:41.238 Opening YSF network connection 
+//I: 2022-01-02 12:32:41.238 Opening UDP port on 42026 
+//M: 2022-01-02 12:32:41.238      Linking at startup 
+//M: 2022-01-02 12:32:41.238 Starting DGIdGateway-20210922_W0CHP 
+//M: 2022-01-02 12:32:42.605 Link successful to MMDVM 
+//M: 2022-01-02 12:32:49.537 DG-ID set to 0 (YSF: YSFGateway) via RF 
+//M: 2022-01-02 12:32:50.619 *** 3 bleep! 
+//M: 2022-01-02 12:33:41.263 Lost link to YSFGateway 
+//M: 2022-01-02 12:34:49.656 DG-ID set to None via timeout 
+//M: 2022-01-02 12:34:49.656 *** 2 bleep! 
+//M: 2022-01-02 12:35:58.284 Opening YSF network connection 
+//I: 2022-01-02 12:35:58.284 Opening UDP port on 4200 
+//I: 2022-01-02 12:35:58.315 Loaded 1241 YSF reflectors 
+//M: 2022-01-02 12:35:58.315 Opening IMRS network connection 
+//I: 2022-01-02 12:35:58.343 Opening UDP port on 21110 
+//M: 2022-01-02 12:35:58.344 Added YSF Gateway to DG-ID 0 (Static) 
+//M: 2022-01-02 12:35:58.344 Opening YSF network connection 
+//I: 2022-01-02 12:35:58.344 Opening UDP port on 42026 
+//M: 2022-01-02 12:35:58.344      Linking at startup 
+//M: 2022-01-02 12:35:58.344 Starting DGIdGateway-20210922_W0CHP 
+//M: 2022-01-02 12:36:02.761 Link successful to MMDVM 
+//M: 2022-01-02 12:36:58.363 Lost link to YSFGateway 
+//M: 2022-01-02 12:42:32.053 Lost link to MMDVM 
+function isDGIdGatewayConnected() {
+    $logLines = array();
+    $logLines1 = array();
+    $logLines2 = array();
+    
+    // Collect last 20 lines  - see down below for no. of line values (array_slice)
+    if (file_exists("/var/log/pi-star/DGIdGateway-".gmdate("Y-m-d").".log")) {
+	$logPath1 = "/var/log/pi-star/DGIdGateway-".gmdate("Y-m-d").".log";
+	$logLines1 = preg_split('/\r\n|\r|\n/', `tail -n 5 $logPath1 | cut -d" " -f2- | tac`);
+    }
+    
+    $logLines1 = array_filter($logLines1);
+
+    if (sizeof($logLines1) == 0) {
+        if (file_exists("/var/log/pi-star/DGIdGateway-".gmdate("Y-m-d", time() - 86340).".log")) {
+            $logPath2 = "/var/log/pi-star/DGIdGateway-".gmdate("Y-m-d", time() - 86340).".log";
+            $logLines2 = preg_split('/\r\n|\r|\n/', `tail -n 5 $logPath2 | cut -d" " -f2- | tac`);
+        }
+	
+        $logLines2 = array_filter($logLines2);
+    }
+
+    $logLines = $logLines1 + $logLines2;
+
+    $errorMessages = array('Lost link to MMDVM', 'Login failed', 'Error returned from recv');
+    
+    foreach($logLines as $dgidMessageLine) {
+		foreach($errorMessages as $errorLine) {
+	    	if (strpos($dgidMessageLine, $errorLine) != FALSE)
+			return false;
+		}
+    }
+    return true;
+}
+
+
 // show if mode is paused in side modes panel
 function isPaused($mode) {
     if (file_exists("/etc/".$mode."_paused") && (getEnabled($mode, $configs) == 0) ) {
@@ -409,7 +468,7 @@ function showMode($mode, $configs) {
     }
     else if ($mode == "DG-ID Network") {
         if (getServiceEnabled('/etc/dgidgateway') == 1) {
-            getModeClass(isProcessRunning("DGIdGateway"));
+            getModeClass(isProcessRunning("DGIdGateway") && (isDGIdGatewayConnected() == 1));
         } else {
             getModeClass(false,true);
         }
