@@ -399,7 +399,7 @@ if (!empty($_POST)):
 	  }
 
 	// Stop Cron and all serivices
-	system('sudo pistar-services fullstop > /dev/null 2>/dev/null &');
+	system('sudo REMOUNT_RO="NO" pistar-services fullstop > /dev/null 2>/dev/null &');
 
 	echo "<table>\n";
 	echo "<tr><th>Working...</th></tr>\n";
