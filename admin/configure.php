@@ -2504,7 +2504,7 @@ if (!empty($_POST)):
 	if (!isset($configm17gateway['Network']['Revert'])) { $configm17gateway['Network']['Revert'] = "1"; }
 	if (!isset($configm17gateway['Network']['Debug'])) { $configm17gateway['Network']['Debug'] = "0"; }
    	if (!isset($configm17gateway['APRS'])) {
-        	$configm17gateway['APRS']['Enable'] = "1";
+        	$configm17gateway['APRS']['Enable'] = "0";
         	$configm17gateway['APRS']['Address'] = "127.0.0.1";
         	$configm17gateway['APRS']['Port'] = "8673";
         	$configm17gateway['APRS']['Description'] = "APRS for M17Gateway";
@@ -2516,7 +2516,7 @@ if (!empty($_POST)):
     	}
     	if (!isset($configm17gateway['Log'])) {
         	$configm17gateway['Log']['DisplayLevel'] = "0";
-        	$configm17gateway['Log']['FileLevel'] = "1";
+        	$configm17gateway['Log']['FileLevel'] = "2";
         	$configm17gateway['Log']['FilePath'] = "/var/log/pi-star";
         	$configm17gateway['Log']['FileRoot'] = "M17Gateway";
     	}
