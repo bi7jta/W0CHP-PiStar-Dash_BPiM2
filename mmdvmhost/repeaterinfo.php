@@ -196,6 +196,13 @@ if (isProcessRunning("DMRGateway")) {
 	        else if ($listElem[2] && $listElem[6] == null && getActualMode($lastHeard, $_SESSION['MMDVMHostConfigs']) === 'P25') {
         	    echo "<td style=\"background:#4aa361;font-weight:bold\">RX: P25</td>";
         	}
+	        elseif ($listElem[2] && $listElem[6] == null && getActualMode($lastHeard, $mmdvmconfigs) === 'M17') {
+        	        echo "<td style=\"background:#eb6a46;\">RX M17</td>";
+        	        }
+        	elseif (getActualMode($lastHeard, $mmdvmconfigs) === 'M17') {
+        	        echo "<td style=\"background:#d59e7b;\">Listening M17</td>";
+        	
+		}
         	else if (getActualMode($lastHeard, $_SESSION['MMDVMHostConfigs']) === 'P25') {
         	    echo "<td style=\"background:#f9f;font-weight:bold\">Standby: P25</td>";
         	}
@@ -588,6 +595,17 @@ if (isProcessRunning("DMRGateway")) {
 			}
 	    }
 	    echo "</table>\n";
+	}
+
+	$testMMDVModeM17 = getConfigItem("M17", "Enable", $_SESSION['MMDVMHostConfigs']);
+	if ( $testMMDVModeM17 == 1 ) { //Hide the M17 Reflector information when M17 Network not enabled.
+		echo "<br />\n";
+		echo "<table>\n";
+		echo "<tr><th colspan=\"2\">M17 Repeater</th></tr>\n";
+		echo "<tr><th>RPT</th><td style=\"background: #ffffff;\">".str_replace(' ', '&nbsp;', $configm17gateway['General']['Callsign'])."&nbsp;".str_replace(' ', '&nbsp;', $configm17gateway['General']['Suffix'])."</td></tr>\n";
+		echo "<tr><th colspan=\"2\">".$lang['m17_net']."</th></tr>\n";
+		echo "<tr><td colspan=\"2\" style=\"background: #ffffff;\">".getActualLink($reverseLogLinesM17Gateway, "M17")."</td></tr>\n";
+		echo "</table>\n";
 	}
 	
 	$testMMDVModePOCSAG = getConfigItem("POCSAG Network", "Enable", $_SESSION['MMDVMHostConfigs']);
