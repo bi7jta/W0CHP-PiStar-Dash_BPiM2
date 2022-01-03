@@ -2749,6 +2749,8 @@ if (!empty($_POST)):
 		$configdgidgateway['Log']['FileRoot'] = "DGIdGateway";
 		$configdgidgateway['Log']['FileRotate'] = 1;
 		$configdgidgateway['YSF Network']['Hosts'] = "/usr/local/etc/YSFHosts.txt";
+		$configdgidgateway['DGId=0']['Port'] = 42025;
+		$configdgidgateway['DGId=0']['Local'] = 42026;
 	}
 
 	// Clean up for NXDN Gateway
