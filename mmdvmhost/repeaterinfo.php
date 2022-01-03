@@ -99,8 +99,8 @@ if (isProcessRunning("DMRGateway")) {
       <?php showMode("DMR X-Mode", $_SESSION['MMDVMHostConfigs']);?>
       <?php if (isPaused("POCSAG")) { echo '<td class="paused-mode-cell" title="Mode Paused">POCSAG</td>'; } else { showMode("POCSAG", $_SESSION['MMDVMHostConfigs']); } ?>
     </tr>
-      <?php if (isPaused("M17")) { echo '<td colspan="2" class="paused-mode-cell" title="Mode Paused">M17</td>'; } else { showMode("M17", $_SESSION['MMDVMHostConfigs']); } ?>
-      <?php if (isPaused("FM")) { echo '<td colspan="2" class="paused-mode-cell" title="Mode Paused">FM</td>'; } else { showMode("FM", $_SESSION['MMDVMHostConfigs']); } ?>
+      <?php if (isPaused("M17")) { echo '<td class="paused-mode-cell" title="Mode Paused">M17</td>'; } else { showMode("M17", $_SESSION['MMDVMHostConfigs']); } ?>
+      <?php if (isPaused("FM")) { echo '<td class="paused-mode-cell" title="Mode Paused">FM</td>'; } else { showMode("FM", $_SESSION['MMDVMHostConfigs']); } ?>
     </tr>
  
     <tr> 
@@ -599,13 +599,17 @@ if (isProcessRunning("DMRGateway")) {
 
 	$testMMDVModeM17 = getConfigItem("M17", "Enable", $_SESSION['MMDVMHostConfigs']);
         $configm17gateway = $_SESSION['M17GatewayConfigs'];
-	if ( $testMMDVModeM17 == 1 ) { //Hide the M17 Reflector information when M17 Network not enabled.
+	if ( $testMMDVModeM17 == 1 || isPaused("M17") ) { //Hide the M17 Reflector information when M17 Network not enabled.
 		echo "<br />\n";
 		echo "<table>\n";
 		echo "<tr><th colspan=\"2\">M17 Repeater</th></tr>\n";
 		echo "<tr><th>RPT</th><td style=\"background: #ffffff;\">".str_replace(' ', '&nbsp;', $configm17gateway['General']['Callsign'])."&nbsp;".str_replace(' ', '&nbsp;', $configm17gateway['General']['Suffix'])."</td></tr>\n";
 		echo "<tr><th colspan=\"2\">".$lang['m17_net']."</th></tr>\n";
-		echo "<tr><td colspan=\"2\" style=\"background: #ffffff;\">".getActualLink($reverseLogLinesM17Gateway, "M17")."</td></tr>\n";
+                if (isPaused("M17")) {
+                    echo "<tr><td colspan=\"2\"style=\"background: $tableRowEvenBg;\">Mode Paused</td></tr>\n";
+                } else {
+		    echo "<tr><td colspan=\"2\" style=\"background: #ffffff;\">".getActualLink($reverseLogLinesM17Gateway, "M17")."</td></tr>\n";
+                }
 		echo "</table>\n";
 	}
 	
