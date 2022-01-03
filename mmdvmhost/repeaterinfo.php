@@ -598,6 +598,7 @@ if (isProcessRunning("DMRGateway")) {
 	}
 
 	$testMMDVModeM17 = getConfigItem("M17", "Enable", $_SESSION['MMDVMHostConfigs']);
+        $configm17gateway = $_SESSION['M17GatewayConfigs'];
 	if ( $testMMDVModeM17 == 1 ) { //Hide the M17 Reflector information when M17 Network not enabled.
 		echo "<br />\n";
 		echo "<table>\n";

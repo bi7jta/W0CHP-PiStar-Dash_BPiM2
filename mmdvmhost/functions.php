@@ -74,6 +74,7 @@ function checkSessionValidity() {
     loadSessionConfigFile('DMR2NXDNConfigs', '/etc/dmr2nxdn');
     loadSessionConfigFile('APRSGatewayConfigs', '/etc/aprsgateway');
     loadSessionConfigFile('NXDNGatewayConfigs', '/etc/nxdngateway');
+    loadSessionConfigFile('M17GatewayConfigs', '/etc/m17gateway');
     loadSessionConfigFile('P25GatewayConfigs', '/etc/p25gateway');
     if (!isset($_SESSION['DvModemFWVersion']) || (count($_SESSION['DvModemFWVersion'], COUNT_RECURSIVE) < 1)) {
 	$_SESSION['DvModemFWVersion'] = getDVModemFirmware();
@@ -1681,6 +1682,9 @@ if (!in_array($_SERVER["PHP_SELF"],array('/mmdvmhost/bm_links.php','/mmdvmhost/b
 	array_multisort($reverseLogLinesYSFGateway,SORT_DESC);
 	$logLinesP25Gateway = getP25GatewayLog();
 	$logLinesNXDNGateway = getNXDNGatewayLog();
+	$logLinesM17Gateway = getM17GatewayLog();
+	$reverseLogLinesM17Gateway = $logLinesM17Gateway;
+	array_multisort($reverseLogLinesM17Gateway,SORT_DESC);
     }
     
     // Only need these in index.php
