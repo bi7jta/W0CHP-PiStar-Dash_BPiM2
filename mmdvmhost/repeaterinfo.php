@@ -115,7 +115,7 @@ if (isProcessRunning("DMRGateway")) {
     </tr>
     <tr>
       <?php showMode("System Fusion Network", $_SESSION['MMDVMHostConfigs']);?>
-      <?php showMode("DG-ID Network", $_SESSION['MMDVMHostConfigs']);?>
+      <?php if (isPaused("YSF")) { echo '<td class="paused-mode-cell" title="YSF Mode Paused">DG-ID Net</td>'; } else { showMode("DG-ID Network", $_SESSION['DGIdGatewayConfigs']); } ?>
     </tr>
     <tr>
       <?php showMode("YSF2DMR Network", $_SESSION['MMDVMHostConfigs']);?>
@@ -511,7 +511,10 @@ if (isProcessRunning("DMRGateway")) {
         echo "<table>\n";
         echo "<tr><th colspan='2'>DG-ID Gateway Status</th></tr>\n";
         echo "<tr><th colspan='2'>Current DG-ID</th></tr>\n";
-        if (isProcessRunning("DGIdGateway")) {
+        if (isPaused("YSF")) {
+            echo "<tr><td colspan='2' style=\"background: $tableRowEvenBg;\" title=\"YSF Mode Paused\">YSF Mode Paused</td></tr>\n";
+        }
+          else if (isProcessRunning("DGIdGateway")) {
             echo "<tr><td colspan='2' style=\"background: $tableRowEvenBg;\" title=\"".getDGIdLinks()."\">".getDGIdLinks()."</td></tr>\n";
         } else {
             echo "<tr><td colspan='2' style=\"background: $tableRowEvenBg;\" title=\"Service Not Started\">Service Not Started</td></tr>\n";
@@ -608,7 +611,7 @@ if (isProcessRunning("DMRGateway")) {
 		echo "<table>\n";
 		echo "<tr><th colspan=\"2\">M17 Repeater</th></tr>\n";
 		echo "<tr><th>RPT</th><td style=\"background: #ffffff;\">".str_replace(' ', '&nbsp;', $configm17gateway['General']['Callsign'])."&nbsp;".str_replace(' ', '&nbsp;', $configm17gateway['General']['Suffix'])."</td></tr>\n";
-		echo "<tr><th colspan=\"2\">".$lang['m17_net']."</th></tr>\n";
+		echo "<tr><th colspan=\"2\">M17 Network</th></tr>\n";
                 if (isPaused("M17")) {
                     echo "<tr><td colspan=\"2\"style=\"background: $tableRowEvenBg;\">Mode Paused</td></tr>\n";
                 } else {
