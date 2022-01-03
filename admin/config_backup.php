@@ -197,7 +197,7 @@ if ($_SERVER["PHP_SELF"] == "/admin/config_backup.php") {
 				$output .= "Stopping Services.\n";
 				
 				// Stop the DV Services
-			    shell_exec('sudo pistar-services fullstop 2>&1');
+			    shell_exec('sudo REMOUNT_RO="NO" pistar-services fullstop 2>&1');
 	
 				// Make the disk Writable
 				shell_exec('sudo mount -o remount,rw / 2>&1');
