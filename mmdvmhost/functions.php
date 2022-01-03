@@ -414,6 +414,57 @@ function getDGIdLinks() {
     return $linkedDGId;
 }
 
+//M: 2022-01-03 15:40:17.070 Starting M17Gateway-20211003_W0CHP
+//I: 2022-01-03 15:40:17.071 Linked at startup to M17-USA A
+//M: 2022-01-03 15:40:17.071 Opening M17 Network connection
+//I: 2022-01-03 15:40:17.071 Opening UDP port on 17000
+//M: 2022-01-03 15:40:18.193 Linked to reflector M17-USA A
+//M: 2022-01-03 15:40:18.193 Link refused by reflector M17-USA A
+//M: 2022-01-03 15:40:57.667 Link lost to reflector M17-USA A
+//M: 2022-01-03 15:40:59.736 Unlinked from reflector M17-USA A
+//M: 2022-01-03 15:48:27.222 Opened connection to the APRS Gateway
+//M: 2022-01-03 15:48:27.223 Opening Rpt Network connection
+//I: 2022-01-03 15:48:27.223 Opening UDP port on 17010
+//I: 2022-01-03 15:48:27.224 Loaded 115 M17 reflectors
+//I: 2022-01-03 15:48:27.228 Loaded the audio and index file for en_US
+//M: 2022-01-03 15:48:27.228 Starting M17Gateway-20211003_W0CHP
+//I: 2022-01-03 15:48:27.228 Linked at startup to M17-USA A
+//M: 2022-01-03 15:48:27.228 Opening M17 Network connection
+function isM17GatewayConnected() {
+    $logLines = array();
+    $logLines1 = array();
+    $logLines2 = array();
+    
+    // Collect last 20 lines  - see down below for no. of line values (array_slice)
+    if (file_exists("/var/log/pi-star/M17Gateway-".gmdate("Y-m-d").".log")) {
+	$logPath1 = "/var/log/pi-star/M17Gateway-".gmdate("Y-m-d").".log";
+	$logLines1 = preg_split('/\r\n|\r|\n/', `tail -n 5 $logPath1 | cut -d" " -f2- | tac`);
+    }
+    
+    $logLines1 = array_filter($logLines1);
+
+    if (sizeof($logLines1) == 0) {
+        if (file_exists("/var/log/pi-star/M17Gateway-".gmdate("Y-m-d", time() - 86340).".log")) {
+            $logPath2 = "/var/log/pi-star/M17Gateway-".gmdate("Y-m-d", time() - 86340).".log";
+            $logLines2 = preg_split('/\r\n|\r|\n/', `tail -n 5 $logPath2 | cut -d" " -f2- | tac`);
+        }
+	
+        $logLines2 = array_filter($logLines2);
+    }
+
+    $logLines = $logLines1 + $logLines2;
+
+    $errorMessages = array('Link lost' , 'Link refused');
+    
+    foreach($logLines as $m17MessageLine) {
+		foreach($errorMessages as $errorLine) {
+	    	if (strpos($m17MessageLine, $errorLine) != FALSE)
+			return false;
+		}
+    }
+    return true;
+}
+
 // M: 2000-00-00 00:00:00.000 M17, received RF late entry voice transmission from IU5BON to INFO
 // M: 2000-00-00 00:00:00.000 M17, received RF end of transmission from IU5BON to INFO, 2.1 seconds, BER: 0.2%, RSSI: -47/-47/-47 dBm
 // M: 2000-00-00 00:00:00.000 M17, received network voice transmission from IU5BON to ECHO
@@ -597,7 +648,7 @@ function showMode($mode, $configs) {
 	            getModeClass(isProcessRunning("NXDNGateway"));
 	        }
 	        else if ($mode == "M17 Network") {
-	            getModeClass(isProcessRunning("M17Gateway"));
+	            getModeClass(isProcessRunning("M17Gateway") && (isM17GatewayConnected() == 1));
 	        }
 	        else if ($mode == "POCSAG Network") {
 	            getModeClass(isProcessRunning("DAPNETGateway") && (isDAPNETGatewayConnected() == 1));
