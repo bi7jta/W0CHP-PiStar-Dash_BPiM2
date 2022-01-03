@@ -510,8 +510,12 @@ if (isProcessRunning("DMRGateway")) {
         echo "<br />\n";
         echo "<table>\n";
         echo "<tr><th colspan='2'>DG-ID Gateway Status</th></tr>\n";
-        echo "<tr><th colspan='2'>DG-ID Link:</th></tr>\n";
-        echo "<tr><td colspan='2' style=\"background: $tableRowEvenBg;\" title=\"".getDGIdLinks()."\">".getDGIdLinks()."</td></tr>\n";
+        echo "<tr><th colspan='2'>Current DG-ID</th></tr>\n";
+        if (isProcessRunning("DGIdGateway")) {
+            echo "<tr><td colspan='2' style=\"background: $tableRowEvenBg;\" title=\"".getDGIdLinks()."\">".getDGIdLinks()."</td></tr>\n";
+        } else {
+            echo "<tr><td colspan='2' style=\"background: $tableRowEvenBg;\" title=\"Service Not Started\">Service Not Started</td></tr>\n";
+        }
         echo "</table>\n";
     }
 

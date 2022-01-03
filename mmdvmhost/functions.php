@@ -390,7 +390,7 @@ function getDGIdLinks() {
     $logDGIdPrevious = "/var/log/pi-star/DGIdGateway-".gmdate("Y-m-d", time() - 86340).".log";
     $logSearchString = "DG-ID";
     $logLine = '';
-    $linkedDGId = 'Not Linked';
+    $linkedDGId = 'None Set';
     $LogError = "Cannot Open Log";
 
     if (file_exists($logDGIdGWNow) || file_exists($logDGIdPrevious)) {
