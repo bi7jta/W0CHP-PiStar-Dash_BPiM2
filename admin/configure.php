@@ -1101,6 +1101,14 @@ if (!empty($_POST)):
 		if (file_exists('/etc/hostfiles.ysfupper')) { system('sudo rm -rf /etc/hostfiles.ysfupper'); }
 	}
 
+        // Enable DGIdGateway
+        if (isset($configdgidgateway)) {
+            if (empty($_POST['useDGIdGateway']) != TRUE ) {
+                if (escapeshellcmd($_POST['useDGIdGateway']) == 'ON' )  { $configdgidgateway['Enabled']['Enabled'] = "1"; }
+                if (escapeshellcmd($_POST['useDGIdGateway']) == 'OFF' ) { $configdgidgateway['Enabled']['Enabled'] = "0"; }
+            }
+	}
+
 	// Set the YSF2DMR Master
 	if (empty($_POST['ysf2dmrMasterHost']) != TRUE ) {
 	  $ysf2dmrMasterHostArr = explode(',', escapeshellcmd($_POST['ysf2dmrMasterHost']));
@@ -2735,11 +2743,11 @@ if (!empty($_POST)):
 	if (isset($configdgidgateway)) {
 		$configdgidgateway['General']['LocalPort'] = $configmmdvm['System Fusion Network']['GatewayPort'];
 		$configdgidgateway['General']['RptPort'] =  $configmmdvm['System Fusion Network']['LocalPort'];
-		$configdgidgateway['Log']['DisplayLevel'] = 1; 
-		$configdgidgateway['Log']['FileLevel'] = 1;
+		$configdgidgateway['Log']['DisplayLevel'] = 0; 
+		$configdgidgateway['Log']['FileLevel'] = 2;
 		$configdgidgateway['Log']['FilePath'] = "/var/log/pi-star";
 		$configdgidgateway['Log']['FileRoot'] = "DGIdGateway";
-		$configdgidgateway['Log']['FileRotate'] = 0;
+		$configdgidgateway['Log']['FileRotate'] = 1;
 		$configdgidgateway['YSF Network']['Hosts'] = "/usr/local/etc/YSFHosts.txt";
 	}
 
@@ -4671,6 +4679,7 @@ fclose($dextraFile);
 <?php if (file_exists('/etc/dstar-radio.mmdvmhost') && ($configmmdvm['System Fusion Network']['Enable'] == 1 || $configdmr2ysf['Enabled']['Enabled'] == 1 )) {
 $ysfHosts = fopen("/usr/local/etc/YSFHosts.txt", "r"); ?>
 	<input type="hidden" name="confHostFilesYSFUpper" value="OFF" />
+        <input type="hidden" name="useDGIdGateway" value="OFF" />
 	<input type="hidden" name="wiresXCommandPassthrough" value="OFF" />
 	<h2><?php echo $lang['ysf_config'];?></h2>
     <table>
@@ -4765,6 +4774,28 @@ $ysfHosts = fopen("/usr/local/etc/YSFHosts.txt", "r"); ?>
 	}
     ?>
     </tr>
+<?php
+				if (isset($configdgidgateway)) {
+				?>
+				<tr>
+				    <td align="left"><a class="tooltip2" href="#">Enable DGIdGateway:<span><b>Enable DGIdGateway</b>Enable/Disable DGIdGateway.</span></a></td>
+				    <?php
+				    if (isset($configdgidgateway['Enabled']['Enabled'])) {
+					if ($configdgidgateway['Enabled']['Enabled']) {
+					    echo "<td align=\"left\" colspan=\"2\"><div class=\"switch\"><input id=\"toggle-useDGIdGateway\" class=\"toggle toggle-round-flat\" type=\"checkbox\" name=\"useDGIdGateway\" value=\"ON\" checked=\"checked\" /><label for=\"toggle-useDGIdGateway\"></label></div></td>\n";
+					}
+					else {
+					    echo "<td align=\"left\" colspan=\"2\"><div class=\"switch\"><input id=\"toggle-useDGIdGateway\" class=\"toggle toggle-round-flat\" type=\"checkbox\" name=\"useDGIdGateway\" value=\"ON\" /><label for=\"toggle-useDGIdGateway\"></label></div></td>\n";
+					}
+				    } 
+				    else {
+					echo "<td align=\"left\" colspan=\"2\"><div class=\"switch\"><input id=\"toggle-useDGIdGateway\" class=\"toggle toggle-round-flat\" type=\"checkbox\" name=\"useDGIdGateway\" value=\"ON\" /><label for=\"toggle-useDGIdGateway\"></label></div></td>\n";
+				    }
+				    ?>
+				</tr>
+				<?php
+				}
+				?>
     <?php if (file_exists('/etc/dstar-radio.mmdvmhost') && $configysf2dmr['Enabled']['Enabled'] == 1) {
     $dmrMasterFile = fopen("/usr/local/etc/DMR_Hosts.txt", "r"); ?>
     <tr>
