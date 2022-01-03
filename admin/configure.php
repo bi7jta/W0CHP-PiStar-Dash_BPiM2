@@ -5074,7 +5074,7 @@ $p25Hosts = fopen("/usr/local/etc/P25Hosts.txt", "r");
     m17_reflector_options("/usr/local/etc/M17Hosts.txt", $m17_ref);
     m17_reflector_options("/root/M17Hosts.txt", $m17_ref);
 ?>
-        </select>
+        </select>&npsp;<b>Startup Module:</b>&nbsp;
     <select name="m17StartupModule">
     <?php echo "  <option value=\"".substr($testM17Host, 8)."\" selected=\"selected\">".substr($testM17Host, 8)."</option>\n"; ?>
         <option>A</option>
