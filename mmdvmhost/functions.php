@@ -454,7 +454,7 @@ function isM17GatewayConnected() {
 
     $logLines = $logLines1 + $logLines2;
 
-    $errorMessages = array('Link lost' , 'Link refused');
+    $errorMessages = array('Link lost' , 'Link refused', 'Unlinked from reflector');
     
     foreach($logLines as $m17MessageLine) {
 		foreach($errorMessages as $errorLine) {
