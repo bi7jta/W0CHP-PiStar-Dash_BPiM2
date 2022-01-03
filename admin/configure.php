@@ -2525,6 +2525,9 @@ if (!empty($_POST)):
         	$configm17gateway['Voice']['Language'] = "en_US";
         	$configm17gateway['Voice']['Directory'] = "/usr/local/etc/M17_Audio";
     	} 
+    	if (!isset($configm17gateway['Enabled'])) {
+        	$configm17gateway['Enabled']['Enabled'] = "0";
+        }
 
 	// Add missing options to MMDVMHost
 	if (!isset($configmmdvm['Modem']['RFLevel'])) { $configmmdvm['Modem']['RFLevel'] = "100"; }
