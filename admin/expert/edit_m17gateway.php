@@ -11,11 +11,10 @@ if (!isset($_SESSION) || !is_array($_SESSION)) {
     checkSessionValidity();
 }
 
-$configfile = '/etc/m17sgateway';
+$configfile = '/etc/m17gateway';
 $service = 'm17gateway.service';
 
-$rand = md5(gmdate('M d Y'));
-$tempfile = "/tmp/$rand.tmp";
+$tempfile = "/tmp/".md5(gmdate('M d Y')).".tmp";
 
 //this is the function going to update your ini file
 function update_ini_file($data, $filepath) {
@@ -46,14 +45,14 @@ function update_ini_file($data, $filepath) {
     
     // Updates complete - copy the working file back to the proper location
     exec('sudo mount -o remount,rw /');
-    exec('sudo cp '$tempfile' '$configfile);
-    exec('sudo chmod 644 ' $configfile);
-    exec('sudo chown root:root '$configfile);
-    exec('sudo rm '$tempfile);
+    exec("sudo cp $tempfile $configfile");
+    exec("sudo chmod 644 $configfile");
+    exec("sudo chown root:root $configfile");
+    exec("sudo rm $tempfile");
     exec('sudo mount -o remount,ro /');
     
     // Reload the affected daemon
-    exec('sudo systemctl restart '$service);
+    exec("sudo systemctl restart $service");
     return $success;
 }
 
