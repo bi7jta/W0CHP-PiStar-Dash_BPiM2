@@ -12,7 +12,9 @@ if (!isset($_SESSION) || !is_array($_SESSION)) {
 }
 
 $configfile = '/etc/aprsgateway';
-$tempfile = '/tmp/oDFuttgksHSRb8.tmp';
+$service = 'aprsgateway.service';
+
+$tempfile = "/tmp/".md5(gmdate('M d Y')).".tmp";
 
 //this is the function going to update your ini file
 function update_ini_file($data, $filepath) {
@@ -40,17 +42,18 @@ function update_ini_file($data, $filepath) {
     
     $success = fwrite($handle, $content);
     fclose($handle);
-    
+
     // Updates complete - copy the working file back to the proper location
     exec('sudo mount -o remount,rw /');
-    exec('sudo cp /tmp/oDFuttgksHSRb8.tmp /etc/aprsgateway');
-    exec('sudo chmod 644 /etc/dapnetgateway');
-    exec('sudo chown root:root /etc/dapnetgateway');
+    exec("sudo cp $tempfile $configfile");
+    exec("sudo chmod 644 $configfile");
+    exec("sudo chown root:root $configfile");
+    exec("sudo rm $tempfile");
     exec('sudo mount -o remount,ro /');
-    
+
     // Reload the affected daemon
-    exec('sudo systemctl restart aprsgateway.service');
-    return $success;
+    exec("sudo systemctl restart $service");
+    return $success;    
 }
 
 require_once('edit_template.php');
