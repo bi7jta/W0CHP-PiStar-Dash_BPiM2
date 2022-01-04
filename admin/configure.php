@@ -399,7 +399,7 @@ if (!empty($_POST)):
 	  }
 
 	// Stop Cron and all serivices
-	system('sudo REMOUNT_RO="NO" pistar-services fullstop > /dev/null 2>/dev/null &');
+	system('sudo REMOUNT_RO="NO" pistar-services fullstop > /dev/null 2>/dev/null');
 
 	echo "<table>\n";
 	echo "<tr><th>Working...</th></tr>\n";
@@ -407,7 +407,7 @@ if (!empty($_POST)):
 	echo "</table>\n";
 
 	// Let the services actualy stop
-	sleep(2);
+	sleep(3);
 
 	// Factory Reset Handler Here
 	if (empty($_POST['factoryReset']) != TRUE ) {
