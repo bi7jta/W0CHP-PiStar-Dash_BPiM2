@@ -17,22 +17,23 @@ include_once $_SERVER['DOCUMENT_ROOT'].'/mmdvmhost/functions.php';    // MMDVMDa
 include_once $_SERVER['DOCUMENT_ROOT'].'/config/language.php';        // Translation Code
 
 // Check if M17 is Enabled
-$testMMDVModeM17 = getConfigItem("M17 Network", "Enable", $_SESSION['MMDVMHostConfigs']);
-if ( $testMMDVModeM17 == 1 ) {
+#$testMMDVModeM17 = getConfigItem("M17 Network", "Enable", $_SESSION['MMDVMHostConfigs']);
+#if ( $testMMDVModeM17 == 1 ) {
     // Check that the remote is enabled
-    if (isset($_SESSION['M17GatewayConfigs']['Remote Commands']['Enable']) && (isset($_SESSION['M17GatewayConfigs']['Remote Commands']['Port'])) && ($_SESSION['M17GatewayConfigs']['Remote Commands']['Enable'] == 1)) {
+    #if (!isset($_SESSION['M17GatewayConfigs']['Remote Commands']['Enable']) && (isset($_SESSION['M17GatewayConfigs']['Remote Commands']['Port'])) && ($_SESSION['M17GatewayConfigs']['Remote Commands']['Enable'] == 1)) {
 	$remotePort = $_SESSION['M17GatewayConfigs']['Remote Commands']['Port'];
 	if (!empty($_POST) && isset($_POST["m17MgrSubmit"])) {
 	    // Handle Posted Data
-	    if (preg_match('/[^A-Za-z0-9]/',$_POST['m17LinkHost'])) {
+	    if (!preg_match('/[^A-Za-z0-9]/',$_POST['m17LinkHost'])) {
 		unset($_POST['m17LinkHost']);
 	    }
 	    if ($_POST["Link"] == "LINK") {
-		if ($_POST['m17LinkHost'] == "none") {
+		if ($_POST['m17LinkHost'] == "None") {
 		    $remoteCommand = "cd /var/log/pi-star && sudo /usr/local/bin/RemoteCommand ".$remotePort." UnLink";
 		}
 		else { # /usr/local/bin/RemoteCommand 6075 ReflectorM17-USA C
-		    $remoteCommand = "cd /var/log/pi-star && sudo /usr/local/bin/RemoteCommand ".$remotePort." Reflector".$_POST['m17LinkHost'] $m17Module;
+		    #$remoteCommand = "cd /var/log/pi-star && sudo /usr/local/bin/RemoteCommand ".$remotePort." Reflector".$_POST['m17LinkHost']." ".$m17Module;
+		    $remoteCommand = "cd /var/log/pi-star && sudo /usr/local/bin/RemoteCommand ".$remotePort." Reflector".$_POST['m17LinkHost']." C";
 		}
 	    } else if ($_POST["Link"] == "UNLINK") {
 		$remoteCommand = "cd /var/log/pi-star && sudo /usr/local/bin/RemoteCommand ".$remotePort." UnLink";
@@ -80,7 +81,7 @@ if ( $testMMDVModeM17 == 1 ) {
 				    $testM17Host = $_SESSION['M17GatewayConfigs']['Network']['Startup'];
 				}
 				else {
-				    $testM17Host = "none";
+				    $testM17Host = "None";
 				}
 				if ($testM17Host == "") {
 				    echo "      <option value=\"none\" selected=\"selected\">None</option>\n";
@@ -88,22 +89,16 @@ if ( $testMMDVModeM17 == 1 ) {
 				else {
 				    echo "      <option value=\"none\">None</option>\n";
 				}
-				if ($testM17Host == "10") {
-				    echo "      <option value=\"10\" selected=\"selected\">10 - Parrot</option>\n";
-				}
-				else {
-				    echo "      <option value=\"10\">10 - Parrot</option>\n";
-				}
 				$m17Hosts = fopen("/usr/local/etc/M17Hosts.txt", "r");
 				while (!feof($m17Hosts)) {
               			    $m17HostsLine = fgets($m17Hosts);
 				    $m17Host = preg_split('/\s+/', $m17HostsLine);
 				    if ((strpos($m17Host[0], '#') === FALSE ) && ($m17Host[0] != '')) {
                 			if ($testM17Host == $m17Host[0]) {
-					    echo "      <option value=\"$m17Host[0]\" selected=\"selected\">$m17Host[0] - $m17Host[1]</option>\n";
+					    echo "      <option value=\"$m17Host[0]\" selected=\"selected\">$m17Host[0]</option>\n";
 					}
 					else {
-					    echo "      <option value=\"$m17Host[0]\">$m17Host[0] - $m17Host[1]</option>\n";
+					    echo "      <option value=\"$m17Host[0]\">$m17Host[0]</option>\n";
 					}
 				    }
 				}
@@ -115,10 +110,10 @@ if ( $testMMDVModeM17 == 1 ) {
 					$m17Host2 = preg_split('/\s+/', $m17HostsLine2);
 					if ((strpos($m17Host2[0], '#') === FALSE ) && ($m17Host2[0] != '')) {
                         		    if ($testM17Host == $m17Host2[0]) {
-						echo "      <option value=\"$m17Host2[0]\" selected=\"selected\">$m17Host2[0] - $m17Host2[1]</option>\n";
+						echo "      <option value=\"$m17Host2[0]\" selected=\"selected\">$m17Host2[0]</option>\n";
 					    }
 					    else {
-						echo "      <option value=\"$m17Host2[0]\">$m17Host2[0] - $m17Host2[1]</option>\n";
+						echo "      <option value=\"$m17Host2[0]\">$m17Host2[0]</option>\n";
 					    }
 					}
 				    }
@@ -138,7 +133,7 @@ if ( $testMMDVModeM17 == 1 ) {
 	    </form>
 	    <br />
 	<?php
-	}
-    }
+#	}
+#    }
 }
 ?>
