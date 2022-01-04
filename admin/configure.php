@@ -2517,7 +2517,7 @@ if (!empty($_POST)):
         	$configm17gateway['APRS']['Port'] = "8673";
         	$configm17gateway['APRS']['Description'] = "APRS for M17Gateway";
         	$configm17gateway['APRS']['Suffix'] = "N";
-   	 }
+   	}
     if (!isset($configm17gateway['Remote Commands'])) {
         $configm17gateway['Dynamic TG Control']['Enabled'] = "0";
         $configm17gateway['Dynamic TG Control']['Port'] = "6075";
@@ -2534,8 +2534,8 @@ if (!empty($_POST)):
         $configm17gateway['Voice']['Directory'] = "/usr/local/etc/M17_Audio";
     } 
     if (!isset($configm17gateway['Remote Commands'])) {
-        $configm17gateway['Enabled'] = "1";
-        $configm17gateway['Port'] = "6075";
+        $configm17gateway['Remote Commands']['Enabled'] = "1";
+        $configm17gateway['Remote Commands']['Port'] = "6075";
     }
 
 	// Add missing options to MMDVMHost
