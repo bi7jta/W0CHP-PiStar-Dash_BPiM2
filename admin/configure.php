@@ -405,7 +405,7 @@ if (!empty($_POST)):
 	  }
 
 	// Stop Cron and all serivices
-	system('sudo REMOUNT_RO="NO" pistar-services fullstop > /dev/null 2>/dev/null &');
+	system('sudo REMOUNT_RO="NO" pistar-services fullstop > /dev/null 2>/dev/null');
 
 	echo "<table>\n";
 	echo "<tr><th>Working...</th></tr>\n";
@@ -413,7 +413,7 @@ if (!empty($_POST)):
 	echo "</table>\n";
 
 	// Let the services actualy stop
-	sleep(2);
+	sleep(3);
 
 	// Factory Reset Handler Here
 	if (empty($_POST['factoryReset']) != TRUE ) {
@@ -2519,8 +2519,8 @@ if (!empty($_POST)):
         	$configm17gateway['APRS']['Suffix'] = "N";
    	}
     if (!isset($configm17gateway['Remote Commands'])) {
-        $configm17gateway['Dynamic TG Control']['Enabled'] = "0";
-        $configm17gateway['Dynamic TG Control']['Port'] = "6075";
+        $configm17gateway['Remote Commands']['Enabled'] = "1";
+        $configm17gateway['Remote Commands']['Port'] = "6075";
     }
     if (!isset($configm17gateway['Log'])) {
         $configm17gateway['Log']['DisplayLevel'] = "0";
@@ -2533,10 +2533,6 @@ if (!empty($_POST)):
         $configm17gateway['Voice']['Language'] = "en_US";
         $configm17gateway['Voice']['Directory'] = "/usr/local/etc/M17_Audio";
     } 
-    if (!isset($configm17gateway['Remote Commands'])) {
-        $configm17gateway['Remote Commands']['Enabled'] = "1";
-        $configm17gateway['Remote Commands']['Port'] = "6075";
-    }
 
 	// Add missing options to MMDVMHost
 	if (!isset($configmmdvm['Modem']['RFLevel'])) { $configmmdvm['Modem']['RFLevel'] = "100"; }
