@@ -358,7 +358,7 @@ function isDGIdGatewayConnected() {
     // Collect last 20 lines  - see down below for no. of line values (array_slice)
     if (file_exists("/var/log/pi-star/DGIdGateway-".gmdate("Y-m-d").".log")) {
 	$logPath1 = "/var/log/pi-star/DGIdGateway-".gmdate("Y-m-d").".log";
-	$logLines1 = preg_split('/\r\n|\r|\n/', `tail -n 3 $logPath1 | cut -d" " -f2- | tac`);
+	$logLines1 = preg_split('/\r\n|\r|\n/', `tail -n 1 $logPath1 | cut -d" " -f2- | tac`);
     }
     
     $logLines1 = array_filter($logLines1);
@@ -366,7 +366,7 @@ function isDGIdGatewayConnected() {
     if (sizeof($logLines1) == 0) {
         if (file_exists("/var/log/pi-star/DGIdGateway-".gmdate("Y-m-d", time() - 86340).".log")) {
             $logPath2 = "/var/log/pi-star/DGIdGateway-".gmdate("Y-m-d", time() - 86340).".log";
-            $logLines2 = preg_split('/\r\n|\r|\n/', `tail -n 3 $logPath2 | cut -d" " -f2- | tac`);
+            $logLines2 = preg_split('/\r\n|\r|\n/', `tail -n 1 $logPath2 | cut -d" " -f2- | tac`);
         }
 	
         $logLines2 = array_filter($logLines2);
