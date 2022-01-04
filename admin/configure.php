@@ -2518,21 +2518,25 @@ if (!empty($_POST)):
         	$configm17gateway['APRS']['Description'] = "APRS for M17Gateway";
         	$configm17gateway['APRS']['Suffix'] = "N";
    	 }
-    	if (!isset($configm17gateway['Remote Commands'])) {
-        	$configm17gateway['Dynamic TG Control']['Enabled'] = "1";
-        	$configm17gateway['Dynamic TG Control']['Port'] = "6075";
-    	}
-    	if (!isset($configm17gateway['Log'])) {
-        	$configm17gateway['Log']['DisplayLevel'] = "0";
-        	$configm17gateway['Log']['FileLevel'] = "2";
-        	$configm17gateway['Log']['FilePath'] = "/var/log/pi-star";
-        	$configm17gateway['Log']['FileRoot'] = "M17Gateway";
-    	}
-    	if (!isset($configm17gateway['Voice'])) {
-        	$configm17gateway['Voice']['Enabled'] = "1";
-        	$configm17gateway['Voice']['Language'] = "en_US";
-        	$configm17gateway['Voice']['Directory'] = "/usr/local/etc/M17_Audio";
-    	} 
+    if (!isset($configm17gateway['Remote Commands'])) {
+        $configm17gateway['Dynamic TG Control']['Enabled'] = "0";
+        $configm17gateway['Dynamic TG Control']['Port'] = "6075";
+    }
+    if (!isset($configm17gateway['Log'])) {
+        $configm17gateway['Log']['DisplayLevel'] = "0";
+        $configm17gateway['Log']['FileLevel'] = "2";
+        $configm17gateway['Log']['FilePath'] = "/var/log/pi-star";
+        $configm17gateway['Log']['FileRoot'] = "M17Gateway";
+    }
+    if (!isset($configm17gateway['Voice'])) {
+        $configm17gateway['Voice']['Enabled'] = "1";
+        $configm17gateway['Voice']['Language'] = "en_US";
+        $configm17gateway['Voice']['Directory'] = "/usr/local/etc/M17_Audio";
+    } 
+    if (!isset($configm17gateway['Remote Commands'])) {
+        $configm17gateway['Enabled'] = "1";
+        $configm17gateway['Port'] = "6075";
+    }
 
 	// Add missing options to MMDVMHost
 	if (!isset($configmmdvm['Modem']['RFLevel'])) { $configmmdvm['Modem']['RFLevel'] = "100"; }
