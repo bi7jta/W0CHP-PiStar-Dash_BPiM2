@@ -5066,7 +5066,7 @@ $p25Hosts = fopen("/usr/local/etc/P25Hosts.txt", "r");
     <table>
       <tr>
         <th width="200"><a class="tooltip" href="#"><?php echo $lang['setting'];?><span><b>Setting</b></span></a></th>
-        <th colspan="2"><a class="tooltip" href="#"><?php echo $lang['value'];?><span><b>Value</b>The current value from the<br />configuration files</span></a></th>
+        <th colspan="3"><a class="tooltip" href="#"><?php echo $lang['value'];?><span><b>Value</b>The current value from the<br />configuration files</span></a></th>
       </tr>
       <tr>
         <td align="left"><a class="tooltip2" href="#">M17 Startup Reflector:<span><b>Startup Reflector</b>Set your prefered M17 reflector here</span></a></td>
@@ -5107,6 +5107,8 @@ $p25Hosts = fopen("/usr/local/etc/P25Hosts.txt", "r");
     m17_reflector_options("/usr/local/etc/M17Hosts.txt", $m17_ref);
     m17_reflector_options("/root/M17Hosts.txt", $m17_ref);
 ?>
+     </td>
+     <td align="left">
         </select>&nbsp;<b>Startup Module:</b>&nbsp;
     <select name="m17StartupModule">
     <?php echo "  <option value=\"".substr($testM17Host, 8)."\" selected=\"selected\">".substr($testM17Host, 8)."</option>\n"; ?>
@@ -5137,8 +5139,8 @@ $p25Hosts = fopen("/usr/local/etc/P25Hosts.txt", "r");
         <option>Y</option>
         <option>Z</option>
     </select>
-
-              </td>
+       </td>
+       <td align="left">&nbsp;<a target="new" href="https://w0chp.net/m17-reflectors/">List of searchable/downloadable M17 Reflectors</a></td>
       </tr>
     </table>
     <div><input type="button" value="<?php echo $lang['apply'];?>" onclick="submitform()" /><br /><br /></div>
