@@ -501,8 +501,12 @@ if (isProcessRunning("DMRGateway")) {
 	    }
         echo "<br />\n";
         echo "<table>\n";
-	    echo "<tr><th colspan=\"2\">".$lang['ysf_net']."".$ysfLinkState."</th></tr>\n";
-	    echo "<tr><td colspan=\"2\" style=\"background: $tableRowEvenBg;\" title=\"".$ysfLinkedToTooltip."\">".$ysfTableData."</td></tr>\n";
+        if (isPaused("YSF")) {
+	    echo "<tr><th colspan=\"2\">".$lang['ysf_net']."</th></tr>\n";
+        } else {
+            echo "<tr><th colspan=\"2\">".$lang['ysf_net']."".$ysfLinkState."</th></tr>\n";
+        }
+	echo "<tr><td colspan=\"2\" style=\"background: $tableRowEvenBg;\" title=\"".$ysfLinkedToTooltip."\">".$ysfTableData."</td></tr>\n";
         echo "</table>\n";
 	}
 
