@@ -51,7 +51,7 @@ if ($_SERVER["PHP_SELF"] == "/admin/index.php") { // Stop this working outside o
 		// Output HTML
 		?>
     		<b>M17 Link Manager</b>
-		<form action="//<?php echo htmlentities($_SERVER['HTTP_HOST']).htmlentities($_SERVER['PHP_SELF']); ?>" method="post">
+		<form action="//<?php echo htmlentities($_SERVER['HTTP_HOST']).htmlentities($_SERVER['PHP_SELF']); ?>?func=m17_man" method="post">
 		    <table>
 			<tr>
 			    <th width="150"><a class="tooltip" href="#">Reflector<span><b>Reflector</b></span></a></th>
