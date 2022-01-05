@@ -2519,7 +2519,7 @@ if (!empty($_POST)):
         	$configm17gateway['APRS']['Suffix'] = "N";
    	}
     if (!isset($configm17gateway['Remote Commands'])) {
-        $configm17gateway['Remote Commands']['Enabled'] = "1";
+        $configm17gateway['Remote Commands']['Enabled'] = "0";
         $configm17gateway['Remote Commands']['Port'] = "6075";
     }
     if (!isset($configm17gateway['Log'])) {
@@ -5059,92 +5059,73 @@ $p25Hosts = fopen("/usr/local/etc/P25Hosts.txt", "r");
     <?php } ?>
     </table>
 	<div><input type="button" value="<?php echo $lang['apply'];?>" onclick="submitform()" /><br /><br /></div>
-<?php } ?>
+			<?php } ?>
+			
+			<!-- M17 -->
+			<?php if (file_exists('/etc/dstar-radio.mmdvmhost') && $configmmdvm['M17 Network']['Enable'] == 1 ) { ?>
+			    <h2>M17 Configuration</h2>
+			    <table>
+				<tr>
+				    <th width="200"><a class="tooltip" href="#"><?php echo $lang['setting'];?><span><b>Setting</b></span></a></th>
+				    <th colspan="2"><a class="tooltip" href="#"><?php echo $lang['value'];?><span><b>Value</b>The current value from the<br />configuration files</span></a></th>
+				</tr>
+				<tr>
+				    <td align="left"><a class="tooltip2" href="#">M17 Startup Reflector:<span><b>Startup Reflector</b>Set your prefered M17 reflector here</span></a></td>
+				    <td style="text-align: left;"><select name="m17StartupRef">
+					<?php
+					if ($m17MasterHandle = @fopen("/usr/local/etc/M17Hosts.txt", 'r'))
+					{
+					    $m17StartupHostWithModule = (isset($configm17gateway['Network']['Startup']) ? $configm17gateway['Network']['Startup'] : "");
+					    $m17StartupHost = "";
+					    $m17StartupModule = "A";
+					    if ($m17StartupHostWithModule != "") {
+						$m17StartupHost = substr($m17StartupHostWithModule, 0, -2);
+						$m17StartupModule = substr($m17StartupHostWithModule, -1);
+					    }
 
-<?php if (file_exists('/etc/dstar-radio.mmdvmhost') && $configmmdvm['M17 Network']['Enable'] == 1 ) { ?>
-    <h2>M17 Configuration</h2>
-    <table>
-      <tr>
-        <th width="200"><a class="tooltip" href="#"><?php echo $lang['setting'];?><span><b>Setting</b></span></a></th>
-        <th colspan="3"><a class="tooltip" href="#"><?php echo $lang['value'];?><span><b>Value</b>The current value from the<br />configuration files</span></a></th>
-      </tr>
-      <tr>
-        <td align="left"><a class="tooltip2" href="#">M17 Startup Reflector:<span><b>Startup Reflector</b>Set your prefered M17 reflector here</span></a></td>
-        <td style="text-align: left;"><select name="m17StartupRef">
-<?php
-   function m17_reflector_options(string $hosts, string $startup) {
-        if ($hosts == "") {
-            if ($startup == "") {
-                echo "      <option value=\"none\" selected=\"selected\">None</option>\n";
-            } else {
-                echo "      <option value=\"none\">None</option>\n";
-            }
-        } else {
-            if (!file_exists($hosts)) {
-                return;
-            }
+					    if ($m17StartupHost == "") {
+						echo "      <option value=\"NONE\" selected=\"selected\">None</option>\n";
+					    }
+					    else {
+						echo "      <option value=\"NONE\">None</option>\n";
+					    }
 
-            $m17Hosts = fopen($hosts, 'r');
-            while (!feof($m17Hosts)) {
-                $line = fgets($m17Hosts);
-                if ((strpos($line[0], '#') === FALSE ) && ($line[0] != '')) {
-                    $ref = substr($line, 0, 7);
-                    if ($ref == $startup) {
-                        echo "      <option value=\"$ref\" selected=\"selected\">$ref</option>\n";
-                    } else {
-                        echo "      <option value=\"$ref\">$ref</option>\n"; }
-                    }
-            }
-            fclose($m17Hosts);
-        }
-    }
-
-    if (isset($configm17gateway['Network']['Startup'])) { $testM17Host = $configm17gateway['Network']['Startup']; }
-    else { $testM17Host = ""; }
-
-    $m17_ref=substr($testM17Host, 0, 7);
-    m17_reflector_options("", $m17_ref);
-    m17_reflector_options("/usr/local/etc/M17Hosts.txt", $m17_ref);
-    m17_reflector_options("/root/M17Hosts.txt", $m17_ref);
-?>
-     </td>
-     <td align="left">
-        </select>&nbsp;<b>Startup Module:</b>&nbsp;
-    <select name="m17StartupModule">
-    <?php echo "  <option value=\"".substr($testM17Host, 8)."\" selected=\"selected\">".substr($testM17Host, 8)."</option>\n"; ?>
-        <option>A</option>
-        <option>B</option>
-        <option>C</option>
-        <option>D</option>
-        <option>E</option>
-        <option>F</option>
-        <option>G</option>
-        <option>H</option>
-        <option>I</option>
-        <option>J</option>
-        <option>K</option>
-        <option>L</option>
-        <option>M</option>
-        <option>N</option>
-        <option>O</option>
-        <option>P</option>
-        <option>Q</option>
-        <option>R</option>
-        <option>S</option>
-        <option>T</option>
-        <option>U</option>
-        <option>V</option>
-        <option>W</option>
-        <option>X</option>
-        <option>Y</option>
-        <option>Z</option>
-    </select>
-       </td>
-       <td align="left">&nbsp;<a target="new" href="https://w0chp.net/m17-reflectors/">List of searchable/downloadable M17 Reflectors</a></td>
-      </tr>
-    </table>
-    <div><input type="button" value="<?php echo $lang['apply'];?>" onclick="submitform()" /><br /><br /></div>
-<?php } ?>
+					    while ($m17MasterLine = fgets($m17MasterHandle)) {
+						$m17MasterHost = preg_split('/\s+/', $m17MasterLine);
+						if ((strpos($m17MasterHost[0], '#') === FALSE) && ($m17MasterHost[0] != '')) {
+						    if ($m17MasterHost[0] == $m17StartupHost) {
+							echo "      <option value=\"$m17MasterHost[0]\" selected=\"selected\">$m17MasterHost[0]</option>\n";
+						    }
+						    else {
+							echo "      <option value=\"$m17MasterHost[0]\">$m17MasterHost[0]</option>\n";
+						    }
+						}
+					    }
+					    fclose($m17MasterHandle);
+					}
+					?>
+				    </select>
+				    
+				    &nbsp;Startup Module:<select name="m17StartupModule">
+					<?php
+					$m17ModuleList = ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z'];
+					foreach ($m17ModuleList as $module) {
+					    if ($m17StartupModule == $module) {
+						echo "  <option value=\"".$module."\" selected=\"selected\">".$module."</option>\n";
+					    }
+					    else {
+						echo "  <option value=\"".$module."\">".$module."</option>\n";
+					    }
+					}
+					?>
+				    </select>
+				    
+				    </td>
+				</tr>
+			    </table>
+			    <div><input type="button" value="<?php echo $lang['apply'];?>" onclick="submitform()" /><br /><br /></div>
+			<?php } ?>
+			<!-- M17 -->
 
 <?php if ( $configmmdvm['POCSAG']['Enable'] == 1 ) { ?>
 	<h2><?php echo $lang['pocsag_config'];?></h2>

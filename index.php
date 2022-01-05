@@ -338,6 +338,12 @@ checkSessionValidity();
 				include 'mmdvmhost/nxdn_manager.php';		// NXDN Links
 		    }
 		}
+		$testMMDVModeM17net = getConfigItem("M17 Network", "Enable", $_SESSION['MMDVMHostConfigs']);
+		if ( $testMMDVModeM17net == 1 ) {				// If M17 network is enabled, add these extra features.
+		    if ($_SERVER["PHP_SELF"] == "/admin/index.php" && $_POST["func"] == "m17_man" || $_GET["func"] == "m17_man") { 	// Admin Only Option
+			include 'mmdvmhost/m17_manager.php';		// M17 Links
+		    }
+		}
 
 		$testMMDVModePOCSAG = getConfigItem("POCSAG", "Enable", $_SESSION['MMDVMHostConfigs']);
 		if ( $testMMDVModePOCSAG == 1 ) {
@@ -405,6 +411,13 @@ checkSessionValidity();
 		    else {
 		    	echo '    <button form="admin_sel" disabled="disabled" type="submit" value="nxdn_man" name="func"><span>NXDN Manager</span></button>';
 		    }
+                    $testMMDVModeM17 = getConfigItem("M17 Network", "Enable", $_SESSION['MMDVMHostConfigs']);
+                    if ($testMMDVModeM17 == 1 && !isPaused("M17")) {
+		    	echo '    <button form="admin_sel" type="submit" value="m17_man" name="func"><span>M17 Manager</span></button>';
+		    }
+		    else {
+		    	echo '    <button form="admin_sel" disabled="disabled" type="submit" value="m17_man" name="func"><span>M17 Manager</span></button>';
+                    }
                     $testMMDVModePOCSAG = getConfigItem("POCSAG", "Enable", $_SESSION['MMDVMHostConfigs']);
 		    if ($testMMDVModePOCSAG == 1) {
 		        echo '    <button form="admin_sel" type="submit" value="pocsag_man" name="func"><span>POCSAG Manager</span></button>';
