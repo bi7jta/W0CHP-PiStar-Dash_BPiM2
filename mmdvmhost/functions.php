@@ -1393,6 +1393,12 @@ function getActualMode($metaLastHeard, &$configs) {
 	else if ($source == "Net" && $mode === "NXDN") {
 	    $hangtime = getConfigItem("NXDN Network", "ModeHang", $configs);
 	}
+	else if ($source == "RF" && $mode === "M17") {
+	    $hangtime = getConfigItem("M17", "ModeHang", $configs);
+	}
+	else if ($source == "Net" && $mode === "M17") {
+	    $hangtime = getConfigItem("M17 Network", "ModeHang", $configs);
+	}
 	else if ($source == "Net" && $mode === "POCSAG") {
 	    $hangtime = getConfigItem("POCSAG Network", "ModeHang", $configs);
 	}

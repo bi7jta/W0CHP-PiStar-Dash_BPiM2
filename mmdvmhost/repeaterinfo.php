@@ -196,13 +196,12 @@ if (isProcessRunning("DMRGateway")) {
 	        else if ($listElem[2] && $listElem[6] == null && getActualMode($lastHeard, $_SESSION['MMDVMHostConfigs']) === 'P25') {
         	    echo "<td style=\"background:#4aa361;font-weight:bold\">RX: P25</td>";
         	}
-	        elseif ($listElem[2] && $listElem[6] == null && getActualMode($lastHeard, $mmdvmconfigs) === 'M17') {
-        	        echo "<td style=\"background:#eb6a46;\">RX M17</td>";
-        	        }
-        	elseif (getActualMode($lastHeard, $mmdvmconfigs) === 'M17') {
-        	        echo "<td style=\"background:#d59e7b;\">Listening M17</td>";
-        	
-		}
+		else if ($listElem[2] && $listElem[6] == null && getActualMode($lastHeard, $_SESSION['MMDVMHostConfigs']) === 'M17') {
+        	    echo "<td style=\"background:#4aa361;\">RX M17</td>";
+        	}
+        	else if (getActualMode($lastHeard, $_SESSION['MMDVMHostConfigs']) === 'M17') {
+        	    echo "<td style=\"background:#c9f;\">Listening M17</td>";
+        	}
         	else if (getActualMode($lastHeard, $_SESSION['MMDVMHostConfigs']) === 'P25') {
         	    echo "<td style=\"background:#f9f;font-weight:bold\">Standby: P25</td>";
         	}
