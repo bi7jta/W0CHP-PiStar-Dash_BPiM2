@@ -100,7 +100,7 @@ if (isProcessRunning("DMRGateway")) {
       <?php if (isPaused("POCSAG")) { echo '<td class="paused-mode-cell" title="Mode Paused">POCSAG</td>'; } else { showMode("POCSAG", $_SESSION['MMDVMHostConfigs']); } ?>
     </tr>
       <?php if (isPaused("M17")) { echo '<td class="paused-mode-cell" title="Mode Paused">M17</td>'; } else { showMode("M17", $_SESSION['MMDVMHostConfigs']); } ?>
-      <?php if (isPaused("FM")) { echo '<td class="paused-mode-cell" title="Mode Paused">FM</td>'; } else { showMode("FM", $_SESSION['MMDVMHostConfigs']); } ?>
+      <?php if (isPaused("AX 25")) { echo '<td class="paused-mode-cell" title="Mode Paused">AX.25</td>'; } else { showMode("AX 25", $_SESSION['MMDVMHostConfigs']); } ?>
     </tr>
  
     <tr> 
