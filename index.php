@@ -365,15 +365,19 @@ checkSessionValidity();
 		    echo '    </tr>';
 		    echo '    <tr>';
 		    echo '      <td>';
-		    echo '      <div class="mode_flex">';		
-		    echo '        <button form="admin_sel" type="submit" value="mode_man" name="func"><span>Instant Mode Manager</span></button>';
+		    echo '      <div class="mode_flex">';
+		    echo '        <div class="mode_flex row">';
+		    echo '          <div class="mode_flex column">';
+		    echo '            <button form="admin_sel" type="submit" value="mode_man" name="func"><span>Instant Mode Manager</span></button>';
+		    echo '          </div><div class="mode_flex column">';
                     $testMMDVModeDSTARnet = getConfigItem("D-Star", "Enable", $_SESSION['MMDVMHostConfigs']);
                     if ( $testMMDVModeDSTARnet == 1 && !isPaused("D-Star") ) {
                         echo '    <button form="admin_sel" type="submit" value="ds_man" name="func"><span>D-Star Manager</span></button>';
                     }
                     else {
                         echo '    <button form="admin_sel" disabled="disabled" type="submit" value="ds_man" name="func"><span>D-Star Manager</span></button>';
-                    }       
+                    } 
+		    echo '          </div><div class="mode_flex column">';
                     $testMMDVModeDMR = getConfigItem("DMR", "Enable", $_SESSION['MMDVMHostConfigs']);
 		    if ($bmEnabled == true && $testMMDVModeDMR ==1) {
 		        echo '    <button form="admin_sel" type="submit" value="bm_man" name="func"><span>BrandMeister Manager</span></button>';
@@ -381,22 +385,25 @@ checkSessionValidity();
 		    else {
 			echo '    <button form="admin_sel" disabled="disabled" type="submit" value="bm_man" name="func"><span>BrandMeister Manager</span></button>';
 		    }
+		    echo '          </div><div class="mode_flex column">';
                     if ($tgifEnabled ==1 && $testMMDVModeDMR ==1) {
 		        echo '    <button form="admin_sel" type="submit" value="tgif_man" name="func"><span>TGIF Manager</span></button>';
 		    }
 		    else {
 			 echo '   <button form="admin_sel" disabled="disabled" type="submit" value="tgif_man" name="func"><span>TGIF Manager</span></button>';
 		    }
-		    //echo '      </div>';
-		    //echo '      <div class="mode_flex">';
-        	$testMMDVModeYSF = getConfigItem("System Fusion", "Enable", $_SESSION['MMDVMHostConfigs']);
-        	$testDMR2YSF = $_SESSION['DMR2YSFConfigs']['Enabled']['Enabled'];
-        	if ($testMMDVModeYSF == 1 || $testDMR2YSF == 1) {
+		    echo '          </div><div class="mode_flex column">';
+        	    $testMMDVModeYSF = getConfigItem("System Fusion", "Enable", $_SESSION['MMDVMHostConfigs']);
+        	    $testDMR2YSF = $_SESSION['DMR2YSFConfigs']['Enabled']['Enabled'];
+        	    if ($testMMDVModeYSF == 1 || $testDMR2YSF == 1) {
 		        echo '    <button form="admin_sel" type="submit" value="ysf_man" name="func"><span>YSF Manager</span></button>';
 		    }
 		    else {
 		        echo '    <button form="admin_sel" disabled="disabled" type="submit" value="ysf_man" name="func"><span>YSF Manager</span></button>';
 		    }
+		    echo '      </div></div>';
+                    echo '        <div class="mode_flex row">';
+                    echo '          <div class="mode_flex column">';
                     $testMMDVModeP25 = getConfigItem("P25", "Enable", $_SESSION['MMDVMHostConfigs']);
                     if ($testMMDVModeP25 == 1) {
 		    	echo '    <button form="admin_sel" type="submit" value="p25_man" name="func"><span>P25 Manager</span></button>';
@@ -404,6 +411,7 @@ checkSessionValidity();
 		    else {
 		    	echo '    <button form="admin_sel" disabled="disabled" type="submit" value="p25_man" name="func"><span>P25 Manager</span></button>';
 		    }
+		    echo '          </div><div class="mode_flex column">';
                     $testMMDVModeNXDN = getConfigItem("NXDN", "Enable", $_SESSION['MMDVMHostConfigs']);
                     if ($testMMDVModeNXDN == 1 && !isPaused("NXDN")) {
 		    	echo '    <button form="admin_sel" type="submit" value="nxdn_man" name="func"><span>NXDN Manager</span></button>';
@@ -411,6 +419,7 @@ checkSessionValidity();
 		    else {
 		    	echo '    <button form="admin_sel" disabled="disabled" type="submit" value="nxdn_man" name="func"><span>NXDN Manager</span></button>';
 		    }
+		    echo '          </div><div class="mode_flex column">';
                     $testMMDVModeM17 = getConfigItem("M17 Network", "Enable", $_SESSION['MMDVMHostConfigs']);
                     if ($testMMDVModeM17 == 1 && !isPaused("M17")) {
 		    	echo '    <button form="admin_sel" type="submit" value="m17_man" name="func"><span>M17 Manager</span></button>';
@@ -418,6 +427,7 @@ checkSessionValidity();
 		    else {
 		    	echo '    <button form="admin_sel" disabled="disabled" type="submit" value="m17_man" name="func"><span>M17 Manager</span></button>';
                     }
+		    echo '          </div><div class="mode_flex column">';
                     $testMMDVModePOCSAG = getConfigItem("POCSAG", "Enable", $_SESSION['MMDVMHostConfigs']);
 		    if ($testMMDVModePOCSAG == 1) {
 		        echo '    <button form="admin_sel" type="submit" value="pocsag_man" name="func"><span>POCSAG Manager</span></button>';
@@ -425,8 +435,9 @@ checkSessionValidity();
 		    else {
 		        echo '    <button form="admin_sel" disabled="disabled" type="submit" value="pocsag_man" name="func"><span>POCSAG Manager</span></button>';
 		    }
+		    echo '          </div><div class="mode_flex column">';
 		    echo '    <button form="admin_sel" type="submit" value="sys_man" name="func"><span>System Manager</span></button>';
-		    echo '      </div></td>';
+		    echo '      </div></div></div></td>';
 		    echo '    </tr>';
 		    echo '    <tr>';
 		    echo '      <td style="white-space:normal;"><b>Note:</b> Modes/networks/services not <a href="/admin/configure.php">globally configured/enabled</a>, or that are paused, are not selectable here until they are enabled or <a href="./?func=mode_man">resumed from pause</a>.</td>';
