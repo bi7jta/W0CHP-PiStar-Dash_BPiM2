@@ -30,7 +30,7 @@ $YSF    = ($configmmdvm['System Fusion']['Enable']);
 $P25    = ($configmmdvm['P25']['Enable']);
 $NXDN   = ($configmmdvm['NXDN']['Enable']);
 $M17    = ($configmmdvm['M17']['Enable']);
-$FM     = ($configmmdvm['AX 25']['Enable']);
+$AX25   = ($configmmdvm['AX 25']['Enable']);
 $POCSAG = ($configmmdvm['POCSAG']['Enable']);
 $APRS   = ($configaprsgw['Enabled']['Enabled']);
 // pause enabled file pointers
@@ -40,7 +40,7 @@ $YSF_paused    = '/etc/YSF_paused';
 $P25_paused    = '/etc/P25_paused';
 $NXDN_paused   = '/etc/NXDN_paused';
 $M17_paused    = '/etc/M17_paused';
-$AX25_paused     = '/etc/AX25_paused';
+$AX25_paused   = '/etc/AX25_paused';
 $POCSAG_paused = '/etc/POCSAG_paused';
 $APRS_paused   = '/etc/APRS_paused';
 
