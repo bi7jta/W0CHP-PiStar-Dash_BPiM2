@@ -428,7 +428,6 @@ input[type=button]:hover, input[type=submit]:hover, input[type=reset]:hover, but
 
 button:disabled {
     cursor: not-allowed;
-    border: 1px solid <?php echo $backgroundContent; ?>;
     color: <?php echo $textModeCellDisabledColor; ?>;
     background: <?php echo $backgroundModeCellDisabledColor; ?>;
 }
@@ -437,7 +436,6 @@ input:disabled + label {
     color: #000;
     opacity: 0.6;
     cursor: not-allowed;
-    border: 1px solid <?php echo $backgroundContent; ?>;
 }
 
 select {
