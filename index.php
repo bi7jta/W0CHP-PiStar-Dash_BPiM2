@@ -416,7 +416,7 @@ checkSessionValidity();
 		    echo '      </div></td>';
 		    echo '    </tr>';
 		    echo '    <tr>';
-		    echo '      <td style="white-space:normal;padding 3px;"><b>Note:</b> Modes/networks/services not <a href="/admin/configure.php">globally configured/enabled</a>, or that are paused, are not selectable here until they are enabled or <a href="./?func=mode_man">resumed from pause</a>.</td>';
+		    echo '      <td style="white-space:normal;padding: 3px;"><b>Note:</b> Modes/networks/services not <a href="/admin/configure.php">globally configured/enabled</a>, or that are paused, are not selectable here until they are enabled or <a href="./?func=mode_man">resumed from pause</a>.</td>';
 		    echo '    </tr>';
 		    echo '  </table>';
 		    echo ' </form>';
