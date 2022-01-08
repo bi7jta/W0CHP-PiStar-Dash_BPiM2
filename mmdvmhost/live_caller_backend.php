@@ -1,4 +1,3 @@
-
 <?php
 include_once $_SERVER['DOCUMENT_ROOT'].'/config/config.php';          // MMDVMDash Config
 include_once $_SERVER['DOCUMENT_ROOT'].'/mmdvmhost/tools.php';        // MMDVMDash Tools
@@ -16,9 +15,9 @@ if (constant("TIME_FORMAT") == "24") {
 $cpuTempCRaw = exec('cat /sys/class/thermal/thermal_zone0/temp');
 if ($cpuTempCRaw > 1000) { $cpuTempC = sprintf('%.0f',round($cpuTempCRaw / 1000, 1)); } else { $cpuTempC = sprintf('%.0f',round($cpuTempCRaw, 1)); }
 $cpuTempF = sprintf('%.0f',round(+$cpuTempC * 9 / 5 + 32, 1));
-if ($cpuTempC <= 59) { $cpuTempHTML = "<span style=\"color: inherit\">".$cpuTempF."&deg;F / ".$cpuTempC."&deg;C</span>\n"; }
-if ($cpuTempC >= 60) { $cpuTempHTML = "<span style=\"color: #fa0\">".$cpuTempF."&deg;F / ".$cpuTempC."&deg;C</span>\n"; }
-if ($cpuTempC >= 80) { $cpuTempHTML = "<apan style=\"color: #f00\">".$cpuTempF."&deg;F / ".$cpuTempC."&deg;C</span>\n"; }
+if ($cpuTempC <= 59) { $cpuTempHTML = "<span class='cpu_norm'>".$cpuTempF."&deg;F / ".$cpuTempC."&deg;C</span>\n"; }
+if ($cpuTempC >= 60) { $cpuTempHTML = "<span class='cpu_warm'>".$cpuTempF."&deg;F / ".$cpuTempC."&deg;C</span>\n"; }
+if ($cpuTempC >= 80) { $cpuTempHTML = "<apan class='cpu_hot'>".$cpuTempF."&deg;F / ".$cpuTempC."&deg;C</span>\n"; }
 
 $i = 0;
 for ($i = 0;  ($i <= 0); $i++) { //Last 20  calls
@@ -44,9 +43,9 @@ if ( substr($listElem[4], 0, 6) === 'CQCQCQ' ) {
 $target = preg_replace('/TG /', '', $listElem[4]);
 		
 if ($listElem[5] == "RF"){
-			$source = "<span style=\"color:#f33;\">RF</span>";
-		}else{
-			$source = "<span style=\"color:#8195ED;\">$listElem[5]</span>";
+			$source = "<span class='source_rf'>RF</span>";
+		} else {
+			$source = "<span class='source_other'>$listElem[5]</span>";
 		}
 		
         if ($listElem[6] == null) {
@@ -57,18 +56,18 @@ if ($listElem[5] == "RF"){
             $dt = new DateTime($utc_time, $utc_tz);
             $duration = $now->getTimestamp() - $dt->getTimestamp();
             $duration_string = $duration<999 ? round($duration) . "+" : "&infin;";
-            $duration = "<span style=\"color:#f33;\">TX " . $duration_string . " sec</span>";
+            $duration = "<span class='dur_tx'>TX " . $duration_string . " sec</span>";
             } else if ($listElem[6] == "DMR Data") {
-                $duration =  "<span style=\"color: #1d1;\">DMR Data</span>";
+                $duration =  "<span class='dur_data'>DMR Data</span>";
             } else {
                 $duration = $listElem[6]."s";
 		    }
 
 if ($listElem[7] == null) { $loss = "&nbsp;&nbsp;&nbsp;";
 			}elseif (floatval($listElem[7]) < 1) { $loss = "<span>".$listElem[7]."</span>";
-			}elseif (floatval($listElem[7]) == 1) { $loss = "<span style=\"color: #1d1;\">".$listElem[7]."</span>"; }
-			elseif (floatval($listElem[7]) > 1 && floatval($listElem[7]) <= 3) { $loss = "<span style=\"color: #fa0;\">".$listElem[7]."</span>"; }
-			else { $loss = "<span style=\"color: #f33;\">".$listElem[7]."</span>"; }
+			}elseif (floatval($listElem[7]) == 1) { $loss = "<span class='loss_ok'>".$listElem[7]."</span>"; }
+			elseif (floatval($listElem[8]) > 1 && floatval($listElem[7]) <= 3) { $loss = "<span class='loss_med'>".$listElem[7]."</span>"; }
+			else { $loss = "<span class='loss_bad'>".$listElem[7]."</span>"; }
 			
 if ($listElem[8] == null) {
 			$ber = "&nbsp;&nbsp;&nbsp;&nbsp;";
@@ -82,12 +81,11 @@ if ($listElem[1] == null) {
 			$mode = $listElem[1];
 			}
 			
-// Colour the BER Field
+// Color the BER Field
 			if (floatval($listElem[8]) == 0) { $ber = $listElem[8]; }
-			elseif (floatval($listElem[8]) >= 0.0 && floatval($listElem[8]) <= 1.1) { $ber = "<span style=\"color: #1d1;\">".$listElem[8]."</span>"; }
-			elseif (floatval($listElem[8]) >= 1.2 && floatval($listElem[8]) <= 4.9) { $ber = "<span style=\"color: #FA0;\">".$listElem[8]."</span>"; }
-			else { $ber = "<span style=\"color: #F33;\">".$listElem[8]."</span>"; }
-
+			elseif (floatval($listElem[8]) >= 0.0 && floatval($listElem[8]) <= 1.1) { $ber = "<span class='ber_ok>".$listElem[8]."</span>"; }
+			elseif (floatval($listElem[8]) >= 1.2 && floatval($listElem[8]) <= 4.9) { $ber = "<span class='ber_med'>".$listElem[8]."</span>"; }
+			else { $ber = "<span class='ber_bad'>".$listElem[8]."</span>"; }
 
 $name = exec("grep -w \"$listElem[2]\" /usr/local/etc/stripped.csv | awk -F, '{print $3, $4}' | head -1 | tr -d '\"' ");
 $city = exec("grep -w \"$listElem[2]\" /usr/local/etc/stripped.csv | awk -F, '{print $5}' | head -1 | tr -d '\"' ");
@@ -99,7 +97,7 @@ if (strlen($target) >= 2) {
 	if (!empty($target_lookup)) {
         $target = $target_lookup;
         $stupid_bm = ['/ - 10 Minute Limit/', '/ NOT A CALL CHANNEL/', '/ NO NETS(.*?)/', '/ - .*/'];
-        $target = preg_replace($stupid_bm, "", $target);
+        $target = preg_replace($stupid_bm, "", $target); // strip stupid fucking comments from BM admins in TG names. Idiots.
         $target = str_replace(":", " - ", $target);
 	}
 }
@@ -121,57 +119,100 @@ $duration = "";
 <div class='live-page-wrapper'>
   <div class='row'>
     <div class='column'>
-      <div class='orange-column' style="color: #000; font-size: 11em; font-weight: bold;">
-        <?php echo $listElem[2]; ?>
+      <div class='orange-column'>
+        <span class='oc_call'><?php echo $listElem[2]; ?></span>
       </div>
     </div>
 
     <div class='column'>
-      <div class='orange-column' style="color: #000; font-size: 2.8em;">
-        <strong style="font-size: 1.3em;"><?php  echo $name;  ?></strong><br />
-        <?php  echo $city;  ?><br />
-        <?php  echo $state;  ?><br />
-        <?php  echo $country;  ?>
-      </div>
-    </div>
-  </div>
-
-  <div class='row'>
-    <div class='column'>
-      <div class='dark-column' style="color: #808080; font-size: 38px; font-weight: bold;">
-        Source: <span style="color:#D8D8D8;"><?php echo $source; ?></span><br />
-        Mode: <span style="color:#D8D8D8;"><?php echo $mode; ?></span><br />
-        Target: <span style="color:#D8D8D8;"><?php echo $target; ?></span>
-      </div>
-    </div>
-
-    <div class='column'>
-      <div class='dark-column' style="color: #808080; font-size: 38px; font-weight: bold;">
-        TX Duration: <span style="color:#D8D8D8;"><?php echo $duration ?></span><br />
-        Packet Loss: <span style="color:#D8D8D8;"><?php echo $loss ?></span><br />
-        Bit Error Rate: <span style="color:#D8D8D8;"><?php echo $ber ?></span>
+      <div class='orange-column'>
+        <span class='oc_caller'>
+		  <span class='oc_name'>
+		    <?php  echo $name;  ?>
+		  </span>
+		  <br />
+          <?php  echo $city;  ?>
+		  <br />
+          <?php  echo $state;  ?>
+		  <br />
+          <?php  echo $country;  ?>
+		</span>
       </div>
     </div>
   </div>
 
   <div class='row'>
     <div class='column'>
-      <div class='dark-column' style="color: #808080; font-size: 20px; font-weight: bold;">
-        <div>Hotspot Time: <span style="color:#D8D8D8;"><?php echo $local_time; ?></span></div>
-        <div>CPU Temp:  <span style="color:#D8D8D8;"><?php echo $cpuTempHTML; ?></span></div>
+      <div class='dark-column'>
+		<span class='dc_info'>
+		    Source: 
+			<span class='dc_info_def'>
+			  <?php echo $source; ?>
+			</span>
+			<br />
+			Mode: 
+			<span class='dc_info_def'>
+			  <?php echo $mode; ?>
+			</span>
+			<br />
+			Target: 
+			<span class='dc_info_def'>
+			  <?php echo $target; ?>
+			</span>
+		</span>
+      </div>
+    </div>
+
+    <div class='column'>
+      <div class='dark-column'>
+		<span class='dc_info'>
+		  TX Duration: 
+		  <span class='dc_info_def'>
+		    <?php echo $duration ?>
+		  </span>
+		  <br />
+          Packet Loss: 
+		  <span class='dc_info_def'>
+		    <?php echo $loss ?>
+		  </span>
+		  <br />
+          Bit Error Rate: 
+		  <span class='dc_info_def'>
+		    <?php echo $ber ?>
+		  </span>
+		</span>
       </div>
     </div>
   </div>
 
   <div class='row'>
     <div class='column'>
-      <div class='footer-column' style="color: #808080; font-size: 14px;">
-        <a href="/" style="color: #808080;">Main Dashboard</a>
+      <div class='dark-column'>
+        <div class='hw_info'>
+		  Hotspot Time: 
+			<span class='hw_info_def'>
+			  <?php echo $local_time; ?>
+			</span>
+		</div>
+        <div class='hw_info'>
+		  CPU Temp: 
+			<span class='hw_info_def'>
+			  <?php echo $cpuTempHTML; ?>
+			</span>
+		</div>
+      </div>
+    </div>
+  </div>
+
+  <div class='row'>
+    <div class='column'>
+      <div class='footer-column'>
+        <a href="/">Main Dashboard</a>
       </div>
     </div>
 
     <div class='column'>
-      <div class='footer-column' style="color: #808080; font-size: 14px;">
+      <div class='footer-column'>
         <span style="float: right;">Hostname: <?php echo exec('cat /etc/hostname'); ?></span>
       </div>
     </div>
