@@ -1,0 +1,141 @@
+/*  Pr0nHub/W0CHP Color Pallete FTW! \o/ ;^) */
+@import url('/css/fonts.css');
+body {
+  background-color: #1B1B1B;
+}
+.live-page-wrapper {
+  margin-right: auto;
+  margin-left: auto;
+  background-color: #1B1B1B;
+  font-family: 'Inconsolata', monospace;
+}
+
+.row {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+}
+
+.column {
+  display: flex;
+  flex-direction: column;
+  flex: 1 1 auto;
+}
+
+.orange-column {
+  background-color: #E59217;
+  padding: 20px;
+  flex-grow: 4;
+  align-items: baseline;
+  align-content: stretch;
+}
+
+.oc_call {
+  color: #000;
+  font-size: 11em; 
+  font-weight: bold;
+}
+
+.oc_caller {
+  font-size: 2.8em;
+  color: #000; 
+}
+
+.oc_name {
+  font-weight: bold;
+}
+
+.dark-column {
+  background-color: #1B1B1B;
+  padding: 20px;
+  flex-grow: 3;
+  align-items: baseline;
+  align-content: stretch;
+}
+
+.dc_info {
+  color: #808080;
+  font-size: 38px;
+  font-weight: bold;
+}
+
+.dc_info_def {
+  color:#D8D8D8;
+}
+
+
+.hw_info {
+  color: #808080;
+  font-size: 20px;
+  font-weight: bold;
+}
+
+.hw_info_def {
+  color:#D8D8D8;
+}
+
+.footer-column {
+  background-color: #111111;
+  padding: 20px;
+  flex-grow: 2;
+  align-items: baseline;
+  align-content: stretch;
+  color: #808080;
+  font-size: 14px;
+}
+
+.footer-column a {
+  color: #808080;
+}
+
+.cpu_norm {
+  color: inherit;
+}
+
+.cpu_warm {
+  color: #fa0;
+}
+
+.cpu_hot {
+  color: #f00;
+}
+
+.source_rf {
+  color: #f33;
+}
+
+.source_other {
+  color: #8195ED;
+}
+
+.dur_tx {
+  color: #f33;
+}
+
+.dur_data {
+  color: #1d1;
+{
+
+.loss_ok {
+  color: #1d1;
+}
+
+.loss_med {
+  color: #fa0;
+}
+
+.loss_bad {
+  color: #f33;
+}
+
+.ber_ok {
+  color: #1d1;
+}
+
+.ber_med {
+  color: #FA0;
+}
+
+.ber_bad {
+  color: #F33;
+}
