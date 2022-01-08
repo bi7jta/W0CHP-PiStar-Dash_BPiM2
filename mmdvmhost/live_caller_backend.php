@@ -207,13 +207,13 @@ $duration = "";
   <div class='row'>
     <div class='column'>
       <div class='footer-column'>
-        <a href="/">Main Dashboard</a>
+        <span class='foot_left'><a href="/">Main Dashboard</a></span>
       </div>
     </div>
 
     <div class='column'>
       <div class='footer-column'>
-        <span style="float: right;">Hostname: <?php echo exec('cat /etc/hostname'); ?></span>
+        <span class="foot_right">Hostname: <?php echo exec('cat /etc/hostname'); ?></span>
       </div>
     </div>
   </div>

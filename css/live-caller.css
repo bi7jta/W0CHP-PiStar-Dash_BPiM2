@@ -88,6 +88,14 @@ body {
   color: #808080;
 }
 
+.foot_left {
+  float: left;
+}
+
+.foot_right {
+  float: right;
+}
+
 .cpu_norm {
   color: inherit;
 }
