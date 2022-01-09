@@ -28,14 +28,14 @@ if (isset($_SESSION['YSFGatewayConfigs']['Remote Commands']['Enable']) && (isset
 	    }
 	    if ($_POST["Link"] == "LINK") {
 		if ($_POST['ysfLinkHost'] == "none") {
-		    $remoteCommand = "cd /var/log/pi-star && sudo /usr/local/bin/RemoteCommand ".$remotePort." Un-Link";
+		    $remoteCommand = "cd /var/log/pi-star && sudo /usr/local/bin/RemoteCommand ".$remotePort." UnLink";
 		}
 		else {
 		    $remoteCommand = "cd /var/log/pi-star && sudo /usr/local/bin/RemoteCommand ".$remotePort." Link".$_POST['ysfLinkHost'];
 		}
 	    }
 	    else if ($_POST["Link"] == "UNLINK") {
-		$remoteCommand = "cd /var/log/pi-star && sudo /usr/local/bin/RemoteCommand ".$remotePort." Un-Link";
+		$remoteCommand = "cd /var/log/pi-star && sudo /usr/local/bin/RemoteCommand ".$remotePort." UnLink";
 	    }
 	    else {
 		echo "<b>YSF Link Manager</b>\n";
