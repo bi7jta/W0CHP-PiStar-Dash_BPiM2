@@ -179,7 +179,7 @@ if (empty($dmrID) == false)
     <tr>
       <td><input type="text" id="tgifNumber" name="tgifNumber" size="10" maxlength="7" oninput="enableOnNonEmpty(\'tgifNumber\', \'tgifActionLink\'); return false;"/></td>
       <td><input type="radio" id="ts1" name="tgifSlot" value="1" checked="checked" /><label for="ts1"/>TS1</label> <input type="radio" id="ts2" name="tgifSlot" value="2" /><label for="ts2"/>TS2</label></td>
-      <td><input type="radio" id="tgifActionLink" name="tgifAction" value="LINK"  /><label for="linkTGIFRadioButton"/>Link</label> <input type="radio" name="tgifAction" value="UNLINK" checked="checked" />UnLink</td>
+      <td><input type="radio" id="tgifActionLink" name="tgifAction" value="LINK"  /><label for="linkTGIFRadioButton"/>Link</label> <input type="radio" name="tgifAction" value="UNLINK" checked="checked" />Un-Link</td>
       <td><input type="submit" value="Request Change" name="tgifSubmit" /></td>
     </tr>
     <tr>
