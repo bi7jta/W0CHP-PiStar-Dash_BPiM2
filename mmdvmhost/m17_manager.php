@@ -136,7 +136,7 @@ if ($_SERVER["PHP_SELF"] == "/admin/index.php") { // Stop this working outside o
 			    </td>
 			    <td>
 				<input type="radio" name="Link" value="LINK" checked="checked" />Link
-				<input type="radio" name="Link" value="UNLINK" />UnLink
+				<input type="radio" name="Link" value="UNLINK" />Un-Link
 			    </td>
 			    <td>
 				<input type="submit" name="m17MgrSubmit" value="Request Change" />
