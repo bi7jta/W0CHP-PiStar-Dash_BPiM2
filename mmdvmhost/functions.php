@@ -430,6 +430,8 @@ function getDGIdLinks() {
 //M: 2022-01-03 15:48:27.228 Starting M17Gateway-20211003_W0CHP
 //I: 2022-01-03 15:48:27.228 Linked at startup to M17-USA A
 //M: 2022-01-03 15:48:27.228 Opening M17 Network connection
+//M: 2022-01-09 19:29:52.863 Relinking to reflector M17-M17 C
+//I: 2022-01-09 19:40:52.704 Loaded 118 M17 reflectors
 function isM17GatewayConnected() {
     $logLines = array();
     $logLines1 = array();
@@ -438,7 +440,7 @@ function isM17GatewayConnected() {
     // Collect last 20 lines  - see down below for no. of line values (array_slice)
     if (file_exists("/var/log/pi-star/M17Gateway-".gmdate("Y-m-d").".log")) {
 	$logPath1 = "/var/log/pi-star/M17Gateway-".gmdate("Y-m-d").".log";
-	$logLines1 = preg_split('/\r\n|\r|\n/', `tail -n 3 $logPath1 | cut -d" " -f2- | tac`);
+	$logLines1 = preg_split('/\r\n|\r|\n/', `tail -n 2 $logPath1 | cut -d" " -f2- | tac`);
     }
     
     $logLines1 = array_filter($logLines1);
@@ -446,7 +448,7 @@ function isM17GatewayConnected() {
     if (sizeof($logLines1) == 0) {
         if (file_exists("/var/log/pi-star/M17Gateway-".gmdate("Y-m-d", time() - 86340).".log")) {
             $logPath2 = "/var/log/pi-star/M17Gateway-".gmdate("Y-m-d", time() - 86340).".log";
-            $logLines2 = preg_split('/\r\n|\r|\n/', `tail -n 3 $logPath2 | cut -d" " -f2- | tac`);
+            $logLines2 = preg_split('/\r\n|\r|\n/', `tail -n 2 $logPath2 | cut -d" " -f2- | tac`);
         }
 	
         $logLines2 = array_filter($logLines2);
