@@ -82,13 +82,14 @@ caveats](https://w0chp.net/w0chp-pistar-dash/#the-rules-and-caveats----important
   ` TalkerAlias` branch. Caveat emptor...this is buggy!
 
   * Name Look-ups: Caller names are displayed next to call sign. There are two versions/two ways this is performed:
-        * DMR (and other modes if call sign is in DMR database): This method searches through the local Pi-Star DMR ID database.
-          The caveat here, is that this method relies on hams having a DMR ID for non-DMR modes, and due to the PiStar DB, only displays the first name.
 
-        * All Modes: This method looks up each callsign and displays the full name via an API call to the Callook.info service, by `W1JDD`.
-          The caveat here, is that Callook.info only works with USA call signs.
+	* DMR (and other modes if call sign is in DMR database): This method searches through the local Pi-Star DMR ID database.
+	  The caveat here, is that this method relies on hams having a DMR ID for non-DMR modes, and due to the PiStar DB, only displays the first name.
 
-        * The aforementioned respective name lookup branches are `NameLookups` and `NameLookups-API`. Beware: these are very slow on shitty
+	* All Modes: This method looks up each callsign and displays the full name via an API call to the Callook.info service, by `W1JDD`.
+	  The caveat here, is that Callook.info only works with USA call signs.
+
+	* The aforementioned respective name lookup branches are `NameLookups` and `NameLookups-API`. Beware: these are very slow on shitty
           hardware, and requires *lots* of horsepower. Like the `TalkerAlias` feature/branch listed above, these features are
           unstable, and still needs quite a bit of work.
 
@@ -117,7 +118,7 @@ caveats](https://w0chp.net/w0chp-pistar-dash/#the-rules-and-caveats----important
   utilize my Instant Mode Manager, where the default cell is amber colored for
   paused modes [color is user-configurable].).
 
-      Instead, the *actual* network name is highlighted in red when there's a login issue (courtesy of F1RMB's excellent code).
+	Instead, the *actual* network name is highlighted in red when there's a login issue (courtesy of F1RMB's excellent code).
 
 ## Installing `W0CHP-PiStar-Dash`
 
@@ -166,25 +167,25 @@ Run:
 ## Notes about CSS, and custom CSS you may have previously applied
 
 1. When using the `-id` option, the "normal" Pi-Star colors are used, and no CSS is installed. Any custom CSS
-   you may have had, is removed but backed up. See bullet #4 below.
+   you may have had, is removed but backed up. See bullet 4 below.
 
 2. When using the `-idc` option, the `W0CHP` CSS is installed, and any of your custom CSS settings
   before installing the `W0CHP` dashboard, are backed up in the event you want to restore the official dashboard
-  (see bullet #4). This is done because the CSS in the official Pi-Star is incompatible. You can still
-  manually map/change your CSS back when running `W0CHP-PiStar-Dash` (see bullet #4 for details).
+  (see bullet 4). This is done because the CSS in the official Pi-Star is incompatible. You can still
+  manually map/change your CSS back when running `W0CHP-PiStar-Dash` (see bullet 4 for details).
 
 3. If you are already running `W0CHP-PiStar-Dash`, AND you have custom or `W0CHP-PiStar-Dash` CSS, no CSS changes, no matter which
   option you run this command with.
 
 4. When using the `-id` option, your custom CSS settings are backed up (in the event you want to revert back
-  to the official dashboard -- see  bullet #6), and the `W0CHP` dashboard uses the standard Pi-Star colors.
+  to the official dashboard -- see  bullet 6), and the `W0CHP` dashboard uses the standard Pi-Star colors.
   This means that if you want your previous custom CSS applied to the `W0CHP` dashboard, you will need to manually
   customize your colors; You can reference the color values you had previously used, by viewing the backup file of
   your custom CSS...
 
         /etc/.pistar-css.ini.user
 
-5. ...the reason for bullets #4 and #1, is because the `W0CHP` dashboard is vastly different than the official upstream version
+5. ...the reason for bullets 4 and 1, is because the `W0CHP` dashboard is vastly different than the official upstream version
   (completely different CSS mappings). Since this is for my personal use, I haven't added any logic to suck-in
   the user CSS values to the new mappings.
 
@@ -238,3 +239,4 @@ This image is too enormous to embed here, but you can [view it separately](https
 ## Credits
 
 [Listed here...](https://w0chp.net/w0chp-pistar-dash/#credits)
+
