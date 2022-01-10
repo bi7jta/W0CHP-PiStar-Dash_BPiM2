@@ -367,19 +367,35 @@ if (isProcessRunning("DMRGateway")) {
 	    }
 	    echo "<tr><th colspan=\"2\">".$lang['dmr_master']."</th></tr>\n";
 	    if (getEnabled("DMR Network", $_SESSION['MMDVMHostConfigs']) == 1) {
-		if ($dmrMasterHost == '127.0.0.1') {
-		    if ((isset($_SESSION['DMRGatewayConfigs']['XLX Network 1']['Enabled'])) && ($_SESSION['DMRGatewayConfigs']['XLX Network 1']['Enabled'] == 1)) {
-			echo "<tr><td  style=\"background: $tableRowEvenBg;\" colspan=\"2\" title=\"".$xlxMasterHost1Tooltip."\">".$xlxMasterHost1."</td></tr>\n";
-		    }
+			if ($dmrMasterHost == '127.0.0.1') {
                     if ( !isset($_SESSION['DMRGatewayConfigs']['XLX Network 1']['Enabled']) && isset($_SESSION['DMRGatewayConfigs']['XLX Network']['Enabled']) && $_SESSION['DMRGatewayConfigs']['XLX Network']['Enabled'] == 1) {
-				if (file_exists("/var/log/pi-star/DMRGateway-".gmdate("Y-m-d").".log")) { $xlxMasterHost1 = exec('grep \'XLX, Linking\|XLX, Unlinking\|XLX, Logged\' /var/log/pi-star/DMRGateway-'.gmdate("Y-m-d").'.log | tail -1 | awk \'{print $5 " " $8 " " $9}\''); }
-                                else { $xlxMasterHost1 = exec('grep \'XLX, Linking\|XLX, Unlinking\|XLX, Logged\' /var/log/pi-star/DMRGateway-'.gmdate("Y-m-d", time() - 86340).'.log | tail -1 | awk \'{print $5 " " $8 " " $9}\''); }
-				if ( strpos($xlxMasterHost1, 'Linking') !== false ) { $xlxMasterHost1 = str_replace('Linking ', '', $xlxMasterHost1); }
-				else if ( strpos($xlxMasterHost1, 'Unlinking') !== false ) { $xlxMasterHost1 = "XLX Not Linked"; }
-				else if ( strpos($xlxMasterHost1, 'Logged') !== false ) { $xlxMasterHost1 = "XLX Not Linked"; }
+			$xlxMasterHostLinkState = "";
+			
+                        if (file_exists("/var/log/pi-star/DMRGateway-".gmdate("Y-m-d").".log")) {
+			    $xlxMasterHostLinkState = exec('grep \'XLX, Linking\|XLX, Unlinking\|XLX, Logged\' /var/log/pi-star/DMRGateway-'.gmdate("Y-m-d").'.log | tail -1 | awk \'{print $5 " " $8 " " $9}\'');
+			}
+			else {
+			    $xlxMasterHostLinkState = exec('grep \'XLX, Linking\|XLX, Unlinking\|XLX, Logged\' /var/log/pi-star/DMRGateway-'.gmdate("Y-m-d", time() - 86340).'.log | tail -1 | awk \'{print $5 " " $8 " " $9}\'');
+			}
+			if ($xlxMasterHostLinkState != "") {
+			    if ( strpos($xlxMasterHostLinkState, 'Linking') !== false ) {
+				$xlxMasterHost1 = str_replace('Linking ', '', $xlxMasterHostLinkState);
+			    }
+			    else if ( strpos($xlxMasterHostLinkState, 'Unlinking') !== false ) {
+				$xlxMasterHost1 = "XLX Not Linked";
+			    }
+			    else if ( strpos($xlxMasterHostLinkState, 'Logged') !== false ) {
+				$xlxMasterHost1 = "XLX Not Linked";
+			    }
+			}
+			else {
+			    // There is no trace of XLX in the logfile.
+			    $xlxMasterHost1 = "".$xlxMasterHost1." ".$_SESSION['DMRGatewayConfigs']['XLX Network']['Module']."";
+			}
+			
 			echo "<tr><td ".GetActiveConnectionStyle($remoteDMRGResults, "xlx")." colspan=\"2\" title=\"".$xlxMasterHost1Tooltip."\">".$xlxMasterHost1."</td></tr>\n";
 
-                    }
+		}
 		    if ($_SESSION['DMRGatewayConfigs']['DMR Network 1']['Enabled'] == 1) {
 		        echo "<tr><td ".GetActiveConnectionStyle($remoteDMRGResults, "net1")." colspan=\"2\" title=\"".$dmrMasterHost1Tooltip."\">".$dmrMasterHost1."</td></tr>\n";
 		    }
