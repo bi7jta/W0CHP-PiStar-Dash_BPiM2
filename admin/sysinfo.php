@@ -215,6 +215,10 @@ function formatSize( $bytes ) {
 			$YSFGateway_Ver = exec('/usr/local/bin/YSFGateway -v | cut -d\' \' -f 3-');
 			echo "  <tr>";getStatusClass(isProcessRunning("YSFGateway"), true); echo "YSFGateway</td><td align=\"left\">".$YSFGateway_Ver."</td></tr>\n";
 		    }
+		    if (is_executable('/usr/local/bin/YSFParrot')) {
+			$YSFParrot_Ver = exec('/usr/local/bin/YSFParrot -v | cut -d\' \' -f 3-');
+			echo "  <tr>";getStatusClass(isProcessRunning("YSFParrot"), true); echo "YSFParrot</td><td align=\"left\">".$YSFParrot_Ver."</td></tr>\n";
+		    }
 		    if (is_executable('/usr/local/bin/DGIdGateway')) {
 			$DGIdGateway_Ver = exec('/usr/local/bin/DGIdGateway -v | cut -d\' \' -f 3-');
 			echo "  <tr>";getStatusClass(isProcessRunning("DGIdGateway"), true); echo "DGIdGateway</td><td align=\"left\">".$DGIdGateway_Ver."</td></tr>\n";
@@ -238,6 +242,10 @@ function formatSize( $bytes ) {
 		    if (is_executable('/usr/local/bin/NXDNGateway')) {
 			$NXDNGateway_Ver = exec('/usr/local/bin/NXDNGateway -v | cut -d\' \' -f 3-');
 			echo "  <tr>";getStatusClass(isProcessRunning("NXDNGateway"), true); echo "NXDNGateway</td><td align=\"left\">".$NXDNGateway_Ver."</td></tr>\n";
+		    }
+		    if (is_executable('/usr/local/bin/M17Gateway')) {
+			$M17Gateway_Ver = exec('/usr/local/bin/M17Gateway -v | cut -d\' \' -f 3-');
+			echo "  <tr>";getStatusClass(isProcessRunning("M17Gateway"), true); echo "M17Gateway</td><td align=\"left\">".$M17Gateway_Ver."</td></tr>\n";
 		    }
 		    if (is_executable('/usr/local/bin/NXDN2DMR')) {
 			$NXDN2DMR_Ver = exec('/usr/local/bin/NXDN2DMR -v | cut -d\' \' -f 3-');

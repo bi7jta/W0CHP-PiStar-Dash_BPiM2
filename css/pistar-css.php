@@ -355,11 +355,27 @@ input.toggle-round-flat:focus + label {
     z-index: 5;
 }
 
+/*
 .mode_flex {
     display: flex; 
     text-align: center;
     flex-wrap: wrap;
     justify-content: center;
+}
+*/
+
+.mode_flex .row {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  width: 100%;
+}
+
+.mode_flex .column {
+  display: flex;
+  flex-direction: column;
+  flex-basis: 100%;
+  flex: 1;
 }
 
 .mode_flex button {
@@ -369,7 +385,7 @@ input.toggle-round-flat:focus + label {
     justify-content: center;
     flex-grow: 1;
     font-family: 'Source Sans Pro', sans-serif;
-    border: 1px solid black;
+    border: 1px solid <?php echo $backgroundContent; ?>;
     color: black;
     background-color: #f1f1f1;
     padding: 2px;
@@ -411,14 +427,9 @@ input[type=button]:hover, input[type=submit]:hover, input[type=reset]:hover, but
 }
 
 button:disabled {
-    opacity: 0.4;
     cursor: not-allowed;
-    color: #fff;
-    background: #000;
-/*
     color: <?php echo $textModeCellDisabledColor; ?>;
     background: <?php echo $backgroundModeCellDisabledColor; ?>;
-*/
 }
 
 input:disabled + label {
@@ -807,8 +818,8 @@ hr {
 
 .status-grid {
   display: grid;
-  grid-template-columns: auto auto auto auto auto auto auto;
-  grid-template-rows: auto auto auto auto;
+  grid-template-columns: auto auto auto auto auto auto;
+  grid-template-rows: auto auto auto auto auto;
   border: 2px solid black;
   background : <?php echo $backgroundContent; ?>;
   padding: 1px;

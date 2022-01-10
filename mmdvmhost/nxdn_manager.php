@@ -41,7 +41,7 @@ if ( $testMMDVModeNXDN == 1 ) {
 	    else {
 		echo "<b>NXDN Link Manager</b>\n";
 		echo "<table>\n<tr><th>Command Output</th></tr>\n<tr><td>";
-		echo "Somthing wrong with your input, (Neither Link nor Unlink Sent) - please try again";
+		echo "Something wrong with your input, (Neither Link nor Unlink Sent) - please try again";
 		echo "</td></tr>\n</table>\n<br />\n";
 		unset($_POST);
 		echo '<script type="text/javascript">setTimeout(function() { window.location=window.location;},2000);</script>';
@@ -49,7 +49,7 @@ if ( $testMMDVModeNXDN == 1 ) {
 	    if (empty($_POST['nxdnLinkHost'])) {
 		echo "<b>NXDN Link Manager</b>\n";
 		echo "<table>\n<tr><th>Command Output</th></tr>\n<tr><td>";
-		echo "Somthing wrong with your input, (No target specified) -  please try again";
+		echo "Something wrong with your input, (No target specified) -  please try again";
 		echo "</td></tr>\n</table>\n<br />\n";
 		unset($_POST);
 		echo '<script type="text/javascript">setTimeout(function() { window.location=window.location;},2000);</script>';
@@ -126,6 +126,7 @@ if ( $testMMDVModeNXDN == 1 ) {
 					fclose($nxdnHosts2);
 				    }
 				    ?>
+				</select>
 			    </td>
 			    <td>
 				<input type="radio" name="Link" value="LINK" checked="checked" />Link

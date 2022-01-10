@@ -29,6 +29,8 @@ $DMR    = ($configmmdvm['DMR']['Enable']);
 $YSF    = ($configmmdvm['System Fusion']['Enable']);
 $P25    = ($configmmdvm['P25']['Enable']);
 $NXDN   = ($configmmdvm['NXDN']['Enable']);
+$M17    = ($configmmdvm['M17']['Enable']);
+$AX25   = ($configmmdvm['AX 25']['Enable']);
 $POCSAG = ($configmmdvm['POCSAG']['Enable']);
 $APRS   = ($configaprsgw['Enabled']['Enabled']);
 // pause enabled file pointers
@@ -37,6 +39,8 @@ $DMR_paused    = '/etc/DMR_paused';
 $YSF_paused    = '/etc/YSF_paused';
 $P25_paused    = '/etc/P25_paused';
 $NXDN_paused   = '/etc/NXDN_paused';
+$M17_paused    = '/etc/M17_paused';
+$AX25_paused   = '/etc/AX25_paused';
 $POCSAG_paused = '/etc/POCSAG_paused';
 $APRS_paused   = '/etc/APRS_paused';
 
@@ -155,10 +159,14 @@ if (!empty($_POST["submit_mode"]) && empty($_POST["mode_sel"])) { //handler for 
             &nbsp;| <input name="mode_sel" '.(($NXDN=='0' && !file_exists($NXDN_paused)?'disabled="disabled"':"")).' access="false" id="mode-sel-4"  value="NXDN" type="radio">
             <label for="mode-sel-4">NXDN'.(($NXDN=='0' && file_exists($NXDN_paused)?" <span class='paused-mode-span'>(Paused)</span>":"")).'</label>
 			<br /><br />
-            <input name="mode_sel" '.(($POCSAG=='0' && !file_exists($POCSAG_paused)?'disabled="disabled"':"")).' access="false" id="mode-sel-5"  value="POCSAG" type="radio">
-            <label for="mode-sel-5">POCSAG'.(($POCSAG=='0' && file_exists($POCSAG_paused)?" <span class='paused-mode-span'>(Paused)</span>":"")).'</label>
-            &nbsp;| <input name="mode_sel" '.(($APRS=='0' && !file_exists($APRS_paused)?'disabled="disabled"':"")).' access="false" id="mode-sel-6"  value="APRS" type="radio">
-            <label for="mode-sel-6">APRS'.(($APRS=='0' && file_exists($APRS_paused)?" <span class='paused-mode-span'>(Paused)</span>":"")).'</label><br /><br />
+            <input name="mode_sel" '.(($M17=='0' && !file_exists($M17_paused)?'disabled="disabled"':"")).' access="false" id="mode-sel-5"  value="M17" type="radio">
+            <label for="mode-sel-5">M17'.(($M17=='0' && file_exists($M17_paused)?" <span class='paused-mode-span'>(Paused)</span>":"")).'</label>
+            &nbsp;| <input name="mode_sel" '.(($AX25=='0' && !file_exists($AX25_paused)?'disabled="disabled"':"")).' access="false" id="mode-sel-6"  value="AX25" type="radio">
+            <label for="mode-sel-6">AX.25'.(($AX25=='0' && file_exists($AX25_paused)?" <span class='paused-mode-span'>(Paused)</span>":"")).'</label>
+            &nbsp;| <input name="mode_sel" '.(($POCSAG=='0' && !file_exists($POCSAG_paused)?'disabled="disabled"':"")).' access="false" id="mode-sel-7"  value="POCSAG" type="radio">
+            <label for="mode-sel-7">POCSAG'.(($POCSAG=='0' && file_exists($POCSAG_paused)?" <span class='paused-mode-span'>(Paused)</span>":"")).'</label>
+            &nbsp;| <input name="mode_sel" '.(($APRS=='0' && !file_exists($APRS_paused)?'disabled="disabled"':"")).' access="false" id="mode-sel-8"  value="APRS" type="radio">
+            <label for="mode-sel-8">APRS'.(($APRS=='0' && file_exists($APRS_paused)?" <span class='paused-mode-span'>(Paused)</span>":"")).'</label><br /><br />
           </td>
           <td>
             <input type="hidden" name="func" value="mode_man">

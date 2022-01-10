@@ -40,7 +40,7 @@ if (isset($_SESSION['YSFGatewayConfigs']['Remote Commands']['Enable']) && (isset
 	    else {
 		echo "<b>YSF Link Manager</b>\n";
 		echo "<table>\n<tr><th>Command Output</th></tr>\n<tr><td>";
-		echo "<p>Somthing wrong with your input, (Neither Link nor Unlink Sent) - please try again</p>";
+		echo "<p>Something wrong with your input, (Neither Link nor Unlink Sent) - please try again</p>";
 		echo "</td></tr>\n</table>\n<br />\n";
 		unset($_POST);
 		echo '<script type="text/javascript">setTimeout(function() { window.location=window.location;},3000);</script>';
@@ -48,7 +48,7 @@ if (isset($_SESSION['YSFGatewayConfigs']['Remote Commands']['Enable']) && (isset
 	    if (empty($_POST['ysfLinkHost'])) {
 		echo "<b>YSF Link Manager</b>\n";
 		echo "<table>\n<tr><th>Command Output</th></tr>\n<tr><td>";
-		echo "<p>Somthing wrong with your input, (No target specified) -  please try again</p>";
+		echo "<p>Something wrong with your input, (No target specified) -  please try again</p>";
 		echo "</td></tr>\n</table>\n<br />\n";
 		unset($_POST);
 		echo '<script type="text/javascript">setTimeout(function() { window.location=window.location;},3000);</script>';
@@ -143,6 +143,7 @@ if (isset($_SESSION['YSFGatewayConfigs']['Remote Commands']['Enable']) && (isset
 				    fclose($fcsHosts);
 				}
 				?>
+				</select>
 			</td>
 			<td>
 			    <input type="radio" name="Link" value="LINK" />Link
@@ -153,11 +154,13 @@ if (isset($_SESSION['YSFGatewayConfigs']['Remote Commands']['Enable']) && (isset
 			    <input type="submit" name="ysfMgrSubmit" value="Request Change" />
 			</td>
 		    </tr>
-            <tr>
-            <td colspan="3">
-                [ <b><a href="https://w0chp.net/ysf-reflectors/" target="_blank">List of YSF Reflectors (searchable/downloadable)</a></b> |
-                <b><a href="https://w0chp.net/fcs-reflectors/" target="_blank">List of FCS Reflectors (searchable/downloadable)</a></b> ]
-		</table>
+                    <tr>
+                      <td colspan="3">
+                        [ <b><a href="https://w0chp.net/ysf-reflectors/" target="_blank">List of YSF Reflectors (searchable/downloadable)</a></b> |
+                        <b><a href="https://w0chp.net/fcs-reflectors/" target="_blank">List of FCS Reflectors (searchable/downloadable)</a></b> ]
+                      </td>
+                    </tr>
+                </table>
 	    </form>
 	    <?php
 	}

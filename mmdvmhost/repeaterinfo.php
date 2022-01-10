@@ -99,6 +99,11 @@ if (isProcessRunning("DMRGateway")) {
       <?php showMode("DMR X-Mode", $_SESSION['MMDVMHostConfigs']);?>
       <?php if (isPaused("POCSAG")) { echo '<td class="paused-mode-cell" title="Mode Paused">POCSAG</td>'; } else { showMode("POCSAG", $_SESSION['MMDVMHostConfigs']); } ?>
     </tr>
+      <?php if (isPaused("M17")) { echo '<td class="paused-mode-cell" title="Mode Paused">M17</td>'; } else { showMode("M17", $_SESSION['MMDVMHostConfigs']); } ?>
+      <?php if (isPaused("AX 25")) { echo '<td class="paused-mode-cell" title="Mode Paused">AX.25</td>'; } else { showMode("AX 25", $_SESSION['MMDVMHostConfigs']); } ?>
+    </tr>
+ 
+    <tr> 
 </table>
 <br />
 
@@ -110,15 +115,19 @@ if (isProcessRunning("DMRGateway")) {
     </tr>
     <tr>
       <?php showMode("System Fusion Network", $_SESSION['MMDVMHostConfigs']);?>
-      <?php showMode("P25 Network", $_SESSION['MMDVMHostConfigs']);?>
+      <?php if (isPaused("YSF")) { echo '<td class="paused-mode-cell" title="YSF Mode Paused">DG-ID Net</td>'; } else { showMode("DG-ID Network", $_SESSION['DGIdGatewayConfigs']); } ?>
     </tr>
     <tr>
       <?php showMode("YSF2DMR Network", $_SESSION['MMDVMHostConfigs']);?>
-      <?php showMode("NXDN Network", $_SESSION['MMDVMHostConfigs']);?>
+      <?php showMode("YSF2NXDN Network", $_SESSION['MMDVMHostConfigs']);?>
     </tr>
     <tr>
-      <?php showMode("YSF2NXDN Network", $_SESSION['MMDVMHostConfigs']);?>
       <?php showMode("YSF2P25 Network", $_SESSION['MMDVMHostConfigs']);?>
+      <?php showMode("P25 Network", $_SESSION['MMDVMHostConfigs']);?>
+    </tr>
+    <tr>
+      <?php showMode("NXDN Network", $_SESSION['MMDVMHostConfigs']);?>
+      <?php showMode("M17 Network", $_SESSION['MMDVMHostConfigs']);?>
     </tr>
     <tr>
       <?php showMode("DMR2NXDN Network", $_SESSION['MMDVMHostConfigs']);?>
@@ -186,6 +195,12 @@ if (isProcessRunning("DMRGateway")) {
 	        }
 	        else if ($listElem[2] && $listElem[6] == null && getActualMode($lastHeard, $_SESSION['MMDVMHostConfigs']) === 'P25') {
         	    echo "<td style=\"background:#4aa361;font-weight:bold\">RX: P25</td>";
+        	}
+		else if ($listElem[2] && $listElem[6] == null && getActualMode($lastHeard, $_SESSION['MMDVMHostConfigs']) === 'M17') {
+        	    echo "<td style=\"background:#4aa361;\">RX M17</td>";
+        	}
+        	else if (getActualMode($lastHeard, $_SESSION['MMDVMHostConfigs']) === 'M17') {
+        	    echo "<td style=\"background:#c9f;\">Listening M17</td>";
         	}
         	else if (getActualMode($lastHeard, $_SESSION['MMDVMHostConfigs']) === 'P25') {
         	    echo "<td style=\"background:#f9f;font-weight:bold\">Standby: P25</td>";
@@ -501,10 +516,30 @@ if (isProcessRunning("DMRGateway")) {
 	    }
         echo "<br />\n";
         echo "<table>\n";
-	    echo "<tr><th colspan=\"2\">".$lang['ysf_net']."".$ysfLinkState."</th></tr>\n";
-	    echo "<tr><td colspan=\"2\" style=\"background: $tableRowEvenBg;\" title=\"".$ysfLinkedToTooltip."\">".$ysfTableData."</td></tr>\n";
+        if (isPaused("YSF")) {
+	    echo "<tr><th colspan=\"2\">".$lang['ysf_net']."</th></tr>\n";
+        } else {
+            echo "<tr><th colspan=\"2\">".$lang['ysf_net']."".$ysfLinkState."</th></tr>\n";
+        }
+	echo "<tr><td colspan=\"2\" style=\"background: $tableRowEvenBg;\" title=\"".$ysfLinkedToTooltip."\">".$ysfTableData."</td></tr>\n";
         echo "</table>\n";
 	}
+
+    if (getServiceEnabled('/etc/dgidgateway') == 1 )  { // Hide DGId GW info when GW not enabled
+        echo "<br />\n";
+        echo "<table>\n";
+        echo "<tr><th colspan='2'>DG-ID Gateway Status</th></tr>\n";
+        echo "<tr><th colspan='2'>Current DG-ID</th></tr>\n";
+        if (isPaused("YSF")) {
+            echo "<tr><td colspan='2' style=\"background: $tableRowEvenBg;\" title=\"YSF Mode Paused\">YSF Mode Paused</td></tr>\n";
+        }
+          else if (isProcessRunning("DGIdGateway")) {
+            echo "<tr><td colspan='2' style=\"background: $tableRowEvenBg;\" title=\"".getDGIdLinks()."\">".getDGIdLinks()."</td></tr>\n";
+        } else {
+            echo "<tr><td colspan='2' style=\"background: $tableRowEvenBg;\" title=\"Service Not Started\">Service Not Started</td></tr>\n";
+        }
+        echo "</table>\n";
+    }
 
 	$testYSF2DMR = 0;
 	if ( isset($_SESSION['YSF2DMRConfigs']['Enabled']['Enabled']) ) {
@@ -586,6 +621,22 @@ if (isProcessRunning("DMRGateway")) {
 			}
 	    }
 	    echo "</table>\n";
+	}
+
+	$testMMDVModeM17 = getConfigItem("M17", "Enable", $_SESSION['MMDVMHostConfigs']);
+        $configm17gateway = $_SESSION['M17GatewayConfigs'];
+	if ( $testMMDVModeM17 == 1 || isPaused("M17") ) { //Hide the M17 Reflector information when M17 Network not enabled.
+		echo "<br />\n";
+		echo "<table>\n";
+		echo "<tr><th colspan=\"2\">M17 Repeater</th></tr>\n";
+		echo "<tr><th>RPT</th><td style=\"background: #ffffff;\">".str_replace(' ', '&nbsp;', $configm17gateway['General']['Callsign'])."&nbsp;".str_replace(' ', '&nbsp;', $configm17gateway['General']['Suffix'])."</td></tr>\n";
+		echo "<tr><th colspan=\"2\">M17 Network</th></tr>\n";
+                if (isPaused("M17")) {
+                    echo "<tr><td colspan=\"2\"style=\"background: $tableRowEvenBg;\">Mode Paused</td></tr>\n";
+                } else {
+		    echo "<tr><td colspan=\"2\" style=\"background: #ffffff;\">".getActualLink($reverseLogLinesM17Gateway, "M17")."</td></tr>\n";
+                }
+		echo "</table>\n";
 	}
 	
 	$testMMDVModePOCSAG = getConfigItem("POCSAG Network", "Enable", $_SESSION['MMDVMHostConfigs']);

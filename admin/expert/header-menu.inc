@@ -43,8 +43,10 @@
 				<li class="subs"><a href="edit_ysf2nxdn.php">YSF to NXDN</a></li>
 			    </ul>
 			</li>
+            <!-- others -->
 			<li class="subs"><a href="edit_p25gateway.php">P25 Gateway</a></li>
 			<li class="subs"><a href="edit_nxdngateway.php">NXDN Gateway</a></li>
+			<li class="subs"><a href="edit_m17gateway.php">M17 Gateway</a></li>
 			<li class="subs"><a href="edit_aprsgateway.php">APRS Gateway</a></li>
 			<!-- DAPNet Sub -->
 			<li class="subs has-subs"><a href="#">DAPNet</a>
@@ -87,8 +89,10 @@
 				<li class="subs"><a href="fulledit_ysf2nxdn.php">YSF to NXDN</a></li>
 			    </ul>
 			</li>
+            <!-- others -->
 			<li class="subs"><a href="fulledit_p25gateway.php">P25 Gateway</a></li>
 			<li class="subs"><a href="fulledit_nxdngateway.php">NXDN Gateway</a></li>
+			<li class="subs"><a href="fulledit_m17gateway.php">M17 Gateway</a></li>
 			<li class="subs"><a href="fulledit_aprsgateway.php">APRS Gateway</a></li>
 			<!-- DAPNet Sub -->
 			<li class="subs has-subs"><a href="#">DAPNet</a>
@@ -112,6 +116,7 @@
 			<li class="subs"><a href="fulledit_hosts_DMR_Hosts.php">DMR Hosts</a></li>
 			<li class="subs"><a href="fulledit_hosts_P25_Hosts.php">P25 Hosts</a></li>
 			<li class="subs"><a href="fulledit_hosts_NXDN_Hosts.php">NXDN Hosts</a></li>
+			<li class="subs"><a href="fulledit_hosts_M17_Hosts.php">M17 Hosts</a></li>
 			<li class="subs"><a href="fulledit_hosts_XLX_Hosts.php">XLX Hosts</a></li>
 		    </ul>
 		</li>
