@@ -407,7 +407,7 @@ if (isProcessRunning("DMRGateway")) {
 			    // There is no trace of XLX in the logfile.
 			    $xlxMasterHost1 = "".$xlxMasterHost1." ".$_SESSION['DMRGatewayConfigs']['XLX Network']['Module']."";
 			}
-			
+			$xlxMasterHost1Tooltip = $xlxMasterHost1;	
 			echo "<tr><td ".GetActiveConnectionStyle($remoteDMRGResults, "xlx")." colspan=\"2\" title=\"".$xlxMasterHost1Tooltip."\">".$xlxMasterHost1."</td></tr>\n";
 
 		}
