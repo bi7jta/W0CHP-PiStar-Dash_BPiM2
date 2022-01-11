@@ -356,8 +356,8 @@ if ( $testMMDVModeDMR == 1 ) {
 		    echo '    <th colspan="3"><a class=tooltip href="#">Batch-Add/Batch-Delete Static Talkgroups<span><b>Batch-Add/Batch-Delete Static Talkgroups</b></span></a></th>'."\n";
 		    echo '  </tr>'."\n";
 		    echo '  <tr>'."\n";
-		    echo '    <td>This function drops all current static talkgroups, OR re-adds the previously-dropped static talkgroups.</td>'."\n";
-		    echo '    <td colspan="3">This function mass/batch-adds or deletes up to 5 static talkgroups. Enter one talkgroup per line.'."\n";
+		    echo '    <td style="white-space:normal;padding: 3px;">This function drops all current static talkgroups, OR re-adds the previously-dropped static talkgroups.</td>'."\n";
+		    echo '    <td colspan="3" style="white-space:normal;padding: 3px;">This function mass/batch-adds or deletes up to 5 static talkgroups. Enter one talkgroup per line.'."\n";
 		    echo '  </tr>'."\n";
 		    echo '  <tr>'."\n";
 		    echo '    <td><input type="submit" value="Drop All Static TGs" id="tgStaticDropAll" name="tgStaticDropAll"/><br />'."\n";
@@ -367,7 +367,7 @@ if ( $testMMDVModeDMR == 1 ) {
 		    echo '    <td><input type="radio" id="masstgAdd" name="massTGaction" value="ADD" /><label for="tgAdd">Add</label> <input type="radio" id="masstgDel" name="massTGaction" value="DEL" checked="checked" /><label for="tgDel">Delete</label>&nbsp;<input type="submit" value="Batch Add/Delete Static TGs" id="tgStaticBatch" name="tgStaticBatch"/></td>'."\n";
 		    echo '  </tr>'."\n";
 		    echo '  <tr>'."\n";
-		    echo '    <td colspan="4">(Note: Give all mass/batch static talkgroup management functions some time to process, due to the nature of BrandMeister not natively supporting mass-management functions for static takgroups.)'."\n";
+		    echo '    <td colspan="4" style="white-space:normal;padding: 3px;">(Note: Give all mass/batch static talkgroup management functions some time to process, due to the nature of BrandMeister not natively supporting mass-management functions for static takgroups.)'."\n";
 		    echo '  </tr>'."\n";
 		    echo '</table>'."\n";
 		    echo '</form>'."\n";

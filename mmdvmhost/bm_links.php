@@ -168,7 +168,7 @@ if ( $testMMDVModeDMR == 1 ) {
 	echo '     <td align="left" style="height:auto;padding: 8px; background:'.$tableRowEvenBg.';">'.$bmDynamicTGList.'</td>';
 	echo '    </tr>'."\n";
 	echo '    <tr>'."\n";
-	echo '      <td colspan="3"><b><a href="https://w0chp.net/brandmeister-talkgroups/" target="_blank">List of All BrandMeister Talkgroups (sortable/searchable/downloadable)...</a></b></td>'."\n";
+	echo '      <td colspan="3" style="white-space:normal;padding: 3px;"><b><a href="https://w0chp.net/brandmeister-talkgroups/" target="_blank">List of All BrandMeister Talkgroups (sortable/searchable/downloadable)...</a></b></td>'."\n";
 	echo '    </tr>'."\n";
 	echo '  </table>'."\n";
     }

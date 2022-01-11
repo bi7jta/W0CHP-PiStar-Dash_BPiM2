@@ -138,7 +138,7 @@ if (!empty($_POST["submit_mode"]) && empty($_POST["mode_sel"])) { //handler for 
 	  <th>Action</th>
 	</tr>
         <tr>
-          <td colspan="3">This function allows you to instantly pause or resume selected radio modes. Handy for attending nets, quieting a busy mode, to temporarily eliminate "mode monopolization", etc.</td>
+          <td colspan="3" style="white-space:normal;padding: 3px;">This function allows you to instantly pause or resume selected radio modes. Handy for attending nets, quieting a busy mode, to temporarily eliminate "mode monopolization", etc.</td>
         </tr>
 	<tr>
           <td style="white-space:nowrap;">
@@ -174,7 +174,7 @@ if (!empty($_POST["submit_mode"]) && empty($_POST["mode_sel"])) { //handler for 
           </td>
         </tr>
         <tr>
-	  <td colspan="3"><b>Note:</b> Modes you not have <a href="/admin/configure.php">configured/enabled globally</a>, are not selectable in the Instant Mode Manager.</td>
+	  <td colspan="3" style="white-space:normal;padding: 3px;"><b>Note:</b> Modes you not have <a href="/admin/configure.php">configured/enabled globally</a>, are not selectable in the Instant Mode Manager.</td>
         </tr>
       </table>
     </form>

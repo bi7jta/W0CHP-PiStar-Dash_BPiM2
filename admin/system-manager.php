@@ -88,7 +88,7 @@ if (!empty($_POST["submit_service"]) && empty($_POST["service_sel"])) { //handle
             unset($_POST);
             echo '<script type="text/javascript">setTimeout(function() { window.location=window.location;},3000);</script>';
         } else { // looks good!
-		    if ($mode == "Cron") {
+	    if ($mode == "Cron") {
                 exec($cron_enable);
                 // Output to the browser
                 echo "<b>System Manager</b>\n";
@@ -117,8 +117,8 @@ if (!empty($_POST["submit_service"]) && empty($_POST["service_sel"])) { //handle
                 // Clean up...
                 unset($_POST);
                 echo '<script type="text/javascript">setTimeout(function() { window.location=window.location;},3000);</script>';
-    		    // the FW delays page loads - exec after status message...
-	    	    sleep(5);
+		// the FW delays page loads - exec after status message...
+		sleep(5);
                 exec($fw_enable);
                 } else {
             }
@@ -135,7 +135,7 @@ if (!empty($_POST["submit_service"]) && empty($_POST["service_sel"])) { //handle
 	  <th>Action</th>
 	</tr>
     <tr>
-      <td colspan="3">This function allows you to instantly disable or enable system services. For advanced users!</td>
+      <td colspan="3" style="white-space:normal;padding: 3px;">This function allows you to instantly disable or enable system services. For advanced users!</td>
     </tr>
 	<tr>
       <td>
