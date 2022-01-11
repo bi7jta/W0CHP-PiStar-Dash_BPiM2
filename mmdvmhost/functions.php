@@ -431,6 +431,14 @@ function getDGIdLinks() {
 //I: 2022-01-03 15:48:27.228 Linked at startup to M17-USA A
 //M: 2022-01-03 15:48:27.228 Opening M17 Network connection
 //M: 2022-01-09 19:29:52.863 Relinking to reflector M17-M17 C
+//I: 2022-01-11 14:39:40.507 Linked at startup to M17-M17 C
+//M: 2022-01-11 14:39:40.507 Opening M17 Network connection
+//I: 2022-01-11 14:39:40.507 Opening UDP port on 17000
+//M: 2022-01-11 14:39:40.550 Link refused by reflector M17-M17 C
+//I: 2022-01-09 19:40:52.704 Loaded 118 M17 reflectors
+//I: 2022-01-09 19:40:52.704 Loaded 118 M17 reflectors
+//I: 2022-01-09 19:40:52.704 Loaded 118 M17 reflectors
+//I: 2022-01-09 19:40:52.704 Loaded 118 M17 reflectors
 //I: 2022-01-09 19:40:52.704 Loaded 118 M17 reflectors
 function isM17GatewayConnected() {
     $logLines = array();
@@ -456,7 +464,7 @@ function isM17GatewayConnected() {
 
     $logLines = $logLines1 + $logLines2;
 
-    $errorMessages = array('Link lost' , 'Link refused');
+    $errorMessages = array('Link lost' , 'Link refused' , 'Loaded');
     
     foreach($logLines as $m17MessageLine) {
 		foreach($errorMessages as $errorLine) {
