@@ -89,17 +89,11 @@ table {
     vertical-align: middle;
     text-align: center;
     empty-cells: show;
-    padding-left: 0px;
-    padding-right: 0px;
-    padding-top: 0px;
-    padding-bottom: 0px;
+    padding: 0px;
     border-collapse:collapse;
-    border-color: #000000;
-    border-style: solid;
     border-spacing: 4px;
-    border-width: 2px;
+    border: 1px solid black;
     text-decoration: none;
-    color: #ffffff;
     background: #000000;
     font-family: 'Source Sans Pro', sans-serif;
     width: 100%;
@@ -108,11 +102,12 @@ table {
 
 table th {
     font-family:  'Source Sans Pro', sans-serif;
+    border: .5px solid #777777;
     font-weight: 600;
     text-decoration: none;
     color : <?php echo $textBanners; ?>;
     background: <?php echo $backgroundBanners; ?>;
-    border: 1px solid #c0c0c0;
+    padding: 2px;
 }
 
 table tr:nth-child(even) {
@@ -129,6 +124,7 @@ table td {
     font-weight: 500;
     text-decoration: none;
     border: .5px solid #777777;
+    padding: 2px;
     font-size: <?php echo "$fontSize"; ?>px;
 }
 
