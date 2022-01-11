@@ -72,7 +72,8 @@ $sysRamUsed = $system['mem_info']['MemTotal'] - $system['mem_info']['MemFree'] -
 $sysRamPercent = exec("free -h | tail -2 | head -1 | awk {'print $3'} | sed 's/Mi/ MB/'") . " of ".formatSize($system['mem_info']['MemTotal']);
 
 ?>
-<h2><?php echo $lang['hardware_info'];?></h2>
+<br />
+<!--<h2><?php echo $lang['hardware_info'];?></h2>-->
 <table style="white-space:normal; word-wrap:break;">
     <tr>
 	<th><a class="tooltip" href="#"><?php echo $lang['hostname'];?><br /><span><b>System Hostname:<br /><?php echo str_replace(',', ',<br />', exec('hostname'));?></b></span></a></th>
