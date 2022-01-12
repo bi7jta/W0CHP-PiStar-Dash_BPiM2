@@ -127,16 +127,16 @@ $duration = "";
     <div class='column'>
       <div class='orange-column'>
         <span class='oc_caller'>
-		  <span class='oc_name'>
-		    <?php  echo $name;  ?>
-		  </span>
-		  <br />
-          <?php  echo $city;  ?>
-		  <br />
-          <?php  echo $state;  ?>
-		  <br />
-          <?php  echo $country;  ?>
-		</span>
+	  <span class='oc_name'>
+	    <?php  echo $name;  ?>
+	  </span>
+	  <br />
+	  <?php  echo $city;  ?>
+	  <br />
+ 	  <?php  echo $state;  ?>
+	  <br />
+ 	  <?php  echo $country;  ?>
+	</span>
       </div>
     </div>
   </div>
@@ -144,43 +144,43 @@ $duration = "";
   <div class='row'>
     <div class='column'>
       <div class='dark-column'>
-		<span class='dc_info'>
-		    Source: 
-			<span class='dc_info_def'>
-			  <?php echo $source; ?>
-			</span>
-			<br />
-			Mode: 
-			<span class='dc_info_def'>
-			  <?php echo $mode; ?>
-			</span>
-			<br />
-			Target: 
-			<span class='dc_info_def'>
-			  <?php echo $target; ?>
-			</span>
-		</span>
+	<span class='dc_info'>
+	  Source: 
+	  <span class='dc_info_def'>
+	    <?php echo $source; ?>
+	  </span>
+	  <br />
+	  Mode: 
+	  <span class='dc_info_def'>
+	    <?php echo $mode; ?>
+	  </span>
+	  <br />
+	  Target: 
+	  <span class='dc_info_def'>
+	    <?php echo $target; ?>
+	  </span>
+	</span>
       </div>
     </div>
 
     <div class='column'>
       <div class='dark-column'>
-		<span class='dc_info'>
-		  TX Duration: 
-		  <span class='dc_info_def'>
-		    <?php echo $duration ?>
-		  </span>
-		  <br />
+	<span class='dc_info'>
+	  TX Duration: 
+	  <span class='dc_info_def'>
+	    <?php echo $duration ?>
+	  </span>
+	  <br />
           Packet Loss: 
-		  <span class='dc_info_def'>
-		    <?php echo $loss ?>
-		  </span>
-		  <br />
+	  <span class='dc_info_def'>
+	    <?php echo $loss ?>
+	  </span>
+	  <br />
           Bit Error Rate: 
-		  <span class='dc_info_def'>
-		    <?php echo $ber ?>
-		  </span>
-		</span>
+	  <span class='dc_info_def'>
+	    <?php echo $ber ?>
+	  </span>
+	</span>
       </div>
     </div>
   </div>
@@ -189,17 +189,17 @@ $duration = "";
     <div class='column'>
       <div class='dark-column'>
         <div class='hw_info'>
-		  Hotspot Time: 
-			<span class='hw_info_def'>
-			  <?php echo $local_time; ?>
-			</span>
-		</div>
+	  Hotspot Time: 
+	    <span class='hw_info_def'>
+	      <?php echo $local_time; ?>
+	    </span>
+	</div>
         <div class='hw_info'>
-		  CPU Temp: 
-			<span class='hw_info_def'>
-			  <?php echo $cpuTempHTML; ?>
-			</span>
-		</div>
+	 CPU Temp: 
+	  <span class='hw_info_def'>
+	    <?php echo $cpuTempHTML; ?>
+	  </span>
+	</div>
       </div>
     </div>
   </div>
