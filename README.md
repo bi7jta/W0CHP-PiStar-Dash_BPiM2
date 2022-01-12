@@ -8,9 +8,83 @@ and you're fully on your own. *Use at your own risk*, and DO NOT ask me for
 support.  Nor should you file/report any bugs etc. on any official Pi-Star
 medium...this is not an official Pi-Star release.
 
-If you ask me to support, **I will ignore you.** It's *strongly* recommended that
-you read and heed the [rules and
-caveats](https://w0chp.net/w0chp-pistar-dash/#the-rules-and-caveats----important).
+If you ask me to support, **I will ignore you.** It's *strongly* recommended
+that you read and heed the [rules and
+caveats](https://w0chp.net/w0chp-pistar-dash/#rules).
+
+## Installing `W0CHP-PiStar-Dash`
+
+1. Make a backup of your configuration if you wish -- just in case.
+
+2. Open an SSH session to your Pi-Star instance.
+
+3. Run this to familiarize yourself with the available options/arguments:
+
+        curl -Ls https://w0chp.net/WPSD-Installer | sudo env NO_SELF_UPDATE=1 bash -s -- -h
+
+    You will be presented with...
+
+
+        -h,   --help                     Display this help text.
+        -id,  --install-dashboard        Install W0CHP dashboard.
+        -idc  --install-dashboard-css    Install W0CHP dashboard WITH custom stylesheet.
+        -rd,  --restore-dashboard        Restore original dashboard.
+        -dfw  --disable-firewall         Disable Pi-Star firewall rules and allow all traffic
+        -efw  --enable-firewall          Enable Pi-Star firewall rules to defaults and only allow required traffic
+        -s,   --status                   Display current install, original or W0CHP installations.
+
+4. When ready to install, run the above command again with the option/argument you wish...e.g:
+
+        curl -Ls https://w0chp.net/WPSD-Installer | sudo env NO_SELF_UPDATE=1 bash -s -- -id
+
+    (...to install the dashboard *without* the `W0CHP` custom CSS)
+
+5. Important: You **must** run the aforementioned commands with the exact syntax. Note the spaces and extra `--` (dashes), etc.
+   Otherwise, the commands will fail.
+
+## Updating `W0CHP-PiStar-Dash`
+
+Once you install `W0CHP-PiStar-Dash`, it will automatically be kept up-to-date
+with any new features/versions/etc. This is made possible via the native,
+nightly Pi-Star updating process.
+
+## Uninstalling `W0CHP-PiStar-Dash`
+
+Run:
+
+	 curl -Ls https://w0chp.net/WPSD-Installer | sudo env NO_SELF_UPDATE=1 bash -s -- -rd
+
+...And the original Pi-Star Dashboard will be restored.
+
+## Notes about CSS, and custom CSS you may have previously applied
+
+1. When using the `-id` option, the "normal" Pi-Star colors are used, and no CSS is installed. Any custom CSS
+   you may have had, is removed but backed up. See bullet 4 below.
+
+2. When using the `-idc` option, the `W0CHP` CSS is installed, and any of your custom CSS settings
+  before installing the `W0CHP` dashboard, are backed up in the event you want to restore the official dashboard
+  (see bullet 4). This is done because the CSS in the official Pi-Star is incompatible. You can still
+  manually map/change your CSS back when running `W0CHP-PiStar-Dash` (see bullet 4 for details).
+
+3. If you are already running `W0CHP-PiStar-Dash`, AND you have custom or `W0CHP-PiStar-Dash` CSS, no CSS changes, no matter which
+  option you run this command with.
+
+4. When using the `-id` option, your custom CSS settings are backed up (in the event you want to revert back
+  to the official dashboard -- see  bullet 6), and the `W0CHP` dashboard uses the standard Pi-Star colors.
+  This means that if you want your previous custom CSS applied to the `W0CHP` dashboard, you will need to manually
+  customize your colors; You can reference the color values you had previously used, by viewing the backup file of
+  your custom CSS...
+
+        /etc/.pistar-css.ini.user
+
+5. ...the reason for bullets 4 and 1, is because the `W0CHP` dashboard is vastly different than the official upstream version
+  (completely different CSS mappings). Since this is for my personal use, I haven't added any logic to suck-in
+  the user CSS values to the new mappings.
+
+6. If you had customized CSS settings before installing the `W0CHP` dashboard, they will be restored when
+  using the `-rd` option.
+
+7. You can at any time start over and reset to the "normal" Pi-Star colors, by performing a CSS Factory Reset (`Configuration -> Expert -> Tools -> CSS Tool`).
 
 ## Features, Enhancements and Omissions (not an exhaustive list)
 
@@ -119,80 +193,6 @@ caveats](https://w0chp.net/w0chp-pistar-dash/#the-rules-and-caveats----important
   paused modes [color is user-configurable].).
 
 	Instead, the *actual* network name is highlighted in red when there's a login issue (courtesy of F1RMB's excellent code).
-
-## Installing `W0CHP-PiStar-Dash`
-
-1. Make a backup of your configuration if you wish -- just in case.
-
-2. Open an SSH session to your Pi-Star instance.
-
-3. Run this to familiarize yourself with the available options/arguments:
-
-        curl -Ls https://w0chp.net/WPSD-Installer | sudo env NO_SELF_UPDATE=1 bash -s -- -h
-
-    You will be presented with...
-
-
-        -h,   --help                     Display this help text.
-        -id,  --install-dashboard        Install W0CHP dashboard.
-        -idc  --install-dashboard-css    Install W0CHP dashboard WITH custom stylesheet.
-        -rd,  --restore-dashboard        Restore original dashboard.
-        -dfw  --disable-firewall         Disable Pi-Star firewall rules and allow all traffic
-        -efw  --enable-firewall          Enable Pi-Star firewall rules to defaults and only allow required traffic
-        -s,   --status                   Display current install, original or W0CHP installations.
-
-4. When ready to install, run the above command again with the option/argument you wish...e.g:
-
-        curl -Ls https://w0chp.net/WPSD-Installer | sudo env NO_SELF_UPDATE=1 bash -s -- -id
-
-    (...to install the dashboard *without* the `W0CHP` custom CSS)
-
-5. Important: You **must** run the aforementioned commands with the exact syntax. Note the spaces and extra `--` (dashes), etc.
-   Otherwise, the commands will fail.
-
-## Updating `W0CHP-PiStar-Dash`
-
-Once you install `W0CHP-PiStar-Dash`, it will automatically be kept up-to-date
-with any new features/versions/etc. This is made possible via the native,
-nightly Pi-Star updating process.
-
-## Uninstalling `W0CHP-PiStar-Dash`
-
-Run:
-
-	 curl -Ls https://w0chp.net/WPSD-Installer | sudo env NO_SELF_UPDATE=1 bash -s -- -rd
-
-...And the original Pi-Star Dashboard will be restored.
-
-## Notes about CSS, and custom CSS you may have previously applied
-
-1. When using the `-id` option, the "normal" Pi-Star colors are used, and no CSS is installed. Any custom CSS
-   you may have had, is removed but backed up. See bullet 4 below.
-
-2. When using the `-idc` option, the `W0CHP` CSS is installed, and any of your custom CSS settings
-  before installing the `W0CHP` dashboard, are backed up in the event you want to restore the official dashboard
-  (see bullet 4). This is done because the CSS in the official Pi-Star is incompatible. You can still
-  manually map/change your CSS back when running `W0CHP-PiStar-Dash` (see bullet 4 for details).
-
-3. If you are already running `W0CHP-PiStar-Dash`, AND you have custom or `W0CHP-PiStar-Dash` CSS, no CSS changes, no matter which
-  option you run this command with.
-
-4. When using the `-id` option, your custom CSS settings are backed up (in the event you want to revert back
-  to the official dashboard -- see  bullet 6), and the `W0CHP` dashboard uses the standard Pi-Star colors.
-  This means that if you want your previous custom CSS applied to the `W0CHP` dashboard, you will need to manually
-  customize your colors; You can reference the color values you had previously used, by viewing the backup file of
-  your custom CSS...
-
-        /etc/.pistar-css.ini.user
-
-5. ...the reason for bullets 4 and 1, is because the `W0CHP` dashboard is vastly different than the official upstream version
-  (completely different CSS mappings). Since this is for my personal use, I haven't added any logic to suck-in
-  the user CSS values to the new mappings.
-
-6. If you had customized CSS settings before installing the `W0CHP` dashboard, they will be restored when
-  using the `-rd` option.
-
-7. You can at any time start over and reset to the "normal" Pi-Star colors, by performing a CSS Factory Reset (`Configuration -> Expert -> Tools -> CSS Tool`).
 
 ## Screenshots
 
