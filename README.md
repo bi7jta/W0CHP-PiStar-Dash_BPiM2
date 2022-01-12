@@ -14,6 +14,8 @@ caveats](https://w0chp.net/w0chp-pistar-dash/#rules).
 
 ## Installing `W0CHP-PiStar-Dash`
 
+**Note: You need to have a Pi-Star hotspot running at least v4.1.6!**
+
 1. Make a backup of your configuration if you wish -- just in case.
 
 2. Open an SSH session to your Pi-Star instance.
