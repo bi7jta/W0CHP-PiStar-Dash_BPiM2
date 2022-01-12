@@ -92,8 +92,9 @@ table {
     padding: 0px;
     border-collapse:collapse;
     border-spacing: 4px;
-    border: 1px solid <?php echo $backgroundPage; ?>;
+    border: 1px solid black;
     text-decoration: none;
+    background: #000000;
     font-family: 'Source Sans Pro', sans-serif;
     width: 100%;
     white-space: nowrap;
@@ -380,8 +381,8 @@ input.toggle-round-flat:focus + label {
     justify-content: center;
     flex-grow: 1;
     font-family: 'Source Sans Pro', sans-serif;
-    border: 1px solid <?php echo $backgroundPage; ?>;
-    color: inherit;
+    border: 1px solid <?php echo $backgroundContent; ?>;
+    color: black;
     background-color: #f1f1f1;
     padding: 2px;
 
@@ -399,7 +400,7 @@ input.toggle-round-flat:focus + label {
 textarea, input[type='text'] {
         font-size: 15px;
         font-family: 'Inconsolata', monospace;
-        border: 1px solid <?php echo $backgroundPage; ?>;
+        border: 1px solid black;
         padding: 5px;
         margin 3px;
 }
@@ -407,7 +408,7 @@ textarea, input[type='text'] {
 input[type=button], input[type=submit], input[type=reset], input[type=radio], button {
     font-size: 15px;
     font-family: 'Source Sans Pro', sans-serif;
-    border: 1px solid <?php echo $backgroundPage; ?>;
+    border: 1px solid black;
     color: black;
     background-color: #f1f1f1;
     padding: 5px;
@@ -437,7 +438,7 @@ select {
     background-color: #f1f1f1;
     font-family: 'Inconsolata', monospace;
     font-size: 16px;
-    border: 1px solid <?php echo $backgroundPage; ?>;
+    border: 1px solid black;
     color: black;
     padding: 5px;
     text-decoration: none;
@@ -815,9 +816,9 @@ hr {
   display: grid;
   grid-template-columns: auto auto auto auto auto auto;
   grid-template-rows: auto auto auto auto auto;
-  border: 2px solid <?php echo $backgroundPage; ?>;
+  border: 2px solid black;
   background : <?php echo $backgroundContent; ?>;
-  padding: 0px;
+  padding: 1px;
 }
 
 .grid-item {
