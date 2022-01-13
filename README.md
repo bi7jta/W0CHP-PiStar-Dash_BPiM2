@@ -13,7 +13,7 @@ that you read and heed the [rules and
 caveats](https://w0chp.net/w0chp-pistar-dash/#rules).
 
 However, users of `W0CHP-PiStar-Dash` are on [Module **E** of
-XLX493](https://w0chp.net/xlx493-reflector/). If you're lucky; and if I'm in a
+XLX493](https://w0chp.net/articles/wpsd-support-on-xlx493/). If you're lucky; and if I'm in a
 good mood and/or if my availability allows, I can help on there too.
 
 ## Installing `W0CHP-PiStar-Dash`
