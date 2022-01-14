@@ -8,7 +8,7 @@
       <meta http-equiv="expires" content="0" />
       <meta http-equiv="pragma" content="no-cache" />
       <link rel="shortcut icon" href="/images/favicon.ico" type="image/x-icon" />
-      <title>Live Caller Display - W0CHP-PiStar-Dash</title>
+      <title><?php echo exec('cat /etc/hostname'); ?> - Live Caller Display - W0CHP-PiStar-Dash</title>
       <script type="text/javascript" src="/js/jquery.min.js"></script>
       <script type="text/javascript" src="/js/functions.js?version=1.720"></script>
       <link rel="stylesheet" type="text/css" href="/css/live-caller.css" />
@@ -18,7 +18,7 @@
         $(function() {
           setInterval(function(){
             $('#liveDetails').load('/mmdvmhost/live_caller_backend.php');
-          }, 1000);
+          }, 2000);
         });
       </script>
       <div id="liveDetails">

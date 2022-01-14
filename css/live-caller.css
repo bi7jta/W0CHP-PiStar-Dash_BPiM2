@@ -64,10 +64,20 @@ body {
 }
 
 
-.hw_info {
+.hw_info_right {
   color: #808080;
   font-size: 20px;
   font-weight: bold;
+}
+
+.hw_info_left {
+  float: left;
+  text-align: left;
+}
+
+.hw_info_right {
+  float: right;
+  text-align: right;
 }
 
 .hw_info_def {
