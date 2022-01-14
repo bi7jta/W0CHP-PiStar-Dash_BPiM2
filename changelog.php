@@ -95,15 +95,15 @@ if ($_SERVER["PHP_SELF"] == "/changelog.php") {
 		    </p>
 		</div>
 		<div class="contentwide">
-                    <p>The Last 20 Changes of the Dashboard Code:</p>
+                    <p><b>The Last 20 Changes/Commits of the Dashboard Code:</b></p>
                     <div class="cl_wrapper">
-					<p class="ChangeLogData"> 
+					<div class="ChangeLogData"> 
 					<?php
 					$out = shell_exec('/usr/local/sbin/WPSD-CL-to-html');
 					$out = str_replace("\n", "<br />", $out);
 					echo $out;
 					?>
-				    </p>
+				    </div>
 				    </div>
 		</div>
 		<div class="footer">
