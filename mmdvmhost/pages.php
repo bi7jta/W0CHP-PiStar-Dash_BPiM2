@@ -26,20 +26,6 @@ include_once $_SERVER['DOCUMENT_ROOT'].'/mmdvmhost/tools.php';        // MMDVMDa
 include_once $_SERVER['DOCUMENT_ROOT'].'/mmdvmhost/functions.php';    // MMDVMDash Functions
 include_once $_SERVER['DOCUMENT_ROOT'].'/config/language.php';        // Translation Code
 
-?>
-<script type="text/javascript" >
- $(function(){
-     $('table.poc-lh-table').floatThead({
-	 position: 'fixed',
-	 scrollContainer: false
-	 //scrollContainer: function($table){
-	 //    return $table.closest('.table-container');
-	 //}
-     });
- });
-</script>
-<?php
-
 // Get origin of the page loading
 $origin = (isset($_GET['origin']) ? $_GET['origin'] : (isset($myOrigin) ? $myOrigin : "unknown"));
 
@@ -170,7 +156,7 @@ function listDAPNETGWMessages($logLinesDAPNETGateway, $tillMYRIC) {
 if ((strcmp($origin, "admin") == 0) && isset($_SESSION['DAPNETAPIKeyConfigs'])) {
     $myRIC = getConfigItem("DAPNETAPI", "MY_RIC", $_SESSION['DAPNETAPIKeyConfigs']);
     
-    // Display personnal messages only if RIC has been defined, and some personnal messages are available
+    // Display personal messages only if RIC has been defined, and some personal messages are available
     if ($myRIC && (array_search('<MY_RIC>', $logLinesDAPNETGateway) != FALSE)) {
 ?>
     <div>

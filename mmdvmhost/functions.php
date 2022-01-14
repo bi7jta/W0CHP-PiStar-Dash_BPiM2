@@ -861,40 +861,40 @@ function getDAPNETGatewayLog($myRIC) {
     $logLines = $logLines1 + $logLines2;
     
     if (isset($myRIC) && ! empty($myRIC)) {
-        $logLinesPersonnal = array();
+        $logLinesPersonal = array();
 
-        // Traverse the whole array to extract personnal RIC messages
+        // Traverse the whole array to extract personal RIC messages
         foreach($logLines as $key => $entry) {
 	    
             // Extract RIC number
             $dMsgArr = explode(" ", $entry);
             $pocsag_ric = str_replace(',', '', $dMsgArr["8"]);
             
-            // if RICs matches, move entry to Personnal array
+            // if RICs matches, move entry to Personal array
             if ($pocsag_ric == $myRIC) {
-		$logLinesPersonnal['X'.$key] = $entry;
+		$logLinesPersonal['X'.$key] = $entry;
 		$logLines[$key] = '';
             }
         }
 
         $logLines = array_filter($logLines);
-        $logLinesPersonnal = array_filter($logLinesPersonnal);
-	// last 20
-        $logLines = array_slice($logLines, 0, 20);
+        $logLinesPersonal = array_filter($logLinesPersonal);
+	// last 30
+        $logLines = array_slice($logLines, 0, 30);
 	
         // Is there any message for my RIC ?
-        if (sizeof($logLinesPersonnal) > 0) {
+        if (sizeof($logLinesPersonal) > 0) {
 
             // Add that special separator entry
             array_push($logLines, '<MY_RIC>');
-	    // last 20
-            $logLinesPersonnal = array_slice($logLinesPersonnal, 0, 20);
-            $logLines = array_merge($logLines, $logLinesPersonnal);
+	    // last 30
+            $logLinesPersonal = array_slice($logLinesPersonal, 0, 30);
+            $logLines = array_merge($logLines, $logLinesPersonal);
         }
     }
     else {
-	// last 20	
-        $logLines = array_slice($logLines, 0, 20);
+	// last 30	
+        $logLines = array_slice($logLines, 0, 30);
     }
     
     return $logLines;
