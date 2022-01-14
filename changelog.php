@@ -66,7 +66,7 @@ if ($_SERVER["PHP_SELF"] == "/changelog.php") {
 .foreground-4 { color: #4d4dff; font-weight:bold; }
 .foreground-5 { color: #ff32ff; }
 .foreground-6 { color: #00ffff; }
-.foreground-7 { color: var(--link-state-color); }
+.foreground-7 { color: white; }
 
 .bold.foreground-1 { color: #ff002f; font-weight:bold; }
 .bold.foreground-2 { color: #30fe00; font-weight:bold; }
@@ -74,7 +74,7 @@ if ($_SERVER["PHP_SELF"] == "/changelog.php") {
 .bold.foreground-4 { color: #4d4dff; font-weight:bold; }
 .bold.foreground-5 { color: #ff32ff; font-weight:bold; }
 .bold.foreground-6 { color: #00ffff; font-weight:bold; }
-.bold.foreground-7 { color: var(--link-state-color); font-weight:bold; }
+.bold.foreground-7 { color: white; font-weight:bold; }
 
 </style>
 	</head>
