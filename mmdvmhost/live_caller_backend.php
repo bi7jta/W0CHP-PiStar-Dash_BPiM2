@@ -150,13 +150,17 @@ if ($listElem[2] == "4000" || $listElem[2] == "9990" || $listElem[2] == "DAPNET"
         <span class='oc_caller'>
 	  <span class='oc_name'>
 	    <?php  echo $name;  ?>
+	    </span>
+	    <?php
+	    if (!empty($city)) {
+		echo "<br /> $city";
+	    }  
+	    if (!empty($state)) {
+		echo "<br />$state";
+	    } 
+	    echo "<br />$country";
+	    ?>
 	  </span>
-	  <br />
-	  <?php  echo $city;  ?>
-	  <br />
- 	  <?php  echo $state;  ?>
-	  <br />
- 	  <?php  echo $country;  ?>
 	</span>
       </div>
     </div>
