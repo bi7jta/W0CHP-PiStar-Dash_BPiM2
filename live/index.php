@@ -18,7 +18,7 @@
         $(function() {
           setInterval(function(){
             $('#liveDetails').load('/mmdvmhost/live_caller_backend.php');
-          }, 2000);
+          }, 1500);
         });
       </script>
       <div id="liveDetails">
