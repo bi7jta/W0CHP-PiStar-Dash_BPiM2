@@ -730,7 +730,7 @@ function getMMDVMLog() {
         } else {
             $logLines1 = explode("\n", `tail -500 $logPath | sed '/\(CSBK\|overflow\|Downlink\|Valid\|Invalid\|\Talker\)/d' | egrep -h "from|end|watchdog|lost"`);
             $lineNos = sizeof($logLines1);
-            $logLines1 = array_slice($logLines1, -500);
+            $logLines1 = array_slice($logLines1, -250);
         }
     }
     if ($lineNos < 1500) {
