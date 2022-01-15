@@ -3,18 +3,18 @@ if (!isset($_SESSION) || !is_array($_SESSION)) {
     session_id('pistardashsess');
     session_start();
 
-    include_once $_SERVER['DOCUMENT_ROOT'].'config.php';          	  // MMDVMDash Config
+    include_once $_SERVER['DOCUMENT_ROOT'].'/config/config.php';          // MMDVMDash Config
     include_once $_SERVER['DOCUMENT_ROOT'].'/mmdvmhost/tools.php';        // MMDVMDash Tools
     include_once $_SERVER['DOCUMENT_ROOT'].'/mmdvmhost/functions.php';    // MMDVMDash Functions
-    include_once $_SERVER['DOCUMENT_ROOT'].'language.php';        	  // Translation Code
+    include_once $_SERVER['DOCUMENT_ROOT'].'/config/language.php';        // Translation Code
     checkSessionValidity();
 }
 
-require_once('config/version.php');
-require_once('config/language.php');
+require_once $_SERVER['DOCUMENT_ROOT'].'/config/config.php';
+require_once $_SERVER['DOCUMENT_ROOT'].'/config/language.php';
 
 // Sanity Check that this file has been opened correctly
-if ($_SERVER["PHP_SELF"] == "/changelog.php") {
+if ($_SERVER["PHP_SELF"] == "/config/changelog.php") {
     // Sanity Check Passed.
     header('Cache-Control: no-cache');
 ?>
