@@ -34,7 +34,7 @@ good mood and/or if my availability allows, I can help on there too.
                 [i] W0CHP PiStar-Dash Installer Command Usage:
 
                   -h,   --help                  :  Display this help text.
-        
+ 
 
                   -id,  --install-dashboard     :  Install W0CHP dashboard.
 
