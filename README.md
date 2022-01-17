@@ -45,12 +45,6 @@ good mood and/or if my availability allows, I can help on there too.
                   -rd,  --restore-dashboard     :  Restore original dashboard.
 
 
-                  -dfw  --disable-firewall      :  Disable Pi-Star firewall rules,
-                                                   and allow all traffic.
-
-                  -efw  --enable-firewall       :  Enable Pi-Star firewall rules to
-                                                   defaults and only allow required traffic.
-
                   -s,   --status                :  Display current install, original,
                                                    or W0CHP installations.
 
