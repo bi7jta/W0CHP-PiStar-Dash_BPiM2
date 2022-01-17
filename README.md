@@ -251,6 +251,10 @@ Run:
 
 This image is too enormous to embed here, but you can [view it separately](https://w0chp.net/img/WPSD_Config.png).
 
+## Installation and Demo Video
+
+[See how easy it is to install and use...](https://w0chp.net/articles/wpsd-install-and-feature-demo/)
+
 ## Credits
 
 [Listed here...](https://w0chp.net/w0chp-pistar-dash/#credits)
