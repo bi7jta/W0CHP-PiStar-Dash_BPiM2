@@ -45,7 +45,7 @@ good mood and/or if my availability allows, I can help on there too.
           -rd,  --restore-dashboard     :  Restore original dashboard.
 
 
-          -s,   --status                :  Display current install, original,
+          -s,   --status                :  Display current install; original,
                                            or W0CHP installations.
 
 4. When ready to install, run the above command again with the option/argument you wish...e.g:
