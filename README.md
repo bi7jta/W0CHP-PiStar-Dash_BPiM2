@@ -31,22 +31,22 @@ good mood and/or if my availability allows, I can help on there too.
     You will be presented with...
 
 
-                [i] W0CHP PiStar-Dash Installer Command Usage:
+        [i] W0CHP PiStar-Dash Installer Command Usage:
 
-                  -h,   --help                  :  Display this help text.
- 
-
-                  -id,  --install-dashboard     :  Install W0CHP dashboard.
+          -h,   --help                  :  Display this help text.
 
 
-                  -idc  --install-dashboard-css :  Install W0CHP dashboard,
-                                                   WITH custom stylesheet.
-
-                  -rd,  --restore-dashboard     :  Restore original dashboard.
+          -id,  --install-dashboard     :  Install W0CHP dashboard.
 
 
-                  -s,   --status                :  Display current install, original,
-                                                   or W0CHP installations.
+          -idc  --install-dashboard-css :  Install W0CHP dashboard,
+                                           WITH custom stylesheet.
+
+          -rd,  --restore-dashboard     :  Restore original dashboard.
+
+
+          -s,   --status                :  Display current install, original,
+                                           or W0CHP installations.
 
 4. When ready to install, run the above command again with the option/argument you wish...e.g:
 
