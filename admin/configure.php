@@ -191,7 +191,7 @@ function clearAprsDotFi(&$cfgFile, $suffix) {
     }
     
     // Add default APRS config
-    $cfgFile['APRS']['Enable'] = $cfgAprsEnabled;
+    $cfgFile['APRS']['Enable'] = "0";
     $cfgFile['APRS']['Address'] = "127.0.0.1";
     $cfgFile['APRS']['Port'] = "8673";
     $cfgFile['APRS']['Suffix'] = $cfgAprsSuffix;
@@ -621,10 +621,10 @@ if (!empty($_POST)):
 	  $newConfDesc2 = preg_replace('/[^A-Za-z0-9\.\s\,\-]/', '', $_POST['confDesc2']);
 	  $rollDesc2 = 'sudo sed -i "/description2=/c\\description2='.$newConfDesc2.'" /etc/ircddbgateway';
 	  $rollDesc22 = 'sudo sed -i "/description1_2=/c\\description1_2='.$newConfDesc2.'" /etc/ircddbgateway';
-      $configmmdvm['Info']['Description'] = '"'.$newConfDesc2.'"';
+	  $configmmdvm['Info']['Description'] = '"'.$newConfDesc2.'"';
 	  $configdmrgateway['Info']['Description'] = '"'.$newConfDesc2.'"';
 	  $configm17gateway['Info']['Description'] = '"'.$newConfDesc2.'"';
-      $configysfgateway['Info']['Description'] = '"'.$newConfDesc2.'"';
+	  $configysfgateway['Info']['Description'] = '"'.$newConfDesc2.'"';
 	  if (isset($configdgidgateway)) { $configdgidgateway['Info']['Description'] = '"'.$newConfDesc2.'"'; }
 	  $confignxdngateway['Info']['Description'] = '"'.$newConfDesc2.'"';
 	  system($rollDesc2);
@@ -2542,7 +2542,7 @@ if (!empty($_POST)):
 	if (!isset($configm17gateway['Network']['Revert'])) { $configm17gateway['Network']['Revert'] = "1"; }
 	if (!isset($configm17gateway['Network']['Debug'])) { $configm17gateway['Network']['Debug'] = "0"; }
    	if (!isset($configm17gateway['APRS'])) {
-			$configm17gateway['APRS']['Enable'] = $M17GatewayAPRS;
+		$configm17gateway['APRS']['Enable'] = $M17GatewayAPRS;
         	$configm17gateway['APRS']['Address'] = "127.0.0.1";
         	$configm17gateway['APRS']['Port'] = "8673";
         	$configm17gateway['APRS']['Description'] = "APRS for M17Gateway";
@@ -2781,7 +2781,7 @@ if (!empty($_POST)):
 		$configdgidgateway['YSF Network']['Hosts'] = "/usr/local/etc/YSFHosts.txt";
 		$configdgidgateway['DGId=0']['Port'] = 42025;
 		$configdgidgateway['DGId=0']['Local'] = 42026;
-        if (!isset($configdgidgateway['APRS'])) {
+		if (!isset($configdgidgateway['APRS'])) {
 			$configdgidgateway['APRS']['Enable'] = $DGIdGatewayAPRS;
 			$configdgidgateway['APRS']['Address'] = "127.0.0.1";
 			$configdgidgateway['APRS']['Port'] = "8673";
@@ -2820,7 +2820,6 @@ if (!empty($_POST)):
 		// Add in all the APRS stuff
 		if(!isset($confignxdngateway['Info']['Power'])) { $confignxdngateway['Info']['Power'] = "1"; }
 		if(!isset($confignxdngateway['Info']['Height'])) { $confignxdngateway['Info']['Height'] = "0"; }
-		if(!isset($confignxdngateway['APRS']['Enable'])) { $confignxdngateway['APRS']['Enable'] = "0"; }
 		if(!isset($confignxdngateway['APRS']['Enable'])) { $confignxdngateway['APRS']['Enable'] = $NXDNGatewayAPRS; }
 		if(!isset($confignxdngateway['APRS']['Address'])) { $confignxdngateway['APRS']['Server'] = "127.0.0.1"; }
 		if(!isset($confignxdngateway['APRS']['Port'])) { $confignxdngateway['APRS']['Port'] = "8673"; }
@@ -2869,7 +2868,7 @@ if (!empty($_POST)):
 		if (!isset($confignxdngateway['General']['RptProtocol'])) { $confignxdngateway['General']['RptProtocol'] = "Icom"; }
 		if (!isset($confignxdngateway['Log']['DisplayLevel'])) { $confignxdngateway['Log']['DisplayLevel'] = "1"; }
 		if (!isset($confignxdngateway['Log']['FileLevel'])) { $confignxdngateway['Log']['FileLevel'] = "1"; }
-		if (!isset($confignxdngateway['APRS']['Enable'])) { $confignxdngateway['APRS']['Enable'] = "1"; }
+		if (!isset($confignxdngateway['APRS']['Enable'])) { $$confignxdngateway['APRS']['Enable'] = $NXDNGatewayAPRS; }
 		if (!isset($confignxdngateway['APRS']['Address'])) { $confignxdngateway['APRS']['Address'] = "127.0.0.1"; }
 		if (!isset($confignxdngateway['APRS']['Port'])) { $confignxdngateway['APRS']['Port'] = "8673"; }
 		if (!isset($confignxdngateway['APRS']['Suffix'])) { $confignxdngateway['APRS']['Suffix'] = "N"; }
@@ -3006,13 +3005,13 @@ if (!empty($_POST)):
 		}
 	}
 
-    // Handle APRSGateway configs for cients that support it.
-    $configdmrgateway['APRS']['Enable'] = $DMRGatewayAPRS;
-    $configysfgateway['APRS']['Enable'] = $YSFGatewayAPRS;
-    $configdgidgateway['APRS']['Enable'] = $DGIdGatewayAPRS;
-    $configm17gateway['APRS']['Enable'] = $M17GatewayAPRS;
-    $confignxdngateway['APRS']['Enable'] = $NXDNGatewayAPRS;
-    if (empty($_POST['IRCDDBGatewayAPRS']) != TRUE ) {
+	// Handle APRSGateway configs for cients that support it.
+	$configdmrgateway['APRS']['Enable'] = $DMRGatewayAPRS;
+	$configysfgateway['APRS']['Enable'] = $YSFGatewayAPRS;
+	$configdgidgateway['APRS']['Enable'] = $DGIdGatewayAPRS;
+	$configm17gateway['APRS']['Enable'] = $M17GatewayAPRS;
+	$confignxdngateway['APRS']['Enable'] = $NXDNGatewayAPRS;
+	if (empty($_POST['IRCDDBGatewayAPRS']) != TRUE ) {
 		system('sudo sed -i "/aprsEnabled=/c\\aprsEnabled=1" /etc/ircddbgateway');
 	} else {
 		system('sudo sed -i "/aprsEnabled=/c\\aprsEnabled=0" /etc/ircddbgateway');
