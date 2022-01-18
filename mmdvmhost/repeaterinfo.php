@@ -660,18 +660,47 @@ if (isProcessRunning("DMRGateway")) {
 	    echo "</table>\n";
 	}
 
+    $testAPRSdmr = $_SESSION['DMRGatewayConfigs']['APRS']['Enable'];
+    $testAPRSysf = $_SESSION['YSFGatewayConfigs']['APRS']['Enable'];
+    $testAPRSm17 = $_SESSION['M17GatewayConfigs']['APRS']['Enable'];
+    $testAPRSnxdn = $_SESSION['M17GatewayConfigs']['APRS']['Enable'];
+    $testAPRSdgid = $_SESSION['M17GatewayConfigs']['APRS']['Enable'];
+    $testAPRSircddb = $_SESSION['ircDDBConfigs']['aprsEnabled'];
     if (getServiceEnabled('/etc/aprsgateway') == 1 || isPaused("APRS"))  { // Hide APRS-IS GW info when GW not enabled
         echo "<br />\n";
         echo "<table>\n";
         echo "<tr><th colspan='2'>APRS Gateway Status</th></tr>\n";
         echo "<tr><th colspan='2' >Host Pool</th></tr>\n";
-        echo "<tr><td colspan='2' style=\"background: $tableRowEvenBg;\" title=\"".$_SESSION['APRSGatewayConfigs']['APRS-IS']['Server']."\">".substr($_SESSION['APRSGatewayConfigs']['APRS-IS']['Server'], 0, 23)."</td></tr>\n";
-        echo "<tr><th colspan='2'>Server</th></tr>\n";
         if (isPaused("APRS")) {
-            echo "<tr><td colspan='2' style=\"background: $tableRowEvenBg;\" title=\"Service Paused\">Service Paused</td></tr>\n";
-                } else {
-                echo "<tr><td colspan='2' style=\"background: $tableRowEvenBg;\" title=\"".getAPRSISserver()."\">".getAPRSISserver()."</td></tr>\n";
-                }
+		echo "<tr><td colspan='2' style=\"background: $tableRowEvenBg;\" title=\"Service Paused\">Service Paused</td></tr>\n"; 
+	} else {
+		echo "<tr><td colspan='2' style=\"background: $tableRowEvenBg;\" title=\"".$_SESSION['APRSGatewayConfigs']['APRS-IS']['Server']."\">".substr($_SESSION['APRSGatewayConfigs']['APRS-IS']['Server'], 0, 23)."<br /><small>(".getAPRSISserver().")</small></td></tr>\n";
+		if ($testAPRSdmr == 0 && $testAPRSircddb == 0 && $testAPRSysf == 0 && $testAPRSdgid == 0 && $testAPRSnxdn == 0 && $testAPRSm17 == 0) {
+			echo "<tr><th colspan='2'>APRS Being Sent To</th></tr>\n";
+			echo "<tr><td colspan='2' style=\"background: $tableRowEvenBg;\" title=\"None Selected\">None Selected</td></tr>\n";
+			echo "</table>\n";
+		} else {
+			echo "<tr><th colspan='2'>Sending Data To</th></tr>\n";
+			if ($testAPRSdmr == 1) {
+				echo "<tr><td colspan='2' style=\"background: $tableRowEvenBg;\" title=\"DMR\">DMR</td></tr>\n";
+			}
+			if ($testAPRSircddb == 1) {
+				echo "<tr><td colspan='2' style=\"background: $tableRowEvenBg;\" title=\"ircDDB\">ircDDB</td></tr>\n";
+			}
+			if ($testAPRSysf == 1) {
+				echo "<tr><td colspan='2' style=\"background: $tableRowEvenBg;\" title=\"YSF\">YSF</td></tr>\n";
+			}
+			if ($testAPRSdgid == 1) {
+				echo "<tr><td colspan='2' style=\"background: $tableRowEvenBg;\" title=\"DGId\">DGId</td></tr>\n";
+			}
+			if ($testAPRSnxdn == 1) {
+				echo "<tr><td colspan='2' style=\"background: $tableRowEvenBg;\" title=\"NXDN\">NXDN</td></tr>\n";
+			}
+			if ($testAPRSm17 == 1) {
+				echo "<tr><td colspan='2' style=\"background: $tableRowEvenBg;\" title=\"M17\">M17</td></tr>\n";
+			}
+		}
+	}
         echo "</table>\n";
     }
 
