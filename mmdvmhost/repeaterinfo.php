@@ -680,7 +680,7 @@ if (isProcessRunning("DMRGateway")) {
 			echo "<tr><td colspan='2' style=\"background: $tableRowEvenBg;\" title=\"None Selected\">None Selected</td></tr>\n";
 			echo "</table>\n";
 		} else {
-			echo "<tr><th colspan='2'>Sending Data To</th></tr>\n";
+			echo "<tr><th colspan='2'>APRS Being Sent To</th></tr>\n";
 			if ($testAPRSdmr == 1) {
 				echo "<tr><td colspan='2' style=\"background: $tableRowEvenBg;\" title=\"DMR\">DMR</td></tr>\n";
 			}
