@@ -3647,7 +3647,12 @@ else:
 	<div><input type="hidden" name="factoryReset" value="1" /></div>
 </form>
 
-<form id="config" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="post">
+<?php if($_GET['force'] == true) {
+    echo '<form id="config" action="'.htmlspecialchars($_SERVER["PHP_SELF"]).'?force=true" method="post">';
+} else {
+    echo '<form id="config" action="'.htmlspecialchars($_SERVER["PHP_SELF"]).'" method="post">';
+}
+?>
 	<h2><?php echo $lang['control_software'];?></h2>
     <table>
     <tr>
