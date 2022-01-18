@@ -144,6 +144,15 @@ if (file_exists('/etc/dstar-radio.mmdvmhost')) {
 	if (fopen($modemConfigFileMMDVMHost,'r')) { $configModem = parse_ini_file($modemConfigFileMMDVMHost, true); }
 }
 
+// form handler for APRSGateway and the clients that support it.
+// grab existing settings if any and store these for later (below form and config handler)
+$DMRGatewayAPRS     = $configdmrgateway['APRS']['Enable'];
+$IRCDDBGatewayAPRS  = $configs['aprsEnabled'];
+$YSFGatewayAPRS     = $configysfgateway['APRS']['Enable'];
+$DGIdGatewayAPRS    = $configdgidgateway['APRS']['Enable'];
+$NXDNGatewayAPRS    = $confignxdngateway['APRS']['Enable'];
+$M17GatewayAPRS     = $configm17gateway['APRS']['Enable'];
+
 //
 // Check for DMRGateway RemoteCommand and enable if it isn't...
 // This is needed for DMR network panel status, login issues, etc.
@@ -161,6 +170,41 @@ if (!isset($configmmdvm['Modem']['Protocol']) ||
     $configmmdvm['Modem']['Protocol'] = "uart";
     $configmmdvm['Modem']['UARTPort'] = $configmmdvm['Modem']['Port'];
     $configmmdvm['Modem']['UARTSpeed'] = $confHardwareSpeed;
+}
+
+// Convert [aprs.fi] sections to new [APRS] format
+function clearAprsDotFi(&$cfgFile, $suffix) {
+    $cfgAprsEnabled = 0;
+    $cfgAprsSuffix = $suffix;
+    $cfgAprsDescription = (isset($configysfgateway['APRS']['Description']) && !empty($configysfgateway['APRS']['Description'])) ? $configysfgateway['APRS']['Description'] : "APRS Description";
+    
+    // Old config if present, get rid of it
+    if (isset($cfgFile['aprs.fi']))
+    {
+	$cfgAprsEnabled = $cfgFile['aprs.fi']['Enable'];
+	if (isset($cfgFile['aprs.fi']['Suffix']) && !empty($cfgFile['aprs.fi']['Suffix']))
+	{
+	    $cfgAprsSuffix = $cfgFile['aprs.fi']['Suffix'];
+	}
+	$cfgAprsDescription = $cfgFile['aprs.fi']['Description'];
+	unset($cfgFile['aprs.fi']);
+    }
+    
+    // Add default APRS config
+    $cfgFile['APRS']['Enable'] = $cfgAprsEnabled;
+    $cfgFile['APRS']['Address'] = "127.0.0.1";
+    $cfgFile['APRS']['Port'] = "8673";
+    $cfgFile['APRS']['Suffix'] = $cfgAprsSuffix;
+    $cfgFile['APRS']['Description'] = $cfgAprsDescription;
+}
+
+// Ensure NXDNGateway file contains the new APRS configuration
+if (isset($confignxdngateway['aprs.fi']) || !isset($confignxdngateway['APRS'])) {
+    clearAprsDotFi($confignxdngateway, "N");
+}
+// Ensure YSFGateway file contains the new APRS configuration
+if (isset($configysfgateway['aprs.fi']) || !isset($configysfgateway['APRS'])) {
+    clearAprsDotFi($configysfgateway, "Y");
 }
 
 //
@@ -552,7 +596,6 @@ if (!empty($_POST)):
 	  $configdmrgateway['Info']['Longitude'] = $newConfLongitude;
 	  $configm17gateway['Info']['Longitude'] = $newConfLongitude;
 	  $confignxdngateway['Info']['Longitude'] = $newConfLongitude;
-	  if (isset($configdgidgateway)) { $configdgidgateway['Info']['Description'] = '"'.$newConfDesc2.'"'; }
 	  system($rollConfLon0);
 	  system($rollConfLon1);
 	  }
@@ -578,10 +621,11 @@ if (!empty($_POST)):
 	  $newConfDesc2 = preg_replace('/[^A-Za-z0-9\.\s\,\-]/', '', $_POST['confDesc2']);
 	  $rollDesc2 = 'sudo sed -i "/description2=/c\\description2='.$newConfDesc2.'" /etc/ircddbgateway';
 	  $rollDesc22 = 'sudo sed -i "/description1_2=/c\\description1_2='.$newConfDesc2.'" /etc/ircddbgateway';
-          $configmmdvm['Info']['Description'] = '"'.$newConfDesc2.'"';
+      $configmmdvm['Info']['Description'] = '"'.$newConfDesc2.'"';
 	  $configdmrgateway['Info']['Description'] = '"'.$newConfDesc2.'"';
 	  $configm17gateway['Info']['Description'] = '"'.$newConfDesc2.'"';
-          $configysfgateway['Info']['Description'] = '"'.$newConfDesc2.'"';
+      $configysfgateway['Info']['Description'] = '"'.$newConfDesc2.'"';
+	  if (isset($configdgidgateway)) { $configdgidgateway['Info']['Description'] = '"'.$newConfDesc2.'"'; }
 	  $confignxdngateway['Info']['Description'] = '"'.$newConfDesc2.'"';
 	  system($rollDesc2);
 	  system($rollDesc22);
@@ -618,6 +662,38 @@ if (!empty($_POST)):
 	    $rollAPRSGatewayHost = 'sudo sed -i "/Server=/c\\Server='.escapeshellcmd($_POST['selectedAPRSHost']).'" /etc/aprsgateway';
 	    system($rollAPRSGatewayHost);
 	  }
+	}
+
+	// grab user prefs from form submission so we can later update the configs.
+	if (empty($_POST['DMRGatewayAPRS']) != TRUE) { // checked!
+		$DMRGatewayAPRS = "1";
+	} else {
+		$DMRGatewayAPRS = "0";
+	}
+	if (empty($_POST['IRCDDBGatewayAPRS']) != TRUE) { // checked!
+		$IRCDDBGatewayAPRS = "1";
+	} else {
+		$IRCDDBGatewayAPRS = "0";
+	}
+	if (empty($_POST['YSFGatewayAPRS']) != TRUE) { // checked!
+		$YSFGatewayAPRS = "1";
+	} else {
+		$YSFGatewayAPRS = "0";
+	}
+	if (empty($_POST['DGIdGatewayAPRS']) != TRUE) { // checked!
+		$DGIdGatewayAPRS = "1";
+	} else {
+		$DGIdGatewayAPRS = "0";
+	}
+	if (empty($_POST['NXDNGatewayAPRS']) != TRUE) { // checked!
+		$NXDNGatewayAPRS = "1";
+	} else {
+		$NXDNGatewayAPRS = "0";
+	}
+	if (empty($_POST['M17GatewayAPRS']) != TRUE) { // checked!
+		$M17GatewayAPRS = "1";
+	} else {
+		$M17GatewayAPRS = "0";
 	}
 
 	// Set ircDDBGateway and TimeServer language
@@ -955,10 +1031,11 @@ if (!empty($_POST)):
 	    unset($configs['aprsPassword']);
 	    $rollircDDBGatewayAprsPass = 'sudo sed -i "/aprsPassword/d" /etc/ircddbgateway';
 	    system($rollircDDBGatewayAprsPass);
-	    if (empty($_POST['APRSGatewayEnable']) != TRUE ) {
-	    	if (escapeshellcmd($_POST['APRSGatewayEnable']) == 'ON' )  { $rollAPRSGatewayEnable = 'sudo sed -i "/Enabled=/c\\Enabled=1" /etc/aprsgateway'; }
-	    	if (escapeshellcmd($_POST['APRSGatewayEnable']) == 'OFF' ) { $rollAPRSGatewayEnable = 'sudo sed -i "/Enabled=/c\\Enabled=0" /etc/aprsgateway'; }
-	    }
+       if (empty($_POST['APRSGatewayEnable']) != TRUE ) {
+            if (escapeshellcmd($_POST['APRSGatewayEnable']) == 'ON' )  { $rollAPRSGatewayEnable = 'sudo sed -i "/Enabled=/c\\Enabled=1" /etc/aprsgateway'; }
+            if (escapeshellcmd($_POST['APRSGatewayEnable']) == 'OFF' ) { $rollAPRSGatewayEnable = 'sudo sed -i "/Enabled=/c\\Enabled=0" /etc/aprsgateway'; }
+
+        }
 	    system($rollAPRSGatewayEnable);
 	  }
 
@@ -1386,7 +1463,7 @@ if (!empty($_POST)):
 	  }
 	}
 
-	// Set JutterBuffer Option
+	// Set JitterBuffer Option
 	//if (empty($_POST['dmrDMRnetJitterBufer']) != TRUE ) {
 	//  if (escapeshellcmd($_POST['dmrDMRnetJitterBufer']) == 'ON' ) { $configmmdvm['DMR Network']['JitterEnabled'] = "1"; $configysf2dmr['DMR Network']['JitterEnabled'] = "1"; }
 	//  if (escapeshellcmd($_POST['dmrDMRnetJitterBufer']) == 'OFF' ) { $configmmdvm['DMR Network']['JitterEnabled'] = "0"; $configysf2dmr['DMR Network']['JitterEnabled'] = "0"; }
@@ -2422,16 +2499,16 @@ if (!empty($_POST)):
 			$configdmrgateway['GPSD']['Address'] = "127.0.0.1";
 			$configdmrgateway['GPSD']['Port'] = "2947";
 		}
-		if (!isset($configdmrgateway['APRS'])) {
-			$configdmrgateway['APRS']['Enable'] = "1";
-			$configdmrgateway['APRS']['Address'] = "127.0.0.1";
-			$configdmrgateway['APRS']['Port'] = "8673";
-			$configdmrgateway['APRS']['Description'] = "APRS for DMRGateway";
-			$configdmrgateway['APRS']['Suffix'] = "DMR";
-		}
 		if (!isset($configdmrgateway['Dynamic TG Control'])) {
 			$configdmrgateway['Dynamic TG Control']['Enabled'] = "1";
 			$configdmrgateway['Dynamic TG Control']['Port'] = "3769";
+		}
+		if (!isset($configdmrgateway['APRS'])) {
+			$configdmrgateway['APRS']['Enable'] = $DMRGatewayAPRS;
+			$configdmrgateway['APRS']['Address'] = "127.0.0.1";
+			$configdmrgateway['APRS']['Port'] = "8673";
+			$configdmrgateway['APRS']['Suffix'] = "D";
+			$configdmrgateway['APRS']['Description'] = "APRS for DMRGateway";
 		}
 	}
 
@@ -2465,7 +2542,7 @@ if (!empty($_POST)):
 	if (!isset($configm17gateway['Network']['Revert'])) { $configm17gateway['Network']['Revert'] = "1"; }
 	if (!isset($configm17gateway['Network']['Debug'])) { $configm17gateway['Network']['Debug'] = "0"; }
    	if (!isset($configm17gateway['APRS'])) {
-        	$configm17gateway['APRS']['Enable'] = "0";
+			$configm17gateway['APRS']['Enable'] = $M17GatewayAPRS;
         	$configm17gateway['APRS']['Address'] = "127.0.0.1";
         	$configm17gateway['APRS']['Port'] = "8673";
         	$configm17gateway['APRS']['Description'] = "APRS for M17Gateway";
@@ -2704,6 +2781,13 @@ if (!empty($_POST)):
 		$configdgidgateway['YSF Network']['Hosts'] = "/usr/local/etc/YSFHosts.txt";
 		$configdgidgateway['DGId=0']['Port'] = 42025;
 		$configdgidgateway['DGId=0']['Local'] = 42026;
+        if (!isset($configdgidgateway['APRS'])) {
+			$configdgidgateway['APRS']['Enable'] = $DGIdGatewayAPRS;
+			$configdgidgateway['APRS']['Address'] = "127.0.0.1";
+			$configdgidgateway['APRS']['Port'] = "8673";
+			$configdgidgateway['APRS']['Suffix'] = "Y";
+			$configdgidgateway['APRS']['Description'] = "APRS for DGIdGateway";
+		}
 	}
 
 	// Clean up for NXDN Gateway
@@ -2736,12 +2820,16 @@ if (!empty($_POST)):
 		// Add in all the APRS stuff
 		if(!isset($confignxdngateway['Info']['Power'])) { $confignxdngateway['Info']['Power'] = "1"; }
 		if(!isset($confignxdngateway['Info']['Height'])) { $confignxdngateway['Info']['Height'] = "0"; }
-		if(!isset($confignxdngateway['aprs.fi']['Enable'])) { $confignxdngateway['aprs.fi']['Enable'] = "0"; }
-		if(!isset($confignxdngateway['aprs.fi']['Server'])) { $confignxdngateway['aprs.fi']['Server'] = "euro.aprs2.net"; }
-		if(!isset($confignxdngateway['aprs.fi']['Port'])) { $confignxdngateway['aprs.fi']['Port'] = "14580"; }
-		if(!isset($confignxdngateway['aprs.fi']['Password'])) { $confignxdngateway['aprs.fi']['Password'] = "9999"; }
-		if(!isset($confignxdngateway['aprs.fi']['Description'])) { $confignxdngateway['aprs.fi']['Description'] = "APRS for NXDN Gateway"; }
-		if(!isset($confignxdngateway['aprs.fi']['Suffix'])) { $confignxdngateway['aprs.fi']['Suffix'] = "N"; }
+		if(!isset($confignxdngateway['APRS']['Enable'])) { $confignxdngateway['APRS']['Enable'] = "0"; }
+		if(!isset($confignxdngateway['APRS']['Enable'])) { $confignxdngateway['APRS']['Enable'] = $NXDNGatewayAPRS; }
+		if(!isset($confignxdngateway['APRS']['Address'])) { $confignxdngateway['APRS']['Server'] = "127.0.0.1"; }
+		if(!isset($confignxdngateway['APRS']['Port'])) { $confignxdngateway['APRS']['Port'] = "8673"; }
+		if(!isset($confignxdngateway['APRS']['Suffix'])) { $confignxdngateway['APRS']['Suffix'] = "N"; }
+		if(!isset($confignxdngateway['APRS']['Description'])) { $confignxdngateway['APRS']['Description'] = $configysfgateway['APRS']['Description']; }
+		// GPSd stuff
+		if(!isset($confignxdngateway['GPSD']['Enable'])) { $confignxdngateway['GPSD']['Enable'] = "0"; }
+		if(!isset($confignxdngateway['GPSD']['Address'])) { $confignxdngateway['GPSD']['Address'] = "127.0.0.1"; }
+		if(!isset($confignxdngateway['GPSD']['Port'])) { $confignxdngateway['GPSD']['Port'] = "2947"; }
 	}
 
 	// Clean up legacy options
@@ -2841,7 +2929,7 @@ if (!empty($_POST)):
 		if (isset($configysfgateway['aprs.fi'])) { unset($configysfgateway['aprs.fi']); }
 	}
 	if ($ysfGatewayVer > 20210130) {
-		if (!isset($configysfgateway['APRS']['Enable'])) { $configysfgateway['APRS']['Enable'] = "1"; }
+		if (isset($configysfgateway['APRS']['Enable'])) { $configysfgateway['APRS']['Enable'] = $YSFGatewayAPRS; }
 	}
 
 	// Add the DAPNet Config
@@ -2916,6 +3004,18 @@ if (!empty($_POST)):
 			$newMobileGPSspeed = preg_replace('/[^0-9]/', '', $_POST['mobilegps_speed']);
 			system('sudo sed -i "/Speed=/c\\Speed='.$newMobileGPSspeed.'" /etc/mobilegps');
 		}
+	}
+
+    // Handle APRSGateway configs for cients that support it.
+    $configdmrgateway['APRS']['Enable'] = $DMRGatewayAPRS;
+    $configysfgateway['APRS']['Enable'] = $YSFGatewayAPRS;
+    $configdgidgateway['APRS']['Enable'] = $DGIdGatewayAPRS;
+    $configm17gateway['APRS']['Enable'] = $M17GatewayAPRS;
+    $confignxdngateway['APRS']['Enable'] = $NXDNGatewayAPRS;
+    if (empty($_POST['IRCDDBGatewayAPRS']) != TRUE ) {
+		system('sudo sed -i "/aprsEnabled=/c\\aprsEnabled=1" /etc/ircddbgateway');
+	} else {
+		system('sudo sed -i "/aprsEnabled=/c\\aprsEnabled=0" /etc/ircddbgateway');
 	}
 
 	// Create the hostfiles.nodextra file if required
@@ -3826,62 +3926,62 @@ else:
     <table>
     <tr>
     <th width="200"><a class="tooltip" href="#"><?php echo $lang['setting'];?><span><b>Setting</b></span></a></th>
-    <th colspan="2"><a class="tooltip" href="#"><?php echo $lang['value'];?><span><b>Value</b>The current value from the<br />configuration files</span></a></th>
+    <th colspan="4"><a class="tooltip" href="#"><?php echo $lang['value'];?><span><b>Value</b>The current value from the<br />configuration files</span></a></th>
     </tr>
     <tr>
     <td align="left"><a class="tooltip2" href="#">Hostname:<span><b>System Hostname</b>This is the system hostname, used for access to the dashboard etc.</span></a></td>
-    <td align="left" colspan="2"><input type="text" name="confHostame" size="13" maxlength="15" value="<?php echo exec('cat /etc/hostname'); ?>" />Do not add suffixes such as .local</td>
+    <td align="left" colspan="3"><input type="text" name="confHostame" size="13" maxlength="15" value="<?php echo exec('cat /etc/hostname'); ?>" />Do not add suffixes such as .local</td>
     </tr>
     <tr>
     <td align="left"><a class="tooltip2" href="#"><?php echo $lang['node_call'];?>:<span><b>Gateway Callsign</b>This is your licenced callsign for use on this gateway, do not append the "G"</span></a></td>
-    <td align="left" colspan="2"><input type="text" name="confCallsign" size="13" maxlength="7" value="<?php echo $configs['gatewayCallsign'] ?>" /></td>
+    <td align="left" colspan="3"><input type="text" name="confCallsign" size="13" maxlength="7" value="<?php echo $configs['gatewayCallsign'] ?>" /></td>
     </tr>
     <?php if (file_exists('/etc/dstar-radio.mmdvmhost') && (($configmmdvm['DMR']['Enable'] == 1) || ($configmmdvm['P25']['Enable'] == 1 ) || ($configmmdvm['System Fusion']['Enable'] == 1 ))) { ?>
     <tr>
     <td align="left"><a class="tooltip2" href="#"><?php echo $lang['dmr_id'];?>:<span><b>CCS7/DMR ID</b>Enter your CCS7 / DMR ID here</span></a></td>
-    <td align="left" colspan="2"><input type="text" name="dmrId" size="13" maxlength="9" value="<?php if (isset($configmmdvm['General']['Id'])) { echo $configmmdvm['General']['Id']; } else { echo $configmmdvm['DMR']['Id']; } ?>" /></td>
+    <td align="left" colspan="3"><input type="text" name="dmrId" size="13" maxlength="9" value="<?php if (isset($configmmdvm['General']['Id'])) { echo $configmmdvm['General']['Id']; } else { echo $configmmdvm['DMR']['Id']; } ?>" /></td>
     </tr><?php } ?>
     <?php if (file_exists('/etc/dstar-radio.mmdvmhost') && ($configmmdvm['NXDN']['Enable'] == 1)) { ?>
     <tr>
       <td align="left"><a class="tooltip2" href="#">NXDN ID:<span><b>NXDN ID</b>Enter your NXDN ID here</span></a></td>
-      <td align="left" colspan="2"><input type="text" name="nxdnId" size="13" maxlength="5" value="<?php if (isset($configmmdvm['NXDN']['Id'])) { echo $configmmdvm['NXDN']['Id']; } ?>" /></td>
+      <td align="left" colspan="3"><input type="text" name="nxdnId" size="13" maxlength="5" value="<?php if (isset($configmmdvm['NXDN']['Id'])) { echo $configmmdvm['NXDN']['Id']; } ?>" /></td>
     </tr><?php } ?>
 <?php if ($configmmdvm['Info']['TXFrequency'] === $configmmdvm['Info']['RXFrequency']) {
 	echo "    <tr>\n";
 	echo "    <td align=\"left\"><a class=\"tooltip2\" href=\"#\">".$lang['radio_freq'].":<span><b>Radio Frequency</b>This is the Frequency your<br />Pi-Star is on</span></a></td>\n";
-	echo "    <td align=\"left\" colspan=\"2\"><input type=\"text\" id=\"confFREQ\" onkeyup=\"checkFrequency(); return false;\" name=\"confFREQ\" size=\"13\" maxlength=\"12\" value=\"".number_format($configmmdvm['Info']['RXFrequency'], 0, '.', '.')."\" />MHz</td>\n";
+	echo "    <td align=\"left\" colspan=\"3\"><input type=\"text\" id=\"confFREQ\" onkeyup=\"checkFrequency(); return false;\" name=\"confFREQ\" size=\"13\" maxlength=\"12\" value=\"".number_format($configmmdvm['Info']['RXFrequency'], 0, '.', '.')."\" />MHz</td>\n";
 	echo "    </tr>\n";
 	}
 	else {
 	echo "    <tr>\n";
 	echo "    <td align=\"left\"><a class=\"tooltip2\" href=\"#\">".$lang['radio_freq']." RX:<span><b>Radio Frequency</b>This is the Frequency your<br />repeater will listen on</span></a></td>\n";
-	echo "    <td align=\"left\" colspan=\"2\"><input type=\"text\" id=\"confFREQrx\" onkeyup=\"checkFrequency(); return false;\" name=\"confFREQrx\" size=\"13\" maxlength=\"12\" value=\"".number_format($configmmdvm['Info']['RXFrequency'], 0, '.', '.')."\" />MHz</td>\n";
+	echo "    <td align=\"left\" colspan=\"3\"><input type=\"text\" id=\"confFREQrx\" onkeyup=\"checkFrequency(); return false;\" name=\"confFREQrx\" size=\"13\" maxlength=\"12\" value=\"".number_format($configmmdvm['Info']['RXFrequency'], 0, '.', '.')."\" />MHz</td>\n";
 	echo "    </tr>\n";
 	echo "    <tr>\n";
 	echo "    <td align=\"left\"><a class=\"tooltip2\" href=\"#\">".$lang['radio_freq']." TX:<span><b>Radio Frequency</b>This is the Frequency your<br />repeater will transmit on</span></a></td>\n";
-	echo "    <td align=\"left\" colspan=\"2\"><input type=\"text\" id=\"confFREQtx\" onkeyup=\"checkFrequency(); return false;\" name=\"confFREQtx\" size=\"13\" maxlength=\"12\" value=\"".number_format($configmmdvm['Info']['TXFrequency'], 0, '.', '.')."\" />MHz</td>\n";
+	echo "    <td align=\"left\" colspan=\"3\"><input type=\"text\" id=\"confFREQtx\" onkeyup=\"checkFrequency(); return false;\" name=\"confFREQtx\" size=\"13\" maxlength=\"12\" value=\"".number_format($configmmdvm['Info']['TXFrequency'], 0, '.', '.')."\" />MHz</td>\n";
 	echo "    </tr>\n";
 	}
 ?>
     <tr>
     <td align="left"><a class="tooltip2" href="#"><?php echo $lang['lattitude'];?>:<span><b>Gateway Latitude</b>This is the latitude where the gateway is located (positive number for North, negative number for South) - Set to 0 to hide your hotspot location</span></a></td>
-    <td align="left" colspan="2"><input type="text" id="confLatitude" name="confLatitude" size="13" maxlength="9" value="<?php echo $configs['latitude'] ?>" />degrees (positive value for North, negative for South)</td>
+    <td align="left" colspan="3"><input type="text" id="confLatitude" name="confLatitude" size="13" maxlength="9" value="<?php echo $configs['latitude'] ?>" />degrees (positive value for North, negative for South)</td>
     </tr>
     <tr>
     <td align="left"><a class="tooltip2" href="#"><?php echo $lang['longitude'];?>:<span><b>Gateway Longitude</b>This is the longitude where the gateway is located (positive number for East, negative number for West) - Set to 0 to hide your hotspot location</span></a></td>
-    <td align="left" colspan="2"><input type="text" id="confLongitude" name="confLongitude" size="13" maxlength="9" value="<?php echo $configs['longitude'] ?>" />degrees (positive value for East, negative for West)</td>
+    <td align="left" colspan="3"><input type="text" id="confLongitude" name="confLongitude" size="13" maxlength="9" value="<?php echo $configs['longitude'] ?>" />degrees (positive value for East, negative for West)</td>
     </tr>
     <tr>
     <td align="left"><a class="tooltip2" href="#"><?php echo $lang['town'];?>:<span><b>Gateway Town</b>The town where the gateway is located</span></a></td>
-    <td align="left" colspan="2"><input type="text" name="confDesc1" size="30" maxlength="30" value="<?php echo $configs['description1'] ?>" /></td>
+    <td align="left" colspan="3"><input type="text" name="confDesc1" size="30" maxlength="30" value="<?php echo $configs['description1'] ?>" /></td>
     </tr>
     <tr>
     <td align="left"><a class="tooltip2" href="#"><?php echo $lang['country'];?>:<span><b>Gateway Country</b>The country where the gateway is located</span></a></td>
-    <td align="left" colspan="2"><input type="text" name="confDesc2" size="30" maxlength="30" value="<?php echo $configs['description2'] ?>" /></td>
+    <td align="left" colspan="3"><input type="text" name="confDesc2" size="30" maxlength="30" value="<?php echo $configs['description2'] ?>" /></td>
     </tr>
     <tr>
     <td align="left"><a class="tooltip2" href="#"><?php echo $lang['url'];?>:<span><b>Gateway URL</b>The URL used to access this dashboard</span></a></td>
-    <td align="left"><input type="text" name="confURL" size="30" maxlength="30" value="<?php echo $configs['url'] ?>" /></td>
+    <td align="left" colspan="2"><input type="text" name="confURL" size="30" maxlength="30" value="<?php echo $configs['url'] ?>" /></td>
     <td align="left">
     <input type="radio" name="urlAuto" value="auto"<?php if (strpos($configs['url'], 'www.qrz.com/db/'.$configmmdvm['General']['Callsign']) !== FALSE) {echo ' checked="checked"';} ?> />Auto
     <input type="radio" name="urlAuto" value="man"<?php if (strpos($configs['url'], 'www.qrz.com/db/'.$configmmdvm['General']['Callsign']) == FALSE) {echo ' checked="checked"';} ?> />Manual</td>
@@ -3889,7 +3989,7 @@ else:
 <?php if ( (file_exists('/etc/dstar-radio.dstarrepeater')) || (file_exists('/etc/dstar-radio.mmdvmhost')) ) { ?>
     <tr>
     <td align="left"><a class="tooltip2" href="#"><?php echo $lang['radio_type'];?>:<span><b>Radio/Modem</b>What kind of radio or modem hardware do you have?</span></a></td>
-    <td align="left" colspan="2"><select name="confHardware">
+    <td align="left" colspan="3"><select name="confHardware">
 		<option<?php if (!$configModem['Modem']['Hardware']) { echo ' selected="selected"';}?> value="">--</option>
 	        <?php if (file_exists('/dev/icom_ta')) { ?>
 	    		<option<?php if ($configModem['Modem']['Hardware'] === 'icomTerminalAuto') {		echo ' selected="selected"';}?> value="icomTerminalAuto">Icom Radio in Terminal Mode (DStarRepeater Only)</option>
@@ -3947,7 +4047,7 @@ else:
     </tr>
 	<tr>
 	    <td align="left"><a class="tooltip2" href="#">Modem Baud Rate:<span><b>Baudrate</b>Serial speed (most Hats are using 115200)</span></a></td>
-	    <td align="left" colspan="2"><select name="confHardwareSpeed">
+	    <td align="left" colspan="3"><select name="confHardwareSpeed">
 		<?php
 		$modemSpeeds = [1200, 2400, 4800, 9600, 19200, 38400, 57600, 115200];
 		foreach($modemSpeeds as $modemSpeed) {
@@ -3964,7 +4064,7 @@ else:
 <?php } ?>
     <tr>
     <td align="left"><a class="tooltip2" href="#"><?php echo $lang['node_type'];?>:<span><b>Node Lock</b>Set the public/private node type. &quot;Private&quot; limits access to your system to your ID/Callsign only, this may be a licence requirement for your country and helps prevent network loops.</span></a></td>
-    <td align="left" colspan="2">
+    <td align="left" colspan="3">
     <input type="radio" name="nodeMode" value="prv"<?php if ($configmmdvm['DMR']['SelfOnly'] == 1) {echo ' checked="checked"';} ?> />Private
     <input type="radio" name="nodeMode" value="pub"<?php if ($configmmdvm['DMR']['SelfOnly'] == 0) {echo ' checked="checked"';} ?> />Public</td>
     </tr>
@@ -3983,9 +4083,54 @@ else:
         echo "<td align=\"left\" colspan=\"2\"><div class=\"switch\"><input id=\"toggle-aprsgateway\" class=\"toggle toggle-round-flat\" type=\"checkbox\" name=\"APRSGatewayEnable\" value=\"ON\" aria-hidden=\"true\" tabindex=\"-1\" ".$toggleAPRSGatewayCheckboxCr." /><label id=\"aria-toggle-aprsgateway\" role=\"checkbox\" tabindex=\"0\" aria-label=\"Enable APRS Position Reporting\" aria-checked=\"false\" onKeyPress=\"toggleAPRSGatewayCheckbox()\" onclick=\"toggleAPRSGatewayCheckbox()\" for=\"toggle-aprsgateway\"><font style=\"font-size:0px\">Enable APRS Position Reporting</font></label></div></td>\n";
     }
 } ?>
+<td>
+<div style="display:block;text-align:left;">
+    <div style="display:block;">
+        <div style="display:block;">
+        <label for="aprsgw-service-selection" style="display: inline-block;">Send APRS Data to Modes:</label>
+            <div style="display: inline-block;vertical-align: middle;">
+                [ <input name="DMRGatewayAPRS" id="aprsgw-service-selection-0" value="DMRGatewayAPRS" type="checkbox"
+				<?php if($DMRGatewayAPRS == '1') { echo(' checked="checked"'); }
+                      if ($configaprsgw['Enabled']['Enabled'] == 0)  { echo(' disabled="disabled"'); }?> >
+                <label for="aprsgw-service-selection-0">DMR</label> |
+            </div>
+            <div style="display: inline-block;vertical-align: middle;">
+                <input name="YSFGatewayAPRS" id="aprsgw-service-selection-1" value="YSFGatewayAPRS" type="checkbox"
+				<?php if($YSFGatewayAPRS == '1') { echo(' checked="checked"'); }
+					if ($configaprsgw['Enabled']['Enabled'] == 0)  { echo(' disabled="disabled"'); }?> >
+                <label for="aprsgw-service-selection-1">YSF</label> |
+            </div>
+            <div style="display: inline-block;vertical-align: middle;">
+                <input name="DGIdGatewayAPRS" id="aprsgw-service-selection-2" value="DGIdGatewayAPRS" type="checkbox"
+				<?php if($DGIdGatewayAPRS == '1') { echo(' checked="checked"'); }
+					if ($configaprsgw['Enabled']['Enabled'] == 0)  { echo(' disabled="disabled"'); }?> >
+                <label for="aprsgw-service-selection-2">DGId</label> |
+            </div>
+            <div style="display: inline-block;vertical-align: middle;">
+                <input name="NXDNGatewayAPRS"  id="aprsgw-service-selection-3" value="NXDNGatewayAPRS" type="checkbox"
+				<?php if($NXDNGatewayAPRS == '1') { echo(' checked="checked"'); }
+					if ($configaprsgw['Enabled']['Enabled'] == 0)  { echo(' disabled="disabled"'); }?> >
+                <label for="aprsgw-service-selection-3">NXDN</label> |
+            </div>
+            <div style="display: inline-block;vertical-align: middle;">
+                <input name="M17GatewayAPRS" id="aprsgw-service-selection-4" value="M17GatewayAPRS" type="checkbox"
+				<?php if($M17GatewayAPRS == '1') { echo(' checked="checked"'); }
+					if ($configaprsgw['Enabled']['Enabled'] == 0)  { echo(' disabled="disabled"'); }?> >
+                <label for="aprsgw-service-selection-4">M17</label> |
+            </div>
+            <div style="display: inline-block;vertical-align: middle;">
+                <input name="IRCDDBGatewayAPRS" id="aprsgw-service-selection-5" value="IRCDDBGatewayAPRS" type="checkbox"
+				<?php if($IRCDDBGatewayAPRS == '1') { echo(' checked="checked"'); }
+					if ($configaprsgw['Enabled']['Enabled'] == 0)  { echo(' disabled="disabled"'); }?> >
+                <label for="aprsgw-service-selection-5">ircDDB</label> ]
+            </div>
+        </div>
+    </div>
+</div>
+</td>
     <tr>
     <td align="left"><a class="tooltip2" href="#"><?php echo $lang['aprs_host'];?>:<span><b>APRS Gateway Host Pool</b>Set your prefered APRS host pool here.</span></a></td>
-    <td colspan="2" style="text-align: left;"><select name="selectedAPRSHost">
+    <td colspan="3" style="text-align: left;"><select name="selectedAPRSHost">
 <?php 
         //$testAPSRHost = $configs['aprsHostname']; // I see no def. of this in the upstream code, so we'll define it below by loading & parsing the config...
     	$aprsHostFile = fopen("/usr/local/etc/APRSHosts.txt", "r");
@@ -4004,7 +4149,7 @@ else:
         ?>
     </select></td>
     </tr>
-    <tr colspan="3">
+    <tr>
     <td align="left"><a class="tooltip2" href="#"><?php echo $lang['timezone'];?>:<span><b>System TimeZone</b>Set the system timezone</span></a></td>
     <td style="text-align: left;"><select name="systemTimezone">
 <?php
@@ -4017,7 +4162,7 @@ else:
     }
 ?>
     </select></td>
-    <td align="left">Time Format: 
+    <td align="left" colspan="2">Time Format: 
     <input type="radio" name="systemTimeFormat" value="24" <?php if (constant("TIME_FORMAT") == "24") {  echo 'checked="checked"'; } ?> />24 Hour
     <input type="radio" name="systemTimeFormat" value="12" <?php if (constant("TIME_FORMAT") == "12") { echo 'checked="checked"'; } ?> />12 Hour
     </tr>
@@ -4026,7 +4171,7 @@ else:
     if (is_dir($lang_dir)) {
 	echo '    <tr>'."\n";
 	echo '    <td align="left"><a class="tooltip2" href="#">'.$lang['dash_lang'].':<span><b>Dashboard Language</b>Set the language for the dashboard.</span></a></td>'."\n";
-	echo '    <td align="left" colspan="2"><select name="dashboardLanguage">'."\n";
+	echo '    <td align="left" colspan="3"><select name="dashboardLanguage">'."\n";
 
 	if ($dh = opendir($lang_dir)) {
 	while ($files[] = readdir($dh))
