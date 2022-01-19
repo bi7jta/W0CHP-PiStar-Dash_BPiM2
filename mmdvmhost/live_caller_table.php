@@ -80,10 +80,15 @@ if ($listElem[1] == null) {
 }
 			
 // Color the BER Field
-			if (floatval($listElem[8]) == 0) { $ber = "<td>$listElem[8]</td>"; }
-			elseif (floatval($listElem[8]) >= 0.0 && floatval($listElem[8]) <= 1.1) { $ber = "<td style=\"background: #1d1;\">".$listElem[8]."</rd>"; }
-			elseif (floatval($listElem[8]) >= 1.2 && floatval($listElem[8]) <= 4.9) { $ber = "<td style=\"background: #FA0;\">".$listElem[8]."</td>"; }
-			else { $ber = "<td style=\"background: #F33;\">".$listElem[8]."</td>"; }
+if (floatval($listElem[8]) == 0) {
+	$ber = "<td>$listElem[8]</td>";
+} elseif (floatval($listElem[8]) >= 0.0 && floatval($listElem[8]) <= 1.1) {
+	$ber = "<td style=\"background: #1d1;\">".$listElem[8]."</rd>";
+} elseif (floatval($listElem[8]) >= 1.2 && floatval($listElem[8]) <= 4.9) {
+	$ber = "<td style=\"background: #FA0;\">".$listElem[8]."</td>";
+} else {
+	$ber = "<td style=\"background: #F33;\">".$listElem[8]."</td>";
+}
 
 $searchCall = $listElem[2];
 $callMatch = array();
