@@ -32,13 +32,8 @@ if ( substr($listElem[4], 0, 6) === 'CQCQCQ' ) {
 		
 $target = preg_replace('/TG /', '', $listElem[4]);
 
-		
-if ($listElem[5] == "RF"){
-	$source = "<span style=\"background:#1d1;\">RF</span>";
-} else {
-	$source = "$listElem[5]";
-}
-		
+$source = "$listElem[5]";
+	
 if ($listElem[6] == null) {
 	// Live duration
 	$utc_time = $listElem[0];
@@ -162,7 +157,13 @@ if($listElem[2] == "4000" || $listElem[2] == "9990" || $listElem[2] == "DAPNET")
 		} if (!empty($country)) { 
 			echo $country; 
 		} ?></td>
-    <td><?php echo $source ?? 'Empty'; ?></td>
+    <?php
+	if ($listElem[5] == "RF") {
+		echo "<td style=\"background:#1d1;\">RF</td>";
+	} else {
+    		echo" <td><?php echo $source ?? 'Empty'; ?></td>";
+	}
+    ?>
     <td><?php echo $mode ?? 'Empty'; ?></td>
     <td><?php echo $target ?? 'Empty';; ?></td>
     <?php echo $duration ?? 'Empty';; ?>
