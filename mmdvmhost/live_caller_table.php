@@ -85,26 +85,27 @@ if (floatval($listElem[8]) == 0) {
 	$ber = "<td style=\"background: #F33;\">".$listElem[8]."</td>";
 }
 
-$searchCall = $listElem[2];
 if (!is_numeric($listElem[2])) {
-$callMatch = array();
-$handle = @fopen("/usr/local/etc/stripped.csv", "r");
-if ($handle)
-{
-        while (!feof($handle))
-        {
-                $buffer = fgets($handle);
-                if (strpos($buffer, $searchCall) !== FALSE)
-                        $callMatch[] = $buffer;
-        }
-        fclose($handle);
+	$searchCall = $listElem[2];
+	$callMatch = array();
+	$handle = @fopen("/usr/local/etc/stripped.csv", "r");
+	if ($handle)
+	{
+        	while (!feof($handle))
+        	{
+                	$buffer = fgets($handle);
+                	if (strpos($buffer, $searchCall) !== FALSE)
+                        	$callMatch[] = $buffer;
+        	}
+		fclose($handle);
+	}
+	$callMatch= explode(",", $callMatch[0]);
+	$name = "$callMatch[2] $callMatch[3]";
+	$city = $callMatch[4];
+	$state = $callMatch[5];
+	$country = $callMatch[6]; 
 }
-$callMatch= explode(",", $callMatch[0]);
-$name = "$callMatch[2] $callMatch[3]";
-$city = $callMatch[4];
-$state = $callMatch[5];
-$country = $callMatch[6]; 
-}
+
 if (strlen($target) >= 2) {
 	$target_lookup = exec("grep -w \"$target\" /usr/local/etc/groups.txt | awk -F, '{print $1}' | head -1 | tr -d '\"'");
 	if (!empty($target_lookup)) {
