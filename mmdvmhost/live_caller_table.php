@@ -86,24 +86,25 @@ if (floatval($listElem[8]) == 0) {
 }
 
 $searchCall = $listElem[2];
+if (!is_numeric($listElem[2])) {
 $callMatch = array();
 $handle = @fopen("/usr/local/etc/stripped.csv", "r");
 if ($handle)
 {
-	while (!feof($handle))
-	{
-		$buffer = fgets($handle);
-		if(strpos($buffer, $searchCall) !== FALSE)
-			$callMatch[] = $buffer;
-		}
-		fclose($handle);
+        while (!feof($handle))
+        {
+                $buffer = fgets($handle);
+                if (strpos($buffer, $searchCall) !== FALSE)
+                        $callMatch[] = $buffer;
+        }
+        fclose($handle);
 }
 $callMatch= explode(",", $callMatch[0]);
 $name = "$callMatch[2] $callMatch[3]";
 $city = $callMatch[4];
 $state = $callMatch[5];
 $country = $callMatch[6]; 
-
+}
 if (strlen($target) >= 2) {
 	$target_lookup = exec("grep -w \"$target\" /usr/local/etc/groups.txt | awk -F, '{print $1}' | head -1 | tr -d '\"'");
 	if (!empty($target_lookup)) {
@@ -133,7 +134,7 @@ if($listElem[2] == "4000" || $listElem[2] == "9990" || $listElem[2] == "DAPNET")
 <b>Current / Last Caller Details</b>
 <br />
 <br />
-  <table>
+  <table style="word-wrap: break-word; white-space:normal;">
     <tr>
       <th>Callsign</th>
       <th>Name</th>
@@ -146,8 +147,8 @@ if($listElem[2] == "4000" || $listElem[2] == "9990" || $listElem[2] == "DAPNET")
 	  <th>BER</th>
     </tr>
   <tr>
-    <td><?php echo $listElem[2] ?? 'Empty'; ?></td>
-    <td><?php echo $name ?? 'Empty'; ?></td>
+    <td><?php echo $listElem[2] ?? ' '; ?></td>
+    <td><?php echo $name ?? ' '; ?></td>
     <td><?php
 		if (!empty($city)) {
 			echo $city .", ";
@@ -161,14 +162,14 @@ if($listElem[2] == "4000" || $listElem[2] == "9990" || $listElem[2] == "DAPNET")
 	if ($listElem[5] == "RF") {
 		echo "<td style=\"background:#1d1;\">RF</td>";
 	} else {
-    		echo" <td>".$source ?? 'Empty'."</td>";
+    		echo" <td>".$source ?? ' '."</td>";
 	}
     ?>
-    <td><?php echo $mode ?? 'Empty'; ?></td>
-    <td><?php echo $target ?? 'Empty';; ?></td>
-    <?php echo $duration ?? 'Empty';; ?>
-    <?php echo $loss; ?>
-    <?php echo $ber; ?>
+    <td><?php echo $mode ?? ' '; ?></td>
+    <td><?php echo $target ?? ' ';; ?></td>
+    <?php echo $duration ?? ' ';; ?>
+    <?php echo $loss ?? ' '; ?>
+    <?php echo $ber ?? ' '; ?>
    </tr>
 </table>
 
