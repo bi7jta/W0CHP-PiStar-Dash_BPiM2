@@ -19,7 +19,7 @@ $localTXList = $lastHeard;
 	</div>
     </div>
 <b><?php echo $lang['local_tx_list'];?></b>
-  <table>
+  <table style="white-space:normal; word-wrap:break;">
     <tr>
       <th><a class="tooltip" href="#"><?php echo $lang['time'];?> (<?php echo date('T')?>)<span><b>Time in <?php echo date('T')?> time zone</b></span></a></th>
       <th><a class="tooltip" href="#"><?php echo $lang['mode'];?><span><b>Transmitted Mode</b></span></a></th>
