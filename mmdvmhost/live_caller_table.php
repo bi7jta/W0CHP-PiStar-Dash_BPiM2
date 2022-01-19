@@ -34,45 +34,50 @@ $target = preg_replace('/TG /', '', $listElem[4]);
 
 		
 if ($listElem[5] == "RF"){
-			$source = "<span style=\"background:#1d1;\">RF</span>";
-		}else{
-			$source = "$listElem[5]";
-		}
+	$source = "<span style=\"background:#1d1;\">RF</span>";
+} else {
+	$source = "$listElem[5]";
+}
 		
-        if ($listElem[6] == null) {
-            // Live duration
-            $utc_time = $listElem[0];
-            $utc_tz =  new DateTimeZone('UTC');
-            $now = new DateTime("now", $utc_tz);
-            $dt = new DateTime($utc_time, $utc_tz);
-            $duration = $now->getTimestamp() - $dt->getTimestamp();
-            $duration_string = $duration<999 ? round($duration) . "+" : "&infin;";
-            $duration = "<td style=\"background:#F012BE;color:#fff;\">TX " . $duration_string . " sec</td>";
-        } else if ($listElem[6] == "DMR Data") {
-            $duration =  "<td style=\"background: #1d1;color:#fff;\">DMR Data</td>";
-        } else {
-            $duration = "<td>$listElem[6] s</td>";
-
-		}
+if ($listElem[6] == null) {
+	// Live duration
+	$utc_time = $listElem[0];
+	$utc_tz =  new DateTimeZone('UTC');
+	$now = new DateTime("now", $utc_tz);
+	$dt = new DateTime($utc_time, $utc_tz);
+	$duration = $now->getTimestamp() - $dt->getTimestamp();
+	$duration_string = $duration<999 ? round($duration) . "+" : "&infin;";
+	$duration = "<td style=\"background:#F012BE;color:#fff;\">TX " . $duration_string . " sec</td>";
+} else if ($listElem[6] == "DMR Data") {
+	$duration =  "<td style=\"background: #1d1;color:#fff;\">DMR Data</td>";
+} else {
+	$duration = "<td>$listElem[6] s</td>";
+}
 
 // color the loss field
-if ($listElem[7] == null) { $loss = "<td>&nbsp;&nbsp;&nbsp;</td>";
-			}elseif (floatval($listElem[7]) < 1) { $loss = "<td>".$listElem[7]."</td>";
-			}elseif (floatval($listElem[7]) == 1) { $loss = "<td style=\"background: #1d1;\">".$listElem[7]."</td>"; }
-			elseif (floatval($listElem[7]) > 1 && floatval($listElem[7]) <= 3) { $loss = "<td style=\"background: #fa0;\">".$listElem[7]."</td>"; }
-			else { $loss = "<td style=\"background: #f33;\">".$listElem[7]."</td>"; }
+if ($listElem[7] == null) {
+	$loss = "<td>&nbsp;&nbsp;&nbsp;</td>";
+} elseif (floatval($listElem[7]) < 1) {
+	$loss = "<td>".$listElem[7]."</td>";
+} elseif (floatval($listElem[7]) == 1) {
+	$loss = "<td style=\"background: #1d1;\">".$listElem[7]."</td>";
+} elseif (floatval($listElem[7]) > 1 && floatval($listElem[7]) <= 3) {
+	$loss = "<td style=\"background: #fa0;\">".$listElem[7]."</td>";
+} else {
+	$loss = "<td style=\"background: #f33;\">".$listElem[7]."</td>";
+}
 			
 if ($listElem[8] == null) {
-			$ber = "&nbsp;&nbsp;&nbsp;&nbsp;";
-			} else {
-			$mode = $listElem[8];
-			}
+	$ber = "&nbsp;&nbsp;&nbsp;&nbsp;";
+} else {
+	$mode = $listElem[8];
+}
 
 if ($listElem[1] == null) {
-			$ber = "&nbsp;&nbsp;&nbsp;&nbsp;";
-			} else {
-			$mode = $listElem[1];
-			}
+	$ber = "&nbsp;&nbsp;&nbsp;&nbsp;";
+} else {
+	$mode = $listElem[1];
+}
 			
 // Color the BER Field
 			if (floatval($listElem[8]) == 0) { $ber = "<td>$listElem[8]</td>"; }
@@ -85,13 +90,13 @@ $callMatch = array();
 $handle = @fopen("/usr/local/etc/stripped.csv", "r");
 if ($handle)
 {
-    while (!feof($handle))
-    {
-        $buffer = fgets($handle);
-        if(strpos($buffer, $searchCall) !== FALSE)
-            $callMatch[] = $buffer;
-    }
-    fclose($handle);
+	while (!feof($handle))
+	{
+		$buffer = fgets($handle);
+		if(strpos($buffer, $searchCall) !== FALSE)
+			$callMatch[] = $buffer;
+		}
+		fclose($handle);
 }
 $callMatch= explode(",", $callMatch[0]);
 $name = "$callMatch[2] $callMatch[3]";
@@ -110,17 +115,17 @@ if (strlen($target) >= 2) {
 }
 
 if (strpos($mode, 'DMR') !== false) {
-    $target = "TG $target";
+	$target = "TG $target";
 }
 
-if($listElem[2] == "4000" || $listElem[2] == "9990" || $listElem[2] == "DAPNET"){
-$name = "";
-$city = "";
-$state = "";
-$country = "";
-$loss = "";
-$ber = "";
-$duration = "";
+if($listElem[2] == "4000" || $listElem[2] == "9990" || $listElem[2] == "DAPNET") {
+	$name = "";
+	$city = "";
+	$state = "";
+	$country = "";
+	$loss = "";
+	$ber = "";
+	$duration = "";
 }
 
 ?>
