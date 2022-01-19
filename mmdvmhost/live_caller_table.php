@@ -3,9 +3,15 @@ include_once $_SERVER['DOCUMENT_ROOT'].'/config/config.php';          // MMDVMDa
 include_once $_SERVER['DOCUMENT_ROOT'].'/mmdvmhost/tools.php';        // MMDVMDash Tools
 include_once $_SERVER['DOCUMENT_ROOT'].'/mmdvmhost/functions.php';    // MMDVMDash Functions
 
+if (constant("TIME_FORMAT") == "24") {
+    $local_time = date('H:i:s M. jS');
+} else {
+    $local_time = date('h:i:s A M. jS');
+}
 
+// get the data from the MMDVMHost logs
 $i = 0;
-for ($i = 0;  ($i <= 0); $i++) { //Last 20 calls
+for ($i = 0;  ($i <= 0); $i++) { //Last 20  calls
 	if (isset($lastHeard[$i])) {
 		$listElem = $lastHeard[$i];
 		if ( $listElem[2] ) {
@@ -14,25 +20,21 @@ for ($i = 0;  ($i <= 0); $i++) { //Last 20 calls
                         $local_tz = new DateTimeZone(date_default_timezone_get ());
                         $dt = new DateTime($utc_time, $utc_tz);
                         $dt->setTimeZone($local_tz);
-                        if (constant("TIME_FORMAT") == "24") {
-                            $local_time = date('H:i:s M. jS');
-                        } else {
-                            $local_time = date('h:i:s A M. jS');
-                        }
         }
     }
 }
 
 if ( substr($listElem[4], 0, 6) === 'CQCQCQ' ) {
-			$target = $listElem[4];
-		} else {
-			$target = str_replace(" ","&nbsp;", $listElem[4]);
-		}
+	$target = $listElem[4];
+} else {
+	$target = str_replace(" ","&nbsp;", $listElem[4]);
+}
 		
 $target = preg_replace('/TG /', '', $listElem[4]);
+
 		
 if ($listElem[5] == "RF"){
-			$source = "<span style=\"color:#f33;\">RF</span>";
+			$source = "<span style=\"background:#1d1;\">RF</span>";
 		}else{
 			$source = "$listElem[5]";
 		}
@@ -78,19 +80,32 @@ if ($listElem[1] == null) {
 			elseif (floatval($listElem[8]) >= 1.2 && floatval($listElem[8]) <= 4.9) { $ber = "<td style=\"background: #FA0;\">".$listElem[8]."</td>"; }
 			else { $ber = "<td style=\"background: #F33;\">".$listElem[8]."</td>"; }
 
-
-$name = exec("grep -w \"$listElem[2]\" /usr/local/etc/stripped.csv | awk -F, '{print $3, $4}' | head -1 | tr -d '\"' ");
-$city = exec("grep -w \"$listElem[2]\" /usr/local/etc/stripped.csv | awk -F, '{print $5}' | head -1 | tr -d '\"' ");
-$state = exec("grep -w \"$listElem[2]\" /usr/local/etc/stripped.csv | awk -F, '{print $6}' | head -1 | tr -d '\"' ");
-$country = exec("grep -w \"$listElem[2]\" /usr/local/etc/stripped.csv | awk -F, '{print $7}' | head -1 | tr -d '\"' ");
+$searchCall = $listElem[2];
+$callMatch = array();
+$handle = @fopen("/usr/local/etc/stripped.csv", "r");
+if ($handle)
+{
+    while (!feof($handle))
+    {
+        $buffer = fgets($handle);
+        if(strpos($buffer, $searchCall) !== FALSE)
+            $callMatch[] = $buffer;
+    }
+    fclose($handle);
+}
+$callMatch= explode(",", $callMatch[0]);
+$name = "$callMatch[2] $callMatch[3]";
+$city = $callMatch[4];
+$state = $callMatch[5];
+$country = $callMatch[6]; 
 
 if (strlen($target) >= 2) {
 	$target_lookup = exec("grep -w \"$target\" /usr/local/etc/groups.txt | awk -F, '{print $1}' | head -1 | tr -d '\"'");
 	if (!empty($target_lookup)) {
-        $target = $target_lookup;
-        $stupid_bm = ['/ - 10 Minute Limit/', '/ NOT A CALL CHANNEL/', '/ NO NETS(.*?)/', '/ - .*/'];
-        $target = preg_replace($stupid_bm, "", $target);
-        $target = str_replace(":", " - ", $target);
+		$target = $target_lookup;
+		$stupid_bm = ['/ - 10 Minute Limit/', '/ NOT A CALL CHANNEL/', '/ NO NETS(.*?)/', '/ - .*/'];
+		$target = preg_replace($stupid_bm, "", $target); // strip stupid fucking comments from BM admins in TG names. Idiots.
+		$target = str_replace(":", " - ", $target);
 	}
 }
 
@@ -110,18 +125,9 @@ $duration = "";
 
 ?>
 
-<input type="hidden" name="livecaller-autorefresh" value="OFF" />
-  <div style="float: right; vertical-align: bottom; padding-top: 5px;">
-    <div class="grid-container" style="display: inline-grid; grid-template-columns: auto 40px; padding: 1px; grid-column-gap: 5px;">
-        <div class="grid-item" style="padding-top: 3px;" >Auto-Refresh
-        </div>
-        <div class="grid-item" >
-        <div> <input id="toggle-livecaller-autorefresh" class="toggle toggle-round-flat" type="checkbox" name="localtx-autorefresh" value="ON" checked="checked" aria-checked="true" aria-label="Auto-Refresh" onchange="setLCautorefresh(this)" /><label for="toggle-livecaller-autorefresh" ></label>
-        </div>
-        </div>
-    </div>
-    </div>
-<b>Live Caller Details</b>
+<b>Current / Last Caller Details</b>
+<br />
+<br />
   <table>
     <tr>
       <th>Callsign</th>
