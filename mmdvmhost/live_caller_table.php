@@ -51,7 +51,7 @@ if ($listElem[6] == null) {
 
 // color the loss field
 if ($listElem[7] == null) {
-	$loss = "<td>&nbsp;&nbsp;&nbsp;</td>";
+	$loss = "<td>&nbsp;</td>";
 } elseif (floatval($listElem[7]) < 1) {
 	$loss = "<td>".$listElem[7]."</td>";
 } elseif (floatval($listElem[7]) == 1) {
@@ -63,13 +63,13 @@ if ($listElem[7] == null) {
 }
 			
 if ($listElem[8] == null) {
-	$ber = "&nbsp;&nbsp;&nbsp;&nbsp;";
+	$ber = "&nbsp;";
 } else {
 	$mode = $listElem[8];
 }
 
 if ($listElem[1] == null) {
-	$ber = "&nbsp;&nbsp;&nbsp;&nbsp;";
+	$ber = "&nbsp;";
 } else {
 	$mode = $listElem[1];
 }
@@ -125,9 +125,9 @@ if($listElem[2] == "4000" || $listElem[2] == "9990" || $listElem[2] == "DAPNET")
 	$city = "";
 	$state = "";
 	$country = "";
-	$loss = "";
-	$ber = "";
-	$duration = "";
+	$loss = "<td>&nbsp;</td>";
+	$ber = "<td>&nbsp;</td>";
+	$duration = "<td>&nbsp;</td>";
 }
 
 ?>
