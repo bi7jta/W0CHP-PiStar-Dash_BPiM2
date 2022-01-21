@@ -74,8 +74,8 @@ $sysRamPercent = exec("free -h | tail -2 | head -1 | awk {'print $3'} | sed 's/M
 ?>
 <table style="white-space:normal; word-wrap:break;">
     <tr>
-	<th><a class="tooltip" href="#"><?php echo $lang['hostname'];?><br /><span><b>System Ip Address<br /><?php echo str_replace(',', ',<br />', exec('hostname -I '));?></b></span></a></th>
-	<th><a class="tooltip" href="#"><?php echo $lang['platform'];?><span><b>Uptime:<br /><?php echo str_replace(',', ',<br />', exec('uptime -p'));?></b></span></a></th>
+	<th><a class="tooltip" href="#"><?php echo $lang['hostname'];?><span><b>System IP Address</b><br /><?php echo str_replace(',', ',<br />', exec('hostname -I '));?></span></a></th>
+	<th><a class="tooltip" href="#"><?php echo $lang['platform'];?><span><b>Uptime:<br /></b><?php echo str_replace(',', ',<br />', exec('uptime -p'));?></span></a></th>
 	<th><a class="tooltip" href="#"><?php echo $lang['kernel'];?><span><b>Release</b>This is the version<br />number of the Linux Kernel running<br />on this Raspberry Pi.</b></span></a></th>
 	<th><a class="tooltip" href="#"><?php echo $lang['cpu_load'];?><span><b>CPU Load</b></span></a></th>
 	<th><a class="tooltip" href="#">Memory Usage<span><b>Memory Usage</b></span></a></th>
