@@ -739,6 +739,7 @@ function getMMDVMLog() {
             if (!file_exists("/etc/.GETNAMES")) {
                 $logLines2 = explode("\n", `tail -1500 $logPath | sed '/\(CSBK\|overflow\|Downlink\|Valid\|Invalid\|\Talker\)/d' | egrep -h "from|end|watchdog|lost"`);
                 $logLines2 = array_slice($logLines2, -1500);
+	    }
         }
     }
     if ($lineNos < 1500) {
