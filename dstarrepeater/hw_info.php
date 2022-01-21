@@ -35,7 +35,7 @@ function formatSize( $bytes ) {
     return( round( $bytes, 2 ) . " " . $types[$i] );
 }
 
-$rootfs_used = @exec("df -h / | tail -1|awk {'print $3'} | sed 's/G//'")." GB". " of " .@exec("df -h / | tail -1 | awk {'print $2'} | sed 's/G//'")." GB";
+$rootfs_used = @exec("df -h / | tail -1|awk {'print $3'} | sed 's/G//'")." GB". " used of " .@exec("df -h / | tail -1 | awk {'print $2'} | sed 's/G//'")." GB";
 
 // Get the CPU temp and colour the box accordingly...
 // Values/thresholds gathered from: 
@@ -69,28 +69,26 @@ $system = system_information();
 // get ram
 $sysRamUsed = $system['mem_info']['MemTotal'] - $system['mem_info']['MemFree'] - $system['mem_info']['Buffers'] - $system['mem_info']['Cached'];
 // format ram in percent
-$sysRamPercent = exec("free -h | tail -2 | head -1 | awk {'print $3'} | sed 's/Mi/ MB/'") . " of ".formatSize($system['mem_info']['MemTotal']);
+$sysRamPercent = exec("free -h | tail -2 | head -1 | awk {'print $3'} | sed 's/Mi/ MB/'") . " used of ".formatSize($system['mem_info']['MemTotal']);
 
 ?>
 <table style="white-space:normal; word-wrap:break;">
     <tr>
-	<th><a class="tooltip" href="#"><?php echo $lang['hostname'];?><br /><span><b>System Hostname:<br /><?php echo str_replace(',', ',<br />', exec('hostname'));?></b></span></a></th>
-	<th><a class="tooltip" href="#">IP Address<br /><span><b>System IP Address:<br /><?php echo str_replace(',', ',<br />', exec('hostname -I'));?></b></span></a></th>
-	<th><a class="tooltip" href="#"><?php echo $lang['platform'];?><span><b>Uptime:<br /><?php echo str_replace(',', ',<br />', exec('uptime -p'));?></b></span></a></th>
+	<th><a class="tooltip" href="#"><?php echo $lang['hostname'];?><span><b>System IP Address<br /></b><?php echo str_replace(',', ',<br />', exec('hostname -I'));?></span></a></th>
+	<th><a class="tooltip" href="#"><?php echo $lang['platform'];?><span><b>Uptime:<br /></b><?php echo str_replace(',', ',<br />', exec('uptime -p'));?></span></a></th>
 	<th><a class="tooltip" href="#"><?php echo $lang['kernel'];?><span><b>Release</b>This is the version<br />number of the Linux Kernel running<br />on this Raspberry Pi.</b></span></a></th>
 	<th><a class="tooltip" href="#"><?php echo $lang['cpu_load'];?><span><b>CPU Load</b></span></a></th>
-	<th><a class="tooltip" href="#">Memory<span><b>Memory</b></span></a></th>
-	<th><a class="tooltip" href="#">Disk<span><b>Disk</b></span></a></th>
+	<th><a class="tooltip" href="#">Memory Usage<span><b>Memory Usage</b></span></a></th>
+	<th><a class="tooltip" href="#">Disk Usage<span><b>Disk Usage</b></span></a></th>
 	<th><a class="tooltip" href="#"><?php echo $lang['cpu_temp'];?><span><b>CPU Temp</b></span></a></th>
     </tr>
     <tr>
 	<td><?php echo php_uname('n');?></td>
-	<td><?php echo $_SERVER['SERVER_ADDR'];?></td>
 	<td><?php echo exec('/usr/local/sbin/platformDetect.sh');?></td>
 	<td><?php echo php_uname('r');?></td>
 	<td>User: <?php echo $cpuLoad['user'];?>% / Sys: <?php echo $cpuLoad['sys'];?>% / Nice: <?php echo $cpuLoad['nice'];?>%</td>
-	<td><?php echo $sysRamPercent;?> Used</td>
-	<td><?php echo $rootfs_used;?> Used</td>
+	<td><?php echo $sysRamPercent;?></td>
+	<td><?php echo $rootfs_used;?></td>
 	<?php echo $cpuTempHTML; ?>
     </tr>
 </table>
