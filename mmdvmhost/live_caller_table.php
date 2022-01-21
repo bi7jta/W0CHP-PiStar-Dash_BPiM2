@@ -145,7 +145,7 @@ if($listElem[2] == "4000" || $listElem[2] == "9990" || $listElem[2] == "DAPNET")
       <th>Target</th>
       <th>Duration</th>
       <th>Packet Loss</th>
-	  <th>BER</th>
+      <th>BER</th>
     </tr>
   <tr>
     <td><?php echo $listElem[2] ?? ' '; ?></td>
@@ -167,8 +167,8 @@ if($listElem[2] == "4000" || $listElem[2] == "9990" || $listElem[2] == "DAPNET")
 	}
     ?>
     <td><?php echo $mode ?? ' '; ?></td>
-    <td><?php echo $target ?? ' ';; ?></td>
-    <?php echo $duration ?? ' ';; ?>
+    <td><?php echo $target ?? ' '; ?></td>
+    <?php echo $duration ?? ' '; ?>
     <?php echo $loss ?? ' '; ?>
     <?php echo $ber ?? ' '; ?>
    </tr>
