@@ -351,15 +351,6 @@ input.toggle-round-flat:focus + label {
     z-index: 5;
 }
 
-/*
-.mode_flex {
-    display: flex; 
-    text-align: center;
-    flex-wrap: wrap;
-    justify-content: center;
-}
-*/
-
 .mode_flex .row {
   display: flex;
   flex-direction: row;
@@ -455,13 +446,11 @@ select {
   font-family: 'Inconsolata', monospace;
 }
 
-/* put the same color as in left vertical status */
 .navbar {
     overflow: hidden;
     background-color: <?php echo $backgroundNavbar; ?>;
 }
 
-/* Links inside the navbar */
 .navbar a {
     float: right;
     font-family : 'Source Sans Pro', sans-serif;
@@ -488,7 +477,6 @@ select {
     background-color: <?php echo $backgroundNavbarHover; ?>;
 }
 
- /* put the same color as in left vertical status */
 .lnavbar {
     overflow: hidden;
     background-color: <?php echo $backgroundNavbar; ?>;
@@ -781,10 +769,6 @@ select {
 
 .table-container {
     position: relative;
-    /*
-    overflow: auto;
-    max-height: 255px;
-    */
 }
 
 /* Tame Firefox Buttons */

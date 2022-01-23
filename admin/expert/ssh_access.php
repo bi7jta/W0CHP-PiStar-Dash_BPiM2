@@ -34,7 +34,7 @@ if ($_SERVER["PHP_SELF"] == "/admin/expert/ssh_access.php") {
     <meta name="KeyWords" content="Pi-Star" />
     <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate" />
     <meta http-equiv="pragma" content="no-cache" />
-<link rel="shortcut icon" href="images/favicon.ico" type="image/x-icon" />
+    <link rel="shortcut icon" href="/images/favicon.ico" type="image/x-icon" />
     <meta http-equiv="Expires" content="0" />
     <title>Pi-Star - <?php echo $lang['digital_voice']." ".$lang['dashboard']." - SSH";?></title>
     <link rel="stylesheet" type="text/css" href="../css/pistar-css.php" />
@@ -43,24 +43,45 @@ if ($_SERVER["PHP_SELF"] == "/admin/expert/ssh_access.php") {
     <script type="text/javascript" src="/js/jquery-timing.min.js"></script>
   </head>
   <body>
-  <div class="container">
-  <?php include './header-menu.inc'; ?>
+    <div class="container">
+    <div class="header">
+    <div style="font-size: 10px; text-align: left; padding-left: 8px; float: left;">Hostname: <?php echo exec('cat /etc/hostname'); ?></div>
+    <div style="font-size: 10px; text-align: right; padding-right: 8px;">Pi-Star: <?php echo $_SESSION['PiStarRelease']['Pi-Star']['Version'].'<br />';?><div id="CheckUpdate"><?php echo $lang['dashboard'].": ".$version; system('/usr/local/sbin/pistar-check4updates'); ?></div></div>
+    <h1>Pi-Star <?php echo $lang['digital_voice']." ".$lang['dashboard_for']." ".$_SESSION['MYCALL']; ?> - SSH Access</h1>
+        <p>
+        <div class="navbar">
+          <a class="menuconfig" href="/admin/configure.php">Configuration
+          </a>
+          <a class="menubackup" href="/admin/config_backup.php">Backup/Restore
+          </a>
+          <a class="menuupgrade" href="/admin/expert/upgrade.php">Upgrade
+          </a>
+          <a class="menuupdate" href="/admin/update.php">Update
+          </a>
+          <a class="menuadmin" href="/admin/">Admin
+          </a>
+          <a class="menulive" href="/live/">Live Caller
+          </a>
+          <a class="menudashboard" href="/">Dashboard
+          </a>
+        </div>
+	</p>
+
   <div class="contentwide">
   <table width="100%">
-  <tr><th>SSH - Pi-Star</th></tr>
-  <tr>
-  <td>
-  <?php if (isset($shellPort)) { echo "<a href=\"//".$_SERVER['HTTP_HOST'].":".$shellPort."\">(<b>Click here for full-screen SSH client</a></b>)<br />\n"; } ?>
-  </td>
-  </tr>
   <tr><td align="center"><div>
     <?php if (isset($shellPort)) {
-      echo "<iframe src=\"http://".$_SERVER['HTTP_HOST'].":".$shellPort."\" style=\"border:1px solid #ffffff; background:#000; color:#00ff00; padding:5px;margin:5px;\" name=\"Pi-Star_SSH\" scrolling=\"no\" frameborder=\"0\" marginheight=\"0px\" marginwidth=\"0px\" height=\"800px\" width=\"85%%\"></iframe>";
+      echo "<iframe src=\"http://".$_SERVER['HTTP_HOST'].":".$shellPort."\" style=\"border:1px solid #ffffff; background:#000; color:#00ff00; padding:5px;margin:5px;\" name=\"Pi-Star_SSH\" scrolling=\"no\" frameborder=\"0\" marginheight=\"0px\" marginwidth=\"0px\" height=\"600px\" width=\"860px\"></iframe>";
     }
     else {
       echo "SSH Feature not yet installed";
     } ?>
   </div></td></tr>
+  <tr>
+  <td>
+  <?php if (isset($shellPort)) { echo "<a href=\"//".$_SERVER['HTTP_HOST'].":".$shellPort."\">(<b>Click here for full-screen SSH client</a></b>)<br />\n"; } ?>
+  </td>
+  </tr>
   </table>
   </div>
   <div class="footer">
