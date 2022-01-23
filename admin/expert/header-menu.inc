@@ -1,6 +1,6 @@
 <div class="header">
     <div style="font-size: 10px; text-align: left; padding-left: 8px; float: left;">Hostname: <?php echo exec('cat /etc/hostname'); ?></div><div style="font-size: 10px; text-align: right; padding-right: 8px;">Pi-Star: <?php echo $_SESSION['PiStarRelease']['Pi-Star']['Version'].'<br />';?> <?php echo $lang['dashboard'].": ".$version; echo(exec('/usr/local/sbin/pistar-check4updates')); ?></div>
-    <h1>Pi-Star Digital Voice - Expert</h1>
+    <h1>Pi-Star Digital Voice - Expert Area</h1>
     <p>
 	<div class="navbar">
 	    <a class="menuconfig" href="/admin/configure.php"><?php echo $lang['configuration'];?></a>
