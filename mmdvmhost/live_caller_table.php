@@ -46,7 +46,7 @@ if ($listElem[6] == null) {
 } else if ($listElem[6] == "DMR Data") {
 	$duration =  "<td style=\"background: #1d1;color:#fff;\">DMR Data</td>";
 } else {
-	$duration = "<td>$listElem[6] s</td>";
+	$duration = "<td>$listElem[6]s</td>";
 }
 
 // color the loss field
