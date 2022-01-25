@@ -2527,42 +2527,34 @@ if (!empty($_POST)):
 	if ( isset($configdmrgateway['DMR Network 5']['Options']) &&  substr($configdmrgateway['DMR Network 5']['Options'], 0, 1) !== '"' )	{ $configdmrgateway['DMR Network 5']['Options'] = '"'.$configdmrgateway['DMR Network 5']['Options'].'"'; }
 
 	// Add missing values to M17Gateway
-	if (!isset($configm17gateway['General']['RptAddress'])) { $configm17gateway['General']['RptAddress'] = '127.0.0.1'; }
-	if (!isset($configm17gateway['General']['RptPort'])) { $configm17gateway['General']['RptPort'] = '17011'; }
-	if (!isset($configm17gateway['General']['LocalPort'])) { $configm17gateway['General']['LocalPort'] = '17010'; }
-	if (!isset($configm17gateway['General']['Debug'])) { $configm17gateway['General']['Debug'] = '0'; }
-	if (!isset($configm17gateway['General']['Daemon'])) { $configm17gateway['General']['Daemon'] = '1'; }
-	if (!isset($configm17gateway['Info']['Power'])) { $configm17gateway['Info']['Power'] = $configmmdvm['Info']['Power']; }
-	if (!isset($configm17gateway['Info']['Height'])) { $configm17gateway['Info']['Height'] = $configmmdvm['Info']['Height']; }
-	if (!isset($configm17gateway['Network']['HostsFile1'])) { $configm17gateway['Network']['HostsFile1'] = "/usr/local/etc/M17Hosts.txt"; }
-	if (!isset($configm17gateway['Network']['HostsFile2'])) { $configm17gateway['Network']['HostsFile2'] = "/root/M17Hosts.txt"; }
-	if (!isset($configm17gateway['Network']['Port'])) { $configm17gateway['Network']['Port'] = "17000"; }
-	if (!isset($configm17gateway['Network']['ReloadTime'])) { $configm17gateway['Network']['ReloadTime'] = "60"; }
-	if (!isset($configm17gateway['Network']['HangTime'])) { $configm17gateway['Network']['HangTime'] = "240"; }
-	if (!isset($configm17gateway['Network']['Revert'])) { $configm17gateway['Network']['Revert'] = "1"; }
-	if (!isset($configm17gateway['Network']['Debug'])) { $configm17gateway['Network']['Debug'] = "0"; }
-   	if (!isset($configm17gateway['APRS'])) {
-		$configm17gateway['APRS']['Enable'] = $M17GatewayAPRS;
-        	$configm17gateway['APRS']['Address'] = "127.0.0.1";
-        	$configm17gateway['APRS']['Port'] = "8673";
-        	$configm17gateway['APRS']['Description'] = "APRS for M17Gateway";
-        	$configm17gateway['APRS']['Suffix'] = "N";
-   	}
-    if (!isset($configm17gateway['Remote Commands'])) {
-        $configm17gateway['Remote Commands']['Enabled'] = "0";
+	$configm17gateway['General']['RptAddress'] = '127.0.0.1';
+	$configm17gateway['General']['RptPort'] = '17011';
+	$configm17gateway['General']['LocalPort'] = '17010';
+	$configm17gateway['General']['Debug'] = '0';
+	$configm17gateway['General']['Daemon'] = '1';
+	$configm17gateway['Info']['Power'] = $configmmdvm['Info']['Power'];
+	$configm17gateway['Info']['Height'] = $configmmdvm['Info']['Height'];
+	$configm17gateway['Network']['HostsFile1'] = "/usr/local/etc/M17Hosts.txt";
+	$configm17gateway['Network']['HostsFile2'] = "/root/M17Hosts.txt";
+	$configm17gateway['Network']['Port'] = "17000";
+	$configm17gateway['Network']['ReloadTime'] = "60";
+	$configm17gateway['Network']['HangTime'] = "240";
+	$configm17gateway['Network']['Revert'] = "1";
+	$configm17gateway['Network']['Debug'] = "0";
+	$configm17gateway['APRS']['Enable'] = $M17GatewayAPRS;
+       	$configm17gateway['APRS']['Address'] = "127.0.0.1";
+       	$configm17gateway['APRS']['Port'] = "8673";
+       	$configm17gateway['APRS']['Description'] = "APRS for M17Gateway";
+       	$configm17gateway['APRS']['Suffix'] = "N";
+        $configm17gateway['Remote Commands']['Enable'] = "1";
         $configm17gateway['Remote Commands']['Port'] = "6075";
-    }
-    if (!isset($configm17gateway['Log'])) {
         $configm17gateway['Log']['DisplayLevel'] = "0";
         $configm17gateway['Log']['FileLevel'] = "2";
         $configm17gateway['Log']['FilePath'] = "/var/log/pi-star";
         $configm17gateway['Log']['FileRoot'] = "M17Gateway";
-    }
-    if (!isset($configm17gateway['Voice'])) {
         $configm17gateway['Voice']['Enabled'] = "1";
         $configm17gateway['Voice']['Language'] = "en_US";
         $configm17gateway['Voice']['Directory'] = "/usr/local/etc/M17_Audio";
-    } 
 
 	// Add missing options to MMDVMHost
 	if (!isset($configmmdvm['Modem']['RFLevel'])) { $configmmdvm['Modem']['RFLevel'] = "100"; }
@@ -3186,7 +3178,7 @@ if (!empty($_POST)):
 	else {
 	        $success = fwrite($handleM17GWconfig, $m17gwContent);
 	        fclose($handleM17GWconfig);
-		if ( (intval(exec('cat /tmp/Edr2FxEdr2FxEdr2Fx.tmp | wc -l')) > 30 ) && (file_exists('/etc/m17gateway')) ) {
+		if ( (intval(exec('cat /tmp/Edr2FxEdr2FxEdr2Fx.tmp | wc -l')) > 30 ) ) {
 			exec('sudo mv /tmp/Edr2FxEdr2FxEdr2Fx.tmp /etc/m17gateway');		// Move the file back
 			exec('sudo chmod 644 /etc/m17gateway');				// Set the correct runtime permissions
 			exec('sudo chown root:root /etc/m17gateway');				// Set the owner
