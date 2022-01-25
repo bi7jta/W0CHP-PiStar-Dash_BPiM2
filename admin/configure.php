@@ -574,7 +574,7 @@ if (!empty($_POST)):
 	  $configysf2dmr['Info']['Latitude'] = $newConfLatitude;
 	  $configysf2nxdn['Info']['Latitude'] = $newConfLatitude;
 	  $configysf2p25['Info']['Latitude'] = $newConfLatitude;
-	  if (isset($configdgidgateway)) { $configdgidgateway['Info']['Latitude'] = $newConfLatitude; }
+	  $configdgidgateway['Info']['Latitude'] = $newConfLatitude;
 	  $configdmrgateway['Info']['Latitude'] = $newConfLatitude;
 	  $configm17gateway['Info']['Latitude'] = $newConfLatitude;
 	  $confignxdngateway['Info']['Latitude'] = $newConfLatitude;
@@ -592,7 +592,7 @@ if (!empty($_POST)):
 	  $configysf2dmr['Info']['Longitude'] = $newConfLongitude;
 	  $configysf2nxdn['Info']['Longitude'] = $newConfLongitude;
 	  $configysf2p25['Info']['Longitude'] = $newConfLongitude;
-	  if (isset($configdgidgateway)) { $configdgidgateway['Info']['Longitude'] = $newConfLongitude; }
+	  $configdgidgateway['Info']['Longitude'] = $newConfLongitude;
 	  $configdmrgateway['Info']['Longitude'] = $newConfLongitude;
 	  $configm17gateway['Info']['Longitude'] = $newConfLongitude;
 	  $confignxdngateway['Info']['Longitude'] = $newConfLongitude;
@@ -625,7 +625,7 @@ if (!empty($_POST)):
 	  $configdmrgateway['Info']['Description'] = '"'.$newConfDesc2.'"';
 	  $configm17gateway['Info']['Description'] = '"'.$newConfDesc2.'"';
 	  $configysfgateway['Info']['Description'] = '"'.$newConfDesc2.'"';
-	  if (isset($configdgidgateway)) { $configdgidgateway['Info']['Description'] = '"'.$newConfDesc2.'"'; }
+	  $configdgidgateway['Info']['Description'] = '"'.$newConfDesc2.'"';
 	  $confignxdngateway['Info']['Description'] = '"'.$newConfDesc2.'"';
 	  system($rollDesc2);
 	  system($rollDesc22);
@@ -791,9 +791,9 @@ if (!empty($_POST)):
 	  $configysf2p25['Info']['RXFrequency'] = $newFREQrx;
 	  $configysf2p25['Info']['TXFrequency'] = $newFREQtx;
 	  $configysf2p25['YSF Network']['Suffix'] = "RPT";
-	  if (isset($configdgidgateway)) { $configdgidgateway['Info']['RXFrequency'] = $newFREQrx; }
-	  if (isset($configdgidgateway)) { $configdgidgateway['Info']['TXFrequency'] = $newFREQtx; }
-	  if (isset($configdgidgateway)) { $configdgidgateway['General']['Suffix'] = "RPT"; }
+	  $configdgidgateway['Info']['RXFrequency'] = $newFREQrx;
+	  $configdgidgateway['Info']['TXFrequency'] = $newFREQtx;
+	  $configdgidgateway['General']['Suffix'] = "RPT";
 	  $configdmr2ysf['YSF Network']['Suffix'] = "RPT";
 	  $confignxdngateway['Info']['RXFrequency'] = $newFREQrx;
 	  $confignxdngateway['Info']['TXFrequency'] = $newFREQtx;
@@ -900,9 +900,9 @@ if (!empty($_POST)):
 	  $configysf2p25['Info']['RXFrequency'] = $newFREQ;
 	  $configysf2p25['Info']['TXFrequency'] = $newFREQ;
 	  $configysf2p25['YSF Network']['Suffix'] = "ND";
-	  if (isset($configdgidgateway)) { $configdgidgateway['Info']['RXFrequency'] = $newFREQ; }
-	  if (isset($configdgidgateway)) { $configdgidgateway['Info']['TXFrequency'] = $newFREQ; }
-	  if (isset($configdgidgateway)) { $configdgidgateway['General']['Suffix'] = "ND"; }
+	  $configdgidgateway['Info']['RXFrequency'] = $newFREQ;
+	  $configdgidgateway['Info']['TXFrequency'] = $newFREQ;
+	  $configdgidgateway['General']['Suffix'] = "ND";
 	  $configdmr2ysf['YSF Network']['Suffix'] = "ND";
 	  $confignxdngateway['Info']['RXFrequency'] = $newFREQ;
 	  $confignxdngateway['Info']['TXFrequency'] = $newFREQ;
@@ -1019,8 +1019,8 @@ if (!empty($_POST)):
 	  $configysf2dmr['Info']['Description'] = $newCallsignUpper."_Pi-Star";
 	  $configysf2nxdn['Info']['Description'] = $newCallsignUpper."_Pi-Star";
 	  $configysf2p25['Info']['Description'] = $newCallsignUpper."_Pi-Star";
-	  if (isset($configdgidgateway)) { $configdgidgateway['General']['Callsign'] = $newCallsignUpper; }
-	  if (isset($configdgidgateway)) { $configdgidgateway['Info']['Description'] = $newCallsignUpper."_Pi-Star"; }
+	  $configdgidgateway['General']['Callsign'] = $newCallsignUpper;
+	  $configdgidgateway['Info']['Description'] = $newCallsignUpper."_Pi-Star";
 	  if ($configPistarRelease['Pi-Star']['Version'] >= "4.1.4") {
 	    $rollAPRSGatewayCallsign = 'sudo sed -i "/Callsign=/c\\Callsign='.$newCallsignUpper.'" /etc/aprsgateway';
 	    system($rollAPRSGatewayCallsign);
@@ -1275,7 +1275,7 @@ if (!empty($_POST)):
 	  $configdmrgateway['XLX Network']['Id'] = $newPostDmrId;
 	  $configdmr2ysf['DMR Network']['Id'] = $newPostDmrId;
 	  $configdmr2nxdn['DMR Network']['Id'] = $newPostDmrId;
-	  if (isset($configdgidgateway)) { $configdgidgateway['General']['Id'] = $newPostDmrId; }
+	  $configdgidgateway['General']['Id'] = $newPostDmrId;
 	}
 
 	// Set DMR Extended ID
@@ -1525,17 +1525,17 @@ if (!empty($_POST)):
 	// Set YSF Hang Timers
 	if (empty($_POST['ysfRfHangTime']) != TRUE ) {
 	  $configmmdvm['System Fusion']['ModeHang'] = preg_replace('/[^0-9]/', '', $_POST['ysfRfHangTime']);
-	  if (isset($configdgidgateway)) { $configdgidgateway['General']['RFHangTime'] = preg_replace('/[^0-9]/', '', $_POST['ysfRfHangTime']); }
-	  if (isset($configdgidgateway)) { $configdgidgateway['YSF Network']['RFHangTime'] = preg_replace('/[^0-9]/', '', $_POST['ysfRfHangTime']); }
-	  if (isset($configdgidgateway)) { $configdgidgateway['FCS Network']['RFHangTime'] = preg_replace('/[^0-9]/', '', $_POST['ysfRfHangTime']); }
-	  if (isset($configdgidgateway)) { $configdgidgateway['IMRS Network']['RFHangTime'] = preg_replace('/[^0-9]/', '', $_POST['ysfRfHangTime']); }
+	  $configdgidgateway['General']['RFHangTime'] = preg_replace('/[^0-9]/', '', $_POST['ysfRfHangTime']);
+	  $configdgidgateway['YSF Network']['RFHangTime'] = preg_replace('/[^0-9]/', '', $_POST['ysfRfHangTime']);
+	  $configdgidgateway['FCS Network']['RFHangTime'] = preg_replace('/[^0-9]/', '', $_POST['ysfRfHangTime']);
+	  $configdgidgateway['IMRS Network']['RFHangTime'] = preg_replace('/[^0-9]/', '', $_POST['ysfRfHangTime']);
 	}
 	if (empty($_POST['ysfNetHangTime']) != TRUE ) {
 	  $configmmdvm['System Fusion Network']['ModeHang'] = preg_replace('/[^0-9]/', '', $_POST['ysfNetHangTime']);
-	  if (isset($configdgidgateway)) { $configdgidgateway['General']['NetHangTime'] = preg_replace('/[^0-9]/', '', $_POST['ysfNetHangTime']); }
-	  if (isset($configdgidgateway)) { $configdgidgateway['YSF Network']['NetHangTime'] = preg_replace('/[^0-9]/', '', $_POST['ysfNetHangTime']); }
-	  if (isset($configdgidgateway)) { $configdgidgateway['FCS Network']['NetHangTime'] = preg_replace('/[^0-9]/', '', $_POST['ysfNetHangTime']); }
-	  if (isset($configdgidgateway)) { $configdgidgateway['IMRS Network']['NetHangTime'] = preg_replace('/[^0-9]/', '', $_POST['ysfNetHangTime']); }
+	  $configdgidgateway['General']['NetHangTime'] = preg_replace('/[^0-9]/', '', $_POST['ysfNetHangTime']);
+	  $configdgidgateway['YSF Network']['NetHangTime'] = preg_replace('/[^0-9]/', '', $_POST['ysfNetHangTime']);
+	  $configdgidgateway['FCS Network']['NetHangTime'] = preg_replace('/[^0-9]/', '', $_POST['ysfNetHangTime']);
+	  $configdgidgateway['IMRS Network']['NetHangTime'] = preg_replace('/[^0-9]/', '', $_POST['ysfNetHangTime']);
 	}
 	// Set P25 Hang Timers
 	if (empty($_POST['p25RfHangTime']) != TRUE ) {
@@ -2697,6 +2697,8 @@ if (!empty($_POST)):
 	if (!isset($configysfgateway['Mobile GPS']['Enable'])) { $configysfgateway['Mobile GPS']['Enable'] = "0"; }
  	if (!isset($configysfgateway['Mobile GPS']['Address'])) { $configysfgateway['Mobile GPS']['Address'] = "127.0.0.1"; }
 	if (!isset($configysfgateway['Mobile GPS']['Port'])) { $configysfgateway['Mobile GPS']['Port'] = "7834"; }
+	if (isset($configysfgateway['General']['LocalPort'])) { $configysfgateway['General']['LocalPort'] = "42025"; }
+	if (isset($configysfgateway['General']['RptPort'])) { $configysfgateway['General']['RptPort'] = "42026"; }
 
 	// Add missing options to YSF2DMR
 	if (!isset($configysf2dmr['Info']['Power'])) { $configysf2dmr['Info']['Power'] = "1"; }
@@ -2770,25 +2772,32 @@ if (!empty($_POST)):
 	if (!isset($configysf2p25['YSF Network']['DT2'])) { $configysf2p25['YSF Network']['DT2'] = "0,0,0,0,108,32,28,32,3,8"; }
 
 	// Defaults for DGIdGateway
-	if (isset($configdgidgateway)) {
-		$configdgidgateway['General']['LocalPort'] = $configmmdvm['System Fusion Network']['GatewayPort'];
-		$configdgidgateway['General']['RptPort'] =  $configmmdvm['System Fusion Network']['LocalPort'];
-		$configdgidgateway['Log']['DisplayLevel'] = 0; 
-		$configdgidgateway['Log']['FileLevel'] = 2;
-		$configdgidgateway['Log']['FilePath'] = "/var/log/pi-star";
-		$configdgidgateway['Log']['FileRoot'] = "DGIdGateway";
-		$configdgidgateway['Log']['FileRotate'] = 1;
-		$configdgidgateway['YSF Network']['Hosts'] = "/usr/local/etc/YSFHosts.txt";
-		$configdgidgateway['DGId=0']['Port'] = 42025;
-		$configdgidgateway['DGId=0']['Local'] = 42026;
-		if (!isset($configdgidgateway['APRS'])) {
-			$configdgidgateway['APRS']['Enable'] = $DGIdGatewayAPRS;
-			$configdgidgateway['APRS']['Address'] = "127.0.0.1";
-			$configdgidgateway['APRS']['Port'] = "8673";
-			$configdgidgateway['APRS']['Suffix'] = "Y";
-			$configdgidgateway['APRS']['Description'] = "APRS for DGIdGateway";
-		}
-	}
+	$configdgidgateway['General']['LocalPort'] = $configmmdvm['System Fusion Network']['GatewayPort'];
+	$configdgidgateway['General']['RptPort'] =  $configmmdvm['System Fusion Network']['LocalPort'];
+	$configdgidgateway['General']['RptAddress'] = "127.0.0.1";
+	$configdgidgateway['General']['LocalAddress'] = "127.0.0.1";
+	$configdgidgateway['General']['Daemon'] = "1";
+	$configdgidgateway['General']['Debug'] = "0";
+	$configdgidgateway['General']['Bleep'] = "1";
+	$configdgidgateway['Log']['DisplayLevel'] = "0"; 
+	$configdgidgateway['Log']['FileLevel'] = "2";
+	$configdgidgateway['Log']['FilePath'] = "/var/log/pi-star";
+	$configdgidgateway['Log']['FileRoot'] = "DGIdGateway";
+	$configdgidgateway['Log']['FileRotate'] = "1";
+	$configdgidgateway['YSF Network']['Hosts'] = "/usr/local/etc/YSFHosts.txt";
+	$configdgidgateway['DGId=0']['Port'] = $configysfgateway['General']['LocalPort'];;
+	$configdgidgateway['DGId=0']['Local'] = $configysfgateway['General']['RptPort'];
+	$configdgidgateway['DGId=0']['Type'] = "Gateway";
+	$configdgidgateway['DGId=0']['Static'] = "1";
+	$configdgidgateway['DGId=0']['Address'] = "127.0.0.1";
+	$configdgidgateway['DGId=0']['RFHangTime'] = "120";
+	$configdgidgateway['DGId=0']['NetHangTime'] = "120";
+	$configdgidgateway['DGId=0']['Debug'] = "0";
+	$configdgidgateway['APRS']['Enable'] = $DGIdGatewayAPRS;
+	$configdgidgateway['APRS']['Address'] = "127.0.0.1";
+	$configdgidgateway['APRS']['Port'] = "8673";
+	$configdgidgateway['APRS']['Suffix'] = "Y";
+	$configdgidgateway['APRS']['Description'] = "APRS for DGIdGateway";
 
 	// Clean up for NXDN Gateway
 	if (file_exists('/etc/nxdngateway')) {
