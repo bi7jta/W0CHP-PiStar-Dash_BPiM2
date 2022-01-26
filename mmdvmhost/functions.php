@@ -728,7 +728,7 @@ function getMMDVMLog() {
             $lineNos = sizeof($logLines1);
             $logLines1 = array_slice($logLines1, -800);
         } else {
-            $logLines1 = explode("\n", `tail -250 $logPath | sed '/\(CSBK\|overflow\|Downlink\|Valid\|Invalid\)/d' | egrep -h "from|end|watchdog|lost"`);
+            $logLines1 = explode("\n", `tail -250 $logPath | sed '/\(CSBK\|overflow\|Downlink\|Valid\|Invalid\|\Talker\)/d' | egrep -h "from|end|watchdog|lost"`);
             $lineNos = sizeof($logLines1);
             $logLines1 = array_slice($logLines1, -250);
         }
@@ -739,7 +739,7 @@ function getMMDVMLog() {
             if (!file_exists("/etc/.GETNAMES")) {
                 $logLines2 = explode("\n", `tail -800 $logPath | sed '/\(CSBK\|overflow\|Downlink\|Valid\|Invalid\|\Talker\)/d' | egrep -h "from|end|watchdog|lost"`);
                 $logLines2 = array_slice($logLines2, -800);
-	    }
+            }
         }
     }
     if ($lineNos < 800) {
