@@ -2674,6 +2674,8 @@ if (!empty($_POST)):
 	if (!isset($configdmr2ysf['DMR Network']['TGListFile'])) { $configdmr2ysf['DMR Network']['TGListFile'] = "/usr/local/etc/TGList_YSF.txt"; }
 	$configdmr2ysf['Log']['DisplayLevel'] = "0";
 	$configdmr2ysf['Log']['FileLevel'] = "2";
+        $configdmr2ysf['YSF Network']['GatewayPort'] = $configysfgateway['General']['LocalPort'];
+        $configdmr2ysf['YSF Network']['LocalPort'] = $configysfgateway['General']['RptPort'];
 	if (!isset($configdmr2ysf['YSF Network']['DT1']))   { $configdmr2ysf['YSF Network']['DT1'] = "1,34,97,95,43,3,17,0,0,0"; }
 	if (!isset($configdmr2ysf['YSF Network']['DT2']))   { $configdmr2ysf['YSF Network']['DT2'] = "0,0,0,0,108,32,28,32,3,8"; }
 	if (!isset($configdmr2ysf['YSF Network']['Debug'])) { $configdmr2ysf['YSF Network']['Debug'] = "0"; }
@@ -2777,7 +2779,7 @@ if (!empty($_POST)):
 	$configdgidgateway['Log']['FileRoot'] = "DGIdGateway";
 	$configdgidgateway['Log']['FileRotate'] = "1";
 	$configdgidgateway['YSF Network']['Hosts'] = "/usr/local/etc/YSFHosts.txt";
-	$configdgidgateway['DGId=0']['Port'] = $configysfgateway['General']['LocalPort'];;
+	$configdgidgateway['DGId=0']['Port'] = $configysfgateway['General']['LocalPort'];
 	$configdgidgateway['DGId=0']['Local'] = $configysfgateway['General']['RptPort'];
 	$configdgidgateway['DGId=0']['Type'] = "Gateway";
 	$configdgidgateway['DGId=0']['Static'] = "1";
