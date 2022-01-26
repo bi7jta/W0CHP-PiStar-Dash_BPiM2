@@ -39,7 +39,6 @@ include_once $_SERVER['DOCUMENT_ROOT'].'/mmdvmhost/tools.php';
   <div class="grid-item <?php getServiceStatusClass(autoAPenabled()); ?>">Auto AP</div>
   <div class="grid-item <?php getServiceStatusClass(isProcessRunning('P25Gateway')); ?>">P25Gateway</div> 
   <div class="grid-item <?php getServiceStatusClass(isProcessRunning('P25Parrot')); ?>">P25Parrot</div> 
-  <div class="grid-item <?php getServiceStatusClass(isProcessRunning('gpsd')); ?>">GPSd</div> 
   <div class="grid-item <?php getServiceStatusClass(isProcessRunning('DAPNETGateway')); ?>">DAPNETGateway</div> 
   <div class="grid-item <?php getServiceStatusClass(isProcessRunning('timeserverd')); ?>">TimeServer</div>
   <div class="grid-item <?php getServiceStatusClass(isProcessRunning('/usr/local/sbin/pistar-watchdog',true)); ?>">PiStar-Watchdog</div> 
@@ -51,6 +50,5 @@ include_once $_SERVER['DOCUMENT_ROOT'].'/mmdvmhost/tools.php';
   <div class="grid-item <?php getServiceStatusClass(isProcessRunning('YSF2P25')); ?>">YSF2P25</div>
   <div class="grid-item <?php getServiceStatusClass(isProcessRunning('YSF2NXDN')); ?>">YSF2NXDN</div>
   <div class="grid-item <?php getServiceStatusClass(isProcessRunning('DMR2NXDN')); ?>">DMR2NXDN</div>
-  <div class="grid-item <?php getServiceStatusClass(isProcessRunning('ntpd')); ?>">NTPd</div>
 </div>
 
