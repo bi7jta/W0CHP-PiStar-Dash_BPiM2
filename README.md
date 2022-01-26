@@ -2,11 +2,11 @@
 
 **DO NOT contact me for support, bugs, etc...**
 
-This is my *personal* and highly customized Pi-Star dashboard, and related
-binaries.  I offer ZERO support. This is here for your hacking and enjoyment,
-and you're fully on your own. *Use at your own risk*, and DO NOT ask me for
-support.  Nor should you file/report any bugs etc. on any official Pi-Star
-medium...this is not an official Pi-Star release.
+This is my *personal* and highly customized fork/version of the Pi-Star
+dashboard, and related binaries.  I offer ZERO support. This is here for your
+hacking and enjoyment, and you're fully on your own. *Use at your own risk*,
+and DO NOT ask me for support.  Nor should you file/report any bugs etc. on any
+official Pi-Star medium...this is not an official Pi-Star release.
 
 If you ask me to support, **I will ignore you.** It's *strongly* recommended
 that you read and heed the [rules and
