@@ -728,7 +728,7 @@ function getMMDVMLog() {
             $lineNos = sizeof($logLines1);
             $logLines1 = array_slice($logLines1, -800);
         } else {
-            $logLines1 = explode("\n", `tail -250 $logPath | sed '/\(CSBK\|overflow\|Downlink\|Valid\|Invalid\)/d' | egrep -h "from|end|watchdog|lost|Alias|0000"`);
+            $logLines1 = explode("\n", `tail -250 $logPath | sed '/\(CSBK\|overflow\|Downlink\|Valid\|Invalid\)/d' | egrep -h "from|end|watchdog|lost"`);
             $lineNos = sizeof($logLines1);
             $logLines1 = array_slice($logLines1, -250);
         }
