@@ -102,7 +102,7 @@ if ($_SERVER["PHP_SELF"] == "/config/changelog.php") {
 					<?php
 					$uaStr="WPSD-ChangeLog";
 					@exec("curl --fail -s -o /dev/null https://repo.w0chp.net/Chipster/W0CHP-PiStar-Dash --user-agent $uaStr");
-					$out = shell_exec('/usr/local/sbin/WPSD-CL-to-html');
+					$out = shell_exec('/usr/local/bin/WPSD-CL-to-html');
 					$out = str_replace("\n", "<br />", $out);
 					echo $out;
 					?>
