@@ -438,10 +438,24 @@ checkSessionValidity();
         }
     
     if ($_SERVER["PHP_SELF"] != "/admin/index.php") {
+    echo '<script type="text/javascript">'."\n";
+    echo 'function LiveCallerDetails(){'."\n";
+    echo '  $("#liveCallerDeets").load("/mmdvmhost/live_caller_table.php");'."\n";
+    echo '}'."\n";
+    echo 'setInterval(function(){LiveCallerDetails()}, 1500);'."\n";
+    echo '$(window).trigger(\'resize\');'."\n";
+    echo '</script>'."\n";
+    echo '<div id="liveCallerDeets">'."\n";
+    include 'mmdvmhost/live_caller_table.php';
+    echo '</div>'."\n";
+    echo "<br />\n";
 		echo '<script type="text/javascript">'."\n";
 		echo 'var lhto;'."\n";
 		echo 'var ltxto'."\n";
 
+		echo 'function reloadLiveCaller(){'."\n";
+		echo '  $("#liveCallerDeets").load("/mmdvmhost/live_caller_table.php",function(){ livecaller = setTimeout(reloadLiveCaller,1500) });'."\n";
+		echo '}'."\n";
 		echo 'function reloadLocalTX(){'."\n";
 		echo '  $("#localTxs").load("/mmdvmhost/localtx.php",function(){ ltxto = setTimeout(reloadLocalTX,1500) });'."\n";
 		echo '}'."\n";
@@ -450,7 +464,11 @@ checkSessionValidity();
 		echo '  $("#lastHeard").load("/mmdvmhost/lh.php",function(){ lhto = setTimeout(reloadLastHeard,1500) });'."\n";
 		echo '}'."\n";
 		
-	   	echo 'function setLHAutorefresh(obj) {'."\n";
+     		echo 'function setLCautorefresh(obj) {'."\n";
+    		echo '        livecaller = setTimeout(reloadLiveCaller,1500,1500);'."\n";
+    		echo '}'."\n";
+
+	   		echo 'function setLHAutorefresh(obj) {'."\n";
     		echo '    if (obj.checked) {'."\n";
     		echo '        lhto = setTimeout(reloadLastHeard,1500);'."\n";
     		echo '    }'."\n";
@@ -470,6 +488,7 @@ checkSessionValidity();
 		
 		echo 'lhto = setTimeout(reloadLastHeard,1500);'."\n";
 		echo 'ltxto = setTimeout(reloadLocalTX,1500);'."\n";
+		echo 'livecaller = setTimeout(reloadLiveCaller,1500);'."\n";
 		echo '$(window).trigger(\'resize\');'."\n";
 		echo '</script>'."\n";
     }
