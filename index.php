@@ -132,49 +132,25 @@ checkSessionValidity();
 	    </div>
 	    
 	    <?php
-	    
 	    // Output some default features
-	    if ($_SERVER["PHP_SELF"] == "/index.php")
+	    if ($_SERVER["PHP_SELF"] == "/index.php" || $_SERVER["PHP_SELF"] == "/admin/index.php")
 	    {
-		echo '<div class="contentwide">'."\n";
-		echo '<script type="text/javascript">'."\n";
-		echo 'function reloadHwInfo(){'."\n";
-		echo '  $("#hwInfo").load("/dstarrepeater/hw_info.php",function(){ setTimeout(reloadHwInfo, 15000) });'."\n";
-		echo '}'."\n";
-		echo 'setTimeout(reloadHwInfo, 15000);'."\n";
-		echo '$(window).trigger(\'resize\');'."\n";
-		echo '</script>'."\n";
-		echo '<div id="hwInfo">'."\n";
-		include 'dstarrepeater/hw_info.php';
-		echo '</div>'."\n";
-		echo '</div>'."\n";
-		echo '<br />'."\n";
-	    }
-	    else if ($_SERVER["PHP_SELF"] == "/admin/index.php") {
-		echo '<div class="contentwide">'."\n";
-		echo '<script type="text/javascript">'."\n";
-		echo 'function reloadHwInfo(){'."\n";
-		echo '  $("#hwInfo").load("/dstarrepeater/hw_info.php",function(){ setTimeout(reloadHwInfo, 15000) });'."\n";
-		echo '}'."\n";
-		echo 'function reloadSysInfo(){'."\n";
-		echo '  $("#sysInfo").load("/dstarrepeater/system.php",function(){ setTimeout(reloadSysInfo,15000) });'."\n";
-		echo '}'."\n";
-		echo 'setTimeout(reloadHwInfo,15000);'."\n";
-		echo 'setTimeout(reloadSysInfo,15000);'."\n";
-		echo '$(window).trigger(\'resize\');'."\n";
-		echo '</script>'."\n";
-		if (empty($_POST) && empty($_GET)) {				// only show services on main admin page
+		    echo '<div class="contentwide">'."\n";
+		    echo '<script type="text/javascript">'."\n";
+		    echo 'function reloadHwInfo(){'."\n";
+		    echo '  $("#hwInfo").load("/dstarrepeater/hw_info.php",function(){ setTimeout(reloadHwInfo, 15000) });'."\n";
+		    echo '}'."\n";
+		    echo 'setTimeout(reloadHwInfo, 15000);'."\n";
+		    echo '$(window).trigger(\'resize\');'."\n";
+		    echo '</script>'."\n";
 		    echo '<div id="hwInfo">'."\n";
-		    include 'dstarrepeater/hw_info.php';			// Basic System Info
-		    echo '</div><br />'."\n";
-		    echo '<div id="sysInfo">'."\n";
-		    include 'dstarrepeater/system.php';				// Basic System Info
+		    include 'dstarrepeater/hw_info.php';
 		    echo '</div>'."\n";
-                }
-		echo '</div>'."\n";
+		    echo '</div>'."\n";
+		    echo '<br />'."\n";
 	    }
 	    
-	    // First lets figure out if we are in MMDVMHost mode, or dstarrepeater mode;
+        // First lets figure out if we are in MMDVMHost mode, or dstarrepeater mode;
 	    if (file_exists('/etc/dstar-radio.mmdvmhost')) {
 		//include 'config/config.php';					// MMDVMDash Config
 		//	include_once 'mmdvmhost/tools.php';				// MMDVMDash Tools
@@ -278,7 +254,6 @@ checkSessionValidity();
 		    include 'dstarrepeater/ccs_connections.php';			// dstarrepeater gateway config
 		    echo '</div>'."\n";
 		}
-	
 		if ($_SERVER["PHP_SELF"] == "/admin/index.php" && $_POST["func"] == "mode_man" || $_GET["func"] == "mode_man") {	// Admin Only Option (instant mode mgr)	
                     include "admin/instant-mode-manager.php";
 		}
@@ -443,33 +418,30 @@ checkSessionValidity();
 		    echo '      <td style="white-space:normal;padding: 3px;"><b>Note:</b> Modes/networks/services not <a href="/admin/configure.php">globally configured/enabled</a>, or that are paused, are not selectable here until they are enabled or <a href="./?func=mode_man">resumed from pause</a>.</td>';
 		    echo '    </tr>';
 		    echo '  </table>';
-		    echo ' </form>';
-		    if (empty($_POST) && empty($_GET) || ($_POST["func"] == "pocsag_man" || $_GET["func"] == "pocsag_man")) { echo '<hr />'; }
+		    echo ' </form><br />';
 		}
-    /*
-    echo '<script type="text/javascript">'."\n";
-    echo 'function LiveCallerDetails(){'."\n";
-    echo '  $("#liveCallerDeets").load("/mmdvmhost/live_caller_table.php");'."\n";
-    echo '}'."\n";
-    echo 'setInterval(function(){LiveCallerDetails()}, 1500);'."\n";
-    echo '$(window).trigger(\'resize\');'."\n";
-    echo '</script>'."\n";
-    echo '<div id="liveCallerDeets">'."\n";
-    include 'mmdvmhost/live_caller_table.php';
-    echo '</div>'."\n";
-    echo "<br />\n";
-    */
+
+	    if ($_SERVER["PHP_SELF"] == "/admin/index.php") {
+		    echo '<div class="contentwide">'."\n";
+	    	echo '<script type="text/javascript">'."\n";
+	    	echo 'function reloadSysInfo(){'."\n";
+	    	echo '  $("#sysInfo").load("/dstarrepeater/system.php",function(){ setTimeout(reloadSysInfo,15000) });'."\n";
+	    	echo '}'."\n";
+	    	echo 'setTimeout(reloadSysInfo,15000);'."\n";
+	    	echo '$(window).trigger(\'resize\');'."\n";
+	    	echo '</script>'."\n";
+	    	if (empty($_POST) && empty($_GET)) {				// only show services on main admin page
+		        echo '<div id="sysInfo">'."\n";
+		        include 'dstarrepeater/system.php';				// Basic System Info
+		        echo '</div><br />'."\n";
+            }
+        }
+    
+    if ($_SERVER["PHP_SELF"] != "/admin/index.php") {
 		echo '<script type="text/javascript">'."\n";
 		echo 'var lhto;'."\n";
 		echo 'var ltxto'."\n";
-		//echo 'var livecaller'."\n";
 
-        /*
-		echo 'function reloadLiveCaller(){'."\n";
-		echo '  $("#liveCallerDeets").load("/mmdvmhost/live_caller_table.php",function(){ livecaller = setTimeout(reloadLiveCaller,1500) });'."\n";
-		echo '}'."\n";
-        */
-			
 		echo 'function reloadLocalTX(){'."\n";
 		echo '  $("#localTxs").load("/mmdvmhost/localtx.php",function(){ ltxto = setTimeout(reloadLocalTX,1500) });'."\n";
 		echo '}'."\n";
@@ -478,18 +450,7 @@ checkSessionValidity();
 		echo '  $("#lastHeard").load("/mmdvmhost/lh.php",function(){ lhto = setTimeout(reloadLastHeard,1500) });'."\n";
 		echo '}'."\n";
 		
-            /*
-     		echo 'function setLCautorefresh(obj) {'."\n";
-    		echo '    if (obj.checked) {'."\n";
-    		echo '        livecaller = setTimeout(reloadLiveCaller,1500,1500);'."\n";
-    		echo '    }'."\n";
-    		echo '    else {'."\n";
-    		echo '        clearTimeout(livecaller);'."\n";
-    		echo '    }'."\n";
-    		echo '}'."\n";
-            */
-
-	   		echo 'function setLHAutorefresh(obj) {'."\n";
+	   	echo 'function setLHAutorefresh(obj) {'."\n";
     		echo '    if (obj.checked) {'."\n";
     		echo '        lhto = setTimeout(reloadLastHeard,1500);'."\n";
     		echo '    }'."\n";
@@ -509,10 +470,9 @@ checkSessionValidity();
 		
 		echo 'lhto = setTimeout(reloadLastHeard,1500);'."\n";
 		echo 'ltxto = setTimeout(reloadLocalTX,1500);'."\n";
-		//echo 'livecaller = setTimeout(reloadLiveCaller,1500);'."\n";
 		echo '$(window).trigger(\'resize\');'."\n";
 		echo '</script>'."\n";
-
+    }
 		if (empty($_POST) && empty($_GET)) {  // only show localtx and lastheard on main admin page (not sections)
 		    echo '<div id="localTxs">'."\n";
 		    include 'mmdvmhost/localtx.php';				// MMDVMDash Local Trasmissions
