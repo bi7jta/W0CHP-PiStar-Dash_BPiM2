@@ -633,7 +633,7 @@ if (isProcessRunning("M17Gateway")) {
 		if (isPaused("P25")) {
 	    	echo "<tr><td colspan=\"2\"style=\"background: $tableRowEvenBg;\">Mode Paused</td></tr>\n";
 		} else {
-		    echo "<tr><td colspan=\"2\" ".GetActiveConnectionStyle($remoteP25GResults, "p25").">".getActualLink($logLinesP25Gateway, "P25")."</td></tr>\n";
+		    echo "<tr><td colspan=\"2\" style=\"background: $tableRowEvenBg;\" ".GetActiveConnectionStyle($remoteP25GResults, "p25").">".getActualLink($logLinesP25Gateway, "P25")."</td></tr>\n";
 
 		}
 	    echo "</table>\n";
@@ -672,7 +672,7 @@ if (isProcessRunning("M17Gateway")) {
 		echo "<br />\n";
 		echo "<table>\n";
 		echo "<tr><th colspan=\"2\">M17 Repeater</th></tr>\n";
-		echo "<tr><th>RPT</th><td style=\"background: #ffffff;\">".str_replace(' ', '&nbsp;', $configm17gateway['General']['Callsign'])."&nbsp;".str_replace(' ', '&nbsp;', $configm17gateway['General']['Suffix'])."</td></tr>\n";
+		echo "<tr><th>RPT</th><td style=\"background: $tableRowEvenBg;\">".str_replace(' ', '&nbsp;', $configm17gateway['General']['Callsign'])."&nbsp;".str_replace(' ', '&nbsp;', $configm17gateway['General']['Suffix'])."</td></tr>\n";
 		echo "<tr><th colspan=\"2\">M17 Network</th></tr>\n";
                 if (isPaused("M17")) {
                     echo "<tr><td colspan=\"2\"style=\"background: $tableRowEvenBg;\">Mode Paused</td></tr>\n";
