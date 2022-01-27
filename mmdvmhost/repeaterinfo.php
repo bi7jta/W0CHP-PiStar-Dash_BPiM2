@@ -661,7 +661,7 @@ if (isProcessRunning("M17Gateway")) {
 	    if (isPaused("NXDN")) {
 		echo "<tr><td colspan=\"2\"style=\"background: $tableRowEvenBg;\">Mode Paused</td></tr>\n";
 	    } else {
-	    	echo "<tr><td colspan=\"2\" style=\"background: $tableRowEvenBg; ".GetActiveConnectionStyle($remoteNXDNGResults, "nxdn")." >".getActualLink($logLinesNXDNGateway, "NXDN")."</td></tr>\n";
+	    	echo "<tr><td colspan=\"2\" style=\"background: $tableRowEvenBg;\" ".GetActiveConnectionStyle($remoteNXDNGResults, "nxdn")." >".getActualLink($logLinesNXDNGateway, "NXDN")."</td></tr>\n";
 	    }
 	    echo "</table>\n";
 	}
@@ -677,7 +677,7 @@ if (isProcessRunning("M17Gateway")) {
                 if (isPaused("M17")) {
                     echo "<tr><td colspan=\"2\"style=\"background: $tableRowEvenBg;\">Mode Paused</td></tr>\n";
                 } else {
-		    echo "<tr><td colspan=\"2\" style=\"background: $tableRowEvenBg; " .GetActiveConnectionStyle($remoteM17GResults, "m17").">".getActualLink($reverseLogLinesM17Gateway, "M17")."</td></tr>\n";
+		    echo "<tr><td colspan=\"2\" style=\"background: $tableRowEvenBg;\" ".GetActiveConnectionStyle($remoteM17GResults, "m17").">".getActualLink($reverseLogLinesM17Gateway, "M17")."</td></tr>\n";
                 }
 		echo "</table>\n";
 	}
