@@ -569,7 +569,7 @@ if (isProcessRunning("M17Gateway")) {
         } else {
             echo "<tr><th colspan=\"2\">".$lang['ysf_net']."".$ysfLinkState."</th></tr>\n";
         }
-	echo "<tr><td colspan=\"2\" style=\"background: $tableRowEvenBg;\" ".GetActiveConnectionStyle($remoteYSFGResults, "ysf")." title=\"".$ysfLinkedToTooltip."\">".$ysfTableData."</td></tr>\n";
+	echo "<tr><td colspan=\"2\" ".GetActiveConnectionStyle($remoteYSFGResults, "ysf")." title=\"".$ysfLinkedToTooltip."\">".$ysfTableData."</td></tr>\n";
         echo "</table>\n";
 	}
 
@@ -633,7 +633,7 @@ if (isProcessRunning("M17Gateway")) {
 		if (isPaused("P25")) {
 	    	echo "<tr><td colspan=\"2\"style=\"background: $tableRowEvenBg;\">Mode Paused</td></tr>\n";
 		} else {
-		    echo "<tr><td colspan=\"2\" style=\"background: $tableRowEvenBg;\" ".GetActiveConnectionStyle($remoteP25GResults, "p25").">".getActualLink($logLinesP25Gateway, "P25")."</td></tr>\n";
+		    echo "<tr><td colspan=\"2\" ".GetActiveConnectionStyle($remoteP25GResults, "p25").">".getActualLink($logLinesP25Gateway, "P25")."</td></tr>\n";
 
 		}
 	    echo "</table>\n";
@@ -661,7 +661,7 @@ if (isProcessRunning("M17Gateway")) {
 	    if (isPaused("NXDN")) {
 		echo "<tr><td colspan=\"2\"style=\"background: $tableRowEvenBg;\">Mode Paused</td></tr>\n";
 	    } else {
-	    	echo "<tr><td colspan=\"2\" style=\"background: $tableRowEvenBg;\" ".GetActiveConnectionStyle($remoteNXDNGResults, "nxdn")." >".getActualLink($logLinesNXDNGateway, "NXDN")."</td></tr>\n";
+	    	echo "<tr><td colspan=\"2\" ".GetActiveConnectionStyle($remoteNXDNGResults, "nxdn")." >".getActualLink($logLinesNXDNGateway, "NXDN")."</td></tr>\n";
 	    }
 	    echo "</table>\n";
 	}
@@ -677,7 +677,7 @@ if (isProcessRunning("M17Gateway")) {
                 if (isPaused("M17")) {
                     echo "<tr><td colspan=\"2\"style=\"background: $tableRowEvenBg;\">Mode Paused</td></tr>\n";
                 } else {
-		    echo "<tr><td colspan=\"2\" style=\"background: $tableRowEvenBg;\" ".GetActiveConnectionStyle($remoteM17GResults, "m17").">".getActualLink($reverseLogLinesM17Gateway, "M17")."</td></tr>\n";
+		    echo "<tr><td colspan=\"2\" ".GetActiveConnectionStyle($remoteM17GResults, "m17").">".getActualLink($reverseLogLinesM17Gateway, "M17")."</td></tr>\n";
                 }
 		echo "</table>\n";
 	}

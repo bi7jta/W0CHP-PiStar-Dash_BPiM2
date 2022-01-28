@@ -82,6 +82,14 @@ checkSessionValidity();
               },300000);
           });
         </script>
+        <script>
+        $(document).ready(function(){
+          setInterval(function(){
+              $("#CheckMessage").load(window.location.href + " #CheckMessage" );
+              },3600000);
+          });
+        </script>
+
     </head>
     <body>
 	<div class="container">
@@ -89,9 +97,12 @@ checkSessionValidity();
                <div style="font-size: 10px; text-align: left; padding-left: 8px; float: left;">Hostname: <?php echo exec('cat /etc/hostname'); ?></div>
 		<div style="font-size: 10px; text-align: right; padding-right: 8px;">Pi-Star: <?php echo $_SESSION['PiStarRelease']['Pi-Star']['Version'].'<br />';?><div id="CheckUpdate"><?php echo $lang['dashboard'].": ".$version; system('/usr/local/sbin/pistar-check4updates'); ?></div></div>
 		<h1>Pi-Star <?php echo $lang['digital_voice']." ".$lang['dashboard_for']." <code style='font-weight:500;'>".$_SESSION['MYCALL']."</code>"; ?></h1>
+		<div id="CheckMessage">
 		<?php
 		    include('config/messages.php');
 		?>
+		</div>
+
 		<p>
  		    <div class="navbar">
               <script type= "text/javascript">
