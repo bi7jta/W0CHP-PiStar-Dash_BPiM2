@@ -14,11 +14,12 @@ $lang = array (
   "admin"                       =>  "Admin",
   "power"                       =>  "Strøm",
   "update"                      =>  "Oppdater",
+  "upgrade"                     =>  "Upgrade",
   "backup_restore"              =>  "Backup/Restore",
   "factory_reset"               =>  "Tilbakestill",
   "live_logs"                   =>  "Live Logg",
   // Config page section headdings
-  "hardware_info"               =>  "Hardware Informasjon",
+  "hardware_info"               =>  "Gateway Hardware Informasjon",
   "control_software"            =>  "Kontroller Programvare",
   "mmdvmhost_config"            =>  "MMDVMHost Konfigurasjon",
   "general_config"              =>  "Generel Konfigurasjon",
@@ -28,7 +29,7 @@ $lang = array (
   "p25_config"                  =>  "P25 Konfigurasjon",
   "nxdn_config"                 =>  "NXDN Konfigurasjon",
   "pocsag_config"               =>  "POCSAG Konfigurasjon",
-  "mobilegps_config"            =>  "Mobile GPS Configuration",
+  "gpsd_config"            =>  "GPSd Configuration",
   "wifi_config"                 =>  "Trådløs Konfigurasjon",
   "fw_config"                   =>  "Firewall Konfigurasjon",
   "remote_access_pw"            =>  "Fjerntilgangs passord",
@@ -36,7 +37,7 @@ $lang = array (
   "setting"                     =>  "Innstillinger",
   "value"                       =>  "Verdi",
   "apply"                       =>  "Bruk endringer",
-  // Config Page - Hardware Information
+  // Config Page - Gateway Hardware Information
   "hostname"                    =>  "Vertsnavn",
   "kernel"                      =>  "Kernel",
   "platform"                    =>  "Platform",
@@ -63,17 +64,20 @@ $lang = array (
   "country"                     =>  "Land",
   "url"                         =>  "URL",
   "radio_type"                  =>  "Radio/Modem Type",
+  "baudrate"                    =>  "Baudrate",
   "node_type"                   =>  "Node Type",
   "timezone"                    =>  "Tidssone",
   "dash_lang"                   =>  "Skrivebord Språk",
   // Config Page - DMR Configuration
-  "dmr_master"                  =>  "DMR Master (MMDVMHost)",
+  "dmr_master"                  =>  "DMR Master",
   "bm_master"                   =>  "BrandMeister Master",
   "bm_network"                  =>  "BrandMeister Nettverk",
   "dmr_plus_master"             =>  "DMR+ Master",
   "dmr_plus_network"            =>  "DMR+ Nettverk",
   "xlx_master"                  =>  "XLX Master",
   "xlx_enable"                  =>  "XLX Master Aktivert",
+  "xlx_startup_tg"              =>  "XLX Startup TG",
+  "xlx_startup_module"          =>  "XLX Startup Module",
   "dmr_cc"                      =>  "DMR Farge Kode",
   "dmr_embeddedlconly"          =>  "DMR EmbeddedLCOnly",
   "dmr_dumptadata"              =>  "DMR DumpTAData",
@@ -88,15 +92,17 @@ $lang = array (
   // Config Page - YSF Configuration
   "ysf_startup_host"            =>  "YSF Oppstarts Vert",
   // Config Page - P25 Configuration
-  "p25_startup_host"            =>  "P25 Oppstarts Vert",
+  "p25_hosts"                   =>  "P25 Hosts",
   "p25_nac"                     =>  "P25 NAC",
+  "p25_static"                  =>  "P25 Static",
   // Config Page - NXDN Configuration
-  "nxdn_startup_host"            =>  "NXDN Oppstarts Vert",
+  "nxdn_hosts"                  =>  "NXDN Hosts",
   "nxdn_ran"                     =>  "NXDN RAN",
-  // Config Page - MobileGPS Configuration
-  "mobilegps_enable"            =>  "MobileGPS Enable",
-  "mobilegps_port"              =>  "GPS Port",
-  "mobilegps_speed"             =>  "GPS Port Speed",
+  "nxdn_static"                 => "NXDN Static",
+  // Config Page - GPSd Configuration
+  "gpsd_enable"            =>  "GPSd Enable",
+  "gpsd_port"              =>  "GPSd Port",
+  "gpsd_address"                =>  "GPSd Address",
   // Config Page - Firewall Configuration
   "fw_dash"                     =>  "Skrivebord Adgang",
   "fw_irc"                      =>  "ircDDBGateway Remote",
@@ -109,11 +115,10 @@ $lang = array (
   "modes_enabled"               =>  "Modes Aktivert",
   "net_status"                  =>  "Nettverk Status",
   "internet"                    =>  "Internett",
-  "radio_info"                  =>  "Radio Status",
+  "radio_info"                  =>  "Radio Info",
   "dstar_repeater"              =>  "D-Star Repeater",
   "dstar_net"                   =>  "D-Star Nettverk",
   "dmr_repeater"                =>  "DMR Repeater",
-  "dmr_master"                  =>  "DMR Master",
   "ysf_net"                     =>  "YSF Nettverk",
   "p25_radio"                   =>  "P25 Radio",
   "p25_net"                     =>  "P25 Nettverk",
@@ -129,7 +134,8 @@ $lang = array (
   "loss"                        =>  "Loss",
   "ber"                         =>  "BER",        // Short version of "Bit Error Rate"
   // POCSAG Specific
-  "pocsag_list"                 =>  "DAPNET Activity",
+  "pocsag_list"                 =>  "DAPNET Gateway Activity",
+  "pocsag_persolist"            =>  "DAPNET Personnal Messages",
   "pocsag_timeslot"             =>  "Time Slot",
   "pocsag_msg"                  =>  "Message",
   // Dashboard - Extra Info
@@ -139,12 +145,18 @@ $lang = array (
   "utot"                        =>  "UTOT",       // Short for User Timeout
   "gtot"                        =>  "GTOT",       // Short for Group Timeout
   // Dashboard Front Page / Admin - Section Headders
-  "last_heard_list"             =>  "De siste 20 anropene hørt via denne Gatewayen",
-  "local_tx_list"               =>  "De siste 20 anropene som åpnet denne Gatewayen",
+  "last_heard_list"             =>  "De siste 40 anropene hørt via denne Gatewayen",
+  "local_tx_list"               =>  "De siste 40 anropene som åpnet denne Gatewayen",
   "active_starnet_groups"       =>  "Aktive Starnet Grupper",
   "active_starnet_members"      =>  "Aktive Starnet Gruppe medlemer",
   "d-star_link_manager"         =>  "D-Star Link Manager",
   "d-star_link_status"          =>  "D-Star Link Informasjon",
-  "service_status"              =>  "Process and Services Status"
+  "service_status"              =>  "Service Status",
+  // M17
+  "m17_config"                  =>  "M17 Configuration",
+  "m17_mode"                    =>  "M17 Mode",
+  "m17_startup_reflector"       =>  "M17 Startup Reflector",
+  "m17_repeater"                =>  "M17 Repeater",
+  "m17_net"                     =>  "M17 Network"
 );
 ?>

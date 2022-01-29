@@ -14,6 +14,7 @@ $lang = array (
   "admin"                       =>  "Admin",
   "power"                       =>  "Power",
   "update"                      =>  "Aggiornamento",
+  "upgrade"                     =>  "Upgrade",
   "backup_restore"              =>  "Backup/Restore",
   "factory_reset"               =>  "Ripristino",
   "live_logs"                   =>  "Live Logs",
@@ -28,7 +29,7 @@ $lang = array (
   "p25_config"                  =>  "P25 Config",
   "nxdn_config"                 =>  "NXDN Config",
   "pocsag_config"               =>  "POCSAG Config",
-  "mobilegps_config"            =>  "Mobile GPS Configuration",
+  "gpsd_config"            =>  "GPSd Configuration",
   "wifi_config"                 =>  "Wireless Config",
   "fw_config"                   =>  "Firewall Config",
   "remote_access_pw"            =>  "Password Accesso Remoto",
@@ -36,7 +37,7 @@ $lang = array (
   "setting"                     =>  "Settaggi",
   "value"                       =>  "Valori",
   "apply"                       =>  "Applicare le modifiche",
-  // Config Page - Hardware Information
+  // Config Page - Gateway Hardware Information
   "hostname"                    =>  "Hostname",
   "kernel"                      =>  "Kernel",
   "platform"                    =>  "Platform",
@@ -63,17 +64,20 @@ $lang = array (
   "country"                     =>  "Stato",
   "url"                         =>  "URL",
   "radio_type"                  =>  "Radio/Modem Modello",
+  "baudrate"                    =>  "Baudrate",
   "node_type"                   =>  "Tipo di Nodo",
   "timezone"                    =>  "Fuso Orario",
   "dash_lang"                   =>  "Linguaggio Cruscotto",
   // Config Page - DMR Configuration
-  "dmr_master"                  =>  "DMR Master (MMDVMHost)",
+  "dmr_master"                  =>  "DMR Master",
   "bm_master"                   =>  "BrandMeister Master",
   "bm_network"                  =>  "BrandMeister Network",
   "dmr_plus_master"             =>  "DMR+ Master",
   "dmr_plus_network"            =>  "DMR+ Network",
   "xlx_master"                  =>  "XLX Master",
   "xlx_enable"                  =>  "XLX Master Attivo",
+  "xlx_startup_tg"              =>  "XLX Startup TG",
+  "xlx_startup_module"          =>  "XLX Startup Module",
   "dmr_cc"                      =>  "DMR Colour Code",
   "dmr_embeddedlconly"          =>  "DMR EmbeddedLCOnly",
   "dmr_dumptadata"              =>  "DMR DumpTAData",
@@ -82,21 +86,23 @@ $lang = array (
   "dstar_rpt2"                  =>  "Nominativo RPT2",
   "dstar_irc_password"          =>  "ircDDBGateway Password",
   "dstar_default_ref"           =>  "Default Reflector",
-  "aprs_host"                   =>  "APRS Gateway Host Pool",
+  "aprs_host"                   =>  "APRS Host",
   "dstar_irc_lang"              =>  "ircDDBGateway Linguaggio",
   "dstar_irc_time"              =>  "Annuncio (Vocale) Orario",
   // Config Page - YSF Configuration
   "ysf_startup_host"            =>  "Room YSF Di Partenza",
   // Config Page - P25 Configuration
-  "p25_startup_host"            =>  "Room P25 Di Partenza",
+  "p25_hosts"                   =>  "P25 Hosts",
   "p25_nac"                     =>  "P25 NAC",
+  "p25_static"                  =>  "P25 Static",
   // Config Page - NXDN Configuration
-  "nxdn_startup_host"            =>  "Room NXDN Di Partenza",
+  "nxdn_hosts"                  =>  "NXDN Hosts",
   "nxdn_ran"                     =>  "NXDN RAN",
-  // Config Page - MobileGPS Configuration
-  "mobilegps_enable"            =>  "MobileGPS Enable",
-  "mobilegps_port"              =>  "GPS Port",
-  "mobilegps_speed"             =>  "GPS Port Speed",
+  "nxdn_static"                 => "NXDN Static",
+  // Config Page - GPSd Configuration
+  "gpsd_enable"            =>  "GPSd Enable",
+  "gpsd_port"              =>  "GPSd Port",
+  "gpsd_address"                =>  "GPSd Address",
   // Config Page - Firewall Configuration
   "fw_dash"                     =>  "Accesso Cruscotto",
   "fw_irc"                      =>  "ircDDBGateway Remote",
@@ -113,7 +119,6 @@ $lang = array (
   "dstar_repeater"              =>  "D-Star Repeater",
   "dstar_net"                   =>  "D-Star Network",
   "dmr_repeater"                =>  "DMR Repeater",
-  "dmr_master"                  =>  "DMR Master",
   "ysf_net"                     =>  "YSF Network",
   "p25_radio"                   =>  "P25 Radio",
   "p25_net"                     =>  "P25 Network",
@@ -129,7 +134,8 @@ $lang = array (
   "loss"                        =>  "Loss",
   "ber"                         =>  "BER",        // Short version of "Bit Error Rate"
   // POCSAG Specific
-  "pocsag_list"                 =>  "DAPNET Activity",
+  "pocsag_list"                 =>  "DAPNET Gateway Activity",
+  "pocsag_persolist"            =>  "DAPNET Personnal Messages",
   "pocsag_timeslot"             =>  "Time Slot",
   "pocsag_msg"                  =>  "Message",
   // Dashboard - Extra Info
@@ -139,12 +145,18 @@ $lang = array (
   "utot"                        =>  "UTOT",       // Short for User Timeout
   "gtot"                        =>  "GTOT",       // Short for Group Timeout
   // Dashboard Front Page / Admin - Section Headders
-  "last_heard_list"             =>  "Le Ultime 20 Trasmissioni Di Questo Nodo",
-  "local_tx_list"               =>  "Gli Ultimi 20 Accessi RF Su Questo Nodo",
+  "last_heard_list"             =>  "Le Ultime 40 Trasmissioni Di Questo Nodo",
+  "local_tx_list"               =>  "Gli Ultimi 40 Accessi RF Su Questo Nodo",
   "active_starnet_groups"       =>  "Gruppi Attivi Starnet",
   "active_starnet_members"      =>  "Menbri Attivi Nel Gruppo Starnet",
   "d-star_link_manager"         =>  "Gestione D-Star Link",
   "d-star_link_status"          =>  "Info D-Star Link",
-  "service_status"              =>  "Stato Servizi"
+  "service_status"              =>  "Stato Servizi",
+  // M17
+  "m17_config"                  =>  "M17 Configuration",
+  "m17_mode"                    =>  "M17 Mode",
+  "m17_startup_reflector"       =>  "M17 Startup Reflector",
+  "m17_repeater"                =>  "M17 Repeater",
+  "m17_net"                     =>  "M17 Network"
 );
 ?>

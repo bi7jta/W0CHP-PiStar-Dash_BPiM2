@@ -6,17 +6,18 @@
 //
 $lang = array (
   // Banner texts
-  "digital_voice"               =>  "Relais numérique",
-  "configuration"               =>  "Configuration",
+  "digital_voice"               =>  "Relais Numérique",
+  "configuration"               =>  "Configurat°",
   "dashboard_for"               =>  "Console pour",
   // Banner links
   "dashboard"                   =>  "Console",
-  "admin"                       =>  "Administration",
-  "power"                       =>  "Arr&ecirc;t/Red&eacute;marrage",
+  "admin"                       =>  "Administrat°",
+  "power"                       =>  "Syst&egrave;me",
   "update"                      =>  "Mise &agrave; jour",
-  "backup_restore"              =>  "Sauvegarde/Restauration",
-  "factory_reset"               =>  "R&eacute;initialisation Usine",
-  "live_logs"                   =>  "Surveillance des Logs",
+  "upgrade"                     =>  "Mise &agrave; niveau",
+  "backup_restore"              =>  "Sauvegarde/Restaurat°",
+  "factory_reset"               =>  "R&eacute;glages Usine",
+  "live_logs"                   =>  "Livre de bord",
   // Config page section headdings
   "hardware_info"               =>  "Informations mat&eacute;rielles de la passerelle",
   "control_software"            =>  "Contr&ocirc;le logiciel",
@@ -28,7 +29,7 @@ $lang = array (
   "p25_config"                  =>  "Configuration P25",
   "nxdn_config"                 =>  "Configuration NXDN",
   "pocsag_config"               =>  "Configuration POCSAG",
-  "mobilegps_config"            =>  "Mobile GPS Configuration",
+  "gpsd_config"            =>  "GPSd Configuration",
   "wifi_config"                 =>  "Configuration R&eacute;seau WIFI",
   "fw_config"                   =>  "Configuration du Firewall",
   "remote_access_pw"            =>  "Mot de passe acc&egrave;s distant",
@@ -36,7 +37,7 @@ $lang = array (
   "setting"                     =>  "Param&egrave;tres",
   "value"                       =>  "Valeur",
   "apply"                       =>  "Appliquer les modifications",
-  // Config Page - Hardware Information
+  // Config Page - Gateway Hardware Information
   "hostname"                    =>  "Nom d'h&ocirc;te",
   "kernel"                      =>  "Kernel",
   "platform"                    =>  "Plateforme",
@@ -63,17 +64,20 @@ $lang = array (
   "country"                     =>  "Pays",
   "url"                         =>  "URL",
   "radio_type"                  =>  "Mod&egrave;le Radio/Modem",
+  "baudrate"                    =>  "Baudrate",
   "node_type"                   =>  "Type de Node",
   "timezone"                    =>  "Fuseau horaire",
-  "dash_lang"                   =>  "Langage de la console",
+  "dash_lang"                   =>  "Language de la console",
   // Config Page - DMR Configuration
-  "dmr_master"                  =>  "Master DMR(MMDVMHost)",
+  "dmr_master"                  =>  "Master DMR",
   "bm_master"                   =>  "Master BrandMeister",
   "bm_network"                  =>  "R&eacute;seau BrandMeister",
   "dmr_plus_master"             =>  "Master DMR+",
   "dmr_plus_network"            =>  "R&eacute;seau DMR+",
   "xlx_master"                  =>  "Master XLX",
   "xlx_enable"                  =>  "Master XLX actif",
+  "xlx_startup_tg"              =>  "TG XLX au d&eacute;marrage",
+  "xlx_startup_module"          =>  "Module XLX au d&eacute;marrage",
   "dmr_cc"                      =>  "Code Couleur DMR",
   "dmr_embeddedlconly"          =>  "DMR LC int&eacute;gr&eacute; uniquement",
   "dmr_dumptadata"              =>  "DMR DumpTAData",
@@ -81,22 +85,24 @@ $lang = array (
   "dstar_rpt1"                  =>  "Indicatif RPT1",
   "dstar_rpt2"                  =>  "Indicatif RPT2",
   "dstar_irc_password"          =>  "Mot de passe ircDDBGateway",
-  "dstar_default_ref"           =>  "Reflecteur par d&eacute;faut",
+  "dstar_default_ref"           =>  "R&eacute;flecteur par d&eacute;faut",
   "aprs_host"                   =>  "H&ocirc;te APRS",
   "dstar_irc_lang"              =>  "Langage ircDDBGateway",
   "dstar_irc_time"              =>  "Annonces horaires",
   // Config Page - YSF Configuration
   "ysf_startup_host"            =>  "Room YSF au d&eacute;marrage",
   // Config Page - P25 Configuration
-  "p25_startup_host"            =>  "H&ocirc;te de d&eacute;marrage P25",
+  "p25_hosts"                   =>  "H&ocirc;tes P25",
   "p25_nac"                     =>  "P25 NAC",
+  "p25_static"                  =>  "P25 Static",
   // Config Page - NXDN Configuration
-  "nxdn_startup_host"            =>  "H&ocirc;te de d&eacute;marrage NXDN",
+  "nxdn_hosts"                  =>  "H&ocirc;tes NXDN",
   "nxdn_ran"                     =>  "NXDN RAN",
-  // Config Page - MobileGPS Configuration
-  "mobilegps_enable"            =>  "MobileGPS Enable",
-  "mobilegps_port"              =>  "GPS Port",
-  "mobilegps_speed"             =>  "GPS Port Speed",
+  "nxdn_static"                 => "NXDN Static",
+  // Config Page - GPSd Configuration
+  "gpsd_enable"            =>  "GPSd Enable",
+  "gpsd_port"              =>  "GPSd Port",
+  "gpsd_address"                =>  "GPSd Address",
   // Config Page - Firewall Configuration
   "fw_dash"                     =>  "Acc&egrave;s Console",
   "fw_irc"                      =>  "Commande &agrave; distance ircDDBGateway",
@@ -113,7 +119,6 @@ $lang = array (
   "dstar_repeater"              =>  "Relais D-Star",
   "dstar_net"                   =>  "R&eacute;seau D-Star",
   "dmr_repeater"                =>  "Relais DMR",
-  "dmr_master"                  =>  "Master DMR",
   "ysf_net"                     =>  "R&eacute;seau YSF",
   "p25_radio"                   =>  "Radio P25",
   "p25_net"                     =>  "R&eacute;seau P25",
@@ -124,12 +129,13 @@ $lang = array (
   "mode"                        =>  "Mode",
   "callsign"                    =>  "Indicatif ",
   "target"                      =>  "Cible",
-  "src"                         =>  "Source ",        // Short version of "Source"
-  "dur"                         =>  "Dur&eacute;e ",        // Short version of "Duration"
-  "loss"                        =>  "Pertes",
+  "src"                         =>  "Src ",        // Short version of "Source"
+  "dur"                         =>  "Dur",        // Short version of "Duration"
+  "loss"                        =>  "Perte",      // short version of "Loss"
   "ber"                         =>  "BER",        // Short version of "Bit Error Rate"
   // POCSAG Specific
-  "pocsag_list"                 =>  "DAPNET Activity",
+  "pocsag_list"                 =>  "Activit&eacute; Passerelle DAPNET",
+  "pocsag_persolist"            =>  "Messages Personnels DAPNET",
   "pocsag_timeslot"             =>  "Time Slot",
   "pocsag_msg"                  =>  "Message",
   // Dashboard - Extra Info
@@ -145,6 +151,12 @@ $lang = array (
   "active_starnet_members"      =>  "Active Starnet Group Members",
   "d-star_link_manager"         =>  "Administrateur du lien D-Star",
   "d-star_link_status"          =>  "Informations du lien D-Star",
-  "service_status"              =>  "&Eacute;tat du service"
+  "service_status"              =>  "&Eacute;tat du service",
+  // M17
+  "m17_config"                  =>  "Configuration M17",
+  "m17_mode"                    =>  "Mode M17",
+  "m17_startup_reflector"       =>  "R&eacute;flecteur M17 au d&eacute;marrage",
+  "m17_repeater"                =>  "Relais M17",
+  "m17_net"                     =>  "R&eacute;seau M17"
 );
 ?>

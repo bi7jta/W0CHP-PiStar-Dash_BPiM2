@@ -14,6 +14,7 @@ $lang = array (
   "admin"                       =>  "ผู้ดูแล",
   "power"                       =>  "เพาเวอร์",
   "update"                      =>  "อัพเดท",
+  "upgrade"                     =>  "Upgrade",
   "backup_restore"              =>  "สำรองข้อมูล",
   "factory_reset"               =>  "รีเซ็ต",
   "live_logs"                   =>  "ประวัติการติดต่อ (สด)",
@@ -28,7 +29,7 @@ $lang = array (
   "p25_config"                  =>  "ตั้งค่า P25",
   "nxdn_config"                 =>  "ตั้งค่า NXDN",
   "pocsag_config"               =>  "ตั้งค่า POCSAG",
-  "mobilegps_config"            =>  "Mobile GPS Configuration",
+  "gpsd_config"            =>  "GPSd Configuration",
   "wifi_config"                 =>  "ตั้งค่าวายฟาย",
   "fw_config"                   =>  "ตั้งค่าระบบป้องกัน",
   "remote_access_pw"            =>  "ตั้งรหัสผ่าน",
@@ -36,7 +37,7 @@ $lang = array (
   "setting"                     =>  "ตั้งค่า",
   "value"                       =>  "ค่า",
   "apply"                       =>  "ยืนยัน",
-  // Config Page - Hardware Information
+  // Config Page - Gateway Hardware Information
   "hostname"                    =>  "ชื่ออุปกรณ์",
   "kernel"                      =>  "เคอร์เนิล",
   "platform"                    =>  "อุปกรณ์",
@@ -63,17 +64,20 @@ $lang = array (
   "country"                     =>  "ประเทศ",
   "url"                         =>  "URL",
   "radio_type"                  =>  "ชนิดของอุปกรณ์",
+  "baudrate"                    =>  "Baudrate",
   "node_type"                   =>  "รูปแบบของสถานี",
   "timezone"                    =>  "เขตเวลาที่ใช้",
   "dash_lang"                   =>  "ภาษาสำหรับแผงควบคุม",
   // Config Page - DMR Configuration
-  "dmr_master"                  =>  "DMR Master (MMDVMHost)",
+  "dmr_master"                  =>  "DMR Master",
   "bm_master"                   =>  "BrandMeister Master",
   "bm_network"                  =>  "BrandMeister Network",
   "dmr_plus_master"             =>  "DMR+ Master",
   "dmr_plus_network"            =>  "DMR+ Network",
   "xlx_master"                  =>  "XLX Master",
   "xlx_enable"                  =>  "XLX Master Enable",
+  "xlx_startup_tg"              =>  "XLX Startup TG",
+  "xlx_startup_module"          =>  "XLX Startup Module",
   "dmr_cc"                      =>  "DMR Color Code",
   "dmr_embeddedlconly"          =>  "DMR EmbeddedLCOnly",
   "dmr_dumptadata"              =>  "DMR DumpTAData",
@@ -88,15 +92,17 @@ $lang = array (
   // Config Page - YSF Configuration
   "ysf_startup_host"            =>  "YSF Startup Host",
   // Config Page - P25 Configuration
-  "p25_startup_host"            =>  "P25 Startup Host",
+  "p25_hosts"                   =>  "P25 Hosts",
   "p25_nac"                     =>  "P25 NAC",
+  "p25_static"                  =>  "P25 Static",
   // Config Page - NXDN Configuration
-  "nxdn_startup_host"            =>  "NXDN Startup Host",
+  "nxdn_hosts"                  =>  "NXDN Hosts",
   "nxdn_ran"                     =>  "NXDN RAN",
-  // Config Page - MobileGPS Configuration
-  "mobilegps_enable"            =>  "MobileGPS Enable",
-  "mobilegps_port"              =>  "GPS Port",
-  "mobilegps_speed"             =>  "GPS Port Speed",
+  "nxdn_static"                 => "NXDN Static",
+  // Config Page - GPSd Configuration
+  "gpsd_enable"            =>  "GPSd Enable",
+  "gpsd_port"              =>  "GPSd Port",
+  "gpsd_address"                =>  "GPSd Address",
   // Config Page - Firewall Configuration
   "fw_dash"                     =>  "การเข้าถึงแผงควบคุม",
   "fw_irc"                      =>  "การเข้าถึง ircDDBGateway",
@@ -113,7 +119,6 @@ $lang = array (
   "dstar_repeater"              =>  "รีพีทเตอร์ D-Star",
   "dstar_net"                   =>  "เครือข่าย D-Star",
   "dmr_repeater"                =>  "รีพีทเตอร์ DMR",
-  "dmr_master"                  =>  "DMR Master",
   "ysf_net"                     =>  "เครือข่าย YSF",
   "p25_radio"                   =>  "วิทยุ P25",
   "p25_net"                     =>  "เครือข่าย P25",
@@ -129,7 +134,8 @@ $lang = array (
   "loss"                        =>  "สัญญาณสูญเสีย",
   "ber"                         =>  "สัญญาณผิดพลาด",        // Short version of "Bit Error Rate"
   // POCSAG Specific
-  "pocsag_list"                 =>  "DAPNET Activity",
+  "pocsag_list"                 =>  "DAPNET Gateway Activity",
+  "pocsag_persolist"            =>  "DAPNET Personnal Messages",
   "pocsag_timeslot"             =>  "Time Slot",
   "pocsag_msg"                  =>  "Message",
   // Dashboard - Extra Info
@@ -145,6 +151,12 @@ $lang = array (
   "active_starnet_members"      =>  "Active Starnet Group Members",
   "d-star_link_manager"         =>  "จัดการการเชื่อมต่อของ D-Star",
   "d-star_link_status"          =>  "ข้อมูลการเชื่อมต่อของ D-Star",
-  "service_status"              =>  "สถานะของระบบ"
+  "service_status"              =>  "สถานะของระบบ",
+  // M17
+  "m17_config"                  =>  "M17 Configuration",
+  "m17_mode"                    =>  "M17 Mode",
+  "m17_startup_reflector"       =>  "M17 Startup Reflector",
+  "m17_repeater"                =>  "M17 Repeater",
+  "m17_net"                     =>  "M17 Network"
 );
 ?>

@@ -14,6 +14,7 @@ $lang = array (
   "admin"                       =>  "Administrator",
   "power"                       =>  "Alimentare",
   "update"                      =>  "Actualizare",
+  "upgrade"                     =>  "Upgrade",
   "backup_restore"              =>  "Copie Rezerva/Restabilire",
   "factory_reset"               =>  "Resetare Stare Initiala",
   "live_logs"                   =>  "Jurnal Live",
@@ -28,7 +29,7 @@ $lang = array (
   "p25_config"                  =>  "Configurari P25",
   "nxdn_config"                 =>  "Configurari NXDN",
   "pocsag_config"               =>  "Configurari POCSAG",
-  "mobilegps_config"            =>  "Configurari Mobile GPS",
+  "gpsd_config"            =>  "Configurari GPSD",
   "wifi_config"                 =>  "Configurari Retea Wireless",
   "fw_config"                   =>  "Configurari Firewall",
   "remote_access_pw"            =>  "Parola Acces Exterior",
@@ -36,7 +37,7 @@ $lang = array (
   "setting"                     =>  "Setari",
   "value"                       =>  "Valoare",
   "apply"                       =>  "Salvare Setari",
-  // Config Page - Hardware Information
+  // Config Page - Gateway Hardware Information
   "hostname"                    =>  "Denumire Detinator",
   "kernel"                      =>  "Nucleu",
   "platform"                    =>  "Platforma",
@@ -63,17 +64,20 @@ $lang = array (
   "country"                     =>  "Tara",
   "url"                         =>  "URL",
   "radio_type"                  =>  "Model Radio/Modem",
+  "baudrate"                    =>  "Baudrate",
   "node_type"                   =>  "Model Node",
   "timezone"                    =>  "Time Zone Sistem",
   "dash_lang"                   =>  "Limba Panou Control",
   // Config Page - DMR Configuration
-  "dmr_master"                  =>  "DMR Master (MMDVMHost)",
+  "dmr_master"                  =>  "DMR Master",
   "bm_master"                   =>  "BrandMeister Master",
   "bm_network"                  =>  "Reteaua BrandMeister",
   "dmr_plus_master"             =>  "DMR+ Master",
   "dmr_plus_network"            =>  "Retea DMR+",
   "xlx_master"                  =>  "XLX Master",
   "xlx_enable"                  =>  "Activare XLX Master",
+  "xlx_startup_tg"              =>  "XLX Startup TG",
+  "xlx_startup_module"          =>  "XLX Startup Module",
   "dmr_cc"                      =>  "Cod Culoare DMR",
   "dmr_embeddedlconly"          =>  "DMR EmbeddedLCOnly",
   "dmr_dumptadata"              =>  "DMR DumpTAData",
@@ -88,15 +92,17 @@ $lang = array (
   // Config Page - YSF Configuration
   "ysf_startup_host"            =>  "lansare Detinator YSF",
   // Config Page - P25 Configuration
-  "p25_startup_host"            =>  "lansare Detinator P25",
+  "p25_hosts"                   =>  "P25 Hosts",
   "p25_nac"                     =>  "P25 NAC",
+  "p25_static"                  =>  "P25 Static",
   // Config Page - NXDN Configuration
-  "nxdn_startup_host"           =>  "lansare Detinator NXDN",
+  "nxdn_hosts"                  =>  "NXDN Hosts",
   "nxdn_ran"                    =>  "Lansare NXDN",
-  // Config Page - MobileGPS Configuration
-  "mobilegps_enable"            =>  "Activare Mobile GPS",
-  "mobilegps_port"              =>  "Port GPS",
-  "mobilegps_speed"             =>  "Viteza Port GPS",
+  "nxdn_static"                 => "NXDN Static",
+  // Config Page - GPSd Configuration
+  "gpsd_enable"            =>  "Activare GPSD",
+  "gpsd_port"              =>  "Port GPSD",
+  "gpsd_address"                =>  "GPSd Address",
   // Config Page - Firewall Configuration
   "fw_dash"                     =>  "Acces Panou Control",
   "fw_irc"                      =>  "Control Exterior ircDDBGateway",
@@ -113,7 +119,6 @@ $lang = array (
   "dstar_repeater"              =>  "Repetor D-Star",
   "dstar_net"                   =>  "Reteaua D-Star",
   "dmr_repeater"                =>  "Repetor DMR",
-  "dmr_master"                  =>  "DMR Master",
   "ysf_net"                     =>  "Reteaua YSF",
   "p25_radio"                   =>  "P25 Radio",
   "p25_net"                     =>  "Reteaua P25",
@@ -130,6 +135,7 @@ $lang = array (
   "ber"                         =>  "BER",        // Prescurtare "Rata Eroare Biti"
   // POCSAG Specific
   "pocsag_list"                 =>  "Activitate Gateway DAPNET",
+  "pocsag_persolist"            =>  "DAPNET Personnal Messages",
   "pocsag_timeslot"             =>  "Time Slot",
   "pocsag_msg"                  =>  "Mesaj",
   // Dashboard - Extra Info
@@ -139,12 +145,18 @@ $lang = array (
   "utot"                        =>  "UTOT",       // Prescurtare  User Timeout
   "gtot"                        =>  "GTOT",       // Prescurtare Group Timeout
   // Dashboard Front Page / Admin - Section Headders
-  "last_heard_list"             =>  "Ultimele 20 Apeluri Receptionate prin acest Gateway",
-  "local_tx_list"               =>  "Ultimele 20 Apeluri care au accesat acest Gateway",
+  "last_heard_list"             =>  "Ultimele 40 Apeluri Receptionate prin acest Gateway",
+  "local_tx_list"               =>  "Ultimele 40 Apeluri care au accesat acest Gateway",
   "active_starnet_groups"       =>  "Grupuri Active Starnet",
   "active_starnet_members"      =>  "Membrii activi in Grupuri Starnet ",
   "d-star_link_manager"         =>  "D-Star Link Manager",
   "d-star_link_status"          =>  "Informatii Legatura D-Star",
-  "service_status"              =>  "Stare Serviciu"
+  "service_status"              =>  "Stare Serviciu",
+  // M17
+  "m17_config"                  =>  "M17 Configuration",
+  "m17_mode"                    =>  "M17 Mode",
+  "m17_startup_reflector"       =>  "M17 Startup Reflector",
+  "m17_repeater"                =>  "M17 Repeater",
+  "m17_net"                     =>  "M17 Network"
 );
 ?>

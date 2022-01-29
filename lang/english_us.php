@@ -14,11 +14,12 @@ $lang = array (
   "admin"                       =>  "Admin",
   "power"                       =>  "Power",
   "update"                      =>  "Update",
+  "upgrade"                     =>  "Upgrade",
   "backup_restore"              =>  "Backup/Restore",
   "factory_reset"               =>  "Factory Reset",
   "live_logs"                   =>  "Live Logs",
   // Config page section headdings
-  "hardware_info"               =>  "Hardware Information",
+  "hardware_info"               =>  "Gateway Hardware Information",
   "control_software"            =>  "Control Software",
   "mmdvmhost_config"            =>  "MMDVMHost Configuration",
   "general_config"              =>  "General Configuration",
@@ -28,7 +29,7 @@ $lang = array (
   "p25_config"                  =>  "P25 Configuration",
   "nxdn_config"                 =>  "NXDN Configuration",
   "pocsag_config"               =>  "POCSAG Configuration",
-  "mobilegps_config"            =>  "Mobile GPS Configuration",
+  "gpsd_config"            =>  "GPSd Configuration",
   "wifi_config"                 =>  "Wireless Configuration",
   "fw_config"                   =>  "Firewall Configuration",
   "remote_access_pw"            =>  "Remote Access Password",
@@ -36,7 +37,7 @@ $lang = array (
   "setting"                     =>  "Setting",
   "value"                       =>  "Value",
   "apply"                       =>  "Apply Changes",
-  // Config Page - Hardware Information
+  // Config Page - Gateway Hardware Information
   "hostname"                    =>  "Hostname",
   "kernel"                      =>  "Kernel",
   "platform"                    =>  "Platform",
@@ -63,17 +64,20 @@ $lang = array (
   "country"                     =>  "Country",
   "url"                         =>  "URL",
   "radio_type"                  =>  "Radio/Modem Type",
+  "baudrate"                    =>  "Baudrate",
   "node_type"                   =>  "Node Type",
   "timezone"                    =>  "System Time Zone",
   "dash_lang"                   =>  "Dashboard Language",
   // Config Page - DMR Configuration
-  "dmr_master"                  =>  "DMR Master (MMDVMHost)",
+  "dmr_master"                  =>  "DMR Master",
   "bm_master"                   =>  "BrandMeister Master",
   "bm_network"                  =>  "BrandMeister Network",
   "dmr_plus_master"             =>  "DMR+ Master",
   "dmr_plus_network"            =>  "DMR+ Network",
   "xlx_master"                  =>  "XLX Master",
   "xlx_enable"                  =>  "XLX Master Enable",
+  "xlx_startup_tg"              =>  "XLX Startup TG",
+  "xlx_startup_module"          =>  "XLX Startup Module",
   "dmr_cc"                      =>  "DMR Color Code",
   "dmr_embeddedlconly"          =>  "DMR EmbeddedLCOnly",
   "dmr_dumptadata"              =>  "DMR DumpTAData",
@@ -82,21 +86,23 @@ $lang = array (
   "dstar_rpt2"                  =>  "RPT2 Callsign",
   "dstar_irc_password"          =>  "Remote Password",
   "dstar_default_ref"           =>  "Default Reflector",
-  "aprs_host"                   =>  "APRS Gateway Host Pool",
+  "aprs_host"                   =>  "APRS Host",
   "dstar_irc_lang"              =>  "ircDDBGateway Language",
   "dstar_irc_time"              =>  "Time Announcements",
   // Config Page - YSF Configuration
   "ysf_startup_host"            =>  "YSF Startup Host",
   // Config Page - P25 Configuration
-  "p25_startup_host"            =>  "P25 Startup Host",
+  "p25_hosts"                   =>  "P25 Hosts",
   "p25_nac"                     =>  "P25 NAC",
+  "p25_static"                  =>  "P25 Static",
   // Config Page - NXDN Configuration
-  "nxdn_startup_host"            =>  "NXDN Startup Host",
+  "nxdn_hosts"                  =>  "NXDN Hosts",
   "nxdn_ran"                     =>  "NXDN RAN",
-  // Config Page - MobileGPS Configuration
-  "mobilegps_enable"            =>  "MobileGPS Enable",
-  "mobilegps_port"              =>  "GPS Port",
-  "mobilegps_speed"             =>  "GPS Port Speed",
+  "nxdn_static"                 => "NXDN Static",
+  // Config Page - GPSd Configuration
+  "gpsd_enable"            =>  "GPSd Enable",
+  "gpsd_port"              =>  "GPSd Port",
+  "gpsd_address"                =>  "GPSd Address",
   // Config Page - Firewall Configuration
   "fw_dash"                     =>  "Dashboard Access",
   "fw_irc"                      =>  "ircDDBGateway Remote",
@@ -106,14 +112,13 @@ $lang = array (
   "password"                    =>  "Password",
   "set_password"                =>  "Set Password",
   // Dashboard Front Page - Repeater Info Pannel
-  "modes_enabled"               =>  "Mode Status",
+  "modes_enabled"               =>  "Modes Enabled",
   "net_status"                  =>  "Network Status",
   "internet"                    =>  "Internet",
-  "radio_info"                  =>  "Radio Status",
+  "radio_info"                  =>  "Radio Info",
   "dstar_repeater"              =>  "D-Star Repeater",
   "dstar_net"                   =>  "D-Star Network",
   "dmr_repeater"                =>  "DMR Repeater",
-  "dmr_master"                  =>  "DMR Master",
   "ysf_net"                     =>  "YSF Network",
   "p25_radio"                   =>  "P25 Radio",
   "p25_net"                     =>  "P25 Network",
@@ -129,7 +134,8 @@ $lang = array (
   "loss"                        =>  "Loss",
   "ber"                         =>  "BER",        // Short version of "Bit Error Rate"
   // POCSAG Specific
-  "pocsag_list"                 =>  "DAPNET Activity",
+  "pocsag_list"                 =>  "DAPNET Gateway Activity",
+  "pocsag_persolist"            =>  "DAPNET Personnal Messages",
   "pocsag_timeslot"             =>  "Time Slot",
   "pocsag_msg"                  =>  "Message",
   // Dashboard - Extra Info
@@ -139,12 +145,18 @@ $lang = array (
   "utot"                        =>  "UTOT",       // Short for User Timeout
   "gtot"                        =>  "GTOT",       // Short for Group Timeout
   // Dashboard Front Page / Admin - Section Headders
-  "last_heard_list"             =>  "Network Activity",
-  "local_tx_list"               =>  "RF Activity",
+  "last_heard_list"             =>  "Gateway Activity",
+  "local_tx_list"               =>  "Local RF Activity",
   "active_starnet_groups"       =>  "Active Starnet Groups",
   "active_starnet_members"      =>  "Active Starnet Group Members",
   "d-star_link_manager"         =>  "D-Star Link Manager",
   "d-star_link_status"          =>  "D-Star Link Information",
-  "service_status"              =>  "Process and Services Status"
+  "service_status"              =>  "Service Status",
+  // M17
+  "m17_config"                  =>  "M17 Configuration",
+  "m17_mode"                    =>  "M17 Mode",
+  "m17_startup_reflector"       =>  "M17 Startup Reflector",
+  "m17_repeater"                =>  "M17 Repeater",
+  "m17_net"                     =>  "M17 Network"
 );
 ?>
