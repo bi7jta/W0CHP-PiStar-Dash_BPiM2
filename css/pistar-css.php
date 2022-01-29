@@ -74,6 +74,10 @@ body, font {
     clear : both;
 }
 
+tt, code, kbd, pre {
+        font-family: 'Inconsolata', monospace !important;
+}
+
 #tail {
     font-family: 'Inconsolata', monospace;
     height: 800px;
