@@ -296,10 +296,10 @@ if (isProcessRunning("M17Gateway")) {
         }
         if (isPaused("D-Star")) {
 	    	echo "<tr><td colspan=\"2\" style=\"background: $tableRowEvenBg;\">Mode Paused</td></tr>\n";
-		} else {
-		    echo "<tr><td colspan=\"2\" ".GetActiveConnectionStyle($remoteMMDVMResults, "dstar")." title=\"".$linkedTo."\">".$linkedTo."</td></tr>\n";
-		}
-	    echo "</table>\n";
+	} else {
+	        echo "<tr><td colspan=\"2\" ".GetActiveConnectionStyle($remoteMMDVMResults, "dstar")." title=\"".$linkedTo."\">".$linkedTo."</td></tr>\n";
+	}
+	 echo "</table>\n";
 	}
 	
 	$testMMDVModeDMR = getConfigItem("DMR", "Enable", $_SESSION['MMDVMHostConfigs']);
