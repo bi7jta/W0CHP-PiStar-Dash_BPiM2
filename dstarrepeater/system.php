@@ -44,6 +44,8 @@ include_once $_SERVER['DOCUMENT_ROOT'].'/mmdvmhost/tools.php';
   <div class="grid-item <?php getServiceStatusClass(isProcessRunning('/usr/local/sbin/pistar-watchdog',true)); ?>">PiStar-Watchdog</div> 
   
   <div class="grid-item <?php getServiceStatusClass(UPnPenabled()); ?>">UPnP</div>  
+  <div class="grid-item <?php getServiceStatusClass(isProcessRunning('gpsd'));  ?>">GPSd</div>  
+  <div class="grid-item <?php getServiceStatusClass(isProcessRunning('ntpd'));  ?>">NTPd</div>  
   <div class="grid-item <?php getServiceStatusClass(isProcessRunning('/usr/local/sbin/pistar-keeper',true)); ?>">PiStar-Keeper</div>
   <div class="grid-item <?php getServiceStatusClass(isProcessRunning('DGIdGateway')); ?>">DGIdGateway</div> 
   <div class="grid-item <?php getServiceStatusClass(isProcessRunning('DMR2YSF')); ?>">DMR2YSF</div>

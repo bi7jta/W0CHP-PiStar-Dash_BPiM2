@@ -14,6 +14,7 @@ $lang = array (
   "admin"                       =>  "Yönetici",
   "power"                       =>  "Güç",
   "update"                      =>  "Güncelle",
+  "upgrade"                     =>  "Upgrade",
   "backup_restore"              =>  "Yedekle/Geriyükle",
   "factory_reset"               =>  "Fabrika Ayarları",
   "live_logs"                   =>  "Sistem Günlüğü",
@@ -28,7 +29,7 @@ $lang = array (
   "p25_config"                  =>  "P25 Konfigürasyonu",
   "nxdn_config"                 =>  "NXDN Konfigürasyonu",
   "pocsag_config"               =>  "POCSAG Konfigürasyonu",
-  "mobilegps_config"            =>  "Mobile GPS Configuration",
+  "gpsd_config"                 =>  "GPSd Configuration",
   "wifi_config"                 =>  "Kablosuz Konfigürasyonu",
   "fw_config"                   =>  "Güv.Duv. Konfigürasyonu",
   "remote_access_pw"            =>  "Uzak Erişim Parolası",
@@ -36,7 +37,7 @@ $lang = array (
   "setting"                     =>  "Ayar",
   "value"                       =>  "Değer",
   "apply"                       =>  "Değişiklikleri Uygula",
-  // Config Page - Hardware Information
+  // Config Page - Gateway Hardware Information
   "hostname"                    =>  "Sistem Adı",
   "kernel"                      =>  "Çekirdek Sürümü",
   "platform"                    =>  "Altyapı",
@@ -63,17 +64,20 @@ $lang = array (
   "country"                     =>  "Ülke",
   "url"                         =>  "URL",
   "radio_type"                  =>  "Radyo/Modem Tipi",
+  "baudrate"                    =>  "Baudrate",
   "node_type"                   =>  "Yayın Tipi",
   "timezone"                    =>  "Sistem Saati Dilimi",
   "dash_lang"                   =>  "Pano Dili",
   // Config Page - DMR Configuration
-  "dmr_master"                  =>  "DMR Sunucu (MMDVMHost)",
+  "dmr_master"                  =>  "DMR Sunucu",
   "bm_master"                   =>  "BrandMeister Sunucu",
   "bm_network"                  =>  "BrandMeister Ağı",
   "dmr_plus_master"             =>  "DMR+ Sunucu",
   "dmr_plus_network"            =>  "DMR+ Ağı",
   "xlx_master"                  =>  "XLX Sunucu",
   "xlx_enable"                  =>  "XLX Sunucu Etkinleştirme",
+  "xlx_startup_tg"              =>  "XLX Startup TG",
+  "xlx_startup_module"          =>  "XLX Startup Module",
   "dmr_cc"                      =>  "DMR Renk Kodu",
   "dmr_embeddedlconly"          =>  "DMR GömülüLC",
   "dmr_dumptadata"              =>  "DMR TAVeriDökümü",
@@ -88,15 +92,17 @@ $lang = array (
   // Config Page - YSF Configuration
   "ysf_startup_host"            =>  "YSF İşletme Ağı",
   // Config Page - P25 Configuration
-  "p25_startup_host"            =>  "P25 İşletme Ağı",
+  "p25_hosts"                   =>  "P25 Hosts",
   "p25_nac"                     =>  "P25 NAC",
+  "p25_static"                  =>  "P25 Static",
   // Config Page - NXDN Configuration
-  "nxdn_startup_host"            =>  "NXDN İşletme Ağı",
+  "nxdn_hosts"                  =>  "NXDN Hosts",
   "nxdn_ran"                     =>  "NXDN RAN",
-  // Config Page - MobileGPS Configuration
-  "mobilegps_enable"            =>  "MobileGPS Enable",
-  "mobilegps_port"              =>  "GPS Port",
-  "mobilegps_speed"             =>  "GPS Port Speed",
+  "nxdn_static"                 => "NXDN Static",
+  // Config Page - GPSd Configuration
+  "gpsd_enable"            =>  "GPSd Enable",
+  "gpsd_port"              =>  "GPSd Port",
+  "gpsd_address"                =>  "GPSd Address",
   // Config Page - Firewall Configuration
   "fw_dash"                     =>  "Pano Erişimi",
   "fw_irc"                      =>  "ircDDBAğGeçidi Erişimi",
@@ -113,7 +119,6 @@ $lang = array (
   "dstar_repeater"              =>  "D-Star Röle",
   "dstar_net"                   =>  "D-Star Ağı",
   "dmr_repeater"                =>  "DMR Röle",
-  "dmr_master"                  =>  "DMR Sunucu",
   "ysf_net"                     =>  "YSF Ağı",
   "p25_radio"                   =>  "P25 Radyo",
   "p25_net"                     =>  "P25 Ağı",
@@ -130,6 +135,7 @@ $lang = array (
   "ber"                         =>  "BHO",        // Short version of "Bit Error Rate"
   // POCSAG Specific
   "pocsag_list"                 =>  "DAPNET Ağ Geçidi Etkinliği",
+  "pocsag_persolist"            =>  "DAPNET Personnal Messages",
   "pocsag_timeslot"             =>  "Zaman Aralığı",
   "pocsag_msg"                  =>  "Mesaj",
   // Dashboard - Extra Info
@@ -145,6 +151,12 @@ $lang = array (
   "active_starnet_members"      =>  "Aktif Starnet Grup Üyeleri",
   "d-star_link_manager"         =>  "D-Star Bağlantı Yöneticisi",
   "d-star_link_status"          =>  "D-Star Bağlantı Ayrıntıları",
-  "service_status"              =>  "Servis Durumu"
+  "service_status"              =>  "Servis Durumu",
+  // M17
+  "m17_config"                  =>  "M17 Configuration",
+  "m17_mode"                    =>  "M17 Mode",
+  "m17_startup_reflector"       =>  "M17 Startup Reflector",
+  "m17_repeater"                =>  "M17 Repeater",
+  "m17_net"                     =>  "M17 Network"
 );
 ?>

@@ -14,6 +14,7 @@ $lang = array (
   "admin"                       =>  "Skrbniški način",
   "power"                       =>  "Vklop/Izklop",
   "update"                      =>  "Posodobitev",
+  "upgrade"                     =>  "Upgrade",
   "backup_restore"              =>  "Varnostno kopiranje",
   "factory_reset"               =>  "Tovarniške nastavitve",
   "live_logs"                   =>  "Dnevnik",
@@ -28,7 +29,7 @@ $lang = array (
   "p25_config"                  =>  "Nastavitve P25",
   "nxdn_config"                 =>  "Nastavitve NXDN",
   "pocsag_config"               =>  "Nastavitve POCSAG",
-  "mobilegps_config"            =>  "Mobile GPS Configuration",
+  "gpsd_config"            =>  "GPSd Configuration",
   "wifi_config"                 =>  "Nastavitve brezžičnega omrežja",
   "fw_config"                   =>  "Nastavitve požarnega zidu",
   "remote_access_pw"            =>  "Geslo za oddaljeni dostop",
@@ -36,7 +37,7 @@ $lang = array (
   "setting"                     =>  "Nastavitev",
   "value"                       =>  "Vrednost",
   "apply"                       =>  "Potrdi spremembe",
-  // Config Page - Hardware Information
+  // Config Page - Gateway Hardware Information
   "hostname"                    =>  "Ime gostitelja",
   "kernel"                      =>  "Jedro",
   "platform"                    =>  "Platforma",
@@ -63,17 +64,20 @@ $lang = array (
   "country"                     =>  "Država",
   "url"                         =>  "URL",
   "radio_type"                  =>  "Vrsta sprejemnika/modema",
+  "baudrate"                    =>  "Baudrate",
   "node_type"                   =>  "Vrsta vozlišča",
   "timezone"                    =>  "Časovni pas",
   "dash_lang"                   =>  "Jezik nadzorne plošče",
   // Config Page - DMR Configuration
-  "dmr_master"                  =>  "DMR Master (MMDVMHost)",
+  "dmr_master"                  =>  "DMR Master",
   "bm_master"                   =>  "BrandMeister Master",
   "bm_network"                  =>  "BrandMeister omrežje",
   "dmr_plus_master"             =>  "DMR+ Master",
   "dmr_plus_network"            =>  "DMR+ omrežje",
   "xlx_master"                  =>  "XLX Master",
   "xlx_enable"                  =>  "XLX Master Enable",
+  "xlx_startup_tg"              =>  "XLX Startup TG",
+  "xlx_startup_module"          =>  "XLX Startup Module",
   "dmr_cc"                      =>  "DMR Barvna Koda (CC)",
   "dmr_embeddedlconly"          =>  "DMR EmbeddedLCOnly",
   "dmr_dumptadata"              =>  "DMR DumpTAData",
@@ -88,15 +92,17 @@ $lang = array (
   // Config Page - YSF Configuration
   "ysf_startup_host"            =>  "YSF zagonski gostitelj",
   // Config Page - P25 Configuration
-  "p25_startup_host"            =>  "P25 zagonski gostitelj",
+  "p25_hosts"                   =>  "P25 Hosts",
   "p25_nac"                     =>  "P25 NAC",
+  "p25_static"                  =>  "P25 Static",
   // Config Page - NXDN Configuration
-  "nxdn_startup_host"            =>  "NXDN zagonski gostitelj",
+  "nxdn_hosts"                  =>  "NXDN Hosts",
   "nxdn_ran"                     =>  "NXDN RAN",
-  // Config Page - MobileGPS Configuration
-  "mobilegps_enable"            =>  "MobileGPS Enable",
-  "mobilegps_port"              =>  "GPS Port",
-  "mobilegps_speed"             =>  "GPS Port Speed",
+  "nxdn_static"                 => "NXDN Static",
+  // Config Page - GPSd Configuration
+  "gpsd_enable"            =>  "GPSd Enable",
+  "gpsd_port"              =>  "GPSd Port",
+  "gpsd_address"                =>  "GPSd Address",
   // Config Page - Firewall Configuration
   "fw_dash"                     =>  "Dostop do nadzorne plošče",
   "fw_irc"                      =>  "Dostop ircDDBGateway",
@@ -113,7 +119,6 @@ $lang = array (
   "dstar_repeater"              =>  "Repetitor D-Star",
   "dstar_net"                   =>  "D-Star Omrežje",
   "dmr_repeater"                =>  "Repetitor DMR",
-  "dmr_master"                  =>  "Master DMR",
   "ysf_net"                     =>  "Omrežje YSF",
   "p25_radio"                   =>  "Radio P25",
   "p25_net"                     =>  "Omrežje P25",
@@ -145,6 +150,12 @@ $lang = array (
   "active_starnet_members"      =>  "Aktivni uporabniki Starnet",
   "d-star_link_manager"         =>  "D-Star Link Manager",
   "d-star_link_status"          =>  "D-Star Link Informacije",
-  "service_status"              =>  "Stanje storitev"
+  "service_status"              =>  "Stanje storitev",
+  // M17
+  "m17_config"                  =>  "M17 Configuration",
+  "m17_mode"                    =>  "M17 Mode",
+  "m17_startup_reflector"       =>  "M17 Startup Reflector",
+  "m17_repeater"                =>  "M17 Repeater",
+  "m17_net"                     =>  "M17 Network"
 );
 ?>

@@ -15,6 +15,7 @@ $lang = array (
   "admin"                       =>  "管理",
   "power"                       =>  "电源",
   "update"                      =>  "更新",
+  "upgrade"                     =>  "Upgrade",
   "backup_restore"              =>  "备份/恢复",
   "factory_reset"               =>  "恢复出厂设置",
   "live_logs"                   =>  "日志",
@@ -29,14 +30,14 @@ $lang = array (
   "p25_config"                  =>  "P25 配置",
   "nxdn_config"                 =>  "NXDN 配置",
   "pocsag_config"               =>  "POCSAG 配置",
-  "mobilegps_config"            =>  "Mobile GPS Configuration",
+  "gpsd_config"            =>  "GPSd Configuration",
   "fw_config"                   =>  "防火墙配置",
   "remote_access_pw"            =>  "远程访问密码",
   // Config Page - Section General
   "setting"                     =>  "设置",
   "value"                       =>  "设置值",
   "apply"                       =>  "应用设置",
-  // Config Page - Hardware Information
+  // Config Page - Gateway Hardware Information
   "hostname"                    =>  "主机名",
   "kernel"                      =>  "内核",
   "platform"                    =>  "平台",
@@ -63,17 +64,20 @@ $lang = array (
   "country"                     =>  "国家",
   "url"                         =>  "URL",
   "radio_type"                  =>  "电台/调制解调器类型",
+  "baudrate"                    =>  "Baudrate",
   "node_type"                   =>  "节点类型",
   "timezone"                    =>  "时区",
   "dash_lang"                   =>  "仪表盘语言",
   // Config Page - DMR Configuration
-  "dmr_master"                  =>  "DMR 主机 (MMDVMHost)",
+  "dmr_master"                  =>  "DMR 主机",
   "bm_master"                   =>  "BrandMeister 主机 ",
   "bm_network"                  =>  "BrandMeister 网络",
   "dmr_plus_master"             =>  "DMR+ 主机 ",
   "dmr_plus_network"            =>  "DMR+ 网络",
   "xlx_master"                  =>  "XLX 主机 ",
   "xlx_enable"                  =>  "XLX 主机启用",
+  "xlx_startup_tg"              =>  "XLX Startup TG",
+  "xlx_startup_module"          =>  "XLX Startup Module",
   "dmr_cc"                      =>  "DMR 彩色码",
   "dmr_embeddedlconly"          =>  "DMR EmbeddedLCOnly",
   "dmr_dumptadata"              =>  "DMR DumpTAData",
@@ -88,15 +92,17 @@ $lang = array (
   // Config Page - YSF Configuration
   "ysf_startup_host"            =>  "YSF 默认服务器",
   // Config Page - P25 Configuration
-  "p25_startup_host"            =>  "P25 默认服务器",
+  "p25_hosts"                   =>  "P25 Hosts",
   "p25_nac"                     =>  "P25 NAC",
+  "p25_static"                  =>  "P25 Static",
   // Config Page - NXDN Configuration
-  "nxdn_startup_host"            =>  "NXDN 默认服务器",
+  "nxdn_hosts"                  =>  "NXDN Hosts",
   "nxdn_ran"                     =>  "NXDN RAN",
-  // Config Page - MobileGPS Configuration
-  "mobilegps_enable"            =>  "MobileGPS Enable",
-  "mobilegps_port"              =>  "GPS Port",
-  "mobilegps_speed"             =>  "GPS Port Speed",
+  "nxdn_static"                 => "NXDN Static",
+  // Config Page - GPSd Configuration
+  "gpsd_enable"            =>  "GPSd Enable",
+  "gpsd_port"              =>  "GPSd Port",
+  "gpsd_address"                =>  "GPSd Address",
   // Config Page - Firewall Configuration
   "fw_dash"                     =>  "仪表盘访问",
   "fw_irc"                      =>  "ircDDBGateway 远程",
@@ -113,7 +119,6 @@ $lang = array (
   "dstar_repeater"              =>  "D-Star 中继",
   "dstar_net"                   =>  "D-Star 网络",
   "dmr_repeater"                =>  "DMR 中继",
-  "dmr_master"                  =>  "DMR 主机",
   "ysf_net"                     =>  "YSF 网络",
   "p25_radio"                   =>  "P25 电台",
   "p25_net"                     =>  "P25 网络",
@@ -129,7 +134,8 @@ $lang = array (
   "loss"                        =>  "丢失",
   "ber"                         =>  "误码率",    // Short version of "Bit Error Rate"
   // POCSAG Specific
-  "pocsag_list"                 =>  "DAPNET Activity",
+  "pocsag_list"                 =>  "DAPNET Gateway Activity",
+  "pocsag_persolist"            =>  "DAPNET Personnal Messages",
   "pocsag_timeslot"             =>  "Time Slot",
   "pocsag_msg"                  =>  "Message",
   // Dashboard - Extra Info
@@ -139,12 +145,18 @@ $lang = array (
   "utot"                        =>  "用户超时",     // Short for User Timeout
   "gtot"                        =>  "组超时",       // Short for Group Timeout
   // Dashboard Front Page / Admin - Section Headders
-  "last_heard_list"             =>  "网关上最后 20 个呼叫",
-  "local_tx_list"               =>  "最后 20 个本地呼叫",
+  "last_heard_list"             =>  "网关上最后 40 个呼叫",
+  "local_tx_list"               =>  "最后 40 个本地呼叫",
   "active_starnet_groups"       =>  "激活的 Starnet 组",
   "active_starnet_members"      =>  "激活的 Starnet 组成员",
   "d-star_link_manager"         =>  "D-Star 连接管理器",
   "d-star_link_status"          =>  "D-Star 连接信息",
-  "service_status"              =>  "服务状态"
+  "service_status"              =>  "服务状态",
+  // M17
+  "m17_config"                  =>  "M17 Configuration",
+  "m17_mode"                    =>  "M17 Mode",
+  "m17_startup_reflector"       =>  "M17 Startup Reflector",
+  "m17_repeater"                =>  "M17 Repeater",
+  "m17_net"                     =>  "M17 Network"
 );
 ?>

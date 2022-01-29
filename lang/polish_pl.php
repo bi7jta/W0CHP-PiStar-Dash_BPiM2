@@ -38,7 +38,7 @@ $lang = array (
   "setting"                     =>  "Ustawienia",
   "value"                       =>  "Wartość",
   "apply"                       =>  "Zapisz zmiany",
-  // Config Page - Hardware Information
+  // Config Page - Gateway Hardware Information
   "hostname"                    =>  "Nazwa hosta",
   "kernel"                      =>  "Kernel/Jądro",
   "platform"                    =>  "Platforma",
@@ -56,7 +56,6 @@ $lang = array (
   "mmdvm_display"               =>  "Typ wyświetlania MMDVM",
   "mode_hangtime"               =>  "Czas rozłączenia",
   // Config Page - General Configuration
-  "hostname"					=>	"Nazwa hosta",
   "node_call"                   =>  "Znak wywoławczy",
   "dmr_id"                      =>  "ID DMR użytkownika",
   "radio_freq"                  =>  "Częstotliwość",
@@ -66,11 +65,12 @@ $lang = array (
   "country"                     =>  "Kraj",
   "url"                         =>  "Strona",
   "radio_type"                  =>  "Tryb radia/modemu",
+  "baudrate"                    =>  "Baudrate",
   "node_type"                   =>  "Tryb Pracy",
   "timezone"                    =>  "Strefa czasowa",
   "dash_lang"                   =>  "Język Dashboard'u",
   // Config Page - DMR Configuration
-  "dmr_master"                  =>  "DMR Master (MMDVMHost)",
+  "dmr_master"                  =>  "DMR Master",
   "bm_master"                   =>  "BrandMeister Master",
   "bm_network"                  =>  "Sieć BrandMeister",
   "dmr_plus_master"             =>  "DMR+ Master",
@@ -87,17 +87,19 @@ $lang = array (
   "dstar_rpt2"                  =>  "Znak wywoławczy RPT2",
   "dstar_irc_password"          =>  "Hasło zdalnego dostępu",
   "dstar_default_ref"           =>  "Domyślny Reflektor",
-  "aprs_host"                   =>  "APRS Gateway Host Pool",
+  "aprs_host"                   =>  "APRS Host",
   "dstar_irc_lang"              =>  "Język ircDDBGateway",
   "dstar_irc_time"              =>  "Time Announcements",
   // Config Page - YSF Configuration
   "ysf_startup_host"            =>  "Host startowy YSF",
   // Config Page - P25 Configuration
-  "p25_startup_host"            =>  "Host startowy P25",
+  "p25_hosts"                   =>  "Hosts P25",
   "p25_nac"                     =>  "P25 NAC",
+  "p25_static"                  =>  "P25 Static",
   // Config Page - NXDN Configuration
-  "nxdn_startup_host"            =>  "Host startowy NXDN",
+  "nxdn_hosts"                  =>  "Hosts NXDN",
   "nxdn_ran"                     =>  "NXDN RAN",
+  "nxdn_static"                 => "NXDN Static",
   // Config Page - GPSd Configuration
   "gpsd_enable"            =>  "GPSd Enable",
   "gpsd_port"              =>  "GPSd Port",
@@ -118,7 +120,6 @@ $lang = array (
   "dstar_repeater"              =>  "D-Star Rypiter",
   "dstar_net"                   =>  "Sieć D-Star",
   "dmr_repeater"                =>  "DMR Rypiter",
-  "dmr_master"                  =>  "DMR Master",
   "ysf_net"                     =>  "Sieć YSF",
   "p25_radio"                   =>  "P25 Radio",
   "p25_net"                     =>  "Sieć P25",
@@ -151,6 +152,12 @@ $lang = array (
   "active_starnet_members"      =>  "Aktywni członkowie grupy Starnet",
   "d-star_link_manager"         =>  "Menedżer linków D-Star",
   "d-star_link_status"          =>  "Informacje o łączu D-Star",
-  "service_status"              =>  "Status usługi"
+  "service_status"              =>  "Status usługi",
+  // M17
+  "m17_config"                  =>  "M17 Configuration",
+  "m17_mode"                    =>  "M17 Mode",
+  "m17_startup_reflector"       =>  "M17 Startup Reflector",
+  "m17_repeater"                =>  "M17 Repeater",
+  "m17_net"                     =>  "M17 Network"
 );
 ?>

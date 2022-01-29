@@ -14,6 +14,7 @@ $lang = array (
   "admin"                       =>  "Διαχείριση",
   "power"                       =>  "Απενεργοποίηση",
   "update"                      =>  "Ενημέρωση",
+  "upgrade"                     =>  "Upgrade",
   "backup_restore"              =>  "Εφεδρικό Αντίγραφο/Επαναφορά",
   "factory_reset"               =>  "Εργοστασιακές Ρυθμίσεις",
   "live_logs"                   =>  "Αρχείο Καταγραφής",
@@ -28,7 +29,7 @@ $lang = array (
   "p25_config"                  =>  "Ρυθμίσεις P25",
   "nxdn_config"                 =>  "Ρυθμίσεις NXDN",
   "pocsag_config"               =>  "Ρυθμίσεις POCSAG",
-  "mobilegps_config"            =>  "Mobile GPS Configuration",
+  "gpsd_config"            =>  "GPSd Configuration",
   "wifi_config"                 =>  "Ρυθμίσεις WiFi",
   "fw_config"                   =>  "Ρυθμίσεις Τείχους Προστασίας",
   "remote_access_pw"            =>  "Κωδικός Πρόσβασης",
@@ -36,7 +37,7 @@ $lang = array (
   "setting"                     =>  "Ρυθμίσεις",
   "value"                       =>  "Τιμή",
   "apply"                       =>  "Εφαρμογή",
-  // Config Page - Hardware Information
+  // Config Page - Gateway Hardware Information
   "hostname"                    =>  "Ονομα Συσκευής",
   "kernel"                      =>  "Πυρήνας",
   "platform"                    =>  "Πλατφόρμα",
@@ -63,17 +64,20 @@ $lang = array (
   "country"                     =>  "Χώρα",
   "url"                         =>  "URL",
   "radio_type"                  =>  "Τύπος Modem",
+  "baudrate"                    =>  "Baudrate",
   "node_type"                   =>  "Τύπος Κόμβου",
   "timezone"                    =>  "Ζώνη Ωρας",
   "dash_lang"                   =>  "Γλώσσα Πίνακα Ελέγχου",
   // Config Page - DMR Configuration
-  "dmr_master"                  =>  "Εξυπηρετητής DMR (MMDVMHost)",
+  "dmr_master"                  =>  "Εξυπηρετητής DMR",
   "bm_master"                   =>  "Εξυπηρετητής BrandMeister",
   "bm_network"                  =>  "Δίκτυο BrandMeister",
   "dmr_plus_master"             =>  "Εξυπηρετητής DMR+",
   "dmr_plus_network"            =>  "Δίκτυο DMR+",
   "xlx_master"                  =>  "Εξυπηρετητής XLX",
   "xlx_enable"                  =>  "Ενεργοποίηση Εξυπηρετητή XLX",
+  "xlx_startup_tg"              =>  "XLX Startup TG",
+  "xlx_startup_module"          =>  "XLX Startup Module",
   "dmr_cc"                      =>  "Κωδικός Χρώματος DMR",
   "dmr_embeddedlconly"          =>  "DMR EmbeddedLCOnly",
   "dmr_dumptadata"              =>  "DMR DumpTAData",
@@ -88,15 +92,17 @@ $lang = array (
   // Config Page - YSF Configuration
   "ysf_startup_host"            =>  "Εξυπηρετητής Εκκίνησης YSF",
   // Config Page - P25 Configuration
-  "p25_startup_host"            =>  "Εξυπηρετητής Εκκίνησης P25",
+  "p25_hosts"                   =>  "P25 Hosts",
   "p25_nac"                     =>  "P25 NAC",
+  "p25_static"                  =>  "P25 Static",
   // Config Page - NXDN Configuration
-  "nxdn_startup_host"            =>  "Εξυπηρετητής Εκκίνησης NXDN",
+  "nxdn_hosts"                  =>  "NXDN Hosts",
   "nxdn_ran"                     =>  "NXDN RAN",
-  // Config Page - MobileGPS Configuration
-  "mobilegps_enable"            =>  "MobileGPS Enable",
-  "mobilegps_port"              =>  "GPS Port",
-  "mobilegps_speed"             =>  "GPS Port Speed",
+  "nxdn_static"                 => "NXDN Static",
+  // Config Page - GPSd Configuration
+  "gpsd_enable"            =>  "GPSd Enable",
+  "gpsd_port"              =>  "GPSd Port",
+  "gpsd_address"                =>  "GPSd Address",
   // Config Page - Firewall Configuration
   "fw_dash"                     =>  "Πρόσβαση στον Πίνακα Ελέγχου",
   "fw_irc"                      =>  "Απομακρυσμένος ircDDBGateway",
@@ -113,7 +119,6 @@ $lang = array (
   "dstar_repeater"              =>  "Αναμεταδότης D-Star",
   "dstar_net"                   =>  "Δίκτυο D-Star",
   "dmr_repeater"                =>  "Αναμεταδότης DMR",
-  "dmr_master"                  =>  "Εξυπηρετητής DMR",
   "ysf_net"                     =>  "Δίκτυο YSF",
   "p25_radio"                   =>  "Ασύρματος P25",
   "p25_net"                     =>  "Δίκτυο P25",
@@ -129,7 +134,8 @@ $lang = array (
   "loss"                        =>  "Απώλεια",
   "ber"                         =>  "Σφάλματα",    // Short version of "Bit Error Rate"
   // POCSAG Specific
-  "pocsag_list"                 =>  "DAPNET Activity",
+  "pocsag_list"                 =>  "DAPNET Gateway Activity",
+  "pocsag_persolist"            =>  "DAPNET Personnal Messages",
   "pocsag_timeslot"             =>  "Time Slot",
   "pocsag_msg"                  =>  "Message",
   // Dashboard - Extra Info
@@ -139,12 +145,18 @@ $lang = array (
   "utot"                        =>  "UTOT",        // Short for User Timeout
   "gtot"                        =>  "GTOT",        // Short for Group Timeout
   // Dashboard Front Page / Admin - Section Headders
-  "last_heard_list"             =>  "Τελευταία 20 διακριτικά που ακούστηκαν μέσω αυτής της Πύλης",
-  "local_tx_list"               =>  "Τελευταία 20 διακριτικά που είχαν πρόσβαση σε αυτή την Πύλη",
+  "last_heard_list"             =>  "Τελευταία 40 διακριτικά που ακούστηκαν μέσω αυτής της Πύλης",
+  "local_tx_list"               =>  "Τελευταία 40 διακριτικά που είχαν πρόσβαση σε αυτή την Πύλη",
   "active_starnet_groups"       =>  "Ενεργές Ομάδες Starnet",
   "active_starnet_members"      =>  "Ενεργά Μέλη Ομάδων Starnet",
   "d-star_link_manager"         =>  "Διαχειριστής Ζεύζης D-Star",
   "d-star_link_status"          =>  "Πληροφορίες Ζεύξης D-Star",
-  "service_status"              =>  "Κατάσταση Υπηρεσίας"
+  "service_status"              =>  "Κατάσταση Υπηρεσίας",
+  // M17
+  "m17_config"                  =>  "M17 Configuration",
+  "m17_mode"                    =>  "M17 Mode",
+  "m17_startup_reflector"       =>  "M17 Startup Reflector",
+  "m17_repeater"                =>  "M17 Repeater",
+  "m17_net"                     =>  "M17 Network"
 );
 ?>

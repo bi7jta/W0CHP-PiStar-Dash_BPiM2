@@ -1,14 +1,12 @@
 <?php
 //
 // Japanese JP Language Pack
-// Toshiro Okano (JF1CXH)
-// Updated: 09-Sep-2017
-// Masaru Mitani (JE4SMQ)
-// Updated: 10-Jan-2021
+// Masa (JE4SMQ)
+// Updated: 09-Jan-2021
 //
 $lang = array (
   // Banner texts
-  "digital_voice"               =>  "デジタルボイス",
+  "digital_voice"               =>  "デジタル音声",
   "configuration"               =>  "設定",
   "dashboard_for"               =>  "ダッシュボード for",
   // Banner links
@@ -16,6 +14,7 @@ $lang = array (
   "admin"                       =>  "制御",
   "power"                       =>  "電源",
   "update"                      =>  "更新",
+  "upgrade"                     =>  "Upgrade",
   "backup_restore"              =>  "バックアップ/復旧",
   "factory_reset"               =>  "工場出荷に戻る",
   "live_logs"                   =>  "ログ",
@@ -29,16 +28,16 @@ $lang = array (
   "ysf_config"                  =>  "YSF設定",
   "p25_config"                  =>  "P25設定",
   "nxdn_config"                 =>  "NXDN設定",
-  "pocsag_config"               =>  "POCSAG設定",
-  "mobilegps_config"            =>  "外部GPS設定",
+  "pocsag_config"               =>  "ページャ設定",
+  "gpsd_config"                 =>  "外部GPS設定",
   "wifi_config"                 =>  "無線LAN設定",
   "fw_config"                   =>  "ファイアウォール設定",
-  "remote_access_pw"            =>  "遠隔ログインパスワード",
+  "remote_access_pw"            =>  "遠隔操作パスワード",
   // Config Page - Section General
   "setting"                     =>  "設定項目",
   "value"                       =>  "設定内容",
   "apply"                       =>  "更新",
-  // Config Page - Hardware Information
+  // Config Page - Gateway Hardware Information
   "hostname"                    =>  "ホスト名",
   "kernel"                      =>  "カーネル",
   "platform"                    =>  "マイコン",
@@ -65,17 +64,20 @@ $lang = array (
   "country"                     =>  "国",
   "url"                         =>  "URL",
   "radio_type"                  =>  "Radio/Modem タイプ",
+  "baudrate"                    =>  "Baudrate",
   "node_type"                   =>  "ノードタイプ",
   "timezone"                    =>  "タイムゾーン",
   "dash_lang"                   =>  "言語",
   // Config Page - DMR Configuration
-  "dmr_master"                  =>  "DMRマスター(MMDVMHost)",
+  "dmr_master"                  =>  "DMRマスター",
   "bm_master"                   =>  "BrandMeisterマスター",
   "bm_network"                  =>  "BrandMeisterネットワーク",
   "dmr_plus_master"             =>  "DMR+マスター",
   "dmr_plus_network"            =>  "DMR+ネットワーク",
   "xlx_master"                  =>  "XLXマスター",
   "xlx_enable"                  =>  "XLXマスター有効",
+  "xlx_startup_tg"              =>  "XLX Startup TG",
+  "xlx_startup_module"          =>  "XLX Startup Module",
   "dmr_cc"                      =>  "DMRカラーコード",
   "dmr_embeddedlconly"          =>  "DMR EmbeddedLCOnly",
   "dmr_dumptadata"              =>  "DMR DumpTAData",
@@ -90,15 +92,17 @@ $lang = array (
   // Config Page - YSF Configuration
   "ysf_startup_host"            =>  "YSF初期接続ホスト",
   // Config Page - P25 Configuration
-  "p25_startup_host"            =>  "P25初期接続ホスト",
+  "p25_hosts"                   =>  "P25 Hosts",
   "p25_nac"                     =>  "P25 NAC",
+  "p25_static"                  =>  "P25 Static",
   // Config Page - NXDN Configuration
-  "nxdn_startup_host"            =>  "NXDN初期接続ホスト",
-  "nxdn_ran"                     =>  "NXDN RAN",
+  "nxdn_hosts"                  =>  "NXDN Hosts",
+  "nxdn_ran"                    =>  "NXDN RAN",
+  "nxdn_static"                 =>  "NXDN Static",
   // Config Page - MobileGPS Configuration
-  "mobilegps_enable"            =>  "外部GPS有効",
-  "mobilegps_port"              =>  "GPSポート",
-  "mobilegps_speed"             =>  "GPSポート速度",
+  "gpsd_enable"                 =>  "外部GPS有効",
+  "gpsd_port"                   =>  "GPSポート",
+  "gpsd_address"                =>  "GPS Address",
   // Config Page - Firewall Configuration
   "fw_dash"                     =>  "ダッシュボードアクセス",
   "fw_irc"                      =>  "ircDDBGatewayリモート",
@@ -115,7 +119,6 @@ $lang = array (
   "dstar_repeater"              =>  "D-Starレピーター",
   "dstar_net"                   =>  "D-Starネットワーク",
   "dmr_repeater"                =>  "DMRレピーター",
-  "dmr_master"                  =>  "DMRマスター",
   "ysf_net"                     =>  "YSFネットワーク",
   "p25_radio"                   =>  "P25 Radio",
   "p25_net"                     =>  "P25ネットワーク",
@@ -132,6 +135,7 @@ $lang = array (
   "ber"                         =>  "BER",        // Short version of "Bit Error Rate"
   // POCSAG Specific
   "pocsag_list"                 =>  "DAPNETゲートウェイ状態",
+  "pocsag_persolist"            =>  "DAPNET Personnal Messages",
   "pocsag_timeslot"             =>  "タイムスロット",
   "pocsag_msg"                  =>  "メッセージ",
   // Dashboard - Extra Info
@@ -147,6 +151,12 @@ $lang = array (
   "active_starnet_members"      =>  "Active Starnet Group Members",
   "d-star_link_manager"         =>  "D-Star接続マネージャー",
   "d-star_link_status"          =>  "D-Star接続情報",
-  "service_status"              =>  "サービス状態"
+  "service_status"              =>  "サービス状態",
+  // M17
+  "m17_config"                  =>  "M17 Configuration",
+  "m17_mode"                    =>  "M17 Mode",
+  "m17_startup_reflector"       =>  "M17 Startup Reflector",
+  "m17_repeater"                =>  "M17 Repeater",
+  "m17_net"                     =>  "M17 Network"
 );
 ?>
