@@ -758,6 +758,14 @@ if (!empty($_POST)):
 		$configdmrgateway['GPSD']['Address'] = escapeshellcmd($_POST['gpsdServer']);
 	    }
 
+            // Set GPSD daemon On or Off
+            $GPSDsvcOn = 'sudo systemctl unmask gpsd.service ; sudo systemctl unmask gpsd.socket ; sudo systemctl enable gpsd.service ; sudo systemctl enable gpsd.service';
+            $GPSDsvcOff = 'sudo systemctl disable gpsd.service ; sudo systemctl disable gpsd.socket ; sudo systemctl mask gpsd.service ; sudo systemctl mask gpsd.socket';
+            $GPSDsvcStop = '(sudo systemctl stop gpsd.service ; sudo systemctl stop gpsd gpsd.socket) > /dev/null 2>&1 &';
+
+            if ($configdmrgateway['GPSD']['Enable'] == "1") { system($GPSDsvcOn); }
+            if ($configdmrgateway['GPSD']['Enable'] == "0")  { system($GPSDsvcStop); system($GPSDsvcOff); }
+
 	    // Port and Address for YSF, GDId, M17 and NXDN gateways
 	    $configysfgateway['GPSD']['Port'] = $configdmrgateway['GPSD']['Port'];
 	    $configysfgateway['GPSD']['Address'] = $configdmrgateway['GPSD']['Address'];
