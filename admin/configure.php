@@ -2715,7 +2715,7 @@ if (!empty($_POST)):
 	$configm17gateway['Network']['HostsFile1'] = "/usr/local/etc/M17Hosts.txt";
 	$configm17gateway['Network']['HostsFile2'] = "/root/M17Hosts.txt";
 	$configm17gateway['Network']['Port'] = "17000";
-	$configm17gateway['Network']['ReloadTime'] = "60";
+	$configm17gateway['Network']['ReloadTime'] = "0";
 	$configm17gateway['Network']['HangTime'] = "240";
 	$configm17gateway['Network']['Revert'] = "1";
 	$configm17gateway['Network']['Debug'] = "0";
