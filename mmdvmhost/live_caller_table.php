@@ -94,7 +94,7 @@ if (!is_numeric($listElem[2])) {
                 while (!feof($handle))
                 {
                         $buffer = fgets($handle);
-                        if (preg_match("~\$searchCall\b~",$buffer) !== FALSE)
+                        if (strpos($buffer, $searchCall) !== FALSE)
                                 $callMatch[] = $buffer;
                 }
                 fclose($handle);
