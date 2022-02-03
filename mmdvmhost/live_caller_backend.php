@@ -98,16 +98,16 @@ if (!is_numeric($listElem[2])) {
         $callMatch = array();
         $handle = @fopen("/usr/local/etc/stripped.csv", "r");
         if ($handle)
-        {
+        {       
                 while (!feof($handle))
                 {
                         $buffer = fgets($handle);
-                        if (strpos($buffer, $searchCall) !== FALSE)
+                        if (preg_match("~\$searchCall\b~",$buffer) !== FALSE)
                                 $callMatch[] = $buffer;
                 }
                 fclose($handle);
         }
-        $callMatch= explode(",", $callMatch[0]);
+        $callMatch = explode(",", $callMatch[0]);
         $name = "$callMatch[2] $callMatch[3]";
         $city = $callMatch[4];
         $state = $callMatch[5];

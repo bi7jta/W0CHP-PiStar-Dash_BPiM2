@@ -86,24 +86,24 @@ if (floatval($listElem[8]) == 0) {
 }
 
 if (!is_numeric($listElem[2])) {
-	$searchCall = $listElem[2];
-	$callMatch = array();
-	$handle = @fopen("/usr/local/etc/stripped.csv", "r");
-	if ($handle)
-	{
-        	while (!feof($handle))
-        	{
-                	$buffer = fgets($handle);
-                	if (strpos($buffer, $searchCall) !== FALSE)
-                        	$callMatch[] = $buffer;
-        	}
-		fclose($handle);
-	}
-	$callMatch= explode(",", $callMatch[0]);
-	$name = "$callMatch[2] $callMatch[3]";
-	$city = $callMatch[4];
-	$state = $callMatch[5];
-	$country = $callMatch[6]; 
+        $searchCall = $listElem[2];
+        $callMatch = array();
+        $handle = @fopen("/usr/local/etc/stripped.csv", "r");
+        if ($handle)
+        {       
+                while (!feof($handle))
+                {
+                        $buffer = fgets($handle);
+                        if (preg_match("~\$searchCall\b~",$buffer) !== FALSE)
+                                $callMatch[] = $buffer;
+                }
+                fclose($handle);
+        }
+        $callMatch = explode(",", $callMatch[0]);
+        $name = "$callMatch[2] $callMatch[3]";
+        $city = $callMatch[4];
+        $state = $callMatch[5];
+        $country = $callMatch[6];
 }
 
 if (strlen($target) >= 2) {
