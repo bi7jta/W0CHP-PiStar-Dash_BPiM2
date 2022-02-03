@@ -78,11 +78,26 @@ if ($listElem[1] == null) {
 			elseif (floatval($listElem[8]) >= 1.2 && floatval($listElem[8]) <= 4.9) { $ber = "<td style=\"background: #FA0;\">".$listElem[8]."</td>"; }
 			else { $ber = "<td style=\"background: #F33;\">".$listElem[8]."</td>"; }
 
-
-$name = exec("grep -w \"$listElem[2]\" /usr/local/etc/stripped.csv | awk -F, '{print $3, $4}' | head -1 | tr -d '\"' ");
-$city = exec("grep -w \"$listElem[2]\" /usr/local/etc/stripped.csv | awk -F, '{print $5}' | head -1 | tr -d '\"' ");
-$state = exec("grep -w \"$listElem[2]\" /usr/local/etc/stripped.csv | awk -F, '{print $6}' | head -1 | tr -d '\"' ");
-$country = exec("grep -w \"$listElem[2]\" /usr/local/etc/stripped.csv | awk -F, '{print $7}' | head -1 | tr -d '\"' ");
+if (!is_numeric($listElem[2])) {
+        $searchCall = $listElem[2];
+        $callMatch = array();
+        $handle = @fopen("/usr/local/etc/stripped.csv", "r");
+        if ($handle)
+        {       
+                while (!feof($handle))
+                {
+                        $buffer = fgets($handle);
+                        if (preg_match("~\$searchCall\b~",$buffer) !== FALSE)
+                                $callMatch[] = $buffer;
+                }
+                fclose($handle);
+        }
+        $callMatch = explode(",", $callMatch[0]);
+        $name = "$callMatch[2] $callMatch[3]";
+        $city = $callMatch[4];
+        $state = $callMatch[5];
+        $country = $callMatch[6];
+}
 
 if (strlen($target) >= 2) {
 	$target_lookup = exec("grep -w \"$target\" /usr/local/etc/groups.txt | awk -F, '{print $1}' | head -1 | tr -d '\"'");
