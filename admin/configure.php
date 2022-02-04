@@ -3148,6 +3148,9 @@ if (!empty($_POST)):
 		system('sudo sed -i "/aprsEnabled=/c\\aprsEnabled=0" /etc/ircddbgateway');
 	}
 
+	// config file update notifier vars
+	$configmmdvm['WPSD']['ConfUpdReqd'] = $configUpdateRequired;
+
 	// Create the hostfiles.nodextra file if required
 	if (empty($_POST['confHostFilesNoDExtra']) != TRUE ) {
 		if (escapeshellcmd($_POST['confHostFilesNoDExtra']) == 'ON' )  {
