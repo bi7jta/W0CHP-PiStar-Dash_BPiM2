@@ -1,20 +1,19 @@
 ## About `W0CHP-PiStar-Dash`, and Some Warnings
 
-**DO NOT contact me for support, bugs, etc...**
-
 This is my *personal* and highly customized fork/version of the Pi-Star
 dashboard, and related binaries.  I offer ZERO support. This is here for your
 hacking and enjoyment, and you're fully on your own. *Use at your own risk*,
 and DO NOT ask me for support.  Nor should you file/report any bugs etc. on any
 official Pi-Star medium...this is not an official Pi-Star release.
 
-If you ask me to support, **I will ignore you.** It's *strongly* recommended
-that you read and heed the [rules and
+It's *strongly* recommended that you read and heed the [rules and
 caveats](https://w0chp.net/w0chp-pistar-dash/#rules).
 
-However, users of `W0CHP-PiStar-Dash` are on [Module **E** of
-XLX493](https://w0chp.net/articles/wpsd-support-on-xlx493/). If you're lucky; and if I'm in a
-good mood and/or if my availability allows, I can help on there too.
+Users of `W0CHP-PiStar-Dash` are on [Module **E** of
+XLX493](https://w0chp.net/articles/wpsd-support-on-xlx493/). If you're lucky;
+and if I'm in a good mood and/or if my availability allows, I can help on there
+too. A very easy way to connect to the support reflector, is via BrandMeister DMR,
+TalkGroup `3170603`.
 
 ## Installing `W0CHP-PiStar-Dash`
 
