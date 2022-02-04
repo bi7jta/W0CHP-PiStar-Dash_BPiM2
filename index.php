@@ -143,6 +143,32 @@ checkSessionValidity();
 		    </div> 
 		</p>
 	    </div>
+
+	    <?php
+	    // Check if config files need updating
+	    if (($_SERVER["PHP_SELF"] == "/admin/index.php") || ($_SERVER["PHP_SELF"] == "/index.php")) {
+		$configUpNeeded = getConfigItem("WPSD", "ConfUpdReqd", $_SESSION['MMDVMHostConfigs']);
+		
+		if (!isset($configUpNeeded) || ($configUpNeeded < $configUpdateRequired)) {
+	    ?>
+		<div>
+		    <table align="center" width="100%" style="margin: 0px 0px 10px 0px; width: 100%;">
+			<tr>
+			    <td align="center" valign="top" style="background-color: #FFCC00; color: #000;">
+				<p>
+				<b>IMPORTANT</b><br />
+				<br />
+				Your configuration needs to be updated.<br />
+				Go to the <a href="/admin/configure.php" style="text-decoration:underline;">Configuration page</a> and click on any "Apply Changes" button.<br />
+				<br />This message will disappear once this has been completed.<br />
+				</p>
+			</tr>
+		    </table>
+		</div>
+	    <?php
+	        }
+	    }
+	    ?>
 	    
 	    <?php
 	    // Output some default features
