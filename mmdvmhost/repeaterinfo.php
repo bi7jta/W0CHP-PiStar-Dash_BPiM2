@@ -474,7 +474,7 @@ if (isProcessRunning("M17Gateway")) {
 			}
 		    }
 		    else {
-			echo "<tr><td colspan=\"2\" style=\"background:#ffffff;\">Service Not Started</td></tr>\n";
+			echo "<tr><td colspan=\"2\" style=\"background: $tableRowEvenBg;\">Service Not Started</td></tr>\n";
 		    }
 		}
 		else {
