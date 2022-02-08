@@ -96,7 +96,7 @@ table {
     padding: 0px;
     border-collapse:collapse;
     border-spacing: 4px;
-    border: 1px solid black;
+    border: .5px solid #777777;
     text-decoration: none;
     background: #000000;
     font-family: 'Source Sans Pro', sans-serif;
@@ -130,6 +130,55 @@ table td {
     border: .5px solid #777777;
     padding: 2px;
     font-size: <?php echo "$fontSize"; ?>px;
+}
+
+.divTable{
+    font-family:  'Source Sans Pro', sans-serif;
+    display: table;
+    border-collapse: collapse;
+    width: 100%;
+}
+
+.divTableRow {
+    display: table-row;
+    width: auto;
+    clear: both;
+}
+
+.divTableHead, .divTableHeadCell {
+    color : <?php echo $textBanners; ?>;
+    background: <?php echo $backgroundBanners; ?>;
+    border: .5px solid #777777;
+    font-weight: 600;
+    text-decoration: none;
+    padding: 2px;
+    caption-side: top;
+    display: table-caption; 
+    text-align: center;
+}
+
+.divTableCell {
+    font-family: 'Inconsolata', monospace;
+    font-weight: 500;
+    font-size: <?php echo "$fontSize"; ?>px;
+    border: .5px solid #777777;
+    color: #000000;
+}
+
+.divTableCell, .divTableHeadCell {
+    display: table-cell;
+}
+
+.divTableBody {
+    display: table-row-group;
+}
+
+.divTableBody .divTableRow:nth-child(even) {
+    background: <?php echo $tableRowEvenBg; ?>;
+}
+
+.divTableBody .divTableRow:nth-child(odd) {
+    background: <?php echo $tableRowOddBg; ?>;
 }
 
 body {
@@ -748,23 +797,34 @@ select {
 
 .disabled-mode-cell {
     color: <?php echo $textModeCellDisabledColor; ?>;
+    padding:2px;
+    text-align: center;
+    border:0;
     background: <?php echo $backgroundModeCellDisabledColor; ?>;
 }
 
 .active-mode-cell {
     color: <?php echo $textModeCellActiveColor; ?>;
+    border:0;
+    text-align: center;
+    padding:2px;
     background: <?php echo $backgroundModeCellActiveColor; ?>;
 }
 
 .inactive-mode-cell {
     color: <?php echo $textModeCellInactiveColor; ?>;
+    border:0;
+    text-align: center;
+    padding:2px;
     background: <?php echo $backgroundModeCellInactiveColor; ?>;
 }
 
 .paused-mode-cell {
     color: <?php echo $textModeCellActiveColor; ?>;
+    border:0;
+    text-align: center;
+    padding:2px;
     background: <?php echo $backgroundModeCellPausedColor; ?>;
-    width: 50%;
 }
 
 .paused-mode-span {

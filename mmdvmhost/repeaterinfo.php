@@ -126,59 +126,98 @@ if (isProcessRunning("M17Gateway")) {
 }
 
 ?>
-<table>
-    <tr><th colspan="2"><?php echo $lang['modes_enabled'];?></th></tr>
-    <tr>
-      <?php if (isPaused("D-Star")) { echo '<td class="paused-mode-cell" title="Mode Paused">D-Star</td>'; } else { showMode("D-Star", $_SESSION['MMDVMHostConfigs']); } ?>
-      <?php if (isPaused("DMR")) { echo '<td class="paused-mode-cell" title="Mode Paused">DMR</td>'; } else { showMode("DMR", $_SESSION['MMDVMHostConfigs']); } ?></tr>
-    <tr>
-      <?php if (isPaused("YSF")) { echo '<td class="paused-mode-cell" title="Mode Paused">YSF</td>'; } else { showMode("System Fusion", $_SESSION['MMDVMHostConfigs']); } ?>
-      <?php if (isPaused("P25")) { echo '<td class="paused-mode-cell" title="Mode Paused">P25</td>'; } else { showMode("P25", $_SESSION['MMDVMHostConfigs']); }?></tr>
-    <tr>
-      <?php showMode("YSF X-Mode", $_SESSION['MMDVMHostConfigs']);?>
-      <?php if (isPaused("NXDN")) { echo '<td class="paused-mode-cell" title="Mode Paused">NXDN</td>'; } else { showMode("NXDN", $_SESSION['MMDVMHostConfigs']); } ?>
-    </tr>
-    <tr>
-      <?php showMode("DMR X-Mode", $_SESSION['MMDVMHostConfigs']);?>
-      <?php if (isPaused("POCSAG")) { echo '<td class="paused-mode-cell" title="Mode Paused">POCSAG</td>'; } else { showMode("POCSAG", $_SESSION['MMDVMHostConfigs']); } ?>
-    </tr>
-      <?php if (isPaused("M17")) { echo '<td class="paused-mode-cell" title="Mode Paused">M17</td>'; } else { showMode("M17", $_SESSION['MMDVMHostConfigs']); } ?>
-      <?php if (isPaused("AX 25")) { echo '<td class="paused-mode-cell" title="Mode Paused">AX.25</td>'; } else { showMode("AX 25", $_SESSION['MMDVMHostConfigs']); } ?>
-    </tr>
-</table>
+
+<div class="divTable">
+  <div class="divTableHead"><?php echo $lang['modes_enabled'];?></div>
+  <div class="divTableBody">
+    <div class="divTableRow">
+      <div class="divTableCell"><?php if (isPaused("D-Star")) { echo '<div class="paused-mode-cell" title="Mode Paused">D-Star</div>'; } else {showMode("D-Star", $_SESSION['MMDVMHostConfigs']); } ?></div></div>
+      <div class="divTableCell"><?php if (isPaused("DMR")) { echo '<div class="paused-mode-cell" title="Mode Paused">DMR</div>'; } else { showMode("DMR", $_SESSION['MMDVMHostConfigs']); } ?></div></div>
+    </div>
+    <div class="divTableRow">
+      <div class="divTableCell"><?php if (isPaused("YSF")) { echo '<div class="paused-mode-cell" title="Mode Paused">YSF</div>'; } else { showMode("System Fusion", $_SESSION['MMDVMHostConfigs']); } ?></div></div>
+      <div class="divTableCell"><?php if (isPaused("P25")) { echo '<div class="paused-mode-cell" title="Mode Paused">P25</div>'; } else { showMode("P25", $_SESSION['MMDVMHostConfigs']); }?></div></div>
+    </div>
+    <div class="divTableRow">
+      <div class="divTableCell"><?php showMode("YSF X-Mode", $_SESSION['MMDVMHostConfigs']);?></div></div>
+      <div class="divTableCell"><?php if (isPaused("NXDN")) { echo '<div class="paused-mode-cell" title="Mode Paused">NXDN</div>'; } else { showMode("NXDN", $_SESSION['MMDVMHostConfigs']); } ?></div></div>
+    </div>
+    <div class="divTableRow">
+      <div class="divTableCell"><?php showMode("DMR X-Mode", $_SESSION['MMDVMHostConfigs']);?></div></div>
+      <div class="divTableCell"><?php if (isPaused("POCSAG")) { echo '<div class="paused-mode-cell" title="Mode Paused">POCSAG</div>'; } else { showMode("POCSAG", $_SESSION['MMDVMHostConfigs']); } ?></div></div>
+    </div>
+    <div class="divTableRow">
+      <div class="divTableCell"><?php if (isPaused("M17")) { echo '<div class="paused-mode-cell" title="Mode Paused">M17</div>'; } else { showMode("M17", $_SESSION['MMDVMHostConfigs']); } ?></div></div>
+      <div class="divTableCell"><?php if (isPaused("AX 25")) { echo '<div class="paused-mode-cell" title="Mode Paused">AX.25</div>'; } else { showMode("AX 25", $_SESSION['MMDVMHostConfigs']); } ?></div></div>
+    </div>
+  </div>
+</div>
+
+
 <br />
 
-<table>
-    <tr><th colspan="2"><?php echo $lang['net_status'];?></th></tr>
-    <tr>
-      <?php showMode("D-Star Network", $_SESSION['MMDVMHostConfigs']);?>
-      <?php showMode("DMR Network", $_SESSION['MMDVMHostConfigs']);?>
-    </tr>
-    <tr>
-      <?php showMode("System Fusion Network", $_SESSION['MMDVMHostConfigs']);?>
-      <?php if (isPaused("YSF")) { echo '<td class="paused-mode-cell" title="YSF Mode Paused">DG-ID Net</td>'; } else { showMode("DG-ID Network", $_SESSION['DGIdGatewayConfigs']); } ?>
-    </tr>
-    <tr>
-      <?php showMode("YSF2DMR Network", $_SESSION['MMDVMHostConfigs']);?>
-      <?php showMode("YSF2NXDN Network", $_SESSION['MMDVMHostConfigs']);?>
-    </tr>
-    <tr>
-      <?php showMode("YSF2P25 Network", $_SESSION['MMDVMHostConfigs']);?>
-      <?php showMode("P25 Network", $_SESSION['MMDVMHostConfigs']);?>
-    </tr>
-    <tr>
-      <?php showMode("NXDN Network", $_SESSION['MMDVMHostConfigs']);?>
-      <?php showMode("M17 Network", $_SESSION['MMDVMHostConfigs']);?>
-    </tr>
-    <tr>
-      <?php showMode("DMR2NXDN Network", $_SESSION['MMDVMHostConfigs']);?>
-      <?php showMode("DMR2YSF Network", $_SESSION['MMDVMHostConfigs']);?>
-    </tr>
-    <tr>
-      <?php showMode("POCSAG Network", $_SESSION['MMDVMHostConfigs']);?>
-      <?php if (isPaused("APRS")) { echo '<td class="paused-mode-cell" title="Service Paused">APRS Net</td>'; } else { showMode("APRS Network", $_SESSION['APRSGatewayConfigs']); }?>
-    </tr>
-</table>
+<div class="divTable">
+  <div class="divTableHead"><?php echo $lang['net_status'];?></div>
+  <div class="divTableBody">
+    <div class="divTableRow">
+      <div class="divTableCell">
+        <?php showMode("D-Star Network", $_SESSION['MMDVMHostConfigs']);?></div>
+      </div>
+      <div class="divTableCell">
+        <?php showMode("DMR Network", $_SESSION['MMDVMHostConfigs']);?></div>
+      </div>
+    </div>
+    <div class="divTableRow">
+      <div class="divTableCell">
+        <?php showMode("System Fusion Network", $_SESSION['MMDVMHostConfigs']);?></div>
+      </div>
+      <div class="divTableCell">
+        <?php if (isPaused("YSF")) { echo '<div class="paused-mode-cell" title="YSF Mode Paused">DG-ID Net</div>'; } else { showMode("DG-ID Network", $_SESSION['DGIdGatewayConfigs']); } ?></div>
+      </div>
+    </div>
+    <div class="divTableRow">
+      <div class="divTableCell">
+        <?php showMode("YSF2DMR Network", $_SESSION['MMDVMHostConfigs']);?></div>
+      </div>
+      <div class="divTableCell">
+        <?php showMode("YSF2NXDN Network", $_SESSION['MMDVMHostConfigs']);?></div>
+      </div>
+    </div>
+    <div class="divTableRow">
+      <div class="divTableCell">
+        <?php showMode("YSF2P25 Network", $_SESSION['MMDVMHostConfigs']);?></div>
+      </div>
+      <div class="divTableCell">
+        <?php showMode("P25 Network", $_SESSION['MMDVMHostConfigs']);?></div>
+      </div>
+    </div>
+    <div class="divTableRow">
+      <div class="divTableCell">
+        <?php showMode("NXDN Network", $_SESSION['MMDVMHostConfigs']);?></div>
+      </div>
+      <div class="divTableCell">
+        <?php showMode("M17 Network", $_SESSION['MMDVMHostConfigs']);?></div>
+      </div>
+    </div>
+    <div class="divTableRow">
+      <div class="divTableCell">
+        <?php showMode("DMR2NXDN Network", $_SESSION['MMDVMHostConfigs']);?></div>
+      </div>
+      <div class="divTableCell">
+        <?php showMode("DMR2YSF Network", $_SESSION['MMDVMHostConfigs']);?></div>
+      </div>
+    </div>
+    <div class="divTableRow">
+      <div class="divTableCell">
+        <?php showMode("POCSAG Network", $_SESSION['MMDVMHostConfigs']);?></div>
+      </div>
+      <div class="divTableCell">
+        <?php if (isPaused("APRS")) { echo '<div class="paused-mode-cell" title="Service Paused">APRS Net</div>'; } else { showMode("APRS Network", $_SESSION['APRSGatewayConfigs']); }?></div>
+      </div>
+    </div>
+  </div>
+</div>
+
 <br />
 
 <table>
