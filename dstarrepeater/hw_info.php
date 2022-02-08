@@ -84,13 +84,13 @@ $sysRamPercent = exec("free -h | tail -2 | head -1 | awk {'print $3'} | sed 's/M
       <div class="divTableHeadCell"><a class="tooltip" href="#"><?php echo $lang['cpu_temp'];?><span><strong>CPU Temp</strong></a><span></div>
     </div>
     <div class="divTableRow">
-      <div class="divTableCell"><?php echo php_uname('n');?></div>
-      <div class="divTableCell"><?php echo exec('/usr/local/sbin/platformDetect.sh');?></div>
-      <div class="divTableCell"><?php echo php_uname('r');?></div>
-      <div class="divTableCell">User: <?php echo $cpuLoad['user'];?>% / Sys: <?php echo $cpuLoad['sys'];?>% / Nice: <?php echo $cpuLoad['nice'];?>%</div>
-      <div class="divTableCell"><?php echo $sysRamPercent;?></div>
-      <div class="divTableCell"><?php echo $rootfs_used;?></div>
-      <div class="divTableCell"><?php echo $cpuTempHTML; ?></div>
+      <div class="divTableCell hwinfo"><?php echo php_uname('n');?></div>
+      <div class="divTableCell hwinfo"><?php echo exec('/usr/local/sbin/platformDetect.sh');?></div>
+      <div class="divTableCell hwinfo"><?php echo php_uname('r');?></div>
+      <div class="divTableCell hwinfo">User: <?php echo $cpuLoad['user'];?>% / Sys: <?php echo $cpuLoad['sys'];?>% / Nice: <?php echo $cpuLoad['nice'];?>%</div>
+      <div class="divTableCell hwinfo"><?php echo $sysRamPercent;?></div>
+      <div class="divTableCell hwinfo"><?php echo $rootfs_used;?></div>
+      <div class="divTableCell hwinfo"><?php echo $cpuTempHTML; ?></div>
     </div>
   </div>
 </div>
