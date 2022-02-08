@@ -43,9 +43,9 @@ $rootfs_used = @exec("df -h / | tail -1|awk {'print $3'} | sed 's/G//'")." GB". 
 $cpuTempCRaw = exec('cat /sys/class/thermal/thermal_zone0/temp');
 if ($cpuTempCRaw > 1000) { $cpuTempC = sprintf('%.0f',round($cpuTempCRaw / 1000, 1)); } else { $cpuTempC = sprintf('%.0f',round($cpuTempCRaw, 1)); }
 $cpuTempF = sprintf('%.0f',round(+$cpuTempC * 9 / 5 + 32, 1));
-if ($cpuTempC <= 59) { $cpuTempHTML = "<td style=\"background: inherit\">".$cpuTempF."&deg;F / ".$cpuTempC."&deg;C</td>\n"; }
-if ($cpuTempC >= 60) { $cpuTempHTML = "<td style=\"background: #fa0\">".$cpuTempF."&deg;F / ".$cpuTempC."&deg;C</td>\n"; }
-if ($cpuTempC >= 80) { $cpuTempHTML = "<td style=\"background: #f00\">".$cpuTempF."&deg;F / ".$cpuTempC."&deg;C</td>\n"; }
+if ($cpuTempC <= 59) { $cpuTempHTML = "<span style=\"background: inherit\">".$cpuTempF."&deg;F / ".$cpuTempC."&deg;C</span>\n"; }
+if ($cpuTempC >= 60) { $cpuTempHTML = "<span style=\"background: #fa0\">".$cpuTempF."&deg;F / ".$cpuTempC."&deg;C</span>\n"; }
+if ($cpuTempC >= 80) { $cpuTempHTML = "<span style=\"background: #f00\">".$cpuTempF."&deg;F / ".$cpuTempC."&deg;C</span>\n"; }
 
 // Gather CPU Loads
 //$cpuLoad = sys_getloadavg();
@@ -72,23 +72,25 @@ $sysRamUsed = $system['mem_info']['MemTotal'] - $system['mem_info']['MemFree'] -
 $sysRamPercent = exec("free -h | tail -2 | head -1 | awk {'print $3'} | sed 's/Mi/ MB/'") . " used of ".formatSize($system['mem_info']['MemTotal']);
 
 ?>
-<table style="white-space:normal; word-wrap:break;">
-    <tr>
-	<th><a class="tooltip" href="#"><?php echo $lang['hostname'];?><span><b>System IP Address<br /></b><?php echo str_replace(',', ',<br />', exec('hostname -I'));?></span></a></th>
-	<th><a class="tooltip" href="#"><?php echo $lang['platform'];?><span><b>Uptime:<br /></b><?php echo str_replace(',', ',<br />', exec('uptime -p'));?></span></a></th>
-	<th><a class="tooltip" href="#"><?php echo $lang['kernel'];?><span><b>Release</b>This is the version<br />number of the Linux Kernel running<br />on this Raspberry Pi.</b></span></a></th>
-	<th><a class="tooltip" href="#"><?php echo $lang['cpu_load'];?><span><b>CPU Load</b></span></a></th>
-	<th><a class="tooltip" href="#">Memory Usage<span><b>Memory Usage</b></span></a></th>
-	<th><a class="tooltip" href="#">Disk Usage<span><b>Disk Usage</b></span></a></th>
-	<th><a class="tooltip" href="#"><?php echo $lang['cpu_temp'];?><span><b>CPU Temp</b></span></a></th>
-    </tr>
-    <tr>
-	<td><?php echo php_uname('n');?></td>
-	<td><?php echo exec('/usr/local/sbin/platformDetect.sh');?></td>
-	<td><?php echo php_uname('r');?></td>
-	<td>User: <?php echo $cpuLoad['user'];?>% / Sys: <?php echo $cpuLoad['sys'];?>% / Nice: <?php echo $cpuLoad['nice'];?>%</td>
-	<td><?php echo $sysRamPercent;?></td>
-	<td><?php echo $rootfs_used;?></td>
-	<?php echo $cpuTempHTML; ?>
-    </tr>
-</table>
+<div class="divTable">
+  <div class="divTableBody">
+    <div class="divTableRow">
+      <div class="divTableHeadCell"><a class="tooltip" href="#"><?php echo $lang['hostname'];?><span><strong>System IP Address<br /></strong><?php echo str_replace(',', ',<br />', exec('hostname -I'));?></a></span></div>
+      <div class="divTableHeadCell"><a class="tooltip" href="#"><?php echo $lang['platform'];?><span><strong>Uptime:<br /></strong><?php echo str_replace(',', ',<br />', exec('uptime -p'));?></a></span></div>
+      <div class="divTableHeadCell"><a class="tooltip" href="#"><?php echo $lang['kernel'];?><span><strong>Release:<br /></strong>This is the version<br />number of the Linux Kernel running<br />on this Raspberry Pi.</a></span></div>
+      <div class="divTableHeadCell"><a class="tooltip" href="#"><?php echo $lang['cpu_load'];?><span><strong>CPU Load</strong></a></span></div>
+      <div class="divTableHeadCell"><a class="tooltip" href="#">Memory Usage<span><strong>Memory Usage</strong></a></span></div>
+      <div class="divTableHeadCell"><a class="tooltip" href="#">Disk Usage<span><strong>Disk Usage</strong></a></span></div>
+      <div class="divTableHeadCell"><a class="tooltip" href="#"><?php echo $lang['cpu_temp'];?><span><strong>CPU Temp</strong></a><span></div>
+    </div>
+    <div class="divTableRow">
+      <div class="divTableCell"><?php echo php_uname('n');?></div>
+      <div class="divTableCell"><?php echo exec('/usr/local/sbin/platformDetect.sh');?></div>
+      <div class="divTableCell"><?php echo php_uname('r');?></div>
+      <div class="divTableCell">User: <?php echo $cpuLoad['user'];?>% / Sys: <?php echo $cpuLoad['sys'];?>% / Nice: <?php echo $cpuLoad['nice'];?>%</div>
+      <div class="divTableCell"><?php echo $sysRamPercent;?></div>
+      <div class="divTableCell"><?php echo $rootfs_used;?></div>
+      <div class="divTableCell"><?php echo $cpuTempHTML; ?></div>
+    </div>
+  </div>
+</div>

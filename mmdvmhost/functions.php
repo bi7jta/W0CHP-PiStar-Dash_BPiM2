@@ -616,14 +616,14 @@ if (file_exists('/etc/hostap.off')) {
 
 function getModeClass($status, $disabled = false) {
     if ($status) {
-	    echo '<td class="active-mode-cell" style="width:50%;" title="Active">';
+	    echo '<div class="active-mode-cell" title="Active">';
     }
     else {
 	    if ($disabled) {
-	        echo '<td class="disabled-mode-cell" style="width:50%;" title="Disabled">';
+	        echo '<div class="disabled-mode-cell" title="Disabled">';
 	    }
 	    else {
-	        echo '<td class="inactive-mode-cell" style="width:50%;" title="Inactive">';
+	        echo '<div class="inactive-mode-cell" title="Inactive">';
 	    }
     }
 }
