@@ -181,6 +181,10 @@ table td {
     background: <?php echo $tableRowOddBg; ?>;
 }
 
+.divTableCell.hwinfo {
+    padding: 2px;
+}
+
 body {
     background: <?php echo $backgroundPage; ?>;
     color: #000000;
