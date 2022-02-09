@@ -20,6 +20,10 @@ body, font {
     text-size-adjust: none;
 }
 
+.center {
+    text-align: center;
+}
+
 .header {
     background : <?php echo $backgroundBanners; ?>;
     text-decoration : none;
@@ -155,6 +159,7 @@ table td {
     caption-side: top;
     display: table-caption; 
     text-align: center;
+    vertical-align: middle;
 }
 
 .divTableCell {

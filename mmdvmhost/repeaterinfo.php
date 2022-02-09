@@ -239,127 +239,156 @@ if (isProcessRunning("M17Gateway")) {
 
 <br />
 
-<table>
-    <tr><th colspan="2"><?php echo $lang['radio_info'];?></th></tr>
-    <tr><th>TX/RX</th>
-	<?php
-	// TRX Status code
-	if (isset($lastHeard[0])) {
-	    $isTXing = false;
-	    
-	    // Go through the whole LH array, backward, looking for transmission.
-	    for (end($lastHeard); (($currentKey = key($lastHeard)) !== null); prev($lastHeard)) {
-		    $listElem = current($lastHeard);
-		
-		    if ($listElem[2] && ($listElem[6] == null) && ($listElem[5] !== 'RF')) {
-		        $isTXing = true;
-		    
-		        // Get rid of 'Slot x' for DMR, as it is meaningless, when 2 slots are txing at the same time.
-		        $txMode = preg_split('#\s+#', $listElem[1])[0];
-		        echo "<td style=\"background:#F012BE; color:#ffffff; font-weight:bold;\">TX: $txMode</td>";
-		        break;
-            }     
-	    }
-	    
-	    if ($isTXing == false) {
-		    $listElem = $lastHeard[0];
-	        if (getActualMode($lastHeard, $_SESSION['MMDVMHostConfigs']) === 'idle') {
-	            echo "<td style=\"background:#0b0; color:#000;font-weight:bold\">Idle</td>";
-	        }
-	        else if (getActualMode($lastHeard, $_SESSION['MMDVMHostConfigs']) === NULL) {
-	            if (isProcessRunning("MMDVMHost")) {
-			echo "<td style=\"background:#0b0; color:#000;font-weight:bold\">Idle</td>";
-		    }
-		    else {
-			echo "<td style=\"background:#606060; color:#b0b0b0;font-weight:bold\">OFFLINE</td>";
-		    }
-	        }
-	        else if ($listElem[2] && $listElem[6] == null && getActualMode($lastHeard, $_SESSION['MMDVMHostConfigs']) === 'D-Star') {
-	            echo "<td style=\"background:#4aa361;font-weight:bold\">RX: D-Star</td>";
-	        }
-	        else if (getActualMode($lastHeard, $_SESSION['MMDVMHostConfigs']) === 'D-Star') {
-	            echo "<td style=\"background:#ade;font-weight:bold\">Standby: D-Star</td>";
-	        }
-	        else if ($listElem[2] && $listElem[6] == null && getActualMode($lastHeard, $_SESSION['MMDVMHostConfigs']) === 'DMR') {
-	            echo "<td style=\"background:#4aa361; color:#ffffff; font-weight:bold\">RX: DMR</td>";
-	        }
-	        else if (getActualMode($lastHeard, $_SESSION['MMDVMHostConfigs']) === 'DMR') {
-	            echo "<td style=\"background:#f93;font-weight:bold\">Standby: DMR</td>";
-	        }
-	        else if ($listElem[2] && $listElem[6] == null && getActualMode($lastHeard, $_SESSION['MMDVMHostConfigs']) === 'YSF') {
-	            echo "<td style=\"background:#4aa361; color:#ffffff; font-weight:bold\">RX: YSF</td>";
-	        }
-	        else if (getActualMode($lastHeard, $_SESSION['MMDVMHostConfigs']) === 'YSF') {
-	            echo "<td style=\"background:#ff9;font-weight:bold\">Standby: YSF</td>";
-	        }
-	        else if ($listElem[2] && $listElem[6] == null && getActualMode($lastHeard, $_SESSION['MMDVMHostConfigs']) === 'P25') {
-        	    echo "<td style=\"background:#4aa361;font-weight:bold\">RX: P25</td>";
-        	}
-		else if ($listElem[2] && $listElem[6] == null && getActualMode($lastHeard, $_SESSION['MMDVMHostConfigs']) === 'M17') {
-        	    echo "<td style=\"background:#4aa361;\">RX M17</td>";
-        	}
-        	else if (getActualMode($lastHeard, $_SESSION['MMDVMHostConfigs']) === 'M17') {
-        	    echo "<td style=\"background:#c9f;\">Listening M17</td>";
-        	}
-        	else if (getActualMode($lastHeard, $_SESSION['MMDVMHostConfigs']) === 'P25') {
-        	    echo "<td style=\"background:#f9f;font-weight:bold\">Standby: P25</td>";
-        	}
-			else if ($listElem[2] && $listElem[6] == null && getActualMode($lastHeard, $_SESSION['MMDVMHostConfigs']) === 'NXDN') {
-        	    echo "<td style=\"background:#4aa361;font-weight:bold\">RX: NXDN</td>";
-        	}
-        	else if (getActualMode($lastHeard, $_SESSION['MMDVMHostConfigs']) === 'NXDN') {
-        	    echo "<td style=\"background:#c9f;font-weight:bold\">Standby: NXDN</td>";
-        	}
-			else if (getActualMode($lastHeard, $_SESSION['MMDVMHostConfigs']) === 'POCSAG') {
-        	    echo "<td style=\"color:#fff; background:#F012BE; font-weight:bold\">POCSAG Activity</td>";
-        	}
-        	else {
-        	    echo "<td>".getActualMode($lastHeard, $_SESSION['MMDVMHostConfigs'])."</td>";
-        	}
-	    }
-	}
-	else {
-	    echo "<td style=\"background:#0b0; color:#000;font-weight:bold\">Idle</td>";
-	}
-	?>
-        </tr>
-	<tr><th>TX</th><td style="background: <?php echo $tableRowEvenBg; ?>;"><?php echo getMHZ(getConfigItem("Info", "TXFrequency", $_SESSION['MMDVMHostConfigs'])); ?></td></tr>
-	<tr><th>RX</th><td style="background: <?php echo $tableRowEvenBg; ?>;"><?php echo getMHZ(getConfigItem("Info", "RXFrequency", $_SESSION['MMDVMHostConfigs'])); ?></td></tr>
-	<?php
-	if (isset($_SESSION['DvModemFWVersion'])) {
-	    echo '<tr><th>FW</th><td style="background: '.$tableRowEvenBg.';">'.$_SESSION['DvModemFWVersion'].'</td></tr>'."\n";
-	}
-	?>
-	<?php
-	if ($_SESSION['DvModemTCXOFreq']) {
-	    echo '<tr><th>TCXO</th><td style="background: '.$tableRowEvenBg.';">'.$_SESSION['DvModemTCXOFreq'].'</td></tr>'."\n";
-	} ?>
-</table>
+<div class="divTable">
+  <div class="divTableHead"><?php echo $lang['radio_info'];?></div>
+  <div class="divTableBody">
+    <div class="divTableRow center">
+      <div class="divTableHeadCell">TX/RX</div>
+      <div class="divTableCell hwinfo">
+        <?php
+        // TRX Status code
+        if (isset($lastHeard[0])) {
+            $isTXing = false;
+
+            // Go through the whole LH array, backward, looking for transmission.
+            for (end($lastHeard); (($currentKey = key($lastHeard)) !== null); prev($lastHeard)) {                                                                         
+                    $listElem = current($lastHeard);
+                    if ($listElem[2] && ($listElem[6] == null) && ($listElem[5] !== 'RF')) {                                                                              
+                        $isTXing = true;
+                        // Get rid of 'Slot x' for DMR, as it is meaningless, when 2 slots are txing at the same time.
+                        $txMode = preg_split('#\s+#', $listElem[1])[0];
+                        echo "<div style=\"background:#F012BE; color:#ffffff; font-weight:bold;\">TX: $txMode</div>";
+                        break;
+                    }
+            }
+            if ($isTXing == false) {
+                    $listElem = $lastHeard[0];
+                if (getActualMode($lastHeard, $_SESSION['MMDVMHostConfigs']) === 'idle') {
+                    echo "<div style=\"background:#0b0; color:#000;font-weight:bold\">Idle</div>";
+                }
+                else if (getActualMode($lastHeard, $_SESSION['MMDVMHostConfigs']) === NULL) {
+                    if (isProcessRunning("MMDVMHost")) {
+                        echo "<div style=\"background:#0b0; color:#000;font-weight:bold\">Idle</div>";
+                    }
+                    else {
+                        echo "<div style=\"background:#606060; color:#b0b0b0;font-weight:bold\">OFFLINE</div>";
+                    }
+                }
+                else if ($listElem[2] && $listElem[6] == null && getActualMode($lastHeard, $_SESSION['MMDVMHostConfigs']) === 'D-Star') {
+                    echo "<div style=\"background:#4aa361;font-weight:bold\">RX: D-Star</div>";
+                }
+                else if (getActualMode($lastHeard, $_SESSION['MMDVMHostConfigs']) === 'D-Star') {
+                    echo "<div style=\"background:#ade;font-weight:bold\">Standby: D-Star</div>";
+                }
+                else if ($listElem[2] && $listElem[6] == null && getActualMode($lastHeard, $_SESSION['MMDVMHostConfigs']) === 'DMR') {
+                    echo "<div style=\"background:#4aa361; color:#ffffff; font-weight:bold\">RX: DMR</div>";
+                }
+                else if (getActualMode($lastHeard, $_SESSION['MMDVMHostConfigs']) === 'DMR') {
+                    echo "<div style=\"background:#f93;font-weight:bold\">Standby: DMR</div>";
+                }
+                else if ($listElem[2] && $listElem[6] == null && getActualMode($lastHeard, $_SESSION['MMDVMHostConfigs']) === 'YSF') {
+                    echo "<div style=\"background:#4aa361; color:#ffffff; font-weight:bold\">RX: YSF</div>";
+                }
+                else if (getActualMode($lastHeard, $_SESSION['MMDVMHostConfigs']) === 'YSF') {
+                    echo "<div style=\"background:#ff9;font-weight:bold\">Standby: YSF</div>";
+                }
+                else if ($listElem[2] && $listElem[6] == null && getActualMode($lastHeard, $_SESSION['MMDVMHostConfigs']) === 'P25') {
+                    echo "<div style=\"background:#4aa361;font-weight:bold\">RX: P25</div>";
+                }
+                else if ($listElem[2] && $listElem[6] == null && getActualMode($lastHeard, $_SESSION['MMDVMHostConfigs']) === 'M17') {
+                    echo "<div style=\"background:#4aa361;\">RX M17</div>";
+                }
+                else if (getActualMode($lastHeard, $_SESSION['MMDVMHostConfigs']) === 'M17') {
+                    echo "<div style=\"background:#c9f;\">Listening M17</div>";
+                }
+                else if (getActualMode($lastHeard, $_SESSION['MMDVMHostConfigs']) === 'P25') {
+                    echo "<div style=\"background:#f9f;font-weight:bold\">Standby: P25</div>"; 
+                }   
+                        else if ($listElem[2] && $listElem[6] == null && getActualMode($lastHeard, $_SESSION['MMDVMHostConfigs']) === 'NXDN') {
+                    echo "<div style=\"background:#4aa361;font-weight:bold\">RX: NXDN</div>";
+                }   
+                else if (getActualMode($lastHeard, $_SESSION['MMDVMHostConfigs']) === 'NXDN') {
+                    echo "<div style=\"background:#c9f;font-weight:bold\">Standby: NXDN</div>"; 
+                }   
+                        else if (getActualMode($lastHeard, $_SESSION['MMDVMHostConfigs']) === 'POCSAG') {
+                    echo "<div style=\"color:#fff; background:#F012BE; font-weight:bold\">POCSAG Activity</div>";
+                }   
+                else {
+                    echo "<div>".getActualMode($lastHeard, $_SESSION['MMDVMHostConfigs'])."</div>";
+                }   
+            }   
+        }   
+        else {
+            echo "<div style=\"background:#0b0; color:#000;font-weight:bold\">Idle</div>";
+        }
+        ?>
+      </div>
+    </div>
+    <div class="divTableRow center">
+      <div class="divTableHeadCell">TX</div>
+      <div class="divTableCell hwinfo" style="background: <?php echo $tableRowEvenBg; ?>;"><?php echo getMHZ(getConfigItem("Info", "TXFrequency", $_SESSION['MMDVMHostConfigs'])); ?></div>
+    </div>
+    <div class="divTableRow center">
+      <div class="divTableHeadCell">RX</div>
+      <div class="divTableCell hwinfo" style="background: <?php echo $tableRowEvenBg; ?>;"><?php echo getMHZ(getConfigItem("Info", "RXFrequency", $_SESSION['MMDVMHostConfigs'])); ?></div>
+    </div>
+    <?php
+        if (isset($_SESSION['DvModemFWVersion'])) {
+    ?>
+    <div class="divTableRow center">
+      <div class="divTableHeadCell">FW</div>
+      <div class="divTableCell hwinfo" style="background: <?php echo $tableRowEvenBg; ?>;"><?php echo $_SESSION['DvModemFWVersion']; ?></div>
+    </div>
+    <?php } ?>
+    <div class="divTableRow center">
+      <div class="divTableHeadCell">TCXO</div>
+      <div class="divTableCell hwinfo" style="background: <?php echo $tableRowEvenBg; ?>;"><?php echo $_SESSION['DvModemTCXOFreq']; ?></div>
+    </div>
+  </div>
+</div>
+
+<br />
 
 	<?php
 	$testMMDVModeDSTAR = getConfigItem("D-Star", "Enable", $_SESSION['MMDVMHostConfigs']);
 	if ( $testMMDVModeDSTAR == 1 || isPaused("D-Star") ) { //Hide the D-Star Reflector information when D-Star Network not enabled.
  	    $linkedTo = getActualLink($reverseLogLinesMMDVM, "D-Star");
-	    echo "<br />\n";
-	    echo "<table>\n";
-	    echo "<tr><th colspan=\"2\">".$lang['dstar_repeater']."</th></tr>\n";
-	    echo "<tr><th>RPT1</th><td style=\"background: $tableRowEvenBg;\">".str_replace(' ', '&nbsp;', $_SESSION['DStarRepeaterConfigs']['callsign'])."</td></tr>\n";
-	    echo "<tr><th>RPT2</th><td style=\"background: $tableRowEvenBg;\">".str_replace(' ', '&nbsp;', $_SESSION['DStarRepeaterConfigs']['gateway'])."</td></tr>\n";
-	    echo "<tr><th colspan=\"2\">".$lang['dstar_net']."</th></tr>\n";
-        if ($configs['aprsEnabled']) {
-	        echo "<tr><th>APRS</th><td style=\"background: $tableRowEvenBg;\">".substr($configs['aprsHostname'], 0, 16)."</td></tr>\n";
-        }
-        if ($configs['ircddbEnabled']) {
-	        echo "<tr><th>IRC</th><td style=\"background: $tableRowEvenBg;\">".substr($configs['ircddbHostname'], 0 ,16)."</td></tr>\n";
-        }
+	?>
+<div class="divTable">
+  <div class="divTableHead"><?php echo $lang['dstar_repeater'];?></div>
+  <div class="divTableBody">
+    <div class="divTableRow center">
+      <div class="divTableHeadCell">RPT1</div>
+      <div class="divTableCell hwinfo" style="background: <?php echo $tableRowEvenBg; ?>;"><?php echo str_replace(' ', '&nbsp;', $_SESSION['DStarRepeaterConfigs']['callsign']); ?></div>
+    </div>    
+    <div class="divTableRow center">
+      <div class="divTableHeadCell">RPT2</div>
+      <div class="divTableCell hwinfo" style="background: <?php echo $tableRowEvenBg; ?>;"><?php echo str_replace(' ', '&nbsp;', $_SESSION['DStarRepeaterConfigs']['gateway']); ?></div>
+    </div>	
+  </div>
+</div>
+<div class="divTable">
+  <div class="divTableHead"><?php echo $lang['dstar_net']; ?></div>
+  <div class="divTableBody">
+    <?php
         if (isPaused("D-Star")) {
-	    	echo "<tr><td colspan=\"2\" style=\"background: $tableRowEvenBg;\">Mode Paused</td></tr>\n";
-	} else {
-	        echo "<tr><td colspan=\"2\" ".GetActiveConnectionStyle($remoteMMDVMResults, "dstar")." title=\"".$linkedTo."\">".$linkedTo."</td></tr>\n";
-	}
-	 echo "</table>\n";
-	}
-	
+                echo "<div class='divTableRow center'><div class='divTableCell hwinfo' style=\"background: $tableRowEvenBg;\">Mode Paused</div></div>\n";                 
+        } else {
+                echo "<div class='divTableRow center'><div class='divTableCell hwinfo' ".GetActiveConnectionStyle($remoteMMDVMResults, "dstar")." title=\"".$linkedTo."\">".$linkedTo."</div></div>\n";
+        }
+        if ($_SESSION['ircDDBConfigs']['aprsEnabled'] == 1) {
+	        echo "<div class='divTableRow center'><div class='divTableHeadCell'>APRS</div></div><div class='divTableRow center'><div class='divTableCell hwinfo' style=\"background: $tableRowEvenBg;\">".substr($_SESSION['ircDDBConfigs']['aprsHostname'], 0, 18)."</div></div>\n";
+        }
+        if ($_SESSION['ircDDBConfigs']['ircddbEnabled'] == 1) {
+	        echo "<div class='divTableRow center'><div class='divTableHeadCell'>IRCddb</div></div><div class='divTableRow center'><div class='divTableCell hwinfo' style=\"background: $tableRowEvenBg;\">".substr($_SESSION['ircDDBConfigs']['ircddbHostname'], 0 ,18)."</div></div>\n";
+        }
+	?>
+  </div>
+</div>
+
+<?php 
+
+}
 	$testMMDVModeDMR = getConfigItem("DMR", "Enable", $_SESSION['MMDVMHostConfigs']);
 	if ( $testMMDVModeDMR == 1 || isPaused("DMR") ) { //Hide the DMR information when DMR mode not enabled.
 		if (isPaused("DMR")) {
