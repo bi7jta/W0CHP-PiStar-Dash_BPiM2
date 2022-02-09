@@ -713,7 +713,7 @@ function showMode($mode, $configs) {
         if (strpos($mode, 'DMR2') > -1) {
 	        $mode = str_replace(" Net", "", $mode);
         }
-    echo $mode."</td>\n";
+    echo $mode."</div>\n";
 }
 
 // Open Logfile and copy loglines into LogLines-Array()
