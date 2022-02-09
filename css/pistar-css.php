@@ -178,12 +178,8 @@ table td {
     display: table-row-group;
 }
 
-.divTableBody .divTableRow:nth-child(even) {
+.divTableBody .divTableRow {
     background: <?php echo $tableRowEvenBg; ?>;
-}
-
-.divTableBody .divTableRow:nth-child(odd) {
-    background: <?php echo $tableRowOddBg; ?>;
 }
 
 .divTableCell.hwinfo {

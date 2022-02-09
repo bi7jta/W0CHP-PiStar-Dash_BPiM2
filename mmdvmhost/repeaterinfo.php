@@ -257,61 +257,61 @@ if (isProcessRunning("M17Gateway")) {
                         $isTXing = true;
                         // Get rid of 'Slot x' for DMR, as it is meaningless, when 2 slots are txing at the same time.
                         $txMode = preg_split('#\s+#', $listElem[1])[0];
-                        echo "<div style=\"background:#F012BE; color:#ffffff; font-weight:bold;\">TX: $txMode</div>";
+                        echo "<div style=\"background:#F012BE; color:#ffffff; font-weight:bold;padding:2px;\">TX: $txMode</div>";
                         break;
                     }
             }
             if ($isTXing == false) {
                     $listElem = $lastHeard[0];
                 if (getActualMode($lastHeard, $_SESSION['MMDVMHostConfigs']) === 'idle') {
-                    echo "<div style=\"background:#0b0; color:#000;font-weight:bold\">Idle</div>";
+                    echo "<div style=\"background:#0b0; color:#000;font-weight:bold;padding:2px;\">Idle</div>";
                 }
                 else if (getActualMode($lastHeard, $_SESSION['MMDVMHostConfigs']) === NULL) {
                     if (isProcessRunning("MMDVMHost")) {
-                        echo "<div style=\"background:#0b0; color:#000;font-weight:bold\">Idle</div>";
+                        echo "<div style=\"background:#0b0; color:#000;font-weight:bold;padding:2px;\">Idle</div>";
                     }
                     else {
-                        echo "<div style=\"background:#606060; color:#b0b0b0;font-weight:bold\">OFFLINE</div>";
+                        echo "<div style=\"background:#606060; color:#b0b0b0;font-weight:bold;padding:2px;\">OFFLINE</div>";
                     }
                 }
                 else if ($listElem[2] && $listElem[6] == null && getActualMode($lastHeard, $_SESSION['MMDVMHostConfigs']) === 'D-Star') {
-                    echo "<div style=\"background:#4aa361;font-weight:bold\">RX: D-Star</div>";
+                    echo "<div style=\"background:#4aa361;font-weight:bold;padding:2px;\">RX: D-Star</div>";
                 }
                 else if (getActualMode($lastHeard, $_SESSION['MMDVMHostConfigs']) === 'D-Star') {
-                    echo "<div style=\"background:#ade;font-weight:bold\">Standby: D-Star</div>";
+                    echo "<div style=\"background:#ade;font-weight:bold;padding:2px;\">Standby: D-Star</div>";
                 }
                 else if ($listElem[2] && $listElem[6] == null && getActualMode($lastHeard, $_SESSION['MMDVMHostConfigs']) === 'DMR') {
-                    echo "<div style=\"background:#4aa361; color:#ffffff; font-weight:bold\">RX: DMR</div>";
+                    echo "<div style=\"background:#4aa361; color:#ffffff; font-weight:bold;padding:2px;\">RX: DMR</div>";
                 }
                 else if (getActualMode($lastHeard, $_SESSION['MMDVMHostConfigs']) === 'DMR') {
-                    echo "<div style=\"background:#f93;font-weight:bold\">Standby: DMR</div>";
+                    echo "<div style=\"background:#f93;font-weight:bold;padding:2px;\">Standby: DMR</div>";
                 }
                 else if ($listElem[2] && $listElem[6] == null && getActualMode($lastHeard, $_SESSION['MMDVMHostConfigs']) === 'YSF') {
-                    echo "<div style=\"background:#4aa361; color:#ffffff; font-weight:bold\">RX: YSF</div>";
+                    echo "<div style=\"background:#4aa361; color:#ffffff; font-weight:bold;padding:2px;\">RX: YSF</div>";
                 }
                 else if (getActualMode($lastHeard, $_SESSION['MMDVMHostConfigs']) === 'YSF') {
-                    echo "<div style=\"background:#ff9;font-weight:bold\">Standby: YSF</div>";
+                    echo "<div style=\"background:#ff9;font-weight:bold;padding:2px;\">Standby: YSF</div>";
                 }
                 else if ($listElem[2] && $listElem[6] == null && getActualMode($lastHeard, $_SESSION['MMDVMHostConfigs']) === 'P25') {
-                    echo "<div style=\"background:#4aa361;font-weight:bold\">RX: P25</div>";
+                    echo "<div style=\"background:#4aa361;font-weight:bold;padding:2px;\">RX: P25</div>";
                 }
                 else if ($listElem[2] && $listElem[6] == null && getActualMode($lastHeard, $_SESSION['MMDVMHostConfigs']) === 'M17') {
-                    echo "<div style=\"background:#4aa361;\">RX M17</div>";
+                    echo "<div style=\"background:#4aa361;padding:2px;font-weight:bold;\">RX M17</div>";
                 }
                 else if (getActualMode($lastHeard, $_SESSION['MMDVMHostConfigs']) === 'M17') {
-                    echo "<div style=\"background:#c9f;\">Listening M17</div>";
+                    echo "<div style=\"background:#c9f;padding:2px;font-weight:bold;\">Listening M17</div>";
                 }
                 else if (getActualMode($lastHeard, $_SESSION['MMDVMHostConfigs']) === 'P25') {
-                    echo "<div style=\"background:#f9f;font-weight:bold\">Standby: P25</div>"; 
+                    echo "<div style=\"background:#f9f;font-weight:bold;padding:2px;\">Standby: P25</div>"; 
                 }   
                         else if ($listElem[2] && $listElem[6] == null && getActualMode($lastHeard, $_SESSION['MMDVMHostConfigs']) === 'NXDN') {
-                    echo "<div style=\"background:#4aa361;font-weight:bold\">RX: NXDN</div>";
+                    echo "<div style=\"background:#4aa361;font-weight:bold;padding:2px;\">RX: NXDN</div>";
                 }   
                 else if (getActualMode($lastHeard, $_SESSION['MMDVMHostConfigs']) === 'NXDN') {
-                    echo "<div style=\"background:#c9f;font-weight:bold\">Standby: NXDN</div>"; 
+                    echo "<div style=\"background:#c9f;font-weight:bold;padding:2px;\">Standby: NXDN</div>"; 
                 }   
                         else if (getActualMode($lastHeard, $_SESSION['MMDVMHostConfigs']) === 'POCSAG') {
-                    echo "<div style=\"color:#fff; background:#F012BE; font-weight:bold\">POCSAG Activity</div>";
+                    echo "<div style=\"color:#fff; background:#F012BE; font-weight:bold;padding:2px;\">POCSAG Activity</div>";
                 }   
                 else {
                     echo "<div>".getActualMode($lastHeard, $_SESSION['MMDVMHostConfigs'])."</div>";
@@ -319,7 +319,7 @@ if (isProcessRunning("M17Gateway")) {
             }   
         }   
         else {
-            echo "<div style=\"background:#0b0; color:#000;font-weight:bold\">Idle</div>";
+            echo "<div style=\"background:#0b0; color:#000;font-weight:bold;padding:2px;\">Idle</div>";
         }
         ?>
       </div>
@@ -377,7 +377,7 @@ if (isProcessRunning("M17Gateway")) {
                 echo "<div class='divTableRow center'><div class='divTableCell hwinfo' ".GetActiveConnectionStyle($remoteMMDVMResults, "dstar")." title=\"".$linkedTo."\">".$linkedTo."</div></div>\n";
         }
         if ($_SESSION['ircDDBConfigs']['aprsEnabled'] == 1) {
-	        echo "<div class='divTableRow center'><div class='divTableHeadCell'>APRS</div></div><div class='divTableRow center'><div class='divTableCell hwinfo' style=\"background: $tableRowEvenBg;\">".substr($_SESSION['ircDDBConfigs']['aprsHostname'], 0, 18)."</div></div>\n";
+	        echo "<div class='divTableRow center'><div class='divTableHeadCell'>APRS</div></div><div class='divTableRow center'><div class='divTableCell hwinfo' style=\"background: $tableRowEvenBg;\">".substr($_SESSION['ircDDBConfigs']['aprsAddress'], 0, 18)."</div></div>\n";
         }
         if ($_SESSION['ircDDBConfigs']['ircddbEnabled'] == 1) {
 	        echo "<div class='divTableRow center'><div class='divTableHeadCell'>ircDDB</div></div><div class='divTableRow center'><div class='divTableCell hwinfo' style=\"background: $tableRowEvenBg;\">".substr($_SESSION['ircDDBConfigs']['ircddbHostname'], 0 ,18)."</div></div>\n";
@@ -673,30 +673,54 @@ if (isProcessRunning("M17Gateway")) {
             if (strlen($ysfLinkedToTxt) > 20) {
 		$ysfLinkedToTxt = substr($ysfLinkedToTxt, 0, 15) . '..';
 	    }
-        echo "<table>\n";
-        if (isPaused("YSF")) {
-	    echo "<tr><th colspan=\"2\">".$lang['ysf_net']."</th></tr>\n";
-        } else {
-            echo "<tr><th colspan=\"2\">".$lang['ysf_net']."".$ysfLinkState."</th></tr>\n";
-        }
-	echo "<tr><td colspan=\"2\" ".GetActiveConnectionStyle($remoteYSFGResults, "ysf")." title=\"".$ysfLinkedToTooltip."\">".$ysfTableData."</td></tr>\n";
-        echo "</table>\n";
-	}
+	    ?>
+<div class="divTable">
+<?php
+if (isPaused("YSF")) {
+?>
+  <div class="divTableHead"><?php echo $lang['ysf_net'];?></div>
+  <div class="divTableBody">
+<?php
+} else {
+?>
+  <div class="divTableHead"><?php echo $lang['ysf_net']." ".$ysfLinkState; ?></div>
+  <div class="divTableBody">
+<?php
+}
+?>
+    <div class="divTableRow center">
+<?php
+	echo "<div class='divTableCell hwinfo'><div ".GetActiveConnectionStyle($remoteYSFGResults, "ysf")." title=\"".$ysfLinkedToTooltip."\">".$ysfTableData."</div></div>\n";
+?>
+    </div>
+  </div>
+</div>
+<br />
+<?php
+}
 
     if (getServiceEnabled('/etc/dgidgateway') == 1 )  { // Hide DGId GW info when GW not enabled
-        echo "<br />\n";
-        echo "<table>\n";
-        echo "<tr><th colspan='2'>DG-ID Gateway Status</th></tr>\n";
-        echo "<tr><th colspan='2'>Current DG-ID</th></tr>\n";
+?>
+<div class="divTable">
+  <div class="divTableHead">DG-ID Gateway Status</div>
+  <div class="divTableHead">Current DG-ID</div>
+  <div class="divTableBody">
+    <div class="divTableRow center">
+<?php
         if (isPaused("YSF")) {
-            echo "<tr><td colspan='2' style=\"background: $tableRowEvenBg;\" title=\"YSF Mode Paused\">YSF Mode Paused</td></tr>\n";
+            echo "<div class='divTableCell hwinfo'><div style=\"background: $tableRowEvenBg;\" title=\"YSF Mode Paused\">YSF Mode Paused</div></div>\n";
         }
           else if (isProcessRunning("DGIdGateway")) {
-            echo "<tr><td colspan='2' style=\"background: $tableRowEvenBg;\" title=\"".getDGIdLinks()."\">".getDGIdLinks()."</td></tr>\n";
+            echo "<div class='divTableCell hwinfo'><div style=\"background: $tableRowEvenBg;\" title=\"".getDGIdLinks()."\">".getDGIdLinks()."</div></div>\n";
         } else {
-            echo "<tr><td colspan='2' style=\"background: $tableRowEvenBg;\" title=\"Service Not Started\">Service Not Started</td></tr>\n";
+            echo "<div class='divTableCell hwinfo'><div style=\"background: $tableRowEvenBg;\" title=\"Service Not Started\">Service Not Started</div></div>\n";
         }
-        echo "</table>\n";
+?>
+    </div>
+  </div>
+</div>
+<br />
+<?php
     }
 
 	$testYSF2DMR = 0;
@@ -720,33 +744,50 @@ if (isProcessRunning("M17Gateway")) {
 		$dmrMasterHost = substr($dmrMasterHost, 0, 23) . '..';
 	    }
             fclose($dmrMasterFile);
-	    
-            echo "<br />\n";
-            echo "<table>\n";
-            echo "<tr><th colspan=\"2\">YSF2DMR</th></tr>\n";
-	    echo "<tr><th>DMR ID</th><td style=\"background: $tableRowEvenBg;\">".$_SESSION['YSF2DMRConfigs']['DMR Network']['Id']."</td></tr>\n";
-	    echo "<tr><th colspan=\"2\">YSF2".$lang['dmr_master']."</th></tr>\n";
-            echo "<tr><td colspan=\"2\"style=\"background: $tableRowEvenBg;\" title=\"".$dmrMasterHostTooltip."\">".$dmrMasterHost."</td></tr>\n";
-            echo "</table>\n";
+	    ?>
+<div class="divTable">
+  <div class="divTableHead">YSF2DMR</div>
+  <div class="divTableBody">
+    <div class="divTableRow center">
+<?php
+	    echo "<div class='divTableHeadCell'>DMR ID</div><div class='divTableCell hwinfo'><div style=\"background: $tableRowEvenBg;\">".$_SESSION['YSF2DMRConfigs']['DMR Network']['Id']."</div></div>\n";
+	    echo '</div><div class="divTableRow center">';
+	    echo "<div class='divTableHeadCell'>YSF2".$lang['dmr_master']."</div>\n";
+            echo "<div class='divTableCell hwinfo'><div style=\"background: $tableRowEvenBg;\" title=\"".$dmrMasterHostTooltip."\">".$dmrMasterHost."</div></div>\n";
+?>
+    </div>
+  </div>
+</div>
+<br />
+<?php
 	}
 	
 	$testMMDVModeP25 = getConfigItem("P25 Network", "Enable", $_SESSION['MMDVMHostConfigs']);
 	if ( isset($_SESSION['YSF2P25Configs']['Enabled']['Enabled']) ) { $testYSF2P25 = $_SESSION['YSF2P25Configs']['Enabled']['Enabled']; }
 	if ( $testMMDVModeP25 == 1 || $testYSF2P25 || isPaused("P25") ) { //Hide the P25 information when P25 Network mode not enabled.
-	    echo "<br />\n";
-	    echo "<table>\n";
+?>
+<div class="divTable">
+  <div class="divTableHead"><?php echo $lang['p25_radio']; ?></div>
+  <div class="divTableBody">
+    <div class="divTableRow center">
+<?php
 	    if (getConfigItem("P25", "NAC", $_SESSION['MMDVMHostConfigs'])) {
-		echo "<tr><th colspan=\"2\">".$lang['p25_radio']."</th></tr>\n";
-		echo "<tr><th style=\"width:70px\">NAC</th><td>".getConfigItem("P25", "NAC", $_SESSION['MMDVMHostConfigs'])."</td></tr>\n";
+		echo "<div class='divTableHeadCell'>NAC</div><div class='divTableCell hwinfo'><div style=\"background: $tableRowEvenBg;\">".getConfigItem("P25", "NAC", $_SESSION['MMDVMHostConfigs'])."</div></div>\n";
 	    }
-	    echo "<tr><th colspan=\"2\">".$lang['p25_net']."</th></tr>\n";
+	    echo "</div>\n<div class='divTableRow center'>\n";
+	    echo "<div class='divTableHeadCell'>".$lang['p25_net']."</div>\n";
 		if (isPaused("P25")) {
-	    	echo "<tr><td colspan=\"2\"style=\"background: $tableRowEvenBg;\">Mode Paused</td></tr>\n";
+	    	echo "<div class='divTableCell hwinfo'><div style=\"background: $tableRowEvenBg;\">Mode Paused</div></div>\n";
 		} else {
-		    echo "<tr><td colspan=\"2\" ".GetActiveConnectionStyle($remoteP25GResults, "p25").">".getActualLink($logLinesP25Gateway, "P25")."</td></tr>\n";
+		    echo "<div class='divTableCell hwinfo'><div ".GetActiveConnectionStyle($remoteP25GResults, "p25").">".getActualLink($logLinesP25Gateway, "P25")."</div></div>\n";
 
 		}
-	    echo "</table>\n";
+?>
+    </div>
+  </div>
+</div>
+<br />
+<?php
 	}
 	
 	$testMMDVModeNXDN = getConfigItem("NXDN Network", "Enable", $_SESSION['MMDVMHostConfigs']);
@@ -761,44 +802,67 @@ if (isProcessRunning("M17Gateway")) {
 	    }
 	}
 	if ( $testMMDVModeNXDN == 1 || isset($testYSF2NXDN) || isset($testDMR2NXDN) || isPaused("NXDN") ) { //Hide the NXDN information when NXDN Network mode not enabled.
-	    echo "<br />\n";
-	    echo "<table>\n";
-	    if (getConfigItem("NXDN", "RAN", $_SESSION['MMDVMHostConfigs'])) {
-		echo "<tr><th colspan=\"2\">".$lang['nxdn_radio']."</th></tr>\n";
-		echo "<tr><th style=\"width:70px\">RAN</th><td>".getConfigItem("NXDN", "RAN", $_SESSION['MMDVMHostConfigs'])."</td></tr>\n";
-	    }
-	    echo "<tr><th colspan=\"2\">".$lang['nxdn_net']."</th></tr>\n";
-	    if (isPaused("NXDN")) {
-		echo "<tr><td colspan=\"2\"style=\"background: $tableRowEvenBg;\">Mode Paused</td></tr>\n";
-	    } else {
-	    	echo "<tr><td colspan=\"2\" ".GetActiveConnectionStyle($remoteNXDNGResults, "nxdn")." >".getActualLink($logLinesNXDNGateway, "NXDN")."</td></tr>\n";
-	    }
-	    echo "</table>\n";
+if (getConfigItem("NXDN", "RAN", $_SESSION['MMDVMHostConfigs'])) {
+?>
+<div class="divTable">
+  <div class="divTableHead"><?php echo $lang['nxdn_radio']; ?></div>
+  <div class="divTableBody">
+    <div class="divTableRow center">
+<?php
+	echo "<div class='divTableHeadCell'>RAN</div>";
+	echo "<div class='divTableCell hwinfo'><div style=\"background: $tableRowEvenBg;\">".getConfigItem("NXDN", "RAN", $_SESSION['MMDVMHostConfigs'])."</div></div>\n";
+	echo "</div>\n<div class='divTableRow center'>";
+	echo "<div class='divTableHeadCell'>".$lang['nxdn_net']."</div>\n";
+	if (isPaused("NXDN")) {
+	    echo "<div class='divTableCell hwinfo'><div style=\"background: $tableRowEvenBg;\">Mode Paused</div></div>\n";
+	} else {
+	    echo "<div class='divTableCell hwinfo'><div ".GetActiveConnectionStyle($remoteNXDNGResults, "nxdn").">".getActualLink($logLinesNXDNGateway, "NXDN")."</div></div>\n";
 	}
-
+?>
+    </div>
+  </div>
+</div>
+<br />
+<?php
+  }
+}
 	$testMMDVModeM17 = getConfigItem("M17", "Enable", $_SESSION['MMDVMHostConfigs']);
         $configm17gateway = $_SESSION['M17GatewayConfigs'];
 	if ( $testMMDVModeM17 == 1 || isPaused("M17") ) { //Hide the M17 Reflector information when M17 Network not enabled.
-		echo "<br />\n";
-		echo "<table>\n";
-		echo "<tr><th colspan=\"2\">M17 Repeater</th></tr>\n";
-		echo "<tr><th>RPT</th><td style=\"background: $tableRowEvenBg;\">".str_replace(' ', '&nbsp;', $configm17gateway['General']['Callsign'])."&nbsp;".str_replace(' ', '&nbsp;', $configm17gateway['General']['Suffix'])."</td></tr>\n";
-		echo "<tr><th colspan=\"2\">M17 Network</th></tr>\n";
+?>
+<div class="divTable">
+  <div class="divTableHead">M17 Repeater</div>
+  <div class="divTableBody">
+    <div class="divTableRow center">
+<?php
+	echo "<div class='divTableHeadCell'>RPT</div>\n<div class='divTableCell hwinfo'>\n<div style=\"background: $tableRowEvenBg;\">".str_replace(' ', '&nbsp;', $configm17gateway['General']['Callsign'])."&nbsp;".str_replace(' ', '&nbsp;', $configm17gateway['General']['Suffix'])."</div></div>\n";
+	echo "</div>\n<div class='divTableRow center'>";
+		echo "<div class='divTableHeadCell'>M17 Network</div>\n";
                 if (isPaused("M17")) {
-                    echo "<tr><td colspan=\"2\"style=\"background: $tableRowEvenBg;\">Mode Paused</td></tr>\n";
+                    echo "<div class='divTableCell hwinfo'><div style=\"background: $tableRowEvenBg;\">Mode Paused</div></div>\n";
                 } else {
-		    echo "<tr><td colspan=\"2\" ".GetActiveConnectionStyle($remoteM17GResults, "m17").">".getActualLink($reverseLogLinesM17Gateway, "M17")."</td></tr>\n";
+		    echo "<div class='divTableCell hwinfo'><div  ".GetActiveConnectionStyle($remoteM17GResults, "m17").">".getActualLink($reverseLogLinesM17Gateway, "M17")."</div></div>\n";
                 }
-		echo "</table>\n";
+?>
+    </div>
+  </div>
+</div>
+<br />
+<?php
 	}
 	
 	$testMMDVModePOCSAG = getConfigItem("POCSAG Network", "Enable", $_SESSION['MMDVMHostConfigs']);
 	if ( $testMMDVModePOCSAG == 1 || isPaused("POCSAG")) { //Hide the POCSAG information when POCSAG Network mode not enabled.
-	    echo "<br />\n";
-	    echo "<table>\n";
-	    echo "<tr><th colspan=\"2\">POCSAG Status</th></tr>\n";
-	    echo "<tr><th>TX</th><td style=\"background: $tableRowEvenBg;\">".getMHZ(getConfigItem("POCSAG", "Frequency", $_SESSION['MMDVMHostConfigs']))."</td></tr>\n";
-            if (isPaused("POCSAG")) {
+?>
+<div class="divTable">
+  <div class="divTableHead">POCSAG Status</div>
+  <div class="divTableBody">
+    <div class="divTableRow center">
+<?php
+	echo "<div class='divTableHeadCell'>TX</div>\n<div class='divTableCell hwinfo'>\n<div style=\"background: $tableRowEvenBg;\">".getMHZ(getConfigItem("POCSAG", "Frequency", $_SESSION['MMDVMHostConfigs']))."</div></div>\n";
+	echo "</div>\n</div>\n</div>\n";
+	echo "<div class='divTable'>\n";
+	if (isPaused("POCSAG")) {
 		$dapnetGatewayRemoteAddr = "Mode Paused";
 		$dapnetGatewayRemoteTooltip = $dapnetGatewayRemoteAddr;
 	    } else {
@@ -810,58 +874,76 @@ if (isProcessRunning("M17Gateway")) {
 		    }
 		}
 	    }
-	    echo "<tr><th colspan=\"2\">DAPNET Master</th></tr>\n";
+	    echo "<div class='divTableHead'>DAPNET Master</div>\n";
+	    echo "<div class='divTableBody'>\n";
+	    echo "<div class='divTableRow center'>\n";
 	    if (isProcessRunning("DAPNETGateway")) {
-		echo "<tr><td colspan=\"2\" style=\"background: $tableRowEvenBg;\" title=\"".$dapnetGatewayRemoteTooltip."\">".$dapnetGatewayRemoteAddr."</td></tr>\n";
+		echo "<div class='divTableCell hwinfo'><div style=\"background: $tableRowEvenBg;\ title=\"".$dapnetGatewayRemoteTooltip."\">".$dapnetGatewayRemoteAddr."</div></div>\n";
 	    }
 	    else {
-		echo "<tr><td colspan=\"2\" style=\"background: $tableRowEvenBg;\">Service Not Started</td></tr>\n";
+		echo "<<div class='divTableCell hwinfo'><div style=\"background: $tableRowEvenBg;\">Service Not Started</div></div>\n";
 	    }
-	    echo "</table>\n";
+?>
+    </div>
+  </div>
+</div>
+<br />
+<?php
 	}
-
+    $m17gatewayConfigFile = '/etc/m17gateway';
+    if (fopen($m17gatewayConfigFile,'r')) { $configm17gateway = parse_ini_file($m17gatewayConfigFile, true); }
     $testAPRSdmr = $_SESSION['DMRGatewayConfigs']['APRS']['Enable'];
     $testAPRSysf = $_SESSION['YSFGatewayConfigs']['APRS']['Enable'];
-    $testAPRSm17 = $_SESSION['M17GatewayConfigs']['APRS']['Enable'];
-    $testAPRSnxdn = $_SESSION['M17GatewayConfigs']['APRS']['Enable'];
-    $testAPRSdgid = $_SESSION['M17GatewayConfigs']['APRS']['Enable'];
+    $testAPRSm17 = $configm17gateway['APRS']['Enable'];
+    $testAPRSnxdn = $_SESSION['NXDNGatewayConfigs']['APRS']['Enable'];
+    $testAPRSdgid = $_SESSION['DGIdGatewayConfigs']['APRS']['Enable'];
     $testAPRSircddb = $_SESSION['ircDDBConfigs']['aprsEnabled'];
     if (getServiceEnabled('/etc/aprsgateway') == 1 || isPaused("APRS"))  { // Hide APRS-IS GW info when GW not enabled
-        echo "<br />\n";
-        echo "<table>\n";
-        echo "<tr><th colspan='2'>APRS Gateway Status</th></tr>\n";
-        echo "<tr><th colspan='2' >Host Pool</th></tr>\n";
+?>
+<div class="divTable">
+  <div class="divTableHead">APRS Gateway Status</div>
+  <div class="divTableHead">Host Pool</div>
+  <div class="divTableBody">
+    <div class="divTableRow center">
+<?php
         if (isPaused("APRS")) {
-		echo "<tr><td colspan='2' style=\"background: $tableRowEvenBg;\" title=\"Service Paused\">Service Paused</td></tr>\n"; 
+		echo "<div class='divTableCell hwinfo'><div style=\"background: $tableRowEvenBg;\" title=\"Service Paused\">Service Paused</div></div>\n"; 
 	} else {
-		echo "<tr><td colspan='2' style=\"background: $tableRowEvenBg;\" title=\"".$_SESSION['APRSGatewayConfigs']['APRS-IS']['Server']."\">".substr($_SESSION['APRSGatewayConfigs']['APRS-IS']['Server'], 0, 23)."<br /><small>(".getAPRSISserver().")</small></td></tr>\n";
+		echo "<div class='divTableCell hwinfo'><div style=\"background: $tableRowEvenBg;\" title=\"".$_SESSION['APRSGatewayConfigs']['APRS-IS']['Server']."\">".substr($_SESSION['APRSGatewayConfigs']['APRS-IS']['Server'], 0, 23)."<br /><small>(".getAPRSISserver().")</small></div></div>\n";
+		echo "</div>\n</div>\n</div>\n";
 		if ($testAPRSdmr == 0 && $testAPRSircddb == 0 && $testAPRSysf == 0 && $testAPRSdgid == 0 && $testAPRSnxdn == 0 && $testAPRSm17 == 0) {
-			echo "<tr><th colspan='2'>APRS Being Sent To</th></tr>\n";
-			echo "<tr><td colspan='2' style=\"background: $tableRowEvenBg;\" title=\"None Selected\">None Selected</td></tr>\n";
-			echo "</table>\n";
+			echo "<div class='divTable'>\n";
+            		echo "<div class='divTableHead'>APRS Being Sent To</div>\n";
+            		echo "<div class='divTableBody'>\n";
+            		echo "<div class='divTableRow center'>\n";
+			echo "<div class='divTableCell hwinfo'><div style=\"background: $tableRowEvenBg;\" title=\"None Selected\">None Selected</div></div>\n";
+			echo "</div>\n</div>\n</div>\n<br />\n";
 		} else {
-			echo "<tr><th colspan='2'>APRS Being Sent To</th></tr>\n";
+			echo "<div class='divTable'>\n";
+            		echo "<div class='divTableHead'>APRS Being Sent To</div>\n";
+            		echo "<div class='divTableBody'>\n";
 			if ($testAPRSdmr == 1) {
-				echo "<tr><td colspan='2' style=\"background: $tableRowEvenBg;\" title=\"DMR\">DMR</td></tr>\n";
+				echo "<div class='divTableRow center'>\n<div class='divTableCell hwinfo'><div style=\"background: $tableRowEvenBg;\" title=\"DMR\">DMR</div></div>\n</div>\n";
 			}
 			if ($testAPRSircddb == 1) {
-				echo "<tr><td colspan='2' style=\"background: $tableRowEvenBg;\" title=\"ircDDB\">ircDDB</td></tr>\n";
+				echo "<div class='divTableRow center'>\n<div class='divTableCell hwinfo'><div style=\"background: $tableRowEvenBg;\" title=\"ircDDB\">ircDDB</div></div>\n</div>\n";
 			}
 			if ($testAPRSysf == 1) {
-				echo "<tr><td colspan='2' style=\"background: $tableRowEvenBg;\" title=\"YSF\">YSF</td></tr>\n";
+				echo "<div class='divTableRow center'>\n<div class='divTableCell hwinfo'><div style=\"background: $tableRowEvenBg;\" title=\"YSF\">YSF</div></div>\n</div>\n";
 			}
 			if ($testAPRSdgid == 1) {
-				echo "<tr><td colspan='2' style=\"background: $tableRowEvenBg;\" title=\"DGId\">DGId</td></tr>\n";
+				echo "<div class='divTableRow center'>\n<div class='divTableCell hwinfo'><div style=\"background: $tableRowEvenBg;\" title=\"DGId\">DGId</div></div>\n</div>\n";
 			}
 			if ($testAPRSnxdn == 1) {
-				echo "<tr><td colspan='2' style=\"background: $tableRowEvenBg;\" title=\"NXDN\">NXDN</td></tr>\n";
+				echo "<div class='divTableRow center'>\n<div class='divTableCell hwinfo'><div style=\"background: $tableRowEvenBg;\" title=\"NXDN\">NXDN</div></div>\n</div>\n";
 			}
 			if ($testAPRSm17 == 1) {
-				echo "<tr><td colspan='2' style=\"background: $tableRowEvenBg;\" title=\"M17\">M17</td></tr>\n";
+				echo "<div class='divTableRow center'>\n<div class='divTableCell hwinfo'><div style=\"background: $tableRowEvenBg;\" title=\"M17\">M17</div></div>\n</div>\n";
 			}
+			echo "</div>\n</div>\n<br />\/";
 		}
-	}
-        echo "</table>\n";
+	   }
     }
 
 ?>
+

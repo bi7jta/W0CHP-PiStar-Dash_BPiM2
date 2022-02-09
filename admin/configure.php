@@ -5206,7 +5206,7 @@ $p25Hosts = fopen("/usr/local/etc/P25Hosts.txt", "r");
     <th colspan="2"><a class="tooltip" href="#"><?php echo $lang['value'];?><span><b>Value</b>The current value from the<br />configuration files</span></a></th>
     </tr>
     <tr>
-    <td align="left"><a class="tooltip2" href="#"><?php echo $lang['p25_startup_host'];?>:<span><b>P25 Host</b>Set your prefered P25 Host here</span></a></td>
+    <td align="left"><a class="tooltip2" href="#"><?php echo $lang['p25_hosts'];?>:<span><b>P25 Host</b>Set your prefered P25 Host here</span></a></td>
     <td style="text-align: left;"><select name="p25StartupHost" class="p25StartupHost">
 <?php
     if (isset($configp25gateway['Network']['Startup'])) { $testP25Host = $configp25gateway['Network']['Startup']; }
@@ -5258,7 +5258,7 @@ $p25Hosts = fopen("/usr/local/etc/P25Hosts.txt", "r");
         <th colspan="2"><a class="tooltip" href="#"><?php echo $lang['value'];?><span><b>Value</b>The current value from the<br />configuration files</span></a></th>
       </tr>
       <tr>
-        <td align="left"><a class="tooltip2" href="#"><?php echo $lang['nxdn_startup_host'];?>:<span><b>NXDN Host</b>Set your prefered NXDN Host here</span></a></td>
+        <td align="left"><a class="tooltip2" href="#"><?php echo $lang['nxdn_hosts'];?>:<span><b>NXDN Host</b>Set your prefered NXDN Host here</span></a></td>
         <td style="text-align: left;"><select name="nxdnStartupHost" class="nxdnStartupHost">
 <?php
 	if (file_exists('/etc/nxdngateway')) {
