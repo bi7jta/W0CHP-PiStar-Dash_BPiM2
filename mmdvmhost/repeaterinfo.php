@@ -523,7 +523,6 @@ if (isProcessRunning("M17Gateway")) {
 		    echo "<div class='divTableCell hwinfo'><div class=\"inactive-mode-cell\" title='Time Slot 2 disabled'>Disabled</div></div>>\n";
 	    }
 	    ?>
-      </div>
     </div>
   </div>
 </div>
@@ -594,9 +593,8 @@ if (isProcessRunning("M17Gateway")) {
 		echo "<div class='divTableRow center'><div class='divTableCell hwinfo' style=\"background:#606060; color:#b0b0b0;\">No DMR Network</div></div>\n";
 	    }
         ?>
+      </div>
     </div>
-  </div>
-</div>
 <br />
 <?php
 }
