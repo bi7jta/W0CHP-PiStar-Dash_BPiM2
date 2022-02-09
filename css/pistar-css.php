@@ -5,7 +5,7 @@ include_once('css-base.php');
 @import url('/css/fonts.css');
 
 .container {
-    width: 98%;
+    width: 100%;
     text-align: left;
     margin: auto;
     background : <?php echo $backgroundContent; ?>;
@@ -34,17 +34,17 @@ body, font {
 }
 
 .nav {
-    float : left;
+    float: left;
     margin : 0;
     padding : 3px 3px 3px 3px;
-    width : 225px;
+    width : 230px;
     background : <?php echo $backgroundNavPanel; ?>;
     font-weight : normal;
     min-height : 100%;
 }
 
 .content {
-    margin : 0 0 0 231px;
+    margin : 0 0 0 250px;
     padding : 1px 5px 5px 5px;
     color : <?php echo $textContent; ?>;
     background : <?php echo $backgroundContent; ?>;
