@@ -380,11 +380,13 @@ if (isProcessRunning("M17Gateway")) {
 	        echo "<div class='divTableRow center'><div class='divTableHeadCell'>APRS</div></div><div class='divTableRow center'><div class='divTableCell hwinfo' style=\"background: $tableRowEvenBg;\">".substr($_SESSION['ircDDBConfigs']['aprsHostname'], 0, 18)."</div></div>\n";
         }
         if ($_SESSION['ircDDBConfigs']['ircddbEnabled'] == 1) {
-	        echo "<div class='divTableRow center'><div class='divTableHeadCell'>IRCddb</div></div><div class='divTableRow center'><div class='divTableCell hwinfo' style=\"background: $tableRowEvenBg;\">".substr($_SESSION['ircDDBConfigs']['ircddbHostname'], 0 ,18)."</div></div>\n";
+	        echo "<div class='divTableRow center'><div class='divTableHeadCell'>ircDDB</div></div><div class='divTableRow center'><div class='divTableCell hwinfo' style=\"background: $tableRowEvenBg;\">".substr($_SESSION['ircDDBConfigs']['ircddbHostname'], 0 ,18)."</div></div>\n";
         }
 	?>
   </div>
 </div>
+
+<br />
 
 <?php 
 
@@ -488,27 +490,47 @@ if (isProcessRunning("M17Gateway")) {
 	    }
 	    fclose($dmrMasterFile);
 	    }
-	    echo "<br />\n";
-	    echo "<table>\n";
-	    echo "<tr><th colspan=\"2\">".$lang['dmr_repeater']."</th></tr>\n";
-	    echo "<tr><th>DMR ID</th><td style=\"background: $tableRowEvenBg;\">".getConfigItem("General", "Id", $_SESSION['MMDVMHostConfigs'])."</td></tr>\n";
-	    echo "<tr><th>DMR CC</th><td style=\"background: $tableRowEvenBg;\">".getConfigItem("DMR", "ColorCode", $_SESSION['MMDVMHostConfigs'])."</td></tr>\n";
-	    echo "<tr><th>TS1</th>";
-	    
+	    ?>
+<div class="divTable">
+  <div class="divTableHead"><?php echo $lang['dmr_repeater'];?></div>
+  <div class="divTableBody">
+    <div class="divTableRow center">
+      <div class="divTableHeadCell">DMR ID</div>
+      <div class="divTableCell hwinfo" style="background: <?php echo $tableRowEvenBg; ?>;"><?php echo getConfigItem("General", "Id", $_SESSION['MMDVMHostConfigs']); ?></div>
+    </div>
+    <div class="divTableRow center">
+      <div class="divTableHeadCell">DMR CC</div>
+      <div class="divTableCell hwinfo" style="background: <?php echo $tableRowEvenBg; ?>;"><?php echo getConfigItem("DMR", "ColorCode", $_SESSION['MMDVMHostConfigs']); ?></div>
+    </div>
+    <div class="divTableRow center">
+      <div class="divTableHeadCell">TS1</div>
+	    <?php
 	    if (getConfigItem("DMR Network", "Slot1", $_SESSION['MMDVMHostConfigs']) == 1) {
-		    echo "<td class=\"active-mode-cell\" title='Time Slot 1 Enabled'>".substr(getActualLink($reverseLogLinesMMDVM, "DMR Slot 1"), -10)."</td></tr>\n";
+		    echo "<div class='divTableCell hwinfo'><div class=\"active-mode-cell\" title='Time Slot 1 Enabled'>".substr(getActualLink($reverseLogLinesMMDVM, "DMR Slot 1"), -10)."</div></div>\n";
 		    //echo "<tr><td style=\"background: $tableRowEvenBg;\" colspan=\"2\">".substr(getActualLink($reverseLogLinesMMDVM, "DMR Slot 1"), -10)."/".substr(getActualReflector($reverseLogLinesMMDVM, "DMR Slot 1"), -10)."</td></tr>\n";    }
 	    } else {
-		    echo "<td class=\"inactive-mode-cell\" title='Time Slot 1 disabled'>Disabled</td></tr>\n";
+		    echo "<div class='divTableCell hwinfo'><div class=\"inactive-mode-cell\" title='Time Slot 1 disabled'>Disabled</div></div>\n";
 	    }
-	    echo "<tr><th>TS2</th>";
+	    ?>
+    </div>
+    <div class="divTableRow center">
+      <div class="divTableHeadCell">TS2</div>
+           <?php
 	    if (getConfigItem("DMR Network", "Slot2", $_SESSION['MMDVMHostConfigs']) == 1) {
-		    echo "<td class=\"active-mode-cell\" title='Time Slot 2 Enabled'>".substr(getActualLink($reverseLogLinesMMDVM, "DMR Slot 2"), -10)."</td></tr>\n";
+		    echo "<div class='divTableCell hwinfo'><div class=\"active-mode-cell\" title='Time Slot 2 Enabled'>".substr(getActualLink($reverseLogLinesMMDVM, "DMR Slot 2"), -10)."</div></div>\n";
 		    //echo "<tr><td style=\"background: $tableRowEvenBg;\" colspan=\"2\">".substr(getActualLink($reverseLogLinesMMDVM, "DMR Slot 2"), -10)."/".substr(getActualReflector($reverseLogLinesMMDVM, "DMR Slot 2"), -10)."</td></tr>\n"    }
 	    } else {
-		    echo "<td class=\"inactive-mode-cell\" title='Time Slot 2 disabled'>Disabled</td></tr>\n";
+		    echo "<div class='divTableCell hwinfo'><div class=\"inactive-mode-cell\" title='Time Slot 2 disabled'>Disabled</div></div>>\n";
 	    }
-	    echo "<tr><th colspan=\"2\">".$lang['dmr_master']."</th></tr>\n";
+	    ?>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="divTable">
+  <div class="divTableHead"><?php echo $lang['dmr_master'];?></div>
+  <div class="divTableBody">
+	    <?php
 	    if (getEnabled("DMR Network", $_SESSION['MMDVMHostConfigs']) == 1) {
 		if ($dmrMasterHost == '127.0.0.1') {
 		    if (isProcessRunning("DMRGateway")) {
@@ -538,43 +560,47 @@ if (isProcessRunning("M17Gateway")) {
 				$xlxMasterHost1 = "".$xlxMasterHost1." ".$_SESSION['DMRGatewayConfigs']['XLX Network']['Module']."";
 			    }
 			    
-			    echo "<tr><td ".GetActiveConnectionStyle($remoteDMRGResults, "xlx")." colspan=\"2\" title=\"".$xlxMasterHost1Tooltip."\">".$xlxMasterHost1."</td></tr>\n";
+			    echo "<div class='divTableRow center'><div class='divTableCell hwinfo'><div " .GetActiveConnectionStyle($remoteDMRGResults, "xlx")." title=\"".$xlxMasterHost1Tooltip."\">".$xlxMasterHost1."</div></div></div>\n";
 			}
 			if ($_SESSION['DMRGatewayConfigs']['DMR Network 1']['Enabled'] == 1) {
-			    echo "<tr><td ".GetActiveConnectionStyle($remoteDMRGResults, "net1")." colspan=\"2\" title=\"".$dmrMasterHost1Tooltip."\">".$dmrMasterHost1."</td></tr>\n";
+			    echo "<div class='divTableRow center'><div class='divTableCell hwinfo'><div " .GetActiveConnectionStyle($remoteDMRGResults, "net1")." title=\"".$dmrMasterHost1Tooltip."\">".$dmrMasterHost1."</div></div></div>\n";
 			}
 			if ($_SESSION['DMRGatewayConfigs']['DMR Network 2']['Enabled'] == 1) {
-			    echo "<tr><td ".GetActiveConnectionStyle($remoteDMRGResults, "net2")." colspan=\"2\" title=\"".$dmrMasterHost2Tooltip."\">".$dmrMasterHost2."</td></tr>\n";
+			    echo "<div class='divTableRow center'><div class='divTableCell hwinfo'<div ".GetActiveConnectionStyle($remoteDMRGResults, "net2")." title=\"".$dmrMasterHost2Tooltip."\">".$dmrMasterHost2."</div></div></div>\n";
 			}
 			if ($_SESSION['DMRGatewayConfigs']['DMR Network 3']['Enabled'] == 1) {
-			    echo "<tr><td ".GetActiveConnectionStyle($remoteDMRGResults, "net3")." colspan=\"2\" title=\"".$dmrMasterHost3Tooltip."\">".$dmrMasterHost3."</td></tr>\n";
+			    echo "<div class='divTableRow center'><div class='divTableCell hwinfo'><div ".GetActiveConnectionStyle($remoteDMRGResults, "net3")." title=\"".$dmrMasterHost3Tooltip."\">".$dmrMasterHost3."</div></div></div>\n";
 			}
 			if (isset($_SESSION['DMRGatewayConfigs']['DMR Network 4']['Enabled'])) {
 			    if ($_SESSION['DMRGatewayConfigs']['DMR Network 4']['Enabled'] == 1) {
-				echo "<tr><td ".GetActiveConnectionStyle($remoteDMRGResults, "net4")." colspan=\"2\" title=\"".$dmrMasterHost4Tooltip."\">".$dmrMasterHost4."</td></tr>\n";
+				echo "<div class='divTableRow center'><div class='divTableCell hwinfo'><div ".GetActiveConnectionStyle($remoteDMRGResults, "net4")." title=\"".$dmrMasterHost4Tooltip."\">".$dmrMasterHost4."</div></div></div>\n";
 			    }
 			}
 			if (isset($_SESSION['DMRGatewayConfigs']['DMR Network 5']['Enabled'])) {
 			    if ($_SESSION['DMRGatewayConfigs']['DMR Network 5']['Enabled'] == 1) {
-				echo "<tr><td ".GetActiveConnectionStyle($remoteDMRGResults, "net5")." colspan=\"2\" title=\"".$dmrMasterHost5Tooltip."\">".$dmrMasterHost5."</td></tr>\n";
+				echo "<div class='divTableRow center'><div class='divTableCell hwinfo'><div ".GetActiveConnectionStyle($remoteDMRGResults, "net5")." title=\"".$dmrMasterHost5Tooltip."\">".$dmrMasterHost5."</div></div></div>\n";
 			    }
 			}
 		    }
 		    else {
-			echo "<tr><td colspan=\"2\" style=\"background: $tableRowEvenBg;\">Service Not Started</td></tr>\n";
+			echo "<div class='divTableRow center'><div class='divTableCell hwinfo' style=\"background: $tableRowEvenBg;\">Service Not Started</div></div>\n";
 		    }
 		}
 		else {
-		    echo "<tr><td ".GetActiveConnectionStyle($remoteDMRGResults, "dmr")." colspan=\"2\" title=\"".$dmrMasterHostTooltip."\">".$dmrMasterHost."</td></tr>\n";
+		    echo "<div class='divTableRow center'><div class='divTableCell hwinfo'><div ".GetActiveConnectionStyle($remoteDMRGResults, "dmr")." title=\"".$dmrMasterHostTooltip."\">".$dmrMasterHost."</div></div></div>\n";
 		}
 	    }
 	    else {
-		echo "<tr><td colspan=\"2\" style=\"background:#606060; color:#b0b0b0;\">No DMR Network</td></tr>\n";
+		echo "<div class='divTableRow center'><div class='divTableCell hwinfo' style=\"background:#606060; color:#b0b0b0;\">No DMR Network</div></div>\n";
 	    }
-	    echo "</table>\n";
-	}
+        ?>
+    </div>
+  </div>
+</div>
+<br />
+<?php
+}
 
-	
 	$testMMDVModeYSF = getConfigItem("System Fusion Network", "Enable", $_SESSION['MMDVMHostConfigs']);
 	if ( isset($_SESSION['DMR2YSFConfigs']['Enabled']['Enabled']) ) {
 	    $testDMR2YSF = $_SESSION['DMR2YSFConfigs']['Enabled']['Enabled'];
@@ -649,7 +675,6 @@ if (isProcessRunning("M17Gateway")) {
             if (strlen($ysfLinkedToTxt) > 20) {
 		$ysfLinkedToTxt = substr($ysfLinkedToTxt, 0, 15) . '..';
 	    }
-        echo "<br />\n";
         echo "<table>\n";
         if (isPaused("YSF")) {
 	    echo "<tr><th colspan=\"2\">".$lang['ysf_net']."</th></tr>\n";
