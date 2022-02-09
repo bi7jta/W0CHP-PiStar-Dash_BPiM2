@@ -940,7 +940,7 @@ if (getConfigItem("NXDN", "RAN", $_SESSION['MMDVMHostConfigs'])) {
 			if ($testAPRSm17 == 1) {
 				echo "<div class='divTableRow center'>\n<div class='divTableCell hwinfo'><div style=\"background: $tableRowEvenBg;\" title=\"M17\">M17</div></div>\n</div>\n";
 			}
-			echo "</div>\n</div>\n<br />\/";
+			echo "</div>\n</div>\n<br />";
 		}
 	   }
     }
