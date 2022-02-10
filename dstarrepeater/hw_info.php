@@ -43,9 +43,9 @@ $rootfs_used = @exec("df -h / | tail -1|awk {'print $3'} | sed 's/G//'")." GB". 
 $cpuTempCRaw = exec('cat /sys/class/thermal/thermal_zone0/temp');
 if ($cpuTempCRaw > 1000) { $cpuTempC = sprintf('%.0f',round($cpuTempCRaw / 1000, 1)); } else { $cpuTempC = sprintf('%.0f',round($cpuTempCRaw, 1)); }
 $cpuTempF = sprintf('%.0f',round(+$cpuTempC * 9 / 5 + 32, 1));
-if ($cpuTempC <= 59) { $cpuTempHTML = "<span style=\"background: inherit\">".$cpuTempF."&deg;F / ".$cpuTempC."&deg;C</span>\n"; }
-if ($cpuTempC >= 60) { $cpuTempHTML = "<span style=\"background: #fa0\">".$cpuTempF."&deg;F / ".$cpuTempC."&deg;C</span>\n"; }
-if ($cpuTempC >= 80) { $cpuTempHTML = "<span style=\"background: #f00\">".$cpuTempF."&deg;F / ".$cpuTempC."&deg;C</span>\n"; }
+if ($cpuTempC <= 59) { $cpuTempHTML = "<div class=\"divTableCell hwinfo\" style=\"background: inherit\">".$cpuTempF."&deg;F / ".$cpuTempC."&deg;C</div>\n"; }
+if ($cpuTempC >= 60) { $cpuTempHTML = "<div class=\"divTableCell hwinfo\" style=\"background: #fa0\">".$cpuTempF."&deg;F / ".$cpuTempC."&deg;C</div>\n"; }
+if ($cpuTempC >= 80) { $cpuTempHTML = "<div class=\"divTableCell hwinfo\" style=\"background: #f00\">".$cpuTempF."&deg;F / ".$cpuTempC."&deg;C</div>\n"; }
 
 // Gather CPU Loads
 //$cpuLoad = sys_getloadavg();
@@ -90,7 +90,7 @@ $sysRamPercent = exec("free -h | tail -2 | head -1 | awk {'print $3'} | sed 's/M
       <div class="divTableCell hwinfo">User: <?php echo $cpuLoad['user'];?>% / Sys: <?php echo $cpuLoad['sys'];?>% / Nice: <?php echo $cpuLoad['nice'];?>%</div>
       <div class="divTableCell hwinfo"><?php echo $sysRamPercent;?></div>
       <div class="divTableCell hwinfo"><?php echo $rootfs_used;?></div>
-      <div class="divTableCell hwinfo"><?php echo $cpuTempHTML; ?></div>
+      <?php echo $cpuTempHTML; ?>
     </div>
   </div>
 </div>
