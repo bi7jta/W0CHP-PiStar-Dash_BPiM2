@@ -45,6 +45,8 @@ if ($listElem[6] == null) {
 	$duration = "<td style=\"background:#F012BE;color:#fff;\">TX " . $duration_string . " sec</td>";
 } else if ($listElem[6] == "DMR Data") {
 	$duration =  "<td style=\"background: #1d1;color:#fff;\">DMR Data</td>";
+} else if ($listElem[6] == "POCSAG Data") {
+	$diuration =  "<td style=\"background:#4C8FD1;\">POCSAG Data</td>";
 } else {
 	$duration = "<td>$listElem[6]s</td>";
 }
