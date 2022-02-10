@@ -27,7 +27,9 @@ TalkGroup `3170603`.
 
 3. Run this to familiarize yourself with the available options/arguments:
 
-        curl -Ls https://w0chp.net/WPSD-Install | sudo env NO_SELF_UPDATE=1 bash -s -- -h
+    ```text
+    curl -Ls https://w0chp.net/WPSD-Install | sudo env NO_SELF_UPDATE=1 bash -s -- -h
+    ```
 
     You will be presented with...
 
@@ -51,7 +53,9 @@ TalkGroup `3170603`.
 
 4. When ready to install, run the above command again with the option/argument you wish...e.g:
 
-        curl -Ls https://w0chp.net/WPSD-Install | sudo env NO_SELF_UPDATE=1 bash -s -- -id
+    ```text
+    curl -Ls https://w0chp.net/WPSD-Install | sudo env NO_SELF_UPDATE=1 bash -s -- -id
+    ```
 
     (...to install the dashboard *without* the `W0CHP` custom CSS)
 
@@ -89,7 +93,9 @@ sudo pistar-update
 
 Run:
 
-	 curl -Ls https://w0chp.net/WPSD-Install | sudo env NO_SELF_UPDATE=1 bash -s -- -rd
+```text
+ curl -Ls https://w0chp.net/WPSD-Install | sudo env NO_SELF_UPDATE=1 bash -s -- -rd
+```
 
 ...And the original Pi-Star Dashboard will be restored.
 
