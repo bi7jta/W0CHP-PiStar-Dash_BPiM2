@@ -110,6 +110,8 @@ for ($i = 0;  ($i <= $lastHeardRows - 1); $i++) {
 			echo "<td colspan =\"3\" style=\"background:#F012BE;color:#fff;\">TX " . $duration_string . " sec</td>";
 		} else if ($listElem[6] == "DMR Data") {
 			echo "<td colspan =\"3\" style=\"background:#39CCCC;\">DMR Data</td>";
+		} else if ($listElem[6] == "POCSAG Data") {
+			echo "<td colspan =\"3\" style=\"background:#4C8FD1;\">POCSAG Data</td>";
 		} else {
 			echo "<td>$listElem[6]</td>";
 
