@@ -20,6 +20,11 @@ body, font {
     text-size-adjust: none;
 }
 
+body {
+    background: <?php echo $backgroundPage; ?>;
+    color: #000000;
+}
+
 .center {
     text-align: center;
 }
@@ -44,7 +49,7 @@ body, font {
 }
 
 .content {
-    margin : 0 0 0 250px;
+    margin : 0 0 0 240px;
     padding : 1px 5px 5px 5px;
     color : <?php echo $textContent; ?>;
     background : <?php echo $backgroundContent; ?>;
@@ -53,7 +58,7 @@ body, font {
 
 .contentwide {
     padding: 5px 5px 5px 5px;
-    color: <?php echo $textContent; ?>;
+    color: inherit;
     background: <?php echo $backgroundContent; ?>;
     text-align: center;
 }
@@ -100,7 +105,7 @@ table {
     padding: 0px;
     border-collapse:collapse;
     border-spacing: 4px;
-    border: .5px solid #777777;
+    border: .5px solid <?php echo $backgroundContent; ?>;
     text-decoration: none;
     background: #000000;
     font-family: 'Source Sans Pro', sans-serif;
@@ -110,7 +115,7 @@ table {
 
 table th {
     font-family:  'Source Sans Pro', sans-serif;
-    border: .5px solid #777777;
+    border: .5px solid <?php echo $backgroundContent; ?>;
     font-weight: 600;
     text-decoration: none;
     color : <?php echo $textBanners; ?>;
@@ -131,7 +136,7 @@ table td {
     font-family: 'Inconsolata', monospace;
     font-weight: 500;
     text-decoration: none;
-    border: .5px solid #777777;
+    border: .5px solid <?php echo $backgroundContent; ?>;
     padding: 2px;
     font-size: <?php echo "$fontSize"; ?>px;
 }
@@ -152,7 +157,7 @@ table td {
 .divTableHead, .divTableHeadCell {
     color : <?php echo $textBanners; ?>;
     background: <?php echo $backgroundBanners; ?>;
-    border: .5px solid #777777;
+    border: .5px solid <?php echo $backgroundContent; ?>;
     font-weight: 600;
     text-decoration: none;
     padding: 2px;
@@ -166,8 +171,8 @@ table td {
     font-family: 'Inconsolata', monospace;
     font-weight: 500;
     font-size: <?php echo "$fontSize"; ?>px;
-    border: .5px solid #777777;
-    color: #000000;
+    border: .5px solid <?php echo $backgroundContent; ?>;
+    width: auto;
 }
 
 .divTableCell, .divTableHeadCell {
@@ -184,11 +189,6 @@ table td {
 
 .divTableCell.hwinfo {
     padding: 2px;
-}
-
-body {
-    background: <?php echo $backgroundPage; ?>;
-    color: #000000;
 }
 
 a {
