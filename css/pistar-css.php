@@ -58,7 +58,7 @@ body {
 
 .contentwide {
     padding: 5px 5px 5px 5px;
-    color: inherit;
+    color:  <?php echo $textContent; ?>;
     background: <?php echo $backgroundContent; ?>;
     text-align: center;
 }
@@ -173,6 +173,7 @@ table td {
     font-size: <?php echo "$fontSize"; ?>px;
     border: .5px solid <?php echo $backgroundContent; ?>;
     width: auto;
+    color: #000;
 }
 
 .divTableCell, .divTableHeadCell {
