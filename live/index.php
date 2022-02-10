@@ -11,7 +11,7 @@
       <title><?php echo exec('cat /etc/hostname'); ?> - Live Caller Display - W0CHP-PiStar-Dash</title>
       <script type="text/javascript" src="/js/jquery.min.js"></script>
       <script type="text/javascript" src="/js/functions.js?version=1.720"></script>
-      <link rel="stylesheet" type="text/css" href="/css/live-caller.css" />
+      <link rel="stylesheet" type="text/css" href="/css/live-caller.css?v=1.0.2" />
     </head>
     <body>
       <script type="text/javascript">
