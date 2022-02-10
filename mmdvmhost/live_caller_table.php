@@ -95,7 +95,11 @@ if (!is_numeric($listElem[2])) {
                 {
                         $buffer = fgets($handle);
                         if (strpos($buffer, $searchCall) !== FALSE)
-                                $callMatch[] = $buffer;
+                        {
+                                $csvBuffer = explode(",", $buffer);
+                                if(strpos($searchCall, $csvBuffer[1]) !== FALSE)
+                                        $callMatch[] = $buffer;
+                        }
                 }
                 fclose($handle);
         }
