@@ -484,6 +484,8 @@ checkSessionValidity();
     include 'mmdvmhost/live_caller_table.php';
     echo '</div>'."\n";
     echo "<br />\n";
+ 
+	if ($_SERVER["PHP_SELF"] == "/index.php" || $_SERVER["PHP_SELF"] == "/admin/index.php") {
 		echo '<script type="text/javascript">'."\n";
 		echo 'var lhto;'."\n";
 		echo 'var ltxto'."\n";
@@ -512,7 +514,7 @@ checkSessionValidity();
     		echo '    }'."\n";
     		echo '}'."\n";
 		
-			echo 'function setLocalTXAutorefresh(obj) {'."\n";
+		echo 'function setLocalTXAutorefresh(obj) {'."\n";
     		echo '    if (obj.checked) {'."\n";
     		echo '        ltxto = setTimeout(reloadLocalTX,1500);'."\n";
     		echo '    }'."\n";
