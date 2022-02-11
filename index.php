@@ -132,7 +132,7 @@ checkSessionValidity();
 			<a class="menuconfig" href="/admin/configure.php"><?php echo $lang['configuration'];?></a>
 			<?php if ($_SERVER["PHP_SELF"] == "/admin/index.php") {
 			    echo ' <a class="menuupdate" href="/admin/update.php">'.$lang['update'].'</a>'."\n";
-                echo ' <a class="menuexpert" href="/admin/expert/">Expert</a>'."\n";
+			    echo ' <a class="menuexpert" href="/admin/expert/">Expert</a>'."\n";
 			    echo ' <a class="menupower" href="/admin/power.php">'.$lang['power'].'</a>'."\n";
 			    echo ' <a class="menusysinfo" href="/admin/sysinfo.php">Sysinfo</a>'."\n";
 			    echo ' <a class="menulogs" href="/admin/live_modem_log.php">'.$lang['live_logs'].'</a>'."\n";
@@ -145,16 +145,13 @@ checkSessionValidity();
 	    </div>
 
 	    <?php
-	    // Check if config files need updating
+	    // Check if config files need updating but supress if new installation
 	    if (($_SERVER["PHP_SELF"] == "/admin/index.php") || ($_SERVER["PHP_SELF"] == "/index.php")) {
 		$configUpNeeded = getConfigItem("WPSD", "ConfUpdReqd", $_SESSION['MMDVMHostConfigs']);
-		
-		if (!isset($configUpNeeded) || ($configUpNeeded < $configUpdateRequired)) {
+                if (!isset($configUpNeeded) || ($configUpNeeded < $configUpdateRequired) && file_exists('/etc/dstar-radio.mmdvmhost') || file_exists('/etc/dstar-radio.dstarrepeater')) {	
 	    ?>
 		<div>
-		    <table align="center" width="100%" style="margin: 0px 0px 10px 0px; width: 100%;">
-			<tr>
-			    <td align="center" valign="top" style="background-color: #FFCC00; color: #000;">
+		    <div style="background-color: #FFCC00; color: #000;text-align:center; padding:10px 0; margin: 0px 0px 10px 0px; width: 100%;">
 				<p>
 				<b>IMPORTANT</b><br />
 				<br />
@@ -162,8 +159,7 @@ checkSessionValidity();
 				Go to the <a href="/admin/configure.php" style="text-decoration:underline;">Configuration page</a> and click on any "Apply Changes" button.<br />
 				<br />This message will disappear once this has been completed.<br />
 				</p>
-			</tr>
-		    </table>
+		    </div>
 		</div>
 	    <?php
 	        }
