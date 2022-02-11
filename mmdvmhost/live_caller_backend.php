@@ -84,7 +84,7 @@ if (floatval($listElem[8]) == 0) {
 }
 elseif (floatval($listElem[8]) >= 0.0 && floatval($listElem[8]) <= 1.1)
 {
-	$ber = "<span class='ber_ok>".$listElem[8]."</span>";
+	$ber = "<span class='ber_ok'>".$listElem[8]."</span>";
 }
 	elseif (floatval($listElem[8]) >= 1.2 && floatval($listElem[8]) <= 4.9)
 {
