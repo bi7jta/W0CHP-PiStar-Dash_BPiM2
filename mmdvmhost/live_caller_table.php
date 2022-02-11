@@ -42,18 +42,18 @@ if ($listElem[6] == null) {
 	$dt = new DateTime($utc_time, $utc_tz);
 	$duration = $now->getTimestamp() - $dt->getTimestamp();
 	$duration_string = $duration<999 ? round($duration) . "+" : "&infin;";
-	$duration = "<td style=\"background:#F012BE;color:#fff;\">TX " . $duration_string . " sec</td>";
+	$duration = "<td colspan =\"3\" style=\"background:#F012BE;color:#fff;\">TX " . $duration_string . " sec</td>";
 } else if ($listElem[6] == "DMR Data") {
-	$duration =  "<td style=\"background: #1d1;color:#fff;\">DMR Data</td>";
+	$duration =  "<td colspan =\"3\" style=\"background: #1d1;color:#fff;\">DMR Data</td>";
 } else if ($listElem[6] == "POCSAG Data") {
-	$diuration =  "<td style=\"background:#4C8FD1;\">POCSAG Data</td>";
+	$diuration =  "<td colspan =\"3\" style=\"background:#4C8FD1;\">POCSAG Data</td>";
 } else {
 	$duration = "<td>$listElem[6]s</td>";
 }
 
 // color the loss field
 if ($listElem[7] == null) {
-	$loss = "<td>&nbsp;</td>";
+	$loss = "";
 } elseif (floatval($listElem[7]) < 1) {
 	$loss = "<td>".$listElem[7]."</td>";
 } elseif (floatval($listElem[7]) == 1) {
@@ -77,7 +77,9 @@ if ($listElem[1] == null) {
 }
 			
 // Color the BER Field
-if (floatval($listElem[8]) == 0) {
+if ($listElem[8] == null) {
+        $ber = "";
+} elseif (floatval($listElem[8]) == 0) {
 	$ber = "<td>$listElem[8]</td>";
 } elseif (floatval($listElem[8]) >= 0.0 && floatval($listElem[8]) <= 1.1) {
 	$ber = "<td style=\"background: #1d1;\">".$listElem[8]."</rd>";
@@ -131,9 +133,9 @@ if($listElem[2] == "4000" || $listElem[2] == "9990" || $listElem[2] == "DAPNET")
 	$city = "";
 	$state = "";
 	$country = "";
-	$loss = "<td>&nbsp;</td>";
-	$ber = "<td>&nbsp;</td>";
-	$duration = "<td>&nbsp;</td>";
+	$loss = "";
+	$ber = "";
+	$duration = "";
 }
 
 ?>
