@@ -369,6 +369,18 @@ function aprspass ($callsign) {
 	return $hash & 0x7fff;
 }
 
+//
+// Ensure Options string is quoted
+//
+function ensureOptionsIsQuoted(&$opt) {
+    if (isset($opt) && !empty($opt) && (strlen($opt) > 1)) {
+	if ($opt[0] != '"' && $opt[strlen($opt) - 1] != '"') {
+	    $opt = '"'.$opt.'"';
+	}
+    }
+}
+
+
 $progname = basename($_SERVER['SCRIPT_FILENAME'],".php");
 $rev=$version;
 $MYCALL=strtoupper($callsign);
@@ -391,10 +403,9 @@ $MYCALL=strtoupper($callsign);
     <link rel="shortcut icon" href="/images/favicon.ico" type="image/x-icon" />
     <meta http-equiv="Expires" content="0" />
     <title><?php echo "$MYCALL"." - ".$lang['digital_voice']." ".$lang['dashboard']." - ".$lang['configuration'];?></title>
-    <link rel="stylesheet" type="text/css" href="css/pistar-css.php?version=0.94" />
-	<link rel="stylesheet" type="text/css" href="/css/font-awesome-4.7.0/css/font-awesome.min.css" />
-	<link rel="stylesheet" type="text/css" href="/css/pistar-css.php?version=0.997" />
-	<script type="text/javascript" src="/js/jquery.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="/css/font-awesome-4.7.0/css/font-awesome.min.css" />
+    <link rel="stylesheet" type="text/css" href="/css/pistar-css.php?version=version=1.6.5" />
+    <script type="text/javascript" src="/js/jquery.min.js"></script>
     <link href="/js/select2/css/select2.min.css" rel="stylesheet" />
     <script src="/js/select2/js/select2.min.js"></script>
     <script type="text/javascript">
@@ -1501,7 +1512,7 @@ if (!empty($_POST)):
 		  // Everything Else
 		  $configmmdvm['DMR Network']['Type'] = "Direct";
 	  }
-      if ((isset($_POST['bmHSSecurity'])) && substr($dmrMasterHostArr[3], 0, 2) == "BM") {
+	  if ((isset($_POST['bmHSSecurity'])) && substr($dmrMasterHostArr[3], 0, 2) == "BM") {
 		  if (empty($_POST['bmHSSecurity']) != TRUE ) {
 			  $configModem['BrandMeister']['Password'] = '"'.$_POST['bmHSSecurity'].'"';
 			  if ($dmrMasterHostArr[0] != '127.0.0.1') { $configmmdvm['DMR Network']['Password'] = '"'.$_POST['bmHSSecurity'].'"'; }
@@ -3169,6 +3180,34 @@ if (!empty($_POST)):
 	echo "</table>\n";
 
 	// MMDVMHost config file wrangling
+        //
+	// Removes empty section
+ 	if (!empty($configModem) && isset($configModem['BrandMeister']) && (count($configModem['BrandMeister'], COUNT_RECURSIVE) == 0))
+	{
+		unset($configModem['BrandMeister']);
+	}
+	//
+	if (empty($configp25gateway['Network']['Static']))
+	{
+		unset($configp25gateway['Network']['Static']);
+	}
+	if (empty($confignxdngateway['Network']['Static']))
+	{
+		unset($confignxdngateway['Network']['Static']);
+	}
+	if (isset($configmmdvm['DMR Network']['Options'])) {
+		ensureOptionsIsQuoted($configmmdvm['DMR Network']['Options']);
+	}
+	if (isset($configysfgateway['Network']['Options'])) {
+		ensureOptionsIsQuoted($configysfgateway['Network']['Options']);
+	}
+	if (isset($configdmrgateway['DMR Network 2']['Options'])) {
+		ensureOptionsIsQuoted($configdmrgateway['DMR Network 2']['Options']);
+	}
+	if (isset($configysf2dmr['DMR Network']['Options'])) {
+		ensureOptionsIsQuoted($configysf2dmr['DMR Network']['Options']);
+	}
+
 	$mmdvmContent = "";
 	foreach($configmmdvm as $mmdvmSection=>$mmdvmValues) {
 		// UnBreak special cases
