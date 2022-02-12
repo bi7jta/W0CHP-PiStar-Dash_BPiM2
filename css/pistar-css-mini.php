@@ -21,6 +21,7 @@ body, font {
 }
 
 .header {
+    display: none;
     background : <?php echo $backgroundBanners; ?>;
     text-decoration : none;
     color : <?php echo $textBanners; ?>;
@@ -28,6 +29,10 @@ body, font {
     text-align : left;
     padding : 5px 0px 5px 0px;
  }
+
+.header h1 {
+   font-weight: 500;
+}
 
 .nav {
     display: none;

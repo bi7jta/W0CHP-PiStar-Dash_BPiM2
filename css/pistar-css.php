@@ -33,6 +33,10 @@ body, font {
     padding : 5px 0px 5px 0px;
 }
 
+.header h1 {
+    margin-top:-10px;
+}
+
 .nav {
     float: left;
     margin : 0;

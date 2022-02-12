@@ -404,7 +404,7 @@ $MYCALL=strtoupper($callsign);
     <meta http-equiv="Expires" content="0" />
     <title><?php echo "$MYCALL"." - ".$lang['digital_voice']." ".$lang['dashboard']." - ".$lang['configuration'];?></title>
     <link rel="stylesheet" type="text/css" href="/css/font-awesome-4.7.0/css/font-awesome.min.css" />
-    <link rel="stylesheet" type="text/css" href="/css/pistar-css.php?version=version=1.6.5" />
+    <?php include_once "../config/browserdetect.php"; ?>
     <script type="text/javascript" src="/js/jquery.min.js"></script>
     <link href="/js/select2/css/select2.min.css" rel="stylesheet" />
     <script src="/js/select2/js/select2.min.js"></script>
