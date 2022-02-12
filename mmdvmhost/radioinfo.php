@@ -27,6 +27,8 @@ require_once($_SERVER['DOCUMENT_ROOT'].'/config/ircddblocal.php');
       <div class="divTableHeadCell">RX Freq.</div>
       <div class="divTableHeadCell">Modem Firmware</div>
       <div class="divTableHeadCell">TXCO Freq.</div>
+      <div class="divTableHeadCell">Modem Port</div>
+      <div class="divTableHeadCell">Modem Speed</div>
     </div>
     <div class="divTableRow center">
       <div class="divTableCell hwinfo">
@@ -116,6 +118,8 @@ require_once($_SERVER['DOCUMENT_ROOT'].'/config/ircddblocal.php');
       <div class="divTableCell hwinfo" style="background: <?php echo $tableRowEvenBg; ?>;"><?php echo $_SESSION['DvModemFWVersion']; ?></div>
     <?php } ?>
       <div class="divTableCell hwinfo" style="background: <?php echo $tableRowEvenBg; ?>;"><?php echo $_SESSION['DvModemTCXOFreq']; ?></div>
+      <div class="divTableCell hwinfo" style="background: <?php echo $tableRowEvenBg; ?>;"><?php echo getConfigItem("Modem", "UARTPort", $_SESSION['MMDVMHostConfigs']); ?></div>
+      <div class="divTableCell hwinfo" style="background: <?php echo $tableRowEvenBg; ?>;"><?php echo getConfigItem("Modem", "UARTSpeed", $_SESSION['MMDVMHostConfigs']); ?> bps</div>
     </div>
   </div>
 </div>
