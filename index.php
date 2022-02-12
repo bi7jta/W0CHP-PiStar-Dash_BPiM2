@@ -165,26 +165,37 @@ checkSessionValidity();
 	        }
 	    }
 	    ?>
-	    
-	    <?php
-	    // Output some default features
-	    if ($_SERVER["PHP_SELF"] == "/index.php" || $_SERVER["PHP_SELF"] == "/admin/index.php")
-	    {
-		    echo '<div class="contentwide">'."\n";
-		    echo '<script type="text/javascript">'."\n";
-		    echo 'function reloadHwInfo(){'."\n";
-		    echo '  $("#hwInfo").load("/dstarrepeater/hw_info.php",function(){ setTimeout(reloadHwInfo, 15000) });'."\n";
-		    echo '}'."\n";
-		    echo 'setTimeout(reloadHwInfo, 15000);'."\n";
-		    echo '$(window).trigger(\'resize\');'."\n";
-		    echo '</script>'."\n";
-		    echo '<div id="hwInfo">'."\n";
-		    include 'dstarrepeater/hw_info.php';
-		    echo '</div>'."\n";
-		    echo '</div>'."\n";
-		    echo '<br />'."\n";
-	    }
-	    
+
+            <?php
+            // Output some default features
+            if ($_SERVER["PHP_SELF"] == "/index.php" || $_SERVER["PHP_SELF"] == "/admin/index.php")
+            {
+                    echo '<div class="contentwide">'."\n";
+                    echo '<script type="text/javascript">'."\n";
+                    echo 'function reloadHwInfo(){'."\n";
+                    echo '  $("#hwInfo").load("/dstarrepeater/hw_info.php",function(){ setTimeout(reloadHwInfo, 15000) });'."\n";
+                    echo '}'."\n";
+                    echo 'setTimeout(reloadHwInfo, 15000);'."\n";
+                    echo '$(window).trigger(\'resize\');'."\n";
+                    echo '</script>'."\n";
+                    echo '<div id="hwInfo">'."\n";
+                    include 'dstarrepeater/hw_info.php';
+                    echo '</div>'."\n";
+                    echo '<script type="text/javascript">'."\n";
+                    echo 'function reloadRadioInfo(){'."\n";
+                    echo '  $("#radioInfo").load("/mmdvmhost/radioinfo.php",function(){ setTimeout(reloadRadioInfo, 1000) });'."\n";
+                    echo '}'."\n";
+                    echo 'setTimeout(reloadRadioInfo, 15000);'."\n";
+                    echo '$(window).trigger(\'resize\');'."\n";
+                    echo '</script>'."\n";
+                    echo '<div id="radioInfo">'."\n";
+                    include 'mmdvmhost/radioinfo.php';
+                    echo '</div>'."\n";
+                    echo '</div>'."\n";
+                    echo '<br />'."\n";
+
+            }
+
         // First lets figure out if we are in MMDVMHost mode, or dstarrepeater mode;
 	    if (file_exists('/etc/dstar-radio.mmdvmhost')) {
 		//include 'config/config.php';					// MMDVMDash Config
