@@ -135,7 +135,7 @@ if($listElem[2] == "4000" || $listElem[2] == "9990" || $listElem[2] == "DAPNET")
 	$country = "";
 	$loss = "";
 	$ber = "";
-	$duration = "";
+	$duration = "<td colspan =\"3\"</td>";
 }
 
 ?>
