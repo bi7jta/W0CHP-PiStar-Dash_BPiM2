@@ -3,22 +3,21 @@ include_once $_SERVER['DOCUMENT_ROOT'].'/config/config.php';          // MMDVMDa
 include_once $_SERVER['DOCUMENT_ROOT'].'/mmdvmhost/tools.php';        // MMDVMDash Tools
 include_once $_SERVER['DOCUMENT_ROOT'].'/mmdvmhost/functions.php';    // MMDVMDash Functions
 include_once $_SERVER['DOCUMENT_ROOT'].'/config/language.php';	      // Translation Code
-//$localTXList = getHeardList($reverseLogLinesMMDVM);
 $localTXList = $lastHeard;
 
 ?>
 <input type="hidden" name="localtx-autorefresh" value="OFF" />
-  <div style="float: right; vertical-align: bottom; padding-top: 5px;">
+  <div style="float: right; vertical-align: bottom; padding-top: 0px;">
 	<div class="grid-container" style="display: inline-grid; grid-template-columns: auto 40px; padding: 1px; grid-column-gap: 5px;">
-	    <div class="grid-item" style="padding-top: 3px;" >Auto-Refresh
+	    <div class="grid-item" style="padding-top: 6px;">Auto-Refresh
 	    </div>
-	    <div class="grid-item" >
-		<div> <input id="toggle-localtx-autorefresh" class="toggle toggle-round-flat" type="checkbox" name="localtx-autorefresh" value="ON" checked="checked" aria-checked="true" aria-label="Auto-Refresh" onchange="setLocalTXAutorefresh(this)" /><label for="toggle-localtx-autorefresh" ></label>
+	    <div class="grid-item">
+		<div><input id="toggle-localtx-autorefresh" class="toggle toggle-round-flat" type="checkbox" name="localtx-autorefresh" value="ON" checked="checked" aria-checked="true" aria-label="Auto-Refresh" onchange="setLocalTXAutorefresh(this)" /><label for="toggle-localtx-autorefresh" ></label>
 		</div>
 	    </div>
 	</div>
     </div>
-<b><?php echo $lang['local_tx_list'];?></b>
+  <div style="vertical-align: bottom; font-weight: bold; padding-top:14px;margin-left:140px;"><?php echo $lang['local_tx_list'];?></div>
   <table style="white-space:normal; word-wrap:break;">
     <tr>
       <th><a class="tooltip" href="#"><?php echo $lang['time'];?> (<?php echo date('T')?>)<span><b>Time in <?php echo date('T')?> time zone</b></span></a></th>

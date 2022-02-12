@@ -219,21 +219,18 @@ if ((strcmp($origin, "admin") == 0) && isset($_SESSION['DAPNETAPIKeyConfigs'])) 
 } // admin
 ?>
 
-<div>
-    <div>
 	<div style="display:inline-block;width: 100%;">
-	<b><?php echo $lang['pocsag_list'];?></b>
-	    <div style="float: right; vertical-align: bottom; padding-top: 5px;">
-		<div class="grid-container" style="display: inline-grid; grid-template-columns: auto 40px; padding: 1px; grid-column-gap: 5px;">
-		    <div class="grid-item" style="padding-top: 3px;" >Auto Refresh
-		    </div>
-		    <div class="grid-item" >
-			<div> <input id="toggle-pocsag-autorefresh" class="toggle toggle-round-flat" type="checkbox" name="pocsag-autorefresh" value="ON" checked="checked" aria-checked="true" aria-label="POCSAG Auto Refresh" onchange="setPagesAutorefresh(this)" /><label for="toggle-pocsag-autorefresh" ></label>
-			</div>
-		    </div>
+	  <div style="float: right; vertical-align: bottom; padding-top: 0px;">
+	  <div class="grid-container" style="display: inline-grid; grid-template-columns: auto 40px; padding: 1px; grid-column-gap: 5px;">
+            <div class="grid-item" style="padding-top: 6px;">Auto-Refresh
+            </div>
+            <div class="grid-item">
+		<div><input id="toggle-pocsag-autorefresh" class="toggle toggle-round-flat" type="checkbox" name="pocsag-autorefresh" value="ON" checked="checked" aria-checked="true" aria-label="POCSAG Auto Refresh" onchange="setPagesAutorefresh(this)" /><label for="toggle-pocsag-autorefresh" ></label>
 		</div>
 	    </div>
+	  </div>
 	</div>
+        <div style="vertical-align: bottom; font-weight: bold; padding-top:14px;margin-left:140px;"><?php echo $lang['pocsag_list'];?></div>
 	<!-- Activity -->
 	<div class="table-container">
 	    <table class="table poc-lh-table">

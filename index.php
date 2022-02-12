@@ -165,8 +165,8 @@ checkSessionValidity();
 	        }
 	    }
 	    ?>
-
-            <?php
+	    
+	    <?php
             // Output some default features
             if ($_SERVER["PHP_SELF"] == "/index.php" || $_SERVER["PHP_SELF"] == "/admin/index.php")
             {
@@ -468,7 +468,7 @@ checkSessionValidity();
 		}
 
 	    if ($_SERVER["PHP_SELF"] == "/admin/index.php") {
-		    echo '<div class="contentwide">'."\n";
+		echo '<div class="contentwide">'."\n";
 	    	echo '<script type="text/javascript">'."\n";
 	    	echo 'function reloadSysInfo(){'."\n";
 	    	echo '  $("#sysInfo").load("/dstarrepeater/system.php",function(){ setTimeout(reloadSysInfo,15000) });'."\n";
@@ -495,6 +495,7 @@ checkSessionValidity();
     		include 'mmdvmhost/live_caller_table.php';
     		echo '</div>'."\n";
     		echo "<br />\n";
+ 
 		echo '<script type="text/javascript">'."\n";
 		echo 'var lhto;'."\n";
 		echo 'var ltxto'."\n";
