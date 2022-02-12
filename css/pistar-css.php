@@ -56,6 +56,7 @@ body, font {
     color: <?php echo $textContent; ?>;
     background: <?php echo $backgroundContent; ?>;
     text-align: center;
+    margin-top: 5px;
 }
 
 .contentwide h2 {

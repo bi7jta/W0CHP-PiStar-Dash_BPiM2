@@ -468,7 +468,7 @@ checkSessionValidity();
 		}
 
 	    if ($_SERVER["PHP_SELF"] == "/admin/index.php") {
-		    echo '<div class="contentwide">'."\n";
+		echo '<div class="contentwide">'."\n";
 	    	echo '<script type="text/javascript">'."\n";
 	    	echo 'function reloadSysInfo(){'."\n";
 	    	echo '  $("#sysInfo").load("/dstarrepeater/system.php",function(){ setTimeout(reloadSysInfo,15000) });'."\n";
