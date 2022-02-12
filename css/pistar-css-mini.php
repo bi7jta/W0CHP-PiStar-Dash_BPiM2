@@ -44,6 +44,10 @@ body, font {
     display: none;
 }
 
+#radioInfo {
+    display: none;
+}
+
 .content {
     padding : 5px 5px 5px 5px;
     color : <?php echo $textContent; ?>;
