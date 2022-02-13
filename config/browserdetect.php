@@ -2,6 +2,7 @@
 include_once('../config/version.php');
 
 if(empty($_SERVER['HTTP_USER_AGENT'])) {
+  print "    <link rel=\"stylesheet\" type=\"text/css\" media=\"screen and (min-width: 830px)\" href=\"/css/pistar-css.php?version=$versionCmd\" />\n";
   print "    <link rel=\"stylesheet\" type=\"text/css\" media=\"screen and (max-width: 829px)\" href=\"/css/pistar-css-mini.php?version=$versionCmd\" />\n";
 } else {
   $useragent=$_SERVER['HTTP_USER_AGENT'];
