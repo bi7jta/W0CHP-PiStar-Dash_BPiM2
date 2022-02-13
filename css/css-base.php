@@ -93,7 +93,9 @@ if (file_exists('/etc/pistar-css.ini')) {
     assignCSSValue($textModeCellInactiveColor, $piStarCss['Text']['ModeCellInactiveColor']);
     
     assignCSSValue($lastHeardRows, $piStarCss['ExtraSettings']['LastHeardRows']); // # of last heard rows to display
-    assignCSSValue($fontSize, $piStarCss['ExtraSettings']['FontSize']); // Used for the main table font size
+    assignCSSValue($fontSize, $piStarCss['ExtraSettings']['MainFontSize']); // Used for the main table font size
+    assignCSSValue($headerFontSize, $piStarCss['ExtraSettings']['HeaderFontSize']); // Used for the header table font size
+    assignCSSValue($tableBorderColor, $piStarCss['ExtraSettings']['TableBorderColor']); // Used for the table borders
     
 }
 ?>
