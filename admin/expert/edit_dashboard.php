@@ -126,7 +126,7 @@ require_once('../config/version.php');
 		    $outFile = fopen("/tmp/bW1kd4jg6b3N0DQo.tmp", "w") or die("Unable to open file!"); //#bf0707
 		    $fileContent = "[Background]\nPageColor=#edf0f5\nContentColor=#ffffff\nBannersColor=#dd4b39\nNavbarColor=#242d31\nNavbarHoverColor=#a60000\nDropdownColor=#f9f9f9\nDropdownHoverColor=#d0d0d0\nServiceCellActiveColor=#11DD11\nServiceCellInactiveColor=#BB5555\nModeCellDisabledColor=#606060\nModeCellActiveColor=#00BB00\nModeCellInactiveColor=#BB0000\nModeCellPausedColor=#ff9933\nNavPanelColor=#242d31\nTableRowBgEvenColor=#f7f7f7\nTableRowBgOddColor=#d0d0d0\n\n";
 		    $fileContent .= "[Text]\nTextColor=#000000\nTextLinkColor=#0000e0\nTableHeaderColor=#ffffff\nBannersColor=#ffffff\nNavbarColor=#ffffff\nNavbarHoverColor=#ffffff\nDropdownColor=#000000\nDropdownHoverColor=#000000\nServiceCellActiveColor=#000000\nServiceCellInactiveColor=#000000\nModeCellDisabledColor=#b0b0b0\nModeCellActiveColor=#003300\nModeCellInactiveColor=#550000\n\n";
-		    $fileContent .= "[ExtraSettings]\nLastHeardRows=40\nFontSize=18\n\n";
+		    $fileContent .= "[ExtraSettings]\nLastHeardRows=40\nMainFontSize=18\nHeaderFontSize=34\nTabeBorderColor=#777777\n\n";
 		    fwrite($outFile, $fileContent);
 		    fclose($outFile);
 		    
@@ -268,6 +268,12 @@ require_once('../config/version.php');
 		    
 		    return (strcasecmp(substr($haystack, -$length), $needle) == 0);
 		}
+
+		function beginsWith($haystack, $needle)
+		{
+		    $length = strlen($needle);
+		    return substr($haystack, 0, $length) === $needle;
+		}
 		
 		//this is the function going to update your ini file
 		function update_ini_file($data, $filepath) {
@@ -331,8 +337,10 @@ require_once('../config/version.php');
 		    foreach($values as $key=>$value) {
 			    if (endsWith($key, 'Color')) {
 			        echo "<tr><td align=\"right\" style='padding-left:10em;width:150px;'>$key</td><td align=\"left\" colspan='2'><input type=\"text\" class=\"colorwell\" name=\"{$section}[$key]\" value=\"$value\" /></td></tr>\n";
-			    } elseif (endsWith($key, 'Size')) {
-			        echo "<tr><td align=\"right\" style='padding-left:10em;width:150px;'>$key</td><td align=\"left\"><input type=\"text\" name=\"{$section}[$key]\" value=\"$value\" size='3' maxlength='2' /></td><td align='left' style='word-wrap: break-word;white-space: normal;'>(the font size, in pixels, used across most of the Dashboard; default is 18 pixels.)</td></tr>\n";
+			    } elseif (beginsWith($key, 'MainFontSize')) {
+			        echo "<tr><td align=\"right\" style='padding-left:10em;width:150px;'>$key</td><td align=\"left\"><input type=\"text\" name=\"{$section}[$key]\" value=\"$value\" size='3' maxlength='2' /></td><td align='left' style='word-wrap: break-word;white-space: normal;'>(the Main font size, in pixels, used across most of the Dashboard; default is 18 pixels.)</td></tr>\n";
+			    } elseif (beginsWith($key, 'HeaderFont')) {
+			        echo "<tr><td align=\"right\" style='padding-left:10em;width:150px;'>$key</td><td align=\"left\"><input type=\"text\" name=\"{$section}[$key]\" value=\"$value\" size='3' maxlength='2' /></td><td align='left' style='word-wrap: break-word;white-space: normal;'>(the Header font size, in pixels; default is 34 pixels.)</td></tr>\n";
 			    } elseif (endsWith($key, 'HeardRows')) {
 			        echo "<tr><td align=\"right\" style='padding-left:15em;width:150px;'>$key</td><td align=\"left\"><input type=\"text\" name=\"{$section}[$key]\" value=\"$value\" size='3' maxlength='3' /></td><td align='left' style='word-wrap: break-word;white-space: normal;'>(The number of rows displayed on the Dashboard; default is 40 rows, and 100 rows is the maximum allowed.)</td></tr>\n";
 		        } else {
