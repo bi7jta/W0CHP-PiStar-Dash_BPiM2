@@ -40,7 +40,7 @@ body, font {
 .nav {
     float: left;
     margin : 0;
-    padding : 3px 3px 3px 3px;
+    padding : 3px;
     width : 230px;
     background : <?php echo $backgroundNavPanel; ?>;
     font-weight : normal;
@@ -56,7 +56,7 @@ body, font {
 }
 
 .contentwide {
-    padding: 5px 5px 5px 5px;
+    padding: 3px;
     color: <?php echo $textContent; ?>;
     background: <?php echo $backgroundContent; ?>;
     text-align: center;
