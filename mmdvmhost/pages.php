@@ -143,12 +143,12 @@ function listDAPNETGWMessages($logLinesDAPNETGateway, $tillMYRIC) {
 	if (strpos($pocsag_msg, ' ') == 0 && strlen($pocsag_msg) >= 45) {
             $pocsag_msg = wordwrap($pocsag_msg, 45, ' ', true);
 	}
-	echo "<tr>";
-	echo "<td style=\"width: 140px; vertical-align: top; text-align: left;\">".$local_time."</td>";
-	echo "<td style=\"width: 70px; vertical-align: top; text-align: center;\">Slot ".$pocsag_timeslot."</td>";
-	echo "<td style=\"width: 90px; vertical-align: top; text-align: center;\">".$pocsag_ric."</td>";
-	echo "<td style=\"width: max-content; vertical-align: top; text-align: left; word-wrap: break-word; white-space: normal !important;\">".$pocsag_msg."</td>";
-	echo "</tr>";	
+	echo "<tr>\n";
+	echo "  <td style=\"width: 140px; vertical-align: top; text-align: left;\">".$local_time."</td>\n";
+	echo "  <td style=\"width: 70px; vertical-align: top; text-align: center;\">Slot ".$pocsag_timeslot."</td>\n";
+	echo "  <td style=\"width: 90px; vertical-align: top; text-align: center;\">".$pocsag_ric."</td>\n";
+	echo "  <td style=\"width: max-content; vertical-align: top; text-align: left; word-wrap: break-word; white-space: normal !important;\">".$pocsag_msg."</td>\n";
+	echo "</tr>\n";
     }
 }
 
