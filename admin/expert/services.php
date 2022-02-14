@@ -32,7 +32,7 @@ require_once('../config/version.php');
 	<title>Pi-Star - Digital Voice Dashboard - Expert Editor</title>
 	<script type="text/javascript" src="/js/jquery.min.js"></script>
 	<link rel="stylesheet" type="text/css" href="/css/font-awesome-4.7.0/css/font-awesome.min.css" />
-	<link rel="stylesheet" type="text/css" href="/css/pistar-css.php" />
+	<link rel="stylesheet" type="text/css" href="/css/pistar-css.php?version=<?php echo $versionCmd; ?>" />
     </head>
     <body>
 	<div class="container">

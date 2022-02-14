@@ -44,7 +44,7 @@ if ($_SERVER["PHP_SELF"] == "/admin/config_backup.php") {
 	    <meta http-equiv="Expires" content="0" />
 	    <title>Pi-Star - <?php echo $lang['digital_voice']." ".$lang['dashboard']." - ".$lang['backup_restore'];?></title>
 	    <link rel="stylesheet" type="text/css" href="/css/font-awesome-4.7.0/css/font-awesome.min.css" />
-	    <link rel="stylesheet" type="text/css" href="/css/pistar-css.php" />
+	    <link rel="stylesheet" type="text/css" href="/css/pistar-css.php?version=<?php echo $versionCmd; ?>" />
 	</head>
 	<body>
 	    <div class="container">
