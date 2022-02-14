@@ -35,7 +35,7 @@ require_once('../config/version.php');
 	<script type="text/javascript" src="/css/farbtastic/farbtastic.min.js"></script>
 	<link rel="stylesheet" type="text/css" href="/css/farbtastic/farbtastic.css" />
 	<link rel="stylesheet" type="text/css" href="/css/font-awesome-4.7.0/css/font-awesome.min.css" />
-	<link rel="stylesheet" type="text/css" href="/css/pistar-css.php" />
+	<link rel="stylesheet" type="text/css" href="/css/pistar-css.php?version=<?php echo $versionCmd; ?>" />
 	<style type="text/css" media="screen">
 	 .colorwell {
 	     border: 2px solid #fff;

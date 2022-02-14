@@ -37,7 +37,7 @@ if ($_SERVER["PHP_SELF"] == "/admin/expert/ssh_access.php") {
     <link rel="shortcut icon" href="/images/favicon.ico" type="image/x-icon" />
     <meta http-equiv="Expires" content="0" />
     <title>Pi-Star - <?php echo $lang['digital_voice']." ".$lang['dashboard']." - SSH";?></title>
-    <link rel="stylesheet" type="text/css" href="../css/pistar-css.php" />
+    <link rel="stylesheet" type="text/css" href="../css/pistar-css.php?version=<?php echo $versionCmd; ?>" />
     <link rel="stylesheet" type="text/css" href="/css/font-awesome-4.7.0/css/font-awesome.min.css" />
     <script type="text/javascript" src="/js/jquery.min.js"></script>
     <script type="text/javascript" src="/js/jquery-timing.min.js"></script>

@@ -19,8 +19,6 @@ TalkGroup `3170603`.
 
 **Note: You need to have a Pi-Star hotspot running at least v4.1.6!**
 
-### Installing `W0CHP-PiStar-Dash` on an existing Pi-Star Hot Spot
-
 1. Make a backup of your configuration if you wish -- just in case.
 
 2. Open an SSH session to your Pi-Star instance.
@@ -61,19 +59,6 @@ TalkGroup `3170603`.
 
 5. Important: You **must** run the aforementioned commands with the exact syntax. Note the spaces and extra `--` (dashes), etc.
    Otherwise, the commands will fail.
-
-### Installing `W0CHP-PiStar-Dash` From Image to SD Card
-
-1. You need an SD card that is at least 4GB in size.
-
-2. Download the latest image file: [<code>WPSD_latest.img.xz</code>](https://w0chp.net/WPSD_latest.img.xz).
-    * ([MD5 verification file](https://w0chp.net/WPSD_latest.img.MD5))
-
-3. Extract and burn the image to an SD card.
-
-4. Boot your hotspot with the newly-burned SD card and setup. See [<code>KE0FHS</code>' excellent instructions on the first boot and setup](https://amateurradionotes.com/pi-star.htm##bootingpistar).
-
-5. When setup is complete, run '`sudo pistar-expand`' from SSH to expand the SD card to the full size potential and reboot.
 
 ## Updating `W0CHP-PiStar-Dash`
 
