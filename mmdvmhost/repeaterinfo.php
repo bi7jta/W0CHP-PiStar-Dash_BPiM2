@@ -396,8 +396,11 @@ if (isProcessRunning("M17Gateway")) {
       <div class="divTableHeadCell">TS1</div>
 	    <?php
 	    if (getConfigItem("DMR Network", "Slot1", $_SESSION['MMDVMHostConfigs']) == 1) {
+		if (preg_match("/Not/",getActualLink($reverseLogLinesMMDVM, "DMR Slot 1"))) {
+			echo "<div class='divTableCell hwinfo'><div class=\"active-mode-cell\" title='No TG'>No TG</div></div>\n";
+		} else {
 		    echo "<div class='divTableCell hwinfo'><div class=\"active-mode-cell\" title='Time Slot 1 Enabled'>".substr(getActualLink($reverseLogLinesMMDVM, "DMR Slot 1"), -10)."</div></div>\n";
-		    //echo "<tr><td style=\"background: $tableRowEvenBg;\" colspan=\"2\">".substr(getActualLink($reverseLogLinesMMDVM, "DMR Slot 1"), -10)."/".substr(getActualReflector($reverseLogLinesMMDVM, "DMR Slot 1"), -10)."</td></tr>\n";    }
+		}
 	    } else {
 		    echo "<div class='divTableCell hwinfo'><div class=\"inactive-mode-cell\" title='Time Slot 1 disabled'>Disabled</div></div>\n";
 	    }
@@ -407,8 +410,11 @@ if (isProcessRunning("M17Gateway")) {
       <div class="divTableHeadCell">TS2</div>
            <?php
 	    if (getConfigItem("DMR Network", "Slot2", $_SESSION['MMDVMHostConfigs']) == 1) {
-		    echo "<div class='divTableCell hwinfo'><div class=\"active-mode-cell\" title='Time Slot 2 Enabled'>".substr(getActualLink($reverseLogLinesMMDVM, "DMR Slot 2"), -10)."</div></div>\n";
-		    //echo "<tr><td style=\"background: $tableRowEvenBg;\" colspan=\"2\">".substr(getActualLink($reverseLogLinesMMDVM, "DMR Slot 2"), -10)."/".substr(getActualReflector($reverseLogLinesMMDVM, "DMR Slot 2"), -10)."</td></tr>\n"    }
+                if (preg_match("/Not/",getActualLink($reverseLogLinesMMDVM, "DMR Slot 1"))) {
+                        echo "<div class='divTableCell hwinfo'><div class=\"active-mode-cell\" title='No TG'>No TG</div></div>\n";
+                } else {
+			echo "<div class='divTableCell hwinfo'><div class=\"active-mode-cell\" title='Time Slot 2 Enabled'>".substr(getActualLink($reverseLogLinesMMDVM, "DMR Slot 2"), -10)."</div></div>\n";
+		}
 	    } else {
 		    echo "<div class='divTableCell hwinfo'><div class=\"inactive-mode-cell\" title='Time Slot 2 disabled'>Disabled</div></div>>\n";
 	    }
