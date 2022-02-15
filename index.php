@@ -132,7 +132,7 @@ checkSessionValidity();
 	    <input type="hidden" name="display-lastcaller" value="OFF" />
 	    <div style="float: right; vertical-align: bottom; padding-top: 0px;">
 	       <div class="grid-container" style="display: inline-grid; grid-template-columns: auto 40px; padding: 0 8px 0 5px; grid-column-gap: 5px;">
-		 <div class="grid-item" style="padding-top: 4px;">Caller Details</div>
+		 <div class="grid-item" style="padding-top: 3px;" title="Display Last/Current Caller Details table in Dashboard">Caller Details: </div>
 	    	   <div class="grid-item">
 		    <div>
 			<input id="toggle-display-lastcaller" class="toggle toggle-round-flat" type="checkbox" name="display-lastcaller" value="ON" <?php if(file_exists('/etc/.CALLERDETAILS')) { echo 'checked="checked"';}?> aria-checked="true" aria-label="Display Last Caller Details" onchange="setLastCaller(this)" /><label for="toggle-display-lastcaller" ></label>
