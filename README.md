@@ -224,6 +224,8 @@ Run:
 
 ## Screenshots
 
+Not all pages shown here. Note, that you can customize the colors to your preferences...
+
 ### Main Dashboard
 
 ![alt text](https://w0chp.net/img/WPSD_Dashboard.png "W0CHP Dashboard")
@@ -239,20 +241,8 @@ Run:
 #### BrandMeister Manager
 ![alt text](https://w0chp.net/img/WPSD_BMman.png "W0CHP BrandMeister Manager")
 
-#### YSF Link Manager
-![alt text](https://w0chp.net/img/WPSD_YSFman.png "W0CHP YSF Manager")
-
-#### POCSAG / DAPNET Messenger
-![alt text](https://w0chp.net/img/WPSD_POCSAGman.png "W0CHP DAPNET Manager")
-
 #### D-Star Manager
 ![alt text](https://w0chp.net/img/WPSD_DSman.png "W0CHP D-Star Manager")
-
-#### P25 Manager
-![alt text](https://w0chp.net/img/WPSD_P25man.png "W0CHP P25 Manager")
-
-#### NXDN Manager
-![alt text](https://w0chp.net/img/WPSD_NXDNman.png "W0CHP NXDN Manager")
 
 #### System Manager
 ![alt text](https://w0chp.net/img/WPSD_SYSman.png "W0CHP System Manager")
