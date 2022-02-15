@@ -104,31 +104,42 @@ checkSessionValidity();
 		</div>
 
 		<p>
- 		    <div class="navbar">
-              <script type= "text/javascript">
-               $(document).ready(function() {
-                 setInterval(function() {
-                   $("#timer").load("/dstarrepeater/datetime.php");
-                   }, 1000);
+ 		<div class="navbar">
+                <script type= "text/javascript">
+                 $(document).ready(function() {
+                   setInterval(function() {
+                     $("#timer").load("/dstarrepeater/datetime.php");
+                     }, 1000);
 
-                 function update() {
-                   $.ajax({
-                     type: 'GET',
-                     cache: false,
-                     url: '/dstarrepeater/datetime.php',
-                     timeout: 1000,
-                     success: function(data) {
-                       $("#timer").html(data); 
-                       window.setTimeout(update, 1000);
-                     }
-                   });
-                 }
-                 update();
-               });
-              </script>
-              <div style="text-align: left; padding-left: 8px; padding-top: 5px; float: left;">Current Hotspot Time (<?php echo date('T')?>): 
+                   function update() {
+                     $.ajax({
+                       type: 'GET',
+                       cache: false,
+                       url: '/dstarrepeater/datetime.php',
+                       timeout: 1000,
+                       success: function(data) {
+                         $("#timer").html(data); 
+                         window.setTimeout(update, 1000);
+                       }
+                     });
+                   }
+                   update();
+                 });
+                </script>
+                <div style="text-align: left; padding-left: 8px; padding-top: 5px; float: left;">Hotspot Time (<?php echo date('T')?>):
                 <span id="timer"></span>
             </div>
+	    <input type="hidden" name="display-lastcaller" value="OFF" />
+	    <div style="float: right; vertical-align: bottom; padding-top: 0px;">
+	       <div class="grid-container" style="display: inline-grid; grid-template-columns: auto 40px; padding: 0 5px 0 5px;; grid-column-gap: 5px;">
+		 <div class="grid-item" style="padding-top: 4px;">Caller Details</div>
+	    	   <div class="grid-item">
+		    <div>
+			<input id="toggle-display-lastcaller" class="toggle toggle-round-flat" type="checkbox" name="display-lastcaller" value="ON" <?php if(file_exists('/etc/.CALLERDETAILS')) { echo 'checked="checked"';}?> aria-checked="true" aria-label="Display Last Caller Details" onchange="setLastCaller(this)" /><label for="toggle-display-lastcaller" ></label>
+		    </div>
+		   </div>
+		 </div>
+	    </div>
 			<a class="menuconfig" href="/admin/configure.php"><?php echo $lang['configuration'];?></a>
 			<?php if ($_SERVER["PHP_SELF"] == "/admin/index.php") {
 			    echo ' <a class="menuupdate" href="/admin/update.php">'.$lang['update'].'</a>'."\n";
@@ -483,6 +494,24 @@ checkSessionValidity();
         }
     
 	if ($_SERVER["PHP_SELF"] == "/index.php" || $_SERVER["PHP_SELF"] == "/admin/index.php") {
+		echo '<script type="text/javascript">'."\n";
+        	echo 'function setLastCaller(obj) {'."\n";
+        	echo '    if (obj.checked) {'."\n";
+        	echo "        $.ajax({
+                	        type: \"POST\",
+  	          	        url: '/mmdvmhost/callerdetails_ajax.php',
+                	        data:{action:'enable'},
+         	             });";
+	        echo '    }'."\n";
+	        echo '    else {'."\n";
+	        echo "        $.ajax({
+	                        type: \"POST\",
+	                        url: '/mmdvmhost/callerdetails_ajax.php',
+	                        data:{action:'disable'},
+	                      });";
+	        echo '    }'."\n";
+	        echo '}'."\n";
+    		echo '</script>'."\n";
     		echo '<script type="text/javascript">'."\n";
     		echo 'function LiveCallerDetails(){'."\n";
     		echo '  $("#liveCallerDeets").load("/mmdvmhost/live_caller_table.php");'."\n";
@@ -493,7 +522,6 @@ checkSessionValidity();
     		echo '<div id="liveCallerDeets">'."\n";
     		include 'mmdvmhost/live_caller_table.php';
     		echo '</div>'."\n";
-    		echo "<br />\n";
  
 		echo '<script type="text/javascript">'."\n";
 		echo 'var lhto;'."\n";

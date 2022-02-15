@@ -1,4 +1,5 @@
 <?php
+if (file_exists('/etc/.CALLERDETAILS')) {
 include_once $_SERVER['DOCUMENT_ROOT'].'/config/config.php';          // MMDVMDash Config
 include_once $_SERVER['DOCUMENT_ROOT'].'/mmdvmhost/tools.php';        // MMDVMDash Tools
 include_once $_SERVER['DOCUMENT_ROOT'].'/mmdvmhost/functions.php';    // MMDVMDash Functions
@@ -129,7 +130,7 @@ if (strpos($mode, 'DMR') !== false) {
 }
 
 if($listElem[2] == "4000" || $listElem[2] == "9990" || $listElem[2] == "DAPNET") {
-	$name = "";
+	$name = "<td colspan =\"3\"</td>";
 	$city = "";
 	$state = "";
 	$country = "";
@@ -179,4 +180,5 @@ if($listElem[2] == "4000" || $listElem[2] == "9990" || $listElem[2] == "DAPNET")
     <?php echo $ber ?? ' '; ?>
    </tr>
 </table>
-
+<br />
+<?php } ?>
