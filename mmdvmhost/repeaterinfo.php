@@ -777,7 +777,7 @@ if (getConfigItem("NXDN", "RAN", $_SESSION['MMDVMHostConfigs'])) {
 		echo "<div class='divTableCell hwinfo'><div style=\"background: $tableRowEvenBg;\ title=\"".$dapnetGatewayRemoteTooltip."\">".$dapnetGatewayRemoteAddr."</div></div>\n";
 	    }
 	    else {
-		echo "<<div class='divTableCell hwinfo'><div style=\"background: $tableRowEvenBg;\">Service Not Started</div></div>\n";
+		echo "<div class='divTableCell hwinfo'><div style=\"background: $tableRowEvenBg;\">Service Not Started</div></div>\n";
 	    }
 ?>
     </div>
