@@ -141,7 +141,7 @@ if($listElem[2] == "4000" || $listElem[2] == "9990" || $listElem[2] == "DAPNET")
 
 ?>
 
-<div style="vertical-align: bottom; font-weight: bold;margin-right:20px;">Current / Last Caller Details</div>
+<div style="vertical-align: bottom; font-weight: bold;margin-right:12px;">Current / Last Caller Details</div>
   <table style="word-wrap: break-word; white-space:normal;">
     <tr>
       <th>Callsign</th>
