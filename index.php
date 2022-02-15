@@ -131,7 +131,7 @@ checkSessionValidity();
             </div>
 	    <input type="hidden" name="display-lastcaller" value="OFF" />
 	    <div style="float: right; vertical-align: bottom; padding-top: 0px;">
-	       <div class="grid-container" style="display: inline-grid; grid-template-columns: auto 40px; padding: 0 5px 0 5px;; grid-column-gap: 5px;">
+	       <div class="grid-container" style="display: inline-grid; grid-template-columns: auto 40px; padding: 0 8px 0 5px; grid-column-gap: 5px;">
 		 <div class="grid-item" style="padding-top: 4px;">Caller Details</div>
 	    	   <div class="grid-item">
 		    <div>
