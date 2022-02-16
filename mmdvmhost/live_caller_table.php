@@ -130,7 +130,7 @@ if (strpos($mode, 'DMR') !== false) {
 }
 
 if($listElem[2] == "4000" || $listElem[2] == "9990" || $listElem[2] == "DAPNET") {
-	$name = "<td colspan =\"3\"</td>";
+	$name = "";
 	$city = "";
 	$state = "";
 	$country = "";
