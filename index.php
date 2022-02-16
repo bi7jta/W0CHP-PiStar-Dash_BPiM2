@@ -526,9 +526,6 @@ checkSessionValidity();
     		echo 'setInterval(function(){LiveCallerDetails()}, 1500);'."\n";
     		echo '$(window).trigger(\'resize\');'."\n";
     		echo '</script>'."\n";
-    		echo '<div id="liveCallerDeets">'."\n";
-    		include 'mmdvmhost/live_caller_table.php';
-    		echo '</div>'."\n";
  
 		echo '<script type="text/javascript">'."\n";
 		echo 'var lhto;'."\n";
@@ -574,6 +571,10 @@ checkSessionValidity();
 		echo '</script>'."\n";
     }
 		if (empty($_POST) && empty($_GET)) {  // only show localtx and lastheard on main admin page (not sections)
+		    echo '<div id="liveCallerDeets">'."\n";
+		    include 'mmdvmhost/live_caller_table.php';
+ 		    echo '</div>'."\n";
+
 		    echo '<div id="localTxs">'."\n";
 		    include 'mmdvmhost/localtx.php';				// MMDVMDash Local Trasmissions
 		    echo '</div>'."\n";
