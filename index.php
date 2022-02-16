@@ -129,6 +129,10 @@ checkSessionValidity();
                 <div style="text-align: left; padding-left: 8px; padding-top: 5px; float: left;">Hotspot Time (<?php echo date('T')?>):
                 <span id="timer"></span>
             </div>
+	    <?php 
+            $ArchType = exec('uname -m');
+            if ($ArchType !== "armv6l") {
+            ?>
 	    <input type="hidden" name="display-lastcaller" value="OFF" />
 	    <div style="float: right; vertical-align: bottom; padding-top: 0px;">
 	       <div class="grid-container" style="display: inline-grid; grid-template-columns: auto 40px; padding: 0 8px 0 5px; grid-column-gap: 5px;">
@@ -140,6 +144,7 @@ checkSessionValidity();
 		   </div>
 		 </div>
 	    </div>
+	    <?php } ?>
 			<a class="menuconfig" href="/admin/configure.php"><?php echo $lang['configuration'];?></a>
 			<?php if ($_SERVER["PHP_SELF"] == "/admin/index.php") {
 			    echo ' <a class="menuupdate" href="/admin/update.php">'.$lang['update'].'</a>'."\n";
