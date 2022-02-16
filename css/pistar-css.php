@@ -875,9 +875,9 @@ hr {
   display: grid;
   grid-template-columns: auto auto auto auto auto auto;
   grid-template-rows: auto auto auto auto auto;
-  border: 2px solid black;
+  border: 0.5px solid <?php echo $tableBorderColor; ?>;
   background : <?php echo $backgroundContent; ?>;
-  padding: 1px;
+  padding: 0px;
 }
 
 .grid-item {
