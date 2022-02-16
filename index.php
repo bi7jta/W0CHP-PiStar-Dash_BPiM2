@@ -232,7 +232,9 @@ checkSessionValidity();
     		if ( $dmrMasterHost == '127.0.0.1' ) {
         		$dmrMasterHost = $_SESSION['DMRGatewayConfigs']['DMR Network 1']['Address'];
         		$bmEnabled = ($_SESSION['DMRGatewayConfigs']['DMR Network 1']['Enabled'] != "0" ? true : false);
-    		}
+    		} else if(preg_match("/brandmeister.network/",$dmrMasterHost)) {
+                        $bmEnabled = true;
+			}
     		// Make sure the master is a BrandMeister Master
     		if (($dmrMasterFile = fopen("/usr/local/etc/DMR_Hosts.txt", "r")) != FALSE) {
         		while (!feof($dmrMasterFile)) {
