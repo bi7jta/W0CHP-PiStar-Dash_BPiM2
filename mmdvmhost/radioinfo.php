@@ -52,7 +52,7 @@ require_once($_SERVER['DOCUMENT_ROOT'].'/config/ircddblocal.php');
                     $listElem = $lastHeard[0];
                 if (getActualMode($lastHeard, $_SESSION['MMDVMHostConfigs']) === 'idle') {
 		    if (isProcessRunning("MMDVMHost")) {
-                    	echo "<div style=\"font-weight:bold;padding:2px;\">Idle</div>";
+                    	echo "<div style=\"font-weight:bold;padding:2px;\"><span style='color:#005028;'>Idle</span></div>";
 		    }
 		    else { 
                         echo "<div class='error-state-cell' style=\"font-weight:bold;padding:2px;\">OFFLINE</div>";
@@ -60,7 +60,7 @@ require_once($_SERVER['DOCUMENT_ROOT'].'/config/ircddblocal.php');
                 }
                 else if (getActualMode($lastHeard, $_SESSION['MMDVMHostConfigs']) === NULL) {
                     if (isProcessRunning("MMDVMHost")) {
-                        echo "<div style=\"font-weight:bold;padding:2px;\">Idle</div>";
+                        echo "<div style=\"font-weight:bold;padding:2px;\"><span style='color:#005028;'>Idle</span></div>";
                     }
                     else {
                         echo "<div class='error-state-cell' style=\"font-weight:bold;padding:2px;\">OFFLINE</div>";
@@ -111,7 +111,7 @@ require_once($_SERVER['DOCUMENT_ROOT'].'/config/ircddblocal.php');
             }   
         }   
         else {
-            echo "<div style=\"font-weight:bold;padding:2px;\">Idle</div>";
+            echo "<div style=\"font-weight:bold;padding:2px;\"><span style='color:#005028;'>Idle</span></div>";
         }
         ?>
       </div>
