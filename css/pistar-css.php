@@ -842,6 +842,13 @@ select {
     background: <?php echo $backgroundModeCellPausedColor; ?>;
 }
 
+.error-state-cell {
+    color: <?php echo $textModeCellInactiveColor; ?>;
+    text-align: center;
+    border:0;
+    background: <?php echo $backgroundModeCellInactiveColor; ?>;
+}
+
 .table-container {
     position: relative;
 }

@@ -72,7 +72,7 @@ function GetActiveConnectionStyle($masterStates, $key) {
     if (count($masterStates)) {
 	    if (isset($masterStates[$key])) {
 	        if (($masterStates[$key] == "n/a") || ($masterStates[$key] == "disc")) {
-		        return "class=\"inactive-mode-cell\"";
+		        return "class=\"error-state-cell\"";
 	        }
 	    }
     }

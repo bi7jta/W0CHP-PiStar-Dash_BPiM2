@@ -43,11 +43,11 @@ if ($listElem[6] == null) {
 	$dt = new DateTime($utc_time, $utc_tz);
 	$duration = $now->getTimestamp() - $dt->getTimestamp();
 	$duration_string = $duration<999 ? round($duration) . "+" : "&infin;";
-	$duration = "<td colspan =\"3\" style=\"background:#F012BE;color:#fff;\">TX " . $duration_string . " sec</td>";
+	$duration = "<td colspan =\"3\" style=\"background:#d11141;color:#fff;\">TX " . $duration_string . " sec</td>";
 } else if ($listElem[6] == "DMR Data") {
-	$duration =  "<td colspan =\"3\" style=\"background: #1d1;color:#fff;\">DMR Data</td>";
+	$duration =  "<td colspan =\"3\" style=\"background:#00aedb;\">DMR Data</td>";
 } else if ($listElem[6] == "POCSAG Data") {
-	$diuration =  "<td colspan =\"3\" style=\"background:#4C8FD1;\">POCSAG Data</td>";
+	$diuration =  "<td colspan =\"3\" style=\"background:#00aedb;\">POCSAG Data</td>";
 } else {
 	$duration = "<td>$listElem[6]s</td>";
 }

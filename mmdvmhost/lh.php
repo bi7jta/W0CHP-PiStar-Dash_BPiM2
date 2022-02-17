@@ -95,8 +95,8 @@ for ($i = 0;  ($i <= $lastHeardRows - 1); $i++) {
 
 
 		if ($listElem[5] == "RF"){
-			echo "<td style=\"background:#1d1;\">RF</td>";
-		}else{
+			echo "<td>span style='color:#005028;font-weight:bold;'>RF</span></td>";
+		} else {
 			echo "<td>$listElem[5]</td>";
 		}
 		if ($listElem[6] == null) {
@@ -107,25 +107,25 @@ for ($i = 0;  ($i <= $lastHeardRows - 1); $i++) {
 			$dt = new DateTime($utc_time, $utc_tz);
 			$duration = $now->getTimestamp() - $dt->getTimestamp();
 			$duration_string = $duration<999 ? round($duration) . "+" : "&infin;";
-			echo "<td colspan =\"3\" style=\"background:#F012BE;color:#fff;\">TX " . $duration_string . " sec</td>";
+			echo "<td colspan =\"3\" style=\"background:#d11141;color:#fff;\">TX " . $duration_string . " sec</td>";
 		} else if ($listElem[6] == "DMR Data") {
-			echo "<td colspan =\"3\" style=\"background:#39CCCC;\">DMR Data</td>";
+			echo "<td colspan =\"3\" style=\"background:#00718F;color:#fff;\">DMR Data</td>";
 		} else if ($listElem[6] == "POCSAG Data") {
-			echo "<td colspan =\"3\" style=\"background:#4C8FD1;\">POCSAG Data</td>";
+			echo "<td colspan =\"3\" style=\"background:#00718F;color:#fff;\">POCSAG Data</td>";
 		} else {
 			echo "<td>$listElem[6]</td>";
 
 			// Colour the Loss Field
 			if (floatval($listElem[7]) < 1) { echo "<td>$listElem[7]</td>"; }
-			elseif (floatval($listElem[7]) == 1) { echo "<td style=\"background:#1d1;\">$listElem[7]</td>"; }
-			elseif (floatval($listElem[7]) > 1 && floatval($listElem[7]) <= 3) { echo "<td style=\"background:#fa0;\">$listElem[7]</td>"; }
-			else { echo "<td style=\"background:#f33;\">$listElem[7]</td>"; }
+			elseif (floatval($listElem[7]) == 1) { echo "<td><span style='color:#005028;font-weight:bold'>$listElem[7]</span></td>"; }
+			elseif (floatval($listElem[7]) > 1 && floatval($listElem[7]) <= 3) { echo "<td><span style='color:#984C00;font-weight:bold'>$listElem[7]</span></td>"; }
+			else { echo "<td><span style='color:#8A0B2B;font-weight:bold;'>$listElem[7]</span></td>"; }
 
 			// Colour the BER Field
 			if (floatval($listElem[8]) == 0) { echo "<td>$listElem[8]</td>"; }
-			elseif (floatval($listElem[8]) >= 0.0 && floatval($listElem[8]) <= 1.9) { echo "<td style=\"background:#1d1;\">$listElem[8]</td>"; }
-			elseif (floatval($listElem[8]) >= 2.0 && floatval($listElem[8]) <= 4.9) { echo "<td style=\"background:#fa0;\">$listElem[8]</td>"; }
-			else { echo "<td style=\"background:#f33;\">$listElem[8]</td>"; }
+			elseif (floatval($listElem[8]) >= 0.0 && floatval($listElem[8]) <= 1.9) { echo "<td><span style='color:#005028;font-weight:bold'>$listElem[8]</span></td>"; }
+			elseif (floatval($listElem[8]) >= 2.0 && floatval($listElem[8]) <= 4.9) { echo "<td><span style='color:#984C00;font-weight:bold'>$listElem[8]</span></td>"; }
+			else { echo "<td><span style='color:#8A0B2B;font-weight:bold;'>$listElem[8]</span></td>"; }
 		}
 		echo"</tr>\n";
 		}
@@ -134,3 +134,4 @@ for ($i = 0;  ($i <= $lastHeardRows - 1); $i++) {
 
 ?>
   </table>
+
