@@ -82,11 +82,11 @@ if ($listElem[1] == null) {
 if (floatval($listElem[8]) == 0) {
 	$ber = $listElem[8];
 }
-elseif (floatval($listElem[8]) >= 0.0 && floatval($listElem[8]) <= 1.1)
+elseif (floatval($listElem[8]) >= 0.0 && floatval($listElem[8]) <= 1.9)
 {
 	$ber = "<span class='ber_ok'>".$listElem[8]."</span>";
 }
-	elseif (floatval($listElem[8]) >= 1.2 && floatval($listElem[8]) <= 4.9)
+	elseif (floatval($listElem[8]) >= 2.0 && floatval($listElem[8]) <= 4.9)
 {
 	$ber = "<span class='ber_med'>".$listElem[8]."</span>";
 } else {

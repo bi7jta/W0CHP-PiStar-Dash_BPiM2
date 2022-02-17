@@ -45,9 +45,9 @@ if ($listElem[6] == null) {
 	$duration_string = $duration<999 ? round($duration) . "+" : "&infin;";
 	$duration = "<td colspan =\"3\" style=\"background:#d11141;color:#fff;\">TX " . $duration_string . " sec</td>";
 } else if ($listElem[6] == "DMR Data") {
-	$duration =  "<td colspan =\"3\" style=\"background:#00aedb;\">DMR Data</td>";
+	$duration =  "<td colspan =\"3\" style=\"background:#00718F;color:#fff;\">DMR Data</td>";
 } else if ($listElem[6] == "POCSAG Data") {
-	$diuration =  "<td colspan =\"3\" style=\"background:#00aedb;\">POCSAG Data</td>";
+	$diuration =  "<td colspan =\"3\" style=\"background:#00718F;color:#fff;\">POCSAG Data</td>";
 } else {
 	$duration = "<td>$listElem[6]s</td>";
 }
@@ -58,11 +58,11 @@ if ($listElem[7] == null) {
 } elseif (floatval($listElem[7]) < 1) {
 	$loss = "<td>".$listElem[7]."</td>";
 } elseif (floatval($listElem[7]) == 1) {
-	$loss = "<td style=\"background: #1d1;\">".$listElem[7]."</td>";
+	$loss = "<td><span style='color:#005028;font-weight:bold'>".$listElem[7]."</span></td>";
 } elseif (floatval($listElem[7]) > 1 && floatval($listElem[7]) <= 3) {
-	$loss = "<td style=\"background: #fa0;\">".$listElem[7]."</td>";
+	$loss = "<td><span style='color:#984C00;font-weight:bold'>".$listElem[7]."</span></td>";
 } else {
-	$loss = "<td style=\"background: #f33;\">".$listElem[7]."</td>";
+	$loss = "<td><span style='color:#8A0B2B;font-weight:bold;'>".$listElem[7]."</span></td>";
 }
 			
 if ($listElem[8] == null) {
@@ -82,12 +82,12 @@ if ($listElem[8] == null) {
         $ber = "";
 } elseif (floatval($listElem[8]) == 0) {
 	$ber = "<td>$listElem[8]</td>";
-} elseif (floatval($listElem[8]) >= 0.0 && floatval($listElem[8]) <= 1.1) {
-	$ber = "<td style=\"background: #1d1;\">".$listElem[8]."</rd>";
-} elseif (floatval($listElem[8]) >= 1.2 && floatval($listElem[8]) <= 4.9) {
-	$ber = "<td style=\"background: #FA0;\">".$listElem[8]."</td>";
+} elseif (floatval($listElem[8]) >= 0.0 && floatval($listElem[8]) <= 1.9) {
+	$ber = "<td><span style='color:#005028;font-weight:bold'>".$listElem[8]."</span></td>";
+} elseif (floatval($listElem[8]) >= 2.0 && floatval($listElem[8]) <= 4.9) {
+	$ber = "<td><span style='color:#984C00;font-weight:bold'>".$listElem[8]."</span></td>";
 } else {
-	$ber = "<td style=\"background: #F33;\">".$listElem[8]."</td>";
+	$ber = "<td><span style='color:#8A0B2B;font-weight:bold;'>".$listElem[8]."</span></td>";
 }
 
 if (!is_numeric($listElem[2])) {
@@ -168,7 +168,7 @@ if($listElem[2] == "4000" || $listElem[2] == "9990" || $listElem[2] == "DAPNET")
 		} ?></td>
     <?php
 	if ($listElem[5] == "RF") {
-		echo "<td style=\"background:#1d1;\">RF</td>";
+		echo "<td><span style='color:#005028;font-weight:bold;'>RF</span></td>";
 	} else {
     		echo" <td>".$source ?? ' '."</td>";
 	}

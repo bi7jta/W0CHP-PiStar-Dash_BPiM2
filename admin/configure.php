@@ -286,6 +286,10 @@ $DGIdGatewayAPRS    = $configdgidgateway['APRS']['Enable'];
 $NXDNGatewayAPRS    = $confignxdngateway['APRS']['Enable'];
 $M17GatewayAPRS     = $configm17gateway['APRS']['Enable'];
 
+// form handler for DMR beacon
+$DMRBeaconEnable    = $configmmdvm['DMR']['Beacons'];
+$DMRBeaconModeNet   = "0" ;
+
 //
 // Check for DMRGateway RemoteCommand and enable if it isn't...
 // This is needed for DMR network panel status, login issues, etc.
@@ -883,6 +887,16 @@ if (!empty($_POST)):
 		$M17GatewayAPRS = "1";
 	} else {
 		$M17GatewayAPRS = "0";
+	}
+	if (empty($_POST['DMRBeaconEnable']) != TRUE) { // checked!
+		$DMRBeaconEnable = "1";
+	} else {
+		$DMRBeaconEnable = "0";
+	}
+	if (empty($_POST['DMRBeaconModeNet']) != TRUE) { // checked!
+		$DMRBeaconModeNet = "1";
+	} else {
+		$DMRBeaconModeNet = "0";
 	}
 
 	// Set ircDDBGateway and TimeServer language
@@ -1669,6 +1683,12 @@ if (!empty($_POST)):
 	if (empty($_POST['dmrDumpTAData']) != TRUE ) {
 	  if (escapeshellcmd($_POST['dmrDumpTAData']) == 'ON' ) { $configmmdvm['DMR']['DumpTAData'] = "1"; }
 	  if (escapeshellcmd($_POST['dmrDumpTAData']) == 'OFF' ) { $configmmdvm['DMR']['DumpTAData'] = "0"; }
+	}
+
+	// Set DMR Beacon option
+	if (empty($_POST['DMRBeaconEnable']) != TRUE ) {
+	  if (escapeshellcmd($_POST['DMRBeaconEnable']) == 'ON' ) { $configmmdvm['DMR']['Beacons'] = "1"; }
+	  if (escapeshellcmd($_POST['DMRBeaconEnable']) == 'OFF' ) { $configmmdvm['DMR']['Beacons'] = "0"; }
 	}
 
 	// Set the XLX DMRGateway Master On or Off
@@ -2760,7 +2780,7 @@ if (!empty($_POST)):
 	if (!isset($configmmdvm['D-Star']['AckTime'])) { $configmmdvm['D-Star']['AckTime'] = "750"; }
 	if (!isset($configmmdvm['D-Star']['AckMessage'])) { $configmmdvm['D-Star']['AckMessage'] = "0"; }
 	if (!isset($configmmdvm['D-Star']['RemoteGateway'])) { $configmmdvm['D-Star']['RemoteGateway'] = "0"; }
-	if (!isset($configmmdvm['DMR']['BeaconInterval'])) { $configmmdvm['DMR']['BeaconInterval'] = "60"; }
+	if (isset($configmmdvm['DMR']['Beacons'])) { $configmmdvm['DMR']['Beacons'] = $DMRBeaconEnable; }
 	if (!isset($configmmdvm['DMR']['BeaconDuration'])) { $configmmdvm['DMR']['BeaconDuration'] = "3"; }
 	if (!isset($configmmdvm['DMR']['OVCM'])) { $configmmdvm['DMR']['OVCM'] = "0"; }
 	if (!isset($configmmdvm['DMR Network']['Type'])) { $configmmdvm['DMR Network']['Type'] = "Direct"; }
@@ -3238,6 +3258,14 @@ if (!empty($_POST)):
 		$success = fwrite($handleMMDVMHostConfig, $mmdvmContent);
 		fclose($handleMMDVMHostConfig);
 		if (intval(exec('cat /tmp/bW1kdm1ob3N0DQo.tmp | wc -l')) > 140 ) {
+        	// handle DMR Beacon modes
+        		if ($DMRBeaconModeNet == "1") {
+				system('sudo sed -i "/BeaconInterval=.*/d" /tmp/bW1kdm1ob3N0DQo.tmp');
+			} else {
+				if (!strpos(file_get_contents("/etc/mmdvmhost"),"BeaconInterval=") !== false) {
+					system('sudo sed -i "/BeaconDuration=.*/i BeaconInterval=60" /tmp/bW1kdm1ob3N0DQo.tmp');                                                                             
+				}
+			}
 			exec('sudo mv /tmp/bW1kdm1ob3N0DQo.tmp /etc/mmdvmhost');		// Move the file back
 			exec('sudo chmod 644 /etc/mmdvmhost');					// Set the correct runtime permissions
 			exec('sudo chown root:root /etc/mmdvmhost');				// Set the owner
@@ -3789,6 +3817,7 @@ else:
 		$toggleDstarDplusHostfilesCr		= 'onclick="toggleDstarDplusHostfiles()"';
 		$toggleMobilegps_enableCr		= 'onclick="toggleMobilegps_enable()"';
 		$toggleircddbEnabledCr			= 'onclick="toggleircddbEnabled()"';
+		$toggleDmrBeaconCr			= 'onclick="toggleDmrBeacon()"';
 	} else {
 		$toggleDMRCheckboxCr			= "";
 		$toggleDSTARCheckboxCr			= "";
@@ -3814,6 +3843,7 @@ else:
 		$toggleDstarDplusHostfilesCr		= "";
 		$toggleMobilegps_enableCr		= "";
 		$toggleircddbEnabledCr			= "";
+		$toggleDmrBeaconCr			= "";
 	}
 ?>
 <form id="factoryReset" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="post">
@@ -4315,6 +4345,7 @@ else:
     </div>
 </div>
 </td>
+</tr>
     <tr>
     <td align="left"><a class="tooltip2" href="#"><?php echo $lang['aprs_host'];?>:<span><b>APRS Gateway Host Pool</b>Set your prefered APRS host pool here.</span></a></td>
     <td colspan="3" style="text-align: left;"><select name="selectedAPRSHost">
@@ -4381,6 +4412,7 @@ else:
     $dmrMasterFile = fopen("/usr/local/etc/DMR_Hosts.txt", "r"); ?>
 	<h2><?php echo $lang['dmr_config'];?></h2>
     <input type="hidden" name="dmrEmbeddedLCOnly" value="OFF" />
+    <input type="hidden" name="dmrBeacon" value="OFF" />
     <input type="hidden" name="dmrDumpTAData" value="OFF" />
     <input type="hidden" name="dmrGatewayXlxEn" value="OFF" />
     <input type="hidden" name="dmrGatewayNet1En" value="OFF" />
@@ -4389,14 +4421,14 @@ else:
     <table>
     <tr>
     <th width="200"><a class="tooltip" href="#"><?php echo $lang['setting'];?><span><b>Setting</b></span></a></th>
-    <th><a class="tooltip" href="#"><?php echo $lang['value'];?><span><b>Value</b>The current value from the<br />configuration files</span></a></th>
+    <th colspan="4"><a class="tooltip" href="#"><?php echo $lang['value'];?><span><b>Value</b>The current value from the<br />configuration files</span></a></th>
     </tr>
     <tr>
-    <th align="left" colspan="3">Main DMR Network Settings</th>
+    <th align="left" colspan="4">Main DMR Network Settings</th>
     </tr>
     <tr>
     <td align="left"><a class="tooltip2" href="#"><?php echo $lang['dmr_master'];?>:<span><b>DMR Master (MMDVMHost)</b>Set your prefered DMR master here</span></a></td>
-    <td style="text-align: left;"><select name="dmrMasterHost" class="dmrMasterHost">
+    <td style="text-align: left;" colspan="3"><select name="dmrMasterHost" class="dmrMasterHost">
 <?php
         $testMMDVMdmrMaster = $configmmdvm['DMR Network']['Address'];
 	$testMMDVMdmrMasterPort = $configmmdvm['DMR Network']['Port'];
@@ -4414,11 +4446,11 @@ else:
     </tr>
 <?php if ($dmrMasterNow == "DMRGateway") { ?>
     <tr>
-    <th align="left"colspan="3">BrandMeister Network Settings</th>
+    <th align="left"colspan="4">BrandMeister Network Settings</th>
     </tr>
     <tr>
     <td align="left"><a class="tooltip2" href="#"><?php echo $lang['bm_master'];?>:<span><b>BrandMeister Master</b>Set your prefered DMR master here</span></a></td>
-    <td style="text-align: left;"><select name="dmrMasterHost1" class="dmrMasterHost1">
+    <td style="text-align: left;" colspan="3"><select name="dmrMasterHost1" class="dmrMasterHost1">
 <?php
 	$dmrMasterFile1 = fopen("/usr/local/etc/DMR_Hosts.txt", "r");
 	$testMMDVMdmrMaster1 = $configdmrgateway['DMR Network 1']['Address'];
@@ -4436,13 +4468,13 @@ else:
     </select></td></tr>
     <tr>
       <td align="left"><a class="tooltip2" href="#">BM Hotspot Security:<span><b>BrandMeister Password</b>Override the Password for BrandMeister with your own custom password, make sure you already configured this using BM Self Care. Empty the field to use the default.</span></a></td>
-      <td align="left">
+      <td align="left" colspan="3">
         <input type="password" name="bmHSSecurity" size="30" maxlength="30" value="<?php if (isset($configModem['BrandMeister']['Password'])) {echo $configModem['BrandMeister']['Password'];} ?>"></input>
       </td>
     </tr>
     <tr>
     <td align="left"><a class="tooltip2" href="#"><?php echo $lang['bm_network'];?> ESSID:<span><b>BrandMeister Extended ID</b>This is the extended ID, to make your DMR ID 9 digits long</span></a></td>
-    <td align="left">
+    <td align="left" colspan="3">
 <?php
 	if (isset($configdmrgateway['DMR Network 1']['Id'])) {
 		if (strlen($configdmrgateway['DMR Network 1']['Id']) > strlen($configmmdvm['General']['Id'])) {
@@ -4478,24 +4510,24 @@ else:
     </td></tr>
     <tr>
     <td align="left"><a class="tooltip2" href="#"><?php echo $lang['bm_network'];?> Enable:<span><b>BrandMeister Network Enable</b>Enable or disable BrandMeister Network</span></a></td>
-    <td align="left">
+    <td align="left" colspan="3">
     <?php if ($configdmrgateway['DMR Network 1']['Enabled'] == 1) { echo "<div class=\"switch\"><input id=\"toggle-dmrGatewayNet1En\" class=\"toggle toggle-round-flat\" type=\"checkbox\" name=\"dmrGatewayNet1En\" value=\"ON\" checked=\"checked\" aria-hidden=\"true\" tabindex=\"-1\" ".$toggleDmrGatewayNet1EnCheckboxCr." /><label id=\"aria-toggle-dmrGatewayNet1En\" role=\"checkbox\" tabindex=\"0\" aria-label=\"Enable BrandMeister DMR\" aria-checked=\"true\" onKeyPress=\"toggleDmrGatewayNet1EnCheckbox()\" onclick=\"toggleDmrGatewayNet1EnCheckbox()\" for=\"toggle-dmrGatewayNet1En\"><font style=\"font-size:0px\">Enable Brandmeister DMR</font></label></div>\n"; }
     else { echo "<div class=\"switch\"><input id=\"toggle-dmrGatewayNet1En\" class=\"toggle toggle-round-flat\" type=\"checkbox\" name=\"dmrGatewayNet1En\" value=\"ON\" aria-hidden=\"true\" tabindex=\"-1\" ".$toggleDmrGatewayNet1EnCheckboxCr." /><label id=\"aria-toggle-dmrGatewayNet1En\" role=\"checkbox\" tabindex=\"0\" aria-label=\"Enable BrandMeister DMR\" aria-checked=\"false\" onKeyPress=\"toggleDmrGatewayNet1EnCheckbox()\" onclick=\"toggleDmrGatewayNet1EnCheckbox()\" for=\"toggle-dmrGatewayNet1En\"><font style=\"font-size:0px\">Enable Brandmeister DMR</font></label></div>\n"; } ?>
     </td>
     </tr>
     <tr>
     <td align="left"><a class="tooltip2" href="#"><?php echo $lang['bm_network'];?>:<span><b>BrandMeister Dashboards</b>Direct links to your BrandMeister Dashboards</span></a></td>
-    <td>
-    <a style="text-decoration:underline;" href="https://brandmeister.network/?page=hotspot&amp;id=<?php echo $configmmdvm['General']['Id']; if ($brandMeisterESSID != "None") { echo $brandMeisterESSID; }; ?>" target="_new" style="color: #000;">Repeater Information</a> |
-    <a style="text-decoration:unerline;" href="https://brandmeister.network/?page=hotspot-edit&amp;id=<?php echo $configmmdvm['General']['Id']; if ($brandMeisterESSID != "None") { echo $brandMeisterESSID; }; ?>" target="_new" style="color: #000;">Edit Repeater (BrandMeister Selfcare)</a>
+    <td colspan="3">
+    <a href="https://brandmeister.network/?page=hotspot&amp;id=<?php echo $configmmdvm['General']['Id']; if ($brandMeisterESSID != "None") { echo $brandMeisterESSID; }; ?>" target="_new" style="color: #000;">Repeater Information</a> |
+    <a href="https://brandmeister.network/?page=hotspot-edit&amp;id=<?php echo $configmmdvm['General']['Id']; if ($brandMeisterESSID != "None") { echo $brandMeisterESSID; }; ?>" target="_new" style="color: #000;">Edit Repeater (BrandMeister Selfcare)</a>
     </td>
     </tr>
     <tr>
-    <th align="left" colspan="3">DMR+ Network Settings</th>
+    <th align="left" colspan="4">DMR+ Network Settings</th>
     </tr>
     <tr>
     <td align="left"><a class="tooltip2" href="#"><?php echo $lang['dmr_plus_master'];?>:<span><b>DMR+ Master</b>Set your prefered DMR master here</span></a></td>
-    <td style="text-align: left;"><select name="dmrMasterHost2" class="dmrMasterHost2">
+    <td style="text-align: left;" colspan="3"><select name="dmrMasterHost2" class="dmrMasterHost2">
 <?php
 	$dmrMasterFile2 = fopen("/usr/local/etc/DMR_Hosts.txt", "r");
 	$testMMDVMdmrMaster2= $configdmrgateway['DMR Network 2']['Address'];
@@ -4513,13 +4545,13 @@ else:
     </select></td></tr>
     <tr>
     <td align="left"><a class="tooltip2" href="#"><?php echo $lang['dmr_plus_network'];?>:<span><b>DMR+ Network</b>Set your options= for DMR+ here</span></a></td>
-    <td align="left">
+    <td align="left" colspan="3">
     Options=<input type="text" name="dmrNetworkOptions" size="65" maxlength="100" value="<?php if (isset($configdmrgateway['DMR Network 2']['Options'])) { echo $configdmrgateway['DMR Network 2']['Options']; } ?>" />
     </td>
     </tr>
     <tr>
     <td align="left"><a class="tooltip2" href="#"><?php echo $lang['dmr_plus_network'];?> ESSID:<span><b>DMR Plus Extended ID</b>This is the extended ID, to make your DMR ID 8 digits long</span></a></td>
-    <td align="left">
+    <td align="left" colspan="3">
 <?php
 	if (isset($configdmrgateway['DMR Network 2']['Id'])) {
 		if (strlen($configdmrgateway['DMR Network 2']['Id']) > strlen($configmmdvm['General']['Id'])) {
@@ -4555,17 +4587,17 @@ else:
     </td></tr>
     <tr>
     <td align="left"><a class="tooltip2" href="#"><?php echo $lang['dmr_plus_network'];?> Enable:<span><b>DMR+ Network Enable</b></span></a></td>
-    <td align="left">
+    <td align="left" colspan="3">
     <?php if ($configdmrgateway['DMR Network 2']['Enabled'] == 1) { echo "<div class=\"switch\"><input id=\"toggle-dmrGatewayNet2En\" class=\"toggle toggle-round-flat\" type=\"checkbox\" name=\"dmrGatewayNet2En\" value=\"ON\" checked=\"checked\" aria-hidden=\"true\" tabindex=\"-1\" ".$toggleDmrGatewayNet2EnCheckboxCr." /><label id=\"aria-toggle-dmrGatewayNet2En\" role=\"checkbox\" tabindex=\"0\" aria-label=\"Enable DMR+\" aria-checked=\"true\" onKeyPress=\"toggleDmrGatewayNet2EnCheckbox()\" onclick=\"toggleDmrGatewayNet2EnCheckbox()\" for=\"toggle-dmrGatewayNet2En\"><font style=\"font-size:0px\">Enable DMR+</font></label></div>\n"; }
     else { echo "<div class=\"switch\"><input id=\"toggle-dmrGatewayNet2En\" class=\"toggle toggle-round-flat\" type=\"checkbox\" name=\"dmrGatewayNet2En\" value=\"ON\" aria-hidden=\"true\" tabindex=\"-1\" ".$toggleDmrGatewayNet2EnCheckboxCr." /><label id=\"aria-toggle-dmrGatewayNet2En\" role=\"checkbox\" tabindex=\"0\" aria-label=\"Enable DMR+\" aria-checked=\"false\" onKeyPress=\"toggleDmrGatewayNet2EnCheckbox()\" onclick=\"toggleDmrGatewayNet2EnCheckbox()\" for=\"toggle-dmrGatewayNet2En\"><font style=\"font-size:0px\">Enable DMR+</font></label></div>\n"; } ?>
     </td>
     </tr>
     <tr>
-    <th align="left" colspan="3">XLX Network Settings</th>
+    <th align="left" colspan="4">XLX Network Settings</th>
     </tr>
     <tr>
     <td align="left"><a class="tooltip2" href="#"><?php echo $lang['xlx_master'];?>:<span><b>XLX Master</b>Set your prefered XLX master here</span></a></td>
-    <td style="text-align: left;"><select name="dmrMasterHost3" class="dmrMasterHost3">
+    <td style="text-align: left;" colspan="3"><select name="dmrMasterHost3" class="dmrMasterHost3">
 <?php
 	$dmrMasterFile3 = fopen("/usr/local/etc/DMR_Hosts.txt", "r");
 	if (isset($configdmrgateway['XLX Network 1']['Address'])) { $testMMDVMdmrMaster3= $configdmrgateway['XLX Network 1']['Address']; }
@@ -4585,7 +4617,7 @@ else:
     <?php if (isset($configdmrgateway['XLX Network 1']['Startup'])) { ?>
     <tr>
     <td align="left"><a class="tooltip2" href="#">XLX Startup TG:<span><b>XLX Startup TG</b></span></a></td>
-    <td align="left"><select name="dmrMasterHost3Startup" class="dmrMasterHost3Startup">
+    <td align="left" colspan="3"><select name="dmrMasterHost3Startup" class="dmrMasterHost3Startup">
 <?php
 	if (isset($configdmrgateway['XLX Network 1']['Startup'])) {
 		echo '      <option value="None">None</option>'."\n";
@@ -4608,7 +4640,7 @@ else:
     <?php if (isset($configdmrgateway['XLX Network']['TG'])) { ?>
     <tr>
     <td align="left"><a class="tooltip2" href="#">XLX Startup Module:<span><b>XLX Startup Module override</b>Default will use the host file option, or override it here.</span></a></td>
-    <td align="left"><select name="dmrMasterHost3StartupModule">
+    <td align="left" colspan="3"><select name="dmrMasterHost3StartupModule">
 <?php
 	if ((isset($configdmrgateway['XLX Network']['Module'])) && ($configdmrgateway['XLX Network']['Module'] != "@")) {
 		echo '        <option value="'.$configdmrgateway['XLX Network']['Module'].'" selected="selected">'.$configdmrgateway['XLX Network']['Module'].'</option>'."\n";
@@ -4653,7 +4685,7 @@ else:
     <?php } ?>
     <tr>
     <td align="left"><a class="tooltip2" href="#"><?php echo $lang['xlx_enable'];?>:<span><b>XLX Master Enable</b>Turn your XLX connection on or off.</span></a></td>
-    <td align="left">
+    <td align="left" colspan="3">
     <?php
     if ((isset($configdmrgateway['XLX Network 1']['Enabled'])) && ($configdmrgateway['XLX Network 1']['Enabled'] == 1)) { echo "<div class=\"switch\"><input id=\"toggle-dmrGatewayXlxEn\" class=\"toggle toggle-round-flat\" type=\"checkbox\" name=\"dmrGatewayXlxEn\" value=\"ON\" checked=\"checked\" aria-hidden=\"true\" tabindex=\"-1\" ".$toggleDmrGatewayXlxEnCheckboxCr." /><label id=\"aria-toggle-dmrGatewayXlxEn\" role=\"checkbox\" tabindex=\"0\" aria-label=\"Enable XLX Network\" aria-checked=\"true\" onKeyPress=\"toggleDmrGatewayXlxEnCheckbox()\" onclick=\"toggleDmrGatewayXlxEnCheckbox()\" for=\"toggle-dmrGatewayXlxEn\"><font style=\"font-size:0px\">Enable XLX via DMR</font></label></div>\n"; }
     else if ((isset($configdmrgateway['XLX Network']['Enabled'])) && ($configdmrgateway['XLX Network']['Enabled'] == 1)) { echo "<div class=\"switch\"><input id=\"toggle-dmrGatewayXlxEn\" class=\"toggle toggle-round-flat\" type=\"checkbox\" name=\"dmrGatewayXlxEn\" value=\"ON\" checked=\"checked\" aria-hidden=\"true\" tabindex=\"-1\" ".$toggleDmrGatewayXlxEnCheckboxCr." /><label id=\"aria-toggle-dmrGatewayXlxEn\" role=\"checkbox\" tabindex=\"0\" aria-label=\"Enable XLX Network\" aria-checked=\"true\" onKeyPress=\"toggleDmrGatewayXlxEnCheckbox()\" onclick=\"toggleDmrGatewayXlxEnCheckbox()\" for=\"toggle-dmrGatewayXlxEn\"><font style=\"font-size:0px\">Enable XLX via DMR</font></label></div>\n"; }
@@ -4662,13 +4694,13 @@ else:
 <?php }
     if (substr($dmrMasterNow, 0, 2) == "BM") { echo '    <tr>
       <td align="left"><a class="tooltip2" href="#">Hotspot Security:<span><b>Custom Password</b>Override the Password for your DMR Host with your own custom password, make sure you already configured this with your chosen DMR Host too. Empty the field to use the default.</span></a></td>
-      <td align="left">
+      <td align="left" colspan="3">
         <input type="password" name="bmHSSecurity" size="30" maxlength="30" value="'; if (isset($configModem['BrandMeister']['Password'])) {echo $configModem['BrandMeister']['Password'];}; echo '"></input>
       </td>
     </tr>
     <tr>
     <td align="left"><a class="tooltip2" href="#">'.$lang['bm_network'].':<span><b>BrandMeister Dashboards</b>Direct links to your BrandMeister Dashboards</span></a></td>
-    <td>
+    <td colspan="3">
       <a href="https://brandmeister.network/?page=hotspot&amp;id='.$configmmdvm['General']['Id'].'" target="_new" style="color: #000;">Repeater Information</a> |
       <a href="https://brandmeister.network/?page=hotspot-edit&amp;id='.$configmmdvm['General']['Id'].'" target="_new" style="color: #000;">Edit Repeater (BrandMeister Selfcare)</a>
     </td>
@@ -4676,7 +4708,7 @@ else:
     if (substr($dmrMasterNow, 0, 8) == "FreeDMR_") {
       echo '    <tr>
     <td align="left"><a class="tooltip2" href="#">DMR Options:<span><b>DMR Network</b>Set your options= for DMR here</span></a></td>
-    <td align="left">
+    <td align="left" colspan="3">
     Options=<input type="text" name="dmrNetworkOptions" size="65" maxlength="100" value="';
 	if (isset($configmmdvm['DMR Network']['Options'])) { echo $configmmdvm['DMR Network']['Options']; }
         echo '" />
@@ -4684,7 +4716,7 @@ else:
     </tr>
     <tr>
     <td align="left"><a class="tooltip2" href="#">FreeDMR Help:<span><b>FreeDMR Help</b>FreeDMR Options Help</span></a></td>
-    <td>
+    <td colspan="3">
       <a href="http://www.freedmr.uk/index.php/static-talk-groups-pi-star/" target="_new" style="color: #000;">FreeDMR Options Guide</a> |
       <a href="http://www.freedmr.uk/index.php/dashboard/options-calculator/" target="_new" style="color: #000;">FreeDMR Options Calculator</a>
     </td>
@@ -4692,7 +4724,7 @@ else:
     if ((substr($dmrMasterNow, 0, 4) == "DMR+") || (substr($dmrMasterNow, 0, 3) == "HB_") || (substr($dmrMasterNow, 0, 3) == "FD_")) {
       echo '    <tr>
     <td align="left"><a class="tooltip2" href="#">DMR Options:<span><b>DMR Network</b>Set your options= for DMR here</span></a></td>
-    <td align="left">
+    <td align="left" colspan="3">
     Options=<input type="text" name="dmrNetworkOptions" size="65" maxlength="100" value="';
 	if (isset($configmmdvm['DMR Network']['Options'])) { echo $configmmdvm['DMR Network']['Options']; }
         echo '" />
@@ -4701,7 +4733,7 @@ else:
     if (substr($dmrMasterNow, 0, 4) == "TGIF") {
       echo '    <tr>
       <td align="left"><a class="tooltip2" href="#">Hotspot Security:<span><b>Custom Password</b>Override the Password for your DMR Host with your own custom password, make sure you already configured this with your chosen DMR Host too. Empty the field to use the default.</span></a></td>
-      <td align="left">
+      <td align="left" colspan="3">
         <input type="password" name="tgifHSSecurity" size="30" maxlength="30" value="'; if (isset($configModem['TGIF']['Password'])) {echo $configModem['TGIF']['Password'];}; echo '"></input>
       </td>
     </tr>
@@ -4711,7 +4743,7 @@ else:
 <?php if ($dmrMasterNow !== "DMRGateway") { ?>
     <tr>
     <td align="left"><a class="tooltip2" href="#">DMR ESSID:<span><b>DMR Extended ID</b>This is the extended ID, to make your DMR ID 8 or 9 digits long</span></a></td>
-    <td align="left">
+    <td align="left" colspan="3">
 <?php
 	if (isset($configmmdvm['DMR']['Id'])) {
 		if (strlen($configmmdvm['DMR']['Id']) > strlen($configmmdvm['General']['Id'])) {
@@ -4740,11 +4772,38 @@ else:
     </td></tr>
 <?php } ?>
     <tr>
-    <th align="left" colspan="3">System-Wide DMR Settings</th>
+    <th align="left" colspan="4">System-Wide DMR Settings</th>
     </tr>
     <tr>
+    <td align="left"><b>Enable DMR Roaming Beacon</b></td>
+    <?php
+    if ($configmmdvm['DMR']['Beacons'] == 1) {
+        echo "<td align=\"left\" colspan=\"2\"><div class=\"switch\"><input id=\"toggle-dmrbeacon\" class=\"toggle toggle-round-flat\" type=\"checkbox\" name=\"DMRBeaconEnable\" value=\"ON\" checked=\"checked\" aria-hidden=\"true\" tabindex=\"-1\" ".$toggleDmrBeaconCr." /><label id=\"aria-toggle-dmrbeacon\" role=\"checkbox\" tabindex=\"0\" aria-label=\"Enable Beaconing\" aria-checked=\"true\" onKeyPress=\"toggleDmrBeacon()\" onclick=\"toggleDmrBeacon()\" for=\"toggle-dmrbeacon\"><font style=\"font-size:0px\">Enable DMR Beaconing</font></label></div>\n";
+    } else {
+        echo "<td align=\"left\" colspan=\"2\"><div class=\"switch\"><input id=\"toggle-dmrbeacon\" class=\"toggle toggle-round-flat\" type=\"checkbox\" name=\"DMRBeaconEnable\" value=\"ON\" aria-hidden=\"true\" tabindex=\"-1\" ".$toggleDmrBeaconCr." /><label id=\"aria-toggle-dmrbeacon\" role=\"checkbox\" tabindex=\"0\" aria-label=\"Enable Beaconing\" aria-checked=\"true\" onKeyPress=\"toggleDmrBeacon()\" onclick=\"toggleDmrBeacon()\" for=\"toggle-dmrbeacon\"><font style=\"font-size:0px\">Enable DMR Beaconing</font></label></div>\n";
+    }
+
+    ?>
+</td>
+<td align="left" colspan="2">
+<div style="display:block;text-align:left;">
+    <div style="display:block;">
+        <div style="display:block;">
+            <div style="display: inline-block;vertical-align: middle;">
+                <input name="DMRBeaconModeNet" id="beacon-service-selection" value="DMRBeaconModeNet" type="checkbox"
+		      <?php if($configmmdvm['DMR']['BeaconInterval'] == NULL) { echo(' checked="checked"'); }
+		      if ($configmmdvm['DMR']['Beacons'] == 0)  { echo(' disabled="disabled"'); }?> >
+        	<label for="beacon-service-selection" style="display: inline-block;"> Use Network Beacon Mode (vs. timed interval mode)</label>
+            </div>
+        </div>
+    </div>
+</div>
+</td>
+</tr>
+ 
+    <tr>
     <td align="left"><a class="tooltip2" href="#"><?php echo $lang['dmr_cc'];?>:<span><b>DMR Color Code</b>Set your DMR Color Code here</span></a></td>
-    <td style="text-align: left;"><select name="dmrColorCode">
+    <td style="text-align: left;" colspan="3"><select name="dmrColorCode">
 	<?php for ($dmrColorCodeInput = 0; $dmrColorCodeInput <= 15; $dmrColorCodeInput++) {
 		if ($configmmdvm['DMR']['ColorCode'] == $dmrColorCodeInput) { echo "<option selected=\"selected\" value=\"$dmrColorCodeInput\">$dmrColorCodeInput</option>\n"; }
 		else {echo "      <option value=\"$dmrColorCodeInput\">$dmrColorCodeInput</option>\n"; }
@@ -4753,13 +4812,13 @@ else:
     </tr>
     <tr>
     <td align="left"><a class="tooltip2" href="#"><?php echo $lang['dmr_embeddedlconly'];?>:<span><b>DMR EmbeddedLCOnly</b>Turn ON to disable extended message support, including GPS and Talker Alias data. This can help reduce problems with some DMR Radios that do not support such features.</span></a></td>
-    <td align="left">
+    <td align="left" colspan="3">
     <?php if ($configmmdvm['DMR']['EmbeddedLCOnly'] == 1) { echo "<div class=\"switch\"><input id=\"toggle-dmrEmbeddedLCOnly\" class=\"toggle toggle-round-flat\" type=\"checkbox\" name=\"dmrEmbeddedLCOnly\" value=\"ON\" checked=\"checked\" aria-hidden=\"true\" tabindex=\"-1\" ".$toggleDmrEmbeddedLCOnlyCr." /><label id=\"aria-toggle-dmrEmbeddedLCOnly\" role=\"checkbox\" tabindex=\"0\" aria-label=\"Enable DMR Embedded LC Only\" aria-checked=\"true\" onKeyPress=\"toggleDmrEmbeddedLCOnly()\" onclick=\"toggleDmrEmbeddedLCOnly()\" for=\"toggle-dmrEmbeddedLCOnly\"><font style=\"font-size:0px\">Enable DMR Embedded LC only</font></label></div>\n"; }
     else { echo "<div class=\"switch\"><input id=\"toggle-dmrEmbeddedLCOnly\" class=\"toggle toggle-round-flat\" type=\"checkbox\" name=\"dmrEmbeddedLCOnly\" value=\"ON\" aria-hidden=\"true\" tabindex=\"-1\" ".$toggleDmrEmbeddedLCOnlyCr." /><label id=\"aria-toggle-dmrEmbeddedLCOnly\" role=\"checkbox\" tabindex=\"0\" aria-label=\"Enable DMR Embedded LC Only\" aria-checked=\"false\" onKeyPress=\"toggleDmrEmbeddedLCOnly()\" onclick=\"toggleDmrEmbeddedLCOnly()\" for=\"toggle-dmrEmbeddedLCOnly\"><font style=\"font-size:0px\">Enable DMR Embedded LC Only</font></label></div>\n"; } ?>
     </td></tr>
     <tr>
     <td align="left"><a class="tooltip2" href="#"><?php echo $lang['dmr_dumptadata'];?>:<span><b>DMR DumpTAData</b>Turn ON to dump GPS and Talker Alias data to MMDVMHost log file.</span></a></td>
-    <td align="left">
+    <td align="left" colspan="3">
     <?php if ($configmmdvm['DMR']['DumpTAData'] == 1) { echo "<div class=\"switch\"><input id=\"toggle-dmrDumpTAData\" class=\"toggle toggle-round-flat\" type=\"checkbox\" name=\"dmrDumpTAData\" value=\"ON\" checked=\"checked\" aria-hidden=\"true\" tabindex=\"-1\" ".$toggleDmrDumpTADataCr." /><label id=\"aria-toggle-dmrDumpTAData\" role=\"checkbox\" tabindex=\"0\" aria-label=\"DMR Dump TA Data\" aria-checked=\"true\" onKeyPress=\"toggleDmrDumpTAData()\" onclick=\"toggleDmrDumpTAData()\" for=\"toggle-dmrDumpTAData\"><font style=\"font-size:0px\">DMR Dump T-A Data</font></label></div>\n"; }
     else { echo "<div class=\"switch\"><input id=\"toggle-dmrDumpTAData\" class=\"toggle toggle-round-flat\" type=\"checkbox\" name=\"dmrDumpTAData\" value=\"ON\" aria-hidden=\"true\" tabindex=\"-1\" ".$toggleDmrDumpTADataCr." /><label id=\"aria-toggle-dmrDumpTAData\" role=\"checkbox\" tabindex=\"0\" aria-label=\"DMR Dump TA Data\" aria-checked=\"false\" onKeyPress=\"toggleDmrDumpTAData()\" onclick=\"toggleDmrDumpTAData()\" for=\"toggle-dmrDumpTAData\"><font style=\"font-size:0px\">DMR Dump T-A Data</font></label></div>\n"; } ?>
     </td></tr>
