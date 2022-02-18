@@ -131,7 +131,7 @@ checkSessionValidity();
             </div>
 	    <?php 
             $ArchType = exec('uname -m');
-            if ($ArchType !== "armv6l") {
+	    if ($ArchType !== "armv6l" &&  ($_SERVER["PHP_SELF"] != "/admin/index.php"))  {
             ?>
 	    <input type="hidden" name="display-lastcaller" value="OFF" />
 	    <div style="float: right; vertical-align: bottom; padding-top: 0px;">
