@@ -39,7 +39,9 @@ $textContent = "#000000";            // Used for the section titles
 $textLinks = "#0000e0";
 
 // extras
-$fontSize = "18";  // Default font size used across most of the dashboard
+$mainFontSize = "18";  // Default font size used across most of the dashboard
+$bodyFontSize = "17";  // Default font size used across rest of the dashboard
+$headerFontSize = "34";  // Default font size used for main header
 $lastHeardRows = "40";
 
 // Assign $value to $var only when it's set, otherwise use default value.
@@ -93,7 +95,8 @@ if (file_exists('/etc/pistar-css.ini')) {
     assignCSSValue($textModeCellInactiveColor, $piStarCss['Text']['ModeCellInactiveColor']);
     
     assignCSSValue($lastHeardRows, $piStarCss['ExtraSettings']['LastHeardRows']); // # of last heard rows to display
-    assignCSSValue($fontSize, $piStarCss['ExtraSettings']['MainFontSize']); // Used for the main table font size
+    assignCSSValue($mainFontSize, $piStarCss['ExtraSettings']['MainFontSize']); // Used for the main data/info font size
+    assignCSSValue($bodyFontSize, $piStarCss['ExtraSettings']['BodyFontSize']); // Used for the aux. body font size
     assignCSSValue($headerFontSize, $piStarCss['ExtraSettings']['HeaderFontSize']); // Used for the header table font size
     assignCSSValue($tableBorderColor, $piStarCss['ExtraSettings']['TableBorderColor']); // Used for the table borders
     

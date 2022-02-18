@@ -12,7 +12,7 @@ include_once('css-base.php');
 }
 
 body, font {
-    font: 17px 'Source Sans Pro', sans-serif;
+    font: <?php echo $bodyFontSize; ?>px 'Source Sans Pro', sans-serif;
     color: #ffffff;
     -webkit-text-size-adjust: none;
     -moz-text-size-adjust: none;
@@ -139,7 +139,7 @@ table td {
     text-decoration: none;
     border: .5px solid <?php echo $tableBorderColor; ?>;
     padding: 2px;
-    font-size: <?php echo "$fontSize"; ?>px;
+    font-size: <?php echo "$mainFontSize"; ?>px;
 }
 
 .divTable{
@@ -171,7 +171,7 @@ table td {
 .divTableCell {
     font-family: 'Inconsolata', monospace;
     font-weight: 500;
-    font-size: <?php echo "$fontSize"; ?>px;
+    font-size: <?php echo "$mainFontSize"; ?>px;
     border: .5px solid <?php echo $tableBorderColor; ?>;
     color: #000000;
 }
@@ -453,7 +453,7 @@ input.toggle-round-flat:focus + label {
 }
 
 textarea, input[type='text'] {
-        font-size: 15px;
+        font-size: <?php echo $bodyFontSize; ?>px;
         font-family: 'Inconsolata', monospace;
         border: 1px solid black;
         padding: 5px;
@@ -461,7 +461,7 @@ textarea, input[type='text'] {
 }
 
 input[type=button], input[type=submit], input[type=reset], input[type=radio], button {
-    font-size: 15px;
+    font-size: <?php echo $bodyFontSize; ?>px;
     font-family: 'Source Sans Pro', sans-serif;
     border: 1px solid black;
     color: black;
@@ -492,7 +492,7 @@ input:disabled + label {
 select {
     background-color: #f1f1f1;
     font-family: 'Inconsolata', monospace;
-    font-size: 16px;
+    font-size: <?php echo $bodyFontSize; ?>px;
     border: 1px solid black;
     color: black;
     padding: 5px;
@@ -502,11 +502,11 @@ select {
 
 .select2-selection__rendered {
   font-family: 'Inconsolata', monospace;
-  font-size: 16px;
+  font-size: <?php echo $bodyFontSize; ?>px;
 }
 
 .select2-results__options{
-  font-size:16px !important;
+  font-size:<?php echo $bodyFontSize; ?>px !important;
   font-family: 'Inconsolata', monospace;
 }
 
@@ -518,7 +518,7 @@ select {
 .navbar a {
     float: right;
     font-family : 'Source Sans Pro', sans-serif;
-    font-size: 16px;
+    font-size: <?php echo $bodyFontSize; ?>px;
     color: <?php echo $textNavbar; ?>;
     text-align: center;
     padding: 5px 8px;
@@ -526,7 +526,7 @@ select {
 }
 
 .dropdown .dropbutton {
-    font-size: 14px;
+    font-size: <?php echo $bodyFontSize; ?>px;
     border: none;
     outline: none;
     color: <?php echo $textNavbar; ?>;
@@ -584,7 +584,7 @@ select {
     display: inline-block;
     padding: 1px 10px;
     font-family : 'Source Sans Pro', sans-serif;
-    font-size: 16px;
+    font-size: <?php echo $bodyFontSize; ?>px;
     color: <?php echo $textNavbar; ?>;
     text-align: center;
     text-decoration: none;
