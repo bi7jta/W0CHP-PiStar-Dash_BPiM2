@@ -1,3 +1,6 @@
+<?php
+include_once('../config/version.php');
+?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
       "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" xmlns:v="urn:schemas-microsoft-com:vml" lang="en">
@@ -11,7 +14,7 @@
       <title><?php echo exec('cat /etc/hostname'); ?> - Live Caller Display - W0CHP-PiStar-Dash</title>
       <script type="text/javascript" src="/js/jquery.min.js"></script>
       <script type="text/javascript" src="/js/functions.js?version=1.720"></script>
-      <link rel="stylesheet" type="text/css" href="/css/live-caller.css?v=1.0.2" />
+      <link rel="stylesheet" type="text/css" href="/css/live-caller.css?version=<?php echo $versionCmd; ?>" />
     </head>
     <body>
       <script type="text/javascript">

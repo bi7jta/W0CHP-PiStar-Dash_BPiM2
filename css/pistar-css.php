@@ -873,7 +873,7 @@ hr {
   display: block;
   height: 1px;
   border: 0;
-  border-top: 1px solid black;
+  border-top: 1px solid <?php echo $tableBorderColor; ?>;
   margin: 1em 0;
   padding: 0; 
 }
