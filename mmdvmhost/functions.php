@@ -724,7 +724,11 @@ function getMMDVMLog() {
     if (file_exists(MMDVMLOGPATH."/".MMDVMLOGPREFIX."-".gmdate("Y-m-d").".log")) {
         $logPath = MMDVMLOGPATH."/".MMDVMLOGPREFIX."-".gmdate("Y-m-d").".log";
         if (!file_exists("/etc/.GETNAMES")) {
-            $logLines1 = explode("\n", `egrep -h "from|end|watchdog|lost" $logPath | sed '/\(CSBK\|overflow\|Downlink\|Valid\|Invalid\|\Talker\)/d'`);
+            if ($_SESSION['CSSConfigs']['ExtraSettings']['LastHeardRows'] > 40 ) {
+                $logLines1 = explode("\n", `egrep -h "from|end|watchdog|lost" $logPath | sed '/\(CSBK\|overflow\|Downlink\|Valid\|Invalid\|\Talker\)/d'`);
+	    } else {
+                $logLines1 = explode("\n", `tail -250 $logPath | sed '/\(CSBK\|overflow\|Downlink\|Valid\|Invalid\|\Talker\)/d' | egrep -h "from|end|watchdog|lost"`);
+	    }
             $lineNos = sizeof($logLines1);
             $logLines1 = array_slice($logLines1, -800);
         } else {
@@ -733,16 +737,20 @@ function getMMDVMLog() {
             $logLines1 = array_slice($logLines1, -250);
         }
     }
-    if ($lineNos < 800) {
+    if ($lineNos < 250) {
         if (file_exists(MMDVMLOGPATH."/".MMDVMLOGPREFIX."-".gmdate("Y-m-d", time() - 86340).".log")) {
 	    $logPath = MMDVMLOGPATH."/".MMDVMLOGPREFIX."-".gmdate("Y-m-d", time() - 86340).".log";
             if (!file_exists("/etc/.GETNAMES")) {
-                $logLines2 = explode("\n", `tail -800 $logPath | sed '/\(CSBK\|overflow\|Downlink\|Valid\|Invalid\|\Talker\)/d' | egrep -h "from|end|watchdog|lost"`);
+                if ($_SESSION['CSSConfigs']['ExtraSettings']['LastHeardRows'] > 40 ) {
+                    $logLines2 = explode("\n", `egrep -h "from|end|watchdog|lost" $logPath | sed '/\(CSBK\|overflow\|Downlink\|Valid\|Invalid\|\Talker\)/d'`);
+		} else {
+                    $logLines2 = explode("\n", `tail -250 $logPath | sed '/\(CSBK\|overflow\|Downlink\|Valid\|Invalid\|\Talker\)/d' | egrep -h "from|end|watchdog|lost"`);
+		}
                 $logLines2 = array_slice($logLines2, -800);
             }
         }
     }
-    if ($lineNos < 800) {
+    if ($lineNos < 250) {
         $logLines = $logLines1 + $logLines2;
     } else {
         $logLines = $logLines1;
