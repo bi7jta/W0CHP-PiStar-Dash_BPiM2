@@ -61,10 +61,10 @@ include_once $_SERVER['DOCUMENT_ROOT'].'/config/language.php';	      // Translat
 	    }
 	    $param="atStartup" . $i;
 	    if($_SESSION['ircDDBConfigs'][$param] == 1) {
-		print "<td style=\"background:#1d1;\">Yes</td>";
+		print "<td><span style='color:#005028;font-weight:bold'>Yes</span></td>";
 	    }
 	    else {
-		print "<td style=\"background:#f33;\">No</td>";
+		print "<td><span style='color:#8A0B2B;font-weight:bold;'>No</span></td>";
 	    }
 	    $param="reconnect" . $i;
 	    if(isset($_SESSION['ircDDBConfigs'][$param])) {
@@ -82,7 +82,7 @@ include_once $_SERVER['DOCUMENT_ROOT'].'/config/language.php';	      // Translat
 		while ($linkLine = fgets($linkLog)) {
 		    //$statimg = "<img src=\"images/20red.png\">";
 		    $statimg = "Down";
-		    $bkgcolor = "#f33";
+		    $color = "#8A0B2B";
                     $linkDate = "&nbsp;";
                     $protocol = "&nbsp;";
                     $linkType = "&nbsp;";
@@ -94,14 +94,14 @@ include_once $_SERVER['DOCUMENT_ROOT'].'/config/language.php';	      // Translat
 		    // 2012-10-12 17:56:10: DCS link - Type: Repeater Rptr: DB0RPL B Refl: DCS015 B Dir: Outgoing
                     if(preg_match_all('/^(.{19}).*(D[A-Za-z]*).*Type: ([A-Za-z]*).*Rptr: (.{8}).*Refl: (.{8}).*Dir: Outgoing$/',$linkLine,$linx) > 0) {
 			$statimg = "Up";
-			$bkgcolor = "#1d1";
+			$color = "#005028";
 			$linkDate = date("d-M-Y H:i:s", strtotime(substr($linx[1][0],0,19)));
                         $protocol = $linx[2][0];
                         $linkType = $linx[3][0];
                         $linkRptr = $linx[4][0];
                         $linkRefl = $linx[5][0];
 			if($linkRptr == $rptrcall) {
-			    print "<td style=\"background:".$bkgcolor.";\">$statimg</td>";
+			    print "<td><span style='color:$color;font-weight:bold;'>$statimg</span></td>";
 			    print "<td>".str_replace(' ', '&nbsp;', substr($linkRefl,0,8))."</td>";
 			    print "<td>$protocol</td>";
 			    print "<td>Outgoing</td>";
@@ -125,7 +125,7 @@ include_once $_SERVER['DOCUMENT_ROOT'].'/config/language.php';	      // Translat
 	    }
 	    
 	    if ($tr == 1) {
-		print"<td style=\"background:#f33;\">Down</td><td>None</td><td>--</td><td>----</td><td>----</td></tr>\n";
+		print"<td><span style='color:#8A0B2B;font-weight:bold'>Down</span></td><td>None</td><td>--</td><td>----</td><td>----</td></tr>\n";
 	    }
 	    // 00000000001111111111222222222233333333334444444444555555555566666666667777777777888888888899999999990000000000111111111122
 	    // 01234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901
@@ -134,7 +134,7 @@ include_once $_SERVER['DOCUMENT_ROOT'].'/config/language.php';	      // Translat
 	    if (file_exists($linkLogPath)  && ($linkLog = fopen($linkLogPath,'r'))) {
 		while ($linkLine = fgets($linkLog)) {
 		    $statimg = "Down";
-		    $bkgcolor = "#f33";
+		    $color = "#8A0B2B";
                     $linkDate = "&nbsp;";
                     $protocol = "&nbsp;";
                     $linkType = "&nbsp;";
@@ -142,7 +142,7 @@ include_once $_SERVER['DOCUMENT_ROOT'].'/config/language.php';	      // Translat
                     $linkRefl = "&nbsp;";
                     if(preg_match_all('/^(.{19}).*(D[A-Za-z]*).*Type: ([A-Za-z]*).*Rptr: (.{8}).*Refl: (.{8}).*Dir: Incoming$/',$linkLine,$linx) > 0) {
 			$statimg = "Up";
-			$bkgcolor = "#1d1";
+			$color = "#005028";
 			$linkDate = date("d-M-Y H:i:s", strtotime(substr($linx[1][0],0,19)));
                         $protocol = $linx[2][0];
                         $linkType = $linx[3][0];
@@ -156,7 +156,7 @@ include_once $_SERVER['DOCUMENT_ROOT'].'/config/language.php';	      // Translat
 			    print "<tr>";
 			    print "<td>".str_replace(' ', '&nbsp;', substr($rptrcall,0,8))."</td>";
 			    print "<td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td>";
-			    print "<td style=\"background:".$bkgcolor.";\">$statimg</td>";
+			    print "<td><span style='color:$color;font-weight:bold;'>$statimg</span></td>";
 			    print "<td>".str_replace(' ', '&nbsp;', substr($linkRefl,0,8))."</td>";
 			    print "<td>$protocol</td>";
 			    print "<td>Incoming</td>";
@@ -185,7 +185,7 @@ include_once $_SERVER['DOCUMENT_ROOT'].'/config/language.php';	      // Translat
             if (file_exists($linkLogPath) && ($linkLog = fopen($linkLogPath,'r'))) {
                 while ($linkLine = fgets($linkLog)) {
                     $statimg = "Down";
-		    $bkgcolor = "#f33";
+		    $color = "#8A0B2B";
                     $linkDate = "&nbsp;";
                     $protocol = "&nbsp;";
                     $linkType = "&nbsp;";
@@ -193,7 +193,7 @@ include_once $_SERVER['DOCUMENT_ROOT'].'/config/language.php';	      // Translat
                     $linkRefl = "&nbsp;";
                     if(preg_match_all('/^(.{19}).*(D[A-Za-z]*).*Type: ([A-Za-z]*).*User: (.[^\s]+).*Dir: Incoming$/',$linkLine,$linx) > 0) {
                         $statimg = "Up";
-			$bkgcolor = "#1d1";
+			$color = "#005028";
                         $linkDate = date("d-M-Y H:i:s", strtotime(substr($linx[1][0],0,19)));
                         $protocol = $linx[2][0];
                         $linkType = $linx[3][0];
@@ -205,7 +205,7 @@ include_once $_SERVER['DOCUMENT_ROOT'].'/config/language.php';	      // Translat
 			print "<tr>";
                         print "<td>".str_replace(' ', '&nbsp;', substr($rptrcall,0,8))."</td>";
                         print "<td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td>";
-                        print "<td style=\"background:".$bkgcolor.";\">$statimg</td>";
+                        print "<td><span style='color:$color;font-weight:bold;'>$statimg</span></td>";
                         print "<td>".str_replace(' ', '&nbsp;', substr($linkRptr,0,8))."</td>";
                         print "<td>$protocol</td>";
                         print "<td>Incoming</td>";

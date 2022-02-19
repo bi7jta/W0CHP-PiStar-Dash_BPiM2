@@ -27,63 +27,63 @@ if (!isset($_SESSION) || !is_array($_SESSION)) {
 	<th>Echo</th>
 	<th>Log</th>
     </tr>
-    <tr style="background: #ffffff;">
+    <tr>
 	<td><?php print $_SESSION['ircDDBConfigs']['ircddbHostname']; ?></td>
-	<td><?php if($_SESSION['ircDDBConfigs']['aprsEnabled'] == 1) { print $_SESSION['APRSGatewayConfigs']['APRS-IS']['Server']; } else { print "<img src=\"images/20red.png\">";} ?></td>
+	<td><?php if($_SESSION['ircDDBConfigs']['aprsEnabled'] == 1) { print $_SESSION['APRSGatewayConfigs']['APRS-IS']['Server']; } else { print "OFF"; } ?></td>
 	<?php
 	if($_SESSION['ircDDBConfigs']['ccsEnabled'] == 1) {
-	    print "<td style=\"background-color:#1d1;\">ON</td>";
+	    print "<td><span style='color:#005028;font-weight:bold'>ON</span></td>";
 	}
 	else {
-	    print "<td style=\"background:#606060; color:#b0b0b0;\">OFF</td>";
+	    print "<td><span style='color:#8A0B2B;font-weight:bold;'>OFF</span></td>";
 	}
 	if($_SESSION['ircDDBConfigs']['dcsEnabled'] == 1) {
-	    print "<td style=\"background-color:#1d1;\">ON</td>";
+	    print "<td><span style='color:#005028;font-weight:bold'>ON</span></td>";
 	}
 	else {
-	    print "<td style=\"background:#606060; color:#b0b0b0;\">OFF</td>";
+	    print "<td><span style='color:#8A0B2B;font-weight:bold;'>OFF</span></td>";
 	}
 	if($_SESSION['ircDDBConfigs']['dextraEnabled'] == 1) {
-	    print "<td style=\"background-color:#1d1;\">ON</td>";
+	    print "<td><span style='color:#005028;font-weight:bold'>ON</span></td>";
 	}
 	else {
-	    print "<td style=\"background:#606060; color:#b0b0b0;\">OFF</td>";
+	    print "<td><span style='color:#8A0B2B;font-weight:bold;'>OFF</span></td>";
 	}
 	if($_SESSION['ircDDBConfigs']['dplusEnabled'] == 1) {
-	    print "<td style=\"background-color:#1d1;\">ON</td>";
+	    print "<td><span style='color:#005028;font-weight:bold'>ON</span></td>";
 	}
 	else {
-	    print "<td style=\"background:#606060; color:#b0b0b0;\">OFF</td>";
+	    print "<td><span style='color:#8A0B2B;font-weight:bold;'>OFF</span></td>";
 	}
 	if($_SESSION['ircDDBConfigs']['dratsEnabled'] == 1) {
-	    print "<td style=\"background-color:#1d1;\">ON</td>";
+	    print "<td><span style='color:#005028;font-weight:bold'>ON</span></td>";
 	}
 	else {
-	    print "<td style=\"background:#606060; color:#b0b0b0;\">OFF</td>";
+	    print "<td><span style='color:#8A0B2B;font-weight:bold;'>OFF</span></td>";
 	}
 	if($_SESSION['ircDDBConfigs']['infoEnabled'] == 1) {
-	    print "<td style=\"background-color:#1d1;\">ON</td>";
+	    print "<td><span style='color:#005028;font-weight:bold'>ON</span></td>";
 	}
 	else {
-	    print "<td style=\"background:#606060; color:#b0b0b0;\">OFF</td>";
+	    print "<td><span style='color:#8A0B2B;font-weight:bold;'>OFF</span></td>";
 	}
 	if($_SESSION['ircDDBConfigs']['ircddbEnabled'] == 1) {
-	    print "<td style=\"background-color:#1d1;\">ON</td>";
+	    print "<td><span style='color:#005028;font-weight:bold'>ON</span></td>";
 	}
 	else {
-	    print "<td style=\"background:#606060; color:#b0b0b0;\">OFF</td>";
+	    print "<td><span style='color:#8A0B2B;font-weight:bold;'>OFF</span></td>";
 	}
 	if($_SESSION['ircDDBConfigs']['echoEnabled'] == 1) {
-	    print "<td style=\"background-color:#1d1;\">ON</td>";
+	    print "<td><span style='color:#005028;font-weight:bold'>ON</span></td>";
 	}
 	else {
-	    print "<td style=\"background:#606060; color:#b0b0b0;\">OFF</td>";
+	    print "<td><span style='color:#8A0B2B;font-weight:bold;'>OFF</span></td>";
 	}
 	if($_SESSION['ircDDBConfigs']['logEnabled'] == 1) {
-	    print "<td style=\"background-color:#1d1;\">ON</td>";
+	    print "<td><span style='color:#005028;font-weight:bold'>ON</span></td>";
 	}
 	else {
-	    print "<td style=\"background:#606060; color:#b0b0b0;\">OFF</td>";
+	    print "<td><span style='color:#8A0B2B;font-weight:bold;'>OFF</span></td>";
 	}
   ?>
 </tr>
