@@ -76,9 +76,9 @@ for ($i = 0; $i < count($localTXList); $i++) {
 				$dt = new DateTime($utc_time, $utc_tz);
 				$duration = $now->getTimestamp() - $dt->getTimestamp();
 				$duration_string = $duration<999 ? round($duration) . "+" : "&infin;";
-				echo "<td colspan=\"3\" style=\"style=\"background:#d11141;color:#fff;\">TX " . $duration_string . " sec</td>";
+				echo "<td colspan =\"3\" style=\"background:#d11141;color:#fff;\">TX " . $duration_string . " sec</td>";
 			} else if ($listElem[6] == "DMR Data") {
-				echo "<td colspan=\"3\" style=\"style=\"background:#00718F;color:#fff;\">DMR Data</td>";
+				echo "<td colspan =\"3\" style=\"background:#00718F;color:#fff;\">DMR Data</td>";
 			} else {
 				echo"<td>$listElem[6]</td>"; //duration
 				
