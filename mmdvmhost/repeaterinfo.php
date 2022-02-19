@@ -774,7 +774,7 @@ if (getConfigItem("NXDN", "RAN", $_SESSION['MMDVMHostConfigs'])) {
 	    echo "<div class='divTableBody'>\n";
 	    echo "<div class='divTableRow center'>\n";
 	    if (isProcessRunning("DAPNETGateway")) {
-		echo "<div class='divTableCell hwinfo'><div style=\"background: $tableRowEvenBg;\ title=\"".$dapnetGatewayRemoteTooltip."\">".$dapnetGatewayRemoteAddr."</div></div>\n";
+		echo "<div class='divTableCell hwinfo'><div style=\"background: $tableRowEvenBg;\" title=\"".$dapnetGatewayRemoteTooltip."\">".$dapnetGatewayRemoteAddr."</div></div>\n";
 	    }
 	    else {
 		echo "<div class='divTableCell hwinfo'><div style=\"background: $tableRowEvenBg;\">Service Not Started</div></div>\n";
