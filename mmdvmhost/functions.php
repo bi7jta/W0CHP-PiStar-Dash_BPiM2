@@ -746,8 +746,10 @@ function getMMDVMLog() {
 		} else {
                     $logLines2 = explode("\n", `tail -250 $logPath | sed '/\(CSBK\|overflow\|Downlink\|Valid\|Invalid\|\Talker\)/d' | egrep -h "from|end|watchdog|lost"`);
 		}
+	    } else {
+		$logLines2 = explode("\n", `tail -250 $logPath | sed '/\(CSBK\|overflow\|Downlink\|Valid\|Invalid\|\Talker\)/d' | egrep -h "from|end|watchdog|lost"`);
+	    }
                 $logLines2 = array_slice($logLines2, -800);
-            }
         }
     }
     if ($lineNos < 250) {
