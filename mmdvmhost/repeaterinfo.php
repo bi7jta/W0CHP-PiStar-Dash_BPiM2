@@ -461,7 +461,7 @@ if (isProcessRunning("M17Gateway")) {
 			    echo "<div class='divTableRow center'><div class='divTableCell hwinfo'><div " .GetActiveConnectionStyle($remoteDMRGResults, "net1")." title=\"".$dmrMasterHost1Tooltip."\">".$dmrMasterHost1."</div></div></div>\n";
 			}
 			if ($_SESSION['DMRGatewayConfigs']['DMR Network 2']['Enabled'] == 1) {
-			    echo "<div class='divTableRow center'><div class='divTableCell hwinfo'<div ".GetActiveConnectionStyle($remoteDMRGResults, "net2")." title=\"".$dmrMasterHost2Tooltip."\">".$dmrMasterHost2."</div></div></div>\n";
+			    echo "<div class='divTableRow center'><div class='divTableCell hwinfo'><div ".GetActiveConnectionStyle($remoteDMRGResults, "net2")." title=\"".$dmrMasterHost2Tooltip."\">".$dmrMasterHost2."</div></div></div>\n";
 			}
 			if ($_SESSION['DMRGatewayConfigs']['DMR Network 3']['Enabled'] == 1) {
 			    echo "<div class='divTableRow center'><div class='divTableCell hwinfo'><div ".GetActiveConnectionStyle($remoteDMRGResults, "net3")." title=\"".$dmrMasterHost3Tooltip."\">".$dmrMasterHost3."</div></div></div>\n";
