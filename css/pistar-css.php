@@ -886,7 +886,7 @@ hr {
 }
 
 
-.grid-item {
+.status-grid .grid-item {
   padding: 1px;
   border: .5px solid <?php echo $tableBorderColor; ?>;
   text-align: center;
