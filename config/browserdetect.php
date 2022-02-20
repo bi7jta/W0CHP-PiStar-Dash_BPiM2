@@ -1,5 +1,5 @@
 <?php
-include_once('../config/version.php');
+include_once('version.php');
 
 if(empty($_SERVER['HTTP_USER_AGENT'])) {
   print "    <link rel=\"stylesheet\" type=\"text/css\" media=\"screen and (min-width: 830px)\" href=\"/css/pistar-css.php?version=$versionCmd\" />\n";
