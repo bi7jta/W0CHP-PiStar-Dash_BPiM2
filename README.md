@@ -83,9 +83,9 @@ Run:
 
 ...And the original Pi-Star Dashboard will be restored.
 
-## Installation and Demo Video
+## Installation Demo Video
 
-[See how easy it is to install and use...](https://w0chp.net/musings/wpsd-install-and-feature-demo/)
+[See how easy it is to install...](https://w0chp.net/musings/wpsd-install-demo/)
 
 ## Notes about CSS, and custom CSS you may have previously applied
 
