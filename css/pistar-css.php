@@ -405,7 +405,7 @@ input.toggle-round-flat:checked + label {
 
 input.toggle-round-flat:checked + label:after {
     margin-left: 14px;
-    background-color: <?php echo $backgroundBanners; ?>
+    background-color: <?php echo $backgroundBanners; ?>;
 }
 
 input.toggle-round-flat:focus + label {
@@ -430,17 +430,16 @@ input.toggle-round-flat:focus + label {
 }
 
 .mode_flex button {
+    background: <?php echo $backgroundNavbar ?>;
+    color: <?php echo $textNavbar ?>;
     flex-basis: 25%;
     flex-shrink: 0;
     text-align: center;
     justify-content: center;
     flex-grow: 1;
     font-family: 'Source Sans Pro', sans-serif;
-    border: 1px solid <?php echo $backgroundContent; ?>;
-    color: black;
-    background-color: #f1f1f1;
+    border: 1px solid <?php echo $tableBorderColor; ?>;
     padding: 2px;
-
 }
 
 .mode_flex button > span  {
@@ -882,14 +881,14 @@ hr {
   display: grid;
   grid-template-columns: auto auto auto auto auto auto;
   grid-template-rows: auto auto auto auto auto;
-  border: 0.5px solid <?php echo $tableBorderColor; ?>;
-  background : <?php echo $backgroundContent; ?>;
-  padding: 0px;
+  margin:0;
+  padding:0;
 }
+
 
 .grid-item {
   padding: 1px;
+  border: .5px solid <?php echo $tableBorderColor; ?>;
   text-align: center;
-  margin: 1px;
 }
 
