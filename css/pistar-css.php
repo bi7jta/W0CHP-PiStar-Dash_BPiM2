@@ -462,13 +462,13 @@ textarea, input[type='text'] {
 input[type=button], input[type=submit], input[type=reset], input[type=radio], button {
     font-size: <?php echo $bodyFontSize; ?>px;
     font-family: 'Source Sans Pro', sans-serif;
-    border: 1px solid black;
-    color: black;
-    background-color: #f1f1f1;
+    border: 1px solid <?php echo $tableBorderColor; ?>;
     padding: 5px;
     text-decoration: none;
     margin: 3px;
     cursor: pointer;
+    background: <?php echo $backgroundNavbar ?>;
+    color: <?php echo $textNavbar ?>;
 }
 
 input[type=button]:hover, input[type=submit]:hover, input[type=reset]:hover, button:hover {
