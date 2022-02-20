@@ -83,6 +83,10 @@ Run:
 
 ...And the original Pi-Star Dashboard will be restored.
 
+## Installation and Demo Video
+
+[See how easy it is to install and use...](https://w0chp.net/musings/wpsd-install-and-feature-demo/)
+
 ## Notes about CSS, and custom CSS you may have previously applied
 
 1. When using the `-id` option, the "normal" Pi-Star colors are used, and no CSS is installed. Any custom CSS
@@ -248,10 +252,6 @@ Not all pages shown here. Note, that you can customize the colors to your prefer
 
 #### Live Caller Screen
 ![alt-text](https://w0chp.net/img/WPSD_LC.png "Live Caller Screen")
-
-## Installation and Demo Video
-
-[See how easy it is to install and use...](https://w0chp.net/articles/wpsd-install-and-feature-demo/)
 
 ## Credits
 
