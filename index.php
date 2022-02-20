@@ -508,6 +508,9 @@ checkSessionValidity();
                 	        type: \"POST\",
   	          	        url: '/mmdvmhost/callerdetails_ajax.php',
                 	        data:{action:'enable'},
+				success:function(html) {
+					alert(html);
+				}
          	             });";
 	        echo '    }'."\n";
 	        echo '    else {'."\n";
@@ -515,6 +518,9 @@ checkSessionValidity();
 	                        type: \"POST\",
 	                        url: '/mmdvmhost/callerdetails_ajax.php',
 	                        data:{action:'disable'},
+				success:function(html) {
+					alert(html);
+				}
 	                      });";
 	        echo '    }'."\n";
 	        echo '}'."\n";
