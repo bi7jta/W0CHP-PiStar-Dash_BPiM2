@@ -66,13 +66,12 @@ Once you install `W0CHP-PiStar-Dash`, it will automatically be kept up-to-date
 with any new features/versions/etc. This is made possible via the native,
 nightly Pi-Star updating process.
 
-You can also manually invoke the update process via the dashboard admin section, or by command line:
+You can also manually invoke the update process via the dashboard admin section
+(`Admin -> Update`), or by command line:
 
 ```text
 sudo pistar-update
 ```
-
-...or from the dashboard: `Admin -> Update`
 
 ## Uninstalling `W0CHP-PiStar-Dash`
 
