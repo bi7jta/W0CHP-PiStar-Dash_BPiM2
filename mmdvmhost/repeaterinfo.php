@@ -737,7 +737,7 @@ if (getConfigItem("NXDN", "RAN", $_SESSION['MMDVMHostConfigs'])) {
                 if (isPaused("M17")) {
                     echo "<div class='divTableCell hwinfo'><div style=\"background: $tableRowEvenBg;\">Mode Paused</div></div>\n";
                 } else {
-		    echo "<div class='divTableCell hwinfo'><div  ".GetActiveConnectionStyle($remoteM17GResults, "m17").">".getActualLink($reverseLogLinesM17Gateway, "M17")."</div></div>\n";
+		    echo "<div class='divTableCell hwinfo'><div  ".GetActiveConnectionStyle($remoteM17GWResults, "m17").">".getActualLink($reverseLogLinesM17Gateway, "M17")."</div></div>\n";
                 }
 ?>
     </div>
