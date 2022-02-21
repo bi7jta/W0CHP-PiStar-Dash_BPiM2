@@ -733,7 +733,7 @@ if (getConfigItem("NXDN", "RAN", $_SESSION['MMDVMHostConfigs'])) {
 <?php
 	echo "<div class='divTableHeadCell'>RPT</div>\n<div class='divTableCell hwinfo'>\n<div style=\"background: $tableRowEvenBg;\">".str_replace(' ', '&nbsp;', $configm17gateway['General']['Callsign'])."&nbsp;".str_replace(' ', '&nbsp;', $configm17gateway['General']['Suffix'])."</div></div>\n";
 	echo "</div>\n<div class='divTableRow center'>";
-		echo "<div class='divTableHeadCell'>M17 Network</div>\n";
+		echo "<div class='divTableHeadCell'>Reflector</div>\n";
                 if (isPaused("M17")) {
                     echo "<div class='divTableCell hwinfo'><div style=\"background: $tableRowEvenBg;\">Mode Paused</div></div>\n";
                 } else {
