@@ -129,7 +129,7 @@ if (strpos($mode, 'DMR') !== false) {
 	$target = "TG $target";
 }
 
-if($listElem[2] == "4000" || $listElem[2] == "9990" || $listElem[2] == "DAPNET" || $listElem[2] == "M17") {
+if($listElem[2] == "4000" || $listElem[2] == "9990" || $listElem[2] == "DAPNET" || $mode == "M17") {
 	$name = "";
 	$city = "";
 	$state = "";
