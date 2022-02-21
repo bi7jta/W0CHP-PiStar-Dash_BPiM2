@@ -54,7 +54,7 @@ if ($listElem[6] == null) {
 
 // color the loss field
 if ($listElem[7] == null) {
-	$loss = "<td></td>";
+	$loss = "";
 } elseif (floatval($listElem[7]) < 1) {
 	$loss = "<td>".$listElem[7]."</td>";
 } elseif (floatval($listElem[7]) == 1) {
@@ -79,7 +79,7 @@ if ($listElem[1] == null) {
 			
 // Color the BER Field
 if ($listElem[8] == null) {
-        $ber = "<td></td>";
+        $ber = "";
 } elseif (floatval($listElem[8]) == 0) {
 	$ber = "<td>$listElem[8]</td>";
 } elseif (floatval($listElem[8]) >= 0.0 && floatval($listElem[8]) <= 1.9) {
@@ -129,7 +129,7 @@ if (strpos($mode, 'DMR') !== false) {
 	$target = "TG $target";
 }
 
-if($listElem[2] == "4000" || $listElem[2] == "9990" || $listElem[2] == "DAPNET") {
+if($listElem[2] == "4000" || $listElem[2] == "9990" || $listElem[2] == "DAPNET" || $listElem[2] == "M17") {
 	$name = "";
 	$city = "";
 	$state = "";
