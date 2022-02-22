@@ -5121,7 +5121,7 @@ $ysfHosts = fopen("/usr/local/etc/YSFHosts.txt", "r"); ?>
     ?>
     </tr>
 <?php
-				if (isset($configdgidgateway)) {
+				if (isset($configdgidgateway) && $configmmdvm['System Fusion']['Enable'] == 1) {
 				?>
 				<tr>
 				    <td align="left"><a class="tooltip2" href="#">Enable DGIdGateway:<span><b>Enable DGIdGateway</b>Enable/Disable DGIdGateway.</span></a></td>
