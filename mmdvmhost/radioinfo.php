@@ -35,7 +35,7 @@ $ModemTCXO = str_replace("MHz", " MHz",$_SESSION['PiStarRelease']['Pi-Star']['TC
       <div class="divTableHeadCell">TX Freq.</div>
       <div class="divTableHeadCell">RX Freq.</div>
       <div class="divTableHeadCell">Modem Firmware</div>
-      <div class="divTableHeadCell">TXCO Freq.</div>
+      <div class="divTableHeadCell">TCXO Freq.</div>
       <div class="divTableHeadCell">Modem Port</div>
       <div class="divTableHeadCell">Modem Speed</div>
     </div>
