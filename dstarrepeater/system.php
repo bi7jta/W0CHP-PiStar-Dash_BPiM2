@@ -17,7 +17,7 @@ include_once $_SERVER['DOCUMENT_ROOT'].'/mmdvmhost/tools.php';
 
 ?>
 
-<div><b><?php echo $lang['service_status'];?></b><br /></div>
+<div style="text-align:left;font-weight:bold;"><?php echo $lang['service_status'];?></div>
 <div class="status-grid">
   <div class="grid-item <?php getServiceStatusClass(getFWstate()); ?>">Firewall</div>
   <div class="grid-item <?php getServiceStatusClass(isProcessRunning('MMDVMHost')); ?>">MMDVMHost</div>

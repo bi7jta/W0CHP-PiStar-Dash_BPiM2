@@ -126,7 +126,7 @@ if (!empty($_POST["submit_service"]) && empty($_POST["service_sel"])) { //handle
 } else {
     // no form post: output html...
     print '
-    <b>System Manager</b>'."\n".'
+    <div style="text-align:left;font-weight:bold;">System Manager</div>'."\n".'
     <form id="system-action-form" action="'.htmlentities($_SERVER['PHP_SELF']).'?func=sys_man" method="post">
       <table style="white-space: normal;">
         <tr>

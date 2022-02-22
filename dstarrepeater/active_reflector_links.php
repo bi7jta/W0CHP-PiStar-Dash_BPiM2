@@ -15,7 +15,7 @@ include_once $_SERVER['DOCUMENT_ROOT'].'/config/ircddblocal.php';
 include_once $_SERVER['DOCUMENT_ROOT'].'/config/language.php';	      // Translation Code
 
 ?>
-<b><?php echo $lang['d-star_link_status'];?></b>
+<div style="text-align:left;font-weight:bold;"><?php echo$lang['d-star_link_status'];?></div>
 <table>
     <tr>
 	<th><a class="tooltip" href="#">Radio<span><b>Radio Module</b></span></a></th>
@@ -231,3 +231,4 @@ include_once $_SERVER['DOCUMENT_ROOT'].'/config/language.php';	      // Translat
     ?>
     
 </table>
+<br />

@@ -133,8 +133,7 @@ if ( $testMMDVModeDMR == 1 ) {
             $bmDynamicTGList = wordwrap($bmDynamicTGList, 135, "\n");
             if (preg_match('/TG/', $bmDynamicTGList) == false) { $bmDynamicTGList = "No Talkgroups Linked"; }
         } else { $bmDynamicTGList = "No Talkgroups Linked"; }
-	
-	echo '<b>Active BrandMeister Connections</b>
+	    echo '<div style="text-align:left;font-weight:bold;">ActiveBrandMeister Connections</div>
   <table>
     <tr>
       <th align="left" style="padding-left: 8px;"><a class=tooltip href="#">Connected to Master:<span><b>Connected Master</b></span></a></th>

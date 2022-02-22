@@ -25,7 +25,7 @@ if (isset($_SESSION['CSSConfigs']['ExtraSettings']['LastHeardRows'])) {
             </div>
         </div>
     </div>
-<div style="vertical-align: bottom; font-weight: bold; padding-top:14px;margin-left:140px;"><?php echo $lang['last_heard_list'];?></div>
+<div style="vertical-align: bottom; font-weight: bold; padding-top:14px;text-align:left;"><?php echo $lang['last_heard_list'];?></div>
   <table>
     <tr>
       <th><a class="tooltip" href="#"><?php echo $lang['time'];?> (<?php echo date('T')?>)<span><b>Time in <?php echo date('T')?> time zone</b></span></a></th>

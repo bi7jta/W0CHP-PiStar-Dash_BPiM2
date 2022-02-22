@@ -71,7 +71,7 @@ if (isset($_SESSION['DAPNETAPIKeyConfigs']['DAPNETAPI']['USER']) && (empty($_SES
     else {
 	$dapnetTrxAreas = (isset($_SESSION['DAPNETAPIKeyConfigs']['DAPNETAPI']['TRXAREA']) && (! empty($_SESSION['DAPNETAPIKeyConfigs']['DAPNETAPI']['TRXAREA'])) ? $_SESSION['DAPNETAPIKeyConfigs']['DAPNETAPI']['TRXAREA'] : "");
         
-        echo '<b>DAPNET Messenger</b>'."\n";
+        echo '<div style="text-align:left;font-weight:bold;">DAPNET Messenger</div>'."\n";
         echo '<form action="'.htmlentities($_SERVER['PHP_SELF']).'?func=pocsag_man"  method="post">'."\n";
         echo '<table>
 		<tr>

@@ -14,7 +14,7 @@ if (!isset($_SESSION) || !is_array($_SESSION)) {
 include_once $_SERVER['DOCUMENT_ROOT'].'/config/ircddblocal.php';
 include_once $_SERVER['DOCUMENT_ROOT'].'/config/language.php';	      // Translation Code
 ?>
-<b><?php echo $lang['active_starnet_groups'];?></b>
+<div style="text-align:left;font-weight:bold;"><?php echo $lang['active_starnet_groups'];?></div>
 <table style="table-layout: fixed;">
     <tr>
 	<th><a class="tooltip" href="#"><?php echo $lang['callsign'];?><span><b>Starnet Callsign</b></span></a></th>

@@ -129,7 +129,7 @@ if (!empty($_POST["submit_mode"]) && empty($_POST["mode_sel"])) { //handler for 
 } else {
     // no form post: output html...
     print '
-    <b>Instant Mode Manager</b>'."\n".'
+    <div style="text-align:left;font-weight:bold;">Instant Mode Manager</div>'."\n".'
     <form id="action-form" action="'.htmlentities($_SERVER['PHP_SELF']).'?func=mode_man" method="post">
       <table style="white-space: normal;">
         <tr>

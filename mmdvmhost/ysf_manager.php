@@ -69,7 +69,7 @@ if (isset($_SESSION['YSFGatewayConfigs']['Remote Commands']['Enable']) && (isset
 	else {
 	    // Output HTML
 	?>
-    	<b>YSF Link Manager</b>
+    	<div style="text-align:left;font-weight:bold;">YSF Link Manager</div>
 	    <form action="//<?php echo htmlentities($_SERVER['HTTP_HOST']).htmlentities($_SERVER['PHP_SELF']); ?>?func=ysf_man" method="post">
 		<table>
 		    <tr>

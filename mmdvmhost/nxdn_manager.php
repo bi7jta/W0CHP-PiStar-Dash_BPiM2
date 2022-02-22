@@ -66,7 +66,7 @@ if ( $testMMDVModeNXDN == 1 ) {
 	else {
 	    // Output HTML
 ?>
-    		<b>NXDN Link Manager</b>
+    		<div style="text-align:left;font-weight:bold;">NXDN Link Manager</div>
 		<form action="//<?php echo htmlentities($_SERVER['HTTP_HOST']).htmlentities($_SERVER['PHP_SELF']); ?>?func=nxdn_man" method="post">
 		    <table>
 			<tr>
@@ -139,7 +139,6 @@ if ( $testMMDVModeNXDN == 1 ) {
 			</tr>
 		    </table>
 		</form>
-		<br />
 	<?php
 	}
     }

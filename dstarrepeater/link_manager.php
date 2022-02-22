@@ -80,7 +80,7 @@ if ($_SERVER["PHP_SELF"] == "/admin/index.php") {
     }
     else { //else:
 ?>
-        <b><?php echo $lang['d-star_link_manager'];?></b>
+        <div style="text-align:left;font-weight:bold;"><?php echo $lang['d-star_link_manager'];?></div>
 	<form action="//<?php echo htmlentities($_SERVER['HTTP_HOST']).htmlentities($_SERVER['PHP_SELF']); ?>?func=ds_man" method="post">
 	    <table>
 		<tr>

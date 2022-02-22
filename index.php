@@ -393,7 +393,7 @@ checkSessionValidity();
 		// begin admin selection form
 		if ($_SERVER["PHP_SELF"] == "/admin/index.php") {
             if (!empty($_POST) || !empty($_GET)) { echo '<br /><hr />'; }
-            echo '<b>Admin Sections</b>';
+            echo '<div style="text-align:left;font-weight:bold;">Admin Sections</div>';
 		    echo '<form method="get" id="admin_sel" name="admin_sel" action="'.htmlentities($_SERVER['PHP_SELF']).'">';
             echo '  <table>';
 		    echo '    <tr>';
@@ -479,7 +479,7 @@ checkSessionValidity();
 		    echo '      <td style="white-space:normal;padding: 3px;"><b>Note:</b> Modes/networks/services not <a href="/admin/configure.php">globally configured/enabled</a>, or that are paused, are not selectable here until they are enabled or <a href="./?func=mode_man">resumed from pause</a>.</td>';
 		    echo '    </tr>';
 		    echo '  </table>';
-		    echo ' </form><br />';
+		    echo ' </form>';
 		}
 
 	    if ($_SERVER["PHP_SELF"] == "/admin/index.php") {

@@ -15,7 +15,7 @@ include_once $_SERVER['DOCUMENT_ROOT'].'/config/ircddblocal.php';
 include_once $_SERVER['DOCUMENT_ROOT'].'/config/language.php';	      // Translation Code
 
 ?>
-<b><?php echo $lang['local_tx_list'];?></b>
+<div style="text-align:left;font-weight:bold;"><?php echo $lang['local_tx_list'];?></div>
 <table>
     <tr>
 	<th><a class="tooltip" href="#"><?php echo $lang['time'];?> (<?php echo date('T')?>)</a></th>

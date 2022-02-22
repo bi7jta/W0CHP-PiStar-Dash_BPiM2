@@ -167,7 +167,7 @@ if (empty($dmrID) == false)
 	echo '<script type="text/javascript">setTimeout(function() { window.location=window.location;},3000);</script>';
     }
     else { // Do this when we are not handling post data
-	echo '<b>TGIF Manager</b>'."\n";
+	echo '<div style="text-align:left;font-weight:bold;">TGIF Manager</div>'."\n";
 	echo '<form action="'.htmlentities($_SERVER['PHP_SELF']).'?func=tgif_man" method="post">'."\n";
 	echo '<table>
     <tr>

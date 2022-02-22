@@ -64,7 +64,7 @@ if ( $testMMDVModeP25 == 1 ) {
 	else {
 	    // Output HTML
 	    ?>
-    	    <b>P25 Link Manager</b>
+    	    <div style="text-align:left;font-weight:bold;">P25 Link Manager</div>
 	    <form action="//<?php echo htmlentities($_SERVER['HTTP_HOST']).htmlentities($_SERVER['PHP_SELF']); ?>?func=p25_man" method="post">
 		<table>
 		    <tr>
@@ -137,7 +137,6 @@ if ( $testMMDVModeP25 == 1 ) {
 		    </tr>
 		</table>
 	    </form>
-	    <br />
 	<?php
 	}
     }

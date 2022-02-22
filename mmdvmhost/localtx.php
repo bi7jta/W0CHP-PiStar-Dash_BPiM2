@@ -17,7 +17,7 @@ $localTXList = $lastHeard;
 	    </div>
 	</div>
     </div>
-  <div style="vertical-align: bottom; font-weight: bold; padding-top:14px;margin-left:140px;"><?php echo $lang['local_tx_list'];?></div>
+  <div style="vertical-align: bottom; font-weight: bold; padding-top:14px;text-align:left;"><?php echo $lang['local_tx_list'];?></div>
   <table style="white-space:normal; word-wrap:break;">
     <tr>
       <th><a class="tooltip" href="#"><?php echo $lang['time'];?> (<?php echo date('T')?>)<span><b>Time in <?php echo date('T')?> time zone</b></span></a></th>

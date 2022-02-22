@@ -332,7 +332,7 @@ if ( $testMMDVModeDMR == 1 ) {
 	    else { // Do this when we are not handling post data
 		    // If there is a BM API Key
             if (isset($bmAPIkey) || isset($bmAPIkeyV2)) {
-		    echo '<b>BrandMeister Manager</b>'."\n";
+		    echo '<br /><div style="text-align:left;font-weight:bold;">BrandMeister Manager</div>'."\n";
 		    echo '<form id="bm_man" action="'.htmlentities($_SERVER['PHP_SELF']."?func=bm_man").'" method="post">'."\n";
 		    echo '<table style="white-space: normal;">'."\n";
 		    echo '  <tr>'."\n";
