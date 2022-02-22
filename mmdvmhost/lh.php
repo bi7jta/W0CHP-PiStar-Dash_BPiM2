@@ -4,27 +4,15 @@ include_once $_SERVER['DOCUMENT_ROOT'].'/mmdvmhost/tools.php';        // MMDVMDa
 include_once $_SERVER['DOCUMENT_ROOT'].'/mmdvmhost/functions.php';    // MMDVMDash Functions
 include_once $_SERVER['DOCUMENT_ROOT'].'/config/language.php';	      // Translation Code
 
-// Check if the config file exists
-if (file_exists('/etc/pistar-css.ini')) {
-    // Use the values from the file
-    $piStarCssFile = '/etc/pistar-css.ini';
-    if (fopen($piStarCssFile,'r')) {
-        $piStarCss = parse_ini_file($piStarCssFile, true);
-        // Set the Values from the config file
-        if (isset($piStarCss['ExtraSettings']['LastHeardRows'])) {
-            $lastHeardRows = $piStarCss['ExtraSettings']['LastHeardRows'];
-            if ($lastHeardRows > 100) {  
-                $lastHeardRows = "100";  // need an internal limit
-            }
-        } else {
-            // Default values
-            $lastHeardRows = "40";
-        }
+if (isset($_SESSION['CSSConfigs']['ExtraSettings']['LastHeardRows'])) {
+    $lastHeardRows = $_SESSION['CSSConfigs']['ExtraSettings']['LastHeardRows'];
+    if ($lastHeardRows > 100) {  
+	$lastHeardRows = "100";  // need an internal limit
     }
-} else { // no css file...
-    // Default values
+} else {
     $lastHeardRows = "40";
 }
+
 ?>
 <input type="hidden" name="lh-autorefresh" value="OFF" />
   <div style="float: right; vertical-align: bottom; padding-top: 0px;">

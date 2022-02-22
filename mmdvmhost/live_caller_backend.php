@@ -96,7 +96,11 @@ elseif (floatval($listElem[8]) >= 0.0 && floatval($listElem[8]) <= 1.9)
 if (!is_numeric($listElem[2])) {
         $searchCall = $listElem[2];
         $callMatch = array();
-        $handle = @fopen("/usr/local/etc/stripped.csv", "r");
+	if ($mode == "NXDN") {
+	        $handle = @fopen("/usr/local/etc/NXDN.csv", "r");
+	} else { # all other modes
+	        $handle = @fopen("/usr/local/etc/stripped.csv", "r");
+	}
         if ($handle)
         {       
                 while (!feof($handle))
@@ -118,14 +122,16 @@ if (!is_numeric($listElem[2])) {
         $country = $callMatch[6];
 }
 
-if (strlen($target) >= 2) {
-	$target_lookup = exec("grep -w \"$target\" /usr/local/etc/groups.txt | awk -F, '{print $1}' | head -1 | tr -d '\"'");
-	if (!empty($target_lookup)) {
-		$target = $target_lookup;
-		$stupid_bm = ['/ - 10 Minute Limit/', '/ NOT A CALL CHANNEL/', '/ NO NETS(.*?)/', '/ - .*/'];
-		$target = preg_replace($stupid_bm, "", $target); // strip stupid fucking comments from BM admins in TG names. Idiots.
-		$target = str_replace(":", " - ", $target);
-	}
+if ((strlen($target) >= 2) && (strstr($mode, "DMR Slot"))) {
+        $target_lookup = exec("grep -w \"$target\" /usr/local/etc/groups.txt | awk -F, '{print $1}' | head -1 | tr -d '\"'");
+        if (!empty($target_lookup)) {
+                $target = $target_lookup;
+                $stupid_bm = ['/ - 10 Minute Limit/', '/ NOT A CALL CHANNEL/', '/ NO NETS(.*?)/', '/ - .*/'];
+                $target = preg_replace($stupid_bm, "", $target); // strip stupid fucking comments from BM admins in TG names. Idiots.
+                $target = str_replace(":", " - ", $target);
+        }
+} else {
+    $target = $target;
 }
 
 if (strpos($mode, 'DMR') !== false) {

@@ -43,28 +43,15 @@ if ($listElem[6] == null) {
 	$dt = new DateTime($utc_time, $utc_tz);
 	$duration = $now->getTimestamp() - $dt->getTimestamp();
 	$duration_string = $duration<999 ? round($duration) . "+" : "&infin;";
-	$duration = "<td colspan =\"3\" style=\"background:#d11141;color:#fff;\">TX " . $duration_string . " sec</td>";
+	$duration = "<td style=\"background:#d11141;color:#fff;\">TX " . $duration_string . " sec</td>";
 } else if ($listElem[6] == "DMR Data") {
-	$duration =  "<td colspan =\"3\" style=\"background:#00718F;color:#fff;\">DMR Data</td>";
+	$duration =  "<td style=\"background:#00718F;color:#fff;\">DMR Data</td>";
 } else if ($listElem[6] == "POCSAG Data") {
-	$diuration =  "<td colspan =\"3\" style=\"background:#00718F;color:#fff;\">POCSAG Data</td>";
+	$diuration =  "<td style=\"background:#00718F;color:#fff;\">POCSAG Data</td>";
 } else {
 	$duration = "<td>$listElem[6]s</td>";
 }
 
-// color the loss field
-if ($listElem[7] == null) {
-	$loss = "";
-} elseif (floatval($listElem[7]) < 1) {
-	$loss = "<td>".$listElem[7]."</td>";
-} elseif (floatval($listElem[7]) == 1) {
-	$loss = "<td><span style='color:#005028;font-weight:bold'>".$listElem[7]."</span></td>";
-} elseif (floatval($listElem[7]) > 1 && floatval($listElem[7]) <= 3) {
-	$loss = "<td><span style='color:#984C00;font-weight:bold'>".$listElem[7]."</span></td>";
-} else {
-	$loss = "<td><span style='color:#8A0B2B;font-weight:bold;'>".$listElem[7]."</span></td>";
-}
-			
 if ($listElem[8] == null) {
 	$ber = "&nbsp;";
 } else {
@@ -77,23 +64,14 @@ if ($listElem[1] == null) {
 	$mode = $listElem[1];
 }
 			
-// Color the BER Field
-if ($listElem[8] == null) {
-        $ber = "";
-} elseif (floatval($listElem[8]) == 0) {
-	$ber = "<td>$listElem[8]</td>";
-} elseif (floatval($listElem[8]) >= 0.0 && floatval($listElem[8]) <= 1.9) {
-	$ber = "<td><span style='color:#005028;font-weight:bold'>".$listElem[8]."</span></td>";
-} elseif (floatval($listElem[8]) >= 2.0 && floatval($listElem[8]) <= 4.9) {
-	$ber = "<td><span style='color:#984C00;font-weight:bold'>".$listElem[8]."</span></td>";
-} else {
-	$ber = "<td><span style='color:#8A0B2B;font-weight:bold;'>".$listElem[8]."</span></td>";
-}
-
 if (!is_numeric($listElem[2])) {
         $searchCall = $listElem[2];
         $callMatch = array();
-        $handle = @fopen("/usr/local/etc/stripped.csv", "r");
+	if ($mode == "NXDN") {
+		$handle = @fopen("/usr/local/etc/NXDN.csv", "r");
+	} else { # all other modes
+		$handle = @fopen("/usr/local/etc/stripped.csv", "r");
+	}
         if ($handle)
         {       
                 while (!feof($handle))
@@ -115,7 +93,7 @@ if (!is_numeric($listElem[2])) {
         $country = $callMatch[6];
 }
 
-if (strlen($target) >= 2) {
+if ((strlen($target) >= 2) && (strstr($mode, "DMR Slot"))) {
 	$target_lookup = exec("grep -w \"$target\" /usr/local/etc/groups.txt | awk -F, '{print $1}' | head -1 | tr -d '\"'");
 	if (!empty($target_lookup)) {
 		$target = $target_lookup;
@@ -123,25 +101,26 @@ if (strlen($target) >= 2) {
 		$target = preg_replace($stupid_bm, "", $target); // strip stupid fucking comments from BM admins in TG names. Idiots.
 		$target = str_replace(":", " - ", $target);
 	}
+} else {
+    $target = $target;
 }
+
 
 if (strpos($mode, 'DMR') !== false) {
 	$target = "TG $target";
 }
 
-if($listElem[2] == "4000" || $listElem[2] == "9990" || $listElem[2] == "DAPNET" || $mode == "M17") {
+if($listElem[2] == "4000" || $listElem[2] == "9990" || $listElem[2] == "DAPNET") {
 	$name = "";
 	$city = "";
 	$state = "";
 	$country = "";
-	$loss = "";
-	$ber = "";
-	$duration = "<td colspan =\"3\"</td>";
+	$duration = "<td></td>";
 }
 
 ?>
 
-<div style="vertical-align: bottom; font-weight: bold;margin-right:12px;">Current / Last Caller Details</div>
+<div style="vertical-align: bottom; font-weight: bold;margin-right:10px;">Current / Last Caller Details</div>
   <table style="word-wrap: break-word; white-space:normal;">
     <tr>
       <th>Callsign</th>
@@ -151,8 +130,6 @@ if($listElem[2] == "4000" || $listElem[2] == "9990" || $listElem[2] == "DAPNET" 
       <th>Mode</th>
       <th>Target</th>
       <th>Duration</th>
-      <th>Packet Loss</th>
-      <th>BER</th>
     </tr>
   <tr>
     <td><?php echo $listElem[2] ?? ' '; ?></td>
@@ -176,8 +153,6 @@ if($listElem[2] == "4000" || $listElem[2] == "9990" || $listElem[2] == "DAPNET" 
     <td><?php echo $mode ?? ' '; ?></td>
     <td><?php echo $target ?? ' '; ?></td>
     <?php echo $duration ?? ' '; ?>
-    <?php echo $loss ?? ' '; ?>
-    <?php echo $ber ?? ' '; ?>
    </tr>
 </table>
 <br />

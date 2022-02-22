@@ -17,23 +17,10 @@ include_once $_SERVER['DOCUMENT_ROOT'].'/mmdvmhost/functions.php';    // MMDVMDa
 include_once $_SERVER['DOCUMENT_ROOT'].'/config/language.php';	      // Translation Code
 require_once($_SERVER['DOCUMENT_ROOT'].'/config/ircddblocal.php');
 
-// Check if the config file exists
-if (file_exists('/etc/pistar-css.ini')) {
-    // Use the values from the file
-    $piStarCssFile = '/etc/pistar-css.ini';
-    if (fopen($piStarCssFile,'r')) {
-        $piStarCss = parse_ini_file($piStarCssFile, true);
-        // Set the Values from the config file
-        if (isset($piStarCss['Background']['TableRowBgEvenColor'])) {
-            $tableRowEvenBg = $piStarCss['Background']['TableRowBgEvenColor'];
-        } else {
-            // Default values
-            $tableRowEvenBg = "#FFFFFF";
-        }
-    }
-} else { // no css file...
-    // Default values
-    $tableRowEvenBg = "#FFFFFF";
+if (isset($_SESSION['CSSConfigs']['Background']['TableRowBgEvenColor'])) {
+    $tableRowEvenBg = $_SESSION['CSSConfigs']['Background']['TableRowBgEvenColor'];
+} else {
+    $tableRowEvenBg = "inherit";
 }
 
 function FillConnectionHosts(&$destArray, $remoteEnabled, $remotePort) {

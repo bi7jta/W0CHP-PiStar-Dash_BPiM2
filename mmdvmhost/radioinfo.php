@@ -17,6 +17,12 @@ include_once $_SERVER['DOCUMENT_ROOT'].'/mmdvmhost/functions.php';    // MMDVMDa
 include_once $_SERVER['DOCUMENT_ROOT'].'/config/language.php';	      // Translation Code
 require_once($_SERVER['DOCUMENT_ROOT'].'/config/ircddblocal.php');
 
+if (isset($_SESSION['CSSConfigs']['Background']['TableRowBgEvenColor'])) {
+    $tableRowEvenBg = $_SESSION['CSSConfigs']['Background']['TableRowBgEvenColor'];
+} else {
+    $tableRowEvenBg = "inherit";
+}
+
 ?>
 
 <div class="divTable">
