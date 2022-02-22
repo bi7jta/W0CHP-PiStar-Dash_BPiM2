@@ -23,6 +23,9 @@ if (isset($_SESSION['CSSConfigs']['Background']['TableRowBgEvenColor'])) {
     $tableRowEvenBg = "inherit";
 }
 
+$ModemFW = `grep Firmware /etc/pistar-release | awk '{print $3}'`;
+$ModemTCXO = `grep TCXO /etc/pistar-release | awk '{print $3}' | sed 's/MHz/ MHz/'`;
+
 ?>
 
 <div class="divTable">
@@ -123,12 +126,8 @@ if (isset($_SESSION['CSSConfigs']['Background']['TableRowBgEvenColor'])) {
       </div>
       <div class="divTableCell hwinfo" style="background: <?php echo $tableRowEvenBg; ?>;"><?php echo getMHZ(getConfigItem("Info", "TXFrequency", $_SESSION['MMDVMHostConfigs'])); ?></div>
       <div class="divTableCell hwinfo" style="background: <?php echo $tableRowEvenBg; ?>;"><?php echo getMHZ(getConfigItem("Info", "RXFrequency", $_SESSION['MMDVMHostConfigs'])); ?></div>
-    <?php
-        if (isset($_SESSION['DvModemFWVersion'])) {
-    ?>
-      <div class="divTableCell hwinfo" style="background: <?php echo $tableRowEvenBg; ?>;"><?php echo $_SESSION['DvModemFWVersion']; ?></div>
-    <?php } ?>
-      <div class="divTableCell hwinfo" style="background: <?php echo $tableRowEvenBg; ?>;"><?php echo $_SESSION['DvModemTCXOFreq']; ?></div>
+      <div class="divTableCell hwinfo" style="background: <?php echo $tableRowEvenBg; ?>;"><?php echo $ModemFW; ?></div>
+      <div class="divTableCell hwinfo" style="background: <?php echo $tableRowEvenBg; ?>;"><?php echo $ModemTCXO; ?></div>
       <div class="divTableCell hwinfo" style="background: <?php echo $tableRowEvenBg; ?>;"><?php echo getConfigItem("Modem", "UARTPort", $_SESSION['MMDVMHostConfigs']); ?></div>
       <div class="divTableCell hwinfo" style="background: <?php echo $tableRowEvenBg; ?>;"><?php echo getConfigItem("Modem", "UARTSpeed", $_SESSION['MMDVMHostConfigs']); ?> bps</div>
     </div>

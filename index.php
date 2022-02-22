@@ -35,8 +35,6 @@ unset($_SESSION['DMR2NXDNConfigs']);
 unset($_SESSION['APRSGatewayConfigs']);
 unset($_SESSION['NXDNGatewayConfigs']);
 unset($_SESSION['P25GatewayConfigs']);
-unset($_SESSION['DvModemFWVersion']);
-unset($_SESSION['DvModemTCXOFreq']);
 unset($_SESSION['CSSConfigs']);
 
 checkSessionValidity();
