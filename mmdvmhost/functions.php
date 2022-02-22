@@ -1733,28 +1733,6 @@ function getActualLink($logLines, $mode) {
     return "Service Not Started";
 }
 
-function getActualReflector($logLines, $mode) {
-    // 00000000001111111111222222222233333333334444444444555555555566666666667777777777888888888899999999990000000000111111111122
-    // 01234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901
-    // M: 2016-05-02 07:04:10.504 D-Star link status set to "Verlinkt zu DCS002 S"
-    // M: 2016-04-03 16:16:18.638 DMR Slot 2, received network voice header from 4000 to 2625094
-    // M: 2016-04-03 19:30:03.099 DMR Slot 2, received network voice header from 4020 to 2625094
-    foreach ($logLines as $logLine) {
-	if (substr($logLine, 27, strpos($logLine,",") - 27) == $mode) {
-	    $from = substr($logLine, strpos($logLine,"from") + 5, strpos($logLine,"to") - strpos($logLine,"from") - 6);
-	    if (strlen($from) == 4 && startsWith($from,"4")) {
-		if ($from == "4000") {
-		    return "No Refl.";
-		}
-		else {
-		    return "Refl. ".$from;
-		}
-	    }
-	}
-    }
-    return "No Refl.";
-}
-
 //Some basic inits
 if (!in_array($_SERVER["PHP_SELF"],array('/mmdvmhost/bm_links.php','/mmdvmhost/bm_manager.php'),true)) {
     $logLinesMMDVM = getMMDVMLog();
