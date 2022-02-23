@@ -27,7 +27,7 @@ for ($i = 0;  ($i <= 0); $i++) { //Last 20  calls
             }
             // end cheesy YSF hack
             if (is_numeric($listElem[2]) || strpos($listElem[2], "openSPOT") !== FALSE) {
-                $calsign = $listElem[2];
+                $callsign = $listElem[2];
             } elseif (!preg_match('/[A-Za-z].*[0-9]|[0-9].*[A-Za-z]/', $listElem[2])) {
                 $callsign = $listElem[2];
             } else {
