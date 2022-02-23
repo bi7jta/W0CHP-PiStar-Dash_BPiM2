@@ -131,9 +131,9 @@ if (strlen($target) >= 2) {
                 $target = preg_replace($stupid_bm, "", $target); // strip stupid fucking comments from BM admins in TG names. Idiots.
                 $target = str_replace(":", " - ", $target);
                 $target = "TG $target";
-        } else { 
+        } else {
                 $target = "TG $target";
-	}
+        }
     } else if (strpos($mode, 'NXDN') !== false) {
         $target_lookup = exec("grep -w \"$target\" /usr/local/etc/TGList_NXDN.txt | awk -F';' '{print $2}'");
         if (!empty($target_lookup)) {
@@ -146,10 +146,11 @@ if (strlen($target) >= 2) {
         }
     } else {
         $target = $target;
-    }
+    } 
 } else {
-    if (strpos($mode, 'DMR') !== false) {
-        $target = "TG $target";
+    $modeArray = array('DMR', 'NXDN', 'P25');
+    if (strpos($mode, $modearray, 1) !== false) {
+        $target = "TG $target"; 
     } else {
         $target = $target;
     }

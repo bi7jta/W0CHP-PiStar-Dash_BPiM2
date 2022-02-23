@@ -117,14 +117,15 @@ if (strlen($target) >= 2) {
         }
     } else {
         $target = $target;
-    } 
+    }
 } else {
-    if (strpos($mode, 'DMR') !== false) {
-        $target = "TG $target"; 
+    $modeArray = array('DMR', 'NXDN', 'P25');
+    if (strpos($mode, $modearray, 1) !== false) {
+        $target = "TG $target";
     } else {
         $target = $target;
-    }       
-} 
+    }
+}
 
 if($listElem[2] == "4000" || $listElem[2] == "9990" || $listElem[2] == "DAPNET") {
 	$name = "";
