@@ -5,13 +5,13 @@ if (!isset($_SESSION) || !is_array($_SESSION)) {
     session_start();
 }
 // Load the language support
-require_once('../config/language.php');
+require_once $_SERVER['DOCUMENT_ROOT'].'/config/language.php';
 // Load the Pi-Star Release file
 $pistarReleaseConfig = '/etc/pistar-release';
 $configPistarRelease = array();
 $configPistarRelease = parse_ini_file($pistarReleaseConfig, true);
 // Load the Version Info
-require_once('../config/version.php');
+require_once $_SERVER['DOCUMENT_ROOT'].'/config/version.php';
 
 if (file_exists('/etc/default/shellinabox')) {
   $getPortCommand = "grep -m 1 'SHELLINABOX_PORT=' /etc/default/shellinabox | awk -F '=' '/SHELLINABOX_PORT=/ {print $2}'";

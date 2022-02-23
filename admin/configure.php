@@ -11,11 +11,11 @@ if (!isset($_SESSION) || !is_array($_SESSION)) {
 }
 
 // Pull in some config
-require_once('config/config.php');
-require_once('config/version.php');
-require_once('mmdvmhost/functions.php');
-require_once('config/ircddblocal.php');
-require_once('config/language.php');
+require_once $_SERVER['DOCUMENT_ROOT'].'/config/config.php';
+require_once $_SERVER['DOCUMENT_ROOT'].'/config/version.php';
+require_once $_SERVER['DOCUMENT_ROOT'].'/mmdvmhost/functions.php';
+require_once $_SERVER['DOCUMENT_ROOT'].'/config/ircddblocal.php';
+require_once $_SERVER['DOCUMENT_ROOT'].'/config/language.php';
 
 // Load the pistar-release file
 $pistarReleaseConfig = '/etc/pistar-release';

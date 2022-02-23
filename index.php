@@ -4,12 +4,11 @@ session_name("PiStar Dashboard Session");
 session_id('pistardashsess');
 session_start();
 
-//require_once('set_session.php');
-require_once('config/config.php');
-require_once('config/version.php');
-require_once('mmdvmhost/functions.php');
-require_once('config/ircddblocal.php');
-require_once('config/language.php');
+require_once $_SERVER['DOCUMENT_ROOT'].'/config/config.php';
+require_once $_SERVER['DOCUMENT_ROOT'].'/config/version.php';
+require_once $_SERVER['DOCUMENT_ROOT'].'/config/ircddblocal.php';
+require_once $_SERVER['DOCUMENT_ROOT'].'/mmdvmhost/functions.php';
+require_once $_SERVER['DOCUMENT_ROOT'].'/config/language.php';
 
 $progname = basename($_SERVER['SCRIPT_FILENAME'],".php");
 $rev = $version;

@@ -12,8 +12,8 @@ if (!isset($_SESSION) || !is_array($_SESSION)) {
 }
 
 // Load the language support
-require_once('../config/language.php');
-require_once('../config/version.php');
+require_once $_SERVER['DOCUMENT_ROOT'].'/config/language.php';
+require_once $_SERVER['DOCUMENT_ROOT'].'/config/version.php';
 ?>
   <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
   "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">

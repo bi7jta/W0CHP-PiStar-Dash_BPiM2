@@ -19,8 +19,8 @@ if (!isset($_SESSION) || !is_array($_SESSION) || (count($_SESSION, COUNT_RECURSI
 }
 
 // Load the language support
-require_once('config/language.php');
-require_once('config/version.php');
+require_once $_SERVER['DOCUMENT_ROOT'].'/config/language.php';
+require_once $_SERVER['DOCUMENT_ROOT'].'/config/version.php';
 
 // Sanity Check that this file has been opened correctly
 if ($_SERVER["PHP_SELF"] == "/admin/config_backup.php") {
