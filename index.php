@@ -70,6 +70,8 @@ checkSessionValidity();
          <script type="text/javascript">
           $(document).ready(function() {
             $('.ysfLinkHost').select2();
+            $('.p25LinkHost').select2();
+            $('.nxdnLinkHost').select2();
             $('.RefName').select2();
           });
         </script>

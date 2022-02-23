@@ -74,7 +74,7 @@ if ( $testMMDVModeP25 == 1 ) {
 		    </tr>
 		    <tr>
 			<td>
-			    <select name="p25LinkHost">
+			    <select name="p25LinkHost" class="p25LinkHost">
 				<?php
 				if (isset($_SESSION['P25GatewayConfigs']['Network']['Startup'])) {
 				    $testP25Host = $_SESSION['P25GatewayConfigs']['Network']['Startup'];

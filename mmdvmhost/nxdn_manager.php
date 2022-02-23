@@ -76,7 +76,7 @@ if ( $testMMDVModeNXDN == 1 ) {
 			</tr>
 			<tr>
 			    <td>
-				<select name="nxdnLinkHost">
+				<select name="nxdnLinkHost" class="nxdnLinkHost">
 				    <?php
 				    $nxdnHosts = fopen("/usr/local/etc/NXDNHosts.txt", "r");
 				    if (isset($_SESSION['NXDNGatewayConfigs']['Network']['Startup'])) {
