@@ -12,14 +12,28 @@ if (constant("TIME_FORMAT") == "24") {
 // get the data from the MMDVMHost logs
 $i = 0;
 for ($i = 0;  ($i <= 0); $i++) { //Last 20  calls
-	if (isset($lastHeard[$i])) {
-		$listElem = $lastHeard[$i];
-		if ( $listElem[2] ) {
-			$utc_time = $listElem[0];
-                        $utc_tz =  new DateTimeZone('UTC');
-                        $local_tz = new DateTimeZone(date_default_timezone_get ());
-                        $dt = new DateTime($utc_time, $utc_tz);
-                        $dt->setTimeZone($local_tz);
+    if (isset($lastHeard[$i])) {
+        $listElem = $lastHeard[$i];
+        if ( $listElem[2] ) {
+            $utc_time = $listElem[0];
+            $utc_tz =  new DateTimeZone('UTC');
+            $local_tz = new DateTimeZone(date_default_timezone_get ());
+            $dt = new DateTime($utc_time, $utc_tz);
+            $dt->setTimeZone($local_tz);
+            // YSF sometimes has malformed calls with a space and freeform text...address these
+            if (preg_match('/ /', $listElem[2])) {
+                $listElem[2] = preg_replace('/ .*$/', "", $listElem[2]);
+            }
+            // end cheesy YSF hack
+            if (is_numeric($listElem[2]) || strpos($listElem[2], "openSPOT") !== FALSE) {
+                $listElem[2] = $listElem[2];
+            } elseif (!preg_match('/[A-Za-z].*[0-9]|[0-9].*[A-Za-z]/', $listElem[2])) {
+                $listElem[2] = $listElem[2];
+            } else {
+                if (strpos($listElem[2],"-") > 0) {
+                    $listElem[2] = substr($listElem[2], 0, strpos($listElem[2],"-"));
+                }
+            }
         }
     }
 }
