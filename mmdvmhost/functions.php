@@ -1638,7 +1638,6 @@ if (!in_array($_SERVER["PHP_SELF"],array('/mmdvmhost/bm_links.php','/mmdvmhost/b
     if (strpos($_SERVER["PHP_SELF"], 'index.php') !== false || strpos($_SERVER["PHP_SELF"], 'pages.php') !== false) {
 	// Will separate personal and global messages only in Admin page, if MY_RIC is defined in dapnetapi.key.
         $origin = (isset($_GET['origin']) ? $_GET['origin'] : (isset($myOrigin) ? $myOrigin : "unknown"));
-        
 	$logLinesDAPNETGateway = getDAPNETGatewayLog(($origin == "admin" ? (isset($_SESSION['DAPNETAPIKeyConfigs']) ? getConfigItem("DAPNETAPI", "MY_RIC", $_SESSION['DAPNETAPIKeyConfigs']) : null) : null));
     }
 }
