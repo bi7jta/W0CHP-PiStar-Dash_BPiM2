@@ -149,7 +149,7 @@ if (strlen($target) >= 2) {
     } 
 } else {
     $modeArray = array('DMR', 'NXDN', 'P25');
-    if (strpos($mode, $modearray, 1) !== false) {
+    if (strpos($mode, $modeArray[0]) !== false) {
         $target = "TG $target"; 
     } else {
         $target = $target;
