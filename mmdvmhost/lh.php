@@ -83,7 +83,7 @@ for ($i = 0;  ($i <= $lastHeardRows - 1); $i++) {
 
 
 		if ($listElem[5] == "RF"){
-			echo "<td><span style='color:#005028;font-weight:bold;'>RF</span></td>";
+			echo "<td><span style='color:#8A0B2B;font-weight:bold;'>RF</span></td>";
 		} else {
 			echo "<td>$listElem[5]</td>";
 		}

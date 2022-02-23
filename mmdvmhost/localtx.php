@@ -64,7 +64,7 @@ for ($i = 0; $i < count($localTXList); $i++) {
 			if (strlen($listElem[4]) == 1) { $listElem[4] = str_pad($listElem[4], 8, " ", STR_PAD_LEFT); }
 			echo"<td align=\"left\">".str_replace(" ","&nbsp;", $listElem[4])."</td>";
 			if ($listElem[5] == "RF"){
-				echo "<td><span style='color:#005028;font-weight:bold;'>RF</span></td>";
+				echo "<td><span style='color:#8A0B2B;font-weight:bold;'>RF</span></td>";
 			} else {
 				echo "<td>$listElem[5]</td>";
 			}

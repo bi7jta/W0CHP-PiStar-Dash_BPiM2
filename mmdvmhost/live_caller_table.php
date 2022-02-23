@@ -162,7 +162,7 @@ if($listElem[2] == "4000" || $listElem[2] == "9990" || $listElem[2] == "DAPNET")
 		} ?></td>
     <?php
 	if ($listElem[5] == "RF") {
-		echo "<td><span style='color:#005028;font-weight:bold;'>RF</span></td>";
+		echo "<td><span style='color:#8A0B2B;font-weight:bold;'>RF</span></td>";
 	} else {
     		echo" <td>".$source ?? ' '."</td>";
 	}
