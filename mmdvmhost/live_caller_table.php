@@ -95,14 +95,16 @@ if (!is_numeric($listElem[2])) {
 
 if (strlen($target) >= 2) {
     if (strpos($mode, 'DMR') !== false) {
-	$target_lookup = exec("grep -w \"$target\" /usr/local/etc/groups.txt | awk -F, '{print $1}' | head -1 | tr -d '\"'");
-	if (!empty($target_lookup)) {
-		$target = $target_lookup;
-		$stupid_bm = ['/ - 10 Minute Limit/', '/ NOT A CALL CHANNEL/', '/ NO NETS(.*?)/', '/ - .*/'];
-		$target = preg_replace($stupid_bm, "", $target); // strip stupid fucking comments from BM admins in TG names. Idiots.
-		$target = str_replace(":", " - ", $target);
-		$target = "TG $target";
-	}
+        $target_lookup = exec("grep -w \"$target\" /usr/local/etc/groups.txt | awk -F, '{print $1}' | head -1 | tr -d '\"'");
+        if (!empty($target_lookup)) {
+                $target = $target_lookup;
+                $stupid_bm = ['/ - 10 Minute Limit/', '/ NOT A CALL CHANNEL/', '/ NO NETS(.*?)/', '/ - .*/'];
+                $target = preg_replace($stupid_bm, "", $target); // strip stupid fucking comments from BM admins in TG names. Idiots.
+                $target = str_replace(":", " - ", $target);
+                $target = "TG $target";
+        } else {
+                $target = "TG $target";
+        }
     } else if (strpos($mode, 'NXDN') !== false) {
         $target_lookup = exec("grep -w \"$target\" /usr/local/etc/TGList_NXDN.txt | awk -F';' '{print $2}'");
         if (!empty($target_lookup)) {
@@ -114,11 +116,15 @@ if (strlen($target) >= 2) {
                 $target = "TG $target - $target_lookup";
         }
     } else {
-	$target = $target;
-    }
+        $target = $target;
+    } 
 } else {
-    $target = $target;
-}
+    if (strpos($mode, 'DMR') !== false) {
+        $target = "TG $target"; 
+    } else {
+        $target = $target;
+    }       
+} 
 
 if($listElem[2] == "4000" || $listElem[2] == "9990" || $listElem[2] == "DAPNET") {
 	$name = "";
