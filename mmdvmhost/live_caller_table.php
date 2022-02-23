@@ -32,7 +32,7 @@ for ($i = 0;  ($i <= 0); $i++) { //Last 20  calls
                 $callsign = $listElem[2];
             } else {
                 if (strpos($listElem[2],"-") > 0) {
-                    $callsign = substr($listElem[2], 0, strpos($listElem[2],"-"));
+                    $listElem[2] = substr($listElem[2], 0, strpos($listElem[2],"-"));
                 }
 		if ( $listElem[3] && $listElem[3] != '    ' ) {
 		    $callsign = "<a href=\"http://www.qrz.com/db/$listElem[2]\" target=\"_blank\">$listElem[2]</a>/$listElem[3]";
@@ -66,7 +66,7 @@ if ($listElem[6] == null) {
 } else if ($listElem[6] == "DMR Data") {
 	$duration =  "<td style=\"background:#00718F;color:#fff;\">DMR Data</td>";
 } else if ($listElem[6] == "POCSAG Data") {
-	$diuration =  "<td style=\"background:#00718F;color:#fff;\">POCSAG Data</td>";
+	$duration =  "<td style=\"background:#00718F;color:#fff;\">POCSAG Data</td>";
 } else {
 	$duration = "<td>$listElem[6]s</td>";
 }
