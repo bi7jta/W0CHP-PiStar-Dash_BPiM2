@@ -9,6 +9,16 @@ if (constant("TIME_FORMAT") == "24") {
     $local_time = date('h:i:s A M. jS');
 }
 
+// Get the CPU temp and color value accordingly...
+// Values/thresholds gathered from: 
+// <https://www.rs-online.com/designspark/how-does-raspberry-pi-deal-with-overheating>
+$cpuTempCRaw = exec('cat /sys/class/thermal/thermal_zone0/temp');
+if ($cpuTempCRaw > 1000) { $cpuTempC = sprintf('%.0f',round($cpuTempCRaw / 1000, 1)); } else { $cpuTempC = sprintf('%.0f',round($cpuTempCRaw, 1)); }
+$cpuTempF = sprintf('%.0f',round(+$cpuTempC * 9 / 5 + 32, 1));
+if ($cpuTempC <= 59) { $cpuTempHTML = "<span class='cpu_norm'>".$cpuTempF."&deg;F / ".$cpuTempC."&deg;C</span>\n"; }
+if ($cpuTempC >= 60) { $cpuTempHTML = "<span class='cpu_warm'>".$cpuTempF."&deg;F / ".$cpuTempC."&deg;C</span>\n"; }
+if ($cpuTempC >= 80) { $cpuTempHTML = "<apan class='cpu_hot'>".$cpuTempF."&deg;F / ".$cpuTempC."&deg;C</span>\n"; }
+
 // get the data from the MMDVMHost logs
 $i = 0;
 for ($i = 0;  ($i <= 0); $i++) { //Last 20  calls
@@ -266,6 +276,24 @@ if ($listElem[2] == "4000" || $listElem[2] == "9990" || $listElem[2] == "DAPNET"
           <span class='hw_info_def'>
             <?php echo $local_time; ?>
           </span>
+	</span>
+      </div>
+    </div>
+  </div>
+
+  <div class='row'>
+    <div class='column'>
+      <div class='footer-column'>
+        <span class='foot_left'>
+          Hostname: <?php echo exec('cat /etc/hostname'); ?>
+        </span>
+        <span class='foot_right'>
+          <div class='hw_info'>
+             CPU Temp:
+             <span class='hw_info_def'>
+                <?php echo $cpuTempHTML; ?>
+             </span>
+          </div>
 	</span>
       </div>
     </div>
