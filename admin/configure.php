@@ -984,23 +984,23 @@ if (!empty($_POST)):
 	  $configm17gateway['General']['Suffix'] = "R";
 	  $configysfgateway['Info']['RXFrequency'] = $newFREQrx;
 	  $configysfgateway['Info']['TXFrequency'] = $newFREQtx;
-	  $configysfgateway['General']['Suffix'] = "RPT";
+	  $configysfgateway['General']['Suffix'] = "R";
 	  $configysf2dmr['Info']['RXFrequency'] = $newFREQrx;
 	  $configysf2dmr['Info']['TXFrequency'] = $newFREQrx;
-	  $configysf2dmr['YSF Network']['Suffix'] = "RPT";
+	  $configysf2dmr['YSF Network']['Suffix'] = "R";
 	  $configysf2nxdn['Info']['RXFrequency'] = $newFREQrx;
 	  $configysf2nxdn['Info']['TXFrequency'] = $newFREQtx;
-	  $configysf2nxdn['YSF Network']['Suffix'] = "RPT";
+	  $configysf2nxdn['YSF Network']['Suffix'] = "R";
 	  $configysf2p25['Info']['RXFrequency'] = $newFREQrx;
 	  $configysf2p25['Info']['TXFrequency'] = $newFREQtx;
-	  $configysf2p25['YSF Network']['Suffix'] = "RPT";
+	  $configysf2p25['YSF Network']['Suffix'] = "R";
 	  $configdgidgateway['Info']['RXFrequency'] = $newFREQrx;
 	  $configdgidgateway['Info']['TXFrequency'] = $newFREQtx;
-	  $configdgidgateway['General']['Suffix'] = "RPT";
-	  $configdmr2ysf['YSF Network']['Suffix'] = "RPT";
+	  $configdgidgateway['General']['Suffix'] = "R";
+	  $configdmr2ysf['YSF Network']['Suffix'] = "R";
 	  $confignxdngateway['Info']['RXFrequency'] = $newFREQrx;
 	  $confignxdngateway['Info']['TXFrequency'] = $newFREQtx;
-	  $confignxdngateway['General']['Suffix'] = "RPT";
+	  $confignxdngateway['General']['Suffix'] = "R";
 
 	  system($rollFREQirc);
 	  system($rollFREQdvap);
@@ -1224,6 +1224,7 @@ if (!empty($_POST)):
 	  $configysf2p25['Info']['Description'] = $newCallsignUpper."_Pi-Star";
 	  $configdgidgateway['General']['Callsign'] = $newCallsignUpper;
 	  $configdgidgateway['Info']['Description'] = $newCallsignUpper."_Pi-Star";
+	  $configm17gateway['Info']['Description'] = $newCallsignUpper."_Pi-Star";
 	  if ($configPistarRelease['Pi-Star']['Version'] >= "4.1.4") {
 	    $rollAPRSGatewayCallsign = 'sudo sed -i "/Callsign=/c\\Callsign='.$newCallsignUpper.'" /etc/aprsgateway';
 	    system($rollAPRSGatewayCallsign);
@@ -3036,7 +3037,7 @@ if (!empty($_POST)):
 		if(!isset($confignxdngateway['APRS']['Address'])) { $confignxdngateway['APRS']['Server'] = "127.0.0.1"; }
 		if(!isset($confignxdngateway['APRS']['Port'])) { $confignxdngateway['APRS']['Port'] = "8673"; }
 		if(!isset($confignxdngateway['APRS']['Suffix'])) { $confignxdngateway['APRS']['Suffix'] = "N"; }
-		if(!isset($confignxdngateway['APRS']['Description'])) { $confignxdngateway['APRS']['Description'] = $configysfgateway['APRS']['Description']; }
+		if(!isset($confignxdngateway['APRS']['Description'])) { $confignxdngateway['APRS']['Description'] = "APRS for NXDN Gateway"; }
 		// GPSd stuff
 		if(!isset($confignxdngateway['GPSD']['Enable'])) { $confignxdngateway['GPSD']['Enable'] = "0"; }
 		if(!isset($confignxdngateway['GPSD']['Address'])) { $confignxdngateway['GPSD']['Address'] = "127.0.0.1"; }
@@ -3083,8 +3084,7 @@ if (!empty($_POST)):
 		if (!isset($confignxdngateway['APRS']['Address'])) { $confignxdngateway['APRS']['Address'] = "127.0.0.1"; }
 		if (!isset($confignxdngateway['APRS']['Port'])) { $confignxdngateway['APRS']['Port'] = "8673"; }
 		if (!isset($confignxdngateway['APRS']['Suffix'])) { $confignxdngateway['APRS']['Suffix'] = "N"; }
-		if (!isset($confignxdngateway['APRS']['Description'])) { $confignxdngateway['APRS']['Description'] = $configysfgateway['Info']['Name']."_".$configysfgateway['General']['Suffix']; }
-		if (isset($confignxdngateway['APRS']['Description'])) { $confignxdngateway['APRS']['Description'] = $configysfgateway['Info']['Name']."_".$configysfgateway['General']['Suffix']; }
+		if (!isset($confignxdngateway['APRS']['Description'])) { $confignxdngateway['APRS']['Description'] = "APRS for NXDN Gateway"; }
 		if (!isset($confignxdngateway['GPSD']['Enable'])) { $confignxdngateway['GPSD']['Enable'] = "0"; }
 		if (!isset($confignxdngateway['GPSD']['Address'])) { $confignxdngateway['GPSD']['Address'] = "127.0.0.1"; }
 		if (!isset($confignxdngateway['GPSD']['Port'])) { $confignxdngateway['GPSD']['Port'] = "2947"; }
@@ -3132,8 +3132,7 @@ if (!empty($_POST)):
 		if (!isset($configysfgateway['APRS']['Enable'])) { $configysfgateway['APRS']['Enable'] = "0"; }
 		if (!isset($configysfgateway['APRS']['Address'])) { $configysfgateway['APRS']['Address'] = "127.0.0.1"; }
 		if (!isset($configysfgateway['APRS']['Port'])) { $configysfgateway['APRS']['Port'] = "8673"; }
-		if (!isset($configysfgateway['APRS']['Description'])) { $configysfgateway['APRS']['Description'] = $configysfgateway['Info']['Name']."_".$configysfgateway['General']['Suffix']; }
-		if (isset($configysfgateway['APRS']['Description'])) { $configysfgateway['APRS']['Description'] = $configysfgateway['Info']['Name']."_".$configysfgateway['General']['Suffix']; }
+		if (!isset($configysfgateway['APRS']['Description'])) { $configysfgateway['APRS']['Description'] = "APRS for YSFGateway"; }
 		if (!isset($configysfgateway['APRS']['Suffix'])) { $configysfgateway['APRS']['Suffix'] = "Y"; }
 		if (isset($configysfgateway['aprs.fi'])) { unset($configysfgateway['aprs.fi']); }
 	}
