@@ -582,7 +582,7 @@ if (isPaused("YSF")) {
 <?php
 }
 
-    if (getServiceEnabled('/etc/dgidgateway') == 1 )  { // Hide DGId GW info when GW not enabled
+if (getServiceEnabled('/etc/dgidgateway') == 1 )  { // Hide DGId GW info when GW not enabled
 ?>
 <div class="divTable">
   <div class="divTableHead">DG-ID Gateway Status</div>
@@ -604,7 +604,7 @@ if (isPaused("YSF")) {
 </div>
 <br />
 <?php
-    }
+}
 
 	$testYSF2DMR = 0;
 	if ( isset($_SESSION['YSF2DMRConfigs']['Enabled']['Enabled']) ) {
@@ -805,28 +805,31 @@ if (getConfigItem("NXDN", "RAN", $_SESSION['MMDVMHostConfigs'])) {
 			echo "<div class='divTable'>\n";
             		echo "<div class='divTableHead'>APRS Being Sent To</div>\n";
             		echo "<div class='divTableBody'>\n";
-			if ($testAPRSdmr == 1) {
-				echo "<div class='divTableRow center'>\n<div class='divTableCell hwinfo'><div class=\"active-mode-cell\" title=\"DMR\">DMR</div></div>\n</div>\n";
-			}
-			if ($testAPRSircddb == 1) {
+			if (isProcessRunning("APRSGateway")) {	
+			    if ($testAPRSdmr == 1) {
+			 	echo "<div class='divTableRow center'>\n<div class='divTableCell hwinfo'><div class=\"active-mode-cell\" title=\"DMR\">DMR</div></div>\n</div>\n";
+			    }
+			    if ($testAPRSircddb == 1) {
 				echo "<div class='divTableRow center'>\n<div class='divTableCell hwinfo'><div class=\"active-mode-cell\" title=\"ircDDB\">ircDDB</div></div>\n</div>\n";
-			}
-			if ($testAPRSysf == 1) {
+			    }    
+			    if ($testAPRSysf == 1) {
 				echo "<div class='divTableRow center'>\n<div class='divTableCell hwinfo'><div class=\"active-mode-cell\" title=\"YSF\">YSF</div></div>\n</div>\n";
-			}
-			if ($testAPRSdgid == 1) {
+			    }
+			    if ($testAPRSdgid == 1) {
 				echo "<div class='divTableRow center'>\n<div class='divTableCell hwinfo'><div class=\"active-mode-cell\" title=\"DGId\">DGId</div></div>\n</div>\n";
-			}
-			if ($testAPRSnxdn == 1) {
+			    }
+			    if ($testAPRSnxdn == 1) {
 				echo "<div class='divTableRow center'>\n<div class='divTableCell hwinfo'><div class=\"active-mode-cell\" title=\"NXDN\">NXDN</div></div>\n</div>\n";
-			}
-			if ($testAPRSm17 == 1) {
+			    }
+			    if ($testAPRSm17 == 1) {
 				echo "<div class='divTableRow center'>\n<div class='divTableCell hwinfo'><div class=\"active-mode-cell\" title=\"M17\">M17</div></div>\n</div>\n";
+			    }
+			    echo "</div>\n</div>\n<br />";
+			} else {
+				echo "<div class='divTableRow center'>\n<div class='divTableCell hwinfo'><div class=\"inactive-mode-cell\" title=\"Offline\">Offline</div>";
 			}
-			echo "</div>\n</div>\n<br />";
 		}
-	   }
-    }
-
+	}
+}
 ?>
 
