@@ -87,7 +87,9 @@ for ($i = 0;  ($i <= $lastHeardRows - 1); $i++) {
 		} else {
 			echo "<td>$listElem[5]</td>";
 		}
-		if ($listElem[6] == null) {
+		if ($listElem[6] == null && (file_exists("/etc/.CALLERDETAILS")))  {
+			echo "<td colspan =\"3\" style=\"background:#d11141;color:#fff;\">TX</td>";
+		} else if ($listElem[6] == null) {
 			// Live duration
 			$utc_time = $listElem[0];
 			$utc_tz =  new DateTimeZone('UTC');
