@@ -134,7 +134,7 @@ checkSessionValidity();
 	    <input type="hidden" name="display-lastcaller" value="OFF" />
 	    <div style="float: right; vertical-align: bottom; padding-top: 0px;">
 	       <div class="grid-container" style="display: inline-grid; grid-template-columns: auto 40px; padding: 0 8px 0 5px; grid-column-gap: 5px;">
-		<?php if($_SESSION['PiStarRelease']['Pi-Star']['ProcNum'] >= 4) { ?>
+		<?php if(isset($_SESSION['PiStarRelease']['Pi-Star']['ProcNum']) && ($_SESSION['PiStarRelease']['Pi-Star']['ProcNum'] >= 4)) { ?>
 		 <div class="grid-item" style="padding-top: 5px;" title="Display Last/Current Caller Details table in Dashboard">Caller Details: </div>
 	    	   <div class="grid-item">
 		    <div>
@@ -206,7 +206,7 @@ checkSessionValidity();
                     echo 'function reloadRadioInfo(){'."\n";
                     echo '  $("#radioInfo").load("/mmdvmhost/radioinfo.php",function(){ setTimeout(reloadRadioInfo, 1000) });'."\n";
                     echo '}'."\n";
-                    echo 'setTimeout(reloadRadioInfo, 15000);'."\n";
+                    echo 'setTimeout(reloadRadioInfo, 1000);'."\n";
                     echo '$(window).trigger(\'resize\');'."\n";
                     echo '</script>'."\n";
                     echo '<div id="radioInfo">'."\n";
