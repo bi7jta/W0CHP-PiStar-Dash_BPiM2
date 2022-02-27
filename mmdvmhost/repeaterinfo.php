@@ -883,9 +883,10 @@ if (getConfigItem("NXDN", "RAN", $_SESSION['MMDVMHostConfigs'])) {
 			    if ($testAPRSm17 == 1) {
 				echo "<div class='divTableRow center'>\n<div class='divTableCell hwinfo'><div class=\"active-mode-cell\" title=\"M17\">M17</div></div>\n</div>\n";
 			    }
-			    echo "</div>\n</div>\n<br />";
+			    echo "</div>\n</div>\n<br />\n";
 			} else {
-				echo "<div class='divTableRow center'>\n<div class='divTableCell hwinfo'><div class=\"inactive-mode-cell\" title=\"Offline\">Offline</div>";
+				echo "<div class='divTableRow center'>\n<div class='divTableCell hwinfo' style=\"background: $tableRowEvenBg;\" title=\"Service Not Started\">Service Not Started</div>\n</div>\n";
+			        echo "</div>\n</div>\n<br />\n";
 			}
 		}
 	}
