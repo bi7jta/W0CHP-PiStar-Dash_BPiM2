@@ -120,32 +120,35 @@ elseif (floatval($listElem[8]) >= 0.0 && floatval($listElem[8]) <= 1.9)
 }
 
 if (!is_numeric($listElem[2])) {
-        $searchCall = $listElem[2];
-        $callMatch = array();
-	if ($mode == "NXDN") {
-	        $handle = @fopen("/usr/local/etc/NXDN.csv", "r");
-	} else { # all other modes
-	        $handle = @fopen("/usr/local/etc/stripped.csv", "r");
+    $searchCall = $listElem[2];
+    $callMatch = array();
+    if ($mode == "NXDN") {
+	$handle = @fopen("/usr/local/etc/NXDN.csv", "r");
+    } else { # all other modes
+	$handle = @fopen("/usr/local/etc/stripped.csv", "r");
+    }
+    if ($handle)
+    { 
+	while (!feof($handle))
+	{
+	    $buffer = fgets($handle);
+	    if (strpos($buffer, $searchCall) !== FALSE) {
+		$csvBuffer = explode(",", $buffer);
+		if(strpos($searchCall, $csvBuffer[1]) !== FALSE)
+		$callMatch[] = $buffer;
+	    }
 	}
-        if ($handle)
-        {       
-                while (!feof($handle))
-                {
-                        $buffer = fgets($handle);
-                        if (strpos($buffer, $searchCall) !== FALSE)
-                        {
-                                $csvBuffer = explode(",", $buffer);
-                                if(strpos($searchCall, $csvBuffer[1]) !== FALSE)
-                                        $callMatch[] = $buffer;
-                        }
-                }
-                fclose($handle);
-        }
-        $callMatch = explode(",", $callMatch[0]);
-        $name = "$callMatch[2] $callMatch[3]";
-        $city = $callMatch[4];
-        $state = $callMatch[5];
-        $country = $callMatch[6];
+	fclose($handle);
+    }
+    $callMatch = explode(",", $callMatch[0]);
+    $name = "$callMatch[2] $callMatch[3]";
+    $city = $callMatch[4];
+    $state = $callMatch[5];
+    $country = $callMatch[6];
+    if (empty($callMatch[0])) {
+	$name = getName($listElem[2]);
+	$country = "---";
+    }
 }
 
 if (strlen($target) >= 2) {
