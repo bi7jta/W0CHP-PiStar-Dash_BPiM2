@@ -156,13 +156,15 @@ if (!empty($_POST["submit_mode"]) && empty($_POST["mode_sel"])) { //handler for 
             <label for="mode-sel-2">D-Star'.(($DSTAR=='0' && file_exists($DSTAR_paused)?" <span class='paused-mode-span'>(Paused)</span>":"")).'</label>
             &nbsp;| <input name="mode_sel" '.(($P25=='0' && !file_exists($P25_paused)?'disabled="disabled"':"")).' access="false" id="mode-sel-3"  value="P25" type="radio">
             <label for="mode-sel-3">P25'.(($P25=='0' && file_exists($P25_paused)?" <span class='paused-mode-span'>(Paused)</span>":"")).'</label>
-            &nbsp;| <input name="mode_sel" '.(($NXDN=='0' && !file_exists($NXDN_paused)?'disabled="disabled"':"")).' access="false" id="mode-sel-4"  value="NXDN" type="radio">
-            <label for="mode-sel-4">NXDN'.(($NXDN=='0' && file_exists($NXDN_paused)?" <span class='paused-mode-span'>(Paused)</span>":"")).'</label>
 			<br /><br />
-            <input name="mode_sel" '.(($M17=='0' && !file_exists($M17_paused)?'disabled="disabled"':"")).' access="false" id="mode-sel-5"  value="M17" type="radio">
+            <input name="mode_sel" '.(($NXDN=='0' && !file_exists($NXDN_paused)?'disabled="disabled"':"")).' access="false" id="mode-sel-4"  value="NXDN" type="radio">
+            <label for="mode-sel-4">NXDN'.(($NXDN=='0' && file_exists($NXDN_paused)?" <span class='paused-mode-span'>(Paused)</span>":"")).'</label>
+            &nbsp;| <input name="mode_sel" '.(($M17=='0' && !file_exists($M17_paused)?'disabled="disabled"':"")).' access="false" id="mode-sel-5"  value="M17" type="radio">
             <label for="mode-sel-5">M17'.(($M17=='0' && file_exists($M17_paused)?" <span class='paused-mode-span'>(Paused)</span>":"")).'</label>
+<!--
             &nbsp;| <input name="mode_sel" '.(($AX25=='0' && !file_exists($AX25_paused)?'disabled="disabled"':"")).' access="false" id="mode-sel-6"  value="AX25" type="radio">
             <label for="mode-sel-6">AX.25'.(($AX25=='0' && file_exists($AX25_paused)?" <span class='paused-mode-span'>(Paused)</span>":"")).'</label>
+-->
             &nbsp;| <input name="mode_sel" '.(($POCSAG=='0' && !file_exists($POCSAG_paused)?'disabled="disabled"':"")).' access="false" id="mode-sel-7"  value="POCSAG" type="radio">
             <label for="mode-sel-7">POCSAG'.(($POCSAG=='0' && file_exists($POCSAG_paused)?" <span class='paused-mode-span'>(Paused)</span>":"")).'</label>
             &nbsp;| <input name="mode_sel" '.(($APRS=='0' && !file_exists($APRS_paused)?'disabled="disabled"':"")).' access="false" id="mode-sel-8"  value="APRS" type="radio">
