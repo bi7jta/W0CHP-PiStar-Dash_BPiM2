@@ -7,7 +7,7 @@ $localTXList = $lastHeard;
 
 ?>
 <input type="hidden" name="localtx-autorefresh" value="OFF" />
-  <div style="float: right; vertical-align: bottom; padding-top: 0px;">
+  <div style="float: right; vertical-align: bottom; padding-top: 0px;" id="localtxAR">
 	<div class="grid-container" style="display: inline-grid; grid-template-columns: auto 40px; padding: 1px; grid-column-gap: 5px;">
 	    <div class="grid-item" style="padding-top: 6px;">Auto-Refresh
 	    </div>

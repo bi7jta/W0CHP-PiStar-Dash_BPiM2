@@ -156,7 +156,7 @@ a {
 
 a:link, a:visited {
     text-decoration: none;
-    color: #0000e0;
+    color: <?php echo $textLinks; ?>
 }
 
 a.tooltip, a.tooltip:link, a.tooltip:visited, a.tooltip:active  {
@@ -677,6 +677,14 @@ input.toggle-round-flat:focus + label {
 .inactive-mode-cell {
     color: <?php echo $textModeCellInactiveColor; ?>;
     background: <?php echo $backgroundModeCellInactiveColor; ?>;
+}
+
+#localtxAR,
+#lhAR,
+#pagesAR,
+br,
+.noMob {
+    display: none;
 }
 
 /*

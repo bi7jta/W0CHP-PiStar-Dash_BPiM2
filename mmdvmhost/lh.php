@@ -15,7 +15,7 @@ if (isset($_SESSION['CSSConfigs']['ExtraSettings']['LastHeardRows'])) {
 
 ?>
 <input type="hidden" name="lh-autorefresh" value="OFF" />
-  <div style="float: right; vertical-align: bottom; padding-top: 0px;">
+  <div style="float: right; vertical-align: bottom; padding-top: 0px;"  id="lhAR">
         <div class="grid-container" style="display: inline-grid; grid-template-columns: auto 40px; padding: 1px; grid-column-gap: 5px;">
             <div class="grid-item" style="padding-top: 6px;">Auto-Refresh
             </div>
@@ -34,8 +34,8 @@ if (isset($_SESSION['CSSConfigs']['ExtraSettings']['LastHeardRows'])) {
       <th><a class="tooltip" href="#"><?php echo $lang['target'];?><span><b>Target, D-Star Reflector, DMR Talk Group etc</b></span></a></th>
       <th><a class="tooltip" href="#"><?php echo $lang['src'];?><span><b>Received from source</b></span></a></th>
       <th><a class="tooltip" href="#"><?php echo $lang['dur'];?>(s)<span><b>Duration in Seconds</b></span></a></th>
-      <th><a class="tooltip" href="#"><?php echo $lang['loss'];?><span><b>Packet Loss</b></span></a></th>
-      <th><a class="tooltip" href="#"><?php echo $lang['ber'];?><span><b>Bit Error Rate</b></span></a></th>
+      <th class="noMob"><a class="tooltip" href="#"><?php echo $lang['loss'];?><span><b>Packet Loss</b></span></a></th>
+      <th class="noMob"><a class="tooltip" href="#"><?php echo $lang['ber'];?><span><b>Bit Error Rate</b></span></a></th>
     </tr>
 <?php
 $i = 0;
@@ -106,16 +106,16 @@ for ($i = 0;  ($i <= $lastHeardRows - 1); $i++) {
 			echo "<td>$listElem[6]</td>";
 
 			// Colour the Loss Field
-			if (floatval($listElem[7]) < 1) { echo "<td>$listElem[7]</td>"; }
-			elseif (floatval($listElem[7]) == 1) { echo "<td><span style='color:#005028;font-weight:bold'>$listElem[7]</span></td>"; }
-			elseif (floatval($listElem[7]) > 1 && floatval($listElem[7]) <= 3) { echo "<td><span style='color:#984C00;font-weight:bold'>$listElem[7]</span></td>"; }
-			else { echo "<td><span style='color:#8A0B2B;font-weight:bold;'>$listElem[7]</span></td>"; }
+			if (floatval($listElem[7]) < 1) { echo "<td class='noMob'>$listElem[7]</td>"; }
+			elseif (floatval($listElem[7]) == 1) { echo "<td class='noMob'><span style='color:#005028;font-weight:bold'>$listElem[7]</span></td>"; }
+			elseif (floatval($listElem[7]) > 1 && floatval($listElem[7]) <= 3) { echo "<td class='noMob'><span style='color:#984C00;font-weight:bold'>$listElem[7]</span></td>"; }
+			else { echo "<td class='noMob'><span style='color:#8A0B2B;font-weight:bold;'>$listElem[7]</span></td>"; }
 
 			// Colour the BER Field
-			if (floatval($listElem[8]) == 0) { echo "<td>$listElem[8]</td>"; }
-			elseif (floatval($listElem[8]) >= 0.0 && floatval($listElem[8]) <= 1.9) { echo "<td><span style='color:#005028;font-weight:bold'>$listElem[8]</span></td>"; }
-			elseif (floatval($listElem[8]) >= 2.0 && floatval($listElem[8]) <= 4.9) { echo "<td><span style='color:#984C00;font-weight:bold'>$listElem[8]</span></td>"; }
-			else { echo "<td><span style='color:#8A0B2B;font-weight:bold;'>$listElem[8]</span></td>"; }
+			if (floatval($listElem[8]) == 0) { echo "<td class='noMob'>$listElem[8]</td>"; }
+			elseif (floatval($listElem[8]) >= 0.0 && floatval($listElem[8]) <= 1.9) { echo "<td class='noMob'><span style='color:#005028;font-weight:bold'>$listElem[8]</span></td>"; }
+			elseif (floatval($listElem[8]) >= 2.0 && floatval($listElem[8]) <= 4.9) { echo "<td class='noMob'><span style='color:#984C00;font-weight:bold'>$listElem[8]</span></td>"; }
+			else { echo "<td class='noMob'><span style='color:#8A0B2B;font-weight:bold;'>$listElem[8]</span></td>"; }
 		}
 		echo"</tr>\n";
 		}
