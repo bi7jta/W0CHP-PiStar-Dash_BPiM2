@@ -400,93 +400,93 @@ checkSessionValidity();
 		// begin admin selection form
 		if ($_SERVER["PHP_SELF"] == "/admin/index.php") {
             if (!empty($_POST) || !empty($_GET)) { echo '<br /><hr />'; }
-            echo '<div style="text-align:left;font-weight:bold;">Admin Sections</div>';
-		    echo '<form method="get" id="admin_sel" name="admin_sel" action="'.htmlentities($_SERVER['PHP_SELF']).'">';
-            echo '  <table>';
-		    echo '    <tr>';
-		    echo '      <th>Select a Mode/Network/Service to Manage</th>';
-		    echo '    </tr>';
-		    echo '    <tr>';
-		    echo '      <td>';
-		    echo '      <div class="mode_flex">';
-		    echo '        <div class="mode_flex row">';
-		    echo '          <div class="mode_flex column">';
-		    echo '            <button form="admin_sel" type="submit" value="mode_man" name="func"><span>Instant Mode Manager</span></button>';
-		    echo '          </div><div class="mode_flex column">';
+                    echo '<div style="text-align:left;font-weight:bold;">Admin Sections</div>'."\n";
+		    echo '<form method="get" id="admin_sel" name="admin_sel" action="'.htmlentities($_SERVER['PHP_SELF']).'">'."\n";
+                    echo '  <table>'."\n";
+		    echo '    <tr>'."\n";
+		    echo '      <th>Select a Mode/Network/Service to Manage</th>'."\n";
+		    echo '    </tr>'."\n";
+		    echo '    <tr>'."\n";
+		    echo '      <td>'."\n";
+		    echo '      <div class="mode_flex">'."\n";
+		    echo '        <div class="mode_flex row">'."\n";
+		    echo '          <div class="mode_flex column">'."\n";
+		    echo '            <button form="admin_sel" type="submit" value="mode_man" name="func"><span>Instant Mode Manager</span></button>'."\n";
+		    echo '          </div><div class="mode_flex column">'."\n";
                     $testMMDVModeDSTARnet = getConfigItem("D-Star", "Enable", $_SESSION['MMDVMHostConfigs']);
                     if ( $testMMDVModeDSTARnet == 1 && !isPaused("D-Star") ) {
-                        echo '    <button form="admin_sel" type="submit" value="ds_man" name="func"><span>D-Star Manager</span></button>';
+                        echo '		<button form="admin_sel" type="submit" value="ds_man" name="func"><span>D-Star Manager</span></button>'."\n";
                     }
                     else {
-                        echo '    <button form="admin_sel" disabled="disabled" type="submit" value="ds_man" name="func"><span>D-Star Manager</span></button>';
+                        echo '		<button form="admin_sel" disabled="disabled" type="submit" value="ds_man" name="func"><span>D-Star Manager</span></button>'."\n";
                     } 
-		    echo '          </div><div class="mode_flex column">';
+		    echo '          </div><div class="mode_flex column">'."\n";
                     $testMMDVModeDMR = getConfigItem("DMR", "Enable", $_SESSION['MMDVMHostConfigs']);
 		    if ($bmEnabled == true && $testMMDVModeDMR ==1) {
-		        echo '    <button form="admin_sel" type="submit" value="bm_man" name="func"><span>BrandMeister Manager</span></button>';
+		        echo '		<button form="admin_sel" type="submit" value="bm_man" name="func"><span>BrandMeister Manager</span></button>'."\n";
 		    }
 		    else {
-			echo '    <button form="admin_sel" disabled="disabled" type="submit" value="bm_man" name="func"><span>BrandMeister Manager</span></button>';
+			echo '		<button form="admin_sel" disabled="disabled" type="submit" value="bm_man" name="func"><span>BrandMeister Manager</span></button>'."\n";
 		    }
-		    echo '          </div><div class="mode_flex column">';
+		    echo '          </div><div class="mode_flex column">'."\n";
                     if ($tgifEnabled ==1 && $testMMDVModeDMR ==1) {
-		        echo '    <button form="admin_sel" type="submit" value="tgif_man" name="func"><span>TGIF Manager</span></button>';
+		        echo '		<button form="admin_sel" type="submit" value="tgif_man" name="func"><span>TGIF Manager</span></button>'."\n";
 		    }
 		    else {
-			 echo '   <button form="admin_sel" disabled="disabled" type="submit" value="tgif_man" name="func"><span>TGIF Manager</span></button>';
+			echo '		<button form="admin_sel" disabled="disabled" type="submit" value="tgif_man" name="func"><span>TGIF Manager</span></button>'."\n";
 		    }
-		    echo '          </div><div class="mode_flex column">';
+		    echo '          </div><div class="mode_flex column">'."\n";
         	    $testMMDVModeYSF = getConfigItem("System Fusion", "Enable", $_SESSION['MMDVMHostConfigs']);
         	    $testDMR2YSF = $_SESSION['DMR2YSFConfigs']['Enabled']['Enabled'];
         	    if ($testMMDVModeYSF == 1 || $testDMR2YSF == 1) {
-		        echo '    <button form="admin_sel" type="submit" value="ysf_man" name="func"><span>YSF Manager</span></button>';
+		        echo '		<button form="admin_sel" type="submit" value="ysf_man" name="func"><span>YSF Manager</span></button>'."\n";
 		    }
 		    else {
-		        echo '    <button form="admin_sel" disabled="disabled" type="submit" value="ysf_man" name="func"><span>YSF Manager</span></button>';
+		        echo '		<button form="admin_sel" disabled="disabled" type="submit" value="ysf_man" name="func"><span>YSF Manager</span></button>'."\n";
 		    }
-		    echo '      </div></div>';
-                    echo '        <div class="mode_flex row">';
-                    echo '          <div class="mode_flex column">';
+		    echo '      </div></div>'."\n";
+                    echo '        <div class="mode_flex row">'."\n";
+                    echo '          <div class="mode_flex column">'."\n";
                     $testMMDVModeP25 = getConfigItem("P25", "Enable", $_SESSION['MMDVMHostConfigs']);
                     if ($testMMDVModeP25 == 1) {
-		    	echo '    <button form="admin_sel" type="submit" value="p25_man" name="func"><span>P25 Manager</span></button>';
+		    	echo '		<button form="admin_sel" type="submit" value="p25_man" name="func"><span>P25 Manager</span></button>'."\n";
 		    }
 		    else {
-		    	echo '    <button form="admin_sel" disabled="disabled" type="submit" value="p25_man" name="func"><span>P25 Manager</span></button>';
+		    	echo '		<button form="admin_sel" disabled="disabled" type="submit" value="p25_man" name="func"><span>P25 Manager</span></button>'."\n";
 		    }
-		    echo '          </div><div class="mode_flex column">';
+		    echo '          </div><div class="mode_flex column">'."\n";
                     $testMMDVModeNXDN = getConfigItem("NXDN", "Enable", $_SESSION['MMDVMHostConfigs']);
                     if ($testMMDVModeNXDN == 1 && !isPaused("NXDN")) {
-		    	echo '    <button form="admin_sel" type="submit" value="nxdn_man" name="func"><span>NXDN Manager</span></button>';
+		    	echo '		<button form="admin_sel" type="submit" value="nxdn_man" name="func"><span>NXDN Manager</span></button>'."\n";
 		    }
 		    else {
-		    	echo '    <button form="admin_sel" disabled="disabled" type="submit" value="nxdn_man" name="func"><span>NXDN Manager</span></button>';
+		    	echo '		<button form="admin_sel" disabled="disabled" type="submit" value="nxdn_man" name="func"><span>NXDN Manager</span></button>'."\n";
 		    }
-		    echo '          </div><div class="mode_flex column">';
+		    echo '          </div><div class="mode_flex column">'."\n";
                     $testMMDVModeM17 = getConfigItem("M17 Network", "Enable", $_SESSION['MMDVMHostConfigs']);
                     if ($testMMDVModeM17 == 1 && !isPaused("M17")) {
-		    	echo '    <button form="admin_sel" type="submit" value="m17_man" name="func"><span>M17 Manager</span></button>';
+		    	echo '		<button form="admin_sel" type="submit" value="m17_man" name="func"><span>M17 Manager</span></button>'."\n";
 		    }
 		    else {
-		    	echo '    <button form="admin_sel" disabled="disabled" type="submit" value="m17_man" name="func"><span>M17 Manager</span></button>';
+		    	echo '		<button form="admin_sel" disabled="disabled" type="submit" value="m17_man" name="func"><span>M17 Manager</span></button>'."\n";
                     }
-		    echo '          </div><div class="mode_flex column">';
+		    echo '          </div><div class="mode_flex column">'."\n";
                     $testMMDVModePOCSAG = getConfigItem("POCSAG", "Enable", $_SESSION['MMDVMHostConfigs']);
 		    if ($testMMDVModePOCSAG == 1) {
-		        echo '    <button form="admin_sel" type="submit" value="pocsag_man" name="func"><span>POCSAG Manager</span></button>';
+		        echo '		<button form="admin_sel" type="submit" value="pocsag_man" name="func"><span>POCSAG Manager</span></button>'."\n";
 		    }
 		    else {
-		        echo '    <button form="admin_sel" disabled="disabled" type="submit" value="pocsag_man" name="func"><span>POCSAG Manager</span></button>';
+		        echo '		<button form="admin_sel" disabled="disabled" type="submit" value="pocsag_man" name="func"><span>POCSAG Manager</span></button>'."\n";
 		    }
-		    echo '          </div><div class="mode_flex column">';
-		    echo '    <button form="admin_sel" type="submit" value="sys_man" name="func"><span>System Manager</span></button>';
-		    echo '      </div></div></div></td>';
-		    echo '    </tr>';
-		    echo '    <tr>';
-		    echo '      <td style="white-space:normal;padding: 3px;"><b>Note:</b> Modes/networks/services not <a href="/admin/configure.php">globally configured/enabled</a>, or that are paused, are not selectable here until they are enabled or <a href="./?func=mode_man">resumed from pause</a>.</td>';
-		    echo '    </tr>';
-		    echo '  </table>';
-		    echo ' </form>';
+		    echo '          </div><div class="mode_flex column">'."\n";
+		    echo '		<button form="admin_sel" type="submit" value="sys_man" name="func"><span>System Manager</span></button>'."\n";
+		    echo '      </div></div>'."\n".'</div>'."\n".'</td>'."\n";
+		    echo '    </tr>'."\n";
+		    echo '    <tr>'."\n";
+		    echo '      <td style="white-space:normal;padding: 3px;"><b>Note:</b> Modes/networks/services not <a href="/admin/configure.php">globally configured/enabled</a>, or that are paused, are not selectable here until they are enabled or <a href="./?func=mode_man">resumed from pause</a>.</td>'."\n";
+		    echo '    </tr>'."\n";
+		    echo '  </table>'."\n";
+		    echo ' </form>'."\n";
 		}
 
 	    if ($_SERVER["PHP_SELF"] == "/admin/index.php") {
