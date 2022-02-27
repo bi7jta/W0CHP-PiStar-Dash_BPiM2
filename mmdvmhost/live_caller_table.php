@@ -1,16 +1,15 @@
 <?php
 if (file_exists('/etc/.CALLERDETAILS')) {
-include_once $_SERVER['DOCUMENT_ROOT'].'/config/config.php';          // MMDVMDash Config
-include_once $_SERVER['DOCUMENT_ROOT'].'/mmdvmhost/tools.php';        // MMDVMDash Tools
-include_once $_SERVER['DOCUMENT_ROOT'].'/mmdvmhost/functions.php';    // MMDVMDash Functions
+    #include_once $_SERVER['DOCUMENT_ROOT'].'/config/config.php';          // MMDVMDash Config
+    #include_once $_SERVER['DOCUMENT_ROOT'].'/mmdvmhost/tools.php';        // MMDVMDash Tools
+    #include_once $_SERVER['DOCUMENT_ROOT'].'/mmdvmhost/functions.php';    // MMDVMDash Functions
 
-if (constant("TIME_FORMAT") == "24") {
-    $local_time = date('H:i:s M. jS');
-} else {
-    $local_time = date('h:i:s A M. jS');
-}
+    if (constant("TIME_FORMAT") == "24") {
+        $local_time = date('H:i:s M. jS');
+    } else {
+        $local_time = date('h:i:s A M. jS');
+    }
 ?>
-
 <div style="vertical-align: bottom; font-weight: bold;text-align:left;">Current / Last Caller Details</div>
   <table style="word-wrap: break-word; white-space:normal;">
     <tr>
@@ -120,6 +119,10 @@ for ($i = 0;  ($i <= 0); $i++) { //Last 20  calls
 		$city = $callMatch[4];
 		$state = $callMatch[5];
 		$country = $callMatch[6];
+		if (empty($callMatch[0])) {
+		    $name = getName($listElem[2]);
+		    $country = "---";
+		}
 	    }
 
 	    if (strlen($target) >= 2) {
@@ -191,8 +194,9 @@ for ($i = 0;  ($i <= 0); $i++) { //Last 20  calls
 	    }
 	}
     }
-}
 ?>
 </table>
 <br />
-
+<?php
+}
+?>

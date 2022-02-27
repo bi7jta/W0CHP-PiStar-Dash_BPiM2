@@ -1615,6 +1615,54 @@ function getActualLink($logLines, $mode) {
     return "Service Not Started";
 }
 
+function getName($callsign) {
+    $name = array();
+    $TMP_CALL_NAME = "/tmp/Callsign_Name.txt"; // in cache?
+    $cl_api = "https://callook.info/$callsign/json";
+    if (file_exists($TMP_CALL_NAME)) {
+        if (strpos($callsign,"-")) {
+            $callsign = substr($callsign,0,strpos($callsign,"-"));
+        }
+        $delimiter =" ";
+        $contents = exec("egrep -m1 '".$callsign.$delimiter."' ".$TMP_CALL_NAME, $output);
+        if (count($output) !== 0) {
+            $name = substr($output[0], strpos($output[0],$delimiter));
+            $name = substr($name, strpos($name,$delimiter));
+            return $name;
+        }
+    }
+    $fp = fsockopen('ssl://callook.info', '443', $errno, $errstr, 10);
+    if ($fp) {
+        $options = array(
+                'http'=>array(
+                    'method'=>"GET",
+                    'header'=>"Accept-language: en\r\n" .
+                               "User-Agent: W0CHP-PiStar-Dash; Name Lookup Function - <https://w0chp.net/w0chp-pistar-dash/>\r\n"
+                )
+        );
+        $context = stream_context_create($options);
+        $api_data = file_get_contents($cl_api, false, $context);
+        $result = json_decode($api_data);
+        if ($result->status == 'INVALID') { // Check if in NOT in API DB
+            $name = "---"; // placeholder for non US/FCC callsigns
+        } else {
+            $name_full = $result->name; // grab name value from json
+            $name_array = explode(' ', $name_full);
+            foreach($name_array as $key => $value) {
+                $name = implode (" ",$name_array);
+            }
+            $name = ucwords(strtolower($name)); // name result is all UPPER. Convert to Camel Case.
+        }   
+        $fp = fopen($TMP_CALL_NAME .'.TMP', 'a');
+        $TMP_STRING = $callsign .' '  .$name;
+        fwrite($fp, $TMP_STRING.PHP_EOL);
+        fclose($fp);
+        exec('sort ' .$TMP_CALL_NAME.'.TMP' .' ' .$TMP_CALL_NAME .' | uniq  > ' .$TMP_CALL_NAME);
+    } else {
+        return _("Unable to connect to Call Sign Lookup API");
+    }
+}
+
 //Some basic inits
 if (!in_array($_SERVER["PHP_SELF"],array('/mmdvmhost/bm_links.php','/mmdvmhost/bm_manager.php'),true)) {
     $logLinesMMDVM = getMMDVMLog();
