@@ -222,10 +222,11 @@ if ((strcmp($origin, "admin") == 0) && isset($_SESSION['DAPNETAPIKeyConfigs'])) 
 	<div style="display:inline-block;width: 100%;">
 	  <div style="float: right; vertical-align: bottom; padding-top: 0px;" id="pagesAR">
 	  <div class="grid-container" style="display: inline-grid; grid-template-columns: auto 40px; padding: 1px; grid-column-gap: 5px;">
-            <div class="grid-item" style="padding-top: 6px;">Auto-Refresh
+            <div class="grid-item" style="padding-top: 10px;">Auto-Refresh
             </div>
             <div class="grid-item">
-		<div><input id="toggle-pocsag-autorefresh" class="toggle toggle-round-flat" type="checkbox" name="pocsag-autorefresh" value="ON" checked="checked" aria-checked="true" aria-label="POCSAG Auto Refresh" onchange="setPagesAutorefresh(this)" /><label for="toggle-pocsag-autorefresh" ></label>
+		<div style="padding-top:6px;">
+		  <input id="toggle-pocsag-autorefresh" class="toggle toggle-round-flat" type="checkbox" name="pocsag-autorefresh" value="ON" checked="checked" aria-checked="true" aria-label="POCSAG Auto Refresh" onchange="setPagesAutorefresh(this)" /><label for="toggle-pocsag-autorefresh" ></label>
 		</div>
 	    </div>
 	  </div>

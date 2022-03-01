@@ -168,6 +168,11 @@ table td {
     vertical-align: middle;
 }
 
+.divTableCellSans {
+    font-size: <?php echo "$contentFontSize"; ?>px;
+    color: #000000;
+}
+
 .divTableCell {
     font-family: 'Inconsolata', monospace;
     font-weight: 500;

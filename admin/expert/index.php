@@ -14,6 +14,7 @@ if (!isset($_SESSION) || !is_array($_SESSION)) {
 // Load the language support
 require_once $_SERVER['DOCUMENT_ROOT'].'/config/language.php';
 require_once $_SERVER['DOCUMENT_ROOT'].'/config/version.php';
+
 ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
 	  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
@@ -57,10 +58,15 @@ require_once $_SERVER['DOCUMENT_ROOT'].'/config/version.php';
 } else {
 	    include './header-menu.inc';
 ?>
-            <div class="contentwide">	
+            <div class="contentwide">
+
+	      <div class="divTable">
+		<div class="divTableBody">
+		  <div class="divTableRow">
+		    <div class="divTableCellSans">
 		    <h2>Expert Editors &amp; Tools</h2>
 		    <h3>**WARNING**</h3>
-            <p>
+            		<p>
 			Pi-Star Expert editors have been created to make editing some of the extra settings in the<br />
 			config files more simple, allowing you to update some areas of the config files without the<br />
 			need to login to your Pi over SSH.<br />
@@ -73,8 +79,12 @@ require_once $_SERVER['DOCUMENT_ROOT'].'/config/version.php';
 			With that warning in mind, you are free to make any changes you like by accessing the expert areas
             in the upper-left-hand menus. <br />
 			</p>
+		</div>
+	      </div>
 	    </div>
-	    
+	  </div>
+
+	</div>
 	    <div class="footer">
 		Pi-Star web config, &copy; Andy Taylor (MW0MWZ) 2014-<?php echo date("Y"); ?>.<br />
 		<a href="https://w0chp.net/w0chp-pistar-dash/" style="color: #ffffff; text-decoration:underline;">W0CHP-PiStar-Dash</a> enhancements by W0CHP<br />

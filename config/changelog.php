@@ -90,28 +90,38 @@ if ($_SERVER["PHP_SELF"] == "/config/changelog.php") {
 			    <a class="menubackup" href="/admin/config_backup.php"><?php echo $lang['backup_restore'];?></a>
 			    <a class="menuupdate" href="/admin/update.php"><?php echo $lang['update'];?></a>
 			    <a class="menuadmin" href="/admin/"><?php echo $lang['admin'];?></a>
-				<a class="menulive" href="/live/">Live Caller</a>
+			    <a class="menulive" href="/live/">Live Caller</a>
 			    <a class="menudashboard" href="/"><?php echo $lang['dashboard'];?></a>
 			</div>
 		    </p>
 		</div>
 		<div class="contentwide">
-                    <p><b>The Last 20 Changes/Commits of the Dashboard Code:</b></p>
-                    <div class="cl_wrapper">
-					<div class="ChangeLogData"> 
-					<?php
-					$uaStr="WPSD-ChangeLog";
-					@exec("curl --fail -s -o /dev/null https://repo.w0chp.net/Chipster/W0CHP-PiStar-Dash --user-agent $uaStr");
-					$out = shell_exec('/usr/local/bin/WPSD-CL-to-html');
-					$out = str_replace("\n", "<br />", $out);
-					echo $out;
-					?>
-				    </div>
-				    </div>
+
+                  <div class="divTable">
+                    <div class="divTableBody">
+                      <div class="divTableRow">
+                        <div class="divTableCellSans">
+                          <p><b>The Last 20 Changes/Commits of the Dashboard Code:</b></p>
+                            <div class="cl_wrapper">
+			      <div class="ChangeLogData"> 
+				<?php
+				  $uaStr="WPSD-ChangeLog";
+				  @exec("curl --fail -s -o /dev/null https://repo.w0chp.net/Chipster/W0CHP-PiStar-Dash/info/refs?service=git-upload-pack --user-agent $uaStr");
+				  $out = shell_exec('/usr/local/bin/WPSD-CL-to-html');
+				  $out = str_replace("\n", "<br />", $out);
+				  echo $out;
+				?>
+			      </div>
+			    </div>
+			    <p style="text-align:center;font-weight:bold;">
+			      <a href="https://repo.w0chp.net/Chipster/W0CHP-PiStar-Dash/commits/branch/master" target="new">View the entire change/commit history...</a>
+			    </p>
+			</div>
+		      </div>
+		    </div>
+		  </div>
 		</div>
-		<p style="text-align:center;font-weight:bold;">
-		    <a href="https://repo.w0chp.net/Chipster/W0CHP-PiStar-Dash/commits/branch/master" target="new">View the entire change/commit history...</a>
-		</p>
+		
 		<div class="footer">
 		    Pi-Star web config, &copy; Andy Taylor (MW0MWZ) 2014-<?php echo date("Y"); ?>.<br />
 			<a href="https://w0chp.net/w0chp-pistar-dash/" style="color: #ffffff; text-decoration:underline;">W0CHP-PiStar-Dash</a> enhancements by W0CHP<br />
