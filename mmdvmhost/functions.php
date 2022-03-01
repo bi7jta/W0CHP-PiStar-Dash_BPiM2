@@ -1051,10 +1051,10 @@ function getHeardList($logLines) {
 		    if ($signal < 0) {
 			$signal = 0;
 		    }
+		    */
 		    if ($signal >= 9) {
 			$signal = 9;
 		    }
-		    */
 		    if ($relint > 0) {
 			if ($signal >= 9) {
 			    $rssi = "<img src='/images/5-bar.png' /> S{$signal}+{$relint}dB ({$dBraw})";
