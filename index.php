@@ -125,7 +125,7 @@ checkSessionValidity();
                    update();
                  });
                 </script>
-                <div style="text-align: left; padding-left: 8px; padding-top: 5px; float: left;">Hotspot Time (<?php echo date('T')?>):
+                <div style="text-align: left; padding-left: 8px; padding-top: 5px; float: left;">
                 <span id="timer"></span>
             </div>
 	    <?php 
