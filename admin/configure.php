@@ -2901,8 +2901,18 @@ if (!empty($_POST)):
 	if (!isset($configysfgateway['GPSD']['Enable'])) { $configysfgateway['GPSD']['Enable'] = "0"; }
  	if (!isset($configysfgateway['GPSD']['Address'])) { $configysfgateway['GPSD']['Address'] = "127.0.0.1"; }
 	if (!isset($configysfgateway['GPSD']['Port'])) { $configysfgateway['GPSD']['Port'] = "2947"; }
-	if (isset($configysfgateway['General']['LocalPort'])) { $configysfgateway['General']['LocalPort'] = "42025"; }
-	if (isset($configysfgateway['General']['RptPort'])) { $configysfgateway['General']['RptPort'] = "42026"; }
+	if ($configdgidgateway['Enabled']['Enabled'] == "1") { // if DGId is enabled by user, use the proper DGId ports, otherwise, use MMDVMHost ports:
+	    $configysfgateway['General']['LocalPort'] = "42025";
+	} else {
+	    $configysfgateway['General']['LocalPort'] = "42000";
+	    $configmmdvm['System Fusion Network']['GatewayPort'] = "42000"; // ensure MMDVMhost uses new YSFgw port when reverting
+	}
+	if ($configdgidgateway['Enabled']['Enabled'] == "1") {
+	    $configysfgateway['General']['RptPort'] = "42026";
+	} else {
+	    $configysfgateway['General']['RptPort'] = "3200";
+	    $configmmdvm['System Fusion Network']['LocalPort'] = "3200"; // ensure MMDVMhost uses new YSFgw port when reverting
+	}
 
 	// Add missing options to YSF2DMR
 	if (!isset($configysf2dmr['Info']['Power'])) { $configysf2dmr['Info']['Power'] = "1"; }
