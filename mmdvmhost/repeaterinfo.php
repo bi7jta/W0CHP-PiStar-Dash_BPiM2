@@ -313,7 +313,11 @@ if (isProcessRunning("M17Gateway")) {
                 echo "<div class='divTableRow center'><div class='divTableCell hwinfo' ".GetActiveConnectionStyle($remoteMMDVMResults, "dstar")." title=\"".$linkedTo."\">".$linkedTo."</div></div>\n";
         }
         if ($_SESSION['ircDDBConfigs']['aprsEnabled'] == 1) {
-	        echo "<div class='divTableRow center'><div class='divTableHeadCell'>APRS</div></div><div class='divTableRow center'><div class='divTableCell hwinfo' style=\"background: $tableRowEvenBg;\">".substr($_SESSION['ircDDBConfigs']['aprsAddress'], 0, 18)."</div></div>\n";
+		if (substr($_SESSION['ircDDBConfigs']['aprsAddress'], 0, 18) == '127.0.0.1') {
+	            echo "<div class='divTableRow center'><div class='divTableHeadCell'>APRS</div></div><div class='divTableRow center'><div class='divTableCell hwinfo'><div class=\"active-mode-cell\" title=\"Using APRSGateway\">APRSGateway</div></div></div>\n";
+		} else {
+	            echo "<div class='divTableRow center'><div class='divTableHeadCell'>APRS</div></div><div class='divTableRow center'><div class='divTableCell hwinfo' style=\"background: $tableRowEvenBg;\">".substr($_SESSION['ircDDBConfigs']['aprsAddress'], 0, 18)."</div></div>\n";
+		}
         }
         if ($_SESSION['ircDDBConfigs']['ircddbEnabled'] == 1) {
 	        echo "<div class='divTableRow center'><div class='divTableHeadCell'>ircDDB</div></div><div class='divTableRow center'><div class='divTableCell hwinfo' style=\"background: $tableRowEvenBg;\">".substr($_SESSION['ircDDBConfigs']['ircddbHostname'], 0 ,18)."</div></div>\n";
@@ -869,7 +873,7 @@ if (getConfigItem("NXDN", "RAN", $_SESSION['MMDVMHostConfigs'])) {
 			 	echo "<div class='divTableRow center'>\n<div class='divTableCell hwinfo'><div class=\"active-mode-cell\" title=\"DMR\">DMR</div></div>\n</div>\n";
 			    }
 			    if ($testAPRSircddb == 1) {
-				echo "<div class='divTableRow center'>\n<div class='divTableCell hwinfo'><div class=\"active-mode-cell\" title=\"ircDDB\">ircDDB</div></div>\n</div>\n";
+				echo "<div class='divTableRow center'>\n<div class='divTableCell hwinfo'><div class=\"active-mode-cell\" title=\"D-Star / ircDDB\">D-Star / ircDDB</div></div>\n</div>\n";
 			    }    
 			    if ($testAPRSysf == 1) {
 				echo "<div class='divTableRow center'>\n<div class='divTableCell hwinfo'><div class=\"active-mode-cell\" title=\"YSF\">YSF</div></div>\n</div>\n";
