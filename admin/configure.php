@@ -939,9 +939,11 @@ if (!empty($_POST)):
 	}
 
 	// Set the POCSAG Whitelist
-	if (isset($configdapnetgw['General']['WhiteList'])) { unset($configdapnetgw['General']['WhiteList']); }
+	//if (isset($configdapnetgw['General']['WhiteList'])) { unset($configdapnetgw['General']['WhiteList']); }
 	if (empty($_POST['pocsagWhitelist']) != TRUE ) {
 	  $configdapnetgw['General']['WhiteList'] = preg_replace('/[^0-9\,]/', '', escapeshellcmd($_POST['pocsagWhitelist']));
+	} else {
+	    unset($configdapnetgw['General']['WhiteList']);
 	}
 
 	// Set the POCSAG Blacklist

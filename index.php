@@ -140,7 +140,7 @@ checkSessionValidity();
 		    <div>
 			<input id="toggle-display-lastcaller" class="toggle toggle-round-flat" type="checkbox" name="display-lastcaller" value="ON" <?php if(file_exists('/etc/.CALLERDETAILS')) { echo 'checked="checked"';}?> aria-checked="true" aria-label="Display Last Caller Details" onchange="setLastCaller(this)" /><label for="toggle-display-lastcaller" ></label>
 		<?php } else { ?>
-		 <div class="grid-item" style="padding-top: 5px;" title="Function Disabled: Hardware too weak.">Caller Details <small>(disabled)</small>: </div>
+		 <div class="grid-item" style="padding-top: 5px;opacity: 0.5;" title="Function Disabled: Hardware too weak.">Caller Details: </div>
 	    	   <div class="grid-item">
 		    <div>
 			<input id="toggle-display-lastcaller" class="toggle toggle-round-flat" type="checkbox" name="display-lastcaller" value="ON"  aria-checked="true" aria-label="Display Last Caller Details" disabled="disabled" title="Function Disabled: Hardware too weak." /><label for="toggle-display-lastcaller" title="Function Disabled: Hardware too weak."></label>
