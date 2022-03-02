@@ -2625,30 +2625,55 @@ if (!empty($_POST)):
           $configmmdvm['DMR']['ColorCode'] = escapeshellcmd($_POST['dmrColorCode']);
 	}
 
-	// Set MMDVMHost DMR Access List
+	// Set MMDVMHost DMR Access List ; post DMR ID/CCS7 to ACL config if submitted AND ONLY IF 7 digits.
 	if (isset($configmmdvm['DMR']['WhiteList'])) { unset($configmmdvm['DMR']['WhiteList']); }
-	if (empty($_POST['confDMRWhiteList']) != TRUE ) {
+	$validCCS7 = strlen($_POST['confDMRWhiteList']);
+	if (empty($_POST['confDMRWhiteList']) != TRUE && $validCCS7 >= 7) { // if not at least 7 digits, do not add to ACL
 	  $configmmdvm['DMR']['WhiteList'] = escapeshellcmd(preg_replace('/[^0-9\,]/', '', $_POST['confDMRWhiteList']));
 	}
 
-	// Set Node Lock Status
-	if (empty($_POST['nodeMode']) != TRUE ) {
-	  if (escapeshellcmd($_POST['nodeMode']) == 'prv' ) {
-            $configmmdvm['DMR']['SelfOnly'] = 1;
-            $configmmdvm['D-Star']['SelfOnly'] = 1;
+	// Set Node Lock Status; holy fucking use cases to prevent dumb
+	// (most? heh) users from causing network loops. UGH!!!! :-/
+	// This logic will not allow the "Public" radio button to be selected unless ACL has at least one entry
+	if (empty($_POST['nodeMode']) != TRUE ) { // node mode selected/posted
+	  if (escapeshellcmd($_POST['nodeMode']) == 'prv' ) { // private node...set is up in mmdvm...
+	    $configmmdvm['DMR']['SelfOnly'] = 1;
+	    $configmmdvm['D-Star']['SelfOnly'] = 1;
 	    $configmmdvm['System Fusion']['SelfOnly'] = 1;
 	    $configmmdvm['P25']['SelfOnly'] = 1;
 	    $configmmdvm['NXDN']['SelfOnly'] = 1;
-            system('sudo sed -i "/restriction=/c\\restriction=1" /etc/dstarrepeater');
-          }
-	  if (escapeshellcmd($_POST['nodeMode']) == 'pub' ) {
-            $configmmdvm['DMR']['SelfOnly'] = 0;
-            $configmmdvm['D-Star']['SelfOnly'] = 0;
-	    $configmmdvm['System Fusion']['SelfOnly'] = 0;
-	    $configmmdvm['P25']['SelfOnly'] = 0;
-	    $configmmdvm['NXDN']['SelfOnly'] = 0;
-            system('sudo sed -i "/restriction=/c\\restriction=0" /etc/dstarrepeater');
-          }
+	    $configmmdvm['M17']['SelfOnly'] = 1;
+	    system('sudo sed -i "/restriction=/c\\restriction=1" /etc/dstarrepeater');
+	    if (empty($_POST['confDMRWhiteList'] == TRUE)) { // user cleared out ACL, so delete them from mmdvm config and force mode to private
+		unset($configmmdvm['DMR']['WhiteList']);
+		$configmmdvm['DMR']['SelfOnly'] = 1;
+		$configmmdvm['D-Star']['SelfOnly'] = 1;
+		$configmmdvm['System Fusion']['SelfOnly'] = 1;
+		$configmmdvm['P25']['SelfOnly'] = 1;
+ 		$configmmdvm['NXDN']['SelfOnly'] = 1;
+		$configmmdvm['M17']['SelfOnly'] = 1;
+		system('sudo sed -i "/restriction=/c\\restriction=1" /etc/dstarrepeater');
+	    }
+	  }
+	  if (escapeshellcmd($_POST['nodeMode']) == 'pub' ) { // public node
+	    if (empty($_POST['confDMRWhiteList'] == TRUE)) {  // user didn't add any DMR ID's to ACL. Force back to private node...
+		$configmmdvm['DMR']['SelfOnly'] = 1;
+		$configmmdvm['D-Star']['SelfOnly'] = 1;
+		$configmmdvm['System Fusion']['SelfOnly'] = 1;
+		$configmmdvm['P25']['SelfOnly'] = 1;
+		$configmmdvm['NXDN']['SelfOnly'] = 1;
+		$configmmdvm['M17']['SelfOnly'] = 1;
+		system('sudo sed -i "/restriction=/c\\restriction=1" /etc/dstarrepeater');
+	    } else {  // OK we have DMRid(s) in the ACL, open her up...
+		$configmmdvm['DMR']['SelfOnly'] = 0;
+		$configmmdvm['D-Star']['SelfOnly'] = 0;
+		$configmmdvm['System Fusion']['SelfOnly'] = 0;
+		$configmmdvm['P25']['SelfOnly'] = 0;
+		$configmmdvm['NXDN']['SelfOnly'] = 0;
+		$configmmdvm['M17']['SelfOnly'] = 0;
+		system('sudo sed -i "/restriction=/c\\restriction=0" /etc/dstarrepeater');
+	    }
+	  }
 	}
 
 	// Set the Hostname
@@ -4292,14 +4317,20 @@ else:
 <?php } ?>
     <tr>
     <td align="left"><a class="tooltip2" href="#"><?php echo $lang['node_type'];?>:<span><b>Node Lock</b>Set the public/private node type. &quot;Private&quot; limits access to your system to your ID/Callsign only, this may be a licence requirement for your country and helps prevent network loops.</span></a></td>
-    <td align="left" colspan="3">
+    <td align="left" colspan="2">
     <input type="radio" name="nodeMode" value="prv"<?php if ($configmmdvm['DMR']['SelfOnly'] == 1) {echo ' checked="checked"';} ?> />Private
+<?php if (empty($configmmdvm['DMR']['WhiteList'])) { ?>
+    <input type="radio" name="nodeMode" value="pub" disabled="diabled" />Public</td>
+<?php } else { ?>
     <input type="radio" name="nodeMode" value="pub"<?php if ($configmmdvm['DMR']['SelfOnly'] == 0) {echo ' checked="checked"';} ?> />Public</td>
+<?php } ?>
+    <td align="left"style='word-wrap: break-word;white-space: normal;'><b>Note:</b> Public mode cannot be enabled without entering at least one allowed DMR ID in the access list below and applying the changes FIRST.</td>
     </tr>
-<?php if (file_exists('/etc/dstar-radio.mmdvmhost') && $configmmdvm['DMR']['Enable'] == 1 && $configmmdvm['DMR']['SelfOnly'] == 0) { ?>
+<?php if (file_exists('/etc/dstar-radio.mmdvmhost') && $configmmdvm['DMR']['Enable'] == 1) { ?>
     <tr>
     <td align="left"><a class="tooltip2" href="#">DMR Access List:<span><b>DMR IDs</b>Set the DMR IDs here that should have access to your hotspot, expected comma seperated list.</span></a></td>
-    <td align="left" colspan="2"><input type="text" name="confDMRWhiteList" size="30" maxlength="50" value="<?php if (isset($configmmdvm['DMR']['WhiteList'])) { echo $configmmdvm['DMR']['WhiteList']; } ?>" /></td>
+    <td align="left" colspan="2"><input type="text" placeholder="7654321" name="confDMRWhiteList" size="30" maxlength="50" value="<?php if (isset($configmmdvm['DMR']['WhiteList'])) { echo $configmmdvm['DMR']['WhiteList']; } ?>" /></td>
+    <td align="left" style='word-wrap: break-word;white-space: normal;'>Enter one, or a comma-separated list of DMR IDs which are allowed access to this hotspot/repeater (required for public functionality).</td>
     </tr>
 <?php } ?>
 <?php if (file_exists('/etc/aprsgateway')) {
