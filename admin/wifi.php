@@ -28,8 +28,8 @@ echo '<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
 <link rel="shortcut icon" href="/images/favicon.ico" type="image/x-icon" />
 <meta http-equiv="Expires" content="0" />
 <link rel="stylesheet" type="text/css" href="/css/pistar-css.php?version=<?php echo $versionCmd; ?>" />
-<link rel="stylesheet" type="text/css" href="wifi/styles.php" />
-<script type="text/Javascript" src="/js/functions.js?version=1.720"></script>
+<link rel="stylesheet" type="text/css" href="/wifi/styles.php" />
+<script type="text/Javascript" src="/wifi/functions.js"></script>
 <title>Pi-Star - Digital Voice Dashboard - WiFi Config</title>
 </head>
 <body>'."\n";
