@@ -37,8 +37,8 @@ if ($_SERVER["PHP_SELF"] == "/config/changelog.php") {
 	    <title>W0CHP-PiStar Dash ChangeLog</title>
 	    <link rel="stylesheet" type="text/css" href="/css/font-awesome-4.7.0/css/font-awesome.min.css" />
 	    <link rel="stylesheet" type="text/css" href="/css/pistar-css.php?version=<?php echo $versionCmd; ?>" />
-        <script type="text/javascript" src="/js/jquery.min.js"></script>
-        <script type="text/javascript" src="/js/functions.js?version=1.720"></script>
+        <script type="text/javascript" src="/js/jquery.min.js?version=<?php echo $versionCmd; ?>"></script>
+        <script type="text/javascript" src="/js/functions.js?version=<?php echo $versionCmd; ?>"></script>
         <script type="text/javascript">
           $.ajaxSetup({ cache: false });
         </script>

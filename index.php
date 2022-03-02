@@ -59,13 +59,13 @@ checkSessionValidity();
 	<title><?php echo "$MYCALL"." - ".$lang['digital_voice']." ".$lang['dashboard'];?></title>
 	<link rel="stylesheet" type="text/css" href="/css/font-awesome-4.7.0/css/font-awesome.min.css" />
 	<?php include_once "config/browserdetect.php"; ?>
-	<script type="text/javascript" src="/js/jquery.min.js"></script>
-	<script type="text/javascript" src="/js/functions.js?version=1.720"></script>
+	<script type="text/javascript" src="/js/jquery.min.js?version=<?php echo $versionCmd; ?>"></script>
+	<script type="text/javascript" src="/js/functions.js?version=<?php echo $versionCmd; ?>"></script>
 	<script type="text/javascript">
 	 $.ajaxSetup({ cache: false });
 	</script>
         <link href="/js/select2/css/select2.min.css" rel="stylesheet" />
-        <script src="/js/select2/js/select2.min.js"></script>
+        <script src="/js/select2/js/select2.min.js?version=<?php echo $versionCmd; ?>"></script>
          <script type="text/javascript">
           $(document).ready(function() {
             $('.ysfLinkHost').select2();
