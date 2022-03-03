@@ -24,6 +24,10 @@ body, font {
     text-align: center;
 }
 
+.middle {
+    vertical-align: middle;
+}
+
 .header {
     background : <?php echo $backgroundBanners; ?>;
     text-decoration : none;
@@ -194,7 +198,7 @@ table td {
 }
 
 .divTableCell.hwinfo {
-    padding: 2px;
+    padding: 4px;
 }
 
 body {
