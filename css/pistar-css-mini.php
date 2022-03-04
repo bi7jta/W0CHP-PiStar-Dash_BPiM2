@@ -45,11 +45,9 @@ body, font {
     min-height : 100%;
 }
 
-#hwInfo {
-    display: none;
-}
-
-#radioInfo {
+#hwInfo,
+#radioInfo,
+#pocsag-sec {
     display: none;
 }
 
@@ -86,7 +84,7 @@ body, font {
     font-size : 9px;
     text-align : center;
     padding : 10px 0 10px 0;
-    clear : both;
+    clear: both;
 }
 
 #tail {
@@ -682,7 +680,6 @@ input.toggle-round-flat:focus + label {
 #localtxAR,
 #lhAR,
 #pagesAR,
-br,
 .noMob {
     display: none;
 }

@@ -219,6 +219,7 @@ if ((strcmp($origin, "admin") == 0) && isset($_SESSION['DAPNETAPIKeyConfigs'])) 
 } // admin
 ?>
 
+<div id='pocsag-sec'>
 	<div style="display:inline-block;width: 100%;">
 	  <div style="float: right; vertical-align: bottom; padding-top: 0px;" id="pagesAR">
 	  <div class="grid-container" style="display: inline-grid; grid-template-columns: auto 40px; padding: 1px; grid-column-gap: 5px;">
@@ -249,4 +250,5 @@ if ((strcmp($origin, "admin") == 0) && isset($_SESSION['DAPNETAPIKeyConfigs'])) 
 	    </table>
 	</div>
   </div>
+</div>
 </div>
