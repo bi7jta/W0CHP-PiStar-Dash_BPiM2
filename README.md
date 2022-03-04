@@ -180,24 +180,6 @@ Run:
   * Note: Last-Heard and other dynamic tables are now only displayed in the main admin page.
     Once entering the sub-pages, the focus is now on the task-at-hand, and the dynamic tables are not displayed.
 
-* Test / Unstable Features (not installed by default)
-
-  * Talker Alias (DMR) displayed next to call sign when operator is transmitting
-    (when applicable). This needs a lot of work, yet.  This feature is on the
-  ` TalkerAlias` branch. Caveat emptor...this is buggy!
-
-* Name Look-ups: Caller names are displayed next to call sign. There are two versions/two ways this is performed:
-
-    * DMR (and other modes if call sign is in DMR database): This method searches through the local Pi-Star DMR ID database.
-      The caveat here, is that this method relies on hams having a DMR ID for non-DMR modes, and due to the PiStar DB, only displays the first name.
-
-    * All Modes: This method looks up each callsign and displays the full name via an API call to the Callook.info service, by `W1JDD`.
-      The caveat here, is that Callook.info only works with USA call signs.
-
-    * The aforementioned respective name lookup branches are `FirstNames-Local_DB` and `FullNames-API`. Beware: these are very slow on shitty
-      hardware, and requires *lots* of horsepower. Like the `TalkerAlias` feature/branch listed above, these features are
-      unstable, and still needs quite a bit of work.
-
 * Much more. See [screenshots below](#screenshots).
 
 ### Features in Official Pi-Star Which are Intentionally Omitted in `W0CHP-PiStar-Dash`
