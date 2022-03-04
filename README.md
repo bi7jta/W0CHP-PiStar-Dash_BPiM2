@@ -117,6 +117,50 @@ Run:
 
 7. You can at any time start over and reset to the "normal" Pi-Star colors, by performing a CSS Factory Reset (`Configuration -> Expert -> Tools -> CSS Tool`).
 
+8. If you'd like to start over with the custom `W0CHP` colors/CSS, you can copy/paste the following into your `/etc/pistar-css.ini`:
+
+    ```ini
+    [Background]
+    PageColor=#212529
+    ContentColor=#212529
+    BannersColor=#2e363f
+    NavbarColor=#2e363f
+    NavbarHoverColor=#65737e
+    DropdownColor=#6b6c73
+    DropdownHoverColor=#3c3f47
+    ServiceCellActiveColor=#1fa11f
+    ServiceCellInactiveColor=#BB5555
+    ModeCellDisabledColor=#535353
+    ModeCellActiveColor=#1fa11f
+    ModeCellInactiveColor=#BB5555
+    ModeCellPausedColor=#ff9933
+    NavPanelColor=#212529
+    TableRowBgEvenColor=#949494
+    TableRowBgOddColor=#7a7c80
+
+    [Text]
+    TextColor=#bebebe
+    TextLinkColor=#1a2573
+    TableHeaderColor=#bebebe
+    BannersColor=#bebebe
+    NavbarColor=#bebebe
+    NavbarHoverColor=#ffffff
+    DropdownColor=#ffffff
+    DropdownHoverColor=#ffffff
+    ServiceCellActiveColor=#ffffff
+    ServiceCellInactiveColor=#bebebe
+    ModeCellDisabledColor=#b3b3af
+    ModeCellActiveColor=#ffffff
+    ModeCellInactiveColor=#bebebe
+
+    [ExtraSettings]
+    TableBorderColor=#3c3f47
+    LastHeardRows=40
+    MainFontSize=18
+    HeaderFontSize=34
+    BodyFontSize=17
+    ```
+
 ## Features, Enhancements and Omissions (not an exhaustive list)
 
 * Updated user interface elements galore, styling, wider, bigger, updated fonts, etc.
