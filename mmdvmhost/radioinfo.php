@@ -63,7 +63,7 @@ $ModemTCXO = str_replace("MHz", " MHz", exec("grep TCXO /etc/pistar-release | aw
                     	echo "<div class=\"divTableCell middle hwinfo\" style=\"font-weight:bold;padding:2px;\"><span style='color:#005028;'>Idle</span></div>";
 		    }
 		    else { 
-                        echo "<div class='error-state-cell' class=\"divTableCell middle hwinfo\" style=\"font-weight:bold;padding:2px;\">OFFLINE</div>";
+                        echo "<div class='error-state-cell divTableCell middle hwinfo' style=\"font-weight:bold;padding:2px;\">OFFLINE</div>";
 		    }
                 }
                 else if (getActualMode($lastHeard, $_SESSION['MMDVMHostConfigs']) === NULL) {
@@ -71,7 +71,7 @@ $ModemTCXO = str_replace("MHz", " MHz", exec("grep TCXO /etc/pistar-release | aw
                         echo "<div ass=\"divTableCell middle hwinfo\" tyle=\"font-weight:bold;padding:2px;\"><span style='color:#005028;'>Idle</span></div>";
                     }
                     else {
-                        echo "<div class='error-state-cell' class=\"divTableCell middle hwinfo\" style=\"font-weight:bold;padding:2px;\">OFFLINE</div>";
+                        echo "<div class='error-state-cell divTableCell middle hwinfo' style=\"font-weight:bold;padding:2px;\">OFFLINE</div>";
                     }
                 }
                 else if ($listElem[2] && $listElem[6] == null && getActualMode($lastHeard, $_SESSION['MMDVMHostConfigs']) === 'D-Star') {
