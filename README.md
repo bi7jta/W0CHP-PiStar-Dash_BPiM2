@@ -230,27 +230,15 @@ Run:
 Not all pages shown here. Note, that you can customize the colors to your preferences...
 
 ### Main Dashboard
-
 ![alt text](https://w0chp.net/img/WPSD_Dashboard.png "W0CHP Dashboard")
 
-### Admin Pages
-
-#### Main Admin Landing Page
+### Main Admin Landing Page
 ![alt text](https://w0chp.net/img/WPSD_Admin.png "W0CHP Admin Page")
 
-#### Instant Mode Manager
-![alt text](https://w0chp.net/img/WPSD_IMM.png "W0CHP Instant Mode Manager")
-
-#### BrandMeister Manager
+### BrandMeister Manager
 ![alt text](https://w0chp.net/img/WPSD_BMman.png "W0CHP BrandMeister Manager")
 
-#### D-Star Manager
-![alt text](https://w0chp.net/img/WPSD_DSman.png "W0CHP D-Star Manager")
-
-#### System Manager
-![alt text](https://w0chp.net/img/WPSD_SYSman.png "W0CHP System Manager")
-
-#### Live Caller Screen
+### Live Caller Screen
 ![alt-text](https://w0chp.net/img/WPSD_LC.png "Live Caller Screen")
 
 ## Credits
