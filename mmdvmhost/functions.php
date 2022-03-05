@@ -1047,23 +1047,25 @@ function getHeardList($logLines) {
 		    $dBraw = substr($rssi, strrpos($rssi,'/')+1); //average only
 		    $relint = intval($dBraw) + 93;
 		    $signal = round(($relint/6)+9, 0);
-		    /*
 		    if ($signal < 0) {
 			$signal = 0;
 		    }
-		    */
 		    if ($signal >= 9) {
 			$signal = 9;
 		    }
 		    if ($relint > 0) {
-			if ($signal >= 9) {
+			if ($signal = 9) {
 			    $rssi = "<img src='/images/5-bar.png' /> S{$signal}+{$relint}dB ({$dBraw})";
-			} elseif ($signal <= 0 && $signal >= -5) {
+			} elseif ($signal < 9 && $signal >= 7) {
+			    $rssi = "<img src='/images/4-bar.png' /> S{$signal}+{$relint}dB ({$dBraw})";
+			} elseif ($signal < 7 && $signal >= 5) {
 			    $rssi = "<img src='/images/3-bar.png' /> S{$signal}+{$relint}dB ({$dBraw})";
-			} elseif ($signal < -5 && $signal >= -9) {
+			} elseif ($signal < 5  && $signal >= 3) {
 			    $rssi = "<img src='/images/2-bar.png' /> S{$signal}+{$relint}dB ({$dBraw})";
-			} else {
+			} elseif ($signal < 3  && $signal >= 1) {
 			    $rssi = "<img src='/images/1-bar.png' /> S{$signal}+{$relint}dB ({$dBraw})";
+			} else {
+			    $rssi = "S{$signal}+{$relint}dB ({$dBraw})";
 			}
 		    } else {
 			$rssi = "S{$signal} ({$dBraw})";
