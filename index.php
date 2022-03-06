@@ -513,8 +513,10 @@ checkSessionValidity();
                 	        type: \"POST\",
   	          	        url: '/mmdvmhost/callerdetails_ajax.php',
                 	        data:{action:'enable'},
-				success:function(html) {
-					alert(html);
+				success: function(data) { 
+     				    $('#lcmsg').html(data).fadeIn('slow');
+				    $('#lcmsg').html(\"<em>For performance, the number of Last Heard rows will be decreased while Current/Last Caller is enabled.</em>\").fadeIn('slow')
+     				    $('#lcmsg').delay(4000).fadeOut('slow');
 				}
          	             });";
 	        echo '    }'."\n";
@@ -523,13 +525,16 @@ checkSessionValidity();
 	                        type: \"POST\",
 	                        url: '/mmdvmhost/callerdetails_ajax.php',
 	                        data:{action:'disable'},
-				success:function(html) {
-					alert(html);
+				success: function(data) { 
+     				    $('#lcmsg').html(data).fadeIn('slow');
+				    $('#lcmsg').html(\"<em>Current/Last Caller display disabled. Increasing Last Heard table rows to user preference (if set) or default (40).</em>\").fadeIn('slow')
+     				    $('#lcmsg').delay(4000).fadeOut('slow');
 				}
 	                      });";
 	        echo '    }'."\n";
 	        echo '}'."\n";
     		echo '</script>'."\n";
+		echo '<div id="lcmsg"></div>'."\n";
     		echo '<script type="text/javascript">'."\n";
     		echo 'function LiveCallerDetails(){'."\n";
     		echo '  $("#liveCallerDeets").load("/mmdvmhost/live_caller_table.php");'."\n";

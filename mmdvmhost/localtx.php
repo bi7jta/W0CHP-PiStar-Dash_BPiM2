@@ -7,18 +7,18 @@ $localTXList = $lastHeard;
 
 ?>
 <input type="hidden" name="localtx-autorefresh" value="OFF" />
-  <div style="float: right; vertical-align: bottom; padding-top: 0px;" id="localtxAR">
+  <div style="float: right; vertical-align: bottom;" id="localtxAR">
 	<div class="grid-container" style="display: inline-grid; grid-template-columns: auto 40px; padding: 1px; grid-column-gap: 5px;">
-	    <div class="grid-item" style="padding-top:10px;">Auto-Refresh
+	    <div class="grid-item" style="margin-top:-3px;">Auto-Refresh
 	    </div>
 	    <div class="grid-item">
-		<div style="padding-top:6px;">
+		<div style="margin-top:-7px;">
 		  <input id="toggle-localtx-autorefresh" class="toggle toggle-round-flat" type="checkbox" name="localtx-autorefresh" value="ON" checked="checked" aria-checked="true" aria-label="Auto-Refresh" onchange="setLocalTXAutorefresh(this)" /><label for="toggle-localtx-autorefresh" ></label>
 		</div>
 	    </div>
 	</div>
     </div>
-  <div style="vertical-align: bottom; font-weight: bold; padding-top:14px;text-align:left;"><?php echo $lang['local_tx_list'];?></div>
+  <div style="vertical-align: bottom; font-weight: bold; text-align:left;"><?php echo $lang['local_tx_list'];?></div>
   <table style="white-space:normal; word-wrap:break;">
     <tr>
       <th><a class="tooltip" href="#"><?php echo $lang['time'];?> (<?php echo date('T')?>)<span><b>Time in <?php echo date('T')?> time zone</b></span></a></th>
