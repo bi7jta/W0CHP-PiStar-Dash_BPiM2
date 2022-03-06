@@ -119,10 +119,15 @@ for ($i = 0;  ($i <= $lastHeardRows - 1); $i++) {
 			else { echo "<td class='noMob'><span style='color:#8A0B2B;font-weight:bold;'>$listElem[8]</span></td>"; }
 		}
 		echo"</tr>\n";
+		if (!empty($listElem[10] && file_exists("/etc/.SHOWDMRTA"))) {
+		    echo "<tr>";
+		    echo "<td colspan='2' style='background:$backgroundContent;'></td>";
+		    echo "<td colspan='6' style=\"text-align:left;background:#0000ff;color:#fff;\">&#8593; $listElem[10]</td>";
+		    echo "</tr>";
 		}
+	    }
 	}
-}
-
+    }
 ?>
   </table>
 
