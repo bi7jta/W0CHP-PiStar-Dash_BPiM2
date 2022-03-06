@@ -720,14 +720,14 @@ function getMMDVMLog() {
         $fileList = array_filter(array("/etc/.GETNAMES", "/etc/.CALLERDETAILS"), 'file_exists');
         if (!$file = array_shift($fileList)) {
             if ($_SESSION['CSSConfigs']['ExtraSettings']['LastHeardRows'] > 40 ) {
-                $logLines1 = explode("\n", `egrep -h "from|end|watchdog|lost" $logPath | sed '/\(CSBK\|overflow\|Downlink\|Valid\|Invalid\|\Talker\)/d'`);
+		$logLines1 = explode("\n", `egrep -h "from|end|watchdog|lost|Alias|0000" $logPath | sed '/\(CSBK\|overflow\|Downlink\|Valid\|Invalid\)/d'`);
 	    } else {
-                $logLines1 = explode("\n", `tail -500 $logPath | sed '/\(CSBK\|overflow\|Downlink\|Valid\|Invalid\|\Talker\)/d' | egrep -h "from|end|watchdog|lost"`);
+		$logLines1 = explode("\n", `tail -500 $logPath | sed '/\(CSBK\|overflow\|Downlink\|Valid\|Invalid\)/d' | egrep -h "from|end|watchdog|lost|Alias|0000"`);
 	    }
             $lineNos = sizeof($logLines1);
             $logLines1 = array_slice($logLines1, -1500);
         } else {
-            $logLines1 = explode("\n", `tail -500 $logPath | sed '/\(CSBK\|overflow\|Downlink\|Valid\|Invalid\|\Talker\)/d' | egrep -h "from|end|watchdog|lost"`);
+	    $logLines1 = explode("\n", `tail -500 $logPath | sed '/\(CSBK\|overflow\|Downlink\|Valid\|Invalid\)/d' | egrep -h "from|end|watchdog|lost|Alias|0000"`);
             $lineNos = sizeof($logLines1);
             $logLines1 = array_slice($logLines1, -500);
         }
@@ -738,14 +738,14 @@ function getMMDVMLog() {
 	    $fileList = array_filter(array("/etc/.GETNAMES", "/etc/.CALLERDETAILS"), 'file_exists');
 	    if (!$file = array_shift($fileList)) {
                 if ($_SESSION['CSSConfigs']['ExtraSettings']['LastHeardRows'] > 40 ) {
-                    $logLines2 = explode("\n", `egrep -h "from|end|watchdog|lost" $logPath | sed '/\(CSBK\|overflow\|Downlink\|Valid\|Invalid\|\Talker\)/d'`);
+		    $logLines2 = explode("\n", `egrep -h "from|end|watchdog|lost|Alias|0000" $logPath | sed '/\(CSBK\|overflow\|Downlink\|Valid\|Invalid\)/d'`);
 		} else {
-                    $logLines2 = explode("\n", `tail -500 $logPath | sed '/\(CSBK\|overflow\|Downlink\|Valid\|Invalid\|\Talker\)/d' | egrep -h "from|end|watchdog|lost"`);
+		    $logLines2 = explode("\n", `tail -500 $logPath | sed '/\(CSBK\|overflow\|Downlink\|Valid\|Invalid\)/d' | egrep -h "from|end|watchdog|lost|Alias|0000"`);
 		}
 	    } else {
-		$logLines2 = explode("\n", `tail -500 $logPath | sed '/\(CSBK\|overflow\|Downlink\|Valid\|Invalid\|\Talker\)/d' | egrep -h "from|end|watchdog|lost"`);
+		$logLines2 = explode("\n", `tail -500 $logPath | sed '/\(CSBK\|overflow\|Downlink\|Valid\|Invalid\)/d' | egrep -h "from|end|watchdog|lost|Alias|0000"`);
 	    }
-            $logLines2 = array_slice($logLines2, -500);
+	    $logLines2 = array_slice($logLines2, -500);
         }
     }
     if ($lineNos < 150) {
@@ -970,6 +970,9 @@ function getHeardList($logLines) {
     $m17ber	 = "";
     $m17rssi	 = "";
     $pocsagduration = "";
+    $ts1alias    = "---";
+    $ts2alias    = "---";
+    $alias       = "";
     foreach ($logLines as $logLine) {
 	$duration	= "";
 	$loss		= "";
@@ -1012,6 +1015,26 @@ function getHeardList($logLines) {
 	else if(strpos($logLine,"Preamble CSBK")) {
             continue;
 	}
+
+      if(strpos($logLine, "0000")){
+      	$decodedAlias = $decodedAlias = preg_replace('/[\x00-\x1F\x7F-\xA0\xAD]/u', '', decodeAlias($logLine));
+        if ($decodedAlias == "" && $alias == "") $decodedAlias="---";
+        else if ($alias!="---") $alias = str_replace("---", "", $alias);
+      	if ($alias == "")
+	      	$alias = $decodedAlias;
+	    else
+	    	$alias = $decodedAlias.$alias;
+      }
+      if (strpos($logLine,"Embedded Talker Alias")) {
+      	switch (substr($logLine, 27, strpos($logLine,",") - 27)) {
+          case "DMR Slot 1":
+            $ts1alias = $alias;
+            break;
+          case "DMR Slot 2":
+            $ts2alias = $alias;
+            break;
+        }
+      }
 
        if(strpos($logLine, "end of") || strpos($logLine, "watchdog has expired") || strpos($logLine, "ended RF data") || strpos($logLine, "d network data") || strpos($logLine, "RF user has timed out") || strpos($logLine, "transmission lost") || strpos($logLine, "POCSAG")) {
            $lineTokens = explode(", ",$logLine);
@@ -1134,6 +1157,7 @@ function getHeardList($logLines) {
 			$m17rssi	= $rssi;
 			break;
 		    case "POCSAG":
+			$alias = "";
 			$pocsagduration	= "POCSAG Data";
 			break;
 		}
@@ -1227,13 +1251,15 @@ function getHeardList($logLines) {
 		break;
 	}
 	
-	// Callsign or ID should be less than 11 chars long, otherwise it could be errorneous
 	if ( strlen($callsign) < 11 ) {
-	    array_push($heardList, array($timestamp, $mode, $callsign, $id, $target, $source, $duration, $loss, $ber, $rssi));
+	    array_push($heardList, array($timestamp, $mode, $callsign, $id, $target, $source, $duration, $loss, $ber, $rssi, $alias));
 	    $duration = "";
 	    $loss ="";
 	    $ber = "";
 	    $rssi = "";
+	    $alias = "";
+	    $ts1alias   = "---";
+	    $ts2alias   = "---";
 	}
     }
     return $heardList;
@@ -1248,6 +1274,9 @@ function getLastHeard($logLines) {
 	if ( ($listElem[1] == "D-Star") || ($listElem[1] == "YSF") || ($listElem[1] == "P25") || ($listElem[1] == "NXDN") || ($listElem[1] == "M17") || ($listElem[1] == "POCSAG") || (startsWith($listElem[1], "DMR")) ) {
 
 	    $callUuid = $listElem[2]."#".$listElem[1].$listElem[3].$listElem[5];
+	    if (!empty($listElem[10])) {
+		$listElem[10] = "Alias: ".$listElem[10]."";
+	    }
 	    if(!(array_search($callUuid, $heardCalls) > -1)) {
 		array_push($heardCalls, $callUuid);
 		array_push($lastHeard, $listElem);
@@ -1624,6 +1653,20 @@ function getActualLink($logLines, $mode) {
 	    break;
     }
     return "Service Not Started";
+}
+
+function decodeAlias($logLine) {
+  if (substr($logLine, 34, 2) !=="04")
+    $tok1 = encode(substr($logLine, 40, 2));
+  else
+  $tok1 = "";
+  $tok2 = encode(substr($logLine, 43, 2));
+  $tok3 = encode(substr($logLine, 46, 2));
+  $tok4 = encode(substr($logLine, 49, 2));
+  $tok5 = encode(substr($logLine, 52, 2));
+  $tok6 = encode(substr($logLine, 55, 2));
+  $tok7 = encode(substr($logLine, 58, 2));
+  return $tok1.$tok2.$tok3.$tok4.$tok5.$tok6.$tok7;
 }
 
 function getName($callsign) {

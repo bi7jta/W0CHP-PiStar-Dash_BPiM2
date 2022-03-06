@@ -79,6 +79,17 @@ function getSize($filesize, $precision = 2) {
 	return round($filesize, $precision).' '.$units[$idUnit].'B';
 }
 
+function encode($hex) {
+    $validchars = " abcdefghijklmnopqrstuvwxyzäöüßABCDEFGHIJKLMNOPQRSTUVWXYZÄÖÜ0123456789";
+    $str        = '';
+    $chrval     = hexdec($hex);
+    $str        = chr($chrval);
+    if (strpos($validchars, $str)>=0)
+      return $str;
+    else
+      return "";
+}
+
 function checkSetup() {
 	$el = error_reporting();
 	error_reporting(E_ERROR | E_WARNING | E_PARSE);
