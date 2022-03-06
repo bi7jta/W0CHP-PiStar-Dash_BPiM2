@@ -126,7 +126,7 @@ require_once $_SERVER['DOCUMENT_ROOT'].'/config/version.php';
 		    $outFile = fopen("/tmp/bW1kd4jg6b3N0DQo.tmp", "w") or die("Unable to open file!"); //#bf0707
 		    $fileContent = "[Background]\nPageColor=#edf0f5\nContentColor=#ffffff\nBannersColor=#dd4b39\nNavbarColor=#242d31\nNavbarHoverColor=#a60000\nDropdownColor=#f9f9f9\nDropdownHoverColor=#d0d0d0\nServiceCellActiveColor=#11DD11\nServiceCellInactiveColor=#BB5555\nModeCellDisabledColor=#606060\nModeCellActiveColor=#00BB00\nModeCellInactiveColor=#BB0000\nModeCellPausedColor=#ff9933\nNavPanelColor=#242d31\nTableRowBgEvenColor=#f7f7f7\nTableRowBgOddColor=#d0d0d0\n\n";
 		    $fileContent .= "[Text]\nTextColor=#000000\nTextLinkColor=#0000e0\nTableHeaderColor=#ffffff\nBannersColor=#ffffff\nNavbarColor=#ffffff\nNavbarHoverColor=#ffffff\nDropdownColor=#000000\nDropdownHoverColor=#000000\nServiceCellActiveColor=#000000\nServiceCellInactiveColor=#000000\nModeCellDisabledColor=#b0b0b0\nModeCellActiveColor=#003300\nModeCellInactiveColor=#550000\n\n";
-		    $fileContent .= "[ExtraSettings]\nLastHeardRows=40\nMainFontSize=18\nBodyFontSize=17\nHeaderFontSize=34\nTabeBorderColor=#777777\n\n";
+		    $fileContent .= "[ExtraSettings]\nLastHeardRows=40\nMainFontSize=18\nBodyFontSize=17\nHeaderFontSize=34\nTableBorderColor=#777777\n\n";
 		    fwrite($outFile, $fileContent);
 		    fclose($outFile);
 		    
