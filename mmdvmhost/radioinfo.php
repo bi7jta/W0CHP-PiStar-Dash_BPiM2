@@ -23,8 +23,6 @@ if (isset($_SESSION['CSSConfigs']['Background']['TableRowBgEvenColor'])) {
     $tableRowEvenBg = "inherit";
 }
 
-#$ModemFW = exec("grep Firmware /etc/pistar-release | awk {'print $3'}");
-#$ModemTCXO = str_replace("MHz", " MHz", exec("grep TCXO /etc/pistar-release | awk {'print $3'}"));
 $ModemFW = $_SESSION['PiStarRelease']['Pi-Star']['Firmware'];
 $ModemTCXO = str_replace("MHz", " MHz",$_SESSION['PiStarRelease']['Pi-Star']['TCXO']);
 
