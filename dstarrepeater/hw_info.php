@@ -29,13 +29,20 @@ function system_information() {
     );
 }
 
+// Retrieve server information
+$system = system_information();
+
 function formatSize( $bytes ) {
     $types = array( 'B', 'KB', 'MB', 'GB', 'TB', 'PB', 'EB', 'ZB', 'YB' );
     for( $i = 0; $bytes >= 1024 && $i < ( count( $types ) -1 ); $bytes /= 1024, $i++ );
     return( round( $bytes, 2 ) . " " . $types[$i] );
 }
 
-$rootfs_used = @exec("df -h / | tail -1|awk {'print $3'} | sed 's/G//'")." GB". " used of " .@exec("df -h / | tail -1 | awk {'print $2'} | sed 's/G//'")." GB";
+// root fs info
+$diskUsed = @exec("df --block-size=1 / | tail -1 | awk {'print $3'}");
+$diskTotal = @exec("df --block-size=1 / | tail -1 | awk {'print $2'}");
+$diskPercent = sprintf('%.2f',($diskUsed / $diskTotal) * 100);
+$rootfs_used = formatSize($diskUsed). " of " .formatSize($diskTotal). " ($diskPercent% used)" ;
 
 // Get the CPU temp and colour the box accordingly...
 // Values/thresholds gathered from: 
@@ -63,14 +70,10 @@ $total = array_sum($dif);
 $cpuLoad = array(); 
 foreach($dif as $x=>$y) $cpuLoad[$x] = sprintf('%.0f',round($y / $total * 100, 1));
 
-// Retrieve server information
-$system = system_information();
-
 // get ram
 $sysRamUsed = $system['mem_info']['MemTotal'] - $system['mem_info']['MemFree'] - $system['mem_info']['Buffers'] - $system['mem_info']['Cached'];
-// format ram in percent
-$sysRamPercent = exec("free -h | tail -2 | head -1 | awk {'print $3'} | sed 's/Mi/ MB/'") . " used of ".formatSize($system['mem_info']['MemTotal']);
-
+$sysRamPercent = sprintf('%.2f',($sysRamUsed / $system['mem_info']['MemTotal']) * 100); 
+$ramDeetz = formatSize($sysRamUsed). " of ".formatSize($system['mem_info']['MemTotal']). " ($sysRamPercent% used)";
 ?>
 <div class="divTable">
   <div class="divTableBody">
@@ -87,8 +90,8 @@ $sysRamPercent = exec("free -h | tail -2 | head -1 | awk {'print $3'} | sed 's/M
       <div class="divTableCell hwinfo"><?php echo php_uname('n');?></div>
       <div class="divTableCell hwinfo"><?php echo exec('/usr/local/sbin/platformDetect.sh');?></div>
       <div class="divTableCell hwinfo"><?php echo php_uname('r');?></div>
-      <div class="divTableCell hwinfo">User: <?php echo $cpuLoad['user'];?>% / Sys: <?php echo $cpuLoad['sys'];?>% / Nice: <?php echo $cpuLoad['nice'];?>%</div>
-      <div class="divTableCell hwinfo"><?php echo $sysRamPercent;?></div>
+      <div class="divTableCell hwinfo">User: <?php echo $cpuLoad['user'];?>% - Sys: <?php echo $cpuLoad['sys'];?>%</div>
+      <div class="divTableCell hwinfo"><?php echo $ramDeetz;?></div>
       <div class="divTableCell hwinfo"><?php echo $rootfs_used;?></div>
       <?php echo $cpuTempHTML; ?>
     </div>
