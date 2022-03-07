@@ -3216,7 +3216,7 @@ if (!empty($_POST)):
 	}
 
 	// config file update notifier vars
-	system('sudo sed -i "/ConfUpdReqd = /c\\ConfUpdReqd = '.$configUpdateRequired.'" /etc/ircddbgateway');
+	system('sudo sed -i "/ConfUpdReqd = /c\\ConfUpdReqd = '.$configUpdateRequired.'" /etc/pistar-release');
 
 	// Create the hostfiles.nodextra file if required
 	if (empty($_POST['confHostFilesNoDExtra']) != TRUE ) {
