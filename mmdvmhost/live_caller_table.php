@@ -154,11 +154,11 @@ for ($i = 0;  ($i <= 0); $i++) { //Last 20  calls
 	    }
 
 	    if($listElem[2] == "4000" || $listElem[2] == "9990" || $listElem[2] == "DAPNET") {
-		$name = "";
+		$name = "---";
 		$city = "";
 		$state = "";
-		$country = "";
-		$duration = "<td></td>";
+		$country = "---";
+		$duration = "<td>---</td>";
 	    }
 ?>
   <tr>

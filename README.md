@@ -87,6 +87,102 @@ Run:
 
 [See how easy it is to install...](https://w0chp.net/musings/wpsd-install-demo/)
 
+## Features, Enhancements and Omissions (not an exhaustive list)
+
+* Updated user interface elements galore, styling, wider, bigger, updated fonts, etc.
+
+* Full M17 Protocol Support.
+
+* Full APRSGateway Support: Selectable APRS Data Sharing with specific modes.
+
+* Full DGId Support.
+
+* Selectable DMR Roaming Beacon Support: Network or Interval Mode (or disabled).
+
+* "Live Caller" screen; similar to a "virtual Nextion screen"; displays current caller information in real-time.
+
+* Current/Last Caller Details on Main Dashboard (name/location, when available).
+
+* Improved and graphical CSS/color styling configuration page; easily change the look and feel of the dashboard.
+
+* User-Configurable number of displayed Last Heard dashboard rows (defaults to 40, and 100 is the maximum).
+
+* User-Configurable font size for most of the pertinent dashboard information.
+
+* Reorganized and sectioned configuration page for better usability.
+
+* XLX Hosts are now searchable/selectable in DMR Master selection in configuration page.
+
+* System process status reorganized into clean grid pattern, with more core service status being displayed.
+
+* User-Configurable 24 or 12 hour time display across the dashboard.
+
+* Searchable drop-downs for massive host lists in configuration/admin pages. E.g. YSF Hosts, XLX Hosts, DMR Hosts, etc.
+
+* BrandMeister Manager revamps galore:
+
+  * Now displays connected actual talk group names.
+
+  * Reflector functionality removed per [BrandMeister's announcement](https://news.brandmeister.network/brandmeister-dmr-reflectors-support-ending-by-end-of-2020/).
+
+  * Connected dynamic talk groups now display idle-timeout time (due to no TX).
+
+  * Added ability to mass-drop your static talk groups; and mass re-add the previously
+    linked static talk groups.
+
+   * Added ability to batch add/delete up to 5 static talk groups at a time (for now)
+
+* TGIF Manager; now displays connected actual talk group names. (**NOTE**: Since TGIF has moved to a new platform with no API available, this currently does not work until TGIF's API is made avaiable.)
+
+* "Instant Mode Manager" added to admin page; allows you to instantly pause or resume selected radio modes. Handy for attending
+  nets, quieting a busy mode, to temporarily eliminate "mode monopolization", etc.
+
+* "System Manager" added to admin page; allows you to instantly:
+
+  * Disable / Enable the intrusive and slow Pi-Star Firewall.
+  
+  * Disable / Enable Cron, in order to prevent updates and Pi-Star services restarting during middle-of-the-night/early AM operation.
+
+* YSF link manager gives the ability to change links/rooms on-the-fly, rather than going through the large (and slow) configuration page.
+
+* Connected FCS and YSF reflector names and numerical ID both displayed in dashboard left panel.
+
+* Ability to configure POCSAG hang-time from the config page.
+
+* Additional hardware and system information displayed in top header.
+
+* Admin page split up into logical sub-sections/sub-pages, in order to present
+  better feedback messages when making changes.
+  * Note: Last-Heard and other dynamic tables are now only displayed in the main admin page.
+    Once entering the sub-pages, the focus is now on the task-at-hand, and the dynamic tables are not displayed.
+
+* Much more. See [screenshots below](#screenshots).
+
+### Features in Official Pi-Star Which are Intentionally Omitted in `W0CHP-PiStar-Dash`
+
+* Upgrade notice/nag in header (unnecessary and a hacky implementation). This has been replaced by my own
+  unobtrusive dashboard update notifier; displayed in the upper-right hand side of the top header.
+
+* "GPS" link in Call Sign column of dashboard (superfluous and unreliable).
+
+* Selectable Call Sign link to either QRZ.com or RadioID.com (both services
+  suck, and the implementation of this feature is poor and unintuitive. Left
+  the original function linking to QRZ.com).
+
+* CPU Temp. in header; when CPU is running "cool" or "normal" recommended temps, the cell background
+  is no longer colored green. Only when the CPU is running beyond recommended temps, is the cell colored
+  orange or red.
+
+* No reboot/shutdown nag screen/warning from admin page (Superfluous; you
+  click it, it will reboot/shutdown without warning.).
+
+* Yellow DMR Mode cell in left panel when there's a DMR network password/login
+  issue (poor/inaccurate and taxing implementation, and can confuse power users that
+  utilize my Instant Mode Manager, where the default cell is amber colored for
+  paused modes [color is user-configurable].).
+
+	Instead, the *actual* network name is highlighted in red when there's a login issue (courtesy of F1RMB's excellent code).
+
 ## Notes about CSS, and custom CSS you may have previously applied
 
 1. When using the `-id` option, the "normal" Pi-Star colors are used, and no CSS is installed. Any custom CSS
@@ -160,96 +256,6 @@ Run:
     HeaderFontSize=34
     BodyFontSize=17
     ```
-
-## Features, Enhancements and Omissions (not an exhaustive list)
-
-* Updated user interface elements galore, styling, wider, bigger, updated fonts, etc.
-
-* Improved and graphical CSS/color styling configuration page; easily change the look and feel of the dashboard.
-
-* "Live Caller" screen; similar to a "virtual Nextion screen"; displays current caller information in real-time.
-
-* User-Configurable number of displayed Last Heard dashboard rows (defaults to 40, and 100 is the maximum).
-
-* User-Configurable font size for most of the pertinent dashboard information.
-
-* Reorganized and sectioned configuration page for better usability.
-
-* XLX Hosts are now searchable/selectable in DMR Master selection in configuration page.
-
-* System process status reorganized into clean grid pattern, with more core service status being displayed.
-
-* User-Configurable 24 or 12 hour time display across the dashboard.
-
-* Searchable drop-downs for massive host lists in configuration/admin pages. E.g. YSF Hosts, XLX Hosts, DMR Hosts, etc.
-
-* BrandMeister Manager revamps galore:
-
-  * Now displays connected actual talk group names.
-
-  * Reflector functionality removed per [BrandMeister's announcement](https://news.brandmeister.network/brandmeister-dmr-reflectors-support-ending-by-end-of-2020/).
-
-  * Connected dynamic talk groups now display idle-timeout time (due to no TX).
-
-  * Added ability to mass-drop your static talk groups; and mass re-add the previously
-    linked static talk groups.
-
-   * Added ability to batch add/delete up to 5 static talk groups at a time (for now)
-
-* TGIF Manager; now displays connected actual talk group names. (**NOTE**: Since TGIF has moved to a new platform with no API available, this currently does not work until TGIF's API is made avaiable.)
-
-* "Instant Mode Manager" added to admin page; allows you to instantly pause or resume selected radio modes. Handy for attending
-  nets, quieting a busy mode, to temporarily eliminate "mode monopolization", etc.
-
-* "System Manager" added to admin page; allows you to instantly:
-
-  * Disable / Enable the intrusive and slow Pi-Star Firewall.
-  
-  * Disable / Enable Cron, in order to prevent updates and Pi-Star services restarting during middle-of-the-night/early AM operation.
-
-* DMR JitterTest and related form added.
-
-* RF activity moved to top on dashboard.
-
-* YSF link manager gives the ability to change links/rooms on-the-fly, rather than going through the large (and slow) configuration page.
-
-* Connected FCS and YSF reflector names and numerical ID both displayed in dashboard left panel.
-
-* Ability to configure POCSAG hang-time from the config page.
-
-* Additional hardware and system information displayed in top header.
-
-* Admin page split up into logical sub-sections/sub-pages, in order to present
-  better feedback messages when making changes.
-  * Note: Last-Heard and other dynamic tables are now only displayed in the main admin page.
-    Once entering the sub-pages, the focus is now on the task-at-hand, and the dynamic tables are not displayed.
-
-* Much more. See [screenshots below](#screenshots).
-
-### Features in Official Pi-Star Which are Intentionally Omitted in `W0CHP-PiStar-Dash`
-
-* Upgrade notice/nag in header (unnecessary and a hacky implementation). This has been replaced by my own
-  unobtrusive dashboard update notifier; displayed in the upper-right hand side of the top header.
-
-* "GPS" link in Call Sign column of dashboard (superfluous and unreliable).
-
-* Selectable Call Sign link to either QRZ.com or RadioID.com (both services
-  suck, and the implementation of this feature is poor and unintuitive. Left
-  the original function linking to QRZ.com).
-
-* CPU Temp. in header; when CPU is running "cool" or "normal" recommended temps, the cell background
-  is no longer colored green. Only when the CPU is running beyond recommended temps, is the cell colored
-  orange or red.
-
-* No reboot/shutdown nag screen/warning from admin page (Superfluous; you
-  click it, it will reboot/shutdown without warning.).
-
-* Yellow DMR Mode cell in left panel when there's a DMR network password/login
-  issue (poor/inaccurate and taxing implementation, and can confuse power users that
-  utilize my Instant Mode Manager, where the default cell is amber colored for
-  paused modes [color is user-configurable].).
-
-	Instead, the *actual* network name is highlighted in red when there's a login issue (courtesy of F1RMB's excellent code).
 
 ## Screenshots
 
