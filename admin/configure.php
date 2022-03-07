@@ -3216,7 +3216,7 @@ if (!empty($_POST)):
 	}
 
 	// config file update notifier vars
-	$configmmdvm['WPSD']['ConfUpdReqd'] = $configUpdateRequired;
+	system('sudo sed -i "/ConfUpdReqd = /c\\ConfUpdReqd = '.$configUpdateRequired.'" /etc/ircddbgateway');
 
 	// Create the hostfiles.nodextra file if required
 	if (empty($_POST['confHostFilesNoDExtra']) != TRUE ) {

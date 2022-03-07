@@ -168,7 +168,7 @@ checkSessionValidity();
 	    <?php
 	    // Check if config files need updating but supress if new installation
 	    if (($_SERVER["PHP_SELF"] == "/admin/index.php") || ($_SERVER["PHP_SELF"] == "/index.php")) {
-		$configUpNeeded = getConfigItem("WPSD", "ConfUpdReqd", $_SESSION['MMDVMHostConfigs']);
+		$configUpNeeded = $_SESSION['PiStarRelease']['Pi-Star']['ConfUpdReqd'];
                 if (!isset($configUpNeeded) || ($configUpNeeded < $configUpdateRequired) && file_exists('/etc/dstar-radio.mmdvmhost') || file_exists('/etc/dstar-radio.dstarrepeater')) {	
 	    ?>
 		<div>
