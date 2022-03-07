@@ -44,7 +44,6 @@ $ModemTCXO = str_replace("MHz", " MHz", exec("grep TCXO /etc/pistar-release | aw
         // TRX Status code
         if (isset($lastHeard[0])) {
             $isTXing = false;
-
             // Go through the whole LH array, backward, looking for transmission.
             for (end($lastHeard); (($currentKey = key($lastHeard)) !== null); prev($lastHeard)) {                                                                         
                     $listElem = current($lastHeard);

@@ -3,12 +3,6 @@ if (file_exists('/etc/.CALLERDETAILS')) {
     include_once $_SERVER['DOCUMENT_ROOT'].'/config/config.php';          // MMDVMDash Config
     include_once $_SERVER['DOCUMENT_ROOT'].'/mmdvmhost/tools.php';        // MMDVMDash Tools
     include_once $_SERVER['DOCUMENT_ROOT'].'/mmdvmhost/functions.php';    // MMDVMDash Functions
-
-    if (constant("TIME_FORMAT") == "24") {
-        $local_time = date('H:i:s M. jS');
-    } else {
-        $local_time = date('h:i:s A M. jS');
-    }
 ?>
 <div style="vertical-align: bottom; font-weight: bold;text-align:left;">Current / Last Caller Details</div>
   <table style="word-wrap: break-word; white-space:normal;">
