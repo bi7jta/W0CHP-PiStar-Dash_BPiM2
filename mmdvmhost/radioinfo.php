@@ -110,7 +110,7 @@ $ModemTCXO = str_replace("MHz", " MHz",$_SESSION['PiStarRelease']['Pi-Star']['TC
                     echo "<div class=\"divTableCell middle hwinfo\" style=\"background:#ffc425;font-weight:bold;padding:2px;\">Standby: NXDN</div>"; 
                 }   
                 else if (getActualMode($lastHeard, $_SESSION['MMDVMHostConfigs']) === 'POCSAG') {
-                    echo "<div class=\"divTableCell middle hwinfo\" style=\"color:#fff; background:#d11141; font-weight:bold;padding:2px;\">POCSAG Activity</div>";
+                    echo "<div class=\"divTableCell middle hwinfo\" style=\"color:#fff; background:#d11141; font-weight:bold;padding:2px;\">TX: POCSAG Data</div>";
                 }   
                 else {
                     echo "<div class=\"divTableCell middle hwinfo\">".getActualMode($lastHeard, $_SESSION['MMDVMHostConfigs'])."</div>";

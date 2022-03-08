@@ -64,7 +64,7 @@ checkSessionValidity();
 	<script type="text/javascript">
 	 $.ajaxSetup({ cache: false });
 	</script>
-        <link href="/js/select2/css/select2.min.css" rel="stylesheet" />
+        <link href="/js/select2/css/select2.min.css?version=<?php echo $versionCmd; ?>" rel="stylesheet" />
         <script src="/js/select2/js/select2.min.js?version=<?php echo $versionCmd; ?>"></script>
          <script type="text/javascript">
           $(document).ready(function() {
@@ -177,7 +177,7 @@ checkSessionValidity();
 				<b>IMPORTANT</b><br />
 				<br />
 				Your configuration needs to be updated.<br />
-				Go to the <a href="/admin/configure.php" style="text-decoration:underline;">Configuration page</a> and click on any "Apply Changes" button.<br />
+				Go to the <a href="/admin/configure.php" style="text-decoration:underline;font-weight:bold;">Configuration Page</a> and click on any "Apply Changes" button.<br />
 				<br />This message will disappear once this has been completed.<br />
 				</p>
 		    </div>
@@ -218,9 +218,6 @@ checkSessionValidity();
 
         // First lets figure out if we are in MMDVMHost mode, or dstarrepeater mode;
 	    if (file_exists('/etc/dstar-radio.mmdvmhost')) {
-		//include 'config/config.php';					// MMDVMDash Config
-		//	include_once 'mmdvmhost/tools.php';				// MMDVMDash Tools
-		
 		echo '<div class="nav">'."\n";					// Start the Side Menu
 		echo '<script type="text/javascript">'."\n";
 		echo 'function reloadRepeaterInfo(){'."\n";
@@ -493,9 +490,9 @@ checkSessionValidity();
 		echo '<div class="contentwide">'."\n";
 	    	echo '<script type="text/javascript">'."\n";
 	    	echo 'function reloadSysInfo(){'."\n";
-	    	echo '  $("#sysInfo").load("/dstarrepeater/system.php",function(){ setTimeout(reloadSysInfo,15000) });'."\n";
+	    	echo '  $("#sysInfo").load("/dstarrepeater/system.php",function(){ setTimeout(reloadSysInfo,5000) });'."\n";
 	    	echo '}'."\n";
-	    	echo 'setTimeout(reloadSysInfo,15000);'."\n";
+	    	echo 'setTimeout(reloadSysInfo,5000);'."\n";
 	    	echo '$(window).trigger(\'resize\');'."\n";
 	    	echo '</script>'."\n";
 	    	if (empty($_POST) && empty($_GET)) {				// only show services on main admin page
@@ -610,16 +607,16 @@ checkSessionValidity();
 		        echo 'var pagesto;'."\n";
 		        echo 'function setPagesAutorefresh(obj) {'."\n";
 	            echo '    if (obj.checked) {'."\n";
-	            echo '        pagesto = setTimeout(reloadPages, 5000, "?origin='.$myOrigin.'");'."\n";
+	            echo '        pagesto = setTimeout(reloadPages, 10000, "?origin='.$myOrigin.'");'."\n";
 	            echo '    }'."\n";
 	            echo '    else {'."\n";
 	            echo '        clearTimeout(pagesto);'."\n";
 	            echo '    }'."\n";
                 echo '}'."\n";
 		        echo 'function reloadPages(OptStr){'."\n";
-		        echo '    $("#Pages").load("/mmdvmhost/pages.php"+OptStr, function(){ pagesto = setTimeout(reloadPages, 5000, "?origin='.$myOrigin.'") });'."\n";
+		        echo '    $("#Pages").load("/mmdvmhost/pages.php"+OptStr, function(){ pagesto = setTimeout(reloadPages, 10000, "?origin='.$myOrigin.'") });'."\n";
 		        echo '}'."\n";
-		        echo 'pagesto = setTimeout(reloadPages, 5000, "?origin='.$myOrigin.'");'."\n";
+		        echo 'pagesto = setTimeout(reloadPages, 10000, "?origin='.$myOrigin.'");'."\n";
 		        echo '$(window).trigger(\'resize\');'."\n";
 		        echo '</script>'."\n";
 		        echo '<br />'."\n".'<div id="Pages">'."\n";
@@ -702,3 +699,4 @@ checkSessionValidity();
 	</div>
     </body>
 </html>
+

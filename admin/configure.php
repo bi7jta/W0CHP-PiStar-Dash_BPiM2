@@ -410,7 +410,7 @@ $MYCALL=strtoupper($callsign);
     <link rel="stylesheet" type="text/css" href="/css/font-awesome-4.7.0/css/font-awesome.min.css" />
     <?php include_once "../config/browserdetect.php"; ?>
     <script type="text/javascript" src="/js/jquery.min.js?version=<?php echo $versionCmd; ?>"></script>
-    <link href="/js/select2/css/select2.min.css" rel="stylesheet" />
+    <link href="/js/select2/css/select2.min.css?version=<?php echo $versionCmd; ?>" rel="stylesheet" />
     <script src="/js/select2/js/select2.min.js?version=<?php echo $versionCmd; ?>"></script>
     <script type="text/javascript">
 	function disablesubmitbuttons() {
