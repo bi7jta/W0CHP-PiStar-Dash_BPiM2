@@ -183,7 +183,7 @@ if (empty($dmrID) == false)
       <td><input type="submit" value="Request Change" name="tgifSubmit" /></td>
     </tr>
     <tr>
-      <td colspan="4" style="white-space:normal;padding: 3px;"><b><a href="https://w0chp.net/tgif-talkgroups/" target="_blank">List of All TGIF Talkgroups (sortable/searchable/downloadable)...</a></b></td>
+      <td colspan="4" style="white-space:normal;padding: 3px;"><a href="https://w0chp.net/tgif-talkgroups/" target="_blank">List of All TGIF Talkgroups (sortable/searchable/downloadable)...</a></td>
     </tr>
     </table></form>'."\n";
     }

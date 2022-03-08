@@ -59,7 +59,7 @@ $ModemTCXO = str_replace("MHz", " MHz",$_SESSION['PiStarRelease']['Pi-Star']['TC
                     $listElem = $lastHeard[0];
                 if (getActualMode($lastHeard, $_SESSION['MMDVMHostConfigs']) === 'idle') {
 		    if (isProcessRunning("MMDVMHost")) {
-                    	echo "<div class=\"divTableCell middle hwinfo\" style=\"font-weight:bold;padding:2px;\"><span style='color:#005028;'>Idle</span></div>";
+                    	echo "<div class=\"divTableCell middle active-mode-cell\" style=\"font-weight:bold;padding:2px;\">IDLE</div>";
 		    }
 		    else { 
                         echo "<div class='error-state-cell divTableCell middle hwinfo' style=\"font-weight:bold;padding:2px;\">OFFLINE</div>";
@@ -67,7 +67,7 @@ $ModemTCXO = str_replace("MHz", " MHz",$_SESSION['PiStarRelease']['Pi-Star']['TC
                 }
                 else if (getActualMode($lastHeard, $_SESSION['MMDVMHostConfigs']) === NULL) {
                     if (isProcessRunning("MMDVMHost")) {
-                        echo "<div ass=\"divTableCell middle hwinfo\" tyle=\"font-weight:bold;padding:2px;\"><span style='color:#005028;'>Idle</span></div>";
+                        echo "<div ass=\"divTableCell middle active-mode-cell\" style=\"font-weight:bold;padding:2px;\">IDLE</div>";
                     }
                     else {
                         echo "<div class='error-state-cell divTableCell middle hwinfo' style=\"font-weight:bold;padding:2px;\">OFFLINE</div>";
@@ -118,7 +118,7 @@ $ModemTCXO = str_replace("MHz", " MHz",$_SESSION['PiStarRelease']['Pi-Star']['TC
             }   
         }   
         else {
-            echo "<div class=\"divTableCell middle hwinfo\" style=\"font-weight:bold;padding:2px;\"><span style='color:#005028;'>Idle</span></div>";
+            echo "<div class=\"divTableCell middle active-mode-cell\" style=\"font-weight:bold;padding:2px;\">IDLE</div>";
         }
         ?>
       <div class="divTableCell hwinfo middle" style="background: <?php echo $tableRowEvenBg; ?>;"><?php echo getMHZ(getConfigItem("Info", "TXFrequency", $_SESSION['MMDVMHostConfigs'])); ?></div>
