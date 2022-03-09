@@ -239,9 +239,11 @@ checkSessionValidity();
     		if ( $dmrMasterHost == '127.0.0.1' ) {
         		$dmrMasterHost = $_SESSION['DMRGatewayConfigs']['DMR Network 1']['Address'];
         		$bmEnabled = ($_SESSION['DMRGatewayConfigs']['DMR Network 1']['Enabled'] != "0" ? true : false);
-    		} else if(preg_match("/brandmeister.network/",$dmrMasterHost)) {
-                        $bmEnabled = true;
-			}
+    		}
+		elseif (preg_match("/brandmeister.network/",$dmrMasterHost))
+		{
+			$bmEnabled = true;
+		}
     		// Make sure the master is a BrandMeister Master
     		if (($dmrMasterFile = fopen("/usr/local/etc/DMR_Hosts.txt", "r")) != FALSE) {
         		while (!feof($dmrMasterFile)) {
@@ -398,7 +400,7 @@ checkSessionValidity();
 		if ($_SERVER["PHP_SELF"] == "/admin/index.php") {
             if (!empty($_POST) || !empty($_GET)) { echo '<br /><hr />'; }
                     echo '<div style="text-align:left;font-weight:bold;">Admin Sections</div>'."\n";
-		    echo '<form method="get" id="admin_sel" name="admin_sel" action="'.htmlentities($_SERVER['PHP_SELF']).'">'."\n";
+		    echo '<form method="get" id="admin_sel" name="admin_sel" action="'.htmlentities($_SERVER['PHP_SELF']).'" style="padding-bottom:10px;">'."\n";
                     echo '  <table>'."\n";
 		    echo '    <tr>'."\n";
 		    echo '      <th>Select a Mode/Network/Service to Manage</th>'."\n";
