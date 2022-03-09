@@ -46,7 +46,7 @@ $APRS_paused   = '/etc/APRS_paused';
 
 // take action based on form submission
 if (!empty($_POST["submit_mode"]) && empty($_POST["mode_sel"])) { //handler for nothing selected
-    $mode = ($_POST['mode_sel']); // get selected mode from for post
+    $mode = escapeshellcmd($_POST['mode_sel']); // get selected mode from for post
     // Output to the browser
     echo "<b>Instant Mode Manager</b>\n";
     echo "<table>\n";
@@ -61,8 +61,8 @@ if (!empty($_POST["submit_mode"]) && empty($_POST["mode_sel"])) { //handler for 
     unset($_POST);
     echo '<script type="text/javascript">setTimeout(function() { window.location=window.location;},3000);</script>';
 } elseif
-    (!empty($_POST['submit_mode']) && ($_POST['mode_action'] == "Pause")) {
-    $mode = ($_POST['mode_sel']); // get selected mode from for post
+    (!empty($_POST['submit_mode']) && escapeshellcmd($_POST['mode_action'] == "Pause")) {
+    $mode = escapeshellcmd($_POST['mode_sel']); // get selected mode from for post
     if (file_exists("/etc/$mode"."_paused")) { //check if already paused
         // Output to the browser
         echo "<b>Instant Mode Manager</b>\n";
@@ -94,8 +94,8 @@ if (!empty($_POST["submit_mode"]) && empty($_POST["mode_sel"])) { //handler for 
         echo '<script type="text/javascript">setTimeout(function() { window.location=window.location;},3000);</script>';
     }
 } elseif
-    (!empty($_POST['submit_mode']) && ($_POST['mode_action'] == "Resume")) {
-    $mode = ($_POST['mode_sel']); // get selected mode from for post
+    (!empty($_POST['submit_mode']) && escapeshellcmd($_POST['mode_action'] == "Resume")) {
+    $mode = escapeshellcmd($_POST['mode_sel']); // get selected mode from for post
     if (!file_exists("/etc/$mode"."_paused")) { //check if already running
         // Output to the browser
         echo "<b>Instant Mode Manager</b>\n";

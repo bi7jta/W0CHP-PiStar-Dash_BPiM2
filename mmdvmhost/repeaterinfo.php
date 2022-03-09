@@ -854,6 +854,7 @@ if (getConfigItem("NXDN", "RAN", $_SESSION['MMDVMHostConfigs'])) {
 <?php
         if (isPaused("APRS")) {
 		echo "<div class='divTableCell hwinfo'><div style=\"background: $tableRowEvenBg;\" title=\"Service Paused\">Service Paused</div></div>\n"; 
+		echo "</div>\n</div>\n</div>\n<br />\n";
 	} else {
 		echo "<div class='divTableCell hwinfo'><div style=\"background: $tableRowEvenBg;\" title=\"".$_SESSION['APRSGatewayConfigs']['APRS-IS']['Server']."\">".substr($_SESSION['APRSGatewayConfigs']['APRS-IS']['Server'], 0, 23)."<br /><small>(".getAPRSISserver().")</small></div></div>\n";
 		echo "</div>\n</div>\n</div>\n";
@@ -887,13 +888,12 @@ if (getConfigItem("NXDN", "RAN", $_SESSION['MMDVMHostConfigs'])) {
 			    if ($testAPRSm17 == 1) {
 				echo "<div class='divTableRow center'>\n<div class='divTableCell hwinfo'><div class=\"active-mode-cell\" title=\"M17\">M17</div></div>\n</div>\n";
 			    }
-			    echo "</div>\n</div>\n<br />\n";
+			    echo "</div>\n</div>\n</div>\n<br />\n";
 			} else {
 				echo "<div class='divTableRow center'>\n<div class='divTableCell hwinfo' style=\"background: $tableRowEvenBg;\" title=\"Service Not Started\">Service Not Started</div>\n</div>\n";
-			        echo "</div>\n</div>\n<br />\n";
+				echo "</div>\n</div>\n</div>\n<br />\n";
 			}
 		}
 	}
 }
 ?>
-

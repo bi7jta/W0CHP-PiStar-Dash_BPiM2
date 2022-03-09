@@ -25,7 +25,7 @@ $psr_disable  = "sudo sed -i '/enabled=/c enabled=false' /etc/pistar-remote ; su
 
 // take action based on form submission
 if (!empty($_POST["submit_service"]) && empty($_POST["service_sel"])) { //handler for nothing selected
-    $mode = ($_POST['service_sel']); // get selected mode from for post
+    $mode = escapeshellcmd($_POST['service_sel']); // get selected mode from for post
     // Output to the browser
     echo "<b>System Manager</b>\n";
     echo "<table>\n";
@@ -40,8 +40,8 @@ if (!empty($_POST["submit_service"]) && empty($_POST["service_sel"])) { //handle
     unset($_POST);
     echo '<script type="text/javascript">setTimeout(function() { window.location=window.location;},3000);</script>';
 } elseif
-    (!empty($_POST['submit_service']) && ($_POST['service_action'] == "Disable")) {
-    $mode = ($_POST['service_sel']); // get selected mode from for post
+    (!empty($_POST['submit_service']) && escapeshellcmd($_POST['service_action'] == "Disable")) {
+    $mode = escapeshellcmd($_POST['service_sel']); // get selected mode from for post
     if ($mode == "Cron" && (getCronState() == 0) || getPSRstate() == 0 || $mode == "Firewall" && (getFWstate() == 0)) { //check if already disabled
         // Output to the browser
         echo "<b>System Manager</b>\n";
@@ -57,7 +57,19 @@ if (!empty($_POST["submit_service"]) && empty($_POST["service_sel"])) { //handle
         unset($_POST);
         echo '<script type="text/javascript">setTimeout(function() { window.location=window.location;},3000);</script>';
     } else { // looks good!
-		if ($mode == "Cron") { exec($cron_disable); } elseif ($mode == "Firewall") { exec($fw_disable); } elseif ($mode == "PiStar-Remote") { exec($psr_disable); } else  {}
+		if ($mode == "Cron") {
+		    exec($cron_disable);
+		}
+		elseif ($mode == "Firewall")
+		{
+		    exec($fw_disable);
+		}
+		elseif ($mode == "PiStar-Remote")
+		{
+		    exec($psr_disable);
+		} else {
+		    die;
+		}
             // Output to the browser
             echo "<b>System Manager</b>\n";
             echo "<table>\n";
@@ -73,8 +85,8 @@ if (!empty($_POST["submit_service"]) && empty($_POST["service_sel"])) { //handle
             echo '<script type="text/javascript">setTimeout(function() { window.location=window.location;},3000);</script>';
         }
     } elseif
-        (!empty($_POST['submit_service']) && ($_POST['service_action'] == "Enable")) {
-        $mode = ($_POST['service_sel']); // get selected mode from for post
+        (!empty($_POST['submit_service']) && escapeshellcmd($_POST['service_action'] == "Enable")) {
+        $mode = escapeshellcmd($_POST['service_sel']); // get selected mode from for post
         if ($mode == "Cron" && (getCronState() == 1) || $mode == "PiStar-Remote" && (getPSRState() == 1) || $mode == "Firewall" && (getFWstate() == 1)) { //check if already enabled
             // Output to the browser
             echo "<b>System Manager</b>\n";

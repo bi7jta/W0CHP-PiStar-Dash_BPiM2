@@ -65,13 +65,13 @@ if ( $testMMDVModeDMR == 1 ) {
 	// OK this is Brandmeister, get some config and output the HTML
 	
 	// If there is a BM API Key
-    $bmAPIkey = $_SESSION['BMAPIKey'];
-	if ( !empty($_POST) && ( isset($_POST["tgStaticDropAll"]) || isset($_POST["tgStaticReAdd"]) || isset($_POST["tgStaticBatch"]))) {  // Data has been posted for this page
+	$bmAPIkey = $_SESSION['BMAPIKey'];
+	if (!empty($_POST) && (!empty($_POST["tgStaticDropAll"]) || !empty($_POST["tgStaticReAdd"]) || !empty($_POST["tgStaticBatch"]))) {  // Data has been posted for this page
             // Static TG handling...
             $sanitizedKey = str_replace('$', '\$', $_SESSION['BMAPIKey']);
 	    // Drop all static:
 	    $bmStaticDropAllCmd = ("sudo /usr/local/sbin/bm_static_tgs_dropall $sanitizedKey $dmrID");
-	    if (isset($_POST["tgStaticDropAll"])) {
+	    if (!empty(escapeshellcmd($_POST["tgStaticDropAll"]))) {
 	        exec($bmStaticDropAllCmd);
                 // Output to the browser
                 echo '<b>BrandMeister Manager</b>'."\n";
@@ -85,7 +85,7 @@ if ( $testMMDVModeDMR == 1 ) {
 	    }
 	    // re-add all static
             $bmStaticAddAllCmd = ("sudo /usr/local/sbin/bm_static_tgs_addall $sanitizedKey $dmrID");
-            if (isset($_POST["tgStaticReAdd"])) {
+            if (!empty(escapeshellcmd($_POST["tgStaticReAdd"]))) {
 	        // make certain that a previous saves/dropped file actually exits
 	        if (file_exists("/etc/.bm_tgs.json.saved")) {
             	    exec($bmStaticAddAllCmd);
@@ -116,13 +116,13 @@ if ( $testMMDVModeDMR == 1 ) {
                 $massTGslot = "0";
             }
             else {
-                $massTGslot = $_POST["massTGslotSelected"];
+                $massTGslot = escapeshellcmd($_POST["massTGslotSelected"]);
             }
             $sanitizedKey = str_replace('$', '\$', $_SESSION['BMAPIKey']);
             $bmStaticMassAddCmd = ("sudo /usr/local/sbin/bm_static_tgs_batchadd $sanitizedKey $dmrID $massTGslot");
             $bmStaticMassDelCmd = ("sudo /usr/local/sbin/bm_static_tgs_batchdel $sanitizedKey $dmrID $massTGslot");
-	    if (isset($_POST["tgStaticBatch"])) {
-                $massTGs = ($_POST['massTGlist']);
+	    if (!empty(escapeshellcmd($_POST["tgStaticBatch"]))) {
+                $massTGs = escapeshellcmd($_POST['massTGlist']);
                 if (strlen($massTGs)==0) {
                     // Output to the browser
                     echo '<b>BrandMeister Manager</b>'."\n";
@@ -135,7 +135,7 @@ if ( $testMMDVModeDMR == 1 ) {
                     echo '<script type="text/javascript">setTimeout(function() { window.location=window.location;},3000);</script>';
                 }
                 else  {
-		    if ($_POST["massTGaction"] == "ADD") {
+		    if (escapeshellcmd($_POST["massTGaction"] == "ADD")) {
 		        // keep newlines, but remove non-numeric chars
 	                $massTGs = preg_replace("/[^0-9\r\n]/", "", $massTGs);
 		        // sep. the data posted
@@ -175,7 +175,7 @@ if ( $testMMDVModeDMR == 1 ) {
                             echo '<script type="text/javascript">setTimeout(function() { window.location=window.location;},3000);</script>';
 		        }
 		    } elseif
-		        ($_POST["massTGaction"] == "DEL") {
+		        (escapeshellcmd($_POST["massTGaction"] == "DEL")) {
 	                $massTGs = preg_replace("/[^0-9\r\n]/", "", $massTGs);
                         $massTGs = explode("\n", str_replace("\r", "", $massTGs));
 		        $massTGs = implode("\n", $massTGs);
