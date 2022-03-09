@@ -20,8 +20,8 @@ $fw_enable    = "sudo /usr/local/sbin/pistar-system-manager -efw";
 $fw_disable   = "sudo /usr/local/sbin/pistar-system-manager -dfw";
 $cron_enable  = "sudo /usr/local/sbin/pistar-system-manager -ec";
 $cron_disable = "sudo /usr/local/sbin/pistar-system-manager -dc";
-$psr_enable   = "sudo sed -i '/enabled=/c enabled=true' /etc/pistar-remote && sudo systemctl start pistar-remote.service";
-$psr_disable  = "sudo sed -i '/enabled=/c enabled=false' /etc/pistar-remote && sudo systemctl stop pistar-remote.service";
+$psr_enable   = "sudo sed -i '/enabled=/c enabled=true' /etc/pistar-remote ; sudo systemctl start pistar-remote.service";
+$psr_disable  = "sudo sed -i '/enabled=/c enabled=false' /etc/pistar-remote ; sudo systemctl stop pistar-remote.service";
 
 // take action based on form submission
 if (!empty($_POST["submit_service"]) && empty($_POST["service_sel"])) { //handler for nothing selected
