@@ -571,6 +571,15 @@ function getCronState () {
     }
 }
 
+// Pi-Star Remote status
+function getPSRState () {
+    if (isProcessRunning('/usr/local/sbin/pistar-remote',true) == 1) {
+        return 1;
+    } else {
+        return 0;
+    }
+}
+
 // status classes used in sysinfo.php
 function getStatusClass($status, $disabled = false) {
     if ($status) {

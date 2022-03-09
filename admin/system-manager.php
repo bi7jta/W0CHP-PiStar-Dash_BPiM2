@@ -20,6 +20,8 @@ $fw_enable    = "sudo /usr/local/sbin/pistar-system-manager -efw";
 $fw_disable   = "sudo /usr/local/sbin/pistar-system-manager -dfw";
 $cron_enable  = "sudo /usr/local/sbin/pistar-system-manager -ec";
 $cron_disable = "sudo /usr/local/sbin/pistar-system-manager -dc";
+$psr_enable   = "sudo /usr/local/sbin/pistar-system-manager -epsr";
+$psr_disable  = "sudo /usr/local/sbin/pistar-system-manager -dpsr";
 
 // take action based on form submission
 if (!empty($_POST["submit_service"]) && empty($_POST["service_sel"])) { //handler for nothing selected
@@ -40,7 +42,7 @@ if (!empty($_POST["submit_service"]) && empty($_POST["service_sel"])) { //handle
 } elseif
     (!empty($_POST['submit_service']) && ($_POST['service_action'] == "Disable")) {
     $mode = ($_POST['service_sel']); // get selected mode from for post
-    if ($mode == "Cron" && (getCronState() == 0) || $mode == "Firewall" && (getFWstate() == 0)) { //check if already disabled
+    if ($mode == "Cron" && (getCronState() == 0) || getPSRstate() == 0 || $mode == "Firewall" && (getFWstate() == 0)) { //check if already disabled
         // Output to the browser
         echo "<b>System Manager</b>\n";
         echo "<table>\n";
@@ -55,7 +57,7 @@ if (!empty($_POST["submit_service"]) && empty($_POST["service_sel"])) { //handle
         unset($_POST);
         echo '<script type="text/javascript">setTimeout(function() { window.location=window.location;},3000);</script>';
     } else { // looks good!
-		if ($mode == "Cron") { exec($cron_disable); } elseif ($mode == "Firewall") { exec($fw_disable); } else {}
+		if ($mode == "Cron") { exec($cron_disable); } elseif ($mode == "Firewall") { exec($fw_disable); } elseif ($mode == "PiStar-Remote") { exec($psr_disable); } else  {}
             // Output to the browser
             echo "<b>System Manager</b>\n";
             echo "<table>\n";
@@ -73,7 +75,7 @@ if (!empty($_POST["submit_service"]) && empty($_POST["service_sel"])) { //handle
     } elseif
         (!empty($_POST['submit_service']) && ($_POST['service_action'] == "Enable")) {
         $mode = ($_POST['service_sel']); // get selected mode from for post
-        if ($mode == "Cron" && (getCronState() == 1) || $mode == "Firewall" && (getFWstate() == 1)) { //check if already enabled
+        if ($mode == "Cron" && (getCronState() == 1) || $mode == "PiStar-Remote" && (getPSRState() == 1) || $mode == "Firewall" && (getFWstate() == 1)) { //check if already enabled
             // Output to the browser
             echo "<b>System Manager</b>\n";
             echo "<table>\n";
@@ -120,9 +122,24 @@ if (!empty($_POST["submit_service"]) && empty($_POST["service_sel"])) { //handle
 		// the FW delays page loads - exec after status message...
 		sleep(5);
                 exec($fw_enable);
-                } else {
-            }
-       }
+            } elseif ($mode == "PiStar-Remote") {
+                exec($psr_enable);
+                // Output to the browser
+                echo "<b>System Manager</b>\n";
+                echo "<table>\n";
+                echo "  <tr>\n";
+                echo "    <th>Status</th>\n";
+                echo "  </tr>\n";
+                echo "  <tr>\n";
+                echo "    <td><p>Selected Service ($mode) Enabled!<br />Page Reloading...</p></td>\n";
+                echo "  </tr>\n";
+                echo "</table>\n";
+                // Clean up...
+                unset($_POST);
+                echo '<script type="text/javascript">setTimeout(function() { window.location=window.location;},3000);</script>';
+            } else {
+        }
+   }
 } else {
     // no form post: output html...
     print '
@@ -149,6 +166,8 @@ if (!empty($_POST["submit_service"]) && empty($_POST["service_sel"])) { //handle
         <label for="service-sel-0">Firewall'.((getFWstate()=='0'?" <span class='paused-mode-span'>(Disabled)</span>":"")).'</label>
         &nbsp;| <input name="service_sel" id="service-sel-1"  value="Cron" type="radio">
         <label for="service-sel-1">Cron'.((getCronState()=='0'?" <span class='paused-mode-span'>(Disabled)</span>":"")).'</label>
+        &nbsp;| <input name="service_sel" id="service-sel-2"  value="PiStar-Remote" type="radio">
+        <label for="service-sel-2">Pi-Star Remote'.((getPSRState()=='0'?" <span class='paused-mode-span'>(Disabled)</span>":"")).'</label>
         <br />
       </td>
       <td>
