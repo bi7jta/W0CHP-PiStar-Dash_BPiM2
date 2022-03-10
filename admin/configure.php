@@ -4318,12 +4318,17 @@ else:
     <tr>
     <td align="left"><a class="tooltip2" href="#"><?php echo $lang['node_type'];?>:<span><b>Node Lock</b>Set the public/private node type. &quot;Private&quot; limits access to your system to your ID/Callsign only, this may be a licence requirement for your country and helps prevent network loops.</span></a></td>
     <td align="left" colspan="2">
-    <input type="radio" name="nodeMode" value="prv"<?php if ($configmmdvm['DMR']['SelfOnly'] == 1) {echo ' checked="checked"';} ?> />Private
+    <input type="radio" name="nodeMode" id="nodePriv" value="prv"<?php if ($configmmdvm['DMR']['SelfOnly'] == 1) {echo ' checked="checked"';} ?> />
+      <label for="nodePriv" style="display: inline-block;">Private</label>
 <?php if (empty($configmmdvm['DMR']['WhiteList'])) { ?>
-    <input type="radio" name="nodeMode" value="pub" disabled="diabled" />Public</td>
+    <input type="radio" name="nodeMode" id="nodePub" value="pub" disabled="diabled" />
+      <label for="nodePub" style="display: inline-block;">Public</label>
 <?php } else { ?>
-    <input type="radio" name="nodeMode" value="pub"<?php if ($configmmdvm['DMR']['SelfOnly'] == 0) {echo ' checked="checked"';} ?> />Public</td>
+    <input type="radio" name="nodeMode" id="nodePub" value="pub"<?php if ($configmmdvm['DMR']['SelfOnly'] == 0) {echo ' checked="checked"';} ?> />
+      <label for="nodePub" style="display: inline-block;">Public</label>
 <?php } ?>
+    </td>
+<label for="beacon-service-selection" style="display: inline-block;"> Use Network Beacon Mode (vs. timed interval mode)</label>
     <td align="left"style='word-wrap: break-word;white-space: normal;'><b>Note:</b> Public mode cannot be enabled without entering at least one allowed DMR ID in the access list below and applying the changes FIRST.</td>
     </tr>
 <?php if (file_exists('/etc/dstar-radio.mmdvmhost') && $configmmdvm['DMR']['Enable'] == 1) { ?>
