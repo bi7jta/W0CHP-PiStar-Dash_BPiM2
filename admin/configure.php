@@ -4315,29 +4315,6 @@ else:
 		</select></td>
 	</tr>
 <?php } ?>
-    <tr>
-    <td align="left"><a class="tooltip2" href="#"><?php echo $lang['node_type'];?>:<span><b>Node Lock</b>Set the public/private node type. &quot;Private&quot; limits access to your system to your ID/Callsign only, this may be a licence requirement for your country and helps prevent network loops.</span></a></td>
-    <td align="left" colspan="2">
-    <input type="radio" name="nodeMode" id="nodePriv" value="prv"<?php if ($configmmdvm['DMR']['SelfOnly'] == 1) {echo ' checked="checked"';} ?> />
-      <label for="nodePriv" style="display: inline-block;">Private</label>
-<?php if (empty($configmmdvm['DMR']['WhiteList'])) { ?>
-    <input type="radio" name="nodeMode" id="nodePub" value="pub" disabled="diabled" />
-      <label for="nodePub" style="display: inline-block;">Public</label>
-<?php } else { ?>
-    <input type="radio" name="nodeMode" id="nodePub" value="pub"<?php if ($configmmdvm['DMR']['SelfOnly'] == 0) {echo ' checked="checked"';} ?> />
-      <label for="nodePub" style="display: inline-block;">Public</label>
-<?php } ?>
-    </td>
-<label for="beacon-service-selection" style="display: inline-block;"> Use Network Beacon Mode (vs. timed interval mode)</label>
-    <td align="left"style='word-wrap: break-word;white-space: normal;'><b>Note:</b> Public mode cannot be enabled without entering at least one allowed DMR ID in the access list below and applying the changes FIRST.</td>
-    </tr>
-<?php if (file_exists('/etc/dstar-radio.mmdvmhost') && $configmmdvm['DMR']['Enable'] == 1) { ?>
-    <tr>
-    <td align="left"><a class="tooltip2" href="#">DMR Access List:<span><b>DMR IDs</b>Set the DMR IDs here that should have access to your hotspot, expected comma seperated list.</span></a></td>
-    <td align="left" colspan="2"><input type="text" placeholder="7654321" name="confDMRWhiteList" size="30" maxlength="50" value="<?php if (isset($configmmdvm['DMR']['WhiteList'])) { echo $configmmdvm['DMR']['WhiteList']; } ?>" /></td>
-    <td align="left" style='word-wrap: break-word;white-space: normal;'>Enter one, or a comma-separated list of DMR IDs which are allowed access to this hotspot/repeater (required for public functionality).</td>
-    </tr>
-<?php } ?>
 <?php if (file_exists('/etc/aprsgateway')) {
     echo "<tr>\n";
     echo "<td align=\"left\"><a class=\"tooltip2\" href=\"#\">APRS Gateway Service<span><b>APRS Gateway Service</b>Enabling this feature will make your location public on the APRS Network.</span></a></td>\n";
@@ -4857,6 +4834,28 @@ else:
 	} ?>
     </select></td>
     </tr>
+<?php if (file_exists('/etc/dstar-radio.mmdvmhost') && $configmmdvm['DMR']['Enable'] == 1) { ?>
+    <tr>
+    <td align="left"><a class="tooltip2" href="#"><?php echo $lang['node_type'];?>:<span><b>Node Lock</b>Set the public/private node type. &quot;Private&quot; limits access to your system to your ID/Callsign only, this may be a licence requirement for your country and helps prevent network loops.</span></a></td>
+    <td align="left" colspan="2">
+    <input type="radio" name="nodeMode" id="nodePriv" value="prv"<?php if ($configmmdvm['DMR']['SelfOnly'] == 1) {echo ' checked="checked"';} ?> />
+      <label for="nodePriv" style="display: inline-block;">Private</label>
+<?php if (empty($configmmdvm['DMR']['WhiteList'])) { ?>
+    <input type="radio" name="nodeMode" id="nodePub" value="pub" disabled="diabled" />
+      <label for="nodePub" style="display: inline-block;">Public</label>
+<?php } else { ?>
+    <input type="radio" name="nodeMode" id="nodePub" value="pub"<?php if ($configmmdvm['DMR']['SelfOnly'] == 0) {echo ' checked="checked"';} ?> />
+      <label for="nodePub" style="display: inline-block;">Public</label>
+<?php } ?>
+    </td>
+    <td align="left"style='word-wrap: break-word;white-space: normal;padding-left: 5px;'><b>Note:</b> Public mode cannot be enabled without entering at least one allowed DMR ID in the access list below and applying the changes FIRST.</td>
+    </tr>
+    <tr>
+    <td align="left"><a class="tooltip2" href="#">DMR Access List:<span><b>DMR IDs</b>Set the DMR IDs here that should have access to your hotspot, expected comma seperated list.</span></a></td>
+    <td align="left" colspan="2"><input type="text" placeholder="7654321" name="confDMRWhiteList" size="30" maxlength="50" value="<?php if (isset($configmmdvm['DMR']['WhiteList'])) { echo $configmmdvm['DMR']['WhiteList']; } ?>" /></td>
+    <td align="left" style='word-wrap: break-word;white-space: normal;padding-left: 5px;'>Enter one, or a comma-separated list of DMR IDs which are allowed access to this hotspot/repeater (required for public functionality).</td>
+    </tr>
+<?php } ?>
     <tr>
     <td align="left"><a class="tooltip2" href="#"><?php echo $lang['dmr_embeddedlconly'];?>:<span><b>DMR EmbeddedLCOnly</b>Turn ON to disable extended message support, including GPS and Talker Alias data. This can help reduce problems with some DMR Radios that do not support such features.</span></a></td>
     <td align="left" colspan="3">
