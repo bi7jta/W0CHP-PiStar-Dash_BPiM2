@@ -53,7 +53,7 @@ if (!empty($_POST["submit_mode"]) && empty($_POST["mode_sel"])) { //handler for 
 } elseif
     (!empty($_POST['submit_mode']) && escapeshellcmd($_POST['mode_action'] == "Pause")) {
     $mode = escapeshellcmd($_POST['mode_sel']); // get selected mode from for post
-    if (isPaused("/etc/$mode"."")) { //check if already paused
+    if (isPaused($mode)) { //check if already paused
         // Output to the browser
         echo "<b>Instant Mode Manager</b>\n";
         echo "<table>\n";
@@ -86,7 +86,7 @@ if (!empty($_POST["submit_mode"]) && empty($_POST["mode_sel"])) { //handler for 
 } elseif
     (!empty($_POST['submit_mode']) && escapeshellcmd($_POST['mode_action'] == "Resume")) {
     $mode = escapeshellcmd($_POST['mode_sel']); // get selected mode from for post
-    if (!isPaused("/etc/$mode"."")) { //check if already running
+    if (!isPaused($mode)) { //check if already running
         // Output to the browser
         echo "<b>Instant Mode Manager</b>\n";
         echo "<table>\n";
