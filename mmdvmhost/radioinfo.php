@@ -24,7 +24,8 @@ if (isset($_SESSION['CSSConfigs']['Background']['TableRowBgEvenColor'])) {
 }
 
 $ModemFW = $_SESSION['PiStarRelease']['Pi-Star']['Firmware'];
-$ModemTCXO = str_replace("MHz", " MHz",$_SESSION['PiStarRelease']['Pi-Star']['TCXO']);
+//$ModemTCXO = str_replace("MHz", " MHz",$_SESSION['PiStarRelease']['Pi-Star']['TCXO']);
+$ModemTCXO = $_SESSION['DvModemTCXOFreq'];
 
 ?>
 

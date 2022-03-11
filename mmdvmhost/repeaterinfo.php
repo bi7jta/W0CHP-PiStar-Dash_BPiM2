@@ -615,7 +615,11 @@ if (isProcessRunning("M17Gateway")) {
             } else {
                 $ysfTableData = $ysfLinkedToTxt."<br />(".$ysfRoomNo.")";
 	    }
-	    $ysfLinkedToTooltip = $ysfLinkStateTooltip.$ysfLinkedToTxt;
+	    if ($ysfLinkedTo == 'Not Linked') {
+	    	$ysfLinkedToTooltip = $ysfLinkStateTooltip;
+	    } else {
+		$ysfLinkedToTooltip = $ysfLinkStateTooltip.$ysfLinkedToTxt;
+	    }
             if (strlen($ysfLinkedToTxt) > 20) {
 		$ysfLinkedToTxt = substr($ysfLinkedToTxt, 0, 15) . '..';
 	    }
