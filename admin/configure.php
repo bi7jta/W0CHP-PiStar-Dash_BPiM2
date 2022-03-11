@@ -523,7 +523,7 @@ if ( (file_exists('/etc/dstar-radio.mmdvmhost') && $configmmdvm['DMR']['Enable']
 			<a class="menuexpert" href="/admin/expert/">Expert</a>
 			<a class="menupower" href="/admin/power.php"><?php echo $lang['power'];?></a>
 			<a class="menuadmin" href="/admin/"><?php echo $lang['admin'];?></a>
-            <a class="menulive" href="/live/">Live Caller</a>
+			<a class="menulive" href="/live/">Live Caller</a>
 			<a class="menudashboard" href="/"><?php echo $lang['dashboard'];?></a>
 		    </div>
 		</p>
@@ -4815,8 +4815,7 @@ else:
         <div style="display:block;">
             <div style="display: inline-block;vertical-align: middle;">
                 <input name="DMRBeaconModeNet" id="beacon-service-selection" value="DMRBeaconModeNet" type="checkbox"
-		      <?php if($configmmdvm['DMR']['BeaconInterval'] == NULL) { echo(' checked="checked"'); }
-		      if ($configmmdvm['DMR']['Beacons'] == 0)  { echo(' disabled="disabled"'); }?> >
+		      <?php if($configmmdvm['DMR']['BeaconInterval'] == NULL) { echo(' checked="checked"'); } ?>>
         	<label for="beacon-service-selection" style="display: inline-block;"> Use Network Beacon Mode (vs. timed interval mode)</label>
             </div>
         </div>

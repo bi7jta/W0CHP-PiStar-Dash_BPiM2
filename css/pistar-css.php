@@ -485,6 +485,11 @@ input[type=button]:hover, input[type=submit]:hover, input[type=reset]:hover, but
     background-color: <?php echo $backgroundNavbarHover; ?>;
 }
 
+input[type=button]:disabled {
+    opacity: 0.7;
+    cursor: not-allowed;
+}
+
 button:disabled {
     cursor: not-allowed;
     color: <?php echo $textModeCellDisabledColor; ?>;
