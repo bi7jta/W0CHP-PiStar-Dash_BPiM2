@@ -5,6 +5,12 @@ include_once $_SERVER['DOCUMENT_ROOT'].'/mmdvmhost/functions.php';    // MMDVMDa
 include_once $_SERVER['DOCUMENT_ROOT'].'/config/language.php';	      // Translation Code
 $localTXList = $lastHeard;
 
+if (isset($_SESSION['CSSConfigs']['Background'])) {
+    $backgroundModeCellActiveColor = $_SESSION['CSSConfigs']['Background']['ModeCellActiveColor'];
+    $backgroundModeCellPausedColor = $_SESSION['CSSConfigs']['Background']['ModeCellPausedColor'];
+    $backgroundModeCellInactiveColor = $_SESSION['CSSConfigs']['Background']['ModeCellInactiveColor'];
+}
+
 ?>
 <input type="hidden" name="localtx-autorefresh" value="OFF" />
   <div style="float: right; vertical-align: bottom;" id="localtxAR">
@@ -65,7 +71,7 @@ for ($i = 0; $i < count($localTXList); $i++) {
 			if (strlen($listElem[4]) == 1) { $listElem[4] = str_pad($listElem[4], 8, " ", STR_PAD_LEFT); }
 			echo"<td align=\"left\">".str_replace(" ","&nbsp;", $listElem[4])."</td>";
 			if ($listElem[5] == "RF"){
-				echo "<td><span style='color:#8A0B2B;font-weight:bold;'>RF</span></td>";
+				echo "<td><span style='color:$backgroundModeCellInactiveColor;font-weight:bold;'>RF</span></td>";
 			} else {
 				echo "<td>$listElem[5]</td>";
 			}
@@ -87,9 +93,9 @@ for ($i = 0; $i < count($localTXList); $i++) {
 				
 				// Colour the BER Field
 				if (floatval($listElem[8]) == 0) { echo "<td>$listElem[8]</td>"; }
-				elseif (floatval($listElem[8]) >= 0.0 && floatval($listElem[8]) <= 1.9) { echo "<td><span style='color:#005028;font-weight:bold'>$listElem[8]</span></td>"; }
-				elseif (floatval($listElem[8]) >= 2.0 && floatval($listElem[8]) <= 4.9) { echo "<td><span style='color:#984C00;font-weight:bold'>$listElem[8]</span></td>"; }
-				else { echo "<td><span style='color:#8A0B2B;font-weight:bold;'>$listElem[8]</span></td>"; }
+				elseif (floatval($listElem[8]) >= 0.0 && floatval($listElem[8]) <= 1.9) { echo "<td><span style='color:$backgroundModeCellActiveColor;font-weight:bold'>$listElem[8]</span></td>"; }
+				elseif (floatval($listElem[8]) >= 2.0 && floatval($listElem[8]) <= 4.9) { echo "<td><span style='color:$backgroundModeCellPausedColor;font-weight:bold'>$listElem[8]</span></td>"; }
+				else { echo "<td><span style='color:$backgroundModeCellInactiveColor;font-weight:bold;'>$listElem[8]</span></td>"; }
 
 				echo"<td>$listElem[9]</td>"; //rssi
 			}
