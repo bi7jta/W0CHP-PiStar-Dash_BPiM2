@@ -515,10 +515,12 @@ select {
 
 .select2-selection__rendered {
   font-family: 'Inconsolata', monospace;
+  color: black;
   font-size: <?php echo $bodyFontSize; ?>px;
 }
 
 .select2-results__options{
+  color: black;
   font-size:<?php echo $bodyFontSize; ?>px !important;
   font-family: 'Inconsolata', monospace;
 }

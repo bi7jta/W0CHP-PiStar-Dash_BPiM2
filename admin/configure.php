@@ -2786,7 +2786,7 @@ if (!empty($_POST)):
         $configm17gateway['Remote Commands']['Enable'] = "1";
         $configm17gateway['Remote Commands']['Port'] = "6075";
         $configm17gateway['Log']['DisplayLevel'] = "0";
-        $configm17gateway['Log']['FileLevel'] = "2";
+        $configm17gateway['Log']['FileLevel'] = "1";
         $configm17gateway['Log']['FilePath'] = "/var/log/pi-star";
         $configm17gateway['Log']['FileRoot'] = "M17Gateway";
         $configm17gateway['Voice']['Enabled'] = "1";
@@ -2910,7 +2910,7 @@ if (!empty($_POST)):
 	if (!isset($configdmr2ysf['DMR Network']['TGUnlink'])) { $configdmr2ysf['DMR Network']['TGUnlink'] = "4000"; }
 	if (!isset($configdmr2ysf['DMR Network']['TGListFile'])) { $configdmr2ysf['DMR Network']['TGListFile'] = "/usr/local/etc/TGList_YSF.txt"; }
 	$configdmr2ysf['Log']['DisplayLevel'] = "0";
-	$configdmr2ysf['Log']['FileLevel'] = "2";
+	$configdmr2ysf['Log']['FileLevel'] = "1";
         $configdmr2ysf['YSF Network']['GatewayPort'] = $configysfgateway['General']['LocalPort'];
         $configdmr2ysf['YSF Network']['LocalPort'] = $configysfgateway['General']['RptPort'];
 	if (!isset($configdmr2ysf['YSF Network']['DT1']))   { $configdmr2ysf['YSF Network']['DT1'] = "1,34,97,95,43,3,17,0,0,0"; }
@@ -2962,7 +2962,7 @@ if (!empty($_POST)):
 	if (!isset($configysf2dmr['DMR Id Lookup']['Time'])) { $configysf2dmr['DMR Id Lookup']['Time'] = "24"; }
 	if (!isset($configysf2dmr['DMR Id Lookup']['DropUnknown'])) { $configysf2dmr['DMR Id Lookup']['DropUnknown'] = "0"; }
 	if (!isset($configysf2dmr['Log']['DisplayLevel'])) { $configysf2dmr['Log']['DisplayLevel'] = "1"; }
-	if (!isset($configysf2dmr['Log']['FileLevel'])) { $configysf2dmr['Log']['FileLevel'] = "2"; }
+	if (!isset($configysf2dmr['Log']['FileLevel'])) { $configysf2dmr['Log']['FileLevel'] = "1"; }
 	if (!isset($configysf2dmr['Log']['FilePath'])) { $configysf2dmr['Log']['FilePath'] = "/var/log/pi-star"; }
 	if (!isset($configysf2dmr['Log']['FileRoot'])) { $configysf2dmr['Log']['FileRoot'] = "YSF2DMR"; }
 	if (!isset($configysf2dmr['aprs.fi']['Enable'])) { $configysf2dmr['aprs.fi']['Enable'] = "0"; }
@@ -2972,7 +2972,7 @@ if (!empty($_POST)):
 	unset($configysf2dmr['Info']['Enabled']);
 	unset($configysf2dmr['DMR Network']['JitterEnabled']);
 	$configysf2dmr['Log']['DisplayLevel'] = "0";
-	$configysf2dmr['Log']['FileLevel'] = "0";
+	$configysf2dmr['Log']['FileLevel'] = "1";
 	if (!isset($configysf2dmr['aprs.fi']['Enable'])) { $configysf2dmr['aprs.fi']['Enable'] = "0"; }
 	if (!isset($configysf2dmr['YSF Network']['WiresXMakeUpper'])) { $configysf2dmr['YSF Network']['WiresXMakeUpper'] = "1"; }
 	if (!isset($configysf2dmr['YSF Network']['DT1'])) { $configysf2dmr['YSF Network']['DT1'] = "1,34,97,95,43,3,17,0,0,0"; }
@@ -2987,7 +2987,7 @@ if (!empty($_POST)):
 	$configysf2nxdn['NXDN Id Lookup']['File'] = "/usr/local/etc/NXDN.csv";
 	$configysf2nxdn['NXDN Network']['TGListFile'] = "/usr/local/etc/TGList_NXDN.txt";
 	$configysf2nxdn['Log']['DisplayLevel'] = "0";
-	$configysf2nxdn['Log']['FileLevel'] = "0";
+	$configysf2nxdn['Log']['FileLevel'] = "1";
 	$configysf2nxdn['Log']['FilePath'] = "/var/log/pi-star";
 	$configysf2nxdn['Log']['FileRoot'] = "YSF2NXDN";
 	if (!isset($configysf2nxdn['aprs.fi']['Enable'])) { $configysf2nxdn['aprs.fi']['Enable'] = "0"; }
@@ -3004,7 +3004,7 @@ if (!empty($_POST)):
 	$configysf2p25['DMR Id Lookup']['File'] = "/usr/local/etc/DMRIds.dat";
 	$configysf2p25['P25 Network']['TGListFile'] = "/usr/local/etc/TGList_P25.txt";
 	$configysf2p25['Log']['DisplayLevel'] = "0";
-	$configysf2p25['Log']['FileLevel'] = "0";
+	$configysf2p25['Log']['FileLevel'] = "1";
 	$configysf2p25['Log']['FilePath'] = "/var/log/pi-star";
 	$configysf2p25['Log']['FileRoot'] = "YSF2P25";
 	if (isset($configysf2p25['aprs.fi'])) { unset($configysf2p25['aprs.fi']); }
@@ -3021,7 +3021,7 @@ if (!empty($_POST)):
 	$configdgidgateway['General']['Debug'] = "0";
 	$configdgidgateway['General']['Bleep'] = "1";
 	$configdgidgateway['Log']['DisplayLevel'] = "0"; 
-	$configdgidgateway['Log']['FileLevel'] = "2";
+	$configdgidgateway['Log']['FileLevel'] = "1";
 	$configdgidgateway['Log']['FilePath'] = "/var/log/pi-star";
 	$configdgidgateway['Log']['FileRoot'] = "DGIdGateway";
 	$configdgidgateway['Log']['FileRotate'] = "1";
@@ -3185,7 +3185,7 @@ if (!empty($_POST)):
 	if (!isset($configdapnetgw['General']['LocalPort'])) { $configdapnetgw['General']['LocalPort'] = "4800"; }
 	if (!isset($configdapnetgw['General']['Daemon'])) { $configdapnetgw['General']['Daemon'] = "0"; }
 	if (!isset($configdapnetgw['Log']['DisplayLevel'])) { $configdapnetgw['Log']['DisplayLevel'] = "0"; }
-	if (!isset($configdapnetgw['Log']['FileLevel'])) { $configdapnetgw['Log']['FileLevel'] = "2"; }
+	if (!isset($configdapnetgw['Log']['FileLevel'])) { $configdapnetgw['Log']['FileLevel'] = "1"; }
 	if (!isset($configdapnetgw['Log']['FilePath'])) { $configdapnetgw['Log']['FilePath'] = "/var/log/pi-star"; }
 	if (!isset($configdapnetgw['Log']['FileRoot'])) { $configdapnetgw['Log']['FileRoot'] = "DAPNETGateway"; }
 	if (!isset($configdapnetgw['DAPNET']['Address'])) { $configdapnetgw['DAPNET']['Address'] = "dapnet.afu.rwth-aachen.de"; }
@@ -4542,8 +4542,8 @@ else:
     <tr>
     <td align="left"><a class="tooltip2" href="#"><?php echo $lang['bm_network'];?>:<span><b>BrandMeister Dashboards</b>Direct links to your BrandMeister Dashboards</span></a></td>
     <td colspan="3" align="left">
-    <a href="https://brandmeister.network/?page=hotspot&amp;id=<?php echo $configmmdvm['General']['Id']; if ($brandMeisterESSID != "None") { echo $brandMeisterESSID; }; ?>" target="_new" style="color: #000;">Repeater Information</a> |
-    <a href="https://brandmeister.network/?page=hotspot-edit&amp;id=<?php echo $configmmdvm['General']['Id']; if ($brandMeisterESSID != "None") { echo $brandMeisterESSID; }; ?>" target="_new" style="color: #000;">Edit Repeater (BrandMeister Selfcare)</a>
+    <a href="https://brandmeister.network/?page=hotspot&amp;id=<?php echo $configmmdvm['General']['Id']; if ($brandMeisterESSID != "None") { echo $brandMeisterESSID; }; ?>" target="_new">Repeater Information</a> |
+    <a href="https://brandmeister.network/?page=hotspot-edit&amp;id=<?php echo $configmmdvm['General']['Id']; if ($brandMeisterESSID != "None") { echo $brandMeisterESSID; }; ?>" target="_new">Edit Repeater (BrandMeister Selfcare)</a>
     </td>
     </tr>
     <tr>
@@ -4725,8 +4725,8 @@ else:
     <tr>
     <td align="left"><a class="tooltip2" href="#">'.$lang['bm_network'].':<span><b>BrandMeister Dashboards</b>Direct links to your BrandMeister Dashboards</span></a></td>
     <td colspan="3">
-      <a href="https://brandmeister.network/?page=hotspot&amp;id='.$configmmdvm['General']['Id'].'" target="_new" style="color: #000;">Repeater Information</a> |
-      <a href="https://brandmeister.network/?page=hotspot-edit&amp;id='.$configmmdvm['General']['Id'].'" target="_new" style="color: #000;">Edit Repeater (BrandMeister Selfcare)</a>
+      <a href="https://brandmeister.network/?page=hotspot&amp;id='.$configmmdvm['General']['Id'].'" target="_new">Repeater Information</a> |
+      <a href="https://brandmeister.network/?page=hotspot-edit&amp;id='.$configmmdvm['General']['Id'].'" target="_new">Edit Repeater (BrandMeister Selfcare)</a>
     </td>
     </tr>'."\n";}
     if (substr($dmrMasterNow, 0, 8) == "FreeDMR_") {
@@ -4741,8 +4741,8 @@ else:
     <tr>
     <td align="left"><a class="tooltip2" href="#">FreeDMR Help:<span><b>FreeDMR Help</b>FreeDMR Options Help</span></a></td>
     <td colspan="3">
-      <a href="http://www.freedmr.uk/index.php/static-talk-groups-pi-star/" target="_new" style="color: #000;">FreeDMR Options Guide</a> |
-      <a href="http://www.freedmr.uk/index.php/dashboard/options-calculator/" target="_new" style="color: #000;">FreeDMR Options Calculator</a>
+      <a href="http://www.freedmr.uk/index.php/static-talk-groups-pi-star/" target="_new">FreeDMR Options Guide</a> |
+      <a href="http://www.freedmr.uk/index.php/dashboard/options-calculator/" target="_new">FreeDMR Options Calculator</a>
     </td>
     </tr>'."\n";}
     if ((substr($dmrMasterNow, 0, 4) == "DMR+") || (substr($dmrMasterNow, 0, 3) == "HB_") || (substr($dmrMasterNow, 0, 3) == "FD_")) {
@@ -4799,7 +4799,7 @@ else:
     <th align="left" colspan="4">System-Wide DMR Settings</th>
     </tr>
     <tr>
-    <td align="left"><b>Enable DMR Roaming Beacon</b></td>
+    <td align="left"><a class="tooltip2" href="#">DMR Roaming Beacon<span><b>Enable DMR Roaming Beacon</b>Enable DMR Roaming Beacons</span></a></td>
     <?php
     if ($configmmdvm['DMR']['Beacons'] == 1) {
         echo "<td align=\"left\" colspan=\"2\"><div class=\"switch\"><input id=\"toggle-dmrbeacon\" class=\"toggle toggle-round-flat\" type=\"checkbox\" name=\"DMRBeaconEnable\" value=\"ON\" checked=\"checked\" aria-hidden=\"true\" tabindex=\"-1\" ".$toggleDmrBeaconCr." /><label id=\"aria-toggle-dmrbeacon\" role=\"checkbox\" tabindex=\"0\" aria-label=\"Enable Beaconing\" aria-checked=\"true\" onKeyPress=\"toggleDmrBeacon()\" onclick=\"toggleDmrBeacon()\" for=\"toggle-dmrbeacon\"><font style=\"font-size:0px\">Enable DMR Beaconing</font></label></div>\n";
