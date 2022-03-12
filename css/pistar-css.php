@@ -270,12 +270,12 @@ a.tooltip2, a.tooltip2:link, a.tooltip2:visited, a.tooltip2:active  {
     text-decoration: none;
     position: relative;
     font-weight: bold;
-    color: <?php echo $textTableHeaderColor; ?>;
+    color: <?php echo $textContent; ?>;
 }
 
 a.tooltip2:hover {
     text-decoration: none;
-    color: <?php echo $textTableHeaderColor; ?>;
+    color: <?php echo $textContent; ?>;
     background: transparent;
 }
 
