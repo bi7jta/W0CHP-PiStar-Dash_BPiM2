@@ -62,7 +62,7 @@ body, font {
 
 .contentwide {
     padding: 3px;
-    color: <?php echo $textContent; ?>;
+    color: <?php echo $textSections; ?>;
     background: <?php echo $backgroundContent; ?>;
     text-align: center;
     margin-top: 5px;
