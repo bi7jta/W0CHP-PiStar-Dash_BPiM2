@@ -60,7 +60,7 @@ $ModemTCXO = $_SESSION['DvModemTCXOFreq'];
                     $listElem = $lastHeard[0];
                 if (getActualMode($lastHeard, $_SESSION['MMDVMHostConfigs']) === 'idle') {
 		    if (isProcessRunning("MMDVMHost")) {
-                    	echo "<div class=\"divTableCell middle active-mode-cell\" style=\"font-weight:bold;padding:2px;\">IDLE</div>";
+                    	echo "<div class=\"divTableCell middle active-mode-cell\" style=\"font-weight:bold;color:#ffffff;padding:2px;\">IDLE</div>";
 		    }
 		    else { 
                         echo "<div class='error-state-cell divTableCell middle hwinfo' style=\"font-weight:bold;padding:2px;\">OFFLINE</div>";
@@ -68,47 +68,47 @@ $ModemTCXO = $_SESSION['DvModemTCXOFreq'];
                 }
                 else if (getActualMode($lastHeard, $_SESSION['MMDVMHostConfigs']) === NULL) {
                     if (isProcessRunning("MMDVMHost")) {
-                        echo "<div ass=\"divTableCell middle active-mode-cell\" style=\"font-weight:bold;padding:2px;\">IDLE</div>";
+                        echo "<div ass=\"divTableCell middle active-mode-cell\" style=\"font-weight:bold;color:#ffffff;padding:2px;\">IDLE</div>";
                     }
                     else {
-                        echo "<div class='error-state-cell divTableCell middle hwinfo' style=\"font-weight:bold;padding:2px;\">OFFLINE</div>";
+                        echo "<div class='error-state-cell divTableCell middle hwinfo' style=\"font-weight:bold;color:#ffffff;padding:2px;\">OFFLINE</div>";
                     }
                 }
                 else if ($listElem[2] && $listElem[6] == null && getActualMode($lastHeard, $_SESSION['MMDVMHostConfigs']) === 'D-Star') {
-                    echo "<div class=\"divTableCell middle hwinfo\" style=\"background:#00aedb;font-weight:bold;padding:2px;\">RX: D-Star</div>";
+                    echo "<div class=\"divTableCell middle hwinfo\" style=\"background:#00aedb;color:#000000;font-weight:bold;padding:2px;\">RX: D-Star</div>";
                 }
                 else if (getActualMode($lastHeard, $_SESSION['MMDVMHostConfigs']) === 'D-Star') {
-                    echo "<div class=\"divTableCell middle hwinfo\" style=\"background:#ffc425;font-weight:bold;padding:2px;\">Standby: D-Star</div>";
+                    echo "<div class=\"divTableCell middle hwinfo\" style=\"background:#ffc425;color:#000000;font-weight:bold;padding:2px;\">Standby: D-Star</div>";
                 }
                 else if ($listElem[2] && $listElem[6] == null && getActualMode($lastHeard, $_SESSION['MMDVMHostConfigs']) === 'DMR') {
-                    echo "<div class=\"divTableCell middle hwinfo\" style=\"background:#00aedb; font-weight:bold;padding:2px;\">RX: DMR</div>";
+                    echo "<div class=\"divTableCell middle hwinfo\" style=\"background:#00aedb;color:#000000;font-weight:bold;padding:2px;\">RX: DMR</div>";
                 }
                 else if (getActualMode($lastHeard, $_SESSION['MMDVMHostConfigs']) === 'DMR') {
-                    echo "<div class=\"divTableCell middle hwinfo\" style=\"background:#ffc425;font-weight:bold;padding:2px;\">Standby: DMR</div>";
+                    echo "<div class=\"divTableCell middle hwinfo\" style=\"background:#ffc425;color:#000000;font-weight:bold;padding:2px;\">Standby: DMR</div>";
                 }
                 else if ($listElem[2] && $listElem[6] == null && getActualMode($lastHeard, $_SESSION['MMDVMHostConfigs']) === 'YSF') {
-                    echo "<div class=\"divTableCell middle hwinfo\" style=\"background:#00aedb; font-weight:bold;padding:2px;\">RX: YSF</div>";
+                    echo "<div class=\"divTableCell middle hwinfo\" style=\"background:#00aedb;color:#000000;font-weight:bold;padding:2px;\">RX: YSF</div>";
                 }
                 else if (getActualMode($lastHeard, $_SESSION['MMDVMHostConfigs']) === 'YSF') {
-                    echo "<div class=\"divTableCell middle hwinfo\" style=\"background:#ffc425;font-weight:bold;padding:2px;\">Standby: YSF</div>";
+                    echo "<div class=\"divTableCell middle hwinfo\" style=\"background:#ffc425;color:#000000;font-weight:bold;padding:2px;\">Standby: YSF</div>";
                 }
                 else if ($listElem[2] && $listElem[6] == null && getActualMode($lastHeard, $_SESSION['MMDVMHostConfigs']) === 'P25') {
-                    echo "<div class=\"divTableCell middle hwinfo\" style=\"background:#00aedb;font-weight:bold;padding:2px;\">RX: P25</div>";
+                    echo "<div class=\"divTableCell middle hwinfo\" style=\"background:#00aedb;color:#000000;font-weight:bold;padding:2px;\">RX: P25</div>";
                 }
                 else if (getActualMode($lastHeard, $_SESSION['MMDVMHostConfigs']) === 'P25') {
-                    echo "<div class=\"divTableCell middle hwinfo\" style=\"background:#ffc425;font-weight:bold;padding:2px;\">Standby: P25</div>"; 
+                    echo "<div class=\"divTableCell middle hwinfo\" style=\"background:#ffc425;color:#000000;font-weight:bold;padding:2px;\">Standby: P25</div>"; 
                 }
                 else if ($listElem[2] && $listElem[6] == null && getActualMode($lastHeard, $_SESSION['MMDVMHostConfigs']) === 'M17') {
-                    echo "<div class=\"divTableCell middle hwinfo\" style=\"background:#00aedb;padding:2px;font-weight:bold;\">RX M17</div>";
+                    echo "<div class=\"divTableCell middle hwinfo\" style=\"background:#00aedb;color:#000000;padding:2px;font-weight:bold;\">RX M17</div>";
                 }
                 else if (getActualMode($lastHeard, $_SESSION['MMDVMHostConfigs']) === 'M17') {
-                    echo "<div class=\"divTableCell middle hwinfo\" style=\"background:#ffc425;padding:2px;font-weight:bold;\">Standby: M17</div>";
+                    echo "<div class=\"divTableCell middle hwinfo\" style=\"background:#ffc425;color:#000000;padding:2px;font-weight:bold;\">Standby: M17</div>";
                 }
                 else if ($listElem[2] && $listElem[6] == null && getActualMode($lastHeard, $_SESSION['MMDVMHostConfigs']) === 'NXDN') {
-                    echo "<div class=\"divTableCell middle hwinfo\" style=\"background:#00aedb;font-weight:bold;padding:2px;\">RX: NXDN</div>";
+                    echo "<div class=\"divTableCell middle hwinfo\" style=\"background:#00aedb;color:#000000;font-weight:bold;padding:2px;\">RX: NXDN</div>";
                 }   
                 else if (getActualMode($lastHeard, $_SESSION['MMDVMHostConfigs']) === 'NXDN') {
-                    echo "<div class=\"divTableCell middle hwinfo\" style=\"background:#ffc425;font-weight:bold;padding:2px;\">Standby: NXDN</div>"; 
+                    echo "<div class=\"divTableCell middle hwinfo\" style=\"background:#ffc425;color:#000000;font-weight:bold;padding:2px;\">Standby: NXDN</div>"; 
                 }   
                 else if (getActualMode($lastHeard, $_SESSION['MMDVMHostConfigs']) === 'POCSAG') {
                     echo "<div class=\"divTableCell middle hwinfo\" style=\"color:#fff; background:#d11141; font-weight:bold;padding:2px;\">TX: POCSAG Data</div>";
@@ -119,7 +119,7 @@ $ModemTCXO = $_SESSION['DvModemTCXOFreq'];
             }   
         }   
         else {
-            echo "<div class=\"divTableCell middle active-mode-cell\" style=\"font-weight:bold;padding:2px;\">IDLE</div>";
+            echo "<div class=\"divTableCell middle active-mode-cell\" style=\"font-weight:color:#ffffff;bold;padding:2px;\">IDLE</div>";
         }
         ?>
       <div class="divTableCell hwinfo middle" style="background: <?php echo $tableRowEvenBg; ?>;"><?php echo getMHZ(getConfigItem("Info", "TXFrequency", $_SESSION['MMDVMHostConfigs'])); ?></div>
