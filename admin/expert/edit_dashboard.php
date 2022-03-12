@@ -125,7 +125,7 @@ require_once $_SERVER['DOCUMENT_ROOT'].'/config/version.php';
 		    //The source file does not exist, lets create it....
 		    $outFile = fopen("/tmp/bW1kd4jg6b3N0DQo.tmp", "w") or die("Unable to open file!");
 		    $fileContent = "[Background]\nPageColor=#edf0f5\nContentColor=#ffffff\nBannersColor=#dd4b39\nNavbarColor=#242d31\nNavbarHoverColor=#a60000\nDropdownColor=#f9f9f9\nDropdownHoverColor=#d0d0d0\nServiceCellActiveColor=#11DD11\nServiceCellInactiveColor=#BB5555\nModeCellDisabledColor=#606060\nModeCellActiveColor=#00BB00\nModeCellInactiveColor=#BB0000\nModeCellPausedColor=#ff9933\nNavPanelColor#edf0f5=\nTableRowBgEvenColor=#f7f7f7\nTableRowBgOddColor=#d0d0d0\n\n";
-		    $fileContent .= "[Text]\nTextColor=#000000\nTextLinkColor=#0000e0\nTableHeaderColor=#ffffff\nBannersColor=#ffffff\nNavbarColor=#ffffff\nNavbarHoverColor=#ffffff\nDropdownColor=#000000\nDropdownHoverColor=#000000\nServiceCellActiveColor=#000000\nServiceCellInactiveColor=#000000\nModeCellDisabledColor=#b0b0b0\nModeCellActiveColor=#003300\nModeCellInactiveColor=#550000\n\n";
+		    $fileContent .= "[Text]\nTextColor=#000000\nTextSectionColor=#000000\nTextLinkColor=#0000e0\nTableHeaderColor=#ffffff\nBannersColor=#ffffff\nNavbarColor=#ffffff\nNavbarHoverColor=#ffffff\nDropdownColor=#000000\nDropdownHoverColor=#000000\nServiceCellActiveColor=#000000\nServiceCellInactiveColor=#000000\nModeCellDisabledColor=#b0b0b0\nModeCellActiveColor=#003300\nModeCellInactiveColor=#550000\n\n";
 		    $fileContent .= "[ExtraSettings]\nLastHeardRows=40\nMainFontSize=18\nBodyFontSize=17\nHeaderFontSize=34\nTableBorderColor=#000000\n\n";
 		    fwrite($outFile, $fileContent);
 		    fclose($outFile);
@@ -335,7 +335,11 @@ require_once $_SERVER['DOCUMENT_ROOT'].'/config/version.php';
 		    // print all other values as input fields, so can edit. 
 		    // note the name='' attribute it has both section and key
 		    foreach($values as $key=>$value) {
-			    if (endsWith($key, 'Color')) {
+			    if (endsWith($key, 'SectionColor')) {
+			        echo "<tr><td align=\"right\" style='padding-left:10em;width:150px;'>$key</td><td align=\"left\"><input type=\"text\" class=\"colorwell\" name=\"{$section}[$key]\" value=\"$value\" /></td><td align='left' style='word-wrap: break-word;white-space: normal;'>(the small section heading font color; default is \"#000000\" [black].)</td></tr>\n";
+			    } elseif ($key == 'TextColor') {
+			        echo "<tr><td align=\"right\" style='padding-left:10em;width:150px;'>$key</td><td align=\"left\"><input type=\"text\" class=\"colorwell\" name=\"{$section}[$key]\" value=\"$value\" /></td><td align='left' style='word-wrap: break-word;white-space: normal;'>(the Main Content font color, used across most of the Dashboard's informational/data text; default is \"#000000\" [black].)</td></tr>\n";
+			    } elseif (endsWith($key, 'Color')) { 
 			        echo "<tr><td align=\"right\" style='padding-left:10em;width:150px;'>$key</td><td align=\"left\" colspan='2'><input type=\"text\" class=\"colorwell\" name=\"{$section}[$key]\" value=\"$value\" /></td></tr>\n";
 			    } elseif (beginsWith($key, 'MainFontSize')) {
 			        echo "<tr><td align=\"right\" style='padding-left:10em;width:150px;'>$key</td><td align=\"left\"><input type=\"text\" name=\"{$section}[$key]\" value=\"$value\" size='3' maxlength='2' /></td><td align='left' style='word-wrap: break-word;white-space: normal;'>(the Main Content font size, in pixels, used across most of the Dashboard's informational/data text; default is 18 pixels.)</td></tr>\n";

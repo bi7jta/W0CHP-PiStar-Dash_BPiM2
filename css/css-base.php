@@ -23,7 +23,7 @@ $backgroundModeCellPausedColor = "#ff9933";
 $tableRowEvenBg = "#f7f7f7";		// Table Row BG Colour (Even)
 $tableRowOddBg = "#d0d0d0";		// Table Row BG Colour (Odd)
 
-$textBanners = "#ffffff";            // Usually white
+$textBanners = "#ffffff";            // Header color
 $textNavbar = "#ffffff";           	// Navbar text color
 $textNavbarHover = "#ffffff";       // Navbar hover color
 $textDropdown = "#000000";          // Dropdown menu text color
@@ -35,7 +35,8 @@ $textModeCellDisabledColor = "#b0b0b0";
 $textModeCellActiveColor = "#000000";
 $textModeCellInactiveColor = "#000000";
 
-$textContent = "#000000";            // Used for the section titles
+$textContent = "#000000";            // Used for most content
+$textSections = "#000000";            // Used for the section titles
 $textLinks = "#0000e0";
 
 // extras
@@ -80,7 +81,8 @@ if (file_exists('/etc/pistar-css.ini')) {
     assignCSSValue($tableRowEvenBg, $piStarCss['Background']['TableRowBgEvenColor']); // Table Row BG Colour (Even)
     assignCSSValue($tableRowOddBg, $piStarCss['Background']['TableRowBgOddColor']); // Table Row BG Colour (Odd)
 
-    assignCSSValue($textContent, $piStarCss['Text']['TextColor']); // Used for the section titles
+    assignCSSValue($textContent, $piStarCss['Text']['TextColor']); // Used for most content
+    assignCSSValue($textSections, $piStarCss['Text']['TextSectionColor']); // Used for the section titles
     assignCSSValue($textLinks, $piStarCss['Text']['TextLinkColor']); // Used for the hyperlinks
     assignCSSValue($textTableHeaderColor, $piStarCss['Text']['TableHeaderColor']);
     assignCSSValue($textBanners, $piStarCss['Text']['BannersColor']); // Usually white

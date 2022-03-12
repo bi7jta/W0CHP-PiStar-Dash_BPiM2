@@ -55,7 +55,7 @@ body, font {
 .content {
     margin : 0 0 0 240px;
     padding : 1px 5px 5px 5px;
-    color : <?php echo $textContent; ?>;
+    color : <?php echo $textSections; ?>;
     background : <?php echo $backgroundContent; ?>;
     text-align: center;
 }
@@ -137,7 +137,7 @@ table tr:nth-child(odd) {
 }
 
 table td {
-    color: #000000;
+    color: <?php echo $textContent; ?>;
     font-family: 'Inconsolata', monospace;
     font-weight: 500;
     text-decoration: none;
@@ -174,7 +174,7 @@ table td {
 
 .divTableCellSans {
     font-size: <?php echo "$contentFontSize"; ?>px;
-    color: #000000;
+    color: <?php echo $textContent; ?>;
 }
 
 .divTableCell {
@@ -182,7 +182,7 @@ table td {
     font-weight: 500;
     font-size: <?php echo "$mainFontSize"; ?>px;
     border: .5px solid <?php echo $tableBorderColor; ?>;
-    color: #000000;
+    color: <?php echo $textContent; ?>;
 }
 
 .divTableCell, .divTableHeadCell {
@@ -203,7 +203,7 @@ table td {
 
 body {
     background: <?php echo $backgroundPage; ?>;
-    color: #000000;
+    color: <?php echo $textContent; ?>;
 }
 
 a {
