@@ -525,6 +525,10 @@ select {
   font-family: 'Inconsolata', monospace;
 }
 
+select + .select2-container {
+  width: auto !important;
+}
+
 .navbar {
     overflow: hidden;
     background-color: <?php echo $backgroundNavbar; ?>;
