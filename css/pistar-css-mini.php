@@ -13,8 +13,8 @@ include_once('css-base.php');
 
 body, font {
     font: 18px 'Source Sans Pro', sans-serif;
-    color: #ffffff;
     -webkit-text-size-adjust: none;
+    color: <?php echo $textContent; ?>;
     -moz-text-size-adjust: none;
     -ms-text-size-adjust: none;
     text-size-adjust: none;
@@ -68,7 +68,7 @@ body, font {
 }
 
 .contentwide h2 {
-    color: #<?php echo $textContent; ?>;
+    color: <?php echo $textContent; ?>;
     font: 1em 'Source Sans Pro', sans-serif;
     text-align: center;
     font-weight: bold;
@@ -110,8 +110,8 @@ table {
     border-spacing: 4px;
     border-width: 2px;
     text-decoration: none;
-    color: #ffffff;
-    background: #000000;
+    color: <?php echo $textContent; ?>;
+    background: <?php echo $backgroundContent; ?>;
     font-family: 'Source Sans Pro', sans-serif;
     width: 100%;
     white-space: nowrap;
@@ -134,7 +134,6 @@ table tr:nth-child(odd) {
 }
 
 table td {
-    color: #000000;
     font-family: 'Inconsolata', monospace;
     text-decoration: none;
     border: 1px solid #000000;
