@@ -69,7 +69,7 @@ body, font {
 }
 
 .contentwide h2 {
-    color: <?php echo $textContent; ?>;
+    color: <?php echo $textSections; ?>;
     font: 1em 'Source Sans Pro', sans-serif;
     text-align: center;
     font-weight: bold;
