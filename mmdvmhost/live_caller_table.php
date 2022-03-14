@@ -65,7 +65,7 @@ for ($i = 0;  ($i <= 0); $i++) { //Last 20  calls
 		$dt = new DateTime($utc_time, $utc_tz);
 		$duration = $now->getTimestamp() - $dt->getTimestamp();
 		$duration_string = $duration<999 ? round($duration) . "+" : "&infin;";
-		$duration = "<td style=\"background:#d11141;color:#fff;\">TX " . $duration_string . " sec</td>";
+		$duration = "<td style=\"background:#d11141;color:#fff;\">TX: " .$listElem[1]." ; ".$duration_string. " sec</td>";
 	    } else if ($listElem[6] == "DMR Data") {
 		$duration =  "<td style=\"background:#00718F;color:#fff;\">DMR Data</td>";
 	    } else if ($listElem[6] == "POCSAG Data") {
@@ -175,7 +175,7 @@ for ($i = 0;  ($i <= 0); $i++) { //Last 20  calls
 		} ?></td>
     <?php
 	if ($listElem[5] == "RF") {
-		echo "<td<span style='color:$backgroundModeCellInactiveColor;font-weight:bold;'>RF</span></td>";
+		echo "<td><span style='color:$backgroundModeCellInactiveColor;font-weight:bold;'>RF</span></td>";
 	} else {
     		echo" <td>".$source ?? ' '."</td>";
 	}
