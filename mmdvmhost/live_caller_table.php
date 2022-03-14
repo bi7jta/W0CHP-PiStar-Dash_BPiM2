@@ -175,7 +175,7 @@ for ($i = 0;  ($i <= 0); $i++) { //Last 20  calls
 		} ?></td>
     <?php
 	if ($listElem[5] == "RF") {
-		echo "<td><span style='color:#8A0B2B;font-weight:bold;'>RF</span></td>";
+		echo "<td<span style='color:$backgroundModeCellInactiveColor;font-weight:bold;'>RF</span></td>";
 	} else {
     		echo" <td>".$source ?? ' '."</td>";
 	}
