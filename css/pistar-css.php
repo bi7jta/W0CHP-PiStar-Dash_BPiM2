@@ -342,12 +342,11 @@ ul li a span {
 }
 
 ul.mmenu li a.current, ul.mmenu li a:hover {
-    background: url(/images/buttonbg.png) no-repeat top right;
     color: #0d5f83;
 }
 
 ul.mmenu li a.current span, ul.mmenu li a:hover span {
-    background: url(/images/buttonbg.png) no-repeat top left;
+    color: #0d5f83;
 }
 
 h1 {
