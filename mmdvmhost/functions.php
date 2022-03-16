@@ -1793,6 +1793,7 @@ function decodeAlias($logLine) {
 }
 
 function getName($callsign) {
+    ini_set('default_socket_timeout', 2);
     $name = array();
     $TMP_CALL_NAME = "/tmp/Callsign_Name.txt"; // in cache?
     $cl_api = "https://callook.info/$callsign/json";
@@ -1808,7 +1809,7 @@ function getName($callsign) {
             return $name;
         }
     }
-    $fp = fsockopen('ssl://callook.info', '443', $errno, $errstr, 10);
+    $fp = fsockopen('ssl://callook.info', '443', $errno, $errstr, 2);
     if ($fp) {
         $options = array(
                 'http'=>array(
