@@ -1398,6 +1398,16 @@ if (!empty($_POST)):
 	  $configysf2dmr['DMR Network']['Address'] = $ysf2dmrMasterHostArr[0];
 	  $configysf2dmr['DMR Network']['Password'] = '"'.$ysf2dmrMasterHostArr[1].'"';
 	  $configysf2dmr['DMR Network']['Port'] = $ysf2dmrMasterHostArr[2];
+
+	 // Set the YSF2DMR Options
+	 if (empty($_POST['ysf2dmrNetworkOptions']) != TRUE ) {
+	 	$ysf2dmrOptionsLineStripped = str_replace('"', "", $_POST['ysf2dmrNetworkOptions']);
+		$configysf2dmr['DMR Network']['Options'] = '"'.$ysf2dmrOptionsLineStripped.'"';
+	 }
+	 else {
+		unset ($configysf2dmr['DMR Network']['Options']);
+	 }
+
 	  if (isset($_POST['bmHSSecurity'])) {
 		  if (empty($_POST['bmHSSecurity']) != TRUE ) {
 			  $configysf2dmr['DMR Network']['Password'] = '"'.$_POST['bmHSSecurity'].'"';
@@ -5235,6 +5245,12 @@ $ysfHosts = fopen("/usr/local/etc/YSFHosts.txt", "r"); ?>
         fclose($dmrMasterFile);
         ?>
     </select></td>
+    </tr>
+    <tr>
+	<td align="left"><a class="tooltip2" href="#">DMR Options:<span><b>DMR Options (YSF2DMR)</b>Set your Options= for the DMR master above</span></a></td>
+	<td align="left" colspan="2">
+	    Options=<input type="text" name="ysf2dmrNetworkOptions" size="85" maxlength="250" value="<?php if (isset($configysf2dmr['DMR Network']['Options'])) { echo $configysf2dmr['DMR Network']['Options']; } ?>" />
+	</td>
     </tr>
     <tr>
       <td align="left"><a class="tooltip2" href="#">Hotspot Security:<span><b>DMR Master Password</b>Override the Password for DMR with your own custom password, make sure you already configured this on your chosed DMR Master. Empty the field to use the default.</span></a></td>
