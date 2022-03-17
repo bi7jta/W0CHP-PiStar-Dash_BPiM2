@@ -470,6 +470,16 @@ if (isProcessRunning("M17Gateway")) {
 	    }
 	    ?>
     </div>
+    <div class="divTableRow center">
+      <div class="divTableHeadCell">Beacons</div>
+           <?php
+            if (getConfigItem("DMR", "Beacons", $_SESSION['MMDVMHostConfigs']) == 1) {
+		echo "<div class='divTableCell hwinfo'><div class='active-mode-cell middle'>Enabled</div></div>\n";
+	    } else {
+		echo "<div class='divTableCell hwinfo middle'>Disabled</div>\n";
+	    }
+	    ?>
+      </div>
   </div>
 </div>
 <div class="divTable">
@@ -886,6 +896,12 @@ if (!isProcessRunning("APRSGateway")) {
 
   <div class="mode_flex row">
     <div class="mode_flex column">
+      <div class="divTableHead">Enabled for Modes</div>
+    </div>
+  </div>
+
+  <div class="mode_flex row">
+    <div class="mode_flex column">
 <?php	if ($testAPRSdmr == 1) { echo "<div class=\"divTableCell\"><div class=\"active-mode-cell\">DMR</div></div>"; } else { echo "<div class=\"divTableCell\"><div class=\"disabled-mode-cell\">DMR</div></div>"; } ?>
     </div>
     <div class="mode_flex column">
@@ -913,7 +929,7 @@ if (!isProcessRunning("APRSGateway")) {
 
   <div class="mode_flex row">
     <div class="mode_flex column">
-      <div class="divTableHead">Host Pool</div>
+      <div class="divTableHead">Selected Host Pool</div>
     </div>
   </div>
   
@@ -925,13 +941,15 @@ if (!isProcessRunning("APRSGateway")) {
 
   <div class="mode_flex row">
     <div class="mode_flex column">
-      <div class="divTableHead">APRS Server</div>
+      <div class="divTableHead">Current APRS Server</div>
     </div>
   </div>
 
   <div class="mode_flex row">
     <div class="mode_flex column">
-<?php echo "<div class='divTableCell'><div class='center' style=\"background: $tableRowEvenBg;\" title=\"".getAPRSISserver()."\">".getAPRSISserver()."</div>\n</div>\n"; ?>
+<?php 
+$APRSserverLink = str_replace("T2", "", getAPRSISserver());
+echo "<div class='divTableCell'><div class='center' style=\"background: $tableRowEvenBg;\" title=\"".getAPRSISserver()."\"><a href=\"http://$APRSserverLink.aprs2.net:14501\" target=\"_new\">".getAPRSISserver()."</a></div>\n</div>\n"; ?>
     </div>
   </div>
 </div>
