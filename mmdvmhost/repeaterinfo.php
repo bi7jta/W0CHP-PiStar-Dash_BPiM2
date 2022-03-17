@@ -889,25 +889,25 @@ if (!isProcessRunning("APRSGateway")) {
 <?php	if ($testAPRSdmr == 1) { echo "<div class=\"divTableCell\"><div class=\"active-mode-cell\">DMR</div></div>"; } else { echo "<div class=\"divTableCell\"><div class=\"disabled-mode-cell\">DMR</div></div>"; } ?>
     </div>
     <div class="mode_flex column">
-<?php	if ($testAPRSircddb == 1) { echo "<div class=\"divTableCell\"><div class=\"active-mode-cell\">DMR</div></div>"; } else { echo "<div class=\"divTableCell\"><div class=\"disabled-mode-cell\">D-Star</div></div>"; } ?>
+<?php	if ($testAPRSircddb == 1) { echo "<div class=\"divTableCell\"><div class=\"active-mode-cell\">D-Star</div></div>"; } else { echo "<div class=\"divTableCell\"><div class=\"disabled-mode-cell\">D-Star</div></div>"; } ?>
     </div>
   </div>
 
   <div class="mode_flex row">
     <div class="mode_flex column">
-<?php	if ($testAPRSysf == 1) { echo "<div class=\"divTableCell\"><div class=\"active-mode-cell\">DMR</div></div>"; } else { echo "<div class=\"divTableCell\"><div class=\"disabled-mode-cell\">YSF</div></div>"; } ?>
+<?php	if ($testAPRSysf == 1) { echo "<div class=\"divTableCell\"><div class=\"active-mode-cell\">YSF</div></div>"; } else { echo "<div class=\"divTableCell\"><div class=\"disabled-mode-cell\">YSF</div></div>"; } ?>
       </div>
     <div class="mode_flex column">
-<?php	if ($testAPRSdgid == 1) { echo "<div class=\"divTableCell\"><div class=\"active-mode-cell\">DMR</div></div>"; } else { echo "<div class=\"divTableCell\"><div class=\"disabled-mode-cell\">DGId</div></div>"; } ?>
+<?php	if ($testAPRSdgid == 1) { echo "<div class=\"divTableCell\"><div class=\"active-mode-cell\">DGId</div></div>"; } else { echo "<div class=\"divTableCell\"><div class=\"disabled-mode-cell\">DGId</div></div>"; } ?>
       </div>
     </div>
 
   <div class="mode_flex row">
     <div class="mode_flex column">
-<?php	if ($testAPRSnxdn == 1) { echo "<div class=\"divTableCell\"><div class=\"active-mode-cell\">DMR</div></div>"; } else { echo "<div class=\"divTableCell\"><div class=\"disabled-mode-cell\">NXDN</div></div>"; } ?>
+<?php	if ($testAPRSnxdn == 1) { echo "<div class=\"divTableCell\"><div class=\"active-mode-cell\">NXDN</div></div>"; } else { echo "<div class=\"divTableCell\"><div class=\"disabled-mode-cell\">NXDN</div></div>"; } ?>
     </div>
     <div class="mode_flex column">
-<?php	if ($testAPRSm17 == 1) { echo "<div class=\"divTableCell\"><div class=\"active-mode-cell\">DMR</div></div>"; } else { echo "<div class=\"divTableCell\"><div class=\"disabled-mode-cell\">P25</div></div>"; } ?>
+<?php	if ($testAPRSm17 == 1) { echo "<div class=\"divTableCell\"><div class=\"active-mode-cell\">M17</div></div>"; } else { echo "<div class=\"divTableCell\"><div class=\"disabled-mode-cell\">M17</div></div>"; } ?>
     </div>
   </div>
 
