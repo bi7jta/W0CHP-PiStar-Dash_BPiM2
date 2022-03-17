@@ -876,6 +876,7 @@ if (!isProcessRunning("APRSGateway")) {
     </div>
   </div>
 </div>
+<br />
 
 <?php
 } else {
@@ -890,6 +891,7 @@ if (!isProcessRunning("APRSGateway")) {
     </div>
   </div>
 </div>
+<br />
 <?php
     } else {
 ?>
@@ -953,6 +955,7 @@ echo "<div class='divTableCell'><div class='center' style=\"background: $tableRo
     </div>
   </div>
 </div>
+<br />
 <?php
       }
     }
