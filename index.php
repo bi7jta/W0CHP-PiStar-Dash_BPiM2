@@ -501,7 +501,7 @@ checkSessionValidity();
 	    	if (empty($_POST) && empty($_GET)) {				// only show services on main admin page
 		        echo '<div id="sysInfo">'."\n";
 		        include 'dstarrepeater/system.php';				// Basic System Info
-		        echo '</div><br />'."\n";
+		        echo '</div></div><br />'."\n";
             }
         }
     
@@ -534,7 +534,7 @@ checkSessionValidity();
 	        echo '    }'."\n";
 	        echo '}'."\n";
     		echo '</script>'."\n";
-		echo '<div id="lcmsg" style="background:white;color:black;"></div>'."\n";
+		echo '<div id="lcmsg" style="background:white;color:black; margin:5px 0 10px 0;"></div>'."\n";
     		echo '<script type="text/javascript">'."\n";
     		echo 'function LiveCallerDetails(){'."\n";
     		echo '  $("#liveCallerDeets").load("/mmdvmhost/live_caller_table.php");'."\n";

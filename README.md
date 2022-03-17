@@ -224,18 +224,19 @@ Run:
     NavbarHoverColor=#65737e
     DropdownColor=#6b6c73
     DropdownHoverColor=#3c3f47
-    ServiceCellActiveColor=#1fa11f
-    ServiceCellInactiveColor=#BB5555
+    ServiceCellActiveColor=#0e790e
+    ServiceCellInactiveColor=#9b3d3d
     ModeCellDisabledColor=#535353
-    ModeCellActiveColor=#1fa11f
-    ModeCellInactiveColor=#BB5555
-    ModeCellPausedColor=#ff9933
+    ModeCellActiveColor=#0e790e
+    ModeCellInactiveColor=#9b3d3d
+    ModeCellPausedColor=#a75808
     NavPanelColor=#212529
     TableRowBgEvenColor=#949494
     TableRowBgOddColor=#7a7c80
 
     [Text]
-    TextColor=#bebebe
+    TextColor=#000000
+    TextSectionColor=#bebebe
     TextLinkColor=#1a2573
     TableHeaderColor=#bebebe
     BannersColor=#bebebe
