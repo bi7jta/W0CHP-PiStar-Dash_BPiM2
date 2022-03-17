@@ -950,8 +950,7 @@ if (!isProcessRunning("APRSGateway")) {
   <div class="mode_flex row">
     <div class="mode_flex column">
 <?php 
-$APRSserverLink = str_replace("T2", "", getAPRSISserver());
-echo "<div class='divTableCell'><div class='center' style=\"background: $tableRowEvenBg;\" title=\"".getAPRSISserver()."\"><a href=\"http://$APRSserverLink.aprs2.net:14501\" target=\"_new\">".getAPRSISserver()."</a></div>\n</div>\n"; ?>
+echo "<div class='divTableCell'><div class='center' style=\"background: $tableRowEvenBg;\" title=\"".getAPRSISserver()."\">".getAPRSISserver()."</div>\n</div>\n"; ?>
     </div>
   </div>
 </div>
