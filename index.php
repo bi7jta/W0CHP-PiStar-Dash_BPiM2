@@ -487,7 +487,6 @@ checkSessionValidity();
 		    echo '    </tr>'."\n";
 		    echo '  </table>'."\n";
 		    echo ' </form>'."\n";
-		    echo ' </div>'."\n";
 		}
 
 	    if ($_SERVER["PHP_SELF"] == "/admin/index.php") {
@@ -691,6 +690,7 @@ checkSessionValidity();
 	    }
 	    ?>
 	</div>
+    </div>
 	
 	<div class="footer">
 	   <?php 
