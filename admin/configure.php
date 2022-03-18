@@ -152,7 +152,7 @@ if (file_exists('/etc/mobilegps'))
 {
     exec('sudo mount -o remount,rw /');
     exec('sudo rm -f /etc/mobilegps');
-    exec('sudo sync && sudo sync && sudo sync && sudo mount -o remount,ro /');
+    //exec('sudo sync && sudo sync && sudo sync && sudo mount -o remount,ro /');
 }
 // Convert MMDVMHost config file
 if (isset($configmmdvm['Mobile GPS'])) {
@@ -252,7 +252,7 @@ if (isset($configmmdvm['DMR Network']['Type'])) {
 if (isset($configs['aprsHostname'])) {
     exec('sudo mount -o remount,rw /');
     exec('sudo sed -i "/mobileGPS.*/d;/aprsPassword.*/d;s/aprsHostname=.*/aprsAddress=127.0.0.1/g;s/aprsPort=.*/aprsPort=8673/g" /etc/ircddbgateway');
-    exec('sudo sync && sudo sync && sudo sync && sudo mount -o remount,ro /');
+    //exec('sudo sync && sudo sync && sudo sync && sudo mount -o remount,ro /');
 
     // re-init iscddbgw config
     // Load the ircDDBGateway config file
@@ -634,7 +634,7 @@ if (!empty($_POST)):
 	  exec('sudo git --work-tree=/var/www/dashboard --git-dir=/var/www/dashboard/.git reset --hard origin/master');
           echo '<script type="text/javascript">setTimeout(function() { window.location=window.location;},5000);</script>';
 	  // Make the root filesystem read-only
-          system('sudo sync && sudo sync && sudo sync && sudo mount -o remount,ro /');
+          //system('sudo sync && sudo sync && sudo sync && sudo mount -o remount,ro /');
 	  echo "<br />\n</div>\n";
           echo "<div class=\"footer\">\nPi-Star web config, &copy; Andy Taylor (MW0MWZ) 2014-".date("Y").".<br />\n";
 		  echo '<a href="https://w0chp.net/w0chp-pistar-dash/" style="color: #ffffff; text-decoration:underline;">W0CHP-PiStar-Dash</a> enhancements by W0CHP';
@@ -3832,7 +3832,7 @@ if (!empty($_POST)):
 	echo '<script type="text/javascript">setTimeout(function() { window.location=window.location;},7500);</script>';
 
 	// Make the root filesystem read-only
-	system('sudo sync && sudo sync && sudo sync && sudo mount -o remount,ro /');
+	//system('sudo sync && sudo sync && sudo sync && sudo mount -o remount,ro /');
 
 
 else:
