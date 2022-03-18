@@ -3826,7 +3826,7 @@ if (!empty($_POST)):
     
 	// Start all services
 	system('sudo systemctl daemon-reload > /dev/null 2>/dev/null &');	// Restart Systemd to account for any service changes
-	system('sudo pistar-services start > /dev/null 2>/dev/null &');
+	system('sudo REMOUNT_RO="NO" pistar-services start > /dev/null 2>/dev/null &');
 
 	unset($_POST);
 	echo '<script type="text/javascript">setTimeout(function() { window.location=window.location;},7500);</script>';
