@@ -690,7 +690,6 @@ checkSessionValidity();
 	    }
 	    ?>
 	</div>
-    </div>
 	
 	<div class="footer">
 	   <?php 
