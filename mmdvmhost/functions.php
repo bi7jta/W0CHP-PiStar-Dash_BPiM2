@@ -246,6 +246,7 @@ function getAPRSISserver() {
     $logLine = '';
     $APRSISserver = 'Not Connected';
     $LogError = "Cannot Open Log";
+    $server_list = "/usr/local/etc/aprs_servers.json";
 
     if (file_exists($logAPRSISNow) || file_exists($logAPRSISPrevious)) {
 		$logLine = exec("tail -2 $logAPRSISNow | grep \"".$logSearchString."\" ");
@@ -261,6 +262,8 @@ function getAPRSISserver() {
         if (strpos($logLine, 'Response from APRS server: # logresp')) {
             preg_match('/(?<=, server )\S+/i', $logLine, $match); // find server name in log line after "verified, server" string.
             $APRSISserver = str_replace(",", "", $match[0]); // remove occasional commas after server name
+	    $FQDN = exec("cat $server_list | jq -r '.servers[]|[.config, .id]' | grep -B 10 $APRSISserver | grep fqdn | sed -r 's/\"fqdn\"://g;s/\s+//g;s/\"//g;s/,//g'");
+	    $APRSISserver = "<a href='http://$FQDN:14501' target='_new'>$APRSISserver</a>";
 	    }
     }
     return $APRSISserver;

@@ -950,7 +950,7 @@ if (!isProcessRunning("APRSGateway")) {
   <div class="mode_flex row">
     <div class="mode_flex column">
 <?php 
-echo "<div class='divTableCell'><div class='center' style=\"background: $tableRowEvenBg;\" title=\"".getAPRSISserver()."\">".getAPRSISserver()."</div>\n</div>\n"; ?>
+echo "<div class='divTableCell'><div class='center' style=\"background: $tableRowEvenBg;\">".getAPRSISserver()."</div>\n</div>\n"; ?>
     </div>
   </div>
 </div>
