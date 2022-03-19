@@ -872,7 +872,7 @@ if (!isProcessRunning("APRSGateway")) {
 ?>
   <div class="mode_flex row">
     <div class="mode_flex column">
-<?php echo "<div class='divTableCell hwinfo'><div class=\"inactive-mode-cell\"title=\"Service Not Started\">Service Not Started</div>\n</div>\n"; ?>
+<?php echo "<div class='divTableCell hwinfo center' style=\"background: $tableRowEvenBg;\" title=\"Service Not Started\">Service Not Started</div>\n"; ?>
     </div>
   </div>
 </div>
