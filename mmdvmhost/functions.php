@@ -620,7 +620,7 @@ function UPnPenabled() {
     }
 }
 
-// Autp AP state
+// Auto AP state
 function autoAPenabled() {
 if (file_exists('/etc/hostap.off')) {
         return 0;

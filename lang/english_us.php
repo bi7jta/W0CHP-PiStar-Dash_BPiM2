@@ -151,7 +151,7 @@ $lang = array (
   "active_starnet_members"      =>  "Active Starnet Group Members",
   "d-star_link_manager"         =>  "D-Star Link Manager",
   "d-star_link_status"          =>  "D-Star Link Information",
-  "service_status"              =>  "Service Status",
+  "service_status"              =>  "Service &amp; Process Status",
   // M17
   "m17_config"                  =>  "M17 Configuration",
   "m17_mode"                    =>  "M17 Mode",
