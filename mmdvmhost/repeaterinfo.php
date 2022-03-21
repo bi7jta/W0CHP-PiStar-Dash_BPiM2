@@ -880,14 +880,39 @@ if (!isProcessRunning("APRSGateway")) {
 
 <?php
 } else {
+?>
+
+  <div class="mode_flex row">
+    <div class="mode_flex column">
+<?php echo "<div class='divTableCell'><div class='center active-mode-cell' title=\"Connected to Pool: ".$_SESSION['APRSGatewayConfigs']['APRS-IS']['Server']."\">".substr($_SESSION['APRSGatewayConfigs']['APRS-IS']['Server'], 0, 23)."</div>\n</div>\n"; ?>
+    </div>
+  </div>
+
+  <div class="mode_flex row">
+    <div class="mode_flex column">
+      <div class="divTableHead">Current APRS Server</div>
+    </div>
+  </div>
+
+  <div class="mode_flex row">
+    <div class="mode_flex column">
+<?php 
+echo "<div class='divTableCell'><div class='center' style=\"background: $tableRowEvenBg;\">".getAPRSISserver()."</div>\n</div>\n"; ?>
+    </div>
+  </div>
+
+  <div class="mode_flex row">
+    <div class="mode_flex column">
+      <div class="divTableHead">Enabled for Modes</div>
+    </div>
+  </div>
+
+<?php
     if ($testAPRSdmr == 0 && $testAPRSircddb == 0 && $testAPRSysf == 0 && $testAPRSdgid == 0 && $testAPRSnxdn == 0 && $testAPRSm17 == 0) {
 ?>
   <div class="mode_flex row">
     <div class="mode_flex column">
-      <div class="divTableCell">
-<?php echo "<div class=\"inactive-mode-cell\" title=\"No Mode(s) Selected\">No Mode(s) Selected</div>";
-?>
-      </div>
+<?php echo "<div class='divTableCell hwinfo center' style=\"background: $tableRowEvenBg;\" title=\"No Mode(s) Selected\">No Mode(s) Selected</div>\n"; ?>
     </div>
   </div>
 </div>
@@ -898,16 +923,10 @@ if (!isProcessRunning("APRSGateway")) {
 
   <div class="mode_flex row">
     <div class="mode_flex column">
-      <div class="divTableHead">Enabled for Modes</div>
-    </div>
-  </div>
-
-  <div class="mode_flex row">
-    <div class="mode_flex column">
 <?php	if ($testAPRSdmr == 1) { echo "<div class=\"divTableCell\"><div class=\"active-mode-cell\">DMR</div></div>"; } else { echo "<div class=\"divTableCell\"><div class=\"disabled-mode-cell\">DMR</div></div>"; } ?>
     </div>
     <div class="mode_flex column">
-<?php	if ($testAPRSircddb == 1) { echo "<div class=\"divTableCell\"><div class=\"active-mode-cell\">D-Star</div></div>"; } else { echo "<div class=\"divTableCell\"><div class=\"disabled-mode-cell\">D-Star</div></div>"; } ?>
+<?php	if ($testAPRSircddb == 1) { echo "<div class=\"divTableCell\"><div class=\"active-mode-cell\">ircDDB</div></div>"; } else { echo "<div class=\"divTableCell\"><div class=\"disabled-mode-cell\">ircDDB</div></div>"; } ?>
     </div>
   </div>
 
@@ -929,30 +948,6 @@ if (!isProcessRunning("APRSGateway")) {
     </div>
   </div>
 
-  <div class="mode_flex row">
-    <div class="mode_flex column">
-      <div class="divTableHead">Selected Host Pool</div>
-    </div>
-  </div>
-  
-  <div class="mode_flex row">
-    <div class="mode_flex column">
-<?php echo "<div class='divTableCell'><div class='center' style=\"background: $tableRowEvenBg;\" title=\"".$_SESSION['APRSGatewayConfigs']['APRS-IS']['Server']."\">".substr($_SESSION['APRSGatewayConfigs']['APRS-IS']['Server'], 0, 23)."</div>\n</div>\n"; ?>
-    </div>
-  </div>
-
-  <div class="mode_flex row">
-    <div class="mode_flex column">
-      <div class="divTableHead">Current APRS Server</div>
-    </div>
-  </div>
-
-  <div class="mode_flex row">
-    <div class="mode_flex column">
-<?php 
-echo "<div class='divTableCell'><div class='center' style=\"background: $tableRowEvenBg;\">".getAPRSISserver()."</div>\n</div>\n"; ?>
-    </div>
-  </div>
 </div>
 <br />
 <?php
