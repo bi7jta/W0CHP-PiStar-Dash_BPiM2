@@ -60,13 +60,13 @@ if (!empty($_POST["submit_service"]) && empty($_POST["service_sel"])) { //handle
         echo '<script type="text/javascript">setTimeout(function() { window.location=window.location;},3000);</script>';
     } else { // looks good!
 	    if ($mode == "Cron") {
-	        exec($cron_disable);
+	        system($cron_disable);
 	    } elseif ($mode == "Firewall") {
-	        exec($fw_disable);
+	        system($fw_disable);
 	    } elseif ($mode == "PiStar-Remote") {
-	        exec($psr_disable);
+	        system($psr_disable);
 	    } elseif ($mode == "PiStar-Watchdog") {
-	        exec($psw_disable);
+	        system($psw_disable);
 	    } else {
 	        die;
 	    }
@@ -103,14 +103,14 @@ if (!empty($_POST["submit_service"]) && empty($_POST["service_sel"])) { //handle
             echo '<script type="text/javascript">setTimeout(function() { window.location=window.location;},3000);</script>';
 	} else { // looks good!
 	    if ($mode == "Cron") {
-		exec($cron_enable);
+		system($cron_enable);
 	    } elseif ($mode == "Firewall") {
 		sleep(5);
-		exec($fw_enable);
+		system($fw_enable);
 	    } elseif ($mode == "PiStar-Remote") {
-		exec($psr_enable);
+		system($psr_enable);
 	    } elseif ($mode == "PiStar-Watchdog") {
-		exec($psw_enable);
+		system($psw_enable);
 	    } else {
 		die;
 	    }
