@@ -156,7 +156,7 @@ if (empty($dmrID) == false)
 	$tgifApiUrl = "http://tgif.network:5040/api/sessions/update/".$dmrID."/".$targetSlot."/".$targetTG;
 	$result = file_get_contents($tgifApiUrl);
 	// Output to the browser
-	echo '<b>TGIF Manager</b>'."\n";
+	echo '<div style="text-align:left;font-weight:bold;">TGIF Manager</div>'."\n";
 	echo "<table>\n<tr><th>Command Output</th></tr>\n<tr><td>";
 	//echo "Sending command to TGIF API";
 	echo "<p>TGIF API: ".((isset($_POST["tgifNumber"]) && !empty($_POST["tgifNumber"])) ? "Talkgroup ".preg_replace("/[^0-9]/", "", $_POST["tgifNumber"]) : "Current Talkgroup")." ".(($command == "Link") ? "linked on" : "unlinked from")." slot ".($targetSlot + 1)." (command status: ".httpStatusText($result).").";

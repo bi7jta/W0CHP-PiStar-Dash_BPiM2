@@ -56,19 +56,19 @@ if ($_SERVER["PHP_SELF"] == "/admin/index.php") {
 	    $linkCommand = "sudo remotecontrold \"".$module."\" link never \"".$targetRef."\"";
 	    
 	    if ($module != $targetRef && $_POST["Link"] == "LINK") {	// Sanity check that we are not connecting to ourself
-		echo "<b>D-Star Link Manager</b>\n";
+		echo "<div style='text-align:left;font-weight:bold;'>D-Star Link Manager</div>>\n";
 		echo "<table>\n<tr><th>Command Output</th></tr>\n<tr><td>";
 		echo exec($linkCommand);
 		echo "</td></tr>\n</table>\n";
 	    }
 	    if ($module == $targetRef && $_POST["Link"] == "LINK") {	// Sanity Check Failed
-		echo "<b>D-Star Link Manager</b>\n";
+		echo "<div style='text-align:left;font-weight:bold;'>D-Star Link Manager</div>>\n";
 		echo "<table>\n<tr><th>Command Output</th></tr>\n<tr><td>";
 		echo "Cannot link to myself - Aborting link request!";
 		echo "</td></tr>\n</table>\n";
 	    }
 	    if ($_POST["Link"] == "UNLINK") {				// Allow Unlink no matter what
-		echo "<b>D-Star Link Manager</b>\n";
+		echo "<div style='text-align:left;font-weight:bold;'>D-Star Link Manager</div>>\n";
 		echo "<table>\n<tr><th>Command Output</th></tr>\n<tr><td>";
 		echo exec($unlinkCommand);
 		echo "</td></tr>\n</table>\n";

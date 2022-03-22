@@ -41,7 +41,7 @@ if (isset($_SESSION['YSFGatewayConfigs']['Remote Commands']['Enable']) && (isset
 		$remoteCommand = "cd /var/log/pi-star && sudo /usr/local/bin/RemoteCommand ".$remotePort." UnLink";
 	    }
 	    else {
-		echo "<b>YSF Link Manager</b>\n";
+		echo "<div style='text-align:left;font-weight:bold;'>YSF Link Manager</div>\n";
 		echo "<table>\n<tr><th>Command Output</th></tr>\n<tr><td>";
 		echo "<p>Something wrong with your input, (Neither Link nor Unlink Sent) - please try again</p>";
 		echo "</td></tr>\n</table>\n<br />\n";
@@ -49,7 +49,7 @@ if (isset($_SESSION['YSFGatewayConfigs']['Remote Commands']['Enable']) && (isset
 		echo '<script type="text/javascript">setTimeout(function() { window.location=window.location;},3000);</script>';
 	    }
 	    if (empty($_POST['ysfLinkHost'])) {
-		echo "<b>YSF Link Manager</b>\n";
+		echo "<div style='text-align:left;font-weight:bold;'>YSF Link Manager</div>\n";
 		echo "<table>\n<tr><th>Command Output</th></tr>\n<tr><td>";
 		echo "<p>Something wrong with your input, (No target specified) -  please try again</p>";
 		echo "</td></tr>\n</table>\n<br />\n";
@@ -57,7 +57,7 @@ if (isset($_SESSION['YSFGatewayConfigs']['Remote Commands']['Enable']) && (isset
 		echo '<script type="text/javascript">setTimeout(function() { window.location=window.location;},3000);</script>';
 	    }
 	    if (isset($remoteCommand)) {
-		echo "<b>YSF Link Manager</b>\n";
+		echo "<div style='text-align:left;font-weight:bold;'>YSF Link Manager</div>\n";
 		echo "<table>\n<tr><th>Command Output</th></tr>\n<tr><td>";
 		echo "<p>";
 		echo exec($remoteCommand);

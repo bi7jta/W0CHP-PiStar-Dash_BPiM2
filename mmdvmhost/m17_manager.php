@@ -47,7 +47,7 @@ if ($_SERVER["PHP_SELF"] == "/admin/index.php") { // Stop this working outside o
 		    $remoteCommand = "cd /var/log/pi-star && sudo /usr/local/bin/RemoteCommand ".$remotePort." Reflector";
 		}
 		else {
-		    echo "<b>M17 Link Manager</b>\n";
+		    echo "<div style='text-align:left;font-weight:bold;'>M17 Link Manager</div>\n";
 		    echo "<table>\n<tr><th>Command Output</th></tr>\n<tr><td>";
 		    echo "Something wrong with your input, (Neither Link nor Unlink Sent) - please try again";
 		    echo "</td></tr>\n</table>\n<br />\n";
@@ -55,7 +55,7 @@ if ($_SERVER["PHP_SELF"] == "/admin/index.php") { // Stop this working outside o
 		    echo '<script type="text/javascript">setTimeout(function() { window.location=window.location;},2000);</script>';
 		}
 		if (empty($_POST['m17LinkHost'])) {
-		    echo "<b>M17 Link Manager</b>\n";
+		    echo "<div style='text-align:left;font-weight:bold;'>M17 Link Manager</div>\n";
 		    echo "<table>\n<tr><th>Command Output</th></tr>\n<tr><td>";
 		    echo "Something wrong with your input, (No target specified) -  please try again";
 		    echo "</td></tr>\n</table>\n<br />\n";
@@ -64,7 +64,7 @@ if ($_SERVER["PHP_SELF"] == "/admin/index.php") { // Stop this working outside o
 		}
 		
 		if (isset($remoteCommand)) {
-		    echo "<b>M17 Link Manager</b>\n";
+		    echo "<div style='text-align:left;font-weight:bold;'>M17 Link Manager</div>\n";
 		    echo "<table>\n<tr><th>Command Output</th></tr>\n<tr><td>";
 		    echo exec($remoteCommand);
 		    echo "</td></tr>\n</table>\n<br />\n";

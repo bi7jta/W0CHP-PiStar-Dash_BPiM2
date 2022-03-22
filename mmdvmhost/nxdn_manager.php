@@ -40,7 +40,7 @@ if ( $testMMDVModeNXDN == 1 ) {
 	        $remoteCommand = "cd /var/log/pi-star && sudo /usr/local/bin/RemoteCommand ".$remotePort." TalkGroup 9999";
 	    }
 	    else {
-		echo "<b>NXDN Link Manager</b>\n";
+		echo "<div style='text-align:left;font-weight:bold;'>NXDN Link Manager</div>\n";
 		echo "<table>\n<tr><th>Command Output</th></tr>\n<tr><td>";
 		echo "Something wrong with your input, (Neither Link nor Unlink Sent) - please try again";
 		echo "</td></tr>\n</table>\n<br />\n";
@@ -48,7 +48,7 @@ if ( $testMMDVModeNXDN == 1 ) {
 		echo '<script type="text/javascript">setTimeout(function() { window.location=window.location;},2000);</script>';
 	    }
 	    if (empty($_POST['nxdnLinkHost'])) {
-		echo "<b>NXDN Link Manager</b>\n";
+		echo "<div style='text-align:left;font-weight:bold;'>NXDN Link Manager</div>\n";
 		echo "<table>\n<tr><th>Command Output</th></tr>\n<tr><td>";
 		echo "Something wrong with your input, (No target specified) -  please try again";
 		echo "</td></tr>\n</table>\n<br />\n";
@@ -56,7 +56,7 @@ if ( $testMMDVModeNXDN == 1 ) {
 		echo '<script type="text/javascript">setTimeout(function() { window.location=window.location;},2000);</script>';
 	    }
 	    if (isset($remoteCommand)) {
-		echo "<b>NXDN Link Manager</b>\n";
+		echo "<div style='text-align:left;font-weight:bold;'>NXDN Link Manager</div>\n";
 		echo "<table>\n<tr><th>Command Output</th></tr>\n<tr><td>";
 		echo exec($remoteCommand);
 		echo "</td></tr>\n</table>\n<br />\n";
