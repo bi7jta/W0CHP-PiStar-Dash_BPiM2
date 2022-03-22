@@ -449,10 +449,10 @@ if (isProcessRunning("M17Gateway")) {
 		if (preg_match("/Not/",getActualLink($reverseLogLinesMMDVM, "DMR Slot 1"))) {
 			echo "<div class='divTableCell hwinfo'><div class=\"active-mode-cell\" title='No TG'>No TG</div></div>\n";
 		} else {
-		    echo "<div class='divTableCell hwinfo'><div class=\"active-mode-cell\" title='Time Slot 1 Enabled'>".substr(getActualLink($reverseLogLinesMMDVM, "DMR Slot 1"), -10)."</div></div>\n";
+		    echo "<div class='divTableCell'><div class=\"active-mode-cell\" title='Time Slot 1 Enabled'>".substr(getActualLink($reverseLogLinesMMDVM, "DMR Slot 1"), -10)."</div></div>\n";
 		}
 	    } else {
-		    echo "<div class='divTableCell hwinfo'><div class=\"inactive-mode-cell\" title='Time Slot 1 disabled'>Disabled</div></div>\n";
+		    echo "<div class='divTableCell'><div class=\"inactive-mode-cell\" title='Time Slot 1 disabled'>Disabled</div></div>\n";
 	    }
 	    ?>
     </div>
@@ -463,7 +463,7 @@ if (isProcessRunning("M17Gateway")) {
                 if (preg_match("/Not/",getActualLink($reverseLogLinesMMDVM, "DMR Slot 1"))) {
                         echo "<div class='divTableCell hwinfo'><div class=\"active-mode-cell\" title='No TG'>No TG</div></div>\n";
                 } else {
-			echo "<div class='divTableCell hwinfo'><div class=\"active-mode-cell\" title='Time Slot 2 Enabled'>".substr(getActualLink($reverseLogLinesMMDVM, "DMR Slot 2"), -10)."</div></div>\n";
+			echo "<div class='divTableCell'><div class=\"active-mode-cell\" title='Time Slot 2 Enabled'>".substr(getActualLink($reverseLogLinesMMDVM, "DMR Slot 2"), -10)."</div></div>\n";
 		}
 	    } else {
 		    echo "<div class='divTableCell hwinfo'><div class=\"inactive-mode-cell\" title='Time Slot 2 disabled'>Disabled</div></div>>\n";
@@ -515,38 +515,38 @@ if (isProcessRunning("M17Gateway")) {
 				$xlxMasterHost1 = "".$xlxMasterHost1." ".$_SESSION['DMRGatewayConfigs']['XLX Network']['Module']."";
 			    }
 			    
-			    echo "<div class='divTableRow center'><div class='divTableCell hwinfo'><div " .GetActiveConnectionStyle($remoteDMRGResults, "xlx")." title=\"".$xlxMasterHost1Tooltip."\">".$xlxMasterHost1."</div></div></div>\n";
+			    echo "<div class='divTableRow center'><div class='divTableCell'><div " .GetActiveConnectionStyle($remoteDMRGResults, "xlx")." title=\"".$xlxMasterHost1Tooltip."\">".$xlxMasterHost1."</div></div></div>\n";
 			}
 			if ($_SESSION['DMRGatewayConfigs']['DMR Network 1']['Enabled'] == 1) {
-			    echo "<div class='divTableRow center'><div class='divTableCell hwinfo'><div " .GetActiveConnectionStyle($remoteDMRGResults, "net1")." title=\"".$dmrMasterHost1Tooltip."\">".$dmrMasterHost1."</div></div></div>\n";
+			    echo "<div class='divTableRow center'><div class='divTableCell'><div " .GetActiveConnectionStyle($remoteDMRGResults, "net1")." title=\"".$dmrMasterHost1Tooltip."\">".$dmrMasterHost1."</div></div></div>\n";
 			}
 			if ($_SESSION['DMRGatewayConfigs']['DMR Network 2']['Enabled'] == 1) {
-			    echo "<div class='divTableRow center'><div class='divTableCell hwinfo'><div ".GetActiveConnectionStyle($remoteDMRGResults, "net2")." title=\"".$dmrMasterHost2Tooltip."\">".$dmrMasterHost2."</div></div></div>\n";
+			    echo "<div class='divTableRow center'><div class='divTableCell'><div ".GetActiveConnectionStyle($remoteDMRGResults, "net2")." title=\"".$dmrMasterHost2Tooltip."\">".$dmrMasterHost2."</div></div></div>\n";
 			}
 			if ($_SESSION['DMRGatewayConfigs']['DMR Network 3']['Enabled'] == 1) {
-			    echo "<div class='divTableRow center'><div class='divTableCell hwinfo'><div ".GetActiveConnectionStyle($remoteDMRGResults, "net3")." title=\"".$dmrMasterHost3Tooltip."\">".$dmrMasterHost3."</div></div></div>\n";
+			    echo "<div class='divTableRow center'><div class='divTableCell'><div ".GetActiveConnectionStyle($remoteDMRGResults, "net3")." title=\"".$dmrMasterHost3Tooltip."\">".$dmrMasterHost3."</div></div></div>\n";
 			}
 			if (isset($_SESSION['DMRGatewayConfigs']['DMR Network 4']['Enabled'])) {
 			    if ($_SESSION['DMRGatewayConfigs']['DMR Network 4']['Enabled'] == 1) {
-				echo "<div class='divTableRow center'><div class='divTableCell hwinfo'><div ".GetActiveConnectionStyle($remoteDMRGResults, "net4")." title=\"".$dmrMasterHost4Tooltip."\">".$dmrMasterHost4."</div></div></div>\n";
+				echo "<div class='divTableRow center'><div class='divTableCell'><div ".GetActiveConnectionStyle($remoteDMRGResults, "net4")." title=\"".$dmrMasterHost4Tooltip."\">".$dmrMasterHost4."</div></div></div>\n";
 			    }
 			}
 			if (isset($_SESSION['DMRGatewayConfigs']['DMR Network 5']['Enabled'])) {
 			    if ($_SESSION['DMRGatewayConfigs']['DMR Network 5']['Enabled'] == 1) {
-				echo "<div class='divTableRow center'><div class='divTableCell hwinfo'><div ".GetActiveConnectionStyle($remoteDMRGResults, "net5")." title=\"".$dmrMasterHost5Tooltip."\">".$dmrMasterHost5."</div></div></div>\n";
+				echo "<div class='divTableRow center'><div class='divTableCell'><div ".GetActiveConnectionStyle($remoteDMRGResults, "net5")." title=\"".$dmrMasterHost5Tooltip."\">".$dmrMasterHost5."</div></div></div>\n";
 			    }
 			}
 		    }
 		    else {
-			echo "<div class='divTableRow center'><div class='divTableCell hwinfo' style=\"background: $tableRowEvenBg;\">Service Not Started</div></div>\n";
+			echo "<div class='divTableRow center'><div class='divTableCell' style=\"background: $tableRowEvenBg;\">Service Not Started</div></div>\n";
 		    }
 		}
 		else {
-		    echo "<div class='divTableRow center'><div class='divTableCell hwinfo'><div ".GetActiveConnectionStyle($remoteDMRGResults, "dmr")." title=\"".$dmrMasterHostTooltip."\">".$dmrMasterHost."</div></div></div>\n";
+		    echo "<div class='divTableRow center'><div class='divTableCell'><div ".GetActiveConnectionStyle($remoteDMRGResults, "dmr")." title=\"".$dmrMasterHostTooltip."\">".$dmrMasterHost."</div></div></div>\n";
 		}
 	    }
 	    else {
-		echo "<div class='divTableRow center'><div class='divTableCell hwinfo' style=\"background:#606060; color:#b0b0b0;\">No DMR Network</div></div>\n";
+		echo "<div class='divTableRow center'><div class='divTableCell' style=\"background:#606060; color:#b0b0b0;\">No DMR Network</div></div>\n";
 	    }
         ?>
       </div>
@@ -884,7 +884,7 @@ if (!isProcessRunning("APRSGateway")) {
 
   <div class="mode_flex row">
     <div class="mode_flex column">
-<?php echo "<div class='divTableCell'><div class='center active-mode-cell' title=\"Connected to Pool: ".$_SESSION['APRSGatewayConfigs']['APRS-IS']['Server']."\">".substr($_SESSION['APRSGatewayConfigs']['APRS-IS']['Server'], 0, 23)."</div>\n</div>\n"; ?>
+<?php echo "<div class='divTableCell center' style=\"background: $tableRowEvenBg;\"><div class='center active-mode-cell' title=\"Connected to Pool: ".$_SESSION['APRSGatewayConfigs']['APRS-IS']['Server']."\">".substr($_SESSION['APRSGatewayConfigs']['APRS-IS']['Server'], 0, 23)."</div>\n</div>\n"; ?>
     </div>
   </div>
 
