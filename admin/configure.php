@@ -535,17 +535,15 @@ $repl_str = array('/\/etc\//', '/_paused/');
 $paused_modes = preg_replace($repl_str, '', $is_paused);
 if (!empty($is_paused) && $_GET['force'] != true) {
     //HTML output starts here
-    echo '<div class="contentwide">'."\n";
+    echo '<div class="contentwide" style="color:inherit;">'."\n";
     echo '<h1>IMPORTANT:</h1>';
-    echo '<table><tr><td>';
     echo '<p><b>One or more modes have been detected to have been "paused" by you</b>:</p>';
     foreach($paused_modes as $mode) {
         echo "<h3>$mode</h3>";
     }
     echo '<p>You must "resume" all of the modes you have paused in order to make any configuration changes...</p>';
-    echo '<p>Go the <a href="/admin/?func=mode_man">Instant Mode Manager page to Resume the paused mode(s)</a>. Once that\'s completed, this configuration page will be enabled.</p>';
+    echo '<p>Go the <a style="text-decoration:underline;color:inherit;" href="/admin/?func=mode_man">Instant Mode Manager page to Resume the paused mode(s)</a>. Once that\'s completed, this configuration page will be enabled.</p>';
     echo '<br />'."\n";
-    echo '</td></tr></table>';
     echo '<br />';
     echo '</div>';
     echo '<div class="footer">';

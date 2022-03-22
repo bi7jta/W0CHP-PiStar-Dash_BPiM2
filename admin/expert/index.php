@@ -64,7 +64,7 @@ require_once $_SERVER['DOCUMENT_ROOT'].'/config/version.php';
 		<div class="divTableBody">
 		  <div class="divTableRow">
 		    <div class="divTableCellSans">
-		    <h2 style="text-decoration:underline;color:inherit;">Expert Editors &amp; Tools</h2>
+		    <h2 style="color:inherit;">Expert Editors &amp; Tools</h2>
 		    <h3>**WARNING**</h3>
             		<p>
 			Pi-Star Expert editors have been created to make editing some of the extra settings in the<br />
