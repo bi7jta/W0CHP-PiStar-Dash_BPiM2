@@ -446,7 +446,7 @@ input.toggle-round-flat:focus + label {
     justify-content: center;
     flex-grow: 1;
     font-family: 'Source Sans Pro', sans-serif;
-    border: 1px solid <?php echo $tableBorderColor; ?>;
+    border: 2px solid <?php echo $tableBorderColor; ?>;
     padding: 2px;
 }
 
@@ -455,7 +455,7 @@ input.toggle-round-flat:focus + label {
     flex-wrap: wrap;
     display: flex; 
     justify-content: center;
-    margin: 3px;
+    margin: 2px;
     text-align: center;
 }
 
