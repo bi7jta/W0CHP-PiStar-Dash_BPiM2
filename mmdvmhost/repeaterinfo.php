@@ -881,7 +881,7 @@ if (!isProcessRunning("APRSGateway")) {
 <div class="divTable">
   <div class="divTableBody">
     <div class="divTableRow center">
-<?php echo "<div class='divTableCell center active-mode-cell' title=\"Connected to Pool: ".$_SESSION['APRSGatewayConfigs']['APRS-IS']['Server']."\">".substr($_SESSION['APRSGatewayConfigs']['APRS-IS']['Server'], 0, 23)."</div>\n"; ?>
+<?php echo "<div class='divTableCell hwinfo center active-mode-cell' title=\"Connected to Pool: ".$_SESSION['APRSGatewayConfigs']['APRS-IS']['Server']."\">".substr($_SESSION['APRSGatewayConfigs']['APRS-IS']['Server'], 0, 23)."</div>\n"; ?>
     </div>
   </div>
 </div>
