@@ -399,15 +399,9 @@ checkSessionValidity();
 
 		// begin admin selection form
 		if ($_SERVER["PHP_SELF"] == "/admin/index.php") {
-            if (!empty($_POST) || !empty($_GET)) { echo '<br /><hr />'; }
+		    if (!empty($_POST) || !empty($_GET)) { echo '<br /><hr />'; }
                     echo '<div style="text-align:left;font-weight:bold;">Admin Sections</div>'."\n";
 		    echo '<form method="get" id="admin_sel" name="admin_sel" action="'.htmlentities($_SERVER['PHP_SELF']).'" style="padding-bottom:10px;">'."\n";
-                    echo '  <table>'."\n";
-		    echo '    <tr>'."\n";
-		    echo '      <th>Select a Mode/Network/Service to Manage</th>'."\n";
-		    echo '    </tr>'."\n";
-		    echo '    <tr>'."\n";
-		    echo '      <td>'."\n";
 		    echo '      <div class="mode_flex">'."\n";
 		    echo '        <div class="mode_flex row">'."\n";
 		    echo '          <div class="mode_flex column">'."\n";
@@ -480,12 +474,8 @@ checkSessionValidity();
 		    }
 		    echo '          </div><div class="mode_flex column">'."\n";
 		    echo '		<button form="admin_sel" type="submit" value="sys_man" name="func"><span>System Manager</span></button>'."\n";
-		    echo '      </div></div>'."\n".'</div>'."\n".'</td>'."\n";
-		    echo '    </tr>'."\n";
-		    echo '    <tr>'."\n";
-		    echo '      <td style="white-space:normal;padding: 3px;"><b>Note:</b> Modes/networks/services not <a href="/admin/configure.php">globally configured/enabled</a>, or that are paused, are not selectable here until they are enabled or <a href="./?func=mode_man">resumed from pause</a>.</td>'."\n";
-		    echo '    </tr>'."\n";
-		    echo '  </table>'."\n";
+		    echo '      </div></div>'."\n".'</div>'."\n";
+		    echo '      <div><b>Note:</b> Modes/networks/services not <a href="/admin/configure.php">globally configured/enabled</a>, or that are paused, are not selectable here until they are enabled or <a href="./?func=mode_man">resumed from pause</a>.</div>'."\n";
 		    echo ' </form>'."\n";
 		}
 
