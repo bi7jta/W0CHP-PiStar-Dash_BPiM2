@@ -475,7 +475,7 @@ checkSessionValidity();
 		    echo '          </div><div class="mode_flex column">'."\n";
 		    echo '		<button form="admin_sel" type="submit" value="sys_man" name="func"><span>System Manager</span></button>'."\n";
 		    echo '      </div></div>'."\n".'</div>'."\n";
-		    echo '      <div><b>Note:</b> Modes/networks/services not <a href="/admin/configure.php">globally configured/enabled</a>, or that are paused, are not selectable here until they are enabled or <a href="./?func=mode_man">resumed from pause</a>.</div>'."\n";
+		    echo '      <div><b>Note:</b> Modes/networks/services not <a href="/admin/configure.php" style="text-decoration:underline;color:inherit;">globally configured/enabled</a>, or that are paused, are not selectable here until they are enabled or <a href="./?func=mode_man" style="text-decoration:underline;color:inherit;">resumed from pause</a>.</div>'."\n";
 		    echo ' </form>'."\n";
 		}
 

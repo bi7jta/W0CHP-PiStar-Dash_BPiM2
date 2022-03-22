@@ -66,29 +66,19 @@ if ($_SERVER["PHP_SELF"] == "/admin/expert/ssh_access.php") {
           </a>
         </div>
 	</p>
-
+  </div>
   <div class="contentwide">
-  <table width="100%">
-  <tr><td align="center"><div>
     <?php if (isset($shellPort)) {
       echo "<iframe src=\"http://".$_SERVER['HTTP_HOST'].":".$shellPort."\" style=\"border:1px solid #ffffff; background:#000; color:#00ff00; padding:5px;margin:5px;\" name=\"Pi-Star_SSH\" scrolling=\"no\" frameborder=\"0\" marginheight=\"0px\" marginwidth=\"0px\" height=\"600px\" width=\"860px\"></iframe>";
     }
     else {
       echo "SSH Feature not yet installed";
     } ?>
-  </div></td></tr>
-  <tr>
-  <td>
-  <?php if (isset($shellPort)) { echo "<a href=\"//".$_SERVER['HTTP_HOST'].":".$shellPort."\">(<b>Click here for full-screen SSH client</a></b>)<br />\n"; } ?>
-  </td>
-  </tr>
-  </table>
-  </div>
+  <?php if (isset($shellPort)) { echo "<p><a href=\"//".$_SERVER['HTTP_HOST'].":".$shellPort."\" style=\"text-decoration:underline;color:inherit;\">Click here for full-screen SSH client</a></p>\n"; } ?>
   <div class="footer">
   Pi-Star web config, &copy; Andy Taylor (MW0MWZ) 2014-<?php echo date("Y"); ?>.<br />
   <a href="https://w0chp.net/w0chp-pistar-dash/" style="color: #ffffff; text-decoration:underline;">W0CHP-PiStar-Dash</a> enhancements by W0CHP
   <br />
-  </div>
   </div>
   </body>
   </html>

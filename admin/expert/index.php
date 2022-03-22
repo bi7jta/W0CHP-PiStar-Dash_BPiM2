@@ -52,7 +52,7 @@ require_once $_SERVER['DOCUMENT_ROOT'].'/config/version.php';
                         echo "<h2>$mode</h2>";
                     }
                     echo '<p>You must "resume" all of the modes you have paused in order to make any configuration changes...</p>';
-                    echo '<p>Go the <a href="/admin/?func=mode_man">Instant Mode Manager page to Resume the paused mode(s)</a>. Once that\'s completed, this configuration page will be enabled.</p>';
+                    echo '<p>Go the <a href="/admin/?func=mode_man" style="text-decoration:underline;color:inherit;">Instant Mode Manager page to Resume the paused mode(s)</a>. Once that\'s completed, this configuration page will be enabled.</p>';
                     echo '<br />'."\n";
                     die();
 } else {
@@ -64,7 +64,7 @@ require_once $_SERVER['DOCUMENT_ROOT'].'/config/version.php';
 		<div class="divTableBody">
 		  <div class="divTableRow">
 		    <div class="divTableCellSans">
-		    <h2>Expert Editors &amp; Tools</h2>
+		    <h2 style="text-decoration:underline;color:inherit;">Expert Editors &amp; Tools</h2>
 		    <h3>**WARNING**</h3>
             		<p>
 			Pi-Star Expert editors have been created to make editing some of the extra settings in the<br />
