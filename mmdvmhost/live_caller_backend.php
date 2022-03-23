@@ -203,7 +203,6 @@ if ($listElem[2] == "4000" || $listElem[2] == "9990" || $listElem[2] == "DAPNET"
         <span class='oc_call'><?php echo $listElem[2]; ?></span>
       </div>
     </div>
-
     <div class='column'>
       <div class='orange-column'>
         <span class='oc_caller'>
@@ -223,7 +222,6 @@ if ($listElem[2] == "4000" || $listElem[2] == "9990" || $listElem[2] == "DAPNET"
       </div>
     </div>
   </div>
-
   <div class='row'>
     <div class='column'>
       <div class='dark-column'>
@@ -245,7 +243,6 @@ if ($listElem[2] == "4000" || $listElem[2] == "9990" || $listElem[2] == "DAPNET"
 	</span>
       </div>
     </div>
-
     <div class='column'>
       <div class='dark-column'>
 	<span class='dc_info'>
@@ -267,7 +264,6 @@ if ($listElem[2] == "4000" || $listElem[2] == "9990" || $listElem[2] == "DAPNET"
       </div>
     </div>
   </div>
-
   <div class='row'>
     <div class='column'>
       <div class='footer-column'>
@@ -283,7 +279,6 @@ if ($listElem[2] == "4000" || $listElem[2] == "9990" || $listElem[2] == "DAPNET"
       </div>
     </div>
   </div>
-
   <div class='row'>
     <div class='column'>
       <div class='footer-column'>
@@ -301,5 +296,5 @@ if ($listElem[2] == "4000" || $listElem[2] == "9990" || $listElem[2] == "DAPNET"
       </div>
     </div>
   </div>
-
 </div>
+
