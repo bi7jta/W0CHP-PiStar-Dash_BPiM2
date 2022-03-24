@@ -129,18 +129,13 @@ if ($_SERVER["PHP_SELF"] == "/admin/config_backup.php") {
 				$dt = new DateTime($utc_time, $utc_tz);
 				$dt->setTimeZone($local_tz);
                 		$local_time = $dt->format('Y-M-d');
-				header('Content-Description: File Transfer');
-				header('Content-Type: application/octet-stream');
+				header('Content-Type: application/zip');
 				if ($hostNameInfo != "pi-star") {
 				    header('Content-Disposition: attachment; filename="'.basename("Pi-Star_Config_".$hostNameInfo."_".$local_time.".zip").'"');
 				}
 				else {
 				    header('Content-Disposition: attachment; filename="'.basename("Pi-Star_Config_$local_time.zip").'"');
 				}
-				header('Content-Transfer-Encoding: binary');
-				header('Expires: 0');
-				header('Cache-Control: must-revalidate');
-				header('Pragma: public');
 				header('Content-Length: ' . filesize($backupZip));
 				ob_clean();
 				flush();
