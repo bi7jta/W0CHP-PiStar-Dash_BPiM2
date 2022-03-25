@@ -81,11 +81,12 @@
 		    <table>
 			<tr>
 			    <th>Reflector</th>
-			    <th colspan="2">Module</th>
+			    <th>Module</th>
 			    <th>Action</th>
+			    <th>&nbsp</th>
 			</tr>
 			<tr>
-			<td align="left"><select name="xlxLinkHost" class="dmrMasterHost3Startup">
+			<td><select name="xlxLinkHost" class="dmrMasterHost3Startup">
 			    <?php
 	$configdmrgateway = $_SESSION['DMRGatewayConfigs'];
 	$dmrMasterFile3 = fopen("/usr/local/etc/DMR_Hosts.txt", "r");
@@ -103,7 +104,7 @@
 ?>
     </select></td>
     <?php if (isset($configdmrgateway['XLX Network']['TG'])) { ?>
-    <td align="left"><select name="dmrMasterHost3StartupModule">
+    <td><select name="dmrMasterHost3StartupModule">
 <?php
        if ((isset($configdmrgateway['XLX Network']['Module'])) && ($configdmrgateway['XLX Network']['Module'] != "@")) {                                                 
                 echo '        <option value="'.$configdmrgateway['XLX Network']['Module'].'" selected="selected">'.$configdmrgateway['XLX Network']['Module'].'</option>'."\n";
@@ -145,13 +146,12 @@
         <option value="Z">Z</option>
     </select>
 	</td>
-        <td style="white-space:normal">Select the "Unlink" module to remain connected to the reflector, but to pause XLX DMR traffic.</td>
     <?php } ?>
 			    <td>
 				<input type="hidden" name="Link" value="LINK" />
-				<!--<input type="radio" name="Link" value="UNLINK" />Un-Link-->
 				<input type="submit" name="xlxMgrSubmit" value="Request Change" />
 			    </td>
+        		    <td style="white-space:normal;text-align:left;">Select the "Unlink" module to remain connected to the reflector, but to pause XLX DMR traffic.</td>
 			</tr>
                         <tr>
                           <td colspan="4" style="white-space:normal;padding: 3px;">
