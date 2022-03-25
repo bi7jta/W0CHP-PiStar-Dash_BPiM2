@@ -37,11 +37,11 @@
 		    if ($xlxLinkHost != "none") { // Unlinking
 			$xlxLinkToHost = "Link set to XLX-".$xlxLinkHost.", Module ".$startupModule."";
 		    }
-		    $remoteCommand = 'sudo  mount -o remount,rw / ; sudo sed -i "/Module=/c\\Module='.$startupModule.'" /etc/dmrgateway ; sudo sed -i "/Startup=/c\\Startup='.$xlxLinkHost.'" /etc/dmrgateway ; sudo systemctl restart dmrgateway.service';
+		    $remoteCommand = 'sudo mount -o remount,rw / ; sudo sed -i "/Module=/c\\Module='.$startupModule.'" /etc/dmrgateway ; sudo sed -i "/Startup=/c\\Startup='.$xlxLinkHost.'" /etc/dmrgateway ; sudo systemctl restart dmrgateway.service ; sudo rm /etc/.XLX_paused';
 		}
 		else if ($_POST["Link"] == "UNLINK") {
 		    $xlxLinkToHost = "Unlinking";
-		    $remoteCommand = 'sudo  mount -o remount,rw / ; sudo sed -i "/Module=/c\\Module=" /etc/dmrgateway ; sudo sed -i "/Startup=/c\\Startup=" /etc/dmrgateway ; sudo systemctl restart dmrgateway.service';
+		    $remoteCommand = 'sudo mount -o remount,rw / ; sudo sed -i "/Module=/c\\Module=" /etc/dmrgateway ; sudo sed -i "/Startup=/c\\Startup=" /etc/dmrgateway ; sudo systemctl restart dmrgateway.service ; sudo touch /etc/.XLX_paused';
 		}
 		else {
 		    echo "<div style='text-align:left;font-weight:bold;'>XLX DMR Link Manager</div>\n";
