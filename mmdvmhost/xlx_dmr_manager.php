@@ -44,9 +44,10 @@
 		    $remoteCommand = 'sudo sed -i "/Module=/c\\Module=" /etc/dmrgateway ; sudo sed -i "/Startup=/c\\Startup=" /etc/dmrgateway ; sudo systemctl restart dmrgateway.service';
 		}
 		else {
-		    echo "<div style='text-align:left;font-weight:bold;'>XLX Link Manager</div>\n";
+		    echo "<div style='text-align:left;font-weight:bold;'>XLX DMR Link Manager</div>\n";
 		    echo "<table>\n<tr><th>Command Output</th></tr>\n<tr><td>";
 		    echo "Something wrong with your input, (Neither Link nor Unlink Sent) - please try again";
+		    echo "<br />Page reloading...";
 		    echo "</td></tr>\n</table>\n<br />\n";
 		    unset($_POST);
 		    echo '<script type="text/javascript">setTimeout(function() { window.location=window.location;},2000);</script>';
@@ -55,6 +56,7 @@
 		    echo "<div style='text-align:left;font-weight:bold;'>XLX Link Manager</div>\n";
 		    echo "<table>\n<tr><th>Command Output</th></tr>\n<tr><td>";
 		    echo "Something wrong with your input, (No target specified) -  please try again";
+		    echo "<br />Page reloading...";
 		    echo "</td></tr>\n</table>\n<br />\n";
 		    unset($_POST);
 		    echo '<script type="text/javascript">setTimeout(function() { window.location=window.location;},2000);</script>';

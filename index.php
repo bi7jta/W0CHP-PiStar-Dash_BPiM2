@@ -451,10 +451,10 @@ checkSessionValidity();
                     echo '          <div class="mode_flex column">'."\n";
                     $testMMDVModeDMR = getConfigItem("DMR", "Enable", $_SESSION['MMDVMHostConfigs']);
                     if ($xlxEnabled == true && $testMMDVModeDMR ==1) {
-                        echo '          <button form="admin_sel" type="submit" value="xlx_man" name="func"><span>XLX DMR Reflector Manager</span></button>'."\n";
+                        echo '          <button form="admin_sel" type="submit" value="xlx_man" name="func"><spanXLX DMR Link Manager></span></button>'."\n";
                     }
                     else {
-                        echo '          <button form="admin_sel" disabled="disabled" type="submit" value="xlx_man" name="func"><span>XLX DMR Reflector Manager Manager</span></button>'."\n";
+                        echo '          <button form="admin_sel" disabled="disabled" type="submit" value="xlx_man" name="func"><span>XLX DMR Link Manager</span></button>'."\n";
                     } 
 		    echo '          </div><div class="mode_flex column">'."\n";
  		    echo '            <button form="admin_sel" type="submit" value="mode_man" name="func"><span>Instant Mode Manager</span></button>'."\n";
