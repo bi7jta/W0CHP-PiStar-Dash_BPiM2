@@ -74,7 +74,7 @@
 	    else {
 	    // Output HTML
 	    ?>
-    		<div style="text-align:left;font-weight:bold;">XLX Link Manager</div>
+    		<div style="text-align:left;font-weight:bold;">XLX DMR Link Manager</div>
 		<form action="./?func=xlx_man" method="post">
 		    <table>
 			<tr>
