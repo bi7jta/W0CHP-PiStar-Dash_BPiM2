@@ -740,15 +740,27 @@ function getMMDVMLog() {
         $logPath = MMDVMLOGPATH."/".MMDVMLOGPREFIX."-".gmdate("Y-m-d").".log";
         $fileList = array_filter(array("/etc/.GETNAMES", "/etc/.CALLERDETAILS"), 'file_exists');
         if (!$file = array_shift($fileList)) {
-            if ($_SESSION['CSSConfigs']['ExtraSettings']['LastHeardRows'] > 40 ) {
-		$logLines1 = explode("\n", `egrep -h "from|end|watchdog|lost|Alias|0000" $logPath | sed '/\(CSBK\|overflow\|Downlink\|Valid\|Invalid\)/d'`);
-	    } else {
-		$logLines1 = explode("\n", `tail -500 $logPath | sed '/\(CSBK\|overflow\|Downlink\|Valid\|Invalid\)/d' | egrep -h "from|end|watchdog|lost|Alias|0000"`);
+	    if(isset($_SESSION['PiStarRelease']['Pi-Star']['ProcNum']) && ($_SESSION['PiStarRelease']['Pi-Star']['ProcNum'] >= 4)) {
+		if ($_SESSION['CSSConfigs']['ExtraSettings']['LastHeardRows'] > 40 ) {
+		    $logLines1 = explode("\n", `egrep -h "from|end|watchdog|lost|Alias|0000" $logPath | sed '/\(CSBK\|overflow\|Downlink\|Valid\|Invalid\)/d'`);
+	        } else {
+		    $logLines1 = explode("\n", `tail -500 $logPath | sed '/\(CSBK\|overflow\|Downlink\|Valid\|Invalid\)/d' | egrep -h "from|end|watchdog|lost|Alias|0000"`);
+	        }
+	    } else { 
+		$logLines1 = explode("\n", `tail -250 $logPath | sed '/\(CSBK\|overflow\|Downlink\|Valid\|Invalid\)/d' | egrep -h "from|end|watchdog|lost|Alias|0000"`);
 	    }
             $lineNos = sizeof($logLines1);
             $logLines1 = array_slice($logLines1, -1500);
         } else {
-	    $logLines1 = explode("\n", `tail -500 $logPath | sed '/\(CSBK\|overflow\|Downlink\|Valid\|Invalid\)/d' | egrep -h "from|end|watchdog|lost|Alias|0000"`);
+	    if(isset($_SESSION['PiStarRelease']['Pi-Star']['ProcNum']) && ($_SESSION['PiStarRelease']['Pi-Star']['ProcNum'] >= 4)) {
+		if ($_SESSION['CSSConfigs']['ExtraSettings']['LastHeardRows'] > 40 ) {
+		    $logLines1 = explode("\n", `egrep -h "from|end|watchdog|lost|Alias|0000" $logPath | sed '/\(CSBK\|overflow\|Downlink\|Valid\|Invalid\)/d'`);
+		} else {
+		    $logLines1 = explode("\n", `tail -500 $logPath | sed '/\(CSBK\|overflow\|Downlink\|Valid\|Invalid\)/d' | egrep -h "from|end|watchdog|lost|Alias|0000"`);
+		}
+	    } else {
+		$logLines1 = explode("\n", `tail -250 $logPath | sed '/\(CSBK\|overflow\|Downlink\|Valid\|Invalid\)/d' | egrep -h "from|end|watchdog|lost|Alias|0000"`);
+	    }
             $lineNos = sizeof($logLines1);
             $logLines1 = array_slice($logLines1, -500);
         }
@@ -756,7 +768,11 @@ function getMMDVMLog() {
     if ($lineNos < 500) {
         if (file_exists(MMDVMLOGPATH."/".MMDVMLOGPREFIX."-".gmdate("Y-m-d", time() - 86340).".log")) {
 	    $logPath = MMDVMLOGPATH."/".MMDVMLOGPREFIX."-".gmdate("Y-m-d", time() - 86340).".log";
-	    $logLines2 = explode("\n", `tail -500 $logPath | sed '/\(CSBK\|overflow\|Downlink\|Valid\|Invalid\)/d' | egrep -h "from|end|watchdog|lost|Alias|0000"`);
+	    if(isset($_SESSION['PiStarRelease']['Pi-Star']['ProcNum']) && ($_SESSION['PiStarRelease']['Pi-Star']['ProcNum'] >= 4)) {
+		$logLines2 = explode("\n", `tail -500 $logPath | sed '/\(CSBK\|overflow\|Downlink\|Valid\|Invalid\)/d' | egrep -h "from|end|watchdog|lost|Alias|0000"`);
+	    } else {
+		$logLines2 = explode("\n", `tail -250 $logPath | sed '/\(CSBK\|overflow\|Downlink\|Valid\|Invalid\)/d' | egrep -h "from|end|watchdog|lost|Alias|0000"`);
+	    }
 	    $logLines2 = array_slice($logLines2, -500);
         }
     }
