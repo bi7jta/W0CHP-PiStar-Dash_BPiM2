@@ -53,7 +53,7 @@
 		    echo '<script type="text/javascript">setTimeout(function() { window.location=window.location;},2000);</script>';
 		}
 		if (empty($_POST['xlxLinkHost'])) {
-		    echo "<div style='text-align:left;font-weight:bold;'>XLX Link Manager</div>\n";
+		    echo "<div style='text-align:left;font-weight:bold;'>XLX DMR Link Manager</div>\n";
 		    echo "<table>\n<tr><th>Command Output</th></tr>\n<tr><td>";
 		    echo "Something wrong with your input, (No target specified) -  please try again";
 		    echo "<br />Page reloading...";
