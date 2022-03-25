@@ -63,7 +63,7 @@
 		}
 
 		if (isset($remoteCommand)) {
-		    echo "<div style='text-align:left;font-weight:bold;'>XLX Link Manager</div>\n";
+		    echo "<div style='text-align:left;font-weight:bold;'>XLX DMR Link Manager</div>\n";
 		    echo "<table>\n<tr><th>Command Output</th></tr>\n<tr><td>";
 		    echo "<br />$xlxLinkToHost<br />Page reloading...</ br>";
 		    exec($remoteCommand);
