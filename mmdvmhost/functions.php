@@ -739,41 +739,43 @@ function getMMDVMLog() {
     if (file_exists(MMDVMLOGPATH."/".MMDVMLOGPREFIX."-".gmdate("Y-m-d").".log")) {
         $logPath = MMDVMLOGPATH."/".MMDVMLOGPREFIX."-".gmdate("Y-m-d").".log";
         $fileList = array_filter(array("/etc/.GETNAMES", "/etc/.CALLERDETAILS"), 'file_exists');
-        if (!$file = array_shift($fileList)) {
-	    if(isset($_SESSION['PiStarRelease']['Pi-Star']['ProcNum']) && ($_SESSION['PiStarRelease']['Pi-Star']['ProcNum'] >= 4)) {
-		if ($_SESSION['CSSConfigs']['ExtraSettings']['LastHeardRows'] > 40 ) {
-		    $logLines1 = explode("\n", `egrep -h "from|end|watchdog|lost|Alias|0000" $logPath | sed '/\(CSBK\|overflow\|Downlink\|Valid\|Invalid\)/d'`);
+        if (!$file = array_shift($fileList)) { // no caller names/last caller selected
+	    if(isset($_SESSION['PiStarRelease']['Pi-Star']['ProcNum']) && ($_SESSION['PiStarRelease']['Pi-Star']['ProcNum'] >= 4)) { // multi-core
+		if ($_SESSION['CSSConfigs']['ExtraSettings']['LastHeardRows'] > 40 ) { // more than 40 rows selected
+		    $logLines1 = explode("\n", `egrep -h "from|end|watchdog|lost|Alias|0000" $logPath | sed '/\(CSBK\|overflow\|Downlink\|Valid\|Invalid\)/d'`); // search entire log
 	        } else {
-		    $logLines1 = explode("\n", `tail -500 $logPath | sed '/\(CSBK\|overflow\|Downlink\|Valid\|Invalid\)/d' | egrep -h "from|end|watchdog|lost|Alias|0000"`);
+		    $logLines1 = explode("\n", `tail -500 $logPath | sed '/\(CSBK\|overflow\|Downlink\|Valid\|Invalid\)/d' | egrep -h "from|end|watchdog|lost|Alias|0000"`);  // 40 or less rows selected
 	        }
 	    } else { 
-		$logLines1 = explode("\n", `tail -250 $logPath | sed '/\(CSBK\|overflow\|Downlink\|Valid\|Invalid\)/d' | egrep -h "from|end|watchdog|lost|Alias|0000"`);
+		$logLines1 = explode("\n", `tail -250 $logPath | sed '/\(CSBK\|overflow\|Downlink\|Valid\|Invalid\)/d' | egrep -h "from|end|watchdog|lost|Alias|0000"`); // single-core crap
 	    }
             $lineNos = sizeof($logLines1);
             $logLines1 = array_slice($logLines1, -1500);
-        } else {
-	    if(isset($_SESSION['PiStarRelease']['Pi-Star']['ProcNum']) && ($_SESSION['PiStarRelease']['Pi-Star']['ProcNum'] >= 4)) {
-		if ($_SESSION['CSSConfigs']['ExtraSettings']['LastHeardRows'] > 40 ) {
-		    $logLines1 = explode("\n", `egrep -h "from|end|watchdog|lost|Alias|0000" $logPath | sed '/\(CSBK\|overflow\|Downlink\|Valid\|Invalid\)/d'`);
+        } else { // caller names/last caller selected! keep perf. in check..
+	    if(isset($_SESSION['PiStarRelease']['Pi-Star']['ProcNum']) && ($_SESSION['PiStarRelease']['Pi-Star']['ProcNum'] >= 4)) { // multi-core
+		if ($_SESSION['CSSConfigs']['ExtraSettings']['LastHeardRows'] > 40 ) {  // more than 40 rows selected
+		    $logLines1 = explode("\n", `tail -1500 $logPath | sed '/\(CSBK\|overflow\|Downlink\|Valid\|Invalid\)/d' | egrep -h "from|end|watchdog|lost|Alias|0000"`); // search last 1500 lines
 		} else {
-		    $logLines1 = explode("\n", `tail -500 $logPath | sed '/\(CSBK\|overflow\|Downlink\|Valid\|Invalid\)/d' | egrep -h "from|end|watchdog|lost|Alias|0000"`);
+		    $logLines1 = explode("\n", `tail -500 $logPath | sed '/\(CSBK\|overflow\|Downlink\|Valid\|Invalid\)/d' | egrep -h "from|end|watchdog|lost|Alias|0000"`); // 40 or less rows selected
 		}
 	    } else {
-		$logLines1 = explode("\n", `tail -250 $logPath | sed '/\(CSBK\|overflow\|Downlink\|Valid\|Invalid\)/d' | egrep -h "from|end|watchdog|lost|Alias|0000"`);
+		$logLines1 = explode("\n", `tail -250 $logPath | sed '/\(CSBK\|overflow\|Downlink\|Valid\|Invalid\)/d' | egrep -h "from|end|watchdog|lost|Alias|0000"`); // single-core crap
 	    }
             $lineNos = sizeof($logLines1);
-            $logLines1 = array_slice($logLines1, -500);
+            $logLines1 = array_slice($logLines1, -1500);
         }
     }
+
+    // current log is less than 500 lines; check previous log...
     if ($lineNos < 500) {
         if (file_exists(MMDVMLOGPATH."/".MMDVMLOGPREFIX."-".gmdate("Y-m-d", time() - 86340).".log")) {
 	    $logPath = MMDVMLOGPATH."/".MMDVMLOGPREFIX."-".gmdate("Y-m-d", time() - 86340).".log";
-	    if(isset($_SESSION['PiStarRelease']['Pi-Star']['ProcNum']) && ($_SESSION['PiStarRelease']['Pi-Star']['ProcNum'] >= 4)) {
+	    if(isset($_SESSION['PiStarRelease']['Pi-Star']['ProcNum']) && ($_SESSION['PiStarRelease']['Pi-Star']['ProcNum'] >= 4)) { // multi-core
 		$logLines2 = explode("\n", `tail -500 $logPath | sed '/\(CSBK\|overflow\|Downlink\|Valid\|Invalid\)/d' | egrep -h "from|end|watchdog|lost|Alias|0000"`);
 	    } else {
-		$logLines2 = explode("\n", `tail -250 $logPath | sed '/\(CSBK\|overflow\|Downlink\|Valid\|Invalid\)/d' | egrep -h "from|end|watchdog|lost|Alias|0000"`);
+		$logLines2 = explode("\n", `tail -250 $logPath | sed '/\(CSBK\|overflow\|Downlink\|Valid\|Invalid\)/d' | egrep -h "from|end|watchdog|lost|Alias|0000"`); // single-core crap
 	    }
-	    $logLines2 = array_slice($logLines2, -500);
+	    $logLines2 = array_slice($logLines2, -1500);
         }
     }
     if ($lineNos < 500) {
