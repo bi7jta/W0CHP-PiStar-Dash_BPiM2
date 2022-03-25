@@ -82,8 +82,7 @@
 			<tr>
 			    <th>Reflector</th>
 			    <th>Module</th>
-			    <th>Action</th>
-			    <th>&nbsp</th>
+			    <th colspan="2">&nbsp;</th>
 			</tr>
 			<tr>
 			<td><select name="xlxLinkHost" class="dmrMasterHost3Startup">
