@@ -753,23 +753,14 @@ function getMMDVMLog() {
             $logLines1 = array_slice($logLines1, -500);
         }
     }
-    if ($lineNos < 150) {
+    if ($lineNos < 500) {
         if (file_exists(MMDVMLOGPATH."/".MMDVMLOGPREFIX."-".gmdate("Y-m-d", time() - 86340).".log")) {
 	    $logPath = MMDVMLOGPATH."/".MMDVMLOGPREFIX."-".gmdate("Y-m-d", time() - 86340).".log";
-	    $fileList = array_filter(array("/etc/.GETNAMES", "/etc/.CALLERDETAILS"), 'file_exists');
-	    if (!$file = array_shift($fileList)) {
-                if ($_SESSION['CSSConfigs']['ExtraSettings']['LastHeardRows'] > 40 ) {
-		    $logLines2 = explode("\n", `egrep -h "from|end|watchdog|lost|Alias|0000" $logPath | sed '/\(CSBK\|overflow\|Downlink\|Valid\|Invalid\)/d'`);
-		} else {
-		    $logLines2 = explode("\n", `tail -500 $logPath | sed '/\(CSBK\|overflow\|Downlink\|Valid\|Invalid\)/d' | egrep -h "from|end|watchdog|lost|Alias|0000"`);
-		}
-	    } else {
-		$logLines2 = explode("\n", `tail -500 $logPath | sed '/\(CSBK\|overflow\|Downlink\|Valid\|Invalid\)/d' | egrep -h "from|end|watchdog|lost|Alias|0000"`);
-	    }
+	    $logLines2 = explode("\n", `tail -500 $logPath | sed '/\(CSBK\|overflow\|Downlink\|Valid\|Invalid\)/d' | egrep -h "from|end|watchdog|lost|Alias|0000"`);
 	    $logLines2 = array_slice($logLines2, -500);
         }
     }
-    if ($lineNos < 150) {
+    if ($lineNos < 500) {
         $logLines = $logLines1 + $logLines2;
     } else {
         $logLines = $logLines1;
