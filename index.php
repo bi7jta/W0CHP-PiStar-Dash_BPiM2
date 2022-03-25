@@ -394,7 +394,7 @@ checkSessionValidity();
                 if ( $dmrMasterHost == '127.0.0.1') {
 		    if ($xlxEnabled == 1) {
 			if ($_SERVER["PHP_SELF"] == "/admin/index.php" && $_POST["func"] == "xlx_man" || $_GET["func"] == "xlx_man") { 	// Admin Only Option
-			    include 'mmdvmhost/xlx_dmr_manager.php';		// M17 Links
+			    include 'mmdvmhost/xlx_dmr_manager.php';		// XLX-DMR Manager
 			}
 		    }
 		}
@@ -411,18 +411,10 @@ checkSessionValidity();
 		if ($_SERVER["PHP_SELF"] == "/admin/index.php") {
 		    if (!empty($_POST) || !empty($_GET)) { echo '<br /><hr />'; }
                     echo '<div style="text-align:left;font-weight:bold;">Admin Sections</div>'."\n";
-		    echo '<form method="get" id="admin_sel" name="admin_sel" action="'.htmlentities($_SERVER['PHP_SELF']).'" style="padding-bottom:10px;">'."\n";
+		    echo '<form method="get" id="admin_sel" name="admin_sel" action="/admin/" style="padding-bottom:10px;">'."\n";
 		    echo '      <div class="mode_flex">'."\n";
 		    echo '        <div class="mode_flex row">'."\n";
 		    echo '          <div class="mode_flex column">'."\n";
-                    $testMMDVModeDMR = getConfigItem("DMR", "Enable", $_SESSION['MMDVMHostConfigs']);
-                    if ($xlxEnabled == true && $testMMDVModeDMR ==1) {
-                        echo '          <button form="admin_sel" type="submit" value="xlx_man" name="func"><span>XLX DMR Reflector Manager</span></button>'."\n";
-                    }
-                    else {
-                        echo '          <button form="admin_sel" disabled="disabled" type="submit" value="xlx_man" name="func"><span>XLX DMR Reflector Manager Manager</span></button>'."\n";
-                    } 
-		    echo '          </div><div class="mode_flex column">'."\n";
                     $testMMDVModeDSTARnet = getConfigItem("D-Star", "Enable", $_SESSION['MMDVMHostConfigs']);
                     if ( $testMMDVModeDSTARnet == 1 && !isPaused("D-Star") ) {
                         echo '		<button form="admin_sel" type="submit" value="ds_man" name="func"><span>D-Star Manager</span></button>'."\n";
@@ -457,12 +449,6 @@ checkSessionValidity();
 		    echo '      </div></div>'."\n";
                     echo '        <div class="mode_flex row">'."\n";
                     echo '          <div class="mode_flex column">'."\n";
- 		    echo '            <button form="admin_sel" type="submit" value="mode_man" name="func"><span>Instant Mode Manager</span></button>'."\n";
-		    echo '          </div><div class="mode_flex column">'."\n";
-		    echo '		<button form="admin_sel" type="submit" value="sys_man" name="func"><span>System Manager</span></button>'."\n";
-		    echo '      </div></div>'."\n";
-                    echo '        <div class="mode_flex row">'."\n";
-                    echo '          <div class="mode_flex column">'."\n";
                     $testMMDVModeDMR = getConfigItem("DMR", "Enable", $_SESSION['MMDVMHostConfigs']);
                     if ($xlxEnabled == true && $testMMDVModeDMR ==1) {
                         echo '          <button form="admin_sel" type="submit" value="xlx_man" name="func"><span>XLX DMR Reflector Manager</span></button>'."\n";
@@ -470,7 +456,13 @@ checkSessionValidity();
                     else {
                         echo '          <button form="admin_sel" disabled="disabled" type="submit" value="xlx_man" name="func"><span>XLX DMR Reflector Manager Manager</span></button>'."\n";
                     } 
-                    echo '          </div><div class="mode_flex column">'."\n";
+		    echo '          </div><div class="mode_flex column">'."\n";
+ 		    echo '            <button form="admin_sel" type="submit" value="mode_man" name="func"><span>Instant Mode Manager</span></button>'."\n";
+		    echo '          </div><div class="mode_flex column">'."\n";
+		    echo '		<button form="admin_sel" type="submit" value="sys_man" name="func"><span>System Manager</span></button>'."\n";
+		    echo '      </div></div>'."\n";
+                    echo '        <div class="mode_flex row">'."\n";
+                    echo '          <div class="mode_flex column">'."\n";
                     $testMMDVModeP25 = getConfigItem("P25", "Enable", $_SESSION['MMDVMHostConfigs']);
                     if ($testMMDVModeP25 == 1) {
 		    	echo '		<button form="admin_sel" type="submit" value="p25_man" name="func"><span>P25 Manager</span></button>'."\n";
