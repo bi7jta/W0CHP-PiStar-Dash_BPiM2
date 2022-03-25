@@ -405,16 +405,18 @@ checkSessionValidity();
 			    include 'mmdvmhost/dapnet_messenger.php';
 			    echo '</div>'."\n";
 		    }
-        }
+        	}
 
 		// begin admin selection form
 		if ($_SERVER["PHP_SELF"] == "/admin/index.php") {
-		    if (!empty($_POST) || !empty($_GET)) { echo '<br /><hr />'; }
+		    if ((!empty($_POST) || !empty($_GET)) && ($_GET['func'] != 'main')) { echo '<br /><hr />'; }
                     echo '<div style="text-align:left;font-weight:bold;">Admin Sections</div>'."\n";
 		    echo '<form method="get" id="admin_sel" name="admin_sel" action="/admin/" style="padding-bottom:10px;">'."\n";
 		    echo '      <div class="mode_flex">'."\n";
 		    echo '        <div class="mode_flex row">'."\n";
 		    echo '          <div class="mode_flex column">'."\n";
+ 		    echo '            <button form="admin_sel" type="submit" value="main" name="func"><span>Admin Main</span></button>'."\n";
+		    echo '          </div><div class="mode_flex column">'."\n";
                     $testMMDVModeDSTARnet = getConfigItem("D-Star", "Enable", $_SESSION['MMDVMHostConfigs']);
                     if ( $testMMDVModeDSTARnet == 1 && !isPaused("D-Star") ) {
                         echo '		<button form="admin_sel" type="submit" value="ds_man" name="func"><span>D-Star Manager</span></button>'."\n";
@@ -446,9 +448,7 @@ checkSessionValidity();
 		    else {
 		        echo '		<button form="admin_sel" disabled="disabled" type="submit" value="ysf_man" name="func"><span>YSF Manager</span></button>'."\n";
 		    }
-		    echo '      </div></div>'."\n";
-                    echo '        <div class="mode_flex row">'."\n";
-                    echo '          <div class="mode_flex column">'."\n";
+		    echo '          </div><div class="mode_flex column">'."\n";
                     $testMMDVModeDMR = getConfigItem("DMR", "Enable", $_SESSION['MMDVMHostConfigs']);
                     if ($xlxEnabled == true && $testMMDVModeDMR ==1) {
                         echo '          <button form="admin_sel" type="submit" value="xlx_man" name="func"><span>XLX DMR Link Manager</span></button>'."\n";
@@ -456,13 +456,13 @@ checkSessionValidity();
                     else {
                         echo '          <button form="admin_sel" disabled="disabled" type="submit" value="xlx_man" name="func"><span>XLX DMR Link Manager</span></button>'."\n";
                     } 
-		    echo '          </div><div class="mode_flex column">'."\n";
+		    echo '      </div></div>'."\n";
+                    echo '        <div class="mode_flex row">'."\n";
+		    echo '          <div class="mode_flex column">'."\n";
  		    echo '            <button form="admin_sel" type="submit" value="mode_man" name="func"><span>Instant Mode Manager</span></button>'."\n";
 		    echo '          </div><div class="mode_flex column">'."\n";
 		    echo '		<button form="admin_sel" type="submit" value="sys_man" name="func"><span>System Manager</span></button>'."\n";
-		    echo '      </div></div>'."\n";
-                    echo '        <div class="mode_flex row">'."\n";
-                    echo '          <div class="mode_flex column">'."\n";
+		    echo '          </div><div class="mode_flex column">'."\n";
                     $testMMDVModeP25 = getConfigItem("P25", "Enable", $_SESSION['MMDVMHostConfigs']);
                     if ($testMMDVModeP25 == 1) {
 		    	echo '		<button form="admin_sel" type="submit" value="p25_man" name="func"><span>P25 Manager</span></button>'."\n";
@@ -508,10 +508,10 @@ checkSessionValidity();
 	    	echo 'setTimeout(reloadSysInfo,5000);'."\n";
 	    	echo '$(window).trigger(\'resize\');'."\n";
 	    	echo '</script>'."\n";
-	    	if (empty($_POST) && empty($_GET)) {				// only show services on main admin page
+	    	if (empty($_POST) && empty($_GET) || $_GET['func'] == "main") {				// only show services on main admin page
 		        echo '<div id="sysInfo">'."\n";
 		        include 'dstarrepeater/system.php';				// Basic System Info
-		        echo '</div></div><br />'."\n";
+		        echo '</div></div>'."\n";
             }
         }
     
@@ -596,7 +596,7 @@ checkSessionValidity();
 		echo '$(window).trigger(\'resize\');'."\n";
 		echo '</script>'."\n";
     }
-		if (empty($_POST) && empty($_GET)) {  // only show localtx and lastheard on main admin page (not sections)
+	    	if (empty($_POST) && empty($_GET) || $_GET['func'] == "main") {	// only show localtx and lastheard on main admin page (not sections)
 		    echo '<div id="liveCallerDeets">'."\n";
 		    include 'mmdvmhost/live_caller_table.php';
  		    echo '</div>'."\n";
