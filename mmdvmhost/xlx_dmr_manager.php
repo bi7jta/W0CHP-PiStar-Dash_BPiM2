@@ -49,6 +49,7 @@
 		    echo "<br />";
 		    echo "Something wrong with your input, (Neither Link nor Unlink Sent) - please try again";
 		    echo "<br />Page reloading...";
+		    echo "<br />";
 		    echo "</td></tr>\n</table>\n<br />\n";
 		    unset($_POST);
 		    echo '<script type="text/javascript">setTimeout(function() { window.location=window.location;},2000);</script>';
@@ -59,6 +60,7 @@
 		    echo "<br />";
 		    echo "Something wrong with your input, (No target specified) -  please try again";
 		    echo "<br />Page reloading...";
+		    echo "<br />";
 		    echo "</td></tr>\n</table>\n<br />\n";
 		    unset($_POST);
 		    echo '<script type="text/javascript">setTimeout(function() { window.location=window.location;},2000);</script>';
@@ -67,8 +69,8 @@
 		if (isset($remoteCommand)) {
 		    echo "<div style='text-align:left;font-weight:bold;'>XLX DMR Link Manager</div>\n";
 		    echo "<table>\n<tr><th>Command Output</th></tr>\n<tr><td>";
+		    echo "$xlxLinkToHost<br />Page reloading...";
 		    echo "<br />";
-		    echo "<br />$xlxLinkToHost<br />Page reloading...</ br>";
 		    exec($remoteCommand);
 		    echo "</td></tr>\n</table>\n<br />\n";
 		    echo '<script type="text/javascript">setTimeout(function() { window.location=window.location;},7000);</script>';
