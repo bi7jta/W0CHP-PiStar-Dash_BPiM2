@@ -28,28 +28,25 @@
     // Check if XLX is Enabled
     if ($_SESSION['DMRGatewayConfigs']['XLX Network']['Enabled'] == 1) { 
 	if (!empty($_POST) && isset($_POST["xlxMgrSubmit"])) {
-		$remoteCommand = "";
-		// Handle Posted Data
-		if ($_POST["Link"] == "LINK") {
-		    $xlxLinkHost = $_POST['xlxLinkHost'];
-		    $startupModule = $_POST['dmrMasterHost3StartupModule'];
-		    $xlxLinkToHost = "";
-		    if ($xlxLinkHost != "none") { // Unlinking
-			$xlxLinkToHost = "Link set to XLX-".$xlxLinkHost.", Module ".$startupModule."";
-		    }
-		    $remoteCommand = 'sudo mount -o remount,rw / ; sudo sed -i "/Module=/c\\Module='.$startupModule.'" /etc/dmrgateway ; sudo sed -i "/Startup=/c\\Startup='.$xlxLinkHost.'" /etc/dmrgateway ; sudo systemctl restart dmrgateway.service ; sudo rm /etc/.XLX_paused';
-		}
-		else if ($_POST["Link"] == "UNLINK") {
-		    $xlxLinkToHost = "Unlinking";
-		    $remoteCommand = 'sudo mount -o remount,rw / ; sudo sed -i "/Module=/c\\Module=" /etc/dmrgateway ; sudo sed -i "/Startup=/c\\Startup=" /etc/dmrgateway ; sudo systemctl restart dmrgateway.service ; sudo touch /etc/.XLX_paused';
-		}
-		else {
-		    echo "<div style='text-align:left;font-weight:bold;'>XLX DMR Link Manager</div>\n";
-		    echo "<table>\n<tr><th>Command Output</th></tr>\n<tr><td>";
-		    echo "<br />";
+	    $remoteCommand = "";
+	    // Handle Posted Data
+	    $xlxLinkHost = $_POST['xlxLinkHost'];
+	    $startupModule = $_POST['dmrMasterHost3StartupModule'];
+	    $xlxLinkToHost = "";
+ 	    if ($xlxLinkHost != "None" && $startupModule == "@") { // Unlinking
+		$remoteCommand = 'sudo mount -o remount,rw / ; sudo sed -i "/Module=/c\\Module=@" /etc/dmrgateway ; sudo systemctl restart dmrgateway.service ; sudo touch /etc/.XLX_paused';
+		$xlxLinkToHost = "Unlinking";
+	    } elseif ($xlxLinkHost != "None" && $startupModule != "@") {
+	        $remoteCommand = 'sudo mount -o remount,rw / ; sudo sed -i "/Module=/c\\Module='.$startupModule.'" /etc/dmrgateway ; sudo sed -i "/Startup=/c\\Startup='.$xlxLinkHost.'" /etc/dmrgateway ; sudo systemctl restart dmrgateway.service ; sudo rm /etc/.XLX_paused';
+		$xlxLinkToHost = "Link set to XLX-".$xlxLinkHost.", Module ".$startupModule."";
+	    }
+	else {
+	    echo "<div style='text-align:left;font-weight:bold;'>XLX DMR Link Manager</div>\n";
+	    echo "<table>\n<tr><th>Command Output</th></tr>\n<tr><td>";
+		    echo "<p>";
 		    echo "Something wrong with your input, (Neither Link nor Unlink Sent) - please try again";
 		    echo "<br />Page reloading...";
-		    echo "<br />";
+		    echo "</p>";
 		    echo "</td></tr>\n</table>\n<br />\n";
 		    unset($_POST);
 		    echo '<script type="text/javascript">setTimeout(function() { window.location=window.location;},2000);</script>';
@@ -57,10 +54,10 @@
 		if (empty($_POST['xlxLinkHost'])) {
 		    echo "<div style='text-align:left;font-weight:bold;'>XLX DMR Link Manager</div>\n";
 		    echo "<table>\n<tr><th>Command Output</th></tr>\n<tr><td>";
-		    echo "<br />";
+		    echo "<p>";
 		    echo "Something wrong with your input, (No target specified) -  please try again";
 		    echo "<br />Page reloading...";
-		    echo "<br />";
+		    echo "</p>";
 		    echo "</td></tr>\n</table>\n<br />\n";
 		    unset($_POST);
 		    echo '<script type="text/javascript">setTimeout(function() { window.location=window.location;},2000);</script>';
@@ -69,11 +66,11 @@
 		if (isset($remoteCommand)) {
 		    echo "<div style='text-align:left;font-weight:bold;'>XLX DMR Link Manager</div>\n";
 		    echo "<table>\n<tr><th>Command Output</th></tr>\n<tr><td>";
-		    echo "$xlxLinkToHost<br />Page reloading...";
-		    echo "<br />";
+		    echo "<p>$xlxLinkToHost.<br />Re-Initializing DMRGateway and reloading page...";
+		    echo "<p />";
 		    exec($remoteCommand);
 		    echo "</td></tr>\n</table>\n<br />\n";
-		    echo '<script type="text/javascript">setTimeout(function() { window.location=window.location;},7000);</script>';
+		    echo '<script type="text/javascript">setTimeout(function() { window.location=window.location;},2000);</script>';
 		}
 	    }
 	    else {
@@ -85,7 +82,6 @@
 			<tr>
 			    <th width="150"><a class="tooltip" href="#">Reflector<span><b>Reflector</b></span></a></th>
 			    <th width="150"><a class="tooltip" href="#">Module<span><b>Module</b></span></a></th>
-			    <th width="150"><a class="tooltip" href="#">Link / Un-Link<span><b>Link / Un-Link</b></span></a></th>
 			    <th width="150"><a class="tooltip" href="#">Action<span><b>Action</b></span></a></th>
 			</tr>
 			<tr>
@@ -109,14 +105,17 @@
     <?php if (isset($configdmrgateway['XLX Network']['TG'])) { ?>
     <td><select name="dmrMasterHost3StartupModule">
 <?php
-	if ((isset($configdmrgateway['XLX Network']['Module'])) && ($configdmrgateway['XLX Network']['Module'] != NULL)) {
-		echo '        <option value="'.$configdmrgateway['XLX Network']['Module'].'" selected="selected">'.$configdmrgateway['XLX Network']['Module'].'</option>'."\n";
-		echo '        <option value="Default">Default</option>'."\n";
-	} elseif ((isset($configdmrgateway['XLX Network']['Module'])) && ($configdmrgateway['XLX Network']['Module'] == NULL)) {
-		echo '        <option value="Default">Default</option>'."\n";
-	} else {
-		echo '        <option value="Default" selected="selected">Default</option>'."\n";
-	}
+       if ((isset($configdmrgateway['XLX Network']['Module'])) && ($configdmrgateway['XLX Network']['Module'] != "@")) {                                                 
+                echo '        <option value="'.$configdmrgateway['XLX Network']['Module'].'" selected="selected">'.$configdmrgateway['XLX Network']['Module'].'</option>'."\n";
+                echo '        <option value="Default">Default</option>'."\n";
+                echo '        <option value="@">Unlink</option>'."\n";
+        } elseif ((isset($configdmrgateway['XLX Network']['Module'])) && ($configdmrgateway['XLX Network']['Module'] == "@")) {                                           
+                echo '        <option value="Default">Default</option>'."\n";
+                echo '        <option value="@" selected="selected">Unlink</option>'."\n";                                                                                  
+        } else {
+                echo '        <option value="Default" selected="selected">Default</option>'."\n";                                                                         
+                echo '        <option value=" ">Unlink</option>'."\n";
+        }
 ?>
 	<option value="A">A</option>
         <option value="B">B</option>
@@ -146,12 +145,9 @@
         <option value="Z">Z</option>
     </select>
     <?php } ?>
-			    </td>
 			    <td>
-				<input type="radio" name="Link" value="LINK" checked="checked" />Link
-				<input type="radio" name="Link" value="UNLINK" />Un-Link
-			    </td>
-			    <td>
+				<input type="hidden" name="Link" value="LINK" />
+				<!--<input type="radio" name="Link" value="UNLINK" />Un-Link-->
 				<input type="submit" name="xlxMgrSubmit" value="Request Change" />
 			    </td>
 			</tr>
