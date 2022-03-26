@@ -320,7 +320,7 @@ require_once $_SERVER['DOCUMENT_ROOT'].'/config/version.php';
 		//parse the ini file using default parse_ini_file() PHP function
 		$parsed_ini = parse_ini_file($filepath, true);
 
-		echo '<form action="" method="post">'."\n";
+		echo '<form action="" method="post" name="edit-css">'."\n";
 
 		// Colorpicker
 		echo '<div style="position: fixed; pointer-events: none; transform: translateX(230%);" >'."\n";
