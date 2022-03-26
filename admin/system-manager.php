@@ -20,10 +20,10 @@ $fw_enable    = "sudo /usr/local/sbin/pistar-system-manager -efw";
 $fw_disable   = "sudo /usr/local/sbin/pistar-system-manager -dfw";
 $cron_enable  = "sudo /usr/local/sbin/pistar-system-manager -ec";
 $cron_disable = "sudo /usr/local/sbin/pistar-system-manager -dc";
-$psr_enable   = "sudo sed -i '/enabled=/c enabled=true' /etc/pistar-remote ; sudo systemctl start pistar-remote.service";
-$psr_disable  = "sudo sed -i '/enabled=/c enabled=false' /etc/pistar-remote ; sudo systemctl stop pistar-remote.service";
-$psw_enable   = "sudo systemctl unmask pistar-watchdog.service ; sudo systemctl enable pistar-watchdog.service ; sudo systemctl unmask pistar-watchdog.timer ; sudo systemctl enable pistar-watchdog.timer; sudo systemctl start pistar-watchdog.service ; sudo systemctl start pistar-watchdog.timer";
-$psw_disable  = "sudo systemctl disable pistar-watchdog.timer ; sudo systemctl mask pistar-watchdog.timer ; sudo systemctl disable pistar-watchdog.service; sudo systemctl mask pistar-watchdog.service ; sudo systemctl stop pistar-watchdog.timer ; sudo systemctl stop pistar-watchdog.service";
+$psr_enable   = "sudo mount -o remount,rw / ; sudo sed -i '/enabled=/c enabled=true' /etc/pistar-remote ; sudo systemctl unmask pistar-remote.service ; sudo systemctl unmask pistar-remote.timer ; sudo systemctl enable pistar-remote.service ; sudo systemctl start pistar-remote.service; sudo systemctl start pistar-remote.timer";
+$psr_disable  = "sudo mount -o remount,rw / ; sudo sed -i '/enabled=/c enabled=false' /etc/pistar-remote ; sudo systemctl stop pistar-remote.timer ; sudo systemctl stop pistar-remote.service ; sudo systemctl disable pistar-remote.service; sudo systemctl disable pistar-remote.timer ; sudo systemctl mask pistar-remote.service ; sudo systemctl mask pistar-remote.timer";
+$psw_enable   = "sudo mount -o remount,rw / ; sudo systemctl unmask pistar-watchdog.service ; sudo systemctl enable pistar-watchdog.service ; sudo systemctl unmask pistar-watchdog.timer ; sudo systemctl enable pistar-watchdog.timer; sudo systemctl start pistar-watchdog.service ; sudo systemctl start pistar-watchdog.timer";
+$psw_disable  = "sudo mount -o remount,rw / ; sudo systemctl disable pistar-watchdog.timer ; sudo systemctl mask pistar-watchdog.timer ; sudo systemctl disable pistar-watchdog.service; sudo systemctl mask pistar-watchdog.service ; sudo systemctl stop pistar-watchdog.timer ; sudo systemctl stop pistar-watchdog.service";
 
 // take action based on form submission
 if (!empty($_POST["submit_service"]) && empty($_POST["service_sel"])) { //handler for nothing selected
