@@ -113,6 +113,8 @@ Run:
 
 * XLX Hosts are now searchable/selectable in DMR Master selection in configuration page.
 
+* "XLX DMR Link Manager" allows fast switching of XLX reflectors and modules, as well as unlinking from modules to "pause" traffic.
+
 * System process status reorganized into clean grid pattern, with more core service status being displayed.
 
 * User-Configurable 24 or 12 hour time display across the dashboard.
