@@ -29,7 +29,7 @@ $psw_disable  = "sudo systemctl disable pistar-watchdog.timer ; sudo systemctl m
 if (!empty($_POST["submit_service"]) && empty($_POST["service_sel"])) { //handler for nothing selected
     $mode = escapeshellcmd($_POST['service_sel']); // get selected mode from for post
     // Output to the browser
-    echo "<b>System Manager</b>\n";
+    echo '<div style="text-align:left;font-weight:bold;">System Manager</div>'."\n";
     echo "<table>\n";
     echo "  <tr>\n";
     echo "    <th>ERROR</th>\n";
@@ -46,7 +46,7 @@ if (!empty($_POST["submit_service"]) && empty($_POST["service_sel"])) { //handle
     $mode = escapeshellcmd($_POST['service_sel']); // get selected mode from for post
     if ($mode == "Cron" && (getCronState() == 0) || $mode == "PiStar-Remote" && (getPSRState() == 0) || $mode == "Firewall" && (getFWstate() == 0) || $mode == "PiStar-Watchdog" && (getPSWState() == 0)) { //check if already disabled
         // Output to the browser
-        echo "<b>System Manager</b>\n";
+	echo '<div style="text-align:left;font-weight:bold;">System Manager</div>'."\n";
         echo "<table>\n";
         echo "  <tr>\n";
         echo "    <th>ERROR</th>\n";
@@ -71,7 +71,7 @@ if (!empty($_POST["submit_service"]) && empty($_POST["service_sel"])) { //handle
 	        die;
 	    }
             // Output to the browser
-            echo "<b>System Manager</b>\n";
+	    echo '<div style="text-align:left;font-weight:bold;">System Manager</div>'."\n";
             echo "<table>\n";
             echo "  <tr>\n";
             echo "    <th>Status</th>\n";
@@ -89,7 +89,7 @@ if (!empty($_POST["submit_service"]) && empty($_POST["service_sel"])) { //handle
         $mode = escapeshellcmd($_POST['service_sel']); // get selected mode from for post
 	if ($mode == "Cron" && (getCronState() == 1) || $mode == "PiStar-Remote" && (getPSRState() == 1) || $mode == "Firewall" && (getFWstate() == 1) || $mode == "PiStar-Watchdog" && (getPSWState() == 1)) {
             // Output to the browser
-            echo "<b>System Manager</b>\n";
+	    echo '<div style="text-align:left;font-weight:bold;">System Manager</div>'."\n";
             echo "<table>\n";
             echo "  <tr>\n";
             echo "    <th>ERROR</th>\n";
@@ -115,7 +115,7 @@ if (!empty($_POST["submit_service"]) && empty($_POST["service_sel"])) { //handle
 		die;
 	    }
             // Output to the browser
-            echo "<b>System Manager</b>\n";
+	    echo '<div style="text-align:left;font-weight:bold;">System Manager</div>'."\n";
             echo "<table>\n";
             echo "  <tr>\n";
             echo "    <th>Status</th>\n";
