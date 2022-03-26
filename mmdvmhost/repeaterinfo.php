@@ -58,8 +58,10 @@ function GetActiveConnectionStyle($masterStates, $key) {
     global $tableRowEvenBg;
     if (count($masterStates)) {
 	    if (isset($masterStates[$key])) {
-	        if (($masterStates[$key] == "n/a") || ($masterStates[$key] == "disc")) {
-		        return "class=\"error-state-cell\"";
+		if ($key == "xlx" && file_exists("/etc/.XLX_paused")) { // xlx dmr manager logid
+		    return "class=\"paused-mode-cell\" title=\"User Unlinked\"";
+		} else if (($masterStates[$key] == "n/a") || ($masterStates[$key] == "disc")) {
+		    return "class=\"error-state-cell\"";
 	        }
 	    }
     }
@@ -70,7 +72,7 @@ function GetActiveConnectionStyle($masterStates, $key) {
 // Grab networks status from remote commands
 //
 $remoteMMDVMResults = [];
-$remoteDMRGResults = [];
+$remoteDMRgwResults = [];
 $remoteYSFGResults = [];
 $remoteP25GResults = [];
 $remoteNXDNGResults = [];
@@ -85,7 +87,7 @@ if (isProcessRunning("MMDVMHost")) {
 if (isProcessRunning("DMRGateway")) {
     $remoteCommandEnabled = (isset($_SESSION['DMRGatewayConfigs']['Remote Control']) ? $_SESSION['DMRGatewayConfigs']['Remote Control']['Enable'] : 0);
     $remoteCommandPort = (isset($_SESSION['DMRGatewayConfigs']['Remote Control']) ? $_SESSION['DMRGatewayConfigs']['Remote Control']['Port'] : 0);
-    FillConnectionStatus($remoteDMRGResults, $remoteCommandEnabled, $remoteCommandPort);
+    FillConnectionStatus($remoteDMRgwResults, $remoteCommandEnabled, $remoteCommandPort);
 }
 
 if (isProcessRunning("YSFGateway")) {
@@ -515,25 +517,25 @@ if (isProcessRunning("M17Gateway")) {
 				$xlxMasterHost1 = "".$xlxMasterHost1." ".$_SESSION['DMRGatewayConfigs']['XLX Network']['Module']."";
 			    }
 			    
-			    echo "<div class='divTableRow center'><div class='divTableCell'><div " .GetActiveConnectionStyle($remoteDMRGResults, "xlx")." title=\"".$xlxMasterHost1Tooltip."\">".$xlxMasterHost1."</div></div></div>\n";
+			    echo "<div class='divTableRow center'><div class='divTableCell'><div " .GetActiveConnectionStyle($remoteDMRgwResults, "xlx")." title=\"".$xlxMasterHost1Tooltip."\">".$xlxMasterHost1."</div></div></div>\n";
 			}
 			if ($_SESSION['DMRGatewayConfigs']['DMR Network 1']['Enabled'] == 1) {
-			    echo "<div class='divTableRow center'><div class='divTableCell'><div " .GetActiveConnectionStyle($remoteDMRGResults, "net1")." title=\"".$dmrMasterHost1Tooltip."\">".$dmrMasterHost1."</div></div></div>\n";
+			    echo "<div class='divTableRow center'><div class='divTableCell'><div " .GetActiveConnectionStyle($remoteDMRgwResults, "net1")." title=\"".$dmrMasterHost1Tooltip."\">".$dmrMasterHost1."</div></div></div>\n";
 			}
 			if ($_SESSION['DMRGatewayConfigs']['DMR Network 2']['Enabled'] == 1) {
-			    echo "<div class='divTableRow center'><div class='divTableCell'><div ".GetActiveConnectionStyle($remoteDMRGResults, "net2")." title=\"".$dmrMasterHost2Tooltip."\">".$dmrMasterHost2."</div></div></div>\n";
+			    echo "<div class='divTableRow center'><div class='divTableCell'><div ".GetActiveConnectionStyle($remoteDMRgwResults, "net2")." title=\"".$dmrMasterHost2Tooltip."\">".$dmrMasterHost2."</div></div></div>\n";
 			}
 			if ($_SESSION['DMRGatewayConfigs']['DMR Network 3']['Enabled'] == 1) {
-			    echo "<div class='divTableRow center'><div class='divTableCell'><div ".GetActiveConnectionStyle($remoteDMRGResults, "net3")." title=\"".$dmrMasterHost3Tooltip."\">".$dmrMasterHost3."</div></div></div>\n";
+			    echo "<div class='divTableRow center'><div class='divTableCell'><div ".GetActiveConnectionStyle($remoteDMRgwResults, "net3")." title=\"".$dmrMasterHost3Tooltip."\">".$dmrMasterHost3."</div></div></div>\n";
 			}
 			if (isset($_SESSION['DMRGatewayConfigs']['DMR Network 4']['Enabled'])) {
 			    if ($_SESSION['DMRGatewayConfigs']['DMR Network 4']['Enabled'] == 1) {
-				echo "<div class='divTableRow center'><div class='divTableCell'><div ".GetActiveConnectionStyle($remoteDMRGResults, "net4")." title=\"".$dmrMasterHost4Tooltip."\">".$dmrMasterHost4."</div></div></div>\n";
+				echo "<div class='divTableRow center'><div class='divTableCell'><div ".GetActiveConnectionStyle($remoteDMRgwResults, "net4")." title=\"".$dmrMasterHost4Tooltip."\">".$dmrMasterHost4."</div></div></div>\n";
 			    }
 			}
 			if (isset($_SESSION['DMRGatewayConfigs']['DMR Network 5']['Enabled'])) {
 			    if ($_SESSION['DMRGatewayConfigs']['DMR Network 5']['Enabled'] == 1) {
-				echo "<div class='divTableRow center'><div class='divTableCell'><div ".GetActiveConnectionStyle($remoteDMRGResults, "net5")." title=\"".$dmrMasterHost5Tooltip."\">".$dmrMasterHost5."</div></div></div>\n";
+				echo "<div class='divTableRow center'><div class='divTableCell'><div ".GetActiveConnectionStyle($remoteDMRgwResults, "net5")." title=\"".$dmrMasterHost5Tooltip."\">".$dmrMasterHost5."</div></div></div>\n";
 			    }
 			}
 		    }
@@ -542,7 +544,7 @@ if (isProcessRunning("M17Gateway")) {
 		    }
 		}
 		else {
-		    echo "<div class='divTableRow center'><div class='divTableCell'><div ".GetActiveConnectionStyle($remoteDMRGResults, "dmr")." title=\"".$dmrMasterHostTooltip."\">".$dmrMasterHost."</div></div></div>\n";
+		    echo "<div class='divTableRow center'><div class='divTableCell'><div ".GetActiveConnectionStyle($remoteDMRgwResults, "dmr")." title=\"".$dmrMasterHostTooltip."\">".$dmrMasterHost."</div></div></div>\n";
 		}
 	    }
 	    else {
