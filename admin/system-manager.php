@@ -139,35 +139,34 @@ if (!empty($_POST["submit_service"]) && empty($_POST["service_sel"])) { //handle
 	  <th>Select Service</th>
 	  <th>Action</th>
 	</tr>
-    <tr>
-      <td colspan="3" style="white-space:normal;padding: 3px;">This function allows you to instantly disable or enable system services. For advanced users!</td>
-    </tr>
 	<tr>
-      <td>
-        <input name="service_action" access="false" id="en-dis-0" value="Disable" type="radio" checked="checked">
-        <label for="en-dis-0">Disable</label>
-        <input name="service_action" access="false" id="en-dis-1"  value="Enable" type="radio">
-        <label for="en-dis-1">Enable</label>
-      </td>
-      <td>
-        <input name="service_sel" id="service-sel-0" value="Firewall" type="radio">
-        <label for="service-sel-0">Firewall'.((getFWstate()=='0'?" <span class='paused-mode-span'>(Disabled)</span>":"")).'</label>
-        &nbsp;| <input name="service_sel" id="service-sel-1"  value="Cron" type="radio">
-        <label for="service-sel-1">Cron'.((getCronState()=='0'?" <span class='paused-mode-span'>(Disabled)</span>":"")).'</label>
-        &nbsp;| <input name="service_sel" id="service-sel-2"  value="PiStar-Remote" type="radio">
-        <label for="service-sel-2">Pi-Star Remote'.((getPSRState()=='0'?" <span class='paused-mode-span'>(Disabled)</span>":"")).'</label>
-        &nbsp;| <input name="service_sel" id="service-sel-3"  value="PiStar-Watchdog" type="radio">
-        <label for="service-sel-3">Pi-Star Watchdog'.((getPSWState()=='0'?" <span class='paused-mode-span'>(Disabled)</span>":"")).'</label>
-        <br />
-      </td>
-      <td>
-        <input type="hidden" name="func" value="sys_man">
-        <input type="submit" class="btn-default btn" name="submit_service" value="Submit" access="false" style="default" id="submit-service" title="Submit">
-    </td>
-    </tr>
-  </table>
-</form>
+	  <td>
+	    <input name="service_action" access="false" id="en-dis-0" value="Disable" type="radio" checked="checked">
+	    <label for="en-dis-0">Disable</label>
+	    <input name="service_action" access="false" id="en-dis-1"  value="Enable" type="radio">
+	    <label for="en-dis-1">Enable</label>
+	  </td>
+	  <td>
+	    <input name="service_sel" id="service-sel-0" value="Firewall" type="radio">
+	    <label for="service-sel-0">Firewall'.((getFWstate()=='0'?" <span class='paused-mode-span'>(Disabled)</span>":"")).'</label>
+	    &nbsp;| <input name="service_sel" id="service-sel-1"  value="Cron" type="radio">
+	    <label for="service-sel-1">Cron'.((getCronState()=='0'?" <span class='paused-mode-span'>(Disabled)</span>":"")).'</label>
+	    &nbsp;| <input name="service_sel" id="service-sel-2"  value="PiStar-Remote" type="radio">
+	    <label for="service-sel-2">Pi-Star Remote'.((getPSRState()=='0'?" <span class='paused-mode-span'>(Disabled)</span>":"")).'</label>
+	    &nbsp;| <input name="service_sel" id="service-sel-3"  value="PiStar-Watchdog" type="radio">
+	    <label for="service-sel-3">Pi-Star Watchdog'.((getPSWState()=='0'?" <span class='paused-mode-span'>(Disabled)</span>":"")).'</label>
+	    <br />
+	  </td>
+	  <td>
+	    <input type="hidden" name="func" value="sys_man">
+	    <input type="submit" class="btn-default btn" name="submit_service" value="Submit" access="false" style="default" id="submit-service" title="Submit">
+	  </td>
+	</tr>
+	<tr>
+	  <td colspan="3" style="white-space:normal;padding: 3px;">This function allows you to instantly disable or enable system services. For advanced users!</td>
+	</tr>
+    </table>
+  </form>
 ';
 }
-
 ?>
