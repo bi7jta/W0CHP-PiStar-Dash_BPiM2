@@ -14,6 +14,11 @@ if (!isset($_SESSION) || !is_array($_SESSION)) {
 include_once $_SERVER['DOCUMENT_ROOT'].'/config/ircddblocal.php';
 include_once $_SERVER['DOCUMENT_ROOT'].'/config/language.php';	      // Translation Code
 
+if (isset($_SESSION['CSSConfigs']['Background'])) {
+    $backgroundModeCellActiveColor = $_SESSION['CSSConfigs']['Background']['ModeCellActiveColor'];
+    $backgroundModeCellPausedColor = $_SESSION['CSSConfigs']['Background']['ModeCellPausedColor'];
+    $backgroundModeCellInactiveColor = $_SESSION['CSSConfigs']['Background']['ModeCellInactiveColor'];
+}
 ?>
 <div style="text-align:left;font-weight:bold;"><?php echo$lang['d-star_link_status'];?></div>
 <table>
@@ -61,10 +66,10 @@ include_once $_SERVER['DOCUMENT_ROOT'].'/config/language.php';	      // Translat
 	    }
 	    $param="atStartup" . $i;
 	    if($_SESSION['ircDDBConfigs'][$param] == 1) {
-		print "<td><span style='color:#005028;font-weight:bold'>Yes</span></td>";
+		print "<td><span style='color:$backgroundModeCellActiveColor;font-weight:bold'>Yes</span></td>";
 	    }
 	    else {
-		print "<td><span style='color:#8A0B2B;font-weight:bold;'>No</span></td>";
+		print "<td><span style='color:$backgroundModeCellInactiveColor;font-weight:bold;'>No</span></td>";
 	    }
 	    $param="reconnect" . $i;
 	    if(isset($_SESSION['ircDDBConfigs'][$param])) {
@@ -82,7 +87,7 @@ include_once $_SERVER['DOCUMENT_ROOT'].'/config/language.php';	      // Translat
 		while ($linkLine = fgets($linkLog)) {
 		    //$statimg = "<img src=\"images/20red.png\">";
 		    $statimg = "Down";
-		    $color = "#8A0B2B";
+		    $color = $backgroundModeCellIanctiveColor;
                     $linkDate = "&nbsp;";
                     $protocol = "&nbsp;";
                     $linkType = "&nbsp;";
@@ -94,7 +99,7 @@ include_once $_SERVER['DOCUMENT_ROOT'].'/config/language.php';	      // Translat
 		    // 2012-10-12 17:56:10: DCS link - Type: Repeater Rptr: DB0RPL B Refl: DCS015 B Dir: Outgoing
                     if(preg_match_all('/^(.{19}).*(D[A-Za-z]*).*Type: ([A-Za-z]*).*Rptr: (.{8}).*Refl: (.{8}).*Dir: Outgoing$/',$linkLine,$linx) > 0) {
 			$statimg = "Up";
-			$color = "#005028";
+			$color = $backgroundModeCellActiveColor;
 			$linkDate = date("d-M-Y H:i:s", strtotime(substr($linx[1][0],0,19)));
                         $protocol = $linx[2][0];
                         $linkType = $linx[3][0];
@@ -125,7 +130,7 @@ include_once $_SERVER['DOCUMENT_ROOT'].'/config/language.php';	      // Translat
 	    }
 	    
 	    if ($tr == 1) {
-		print"<td><span style='color:#8A0B2B;font-weight:bold'>Down</span></td><td>None</td><td>--</td><td>----</td><td>----</td></tr>\n";
+		print"<td><span style='color:$backgroundModeCellInactiveColor;font-weight:bold'>Down</span></td><td>None</td><td>--</td><td>----</td><td>----</td></tr>\n";
 	    }
 	    // 00000000001111111111222222222233333333334444444444555555555566666666667777777777888888888899999999990000000000111111111122
 	    // 01234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901
@@ -134,7 +139,7 @@ include_once $_SERVER['DOCUMENT_ROOT'].'/config/language.php';	      // Translat
 	    if (file_exists($linkLogPath)  && ($linkLog = fopen($linkLogPath,'r'))) {
 		while ($linkLine = fgets($linkLog)) {
 		    $statimg = "Down";
-		    $color = "#8A0B2B";
+		    $color = $backgroundModeCellInactiveColor;
                     $linkDate = "&nbsp;";
                     $protocol = "&nbsp;";
                     $linkType = "&nbsp;";
@@ -142,7 +147,7 @@ include_once $_SERVER['DOCUMENT_ROOT'].'/config/language.php';	      // Translat
                     $linkRefl = "&nbsp;";
                     if(preg_match_all('/^(.{19}).*(D[A-Za-z]*).*Type: ([A-Za-z]*).*Rptr: (.{8}).*Refl: (.{8}).*Dir: Incoming$/',$linkLine,$linx) > 0) {
 			$statimg = "Up";
-			$color = "#005028";
+			$color = $backgroundModeCellActiveColor;
 			$linkDate = date("d-M-Y H:i:s", strtotime(substr($linx[1][0],0,19)));
                         $protocol = $linx[2][0];
                         $linkType = $linx[3][0];
@@ -185,7 +190,7 @@ include_once $_SERVER['DOCUMENT_ROOT'].'/config/language.php';	      // Translat
             if (file_exists($linkLogPath) && ($linkLog = fopen($linkLogPath,'r'))) {
                 while ($linkLine = fgets($linkLog)) {
                     $statimg = "Down";
-		    $color = "#8A0B2B";
+		    $color = $backgroundModeCellInactiveColor;
                     $linkDate = "&nbsp;";
                     $protocol = "&nbsp;";
                     $linkType = "&nbsp;";
@@ -193,7 +198,7 @@ include_once $_SERVER['DOCUMENT_ROOT'].'/config/language.php';	      // Translat
                     $linkRefl = "&nbsp;";
                     if(preg_match_all('/^(.{19}).*(D[A-Za-z]*).*Type: ([A-Za-z]*).*User: (.[^\s]+).*Dir: Incoming$/',$linkLine,$linx) > 0) {
                         $statimg = "Up";
-			$color = "#005028";
+			$color = $backgroundModeCellActiveColor;
                         $linkDate = date("d-M-Y H:i:s", strtotime(substr($linx[1][0],0,19)));
                         $protocol = $linx[2][0];
                         $linkType = $linx[3][0];

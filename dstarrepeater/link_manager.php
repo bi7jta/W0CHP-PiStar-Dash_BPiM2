@@ -56,19 +56,19 @@ if ($_SERVER["PHP_SELF"] == "/admin/index.php") {
 	    $linkCommand = "sudo remotecontrold \"".$module."\" link never \"".$targetRef."\"";
 	    
 	    if ($module != $targetRef && $_POST["Link"] == "LINK") {	// Sanity check that we are not connecting to ourself
-		echo "<div style='text-align:left;font-weight:bold;'>D-Star Link Manager</div>>\n";
+		echo "<div style='text-align:left;font-weight:bold;'>D-Star Link Manager</div>\n";
 		echo "<table>\n<tr><th>Command Output</th></tr>\n<tr><td>";
 		echo exec($linkCommand);
 		echo "</td></tr>\n</table>\n";
 	    }
 	    if ($module == $targetRef && $_POST["Link"] == "LINK") {	// Sanity Check Failed
-		echo "<div style='text-align:left;font-weight:bold;'>D-Star Link Manager</div>>\n";
+		echo "<div style='text-align:left;font-weight:bold;'>D-Star Link Manager</div>\n";
 		echo "<table>\n<tr><th>Command Output</th></tr>\n<tr><td>";
 		echo "Cannot link to myself - Aborting link request!";
 		echo "</td></tr>\n</table>\n";
 	    }
 	    if ($_POST["Link"] == "UNLINK") {				// Allow Unlink no matter what
-		echo "<div style='text-align:left;font-weight:bold;'>D-Star Link Manager</div>>\n";
+		echo "<div style='text-align:left;font-weight:bold;'>D-Star Link Manager</div>\n";
 		echo "<table>\n<tr><th>Command Output</th></tr>\n<tr><td>";
 		echo exec($unlinkCommand);
 		echo "</td></tr>\n</table>\n";
@@ -81,7 +81,7 @@ if ($_SERVER["PHP_SELF"] == "/admin/index.php") {
     else { //else:
 ?>
         <div style="text-align:left;font-weight:bold;"><?php echo $lang['d-star_link_manager'];?></div>
-	<form action="//<?php echo htmlentities($_SERVER['HTTP_HOST']).htmlentities($_SERVER['PHP_SELF']); ?>?func=ds_man" method="post">
+	<form action="/admin/?func=ds_man" method="post">
 	    <table>
 		<tr>
 		    <th width="150"><a class="tooltip" href="#">Radio Module<span><b>Radio Module</b></span></a></th>
