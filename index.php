@@ -409,7 +409,7 @@ checkSessionValidity();
 
 		// begin admin selection form
 		if ($_SERVER["PHP_SELF"] == "/admin/index.php") {
-		    if ((!empty($_POST) || !empty($_GET)) && ($_GET['func'] != 'main')) { echo '<br /><hr />'; }
+		    if ((!empty($_POST) || !empty($_GET)) && ($_GET['func'] != 'main')) { echo '<br />'; }
                     echo '<div style="text-align:left;font-weight:bold;">Admin Sections</div>'."\n";
 		    echo '<form method="get" id="admin_sel" name="admin_sel" action="/admin/" style="padding-bottom:10px;">'."\n";
 		    echo '      <div class="mode_flex">'."\n";
@@ -497,6 +497,9 @@ checkSessionValidity();
 		    echo '      </div></div>'."\n".'</div>'."\n";
 		    echo '      <div><b>Note:</b> Modes/networks/services not <a href="/admin/configure.php" style="text-decoration:underline;color:inherit;">globally configured/enabled</a>, or that are paused, are not selectable here until they are enabled or <a href="./?func=mode_man" style="text-decoration:underline;color:inherit;">resumed from pause</a>.</div>'."\n";
 		    echo ' </form>'."\n";
+		    if (!empty($_GET) && $_GET['func'] != "main") {
+			echo "</div>\n";
+		    }
 		}
 
 	    if ($_SERVER["PHP_SELF"] == "/admin/index.php") {
@@ -509,11 +512,11 @@ checkSessionValidity();
 	    	echo '$(window).trigger(\'resize\');'."\n";
 	    	echo '</script>'."\n";
 	    	if (empty($_POST) && empty($_GET) || $_GET['func'] == "main") {				// only show services on main admin page
-		        echo '<div id="sysInfo">'."\n";
-		        include 'dstarrepeater/system.php';				// Basic System Info
-		        echo '</div></div>'."\n";
+		    echo '<div id="sysInfo">'."\n";
+		    include 'dstarrepeater/system.php';				// Basic System Info
+		    echo '</div></div>'."\n";
+                }
             }
-        }
     
 	if ($_SERVER["PHP_SELF"] == "/index.php" || $_SERVER["PHP_SELF"] == "/admin/index.php") {
 		echo '<script type="text/javascript">'."\n";
@@ -604,7 +607,6 @@ checkSessionValidity();
 		    echo '<div id="localTxs">'."\n";
 		    include 'mmdvmhost/localtx.php';				// MMDVMDash Local Trasmissions
 		    echo '</div>'."\n";
-		    echo "<br />\n";
 
 		    echo '<div id="lastHeard">'."\n";
 		    include 'mmdvmhost/lh.php';					// MMDVMDash Last Heard
