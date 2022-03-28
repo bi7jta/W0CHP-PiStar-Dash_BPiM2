@@ -241,6 +241,13 @@ if (isset($configmmdvm['GPSD'])) {
     unset($configmmdvm['GPSD']);
 }
 
+//
+// Remove ['DMR Network']['Type'], as it's pointless to use 'Direct' mode
+//
+if (isset($configmmdvm['DMR Network']['Type'])) {
+    unset($configmmdvm['DMR Network']['Type']);
+}
+
 // Ensure ircDDBGateway file contains the new APRS configuration
 if (isset($configs['aprsHostname'])) {
     exec('sudo mount -o remount,rw /');
@@ -2697,7 +2704,13 @@ if (!empty($_POST)):
 	// Add missing values to DMRGateway
 	# the following "if" statement addresses (user-initiated?) missing values from
 	# https://repo.w0chp.net/Chipster/W0CHP-PiStar-Dash/issues/9
-	if ($configmmdvm['DMR Network']['Type'] = "Gateway" || $dmrMasterHostArr[0] == '127.0.0.1') {
+	if (empty($_POST['dmrMasterHost']) != TRUE ) {
+	    $dmrMasterHostArr = explode(',', escapeshellcmd($_POST['dmrMasterHost']));
+	    if ($dmrMasterHostArr[0] == '127.0.0.1') {
+		$usingDMRgw = "true";
+	    }
+	}
+	if (($configmmdvm['DMR Network']['Type'] = "Gateway") || ($usingDMRgw == "true")) {
 	    $configdmrgateway['General']['RptAddress'] = "127.0.0.1";
 	    $configdmrgateway['General']['RptPort'] = "62032";
 	    $configdmrgateway['General']['LocalAddress'] = "127.0.0.1";
