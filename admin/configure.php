@@ -2715,7 +2715,7 @@ if (!empty($_POST)):
 	    $configdmrgateway['General']['RptPort'] = "62032";
 	    $configdmrgateway['General']['LocalAddress'] = "127.0.0.1";
 	    $configdmrgateway['General']['LocalPort'] = "62031";
-	    $configdmrgateway['General']['Deamon'] = "1";
+	    $configdmrgateway['General']['Daemon'] = "1";
 	    $configdmrgateway['General']['RuleTrace'] = "0";
 	    $configmmdvm['DMR Network']['RemoteAddress'] = "127.0.0.1";
 	}
