@@ -35,6 +35,7 @@ $ModemTCXO = str_replace("MHz", " MHz",$_SESSION['PiStarRelease']['Pi-Star']['TC
       <div class="divTableHeadCell" style="width:280px;">Radio Status</div>
       <div class="divTableHeadCell">TX Freq.</div>
       <div class="divTableHeadCell">RX Freq.</div>
+      <div class="divTableHeadCell">Radio Mode</div>
       <div class="divTableHeadCell">Modem Firmware</div>
       <div class="divTableHeadCell">TCXO Freq.</div>
       <div class="divTableHeadCell">Modem Port</div>
@@ -60,7 +61,7 @@ $ModemTCXO = str_replace("MHz", " MHz",$_SESSION['PiStarRelease']['Pi-Star']['TC
                     $listElem = $lastHeard[0];
                 if (getActualMode($lastHeard, $_SESSION['MMDVMHostConfigs']) === 'idle') {
 		    if (isProcessRunning("MMDVMHost")) {
-                    	echo "<div class=\"divTableCell middle active-mode-cell\" style=\"font-weight:bold;color:#ffffff;padding:2px;\">IDLE</div>";
+                    	echo "<div class=\"divTableCell middle active-mode-cell\" style=\"font-weight:bold;padding:2px;\">IDLE</div>";
 		    }
 		    else { 
                         echo "<div class='error-state-cell divTableCell middle hwinfo' style=\"font-weight:bold;padding:2px;\">OFFLINE</div>";
@@ -68,7 +69,7 @@ $ModemTCXO = str_replace("MHz", " MHz",$_SESSION['PiStarRelease']['Pi-Star']['TC
                 }
                 else if (getActualMode($lastHeard, $_SESSION['MMDVMHostConfigs']) === NULL) {
                     if (isProcessRunning("MMDVMHost")) {
-                        echo "<div ass=\"divTableCell middle active-mode-cell\" style=\"font-weight:bold;color:#ffffff;padding:2px;\">IDLE</div>";
+                        echo "<div ass=\"divTableCell middle active-mode-cell\" style=\"font-weight:bold;padding:2px;\">IDLE</div>";
                     }
                     else {
                         echo "<div class='error-state-cell divTableCell middle hwinfo' style=\"font-weight:bold;color:#ffffff;padding:2px;\">OFFLINE</div>";
@@ -119,11 +120,12 @@ $ModemTCXO = str_replace("MHz", " MHz",$_SESSION['PiStarRelease']['Pi-Star']['TC
             }   
         }   
         else {
-            echo "<div class=\"divTableCell middle active-mode-cell\" style=\"font-weight:color:#ffffff;bold;padding:2px;\">IDLE</div>";
+            echo "<div class=\"divTableCell middle active-mode-cell\" style=\"font-weight:bold;padding:2px;\">IDLE</div>";
         }
         ?>
       <div class="divTableCell hwinfo middle" style="background: <?php echo $tableRowEvenBg; ?>;"><?php echo getMHZ(getConfigItem("Info", "TXFrequency", $_SESSION['MMDVMHostConfigs'])); ?></div>
       <div class="divTableCell hwinfo middle" style="background: <?php echo $tableRowEvenBg; ?>;"><?php echo getMHZ(getConfigItem("Info", "RXFrequency", $_SESSION['MMDVMHostConfigs'])); ?></div>
+      <div class="divTableCell hwinfo middle" style="background: <?php echo $tableRowEvenBg; ?>;"><?php if(getConfigItem("General", "Duplex", $_SESSION['MMDVMHostConfigs']) == "1") { echo "Duplex"; } else { echo "Simplex"; } ?></div>
       <div class="divTableCell hwinfo middle" style="background: <?php echo $tableRowEvenBg; ?>;"><?php if(empty($ModemFW)) { echo '(updating)'; } else { echo $ModemFW; } ?></div>
       <div class="divTableCell hwinfo middle" style="background: <?php echo $tableRowEvenBg; ?>;"><?php if(empty($ModemTCXO)) { echo '(updating)'; } else { echo $ModemTCXO; } ?></div>
       <div class="divTableCell hwinfo middle" style="background: <?php echo $tableRowEvenBg; ?>;"><?php echo getConfigItem("Modem", "UARTPort", $_SESSION['MMDVMHostConfigs']); ?></div>
