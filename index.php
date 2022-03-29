@@ -547,7 +547,7 @@ checkSessionValidity();
 	        echo '    }'."\n";
 	        echo '}'."\n";
     		echo '</script>'."\n";
-		echo '<div id="lcmsg" style="background:#65737e;color:black; margin:5px 0 10px 0;"></div>'."\n";
+		echo '<div id="lcmsg" style="background:#eeeeee;color:black; margin:5px 0 10px 0;"></div>'."\n";
     		echo '<script type="text/javascript">'."\n";
     		echo 'function LiveCallerDetails(){'."\n";
     		echo '  $("#liveCallerDeets").load("/mmdvmhost/live_caller_table.php");'."\n";
