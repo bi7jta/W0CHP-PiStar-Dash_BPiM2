@@ -4,7 +4,7 @@ include_once $_SERVER['DOCUMENT_ROOT'].'/mmdvmhost/tools.php';        // MMDVMDa
 include_once $_SERVER['DOCUMENT_ROOT'].'/mmdvmhost/functions.php';    // MMDVMDash Functions
 include_once $_SERVER['DOCUMENT_ROOT'].'/config/language.php';	      // Translation Code
 
-if (isset($_SESSION['CSSConfigs']['ExtraSettings']['LastHeardRows'])) {
+if (isset($_SESSION['CSSConfigs']['ExtraSettings']['LastHeardRows']) && $_SESSION['PiStarRelease']['Pi-Star']['ProcNum'] >= 4) {
     $lastHeardRows = $_SESSION['CSSConfigs']['ExtraSettings']['LastHeardRows'];
     if ($lastHeardRows > 100) {  
 	$lastHeardRows = "100";  // need an internal limit
