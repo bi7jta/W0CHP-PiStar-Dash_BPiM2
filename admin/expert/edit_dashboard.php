@@ -347,11 +347,9 @@ require_once $_SERVER['DOCUMENT_ROOT'].'/config/version.php';
 			        echo "<tr><td align=\"right\" style='padding-left:10em;width:150px;'>$key</td><td align=\"left\"><input type=\"text\" name=\"{$section}[$key]\" value=\"$value\" size='3' maxlength='2' /></td><td align='left' style='word-wrap: break-word;white-space: normal;'>(the Body font size, in pixels, used across most of the Dashboard's non-data/non-informational text; default is 17 pixels.)</td></tr>\n";
 			    } elseif (beginsWith($key, 'HeaderFont')) {
 			        echo "<tr><td align=\"right\" style='padding-left:10em;width:150px;'>$key</td><td align=\"left\"><input type=\"text\" name=\"{$section}[$key]\" value=\"$value\" size='3' maxlength='2' /></td><td align='left' style='word-wrap: break-word;white-space: normal;'>(the Header font size, in pixels; default is 34 pixels.)</td></tr>\n";
-			    } elseif (endsWith($key, 'HeardRows') && $_SESSION['PiStarRelease']['Pi-Star']['ProcNum'] >= 4) {
+			    } elseif (endsWith($key, 'HeardRows')) {
 			        echo "<tr><td align=\"right\" style='padding-left:15em;width:150px;'>$key</td><td align=\"left\"><input type=\"text\" name=\"{$section}[$key]\" value=\"$value\" size='3' maxlength='3' /></td><td align='left' style='word-wrap: break-word;white-space: normal;'>(The number of rows displayed on the Dashboard; default is 40 rows, and 100 rows is the maximum allowed.)</td></tr>\n";
-			    } elseif (endsWith($key, 'HeardRows') && $_SESSION['PiStarRelease']['Pi-Star']['ProcNum'] < 4) {
-			        echo "<tr><td align=\"right\" style='padding-left:15em;width:150px;'>$key</td><td align=\"left\"><input type=\"text\" name=\"{$section}[$key]\" value=\"$value\" size='3' maxlength='3' disabled title='Your hardware is too weak to support this feature.'/></td><td align='left' style='word-wrap: break-word;white-space: normal;'>Your hardware is too weak to support this feature.</td></tr>\n";
-		        } else {
+		            } else {
 			        echo "<tr><td align=\"right\" style='padding-left:15em;width:150px;'>$key</td><td align=\"left\" colspan='2'><input type=\"text\" name=\"{$section}[$key]\" value=\"$value\" /></td></tr>\n";
                 }
 		    }
