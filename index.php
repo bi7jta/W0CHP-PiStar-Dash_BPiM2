@@ -75,6 +75,7 @@ checkSessionValidity();
             $('.RefName').select2();
             $('.dmrMasterHost3').select2();
             $('.dmrMasterHost3Startup').select2();
+            $('.xlxMod').select2();
           });
         </script>
         <script>

@@ -468,6 +468,7 @@ $MYCALL=strtoupper($callsign);
           $('.p25StartupHost').select2();
           $('.nxdnStartupHost').select2();
           $('.confDefRef').select2();
+          $('.xlxMod').select2();
       });
     </script>
     <script type="text/javascript" src="/js/functions.js?version=<?php echo $versionCmd; ?>"></script>
@@ -4689,7 +4690,7 @@ else:
     <?php if (isset($configdmrgateway['XLX Network']['TG'])) { ?>
     <tr>
     <td align="left"><a class="tooltip2" href="#">XLX Startup Module:<span><b>XLX Startup Module override</b>Default will use the host file option, or override it here.</span></a></td>
-    <td align="left" colspan="3"><select name="dmrMasterHost3StartupModule">
+    <td align="left" colspan="3"><select class="xlxMod" name="dmrMasterHost3StartupModule">
 <?php
 	if ((isset($configdmrgateway['XLX Network']['Module'])) && ($configdmrgateway['XLX Network']['Module'] != "@")) {
 		echo '        <option value="'.$configdmrgateway['XLX Network']['Module'].'" selected="selected">'.$configdmrgateway['XLX Network']['Module'].'</option>'."\n";
