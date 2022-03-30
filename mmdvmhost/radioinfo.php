@@ -22,11 +22,6 @@ if (isset($_SESSION['CSSConfigs']['Background']['TableRowBgEvenColor'])) {
 } else {
     $tableRowEvenBg = "inherit";
 }
-if (isset($_SESSION['CSSConfigs']['Background'])) {
-    $backgroundModeCellActiveColor = $_SESSION['CSSConfigs']['Background']['ModeCellActiveColor'];
-    $backgroundModeCellPausedColor = $_SESSION['CSSConfigs']['Background']['ModeCellPausedColor'];
-    $backgroundModeCellInactiveColor = $_SESSION['CSSConfigs']['Background']['ModeCellInactiveColor'];
-}
 
 $ModemFW = $_SESSION['PiStarRelease']['Pi-Star']['Firmware'];
 $ModemTCXO = str_replace("MHz", " MHz",$_SESSION['PiStarRelease']['Pi-Star']['TCXO']);
@@ -128,8 +123,8 @@ $ModemTCXO = str_replace("MHz", " MHz",$_SESSION['PiStarRelease']['Pi-Star']['TC
             echo "<div class=\"divTableCell middle active-mode-cell\" style=\"font-weight:bold;padding:2px;\">IDLE</div>";
         }
         ?>
-      <div class="divTableCell hwinfo middle" style="background: <?php echo $tableRowEvenBg; ?>;"><span style="font-weight:bold;color:<?php echo $backgroundModeCellInactiveColor; ?>;"><?php echo getMHZ(getConfigItem("Info", "TXFrequency", $_SESSION['MMDVMHostConfigs'])); ?></span></div>
-      <div class="divTableCell hwinfo middle" style="background: <?php echo $tableRowEvenBg; ?>;"><span style="font-weight:bold;color:<?php echo $backgroundModeCellActiveColor; ?>;"><?php echo getMHZ(getConfigItem("Info", "RXFrequency", $_SESSION['MMDVMHostConfigs'])); ?></span></div>
+      <div class="divTableCell hwinfo middle" style="background: <?php echo $tableRowEvenBg; ?>;"><?php echo getMHZ(getConfigItem("Info", "TXFrequency", $_SESSION['MMDVMHostConfigs'])); ?></div>
+      <div class="divTableCell hwinfo middle" style="background: <?php echo $tableRowEvenBg; ?>;"><?php echo getMHZ(getConfigItem("Info", "RXFrequency", $_SESSION['MMDVMHostConfigs'])); ?></div>
       <div class="divTableCell hwinfo middle" style="background: <?php echo $tableRowEvenBg; ?>;"><?php if(getConfigItem("General", "Duplex", $_SESSION['MMDVMHostConfigs']) == "1") { echo "Duplex"; } else { echo "Simplex"; } ?></div>
       <div class="divTableCell hwinfo middle" style="background: <?php echo $tableRowEvenBg; ?>;"><?php if(empty($ModemFW)) { echo '(updating)'; } else { echo $ModemFW; } ?></div>
       <div class="divTableCell hwinfo middle" style="background: <?php echo $tableRowEvenBg; ?>;"><?php if(empty($ModemTCXO)) { echo '(updating)'; } else { echo $ModemTCXO; } ?></div>
