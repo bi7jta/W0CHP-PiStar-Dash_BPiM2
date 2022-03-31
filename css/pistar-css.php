@@ -459,12 +459,13 @@ input.toggle-round-flat:focus + label {
     text-align: center;
 }
 
-textarea, input[type='text'] {
+textarea, input[type='text'], input[type='password'] {
         font-size: <?php echo $bodyFontSize; ?>px;
         font-family: 'Inconsolata', monospace;
         border: 1px solid black;
         padding: 5px;
         margin 3px;
+        background: silver;
 }
 
 input[type=button], input[type=submit], input[type=reset], input[type=radio], button {
@@ -502,7 +503,7 @@ input:disabled + label {
 }
 
 select {
-    background-color: #f1f1f1;
+    background: silver;
     font-family: 'Inconsolata', monospace;
     font-size: <?php echo $bodyFontSize; ?>px;
     border: 1px solid black;
@@ -516,12 +517,18 @@ select {
   font-family: 'Inconsolata', monospace;
   color: black;
   font-size: <?php echo $bodyFontSize; ?>px !important;
+  background: silver;
 }
 
 .select2-results__options{
   color: black;
   font-size:<?php echo $bodyFontSize; ?>px !important;
   font-family: 'Inconsolata', monospace;
+  background: silver;
+}
+
+[class^='select2'] {
+  border-radius: 0px !important;
 }
 
 .navbar {
