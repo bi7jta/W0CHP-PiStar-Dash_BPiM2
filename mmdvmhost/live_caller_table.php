@@ -4,7 +4,7 @@ if (file_exists('/etc/.CALLERDETAILS')) {
     include_once $_SERVER['DOCUMENT_ROOT'].'/mmdvmhost/tools.php';        // MMDVMDash Tools
     include_once $_SERVER['DOCUMENT_ROOT'].'/mmdvmhost/functions.php';    // MMDVMDash Functions
 ?>
-<div style="vertical-align: bottom; font-weight: bold;text-align:left;margin-top:-8px;">Current / Last Caller Details</div>
+<div style="vertical-align: bottom; font-weight: bold;text-align:left;margin-top:-1px;">Current / Last Caller Details</div>
   <table style="word-wrap: break-word; white-space:normal;">
     <tr>
       <th>Callsign</th>

@@ -217,7 +217,6 @@ checkSessionValidity();
                     include 'mmdvmhost/radioinfo.php';
                     echo '</div>'."\n";
                     echo '</div>'."\n";
-                    echo '<br />'."\n";
             }
 
         // First lets figure out if we are in MMDVMHost mode, or dstarrepeater mode;
