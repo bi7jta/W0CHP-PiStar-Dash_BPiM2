@@ -141,10 +141,10 @@ if (!is_numeric($listElem[2])) {
 	fclose($handle);
     }
     $callMatch = explode(",", $callMatch[0]);
-    $name = "$callMatch[2] $callMatch[3]";
-    $city = $callMatch[4];
-    $state = $callMatch[5];
-    $country = $callMatch[6];
+    $name = ucwords(strtolower("$callMatch[2] $callMatch[3]"));
+    $city = ucwords(strtolower($callMatch[4]));
+    $state = ucwords(strtolower($callMatch[5]));
+    $country = ucwords(strtolower($callMatch[6]));
     if (empty($callMatch[0])) {
 	$name = getName($listElem[2]);
 	$country = "---";
