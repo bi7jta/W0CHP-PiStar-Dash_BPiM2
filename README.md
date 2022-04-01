@@ -57,8 +57,10 @@ TalkGroup `3170603`.
 
     (...to install the dashboard *without* the `W0CHP` custom CSS)
 
-5. Important: You **must** run the aforementioned commands with the exact syntax. Note the spaces and extra `--` (dashes), etc.
-   Otherwise, the commands will fail.
+    **Important**: You *must* run the aforementioned commands with the exact syntax. Note the spaces and extra `--` (dashes), etc.
+    Otherwise, the commands will fail.
+
+5. When the installer completes, refresh your dashboard home page to see the changes.
 
 ## Updating `W0CHP-PiStar-Dash`
 
