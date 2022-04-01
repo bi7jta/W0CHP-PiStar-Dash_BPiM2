@@ -392,28 +392,28 @@ if (isProcessRunning("M17Gateway")) {
             $dmrMasterHost6Tooltip = $dmrMasterHost6;
         }
 		if (strlen($xlxMasterHost1) > 20) {
-		    $xlxMasterHost1 = substr($xlxMasterHost1, 0, 15) . '..';
+		    $xlxMasterHost1 = substr($xlxMasterHost1, 0, 15) . '...';
 		}
 		if (strlen($dmrMasterHost1) > 20) {
-		    $dmrMasterHost1 = substr($dmrMasterHost1, 0, 15) . '..';
+		    $dmrMasterHost1 = substr($dmrMasterHost1, 0, 15) . '...';
 		}
 		if (strlen($dmrMasterHost2) > 20) {
-		    $dmrMasterHost2 = substr($dmrMasterHost2, 0, 15) . '..';
+		    $dmrMasterHost2 = substr($dmrMasterHost2, 0, 15) . '...';
 		}
 		if (strlen($dmrMasterHost3) > 20) {
-		    $dmrMasterHost3 = substr($dmrMasterHost3, 0, 15) . '..';
+		    $dmrMasterHost3 = substr($dmrMasterHost3, 0, 15) . '...';
 		}
 		if (isset($dmrMasterHost4)) {
 		    if (strlen($dmrMasterHost4) > 20) {
-			    $dmrMasterHost4 = substr($dmrMasterHost4, 0, 15) . '..';
+			    $dmrMasterHost4 = substr($dmrMasterHost4, 0, 15) . '...';
 		    }
 		}
 		if (isset($dmrMasterHost5)) {
 		    if (strlen($dmrMasterHost5) > 20) {
-			    $dmrMasterHost5 = substr($dmrMasterHost5, 0, 15) . '..';
+			    $dmrMasterHost5 = substr($dmrMasterHost5, 0, 15) . '...';
 		    }
 		}
-        if (isset($dmrMasterHost6)) { if (strlen($dmrMasterHost6) > 20) { $dmrMasterHost6 = substr($dmrMasterHost6, 0, 15) . '..'; } }
+        if (isset($dmrMasterHost6)) { if (strlen($dmrMasterHost6) > 20) { $dmrMasterHost6 = substr($dmrMasterHost6, 0, 15) . '...'; } }
 	    }
 	    else {
 		while (!feof($dmrMasterFile)) {
@@ -427,7 +427,7 @@ if (isProcessRunning("M17Gateway")) {
 		}
 		$dmrMasterHostTooltip = $dmrMasterHost;
 		if (strlen($dmrMasterHost) > 20) {
-		    $dmrMasterHost = substr($dmrMasterHost, 0, 15) . '..';
+		    $dmrMasterHost = substr($dmrMasterHost, 0, 15) . '...';
 		}
 	    }
 	    fclose($dmrMasterFile);
@@ -633,7 +633,7 @@ if (isProcessRunning("M17Gateway")) {
 		$ysfLinkedToTooltip = $ysfLinkStateTooltip.$ysfLinkedToTxt;
 	    }
             if (strlen($ysfLinkedToTxt) > 20) {
-		$ysfLinkedToTxt = substr($ysfLinkedToTxt, 0, 15) . '..';
+		$ysfLinkedToTxt = substr($ysfLinkedToTxt, 0, 15) . '...';
 	    }
 	    ?>
 <div class="divTable">
@@ -703,7 +703,7 @@ if (getServiceEnabled('/etc/dgidgateway') == 1 )  { // Hide DGId GW info when GW
             }
 	    $dmrMasterHostTooltip = $dmrMasterHost;
             if (strlen($dmrMasterHost) > 25) {
-		$dmrMasterHost = substr($dmrMasterHost, 0, 23) . '..';
+		$dmrMasterHost = substr($dmrMasterHost, 0, 23) . '...';
 	    }
             fclose($dmrMasterFile);
 	    ?>
@@ -832,7 +832,7 @@ if (getConfigItem("NXDN", "RAN", $_SESSION['MMDVMHostConfigs'])) {
 		    $dapnetGatewayRemoteAddr = $_SESSION['DAPNETGatewayConfigs']['DAPNET']['Address'];
 		    $dapnetGatewayRemoteTooltip = $dapnetGatewayRemoteAddr;
 		    if (strlen($dapnetGatewayRemoteAddr) > 20) {
-		        $dapnetGatewayRemoteAddr = substr($dapnetGatewayRemoteAddr, 0, 15) . '..';
+		        $dapnetGatewayRemoteAddr = substr($dapnetGatewayRemoteAddr, 0, 15) . ' ...';
 		    }
 		}
 	    }

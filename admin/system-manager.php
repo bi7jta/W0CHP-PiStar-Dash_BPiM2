@@ -148,13 +148,13 @@ if (!empty($_POST["submit_service"]) && empty($_POST["service_sel"])) { //handle
 	  </td>
 	  <td>
 	    <input name="service_sel" id="service-sel-0" value="Firewall" type="radio">
-	    <label for="service-sel-0">Firewall'.((getFWstate()=='0'?" <span class='paused-mode-span'>(Disabled)</span>":"")).'</label>
+	    <label for="service-sel-0"'.((getFWstate()=='0'? "class='paused-mode-span'":"")). 'title="Disabled">Firewall</label>
 	    &nbsp;| <input name="service_sel" id="service-sel-1"  value="Cron" type="radio">
-	    <label for="service-sel-1">Cron'.((getCronState()=='0'?" <span class='paused-mode-span'>(Disabled)</span>":"")).'</label>
+	    <label for="service-sel-1"'.((getCronstate()=='0'? "class='paused-mode-span'":"")). 'title="Disabled">Cron</label>
 	    &nbsp;| <input name="service_sel" id="service-sel-2"  value="PiStar-Remote" type="radio">
-	    <label for="service-sel-2">Pi-Star Remote'.((getPSRState()=='0'?" <span class='paused-mode-span'>(Disabled)</span>":"")).'</label>
+	    <label for="service-sel-2"'.((getPSRState()=='0'? "class='paused-mode-span'":"")). 'title="Disabled">Pi-Star Remote</label>
 	    &nbsp;| <input name="service_sel" id="service-sel-3"  value="PiStar-Watchdog" type="radio">
-	    <label for="service-sel-3">Pi-Star Watchdog'.((getPSWState()=='0'?" <span class='paused-mode-span'>(Disabled)</span>":"")).'</label>
+	    <label for="service-sel-3"'.((getPSWState()=='0'? "class='paused-mode-span'":"")). 'title="Disabled">Pi-Star Watchdog</label>
 	    <br />
 	  </td>
 	  <td>
