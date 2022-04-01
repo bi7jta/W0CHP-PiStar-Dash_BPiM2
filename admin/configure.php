@@ -2223,6 +2223,29 @@ if (!empty($_POST)):
         $configmmdvm['Modem']['UARTPort'] = $configmmdvm['Modem']['Port'];
 	  }
 
+	   if ( $confHardware == 'genesishat' ) {
+	     $rollModemType = 'sudo sed -i "/modemType=/c\\modemType=MMDVM" /etc/dstarrepeater';
+	     $rollRepeaterType1 = 'sudo sed -i "/repeaterType1=/c\\repeaterType1=0" /etc/ircddbgateway';
+	     system($rollModemType);
+	     system($rollRepeaterType1);
+	     $configmmdvm['Modem']['Port'] = "/dev/ttyAMA0";
+	     $configmmdvm['General']['Duplex'] = 0;
+	     $configmmdvm['DMR Network']['Slot1'] = 0;
+	     $configmmdvm['Modem']['Protocol'] = "uart";
+	     $configmmdvm['Modem']['UARTPort'] = $configmmdvm['Modem']['Port'];
+	   }
+
+	   if ( $confHardware == 'genesisdualhat' ) {
+	     $rollModemType = 'sudo sed -i "/modemType=/c\\modemType=MMDVM" /etc/dstarrepeater';
+	     $rollRepeaterType1 = 'sudo sed -i "/repeaterType1=/c\\repeaterType1=0" /etc/ircddbgateway';
+	     system($rollModemType);
+	     system($rollRepeaterType1);
+	     $configmmdvm['Modem']['Port'] = "/dev/ttyAMA0";
+	     $configmmdvm['General']['Duplex'] = 1;
+	     $configmmdvm['Modem']['Protocol'] = "uart";
+	     $configmmdvm['Modem']['UARTPort'] = $configmmdvm['Modem']['Port'];
+	   }
+
 	  if ( $confHardware == 'mmdvmhsdualhatgpio' ) {
 	    $rollModemType = 'sudo sed -i "/modemType=/c\\modemType=MMDVM" /etc/dstarrepeater';
 	    $rollRepeaterType1 = 'sudo sed -i "/repeaterType1=/c\\repeaterType1=0" /etc/ircddbgateway';
@@ -4315,6 +4338,8 @@ else:
 	        <option<?php if ($configModem['Modem']['Hardware'] === 'mmdvmmdohat') {		echo ' selected="selected"';}?> value="mmdvmmdohat">MMDVM_HS_MDO Hat (BG3MDO) for Pi (GPIO)</option>
 	        <option<?php if ($configModem['Modem']['Hardware'] === 'mmdvmvyehat') {		echo ' selected="selected"';}?> value="mmdvmvyehat">MMDVM_HS_NPi Hat (VR2VYE) for Nano Pi (GPIO)</option>
 	        <option<?php if ($configModem['Modem']['Hardware'] === 'mmdvmvyehatdual') {	echo ' selected="selected"';}?> value="mmdvmvyehatdual">MMDVM_HS_Hat_Dual Hat (VR2VYE) for Pi (GPIO)</option>
+		<option<?php if ($configModem['Modem']['Hardware'] === 'genesishat') {		echo ' selected="selected"';}?> value="genesishat">Genesis - HHDVM_HS_Hat for Pi (GPIO)</option>
+		<option<?php if ($configModem['Modem']['Hardware'] === 'genesisdualhat') {	echo ' selected="selected"';}?> value="genesisdualhat">Genesis Dual Hat - HHDVM_HS_Hat_Dual for Pi (GPIO)</option>
 	    	<option<?php if ($configModem['Modem']['Hardware'] === 'lshshatgpio') {		echo ' selected="selected"';}?> value="lshshatgpio">LoneStar - MMDVM_HS_Hat for Pi (GPIO)</option>
 	    	<option<?php if ($configModem['Modem']['Hardware'] === 'lshsdualhatgpio') {	echo ' selected="selected"';}?> value="lshsdualhatgpio">LoneStar - MMDVM_HS_Dual_Hat for Pi (GPIO)</option>
 	    	<option<?php if ($configModem['Modem']['Hardware'] === 'lsusb') {		echo ' selected="selected"';}?> value="lsusb">LoneStar - USB Stick</option>
