@@ -44,7 +44,7 @@ body, font {
 
 .nav {
     float: left;
-    margin : 10px 0 0 0;
+    margin : 0;
     padding : 3px;
     width : 230px;
     background : <?php echo $backgroundNavPanel; ?>;
