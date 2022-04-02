@@ -179,7 +179,7 @@ for ($i = 0;  ($i <= 0); $i++) { //Last 20  calls
 	}
 ?>
   <tr>
-    <td><strong style="font-size:1.1em;"><?php echo $callsign ?? ' '; ?></strong></td>
+    <td><strong style="font-size:1.2em;"><?php echo $callsign ?? ' '; ?></strong></td>
     <td><?php echo $flContent; ?></td>
     <td><?php echo $name ?? ' '; ?></td>
     <td><?php
