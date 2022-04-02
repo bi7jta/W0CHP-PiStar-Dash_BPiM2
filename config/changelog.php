@@ -114,7 +114,7 @@ if ($_SERVER["PHP_SELF"] == "/config/changelog.php") {
 			      </div>
 			    </div>
 			    <p style="text-align:center;font-weight:bold;">
-			      <a href="https://repo.w0chp.net/Chipster/W0CHP-PiStar-Dash/commits/branch/master" target="new" style="text-decoration:underline;color:inherit;">View the entire change/commit history...</a>
+			      <a href="https://repo.w0chp.net/Chipster/W0CHP-PiStar-Dash/graph" target="new" style="text-decoration:underline;color:inherit;">View the entire change/commit history...</a>
 			    </p>
 			</div>
 		      </div>
