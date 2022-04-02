@@ -2,7 +2,11 @@
 include_once $_SERVER['DOCUMENT_ROOT'].'/config/config.php';          // MMDVMDash Config
 include_once $_SERVER['DOCUMENT_ROOT'].'/mmdvmhost/tools.php';        // MMDVMDash Tools
 include_once $_SERVER['DOCUMENT_ROOT'].'/mmdvmhost/functions.php';    // MMDVMDash Functions
-
+// geoLookup/flags
+if (!class_exists('xGeoLookup')) require_once($_SERVER['DOCUMENT_ROOT'].'/classes/class.GeoLookup.php');                                                              
+$Flags = new xGeoLookup();
+$Flags->SetFlagFile("/usr/local/etc/country.csv");
+$Flags->LoadFlags();
 if (constant("TIME_FORMAT") == "24") {
     $local_time = date('H:i:s M. jS');
 } else {
@@ -195,12 +199,19 @@ if ($listElem[2] == "4000" || $listElem[2] == "9990" || $listElem[2] == "DAPNET"
 	$duration = "";
 }
 
+// init geo/flag class
+list ($Flag, $Name) = $Flags->GetFlag($listElem[2]);
+if (file_exists($_SERVER['DOCUMENT_ROOT']."/images/flags/".$Flag.".png")) {
+    $flContent = "<img src='/images/flags/$Flag.png' alt='$Name' title='$Name' style='height:50px;vertical-align:middle;' />";
+} else {
+    $flContent = "";
+}
 ?>
 <div class='live-page-wrapper'>
   <div class='row'>
     <div class='column'>
       <div class='orange-column'>
-        <span class='oc_call'><?php echo $listElem[2]; ?></span>
+        <span class='oc_call'><?php echo "$listElem[2]"; ?></span>
       </div>
     </div>
     <div class='column'>
@@ -216,7 +227,7 @@ if ($listElem[2] == "4000" || $listElem[2] == "9990" || $listElem[2] == "DAPNET"
 	    if (!empty($state)) {
 		echo "<br />$state";
 	    } 
-	    echo "<br />$country";
+	    echo "<br />$country $flContent";
 	    ?>
 	</span>
       </div>

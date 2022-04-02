@@ -94,11 +94,11 @@ tt, code, kbd, pre {
 
 #tail {
     font-family: 'Inconsolata', monospace;
-    height: 800px;
+    height: 640px;
     width: 100%;
     overflow-y: scroll;
     overflow-x: scroll;
-    color: #00ff00;
+    color: #4DEEEA;
     background: #000000;
     font-size: 17px;
 }

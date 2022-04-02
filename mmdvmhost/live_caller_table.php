@@ -3,14 +3,19 @@ if (file_exists('/etc/.CALLERDETAILS')) {
     include_once $_SERVER['DOCUMENT_ROOT'].'/config/config.php';          // MMDVMDash Config
     include_once $_SERVER['DOCUMENT_ROOT'].'/mmdvmhost/tools.php';        // MMDVMDash Tools
     include_once $_SERVER['DOCUMENT_ROOT'].'/mmdvmhost/functions.php';    // MMDVMDash Functions
+    // geoLookup/flags
+    if (!class_exists('xGeoLookup')) require_once($_SERVER['DOCUMENT_ROOT'].'/classes/class.GeoLookup.php');
+    $Flags = new xGeoLookup();
+    $Flags->SetFlagFile("/usr/local/etc/country.csv");
+    $Flags->LoadFlags();
 ?>
 <div style="vertical-align: bottom; font-weight: bold;text-align:left;margin-top:-8px;">Current / Last Caller Details</div>
   <table style="word-wrap: break-word; white-space:normal;">
     <tr>
-      <th>Callsign</th>
+      <th colspan="2">Callsign</th>
       <th>Name</th>
       <th>Location</th>
-      <th>Source</th>
+      <th>Src</th>
       <th>Mode</th>
       <th>Target</th>
       <th>Duration</th>
@@ -27,6 +32,11 @@ for ($i = 0;  ($i <= 0); $i++) { //Last 20  calls
             $local_tz = new DateTimeZone(date_default_timezone_get ());
             $dt = new DateTime($utc_time, $utc_tz);
             $dt->setTimeZone($local_tz);
+	    if (constant("TIME_FORMAT") == "24") {
+		$local_time = $dt->format('H:i:s M. jS');
+	    } else {
+		$local_time = $dt->format('h:i:s A M. jS');
+	    }
             // YSF sometimes has malformed calls with a space and freeform text...address these
             if (preg_match('/ /', $listElem[2])) {
                 $listElem[2] = preg_replace('/ .*$/', "", $listElem[2]);
@@ -160,9 +170,17 @@ for ($i = 0;  ($i <= 0); $i++) { //Last 20  calls
 		$country = "---";
 		$duration = "<td>---</td>";
 	    }
+	// init geo/flag class
+	list ($Flag, $Name) = $Flags->GetFlag($listElem[2]);
+	if (file_exists($_SERVER['DOCUMENT_ROOT']."/images/flags/".$Flag.".png")) {
+	    $flContent = "<a class='tooltip' href='#'><img src='/images/flags/$Flag.png' alt='' style='height:20px;' /><span><b>$Name</b></span></a>";
+	} else {
+	    $flContent = "&nbsp";
+	}
 ?>
   <tr>
-    <td><?php echo $callsign ?? ' '; ?></td>
+    <td><strong style="font-size:1.1em;"><?php echo $callsign ?? ' '; ?></strong></td>
+    <td><?php echo $flContent; ?></td>
     <td><?php echo $name ?? ' '; ?></td>
     <td><?php
 		if (!empty($city)) {

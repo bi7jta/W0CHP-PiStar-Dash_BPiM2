@@ -17,7 +17,11 @@ if (isset($_SESSION['CSSConfigs']['Background'])) {
     $backgroundModeCellPausedColor = $_SESSION['CSSConfigs']['Background']['ModeCellPausedColor'];
     $backgroundModeCellInactiveColor = $_SESSION['CSSConfigs']['Background']['ModeCellInactiveColor'];
 }
-
+// geoLookup/flags
+if (!class_exists('xGeoLookup')) require_once($_SERVER['DOCUMENT_ROOT'].'/classes/class.GeoLookup.php');
+$Flags = new xGeoLookup();
+$Flags->SetFlagFile("/usr/local/etc/country.csv");
+$Flags->LoadFlags();
 ?>
 <input type="hidden" name="lh-autorefresh" value="OFF" />
   <div style="float: right; vertical-align: bottom; padding-top: 0px;" id="lhAR">
@@ -36,7 +40,7 @@ if (isset($_SESSION['CSSConfigs']['Background'])) {
     <tr>
       <th><a class="tooltip" href="#"><?php echo $lang['time'];?> (<?php echo date('T')?>)<span><b>Time in <?php echo date('T')?> time zone</b></span></a></th>
       <th><a class="tooltip" href="#"><?php echo $lang['mode'];?><span><b>Transmitted Mode</b></span></a></th>
-      <th><a class="tooltip" href="#"><?php echo $lang['callsign'];?><span><b>Callsign</b></span></a></th>
+      <th colspan="2"><a class="tooltip" href="#"><?php echo $lang['callsign'];?><span><b>Callsign</b></span></a></th>
       <th><a class="tooltip" href="#"><?php echo $lang['target'];?><span><b>Target, D-Star Reflector, DMR Talk Group etc</b></span></a></th>
       <th><a class="tooltip" href="#"><?php echo $lang['src'];?><span><b>Received from source</b></span></a></th>
       <th><a class="tooltip" href="#"><?php echo $lang['dur'];?>(s)<span><b>Duration in Seconds</b></span></a></th>
@@ -64,9 +68,16 @@ for ($i = 0;  ($i <= $lastHeardRows - 1); $i++) {
                     $listElem[2] = preg_replace('/ .*$/', "", $listElem[2]);
                 }
                 // end cheesy hack
+		// init geo/flag class
+		list ($Flag, $Name) = $Flags->GetFlag($listElem[2]);
+		if (file_exists($_SERVER['DOCUMENT_ROOT']."/images/flags/".$Flag.".png")) {
+		    $flContent = "<a class='tooltip' href='#'><img src='/images/flags/$Flag.png' alt='' style='height:10px;' /><span><b>$Name</b></span></a>";
+		} else {
+		    $flContent = "&nbsp";
+		}
 		echo"<tr>";
 		echo"<td align=\"left\">$local_time</td>";
-        echo "<td align=\"left\">".str_replace('Slot ', 'TS', $listElem[1])."</td>";
+		echo "<td align=\"left\">".str_replace('Slot ', 'TS', $listElem[1])."</td>";
 		if (is_numeric($listElem[2]) || strpos($listElem[2], "openSPOT") !== FALSE) {
 			echo "<td align=\"left\">$listElem[2]</td>";
 		} elseif (!preg_match('/[A-Za-z].*[0-9]|[0-9].*[A-Za-z]/', $listElem[2])) {
@@ -79,7 +90,7 @@ for ($i = 0;  ($i <= $lastHeardRows - 1); $i++) {
 				echo "<td align=\"left\"><a href=\"http://www.qrz.com/db/$listElem[2]\" target=\"_blank\">$listElem[2]</a></td>";
 			}
 		}
-
+		echo "<td align=\"left\">$flContent</td>";
 		if (strlen($listElem[4]) == 1) { $listElem[4] = str_pad($listElem[4], 8, " ", STR_PAD_LEFT); }
 		if ( substr($listElem[4], 0, 6) === 'CQCQCQ' ) {
 			echo "<td align=\"left\">$listElem[4]</td>";
