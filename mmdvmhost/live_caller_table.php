@@ -12,7 +12,7 @@ if (file_exists('/etc/.CALLERDETAILS')) {
 <div style="vertical-align: bottom; font-weight: bold;text-align:left;margin-top:-8px;">Current / Last Caller Details</div>
   <table style="word-wrap: break-word; white-space:normal;">
     <tr>
-      <th colspan="2" style="width:150px;">Callsign</th>
+      <th colspan="2" width="150px">Callsign</th>
       <th>Name</th>
       <th>Location</th>
       <th>Src</th>
