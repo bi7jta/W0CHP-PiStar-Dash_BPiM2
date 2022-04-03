@@ -173,7 +173,7 @@ for ($i = 0;  ($i <= 0); $i++) { //Last 20  calls
 	// init geo/flag class
 	list ($Flag, $Name) = $Flags->GetFlag($listElem[2]);
 	if (file_exists($_SERVER['DOCUMENT_ROOT']."/images/flags/".$Flag.".png")) {
-	    $flContent = "<a class='tooltip' href='#'><img src='/images/flags/$Flag.png' alt='' style='height:20px;' /><span><b>$Name</b></span></a>";
+	    $flContent = "<a class='tooltip' href=\"http://www.qrz.com/db/$listElem[2]\" target=\"_blank\"><img src='/images/flags/$Flag.png' alt='' style='height:20px;' /><span><b>$Name</b></span></a>";
 	} else {
 	    $flContent = "&nbsp";
 	}
