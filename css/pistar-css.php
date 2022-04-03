@@ -914,3 +914,62 @@ hr {
   text-align: center;
 }
 
+@-webkit-keyframes Pulse {
+  from {
+    opacity: 0;
+  }
+
+  50% {
+    opacity: 1;
+  }
+
+  to {
+    opacity: 0;
+  }
+}
+
+@keyframes Pulse {
+  from {
+    opacity: 0;
+  }
+
+  50% {
+    opacity: 1;
+  }
+
+  to {
+    opacity: 0;
+  }
+}
+
+td.lookatme {
+  display: table-cell;
+}
+
+.lookatme {
+  color: #630030;
+  opacity: 1;
+  position: relative;
+  display: inline-block;
+  font-weight:bold;
+  font-size:11px;
+  padding:1px;
+  margin: 0 0 0 1px;
+}
+
+/* this pseudo element will be faded in and out in front /*
+/* of the lookatme element to create an efficient animation. */
+.lookatme:after {
+  color: #e33100;
+  text-shadow: 0 0 5px #e33100;
+  /* in the html, the lookatme-text attribute must */
+  /* contain the same text as the .lookatme element */
+  content: attr(lookatme-text);
+  padding: inherit;
+  position: absolute;
+  inset: 0 0 0 0;
+  z-index: 1;
+  /* 20 steps / 2 seconds = 10fps */
+  -webkit-animation: 2s infinite Pulse steps(20);
+  animation: 2s infinite Pulse steps(20);
+}
