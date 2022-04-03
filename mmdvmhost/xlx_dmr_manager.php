@@ -1,5 +1,5 @@
 <?php
-if ($_SERVER["PHP_SELF"] == "/admin/index.php") { // Stop this working outside of the admin page
+//if ($_SERVER["PHP_SELF"] == "/admin/index.php") { // Stop this working outside of the admin page
     
     if (isset($_COOKIE['PHPSESSID']))
     {
@@ -34,10 +34,10 @@ if ($_SERVER["PHP_SELF"] == "/admin/index.php") { // Stop this working outside o
 	    $startupModule = $_POST['dmrMasterHost3StartupModule'];
 	    $xlxLinkToHost = "";
  	    if ($xlxLinkHost != "None" && $startupModule == "@") { // Unlinking
-		$remoteCommand = '/usr/local/sbin/pistar-xlx_dmr_link unlink';
+		$remoteCommand = 'sudo mount -o remount,rw / ; sudo sed -i "/Module=/c\\Module=@" /etc/dmrgateway ; sudo systemctl restart dmrgateway.service ; sudo touch /etc/.XLX_paused';
 		$xlxLinkToHost = "Unlinking";
 	    } elseif ($xlxLinkHost != "None" && $startupModule != "@") {
-	        $remoteCommand = "/usr/local/sbin/pistar-xlx_dmr_link $xlxLinkHost $startupModule";
+	        $remoteCommand = 'sudo mount -o remount,rw / ; sudo sed -i "/Module=/c\\Module='.$startupModule.'" /etc/dmrgateway ; sudo sed -i "/Startup=/c\\Startup='.$xlxLinkHost.'" /etc/dmrgateway ; sudo systemctl restart dmrgateway.service ; sudo rm /etc/.XLX_paused';
 		$xlxLinkToHost = "Link set to XLX-".$xlxLinkHost.", Module ".$startupModule."";
 	    }
 	else {
@@ -68,7 +68,7 @@ if ($_SERVER["PHP_SELF"] == "/admin/index.php") { // Stop this working outside o
 		    echo "<table>\n<tr><th>Command Output</th></tr>\n<tr><td>";
 		    echo "<p>$xlxLinkToHost.<br />Re-Initializing DMRGateway and reloading page...";
 		    echo "<p />";
-		    exec("sudo $remoteCommand");
+		    exec($remoteCommand);
 		    echo "</td></tr>\n</table>\n<br />\n";
 		    echo '<script type="text/javascript">setTimeout(function() { window.location=window.location;},2000);</script>';
 		}
@@ -161,7 +161,6 @@ if ($_SERVER["PHP_SELF"] == "/admin/index.php") { // Stop this working outside o
 		    </table>
 		</form>
 <?php
-	}
     }
 }
 ?>
