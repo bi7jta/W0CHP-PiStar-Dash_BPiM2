@@ -90,7 +90,7 @@ for ($i = 0;  ($i <= $lastHeardRows - 1); $i++) {
 				echo "<td align=\"left\"><a href=\"http://www.qrz.com/db/$listElem[2]\" target=\"_blank\">$listElem[2]</a></td>";
 			}
 		}
-		echo "<td align=\"left\">$flContent</td>";
+		echo "<td align=\"center\" style='padding:0 8px;'>$flContent</td>";
 		if (strlen($listElem[4]) == 1) { $listElem[4] = str_pad($listElem[4], 8, " ", STR_PAD_LEFT); }
 		if ( substr($listElem[4], 0, 6) === 'CQCQCQ' ) {
 			echo "<td align=\"left\">$listElem[4]</td>";
