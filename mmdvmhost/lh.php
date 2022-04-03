@@ -71,7 +71,7 @@ for ($i = 0;  ($i <= $lastHeardRows - 1); $i++) {
 		// init geo/flag class
 		list ($Flag, $Name) = $Flags->GetFlag($listElem[2]);
 		if (file_exists($_SERVER['DOCUMENT_ROOT']."/images/flags/".$Flag.".png")) {
-		    $flContent = "<a class='tooltip' href='#'><img src='/images/flags/$Flag.png' alt='' style='height:10px;' /><span><b>$Name</b></span></a>";
+		    $flContent = "<a class='tooltip' href='#'><img src='/images/flags/$Flag.png' alt='' style='height:15px;' /><span><b>$Name</b></span></a>";
 		} else {
 		    $flContent = "&nbsp";
 		}
@@ -90,7 +90,7 @@ for ($i = 0;  ($i <= $lastHeardRows - 1); $i++) {
 				echo "<td align=\"left\"><a href=\"http://www.qrz.com/db/$listElem[2]\" target=\"_blank\">$listElem[2]</a></td>";
 			}
 		}
-		echo "<td align=\"center\" style='padding:0 8px;'>$flContent</td>";
+		echo "<td align=\"center\" style='padding:0 2px;'>$flContent</td>";
 		if (strlen($listElem[4]) == 1) { $listElem[4] = str_pad($listElem[4], 8, " ", STR_PAD_LEFT); }
 		if ( substr($listElem[4], 0, 6) === 'CQCQCQ' ) {
 			echo "<td align=\"left\">$listElem[4]</td>";
