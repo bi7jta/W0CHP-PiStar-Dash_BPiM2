@@ -237,5 +237,25 @@ Not all pages shown here. Note, that you can customize the colors to your prefer
 
 ## Credits
 
-[Listed here...](https://w0chp.net/w0chp-pistar-dash/#credits)
+Of course, most of the credit goes to the venerable and skilled, Andy Taylor,
+`MW0MWZ`, for creating the wonderful Pi-Star software in the first place.
 
+Credit also goes to the awesome Daniel Caujolle-Bert, `F1RMB`, for creating his
+personal and customized fork of Pi-Star; as his fork was foundational and
+inspirational to my `W0CHP-PiStar-Dash`.
+
+The country flags and callsign-to-country flag GeoLookup code was adopted from
+[xlxd](https://github.com/LX3JL/xlxd)... authored by Jean-Luc Deltombe,
+`LX3JL`; and Luc Engelmann, `LX1IQ`. [I run an XLX(d)
+reflector](https://w0chp/net/xlx493-reflector/), *plus*, I was able to adopt some of its code
+for `W0CHP-PiStar-Dash`, ergo, I am very grateful.
+
+Credit must also be given to to Kim Heinz Hübel, `DG9VH`, who arguably created
+the very first MMDVMHost dashboard, of which, spawned the entire Pi-Star
+concept.
+
+Lastly, but certainly not least; I owe an *enormous* amount of gratitude toward
+a true gentleman, scholar and incredibly talented hacker...Jonathan Naylor,
+`G4KLX`; for the suite of MMDVM and related client tools. Pi-Star would have
+no reason to exist, without Jonathan's incredible and prolific contributions
+and gifts to the ham community.
