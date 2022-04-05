@@ -201,11 +201,15 @@ if ($listElem[2] == "4000" || $listElem[2] == "9990" || $listElem[2] == "DAPNET"
 
 // init geo/flag class
 list ($Flag, $Name) = $Flags->GetFlag($listElem[2]);
-if (file_exists($_SERVER['DOCUMENT_ROOT']."/images/flags/".$Flag.".png")) {
-    $flContent = "<img src='/images/flags/$Flag.png' alt='$Name' title='$Name' style='height:50px;vertical-align:middle;border: 2px solid black;' />";
+if (is_numeric($listElem[2]) || strpos($listElem[2], "openSPOT") !== FALSE || !preg_match('/[A-Za-z].*[0-9]|[0-9].*[A-Za-z]/', $listElem[2])) {
+    $flContent = "---";
 } else {
-    $flContent = "";
-}
+    if (file_exists($_SERVER['DOCUMENT_ROOT']."/images/flags/".$Flag.".png")) {
+	    $flContent = "<img src='/images/flags/$Flag.png' alt='$Name' title='$Name' style='height:50px;vertical-align:middle;border: 2px solid black;' />";
+    } else {
+	$flContent = "---";
+    }
+}   
 ?>
 <div class='live-page-wrapper'>
   <div class='row'>

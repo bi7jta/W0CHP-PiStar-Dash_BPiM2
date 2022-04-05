@@ -70,10 +70,14 @@ for ($i = 0;  ($i <= $lastHeardRows - 1); $i++) {
                 // end cheesy hack
 		// init geo/flag class
 		list ($Flag, $Name) = $Flags->GetFlag($listElem[2]);
-		if (file_exists($_SERVER['DOCUMENT_ROOT']."/images/flags/".$Flag.".png")) {
-		    $flContent = "<a class='tooltip' href=\"http://www.qrz.com/db/$listElem[2]\" target=\"_blank\"><img src='/images/flags/$Flag.png' alt='' style='height:15px;border: 1px solid black;' /><span><b>$Name</b></span></a>";
+		if (is_numeric($listElem[2]) || strpos($listElem[2], "openSPOT") !== FALSE || !preg_match('/[A-Za-z].*[0-9]|[0-9].*[A-Za-z]/', $listElem[2])) {
+		        $flContent = "---";
 		} else {
-		    $flContent = "---";
+		    if (file_exists($_SERVER['DOCUMENT_ROOT']."/images/flags/".$Flag.".png")) {
+		        $flContent = "<a class='tooltip' href=\"http://www.qrz.com/db/$listElem[2]\" target=\"_blank\"><img src='/images/flags/$Flag.png' alt='' style='height:15px;border: 1px solid black;' /><span><b>$Name</b></span></a>";
+		    } else {
+		        $flContent = "---";
+		    }
 		}
 		echo"<tr>";
 		echo"<td align=\"left\">$local_time</td>";
