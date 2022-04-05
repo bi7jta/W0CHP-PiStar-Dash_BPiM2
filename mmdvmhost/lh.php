@@ -71,27 +71,25 @@ for ($i = 0;  ($i <= $lastHeardRows - 1); $i++) {
 		// init geo/flag class
 		list ($Flag, $Name) = $Flags->GetFlag($listElem[2]);
 		if (is_numeric($listElem[2]) || strpos($listElem[2], "openSPOT") !== FALSE || !preg_match('/[A-Za-z].*[0-9]|[0-9].*[A-Za-z]/', $listElem[2])) {
-		        $flContent = "---";
+		    $flContent = "---";
+		} elseif (file_exists($_SERVER['DOCUMENT_ROOT']."/images/flags/".$Flag.".png")) {
+		    $flContent = "<a class='tooltip' href=\"http://www.qrz.com/db/$listElem[2]\" target=\"_blank\"><img src='/images/flags/$Flag.png' alt='' style='height:15px;border: 1px solid black;' /><span><b>$Name</b></span></a>";
 		} else {
-		    if (file_exists($_SERVER['DOCUMENT_ROOT']."/images/flags/".$Flag.".png")) {
-		        $flContent = "<a class='tooltip' href=\"http://www.qrz.com/db/$listElem[2]\" target=\"_blank\"><img src='/images/flags/$Flag.png' alt='' style='height:15px;border: 1px solid black;' /><span><b>$Name</b></span></a>";
-		    } else {
-		        $flContent = "---";
-		    }
+		    $flContent = "---";
 		}
 		echo"<tr>";
 		echo"<td align=\"left\">$local_time</td>";
 		echo "<td align=\"left\">".str_replace('Slot ', 'TS', $listElem[1])."</td>";
 		if (is_numeric($listElem[2]) || strpos($listElem[2], "openSPOT") !== FALSE) {
-			echo "<td align=\"left\">$listElem[2]</td>";
+			echo "<td align=\"left\">$listElem[2]<span style='padding:0 10px 0 0;float:right;'>$flContent</span></td>";
 		} elseif (!preg_match('/[A-Za-z].*[0-9]|[0-9].*[A-Za-z]/', $listElem[2])) {
-                        echo "<td align=\"left\">$listElem[2]</td>";
+                        echo "<td align=\"left\">$listElem[2]<span style='padding:0 10px 0 0;float:right;'>$flContent</span></td>";
 		} else {
 			if (strpos($listElem[2],"-") > 0) { $listElem[2] = substr($listElem[2], 0, strpos($listElem[2],"-")); }
 			if ( $listElem[3] && $listElem[3] != '    ' ) {
-				echo "<td align=\"left\"><a href=\"http://www.qrz.com/db/$listElem[2]\" target=\"_blank\">$listElem[2]</a>/$listElem[3]<span style='padding:2px 10px 0 0;float:right;'><a href=\"http://www.qrz.com/db/$listElem[2]\" target=\"_blank\">$flContent</a></span></td>";
+				echo "<td align=\"left\"><a href=\"http://www.qrz.com/db/$listElem[2]\" target=\"_blank\">$listElem[2]</a>/$listElem[3]<span style='padding:2px 10px 0 0;float:right;'>$flContent</span></td>";
 			} else {
-				echo "<td align=\"left\"><a href=\"http://www.qrz.com/db/$listElem[2]\" target=\"_blank\">$listElem[2]</a><span style='padding:2px 10px 0 0;float:right;'><a href=\"http://www.qrz.com/db/$listElem[2]\" target=\"_blank\">$flContent</a></span></td>";
+				echo "<td align=\"left\"><a href=\"http://www.qrz.com/db/$listElem[2]\" target=\"_blank\">$listElem[2]</a><span style='padding:2px 10px 0 0;float:right;'>$flContent</span></td>";
 			}
 		}
 		if (strlen($listElem[4]) == 1) { $listElem[4] = str_pad($listElem[4], 8, " ", STR_PAD_LEFT); }
