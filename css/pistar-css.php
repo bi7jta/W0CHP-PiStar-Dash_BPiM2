@@ -35,6 +35,7 @@ body, font {
     font-family : 'Source Sans Pro', sans-serif;
     text-align : left;
     padding : 5px 0px 5px 0px;
+    margin: 0 3px;
 }
 
 .header h1 {
@@ -54,7 +55,7 @@ body, font {
 
 .content {
     margin : 0 0 0 240px;
-    padding : 1px 5px 5px 5px;
+    padding : 1px 3px 5px 3px;
     color : <?php echo $textSections; ?>;
     background : <?php echo $backgroundContent; ?>;
     text-align: center;
@@ -109,7 +110,7 @@ table {
     empty-cells: show;
     padding: 0px;
     border-collapse:collapse;
-    border-spacing: 4px;
+    border-spacing: 5px;
     border: .5px solid <?php echo $tableBorderColor; ?>;
     text-decoration: none;
     background: #000000;
@@ -125,7 +126,7 @@ table th {
     text-decoration: none;
     color : <?php echo $textBanners; ?>;
     background: <?php echo $backgroundBanners; ?>;
-    padding: 2px;
+    padding: 3px;
 }
 
 table tr:nth-child(even) {
@@ -142,7 +143,7 @@ table td {
     font-weight: 500;
     text-decoration: none;
     border: .5px solid <?php echo $tableBorderColor; ?>;
-    padding: 2px;
+    padding: 3px;
     font-size: <?php echo "$mainFontSize"; ?>px;
 }
 
@@ -973,3 +974,8 @@ td.lookatme {
   -webkit-animation: 2s infinite Pulse steps(20);
   animation: 2s infinite Pulse steps(20);
 }
+
+#hwInfoTable {
+  margin-top: -2px;
+}
+

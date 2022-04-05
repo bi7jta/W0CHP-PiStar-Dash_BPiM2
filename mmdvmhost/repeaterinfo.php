@@ -116,7 +116,7 @@ if (isProcessRunning("M17Gateway")) {
 
 ?>
 
-<div class="mode_flex">
+<div class="mode_flex" id="rptInfoTable">
   <div class="mode_flex row">
     <div class="mode_flex column">
       <div class="divTableHead"><?php echo $lang['modes_enabled'];?></div>

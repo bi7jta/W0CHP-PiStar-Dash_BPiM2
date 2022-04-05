@@ -75,7 +75,7 @@ $sysRamUsed = $system['mem_info']['MemTotal'] - $system['mem_info']['MemFree'] -
 $sysRamPercent = sprintf('%.2f',($sysRamUsed / $system['mem_info']['MemTotal']) * 100); 
 $ramDeetz = formatSize($sysRamUsed). " of ".formatSize($system['mem_info']['MemTotal']). " ($sysRamPercent% used)";
 ?>
-<div class="divTable">
+<div class="divTable" id="hwInfoTable">
   <div class="divTableBody">
     <div class="divTableRow">
       <div class="divTableHeadCell"><a class="tooltip" href="#"><?php echo $lang['hostname'];?><span><strong>System IP Address<br /></strong><?php echo str_replace(',', ',<br />', exec('hostname -I'));?></a></span></div>
