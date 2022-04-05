@@ -12,7 +12,7 @@ if (file_exists('/etc/.CALLERDETAILS')) {
 <div style="vertical-align: bottom; font-weight: bold;text-align:left;margin-top:-8px;">Current / Last Caller Details</div>
   <table style="word-wrap: break-word; white-space:normal;">
     <tr>
-      <th colspan="2">Callsign</th>
+      <th width="220px">Callsign</th>
       <th>Name</th>
       <th>Location</th>
       <th>Src</th>
@@ -183,8 +183,7 @@ for ($i = 0;  ($i <= 0); $i++) { //Last 20  calls
 	    }
 ?>
   <tr>
-    <td><strong style="font-size:1.2em;"><?php echo $callsign ?? ' '; ?></strong></td>
-    <td><?php echo $flContent; ?></td>
+    <td align="left" style="padding:0 0 0 20px;"><strong style="font-size:1.2em;"><?php echo $callsign ?? ' '; ?></strong><span style='padding:1px 20px 0 0;float:right;'><?php echo $flContent; ?></span></td>
     <td><?php echo $name ?? ' '; ?></td>
     <td><?php
 		if (!empty($city)) {

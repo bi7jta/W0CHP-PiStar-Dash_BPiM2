@@ -40,7 +40,7 @@ $Flags->LoadFlags();
     <tr>
       <th><a class="tooltip" href="#"><?php echo $lang['time'];?> (<?php echo date('T')?>)<span><b>Time in <?php echo date('T')?> time zone</b></span></a></th>
       <th><a class="tooltip" href="#"><?php echo $lang['mode'];?><span><b>Transmitted Mode</b></span></a></th>
-      <th colspan="2"><a class="tooltip" href="#"><?php echo $lang['callsign'];?><span><b>Callsign</b></span></a></th>
+      <th><a class="tooltip" href="#"><?php echo $lang['callsign'];?><span><b>Callsign</b></span></a></th>
       <th><a class="tooltip" href="#"><?php echo $lang['target'];?><span><b>Target, D-Star Reflector, DMR Talk Group etc</b></span></a></th>
       <th><a class="tooltip" href="#"><?php echo $lang['src'];?><span><b>Received from source</b></span></a></th>
       <th><a class="tooltip" href="#"><?php echo $lang['dur'];?>(s)<span><b>Duration in Seconds</b></span></a></th>
@@ -89,12 +89,11 @@ for ($i = 0;  ($i <= $lastHeardRows - 1); $i++) {
 		} else {
 			if (strpos($listElem[2],"-") > 0) { $listElem[2] = substr($listElem[2], 0, strpos($listElem[2],"-")); }
 			if ( $listElem[3] && $listElem[3] != '    ' ) {
-				echo "<td align=\"left\"><a href=\"http://www.qrz.com/db/$listElem[2]\" target=\"_blank\">$listElem[2]</a>/$listElem[3]</td>";
+				echo "<td align=\"left\"><a href=\"http://www.qrz.com/db/$listElem[2]\" target=\"_blank\">$listElem[2]</a>/$listElem[3]<span style='padding:2px 10px 0 0;float:right;'><a href=\"http://www.qrz.com/db/$listElem[2]\" target=\"_blank\">$flContent</a></span></td>";
 			} else {
-				echo "<td align=\"left\"><a href=\"http://www.qrz.com/db/$listElem[2]\" target=\"_blank\">$listElem[2]</a></td>";
+				echo "<td align=\"left\"><a href=\"http://www.qrz.com/db/$listElem[2]\" target=\"_blank\">$listElem[2]</a><span style='padding:2px 10px 0 0;float:right;'><a href=\"http://www.qrz.com/db/$listElem[2]\" target=\"_blank\">$flContent</a></span></td>";
 			}
 		}
-		echo "<td align=\"center\" style='padding:0 2px;'>$flContent</td>";
 		if (strlen($listElem[4]) == 1) { $listElem[4] = str_pad($listElem[4], 8, " ", STR_PAD_LEFT); }
 		if ( substr($listElem[4], 0, 6) === 'CQCQCQ' ) {
 			echo "<td align=\"left\">$listElem[4]</td>";
