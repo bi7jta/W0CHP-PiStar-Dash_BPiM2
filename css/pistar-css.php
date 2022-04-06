@@ -166,7 +166,7 @@ table td {
     border: .5px solid <?php echo $tableBorderColor; ?>;
     font-weight: 600;
     text-decoration: none;
-    padding: 2px;
+    padding: 3px;
     caption-side: top;
     display: table-caption; 
     text-align: center;
@@ -198,8 +198,8 @@ table td {
     background: <?php echo $tableRowEvenBg; ?>;
 }
 
-.divTableCell.hwinfo {
-    padding: 4px;
+.divTableCell.cell_content {
+    padding: 3px;
 }
 
 body {

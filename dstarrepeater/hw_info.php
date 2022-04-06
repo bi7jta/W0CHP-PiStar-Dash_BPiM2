@@ -50,9 +50,9 @@ $rootfs_used = formatSize($diskUsed). " of " .formatSize($diskTotal). " ($diskPe
 $cpuTempCRaw = exec('cat /sys/class/thermal/thermal_zone0/temp');
 if ($cpuTempCRaw > 1000) { $cpuTempC = sprintf('%.0f',round($cpuTempCRaw / 1000, 1)); } else { $cpuTempC = sprintf('%.0f',round($cpuTempCRaw, 1)); }
 $cpuTempF = sprintf('%.0f',round(+$cpuTempC * 9 / 5 + 32, 1));
-if ($cpuTempC <= 59) { $cpuTempHTML = "<div class=\"divTableCell hwinfo\" style=\"background: inherit\">".$cpuTempF."&deg;F / ".$cpuTempC."&deg;C</div>\n"; }
-if ($cpuTempC >= 60) { $cpuTempHTML = "<div class=\"divTableCell hwinfo\" style=\"background: #fa0;color:black;\">".$cpuTempF."&deg;F / ".$cpuTempC."&deg;C</div>\n"; }
-if ($cpuTempC >= 80) { $cpuTempHTML = "<div class=\"divTableCell hwinfo\" style=\"background: #f00;color:black;font-weight:bold;\">".$cpuTempF."&deg;F / ".$cpuTempC."&deg;C</div>\n"; }
+if ($cpuTempC <= 59) { $cpuTempHTML = "<div class=\"divTableCell cell_content\" style=\"background: inherit\">".$cpuTempF."&deg;F / ".$cpuTempC."&deg;C</div>\n"; }
+if ($cpuTempC >= 60) { $cpuTempHTML = "<div class=\"divTableCell cell_content\" style=\"background: #fa0;color:black;\">".$cpuTempF."&deg;F / ".$cpuTempC."&deg;C</div>\n"; }
+if ($cpuTempC >= 80) { $cpuTempHTML = "<div class=\"divTableCell cell_content\" style=\"background: #f00;color:black;font-weight:bold;\">".$cpuTempF."&deg;F / ".$cpuTempC."&deg;C</div>\n"; }
 
 // Gather CPU Loads
 //$cpuLoad = sys_getloadavg();
@@ -87,12 +87,12 @@ $ramDeetz = formatSize($sysRamUsed). " of ".formatSize($system['mem_info']['MemT
       <div class="divTableHeadCell"><a class="tooltip" href="#"><?php echo $lang['cpu_temp'];?><span><strong>CPU Temp</strong></a><span></div>
     </div>
     <div class="divTableRow">
-      <div class="divTableCell hwinfo"><?php echo php_uname('n');?></div>
-      <div class="divTableCell hwinfo"><?php echo exec('/usr/local/sbin/platformDetect.sh');?></div>
-      <div class="divTableCell hwinfo"><?php echo php_uname('r');?></div>
-      <div class="divTableCell hwinfo">User: <?php echo $cpuLoad['user'];?>% - Sys: <?php echo $cpuLoad['sys'];?>%</div>
-      <div class="divTableCell hwinfo"><?php echo $ramDeetz;?></div>
-      <div class="divTableCell hwinfo"><?php echo $rootfs_used;?></div>
+      <div class="divTableCell cell_content"><?php echo php_uname('n');?></div>
+      <div class="divTableCell cell_content"><?php echo exec('/usr/local/sbin/platformDetect.sh');?></div>
+      <div class="divTableCell cell_content"><?php echo php_uname('r');?></div>
+      <div class="divTableCell cell_content">User: <?php echo $cpuLoad['user'];?>% - Sys: <?php echo $cpuLoad['sys'];?>%</div>
+      <div class="divTableCell cell_content"><?php echo $ramDeetz;?></div>
+      <div class="divTableCell cell_content"><?php echo $rootfs_used;?></div>
       <?php echo $cpuTempHTML; ?>
     </div>
   </div>

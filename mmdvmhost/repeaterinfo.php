@@ -297,11 +297,11 @@ if (isProcessRunning("M17Gateway")) {
   <div class="divTableBody">
     <div class="divTableRow center">
       <div class="divTableHeadCell">RPT1</div>
-      <div class="divTableCell hwinfo" style="background: <?php echo $tableRowEvenBg; ?>;"><?php echo str_replace(' ', '&nbsp;', $_SESSION['DStarRepeaterConfigs']['callsign']); ?></div>
+      <div class="divTableCell cell_content" style="background: <?php echo $tableRowEvenBg; ?>;"><?php echo str_replace(' ', '&nbsp;', $_SESSION['DStarRepeaterConfigs']['callsign']); ?></div>
     </div>    
     <div class="divTableRow center">
       <div class="divTableHeadCell">RPT2</div>
-      <div class="divTableCell hwinfo" style="background: <?php echo $tableRowEvenBg; ?>;"><?php echo str_replace(' ', '&nbsp;', $_SESSION['DStarRepeaterConfigs']['gateway']); ?></div>
+      <div class="divTableCell cell_content" style="background: <?php echo $tableRowEvenBg; ?>;"><?php echo str_replace(' ', '&nbsp;', $_SESSION['DStarRepeaterConfigs']['gateway']); ?></div>
     </div>	
   </div>
 </div>
@@ -310,19 +310,19 @@ if (isProcessRunning("M17Gateway")) {
   <div class="divTableBody">
     <?php
         if (isPaused("D-Star")) {
-                echo "<div class='divTableRow center'><div class='divTableCell hwinfo' style=\"background: $tableRowEvenBg;\">Mode Paused</div></div>\n";                 
+                echo "<div class='divTableRow center'><div class='divTableCell cell_content' style=\"background: $tableRowEvenBg;\">Mode Paused</div></div>\n";                 
         } else {
-                echo "<div class='divTableRow center'><div class='divTableCell hwinfo' ".GetActiveConnectionStyle($remoteMMDVMResults, "dstar")." title=\"".$linkedTo."\">".$linkedTo."</div></div>\n";
+                echo "<div class='divTableRow center'><div class='divTableCell cell_content' ".GetActiveConnectionStyle($remoteMMDVMResults, "dstar")." title=\"".$linkedTo."\">".$linkedTo."</div></div>\n";
         }
         if ($_SESSION['ircDDBConfigs']['aprsEnabled'] == 1) {
 		if (substr($_SESSION['ircDDBConfigs']['aprsAddress'], 0, 18) == '127.0.0.1') {
-	            echo "<div class='divTableRow center'><div class='divTableHeadCell'>APRS</div></div><div class='divTableRow center'><div class='divTableCell hwinfo'><div class=\"active-mode-cell\" title=\"Using APRSGateway\">APRSGateway</div></div></div>\n";
+	            echo "<div class='divTableRow center'><div class='divTableHeadCell'>APRS</div></div><div class='divTableRow center'><div class='divTableCell cell_content'><div class=\"active-mode-cell\" title=\"Using APRSGateway\">APRSGateway</div></div></div>\n";
 		} else {
-	            echo "<div class='divTableRow center'><div class='divTableHeadCell'>APRS</div></div><div class='divTableRow center'><div class='divTableCell hwinfo' style=\"background: $tableRowEvenBg;\">".substr($_SESSION['ircDDBConfigs']['aprsAddress'], 0, 18)."</div></div>\n";
+	            echo "<div class='divTableRow center'><div class='divTableHeadCell'>APRS</div></div><div class='divTableRow center'><div class='divTableCell cell_content' style=\"background: $tableRowEvenBg;\">".substr($_SESSION['ircDDBConfigs']['aprsAddress'], 0, 18)."</div></div>\n";
 		}
         }
         if ($_SESSION['ircDDBConfigs']['ircddbEnabled'] == 1) {
-	        echo "<div class='divTableRow center'><div class='divTableHeadCell'>ircDDB</div></div><div class='divTableRow center'><div class='divTableCell hwinfo' style=\"background: $tableRowEvenBg;\">".substr($_SESSION['ircDDBConfigs']['ircddbHostname'], 0 ,18)."</div></div>\n";
+	        echo "<div class='divTableRow center'><div class='divTableHeadCell'>ircDDB</div></div><div class='divTableRow center'><div class='divTableCell cell_content' style=\"background: $tableRowEvenBg;\">".substr($_SESSION['ircDDBConfigs']['ircddbHostname'], 0 ,18)."</div></div>\n";
         }
 	?>
   </div>
@@ -438,23 +438,23 @@ if (isProcessRunning("M17Gateway")) {
   <div class="divTableBody">
     <div class="divTableRow center">
       <div class="divTableHeadCell">DMR ID</div>
-      <div class="divTableCell hwinfo" style="background: <?php echo $tableRowEvenBg; ?>;"><?php echo getConfigItem("General", "Id", $_SESSION['MMDVMHostConfigs']); ?></div>
+      <div class="divTableCell cell_content" style="background: <?php echo $tableRowEvenBg; ?>;"><?php echo getConfigItem("General", "Id", $_SESSION['MMDVMHostConfigs']); ?></div>
     </div>
     <div class="divTableRow center">
       <div class="divTableHeadCell">DMR CC</div>
-      <div class="divTableCell hwinfo" style="background: <?php echo $tableRowEvenBg; ?>;"><?php echo getConfigItem("DMR", "ColorCode", $_SESSION['MMDVMHostConfigs']); ?></div>
+      <div class="divTableCell cell_content" style="background: <?php echo $tableRowEvenBg; ?>;"><?php echo getConfigItem("DMR", "ColorCode", $_SESSION['MMDVMHostConfigs']); ?></div>
     </div>
     <div class="divTableRow center">
       <div class="divTableHeadCell">TS1</div>
 	    <?php
 	    if (getConfigItem("DMR Network", "Slot1", $_SESSION['MMDVMHostConfigs']) == 1) {
 		if (preg_match("/Not/",getActualLink($reverseLogLinesMMDVM, "DMR Slot 1"))) {
-                        echo "<div class='divTableCell middle'><div class='hwinfo active-mode-cell' title='No TG'>No TG</div></div>\n";
+                        echo "<div class='divTableCell middle'><div class='cell_content active-mode-cell' title='No TG'>No TG</div></div>\n";
 		} else {
-		    echo "<div class='divTableCell middle'><div class='hwinfo active-mode-cell' title='Time Slot 1 Enabled'>".substr(getActualLink($reverseLogLinesMMDVM, "DMR Slot 1"), -10)."</div></div>\n";
+		    echo "<div class='divTableCell middle'><div class='cell_content active-mode-cell' title='Time Slot 1 Enabled'>".substr(getActualLink($reverseLogLinesMMDVM, "DMR Slot 1"), -10)."</div></div>\n";
 		}
 	    } else {
-		    echo "<div class='divTableCell middle'><div class='hwinfo inactive-mode-cell' title='Time Slot 1 disabled'>Disabled</div></div>\n";
+		    echo "<div class='divTableCell middle'><div class='cell_content inactive-mode-cell' title='Time Slot 1 disabled'>Disabled</div></div>\n";
 	    }
 	    ?>
     </div>
@@ -463,12 +463,12 @@ if (isProcessRunning("M17Gateway")) {
            <?php
 	    if (getConfigItem("DMR Network", "Slot2", $_SESSION['MMDVMHostConfigs']) == 1) {
                 if (preg_match("/Not/",getActualLink($reverseLogLinesMMDVM, "DMR Slot 2"))) {
-                        echo "<div class='divTableCell middle'><div class='hwinfo active-mode-cell' title='No TG'>No TG</div></div>\n";
+                        echo "<div class='divTableCell middle'><div class='cell_content active-mode-cell' title='No TG'>No TG</div></div>\n";
                 } else {
-			echo "<div class='divTableCell middle'><div class='hwinfo active-mode-cell' title='Time Slot 2 Enabled'>".substr(getActualLink($reverseLogLinesMMDVM, "DMR Slot 2"), -10)."</div></div>\n";
+			echo "<div class='divTableCell middle'><div class='cell_content active-mode-cell' title='Time Slot 2 Enabled'>".substr(getActualLink($reverseLogLinesMMDVM, "DMR Slot 2"), -10)."</div></div>\n";
 		}
 	    } else {
-		    echo "<div class='divTableCell middle'><div class='hwinfo inactive-mode-cell' title='Time Slot 2 disabled'>Disabled</div></div>\n";
+		    echo "<div class='divTableCell middle'><div class='cell_content inactive-mode-cell' title='Time Slot 2 disabled'>Disabled</div></div>\n";
 	    }
 	    ?>
     </div>
@@ -476,9 +476,9 @@ if (isProcessRunning("M17Gateway")) {
       <div class="divTableHeadCell">Beacons</div>
            <?php
             if (getConfigItem("DMR", "Beacons", $_SESSION['MMDVMHostConfigs']) == 1) {
-		echo "<div class='divTableCell hwinfo middle active-mode-cell'>Enabled</div>\n";
+		echo "<div class='divTableCell cell_content middle active-mode-cell'>Enabled</div>\n";
 	    } else {
-		echo "<div class='divTableCell hwinfo middle'>Disabled</div>\n";
+		echo "<div class='divTableCell cell_content middle'>Disabled</div>\n";
 	    }
 	    ?>
       </div>
@@ -652,7 +652,7 @@ if (isPaused("YSF")) {
 ?>
     <div class="divTableRow center">
 <?php
-	echo "<div class='divTableCell hwinfo'><div ".GetActiveConnectionStyle($remoteYSFGResults, "ysf")." title=\"".$ysfLinkedToTooltip."\">".$ysfTableData."</div></div>\n";
+	echo "<div class='divTableCell cell_content'><div ".GetActiveConnectionStyle($remoteYSFGResults, "ysf")." title=\"".$ysfLinkedToTooltip."\">".$ysfTableData."</div></div>\n";
 ?>
     </div>
   </div>
@@ -670,12 +670,12 @@ if (getServiceEnabled('/etc/dgidgateway') == 1 )  { // Hide DGId GW info when GW
     <div class="divTableRow center">
 <?php
         if (isPaused("YSF")) {
-            echo "<div class='divTableCell hwinfo'><div style=\"background: $tableRowEvenBg;\" title=\"YSF Mode Paused\">YSF Mode Paused</div></div>\n";
+            echo "<div class='divTableCell cell_content'><div style=\"background: $tableRowEvenBg;\" title=\"YSF Mode Paused\">YSF Mode Paused</div></div>\n";
         }
           else if (isProcessRunning("DGIdGateway")) {
-            echo "<div class='divTableCell hwinfo'><div style=\"background: $tableRowEvenBg;\" title=\"".getDGIdLinks()."\">".getDGIdLinks()."</div></div>\n";
+            echo "<div class='divTableCell cell_content'><div style=\"background: $tableRowEvenBg;\" title=\"".getDGIdLinks()."\">".getDGIdLinks()."</div></div>\n";
         } else {
-            echo "<div class='divTableCell hwinfo'><div style=\"background: $tableRowEvenBg;\" title=\"Service Not Started\">Service Not Started</div></div>\n";
+            echo "<div class='divTableCell cell_content'><div style=\"background: $tableRowEvenBg;\" title=\"Service Not Started\">Service Not Started</div></div>\n";
         }
 ?>
     </div>
@@ -712,10 +712,10 @@ if (getServiceEnabled('/etc/dgidgateway') == 1 )  { // Hide DGId GW info when GW
   <div class="divTableBody">
     <div class="divTableRow center">
 <?php
-	    echo "<div class='divTableHeadCell'>DMR ID</div><div class='divTableCell hwinfo'><div style=\"background: $tableRowEvenBg;\">".$_SESSION['YSF2DMRConfigs']['DMR Network']['Id']."</div></div>\n";
+	    echo "<div class='divTableHeadCell'>DMR ID</div><div class='divTableCell cell_content'><div style=\"background: $tableRowEvenBg;\">".$_SESSION['YSF2DMRConfigs']['DMR Network']['Id']."</div></div>\n";
 	    echo '</div><div class="divTableRow center">';
 	    echo "<div class='divTableHeadCell'>YSF2".$lang['dmr_master']."</div>\n";
-            echo "<div class='divTableCell hwinfo'><div style=\"background: $tableRowEvenBg;\" title=\"".$dmrMasterHostTooltip."\">".$dmrMasterHost."</div></div>\n";
+            echo "<div class='divTableCell cell_content'><div style=\"background: $tableRowEvenBg;\" title=\"".$dmrMasterHostTooltip."\">".$dmrMasterHost."</div></div>\n";
 ?>
     </div>
   </div>
@@ -734,14 +734,14 @@ if (getServiceEnabled('/etc/dgidgateway') == 1 )  { // Hide DGId GW info when GW
     <div class="divTableRow center">
 <?php
 	    if (getConfigItem("P25", "NAC", $_SESSION['MMDVMHostConfigs'])) {
-		echo "<div class='divTableHeadCell'>NAC</div><div class='divTableCell hwinfo'><div style=\"background: $tableRowEvenBg;\">".getConfigItem("P25", "NAC", $_SESSION['MMDVMHostConfigs'])."</div></div>\n";
+		echo "<div class='divTableHeadCell'>NAC</div><div class='divTableCell cell_content'><div style=\"background: $tableRowEvenBg;\">".getConfigItem("P25", "NAC", $_SESSION['MMDVMHostConfigs'])."</div></div>\n";
 	    }
 	    echo "</div>\n<div class='divTableRow center'>\n";
 	    echo "<div class='divTableHeadCell'>".$lang['p25_net']."</div>\n";
 		if (isPaused("P25")) {
-	    	echo "<div class='divTableCell hwinfo'><div style=\"background: $tableRowEvenBg;\">Mode Paused</div></div>\n";
+	    	echo "<div class='divTableCell cell_content'><div style=\"background: $tableRowEvenBg;\">Mode Paused</div></div>\n";
 		} else {
-		    echo "<div class='divTableCell hwinfo'><div ".GetActiveConnectionStyle($remoteP25GResults, "p25").">".getActualLink($logLinesP25Gateway, "P25")."</div></div>\n";
+		    echo "<div class='divTableCell cell_content'><div ".GetActiveConnectionStyle($remoteP25GResults, "p25").">".getActualLink($logLinesP25Gateway, "P25")."</div></div>\n";
 
 		}
 ?>
@@ -772,13 +772,13 @@ if (getConfigItem("NXDN", "RAN", $_SESSION['MMDVMHostConfigs'])) {
     <div class="divTableRow center">
 <?php
 	echo "<div class='divTableHeadCell'>RAN</div>";
-	echo "<div class='divTableCell hwinfo'><div style=\"background: $tableRowEvenBg;\">".getConfigItem("NXDN", "RAN", $_SESSION['MMDVMHostConfigs'])."</div></div>\n";
+	echo "<div class='divTableCell cell_content'><div style=\"background: $tableRowEvenBg;\">".getConfigItem("NXDN", "RAN", $_SESSION['MMDVMHostConfigs'])."</div></div>\n";
 	echo "</div>\n<div class='divTableRow center'>";
 	echo "<div class='divTableHeadCell'>".$lang['nxdn_net']."</div>\n";
 	if (isPaused("NXDN")) {
-	    echo "<div class='divTableCell hwinfo'><div style=\"background: $tableRowEvenBg;\">Mode Paused</div></div>\n";
+	    echo "<div class='divTableCell cell_content'><div style=\"background: $tableRowEvenBg;\">Mode Paused</div></div>\n";
 	} else {
-	    echo "<div class='divTableCell hwinfo'><div ".GetActiveConnectionStyle($remoteNXDNGResults, "nxdn").">".getActualLink($logLinesNXDNGateway, "NXDN")."</div></div>\n";
+	    echo "<div class='divTableCell cell_content'><div ".GetActiveConnectionStyle($remoteNXDNGResults, "nxdn").">".getActualLink($logLinesNXDNGateway, "NXDN")."</div></div>\n";
 	}
 ?>
     </div>
@@ -797,13 +797,13 @@ if (getConfigItem("NXDN", "RAN", $_SESSION['MMDVMHostConfigs'])) {
   <div class="divTableBody">
     <div class="divTableRow center">
 <?php
-	echo "<div class='divTableHeadCell'>RPT</div>\n<div class='divTableCell hwinfo'>\n<div style=\"background: $tableRowEvenBg;\">".str_replace(' ', '&nbsp;', $configm17gateway['General']['Callsign'])."&nbsp;".str_replace(' ', '&nbsp;', $configm17gateway['General']['Suffix'])."</div></div>\n";
+	echo "<div class='divTableHeadCell'>RPT</div>\n<div class='divTableCell cell_content'>\n<div style=\"background: $tableRowEvenBg;\">".str_replace(' ', '&nbsp;', $configm17gateway['General']['Callsign'])."&nbsp;".str_replace(' ', '&nbsp;', $configm17gateway['General']['Suffix'])."</div></div>\n";
 	echo "</div>\n<div class='divTableRow center'>";
 		echo "<div class='divTableHeadCell'>Reflector</div>\n";
                 if (isPaused("M17")) {
-                    echo "<div class='divTableCell hwinfo'><div style=\"background: $tableRowEvenBg;\">Mode Paused</div></div>\n";
+                    echo "<div class='divTableCell cell_content'><div style=\"background: $tableRowEvenBg;\">Mode Paused</div></div>\n";
                 } else {
-		    echo "<div class='divTableCell hwinfo'><div ".GetActiveConnectionStyle($remoteM17GWResults, "m17").">".getActualLink($reverseLogLinesM17Gateway, "M17")."</div></div>\n";
+		    echo "<div class='divTableCell cell_content'><div ".GetActiveConnectionStyle($remoteM17GWResults, "m17").">".getActualLink($reverseLogLinesM17Gateway, "M17")."</div></div>\n";
                 }
 ?>
     </div>
@@ -821,7 +821,7 @@ if (getConfigItem("NXDN", "RAN", $_SESSION['MMDVMHostConfigs'])) {
   <div class="divTableBody">
     <div class="divTableRow center">
 <?php
-	echo "<div class='divTableHeadCell'>TX</div>\n<div class='divTableCell hwinfo'>\n<div style=\"background: $tableRowEvenBg;\">".getMHZ(getConfigItem("POCSAG", "Frequency", $_SESSION['MMDVMHostConfigs']))."</div></div>\n";
+	echo "<div class='divTableHeadCell'>TX</div>\n<div class='divTableCell cell_content'>\n<div style=\"background: $tableRowEvenBg;\">".getMHZ(getConfigItem("POCSAG", "Frequency", $_SESSION['MMDVMHostConfigs']))."</div></div>\n";
 	echo "</div>\n</div>\n</div>\n";
 	echo "<div class='divTable'>\n";
 	if (isPaused("POCSAG")) {
@@ -840,10 +840,10 @@ if (getConfigItem("NXDN", "RAN", $_SESSION['MMDVMHostConfigs'])) {
 	    echo "<div class='divTableBody'>\n";
 	    echo "<div class='divTableRow center'>\n";
 	    if (isProcessRunning("DAPNETGateway")) {
-		echo "<div class='divTableCell hwinfo'><div style=\"background: $tableRowEvenBg;\" title=\"".$dapnetGatewayRemoteTooltip."\">".$dapnetGatewayRemoteAddr."</div></div>\n";
+		echo "<div class='divTableCell cell_content'><div style=\"background: $tableRowEvenBg;\" title=\"".$dapnetGatewayRemoteTooltip."\">".$dapnetGatewayRemoteAddr."</div></div>\n";
 	    }
 	    else {
-		echo "<div class='divTableCell hwinfo'><div style=\"background: $tableRowEvenBg;\">Service Not Started</div></div>\n";
+		echo "<div class='divTableCell cell_content'><div style=\"background: $tableRowEvenBg;\">Service Not Started</div></div>\n";
 	    }
 ?>
     </div>
@@ -883,7 +883,7 @@ if (!isProcessRunning("APRSGateway")) {
 <div class="divTable">
   <div class="divTableBody">
     <div class="divTableRow center">
-<?php echo "<div class='divTableCell hwinfo center active-mode-cell' title=\"Connected to Pool: ".$_SESSION['APRSGatewayConfigs']['APRS-IS']['Server']."\">".substr($_SESSION['APRSGatewayConfigs']['APRS-IS']['Server'], 0, 23)."</div>\n"; ?>
+<?php echo "<div class='divTableCell cell_content center active-mode-cell' title=\"Connected to Pool: ".$_SESSION['APRSGatewayConfigs']['APRS-IS']['Server']."\">".substr($_SESSION['APRSGatewayConfigs']['APRS-IS']['Server'], 0, 23)."</div>\n"; ?>
     </div>
   </div>
 </div>
@@ -892,7 +892,7 @@ if (!isProcessRunning("APRSGateway")) {
   <div class="divTableBody">
     <div class="divTableRow center">
 <?php 
-echo "<div class='divTableCell hwinfo center'><div style=\"background: $tableRowEvenBg;\">".getAPRSISserver()."</div></div>\n"; ?>
+echo "<div class='divTableCell cell_content center'><div style=\"background: $tableRowEvenBg;\">".getAPRSISserver()."</div></div>\n"; ?>
     </div>
   </div>
 </div>
@@ -908,7 +908,7 @@ echo "<div class='divTableCell hwinfo center'><div style=\"background: $tableRow
   <div class="divTable">
     <div class="divTableBody">
       <div class="divTableRow center">
-<?php echo "<div class='divTableCell hwinfo center' style=\"background: $tableRowEvenBg;\" title=\"No Mode(s) Selected\">No Mode(s) Selected</div>\n"; ?>
+<?php echo "<div class='divTableCell cell_content center' style=\"background: $tableRowEvenBg;\" title=\"No Mode(s) Selected\">No Mode(s) Selected</div>\n"; ?>
       </div>
     </div>
   </div>
