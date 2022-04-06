@@ -316,9 +316,9 @@ if (isProcessRunning("M17Gateway")) {
         }
         if ($_SESSION['ircDDBConfigs']['aprsEnabled'] == 1) {
 		if (substr($_SESSION['ircDDBConfigs']['aprsAddress'], 0, 18) == '127.0.0.1') {
-	            echo "<div class='divTableRow center'><div class='divTableHeadCell'>APRS</div></div><div class='divTableRow center'><div class='divTableCell cell_content'><div class=\"active-mode-cell\" title=\"Using APRSGateway\">APRSGateway</div></div></div>\n";
+	            echo "<div class='divTableRow center'><div class='divTableHeadCell'>APRS Host</div></div><div class='divTableRow center'><div class='divTableCell cell_content' title=\"Using APRSGateway\">APRSGateway</div></div>\n";
 		} else {
-	            echo "<div class='divTableRow center'><div class='divTableHeadCell'>APRS</div></div><div class='divTableRow center'><div class='divTableCell cell_content' style=\"background: $tableRowEvenBg;\">".substr($_SESSION['ircDDBConfigs']['aprsAddress'], 0, 18)."</div></div>\n";
+	            echo "<div class='divTableRow center'><div class='divTableHeadCell'>APRS Host</div></div><div class='divTableRow center'><div class='divTableCell cell_content' style=\"background: $tableRowEvenBg;\">".substr($_SESSION['ircDDBConfigs']['aprsAddress'], 0, 18)."</div></div>\n";
 		}
         }
         if ($_SESSION['ircDDBConfigs']['ircddbEnabled'] == 1) {
