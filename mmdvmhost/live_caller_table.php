@@ -3,6 +3,7 @@ if (file_exists('/etc/.CALLERDETAILS')) {
     include_once $_SERVER['DOCUMENT_ROOT'].'/config/config.php';          // MMDVMDash Config
     include_once $_SERVER['DOCUMENT_ROOT'].'/mmdvmhost/tools.php';        // MMDVMDash Tools
     include_once $_SERVER['DOCUMENT_ROOT'].'/mmdvmhost/functions.php';    // MMDVMDash Functions
+    include_once $_SERVER['DOCUMENT_ROOT'].'/config/language.php';        // Translation Code
     // geoLookup/flags
     if (!class_exists('xGeoLookup')) require_once($_SERVER['DOCUMENT_ROOT'].'/classes/class.GeoLookup.php');
     $Flags = new xGeoLookup();
@@ -12,7 +13,7 @@ if (file_exists('/etc/.CALLERDETAILS')) {
 <div style="vertical-align: bottom; font-weight: bold;text-align:left;margin-top:-8px;">Current / Last Caller Details</div>
   <table style="word-wrap: break-word; white-space:normal;">
     <tr>
-      <th width="220px"><span style="float:left;padding-left:15px;">Callsign</span> <span style="float:right;padding-right:8px;">Country</span></th>
+      <th width="230px"><a class="tooltip" href="#"><?php echo $lang['callsign'];?>&nbsp;&nbsp;/&nbsp;&nbsp;Country<span><b>Callsign / Country</b></span></a></th>
       <th>Name</th>
       <th>Location</th>
       <th>Src</th>
@@ -123,6 +124,12 @@ for ($i = 0;  ($i <= 0); $i++) { //Last 20  calls
 		$city = ucwords(strtolower($callMatch[4]));
 		$state = ucwords(strtolower($callMatch[5]));
 		$country = ucwords(strtolower($callMatch[6]));
+		if(strpos($country, "United States") !== false) {
+		   $country = str_replace("United States", "USA", $country);
+		}
+		if (strlen($country) > 150) {
+		    $country = substr($country, 0, 120) . '...';
+		}	
 		if (empty($callMatch[0])) {
 		    $name = getName($listElem[2]);
 		    $country = "---";
@@ -136,7 +143,6 @@ for ($i = 0;  ($i <= 0); $i++) { //Last 20  calls
 			$target = $target_lookup;
 			$stupid_bm = ['/ - 10 Minute Limit/', '/ NOT A CALL CHANNEL/', '/ NO NETS(.*?)/', '/ - .*/'];
 			$target = preg_replace($stupid_bm, "", $target); // strip stupid fucking comments from BM admins in TG names. Idiots.
-			$target = str_replace(":", " - ", $target);
 			$target = "TG $target";
 		    } else {
 			$target = "TG $target";
@@ -144,12 +150,12 @@ for ($i = 0;  ($i <= 0); $i++) { //Last 20  calls
 		} else if (strpos($mode, 'NXDN') !== false) {
 		    $target_lookup = exec("grep -w \"$target\" /usr/local/etc/TGList_NXDN.txt | awk -F';' '{print $2}'");
 		    if (!empty($target_lookup)) {
-			$target = "TG $target - $target_lookup";
+			$target = "TG $target: $target_lookup";
 		    }
 		} else if (strpos($mode, 'P25') !== false) {
 		    $target_lookup = exec("grep -w \"$target\" /usr/local/etc/TGList_P25.txt | awk -F';' '{print $2}'");
 			if (!empty($target_lookup)) {
-			    $target = "TG $target - $target_lookup";
+			    $target = "TG $target: $target_lookup";
 			}
 		} else {
 		    $target = $target;
@@ -182,7 +188,7 @@ for ($i = 0;  ($i <= 0); $i++) { //Last 20  calls
 
 ?>
   <tr>
-    <td align="left" style="padding:3px 0 3px 20px;"><strong style="font-size:1.2em;"><?php echo $callsign ?? ' '; ?></strong><span style='padding:1px 20px 0 0;float:right;'><?php echo $flContent; ?></span></td>
+    <td align="left" style="padding:3px 0 3px 0;"><strong style="font-size:1.2em;padding-left:15px;"><?php echo $callsign ?? ' '; ?></strong><span style='padding:1px 15px 0 0;float:right;'><?php echo $flContent; ?></span></td>
     <td><?php echo $name ?? ' '; ?></td>
     <td><?php
 		if (!empty($city)) {

@@ -149,6 +149,9 @@ if (!is_numeric($listElem[2])) {
     $city = ucwords(strtolower($callMatch[4]));
     $state = ucwords(strtolower($callMatch[5]));
     $country = ucwords(strtolower($callMatch[6]));
+    if (strlen($country) > 150) {
+	$country = substr($country, 0, 120) . '...';
+    }
     if (empty($callMatch[0])) {
 	$name = getName($listElem[2]);
 	$country = "---";
@@ -202,12 +205,12 @@ if ($listElem[2] == "4000" || $listElem[2] == "9990" || $listElem[2] == "DAPNET"
 // init geo/flag class
 list ($Flag, $Name) = $Flags->GetFlag($listElem[2]);
 if (is_numeric($listElem[2]) || strpos($listElem[2], "openSPOT") !== FALSE || !preg_match('/[A-Za-z].*[0-9]|[0-9].*[A-Za-z]/', $listElem[2])) {
-    $flContent = "---";
+    $flContent = "";
 } else {
     if (file_exists($_SERVER['DOCUMENT_ROOT']."/images/flags/".$Flag.".png")) {
-	    $flContent = "<img src='/images/flags/$Flag.png' alt='$Name' title='$Name' style='height:50px;vertical-align:middle;border: 2px solid black;' />";
+	    $flContent = "<img src='/images/flags/$Flag.png' alt='$Name' title='$Name' style='height:50px;border: 2px solid black;' />";
     } else {
-	$flContent = "---";
+	$flContent = "";
     }
 }   
 ?>
@@ -215,7 +218,7 @@ if (is_numeric($listElem[2]) || strpos($listElem[2], "openSPOT") !== FALSE || !p
   <div class='row'>
     <div class='column'>
       <div class='orange-column'>
-        <span class='oc_call'><?php echo "$listElem[2]"; ?></span>
+        <span class='oc_call'><?php echo "$listElem[2] <div style='vertical-align:middle;display:inline;margin:0 0 0 -0.29em'>$flContent</div>"; ?></span>
       </div>
     </div>
     <div class='column'>
@@ -231,7 +234,7 @@ if (is_numeric($listElem[2]) || strpos($listElem[2], "openSPOT") !== FALSE || !p
 	    if (!empty($state)) {
 		echo "<br />$state";
 	    } 
-	    echo "<br />$country $flContent";
+	    echo "<br />$country";
 	    ?>
 	</span>
       </div>

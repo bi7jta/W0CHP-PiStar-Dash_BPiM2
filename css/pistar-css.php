@@ -953,7 +953,7 @@ td.lookatme {
   position: relative;
   display: inline-block;
   font-weight:bold;
-  font-size:11px;
+  font-size:10px;
   padding:1px;
   margin: 0 0 0 1px;
 }
