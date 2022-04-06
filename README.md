@@ -93,6 +93,8 @@ Run:
 
 * Updated user interface elements galore, styling, wider, bigger, updated fonts, etc.
 
+* Country-of-origin flags for callsigns.
+
 * Full M17 Protocol Support.
 
 * Full APRSGateway Support: Selectable APRS Data Sharing with specific modes.
