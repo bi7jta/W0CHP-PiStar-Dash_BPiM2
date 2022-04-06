@@ -127,7 +127,7 @@ if ($_SERVER["PHP_SELF"] == "/admin/index.php") {
 			    $dextraFile = fopen("/usr/local/etc/DExtra_Hosts.txt", "r");
 			    
 			    echo "    <option value=\"".substr($_SESSION['ircDDBConfigs']['reflector1'], 0, 6)."\" selected=\"selected\">".substr($_SESSION['ircDDBConfigs']['reflector1'], 0, 6)."</option>\n";
-			    echo "    <option value=\"customOption\">Text Entry</option>\n";
+			    //echo "    <option value=\"customOption\">Text Entry</option>\n";
 			    
 			    while (!feof($dcsFile)) {
 				$dcsLine = fgets($dcsFile);
