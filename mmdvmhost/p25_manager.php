@@ -39,25 +39,25 @@ if ( $testMMDVModeP25 == 1 ) {
 	    }
 	    else {
 		echo "<div style='text-align:left;font-weight:bold;'>P25 Link Manager</div>\n";
-		echo "<table>\n<tr><th>Command Output</th></tr>\n<tr><td>";
+		echo "<table>\n<tr><th>Command Output</th></tr>\n<tr><td><p>";
 		echo "Something wrong with your input, (Neither Link nor Unlink Sent) - please try again";
-		echo "</td></tr>\n</table>\n<br />\n";
+		echo "<br />Page reloading...</p></td></tr>\n</table>\n";
 		unset($_POST);
 		echo '<script type="text/javascript">setTimeout(function() { window.location=window.location;},2000);</script>';
 	    }
 	    if (empty($_POST['p25LinkHost'])) {
 		echo "<div style='text-align:left;font-weight:bold;'>P25 Link Manager</div>\n";
-		echo "<table>\n<tr><th>Command Output</th></tr>\n<tr><td>";
+		echo "<table>\n<tr><th>Command Output</th></tr>\n<tr><td><p>";
 		echo "Something wrong with your input, (No target specified) -  please try again";
-		echo "</td></tr>\n</table>\n<br />\n";
+		echo "<br />Page reloading...</p></td></tr>\n</table>\n";
 		unset($_POST);
 		echo '<script type="text/javascript">setTimeout(function() { window.location=window.location;},2000);</script>';
 	    }
 	    if (isset($remoteCommand)) {
 		echo "<div style='text-align:left;font-weight:bold;'>P25 Link Manager</div>\n";
-		echo "<table>\n<tr><th>Command Output</th></tr>\n<tr><td>";
+		echo "<table>\n<tr><th>Command Output</th></tr>\n<tr><td><p>";
 		echo exec($remoteCommand);
-		echo "</td></tr>\n</table>\n<br />\n";
+		echo "<br />Page reloading...</p></td></tr>\n</table>\n";
 		echo '<script type="text/javascript">setTimeout(function() { window.location=window.location;},2000);</script>';
 	    }
 	}

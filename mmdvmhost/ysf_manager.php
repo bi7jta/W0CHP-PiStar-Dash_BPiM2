@@ -44,7 +44,7 @@ if (isset($_SESSION['YSFGatewayConfigs']['Remote Commands']['Enable']) && (isset
 		echo "<div style='text-align:left;font-weight:bold;'>YSF Link Manager</div>\n";
 		echo "<table>\n<tr><th>Command Output</th></tr>\n<tr><td>";
 		echo "<p>Something wrong with your input, (Neither Link nor Unlink Sent) - please try again</p>";
-		echo "</td></tr>\n</table>\n<br />\n";
+		echo "<br />Page reloading...</p></td></tr>\n</table>\n";
 		unset($_POST);
 		echo '<script type="text/javascript">setTimeout(function() { window.location=window.location;},3000);</script>';
 	    }
@@ -52,7 +52,7 @@ if (isset($_SESSION['YSFGatewayConfigs']['Remote Commands']['Enable']) && (isset
 		echo "<div style='text-align:left;font-weight:bold;'>YSF Link Manager</div>\n";
 		echo "<table>\n<tr><th>Command Output</th></tr>\n<tr><td>";
 		echo "<p>Something wrong with your input, (No target specified) -  please try again</p>";
-		echo "</td></tr>\n</table>\n<br />\n";
+		echo "<br />Page reloading...</p></td></tr>\n</table>\n";
 		unset($_POST);
 		echo '<script type="text/javascript">setTimeout(function() { window.location=window.location;},3000);</script>';
 	    }
@@ -61,8 +61,7 @@ if (isset($_SESSION['YSFGatewayConfigs']['Remote Commands']['Enable']) && (isset
 		echo "<table>\n<tr><th>Command Output</th></tr>\n<tr><td>";
 		echo "<p>";
 		echo exec($remoteCommand);
-		echo "<br />Page reloading...</td></tr>\n</table>\n<br />\n";
-		echo "</p>";
+		echo "<br />Page reloading...</p></td></tr>\n</table>\n";
 		echo '<script type="text/javascript">setTimeout(function() { window.location=window.location;},3000);</script>';
 	    }
 	}

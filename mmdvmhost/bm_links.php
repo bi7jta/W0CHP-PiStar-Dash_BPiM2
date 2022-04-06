@@ -100,15 +100,15 @@ if ( $testMMDVModeDMR == 1 ) {
             foreach($bmStaticTGListJson as $staticTG) {
                 if (getConfigItem("DMR Network", "Slot1", $_SESSION['MMDVMHostConfigs']) && $staticTG->slot == "1") {
                     $bmStaticTGname = exec("grep -w \"$staticTG->talkgroup\" /usr/local/etc/BM_TGs.json | cut -d\":\" -f2- | tr -cd \"'[:alnum:]\/ -\"");
-                    $bmStaticTGList .= "TG".$staticTG->talkgroup." ".StripStupidComments($bmStaticTGname)."<span style='float:right;'>(".$staticTG->slot.")</span><br />";
+                    $bmStaticTGList .= "&bull; TG".$staticTG->talkgroup.": ".StripStupidComments($bmStaticTGname)."<span style='float:right;'>(Slot ".$staticTG->slot.")</span><br />";
                 }
                 else if (getConfigItem("DMR Network", "Slot2", $_SESSION['MMDVMHostConfigs']) && $staticTG->slot == "2") {
                     $bmStaticTGname = exec("grep -w \"$staticTG->talkgroup\" /usr/local/etc/BM_TGs.json | cut -d\":\" -f2- | tr -cd \"'[:alnum:]\/ -\"");
-                    $bmStaticTGList .= "TG".$staticTG->talkgroup." ".StripStupidComments($bmStaticTGname)."<span style='float:right;'>(".$staticTG->slot.")</span><br />";
+                    $bmStaticTGList .= "&bull; TG".$staticTG->talkgroup.": ".StripStupidComments($bmStaticTGname)."<span style='float:right;'>(Slot ".$staticTG->slot.")</span><br />";
                 }
                 else if (getConfigItem("DMR Network", "Slot1", $_SESSION['MMDVMHostConfigs']) == "0" && getConfigItem("DMR Network", "Slot2", $_SESSION['MMDVMHostConfigs']) && $staticTG->slot == "0") {
                     $bmStaticTGname = exec("grep -w \"$staticTG->talkgroup\" /usr/local/etc/BM_TGs.json | cut -d\":\" -f2- | tr -cd \"'[:alnum:]\/ -\"");
-                    $bmStaticTGList .= "TG".$staticTG->talkgroup." ".StripStupidComments($bmStaticTGname)." ";
+                    $bmStaticTGList .= "&bull; TG".$staticTG->talkgroup.": ".StripStupidComments($bmStaticTGname)."<span style='float:right;'>(Slot ".$staticTG->slot.")</span><br />";
                 }
             }
             $bmStaticTGList = wordwrap($bmStaticTGList, 135, "\n");
@@ -119,15 +119,15 @@ if ( $testMMDVModeDMR == 1 ) {
             foreach($bmDynamicTGListJson as $dynamicTG) {
                 if (getConfigItem("DMR Network", "Slot1", $_SESSION['MMDVMHostConfigs']) && $dynamicTG->slot == "1") {
                     $bmDynamicTGname = exec("grep -w \"$dynamicTG->talkgroup\" /usr/local/etc/BM_TGs.json | cut -d\":\" -f2- | tr -cd \"'[:alnum:]\/ -\"");
-	            $bmDynamicTGList .= "TG".$dynamicTG->talkgroup."<span style='float:right;'>".StripStupidComments($bmDynamicTGname)." (".$dynamicTG->slot.")</span><br /><small style='float:right;'>(Idle timeout: ".date("$local_time", substr($dynamicTG->timeout, 0, 10))." ".date('T').")</span></small><br /><br />";
+	            $bmDynamicTGList .= "&bull; TG".$dynamicTG->talkgroup.":<span style='float:right;'>".StripStupidComments($bmDynamicTGname)." (Slot ".$dynamicTG->slot.")</span><br /><small style='float:right;'>(Idle timeout: ".date("$local_time", substr($dynamicTG->timeout, 0, 10))." ".date('T').")</span></small><br /><br />";
                 }
                 else if (getConfigItem("DMR Network", "Slot2", $_SESSION['MMDVMHostConfigs']) && $dynamicTG->slot == "2") {
                     $bmDynamicTGname = exec("grep -w \"$dynamicTG->talkgroup\" /usr/local/etc/BM_TGs.json | cut -d\":\" -f2- | tr -cd \"'[:alnum:]\/ -\"");
-	            $bmDynamicTGList .= "TG".$dynamicTG->talkgroup."<span style='float:right;'>".StripStupidComments($bmDynamicTGname)." (".$dynamicTG->slot.")</span><br /><small style='float:right;'>(Idle timeout: ".date("$local_time", substr($dynamicTG->timeout, 0, 10))." ".date('T').")</span></small><br /><br />";
+	            $bmDynamicTGList .= "&bull; TG".$dynamicTG->talkgroup.":<span style='float:right;'>".StripStupidComments($bmDynamicTGname)." (Slot ".$dynamicTG->slot.")</span><br /><small style='float:right;'>(Idle timeout: ".date("$local_time", substr($dynamicTG->timeout, 0, 10))." ".date('T').")</span></small><br /><br />";
                 }
                 else if (getConfigItem("DMR Network", "Slot1", $_SESSION['MMDVMHostConfigs']) == "0" && getConfigItem("DMR Network", "Slot2", $_SESSION['MMDVMHostConfigs']) && $dynamicTG->slot == "0") {
                     $bmDynamicTGname = exec("grep -w \"$dynamicTG->talkgroup\" /usr/local/etc/BM_TGs.json | cut -d\":\" -f2- | tr -cd \"'[:alnum:]\/ -\"");
-                    $bmDynamicTGList .= "TG".$dynamicTG->talkgroup."<span style='float:right;'>".StripStupidComments($bmDynamicTGname)."</span><br /><small style='float:right;'>(Idle timeout: ".date("$local_time", substr($dynamicTG->timeout, 0, 10)).")</span></small><br /><br />";
+                    $bmDynamicTGList .= "&bull; TG".$dynamicTG->talkgroup.":<span style='float:right;'>".StripStupidComments($bmDynamicTGname)." (Slot ".$dynamicTG->slot.")</span><br /><small style='float:right;'>(Idle timeout: ".date("$local_time", substr($dynamicTG->timeout, 0, 10)).")</span></small><br /><br />";
                 }
             }
             $bmDynamicTGList = wordwrap($bmDynamicTGList, 135, "\n");
@@ -143,8 +143,8 @@ if ( $testMMDVModeDMR == 1 ) {
 	
 	echo '    <tr>'."\n";
 	echo '     <td align="left" style="padding: 8px;white-space:normal; word-wrap:break; width:200px;">'.$dmrMasterHost.'<br /><small>(<a href="https://brandmeister.network/?page=hotspot&amp;id='.$dmrID.'" target="_new" title="Click to view your hotspot info on BrandMeister">Your HotSpot/Repeater ID: '.$dmrID.'</a>)</small></td>';
-	echo '     <td align="left" style="padding: 8px;">'.$bmStaticTGList.'</td>';
-	echo '     <td align="left" style="height:auto;padding: 8px; background:'.$tableRowEvenBg.';">'.$bmDynamicTGList.'</td>';
+	echo '     <td align="left" style="padding: 8px;vertical-align:top;">'.$bmStaticTGList.'</td>';
+	echo '     <td align="left" style="height:auto;padding: 8px; background:'.$tableRowEvenBg.';vertical-align:top;">'.$bmDynamicTGList.'</td>';
 	echo '    </tr>'."\n";
 	echo '    <tr>'."\n";
 	echo '      <td colspan="3" style="white-space:normal;padding: 3px;"><a href="https://w0chp.net/brandmeister-talkgroups/" target="_blank">List of All BrandMeister Talkgroups (sortable/searchable/downloadable)...</a></td>'."\n";

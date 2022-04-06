@@ -78,7 +78,6 @@ if ( $testMMDVModeDMR == 1 ) {
                 echo "<table>\n<tr><th>Command Output</th></tr>\n<tr><td>";
                 print "<p>All Static Talkgroups Dropped!<br /> Page reloading...</p>";
                 echo "</td></tr>\n</table>\n";
-                echo "<br />\n";
                 // Clean up...
                 unset($_POST);
                 echo '<script type="text/javascript">setTimeout(function() { window.location=window.location;},3000);</script>';
@@ -94,7 +93,6 @@ if ( $testMMDVModeDMR == 1 ) {
             	    echo "<table>\n<tr><th>Command Output</th></tr>\n<tr><td>";
             	    print "<p>All Previous Static Talkgroups Re-Added!<br /> Page reloading...</p>";
             	    echo "</td></tr>\n</table>\n";
-            	    echo "<br />\n";
             	    // Clean up...
             	    unset($_POST);
             	    echo '<script type="text/javascript">setTimeout(function() { window.location=window.location;},3000);</script>';
@@ -105,7 +103,6 @@ if ( $testMMDVModeDMR == 1 ) {
             	    echo "<table>\n<tr><th>Command Output</th></tr>\n<tr><td>";
             	    print "<p>No Previous Static Talkgroups Dropped. Nothing To Do!!<br /> Page reloading...</p>";
             	    echo "</td></tr>\n</table>\n";
-            	    echo "<br />\n";
             	    // Clean up...
             	    unset($_POST);
             	    echo '<script type="text/javascript">setTimeout(function() { window.location=window.location;},3000);</script>';
@@ -129,7 +126,6 @@ if ( $testMMDVModeDMR == 1 ) {
                     echo "<table>\n<tr><th>Command Output</th></tr>\n<tr><td>";
                     print "<p>No talkgroups defined! <br /> Page reloading...</p>";
                     echo "</td></tr>\n</table>\n";
-                    echo "<br />\n";
                     // Clean up...
                     unset($_POST);
                     echo '<script type="text/javascript">setTimeout(function() { window.location=window.location;},3000);</script>';
@@ -150,7 +146,6 @@ if ( $testMMDVModeDMR == 1 ) {
                             echo "<table>\n<tr><th>Command Output</th></tr>\n<tr><td>";
                             print "<p>No more than 5 talkgroups can be defined at a time! <br /> Page reloading...</p>";
                             echo "</td></tr>\n</table>\n";
-                            echo "<br />\n";
                             // Clean up...
                             unset($_POST);
                             echo '<script type="text/javascript">setTimeout(function() { window.location=window.location;},3000);</script>';
@@ -169,7 +164,6 @@ if ( $testMMDVModeDMR == 1 ) {
                             echo "<table>\n<tr><th>Command Output</th></tr>\n<tr><td>";
                             print "<p>All Submitted Static Talkgroups Added to slot ".$_POST['massTGslotSelected']."!<br /> Page reloading...</p>";
                             echo "</td></tr>\n</table>\n";
-                            echo "<br />\n";
                             // Clean up...
                             unset($_POST);
                             echo '<script type="text/javascript">setTimeout(function() { window.location=window.location;},3000);</script>';
@@ -186,7 +180,6 @@ if ( $testMMDVModeDMR == 1 ) {
                             echo "<table>\n<tr><th>Command Output</th></tr>\n<tr><td>";
                             print "<p>No more than 5 talkgroups can be defined at a time! <br /> Page reloading...</p>";
                             echo "</td></tr>\n</table>\n";
-                            echo "<br />\n";
                             // Clean up...
                             unset($_POST);
                             echo '<script type="text/javascript">setTimeout(function() { window.location=window.location;},3000);</script>';
@@ -204,7 +197,6 @@ if ( $testMMDVModeDMR == 1 ) {
                             echo "<table>\n<tr><th>Command Output</th></tr>\n<tr><td>";
                             print "<p>All Submitted Static Talkgroups Deleted from slot ".$_POST['massTGslotSelected']."!<br /> Page reloading...</p>";
                             echo "</td></tr>\n</table>\n";
-                            echo "<br />\n";
                             // Clean up...
                             unset($_POST);
                             echo '<script type="text/javascript">setTimeout(function() { window.location=window.location;},3000);</script>';
@@ -262,11 +254,10 @@ if ( $testMMDVModeDMR == 1 ) {
           $feedback=json_decode($result);
           // Output to the browser
 	  echo '<br /><div style="text-align:left;font-weight:bold;">BrandMeister Manager</div>'."\n";
-          echo "<table>\n<tr><th>Command Output</th></tr>\n<tr><td>";
+          echo "<table>\n<tr><th>Command Output</th></tr>\n<tr><td><p>";
           //echo "Sending command to BrandMeister API";
           if (isset($feedback)) { print "BrandMeister APIv1: ".$feedback->{'message'}; } else { print "BrandMeister APIv1: No Response"; }
-          echo " Page reloading...</td></tr>\n</table>\n";
-          echo "<br />\n";
+          echo " <br />Page reloading...</p></td></tr>\n</table>\n";
           // Clean up...
           unset($_POST);
           echo '<script type="text/javascript">setTimeout(function() { window.location=window.location;},3000);</script>';
@@ -319,12 +310,11 @@ if ( $testMMDVModeDMR == 1 ) {
           $feedback=json_decode($result);
           // Output to the browser
 	  echo '<br /><div style="text-align:left;font-weight:bold;">BrandMeister Manager</div>'."\n";
-          echo "<table>\n<tr><th>Command Output</th></tr>\n<tr><td>";
+          echo "<table>\n<tr><th>Command Output</th></tr>\n<tr><td><p>";
           //echo "Sending command to BrandMeister API";
           //if (isset($feedback)) { print "BrandMeister APIv2: ".$feedback->{'message'}; } else { print "BrandMeister APIv2: No Response"; }
           if (isset($feedback)) { print "BrandMeister APIv2: OK"; } else { print "BrandMeister APIv2: No Response"; }
-          echo " Page reloading...</td></tr>\n</table>\n";
-          echo "<br />\n";
+          echo " <br />Page reloading...</p></td></tr>\n</table>\n";
           // Clean up...
           unset($_POST);
           echo '<script type="text/javascript">setTimeout(function() { window.location=window.location;},3000);</script>';
