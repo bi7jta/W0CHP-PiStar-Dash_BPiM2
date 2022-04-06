@@ -416,7 +416,7 @@ checkSessionValidity();
 		    echo '      <div class="mode_flex">'."\n";
 		    echo '        <div class="mode_flex row">'."\n";
 		    echo '          <div class="mode_flex column">'."\n";
- 		    echo '            <button form="admin_sel" type="submit" value="main" name="func"><span>Admin Main</span></button>'."\n";
+ 		    echo '            <button form="admin_sel" type="submit" value="main" name="func"><span>Admin Main Page</span></button>'."\n";
 		    echo '          </div><div class="mode_flex column">'."\n";
                     $testMMDVModeDSTARnet = getConfigItem("D-Star", "Enable", $_SESSION['MMDVMHostConfigs']);
                     if ( $testMMDVModeDSTARnet == 1 && !isPaused("D-Star") ) {
