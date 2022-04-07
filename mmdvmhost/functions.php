@@ -731,7 +731,7 @@ function showMode($mode, $configs) {
     echo $mode."</div>\n";
 }
 
-// Open Logfile and copy loglines into LogLines-Array()
+// Open MMDVMHost Logfile and copy loglines into LogLines-Array()
 function getMMDVMLog() {
     $logLines = array();
     $logLines1 = array();
@@ -1003,11 +1003,17 @@ function getHeardList($logLines) {
     $ts1alias    = "---";
     $ts2alias    = "---";
     $alias       = "";
+    $ts1dbName      = "";
+    $ts2dbName      = "";
+    $dbName      = "";
     foreach ($logLines as $logLine) {
 	$duration	= "";
 	$loss		= "";
 	$ber		= "";
 	$rssi		= "";
+    	$ts1dbName      = "";
+    	$ts2dbName      = "";
+    	$dbName         = "";
 	//removing invalid lines
 	if(strpos($logLine,"BS_Dwn_Act")) {
 	    continue;
@@ -1062,6 +1068,17 @@ function getHeardList($logLines) {
             break;
           case "DMR Slot 2":
             $ts2alias = $alias;
+            break;
+        }
+      }
+
+      if (strpos($logLine,"Name:")) {
+        switch (substr($logLine, 27, strpos($logLine,",") - 27)) {
+          case "DMR Slot 1":
+            $ts1dbName = $dbName;
+            break;
+          case "DMR Slot 2":
+            $ts2dbName = $dbName;
             break;
         }
       }
@@ -1129,6 +1146,7 @@ function getHeardList($logLines) {
 		$loss = strtok($loss, " ");
 		if (array_key_exists(4,$lineTokens)) {
 		    $ber = substr($lineTokens[4], 5);
+		    $ber = preg_replace('/- Name(.*)/', '', $ber);
 		}
 	    }
 
@@ -1202,13 +1220,24 @@ function getHeardList($logLines) {
 	    $callsign = substr($callsign2, 0, strpos($callsign2,"/"));
 	}
 	$callsign = trim($callsign);
-	
+
+        if (strpos($logLine, "Name:")) {
+            $dbName2 = substr($logLine, strpos($logLine, "Name:") + 5);
+            $dbName2 = trim($dbName2);
+            $dbName2 = explode("Name:", $dbName2)[0];
+            $dbName2 = str_replace("Name:", "", $dbName2);
+	    $dbName = "$dbName2";
+        } else {
+	    $dbName = " ";
+	}
+
 	$id ="";
 	if ($mode == "D-Star") {
 	    $id = substr($callsign2, strpos($callsign2,"/") + 1);
 	}
 	
 	$target = trim(substr($logLine, strpos($logLine, "to") + 3));
+	$target = preg_replace('/- Name(.*)/', '', $target);
 	// Handle more verbose logging from MMDVMHost
         if (strpos($target,",") !== 'false') {
 	    $target = explode(",", $target)[0];
@@ -1282,7 +1311,7 @@ function getHeardList($logLines) {
 	}
 	
 	if ( strlen($callsign) < 11 ) {
-	    array_push($heardList, array($timestamp, $mode, $callsign, $id, $target, $source, $duration, $loss, $ber, $rssi, $alias));
+	    array_push($heardList, array($timestamp, $mode, $callsign, $id, $target, $source, $duration, $loss, $ber, $rssi, $alias, $dbName));
 	    $duration = "";
 	    $loss ="";
 	    $ber = "";
@@ -1290,6 +1319,7 @@ function getHeardList($logLines) {
 	    $alias = "";
 	    $ts1alias   = "---";
 	    $ts2alias   = "---";
+	    $dbName = "";
 	}
     }
     return $heardList;
@@ -1481,6 +1511,7 @@ function getActualLink($logLines, $mode) {
 			}
 			if (strpos($logLine,"to")) {
 			    $to = trim(substr($logLine, strpos($logLine,"to") + 3));
+			    $to = preg_replace('/- Name(.*)/', '', $to);
 			}
 			if ($from !== "") {
 			    if ($from === "4000") {

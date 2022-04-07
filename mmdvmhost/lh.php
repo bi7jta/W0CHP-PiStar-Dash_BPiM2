@@ -40,7 +40,9 @@ $Flags->LoadFlags();
     <tr>
       <th><a class="tooltip" href="#"><?php echo $lang['time'];?> (<?php echo date('T')?>)<span><b>Time in <?php echo date('T')?> time zone</b></span></a></th>
       <th><a class="tooltip" href="#"><?php echo $lang['mode'];?><span><b>Transmitted Mode</b></span></a></th>
-      <th width="220px"><a class="tooltip" href="#"><?php echo $lang['callsign'];?>&nbsp;&nbsp;/&nbsp;&nbsp;Country<span><b>Callsign / Country</b></span></a></th>
+      <th width="85px"><a class="tooltip" href="#"><?php echo $lang['callsign'];?><span><b>Callsign</b></span></a></th>
+      <th width="50px"><a class="tooltip" href="#">Country<span><b>Country</b></span></a></th>
+      <th><a class="tooltip" href="#">Name<span><b>Name</b></span></a></th>
       <th><a class="tooltip" href="#"><?php echo $lang['target'];?><span><b>Target, D-Star Reflector, DMR Talk Group etc</b></span></a></th>
       <th><a class="tooltip" href="#"><?php echo $lang['src'];?><span><b>Received from source</b></span></a></th>
       <th><a class="tooltip" href="#"><?php echo $lang['dur'];?>(s)<span><b>Duration in Seconds</b></span></a></th>
@@ -71,25 +73,25 @@ for ($i = 0;  ($i <= $lastHeardRows - 1); $i++) {
 		// init geo/flag class
 		list ($Flag, $Name) = $Flags->GetFlag($listElem[2]);
 		if (is_numeric($listElem[2]) || strpos($listElem[2], "openSPOT") !== FALSE || !preg_match('/[A-Za-z].*[0-9]|[0-9].*[A-Za-z]/', $listElem[2])) {
-		    $flContent = "---";
+		    $flContent = " ";
 		} elseif (file_exists($_SERVER['DOCUMENT_ROOT']."/images/flags/".$Flag.".png")) {
 		    $flContent = "<a class='tooltip' href=\"http://www.qrz.com/db/$listElem[2]\" target=\"_blank\"><img src='/images/flags/$Flag.png' alt='' style='height:15px;border: 1px solid black;' /><span><b>$Name</b></span></a>";
 		} else {
-		    $flContent = "---";
+		    $flContent = " ";
 		}
 		echo"<tr>";
 		echo"<td align=\"left\">$local_time</td>";
 		echo "<td align=\"left\">".str_replace('Slot ', 'TS', $listElem[1])."</td>";
 		if (is_numeric($listElem[2]) || strpos($listElem[2], "openSPOT") !== FALSE) {
-			echo "<td align=\"left\"><span style='padding:0 0 0 5px;float:left;'>$listElem[2]</span><span style='padding:0 10px 0 0;float:right;'>$flContent</span></td>";
+                        echo "<td align=\"left\">$listElem[2]</td><td colspan='2'>$flContent</td>";
 		} elseif (!preg_match('/[A-Za-z].*[0-9]|[0-9].*[A-Za-z]/', $listElem[2])) {
-                        echo "<td align=\"left\"><span style='padding:0 0 0 5px;float:left;'>$listElem[2]</span><span style='padding:0 10px 0 0;float:right;'>$flContent</span></td>";
+                        echo "<td align=\"left\">$listElem[2]</td><td colspan='2'>$flContent</td>";
 		} else {
 			if (strpos($listElem[2],"-") > 0) { $listElem[2] = substr($listElem[2], 0, strpos($listElem[2],"-")); }
 			if ( $listElem[3] && $listElem[3] != '    ' ) {
-				echo "<td align=\"left\"><span style='padding:0 0 0 5px;float:left;'><a href=\"http://www.qrz.com/db/$listElem[2]\" target=\"_blank\">$listElem[2]</a>/$listElem[3]</span><span style='padding:2px 10px 0 0;float:right;'>$flContent</span></td>";
+				echo "<td align=\"left\"><a href=\"http://www.qrz.com/db/$listElem[2]\" target=\"_blank\">$listElem[2]</a>//$listElem[8]</td><td>$flContent</td><td align='left'>$listElem[11]</td>";
 			} else {
-				echo "<td align=\"left\"><span style='padding:0 0 0 5px;float:left;'><a href=\"http://www.qrz.com/db/$listElem[2]\" target=\"_blank\">$listElem[2]</a></span><span style='padding:2px 10px 0 0;float:right;'>$flContent</span></td>";
+				echo "<td align=\"left\"><a href=\"http://www.qrz.com/db/$listElem[2]\" target=\"_blank\">$listElem[2]</a></td><td>$flContent</td><td align='left'>$listElem[11]</td>";
 			}
 		}
 		if (strlen($listElem[4]) == 1) { $listElem[4] = str_pad($listElem[4], 8, " ", STR_PAD_LEFT); }

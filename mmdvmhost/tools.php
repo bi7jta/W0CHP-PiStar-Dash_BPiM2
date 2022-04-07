@@ -35,6 +35,14 @@ function startsWith($haystack, $needle) {
     return $needle === "" || strrpos($haystack, $needle, -strlen($haystack)) !== false;
 }
 
+function endsWith($haystack, $needle) {
+    $length = strlen($needle);
+    if ($length == 0) {
+	return true;
+    }
+    return (strcasecmp(substr($haystack, -$length), $needle) == 0);
+}
+
 function getMHZ($freq) {
 	return substr($freq,0,3) . "." . substr($freq,3,6) . " MHz";
 }

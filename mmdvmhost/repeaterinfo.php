@@ -451,7 +451,7 @@ if (isProcessRunning("M17Gateway")) {
 		if (preg_match("/Not/",getActualLink($reverseLogLinesMMDVM, "DMR Slot 1"))) {
                         echo "<div class='divTableCell middle'><div class='cell_content active-mode-cell' title='No TG'>No TG</div></div>\n";
 		} else {
-		    echo "<div class='divTableCell middle'><div class='cell_content active-mode-cell' title='Time Slot 1 Enabled'>".substr(getActualLink($reverseLogLinesMMDVM, "DMR Slot 1"), -10)."</div></div>\n";
+		    echo "<div class='divTableCell middle'><div class='cell_content active-mode-cell' title='Time Slot 1 Enabled'>".substr(getActualLink($reverseLogLinesMMDVM, "DMR Slot 1"), -11)."</div></div>\n";
 		}
 	    } else {
 		    echo "<div class='divTableCell middle'><div class='cell_content inactive-mode-cell' title='Time Slot 1 disabled'>Disabled</div></div>\n";
@@ -465,7 +465,7 @@ if (isProcessRunning("M17Gateway")) {
                 if (preg_match("/Not/",getActualLink($reverseLogLinesMMDVM, "DMR Slot 2"))) {
                         echo "<div class='divTableCell middle'><div class='cell_content active-mode-cell' title='No TG'>No TG</div></div>\n";
                 } else {
-			echo "<div class='divTableCell middle'><div class='cell_content active-mode-cell' title='Time Slot 2 Enabled'>".substr(getActualLink($reverseLogLinesMMDVM, "DMR Slot 2"), -10)."</div></div>\n";
+			echo "<div class='divTableCell middle'><div class='cell_content active-mode-cell' title='Time Slot 2 Enabled'>".substr(getActualLink($reverseLogLinesMMDVM, "DMR Slot 2"), -11)."</div></div>\n";
 		}
 	    } else {
 		    echo "<div class='divTableCell middle'><div class='cell_content inactive-mode-cell' title='Time Slot 2 disabled'>Disabled</div></div>\n";
