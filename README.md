@@ -226,16 +226,22 @@ Run:
 Not all pages shown here. Note, that you can customize the colors to your preferences...
 
 ### Main Dashboard
-![alt text](https://w0chp.net/img/WPSD_Dashboard.png "W0CHP Dashboard")
+![alt text](https://w0chp.net/w0chp-pistar-dash/Main "Dashboard")
 
 ### Main Admin Landing Page
-![alt text](https://w0chp.net/img/WPSD_Admin.png "W0CHP Admin Page")
+![alt text](https://w0chp.net/w0chp-pistar-dash/Admin.png "Admin Page")
 
 ### BrandMeister Manager
-![alt text](https://w0chp.net/img/WPSD_BMman.png "W0CHP BrandMeister Manager")
+![alt text](https://w0chp.net/w0chp-pistar-dash/BM.png "BrandMeister Manager")
+
+### Instant Mode Manager
+![alt text](https://w0chp.net/w0chp-pistar-dash/IMM.png "Mode Manager")
+
+### System Manager
+![alt text](https://w0chp.net/w0chp-pistar-dash/SM.png "System Manager")
 
 ### Live Caller Screen
-![alt-text](https://w0chp.net/img/WPSD_LC.png "Live Caller Screen")
+![alt-text](https://w0chp.net/w0chp-pistar-dash/LC.png "Live Caller Screen")
 
 ## Credits
 
