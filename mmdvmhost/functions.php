@@ -1146,7 +1146,7 @@ function getHeardList($logLines) {
 		$loss = strtok($loss, " ");
 		if (array_key_exists(4,$lineTokens)) {
 		    $ber = substr($lineTokens[4], 5);
-		    $ber = preg_replace('/- Name(.*)/', '', $ber);
+		    $ber = preg_replace('/ - Name(.*)/', '', $ber);
 		}
 	    }
 
@@ -1237,7 +1237,7 @@ function getHeardList($logLines) {
 	}
 	
 	$target = trim(substr($logLine, strpos($logLine, "to") + 3));
-	$target = preg_replace('/- Name(.*)/', '', $target);
+	$target = preg_replace('/ - Name(.*)/', '', $target);
 	// Handle more verbose logging from MMDVMHost
         if (strpos($target,",") !== 'false') {
 	    $target = explode(",", $target)[0];
@@ -1511,7 +1511,7 @@ function getActualLink($logLines, $mode) {
 			}
 			if (strpos($logLine,"to")) {
 			    $to = trim(substr($logLine, strpos($logLine,"to") + 3));
-			    $to = preg_replace('/- Name(.*)/', '', $to);
+			    $to = preg_replace('/ - Name(.*)/', '', $to);
 			}
 			if ($from !== "") {
 			    if ($from === "4000") {

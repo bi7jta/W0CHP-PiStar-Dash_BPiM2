@@ -856,43 +856,43 @@ if (!empty($_POST)):
 	  }
 	}
 
-	// grab user prefs from form submission so we can later update the configs.
-	if (empty($_POST['DMRGatewayAPRS']) != TRUE) { // checked!
+	// grab user prefs from form submission (or current settings) so we can later update the configs.
+	if (empty($_POST['DMRGatewayAPRS']) != TRUE || $configdmrgateway['APRS']['Enable'] == "1") { // checked!
 		$DMRGatewayAPRS = "1";
 	} else {
 		$DMRGatewayAPRS = "0";
 	}
-	if (empty($_POST['IRCDDBGatewayAPRS']) != TRUE) { // checked!
+	if (empty($_POST['IRCDDBGatewayAPRS']) != TRUE || $IRCDDBGatewayAPRS['APRS']['Enable'] == "1") { // checked!
 		$IRCDDBGatewayAPRS = "1";
 	} else {
 		$IRCDDBGatewayAPRS = "0";
 	}
-	if (empty($_POST['YSFGatewayAPRS']) != TRUE) { // checked!
+	if (empty($_POST['YSFGatewayAPRS']) != TRUE || $YSFGatewayAPRS['APRS']['Enable'] == "1") { // checked!
 		$YSFGatewayAPRS = "1";
 	} else {
 		$YSFGatewayAPRS = "0";
 	}
-	if (empty($_POST['DGIdGatewayAPRS']) != TRUE) { // checked!
+	if (empty($_POST['DGIdGatewayAPRS']) != TRUE || $DGIdGatewayAPRS['APRS']['Enable'] == "1") { // checked!
 		$DGIdGatewayAPRS = "1";
 	} else {
 		$DGIdGatewayAPRS = "0";
 	}
-	if (empty($_POST['NXDNGatewayAPRS']) != TRUE) { // checked!
+	if (empty($_POST['NXDNGatewayAPRS']) != TRUE || $NXDNGatewayAPRS['APRS']['Enable'] == "1") { // checked!
 		$NXDNGatewayAPRS = "1";
 	} else {
 		$NXDNGatewayAPRS = "0";
 	}
-	if (empty($_POST['M17GatewayAPRS']) != TRUE) { // checked!
+	if (empty($_POST['M17GatewayAPRS']) != TRUE || $M17GatewayAPRS['APRS']['Enable'] == "1") { // checked!
 		$M17GatewayAPRS = "1";
 	} else {
 		$M17GatewayAPRS = "0";
 	}
-	if (empty($_POST['DMRBeaconEnable']) != TRUE) { // checked!
+	if (empty($_POST['DMRBeaconEnable']) != TRUE || $configmmdvm['DMR']['Beacons'] == "1") { // checked!
 		$DMRBeaconEnable = "1";
 	} else {
 		$DMRBeaconEnable = "0";
 	}
-	if (empty($_POST['DMRBeaconModeNet']) != TRUE) { // checked!
+	if (empty($_POST['DMRBeaconModeNet']) != TRUE || !isset($configmmdvm['DMR']['BeaconInterval']))  { // checked!
 		$DMRBeaconModeNet = "1";
 	} else {
 		$DMRBeaconModeNet = "0";

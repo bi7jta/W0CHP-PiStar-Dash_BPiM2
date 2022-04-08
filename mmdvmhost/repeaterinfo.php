@@ -449,7 +449,7 @@ if (isProcessRunning("M17Gateway")) {
 	    <?php
 	    if (getConfigItem("DMR Network", "Slot1", $_SESSION['MMDVMHostConfigs']) == 1) {
 		if (preg_match("/Not/",getActualLink($reverseLogLinesMMDVM, "DMR Slot 1"))) {
-                        echo "<div class='divTableCelle'><div class='active-mode-cell' title='No TG'>No TG</div></div>\n";
+                        echo "<div class='divTableCell'><div class='active-mode-cell' title='No TG'>No TG</div></div>\n";
 		} else {
 		    echo "<div class='divTableCell'><div class='active-mode-cell' title='Time Slot 1 Enabled'>".substr(getActualLink($reverseLogLinesMMDVM, "DMR Slot 1"), -11)."</div></div>\n";
 		}
@@ -463,7 +463,7 @@ if (isProcessRunning("M17Gateway")) {
            <?php
 	    if (getConfigItem("DMR Network", "Slot2", $_SESSION['MMDVMHostConfigs']) == 1) {
                 if (preg_match("/Not/",getActualLink($reverseLogLinesMMDVM, "DMR Slot 2"))) {
-                        echo "<div class='divTableCell><div class='active-mode-cell' title='No TG'>No TG</div></div>\n";
+                        echo "<div class='divTableCell'><div class='active-mode-cell' title='No TG'>No TG</div></div>\n";
                 } else {
 			echo "<div class='divTableCell'><div class='active-mode-cell' title='Time Slot 2 Enabled'>".substr(getActualLink($reverseLogLinesMMDVM, "DMR Slot 2"), -11)."</div></div>\n";
 		}
