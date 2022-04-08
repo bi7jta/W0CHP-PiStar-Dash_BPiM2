@@ -139,12 +139,12 @@ checkSessionValidity();
 	    <div style="float: right; vertical-align: bottom; padding-top: 0px;">
 	       <div class="grid-container" style="display: inline-grid; grid-template-columns: auto 40px; padding: 0 8px 0 5px; grid-column-gap: 5px;">
 		<?php if(isset($_SESSION['PiStarRelease']['Pi-Star']['ProcNum']) && ($_SESSION['PiStarRelease']['Pi-Star']['ProcNum'] >= 4)) { ?>
-		 <div class="grid-item" style="padding-top: 5px;" title="Display Last/Current Caller Details table in Dashboard">Current Caller: </div>
+		 <div class="grid-item" style="padding-top: 5px;" title="Display Caller Details">Caller Details: </div>
 	    	   <div class="grid-item">
 		    <div>
-			<input id="toggle-display-lastcaller" class="toggle toggle-round-flat" type="checkbox" name="display-lastcaller" value="ON" <?php if(file_exists('/etc/.CALLERDETAILS')) { echo 'checked="checked"';}?> aria-checked="true" aria-label="Display Last Caller Details" onchange="setLastCaller(this)" /><label for="toggle-display-lastcaller" ></label>
+			<input id="toggle-display-lastcaller" class="toggle toggle-round-flat" type="checkbox" name="display-lastcaller" value="ON" <?php if(file_exists('/etc/.CALLERDETAILS')) { echo 'checked="checked"';}?> aria-checked="true" aria-label="Display Caller Details" onchange="setLastCaller(this)" /><label for="toggle-display-lastcaller" ></label>
 		<?php } else { ?>
-		 <div class="grid-item" style="padding-top: 5px;opacity: 0.5;" title="Function Disabled: Hardware too weak.">Current Caller: </div>
+		 <div class="grid-item" style="padding-top: 5px;opacity: 0.5;" title="Function Disabled: Hardware too weak.">Caller Details: </div>
 	    	   <div class="grid-item">
 		    <div>
 			<input id="toggle-display-lastcaller" class="toggle toggle-round-flat" type="checkbox" name="display-lastcaller" value="ON"  aria-checked="true" aria-label="Display Last Caller Details" disabled="disabled" title="Function Disabled: Hardware too weak." /><label for="toggle-display-lastcaller" title="Function Disabled: Hardware too weak."></label>
@@ -529,7 +529,7 @@ checkSessionValidity();
                 	        data:{action:'enable'},
 				success: function(data) { 
      				    $('#lcmsg').html(data).fadeIn('slow');
-				    $('#lcmsg').html(\"<div style='padding:8px;font-style:italic;font-weight:bold;'>For optimal performace, the number of Last Heard rows will be decreased while Current/Last Caller is enabled.</div>\").fadeIn('slow')
+				    $('#lcmsg').html(\"<div style='padding:8px;font-style:italic;font-weight:bold;'>For optimal performace, the number of Last Heard rows will be decreased while Caller Details function is enabled.</div>\").fadeIn('slow')
      				    $('#lcmsg').delay(4000).fadeOut('slow');
 				}
          	             });";
@@ -541,14 +541,14 @@ checkSessionValidity();
 	                        data:{action:'disable'},
 				success: function(data) { 
      				    $('#lcmsg').html(data).fadeIn('slow');
-				    $('#lcmsg').html(\"<div style='padding:8px;font-style:italic;font-weight:bold;'>Current/Last Caller display disabled. Increasing Last Heard table rows to user preference (if set) or default (40).</div>\").fadeIn('slow')
+				    $('#lcmsg').html(\"<div style='padding:8px;font-style:italic;font-weight:bold;'>Caller Details function disabled. Increasing Last Heard table rows to user preference (if set) or default (40).</div>\").fadeIn('slow')
      				    $('#lcmsg').delay(4000).fadeOut('slow');
 				}
 	                      });";
 	        echo '    }'."\n";
 	        echo '}'."\n";
     		echo '</script>'."\n";
-		echo '<div id="lcmsg" style="background:#eeeeee;color:black; margin:5px 0 10px 0;"></div>'."\n";
+		echo '<div id="lcmsg" style="background:#d6d6d6;color:black; margin:0 0 10px 0;"></div>'."\n";
     		echo '<script type="text/javascript">'."\n";
     		echo 'function LiveCallerDetails(){'."\n";
     		echo '  $("#liveCallerDeets").load("/mmdvmhost/live_caller_table.php");'."\n";

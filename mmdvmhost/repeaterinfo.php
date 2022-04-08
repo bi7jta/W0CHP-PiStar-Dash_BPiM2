@@ -449,12 +449,12 @@ if (isProcessRunning("M17Gateway")) {
 	    <?php
 	    if (getConfigItem("DMR Network", "Slot1", $_SESSION['MMDVMHostConfigs']) == 1) {
 		if (preg_match("/Not/",getActualLink($reverseLogLinesMMDVM, "DMR Slot 1"))) {
-                        echo "<div class='divTableCell middle'><div class='cell_content active-mode-cell' title='No TG'>No TG</div></div>\n";
+                        echo "<div class='divTableCelle'><div class='active-mode-cell' title='No TG'>No TG</div></div>\n";
 		} else {
-		    echo "<div class='divTableCell middle'><div class='cell_content active-mode-cell' title='Time Slot 1 Enabled'>".substr(getActualLink($reverseLogLinesMMDVM, "DMR Slot 1"), -11)."</div></div>\n";
+		    echo "<div class='divTableCell'><div class='active-mode-cell' title='Time Slot 1 Enabled'>".substr(getActualLink($reverseLogLinesMMDVM, "DMR Slot 1"), -11)."</div></div>\n";
 		}
 	    } else {
-		    echo "<div class='divTableCell middle'><div class='cell_content inactive-mode-cell' title='Time Slot 1 disabled'>Disabled</div></div>\n";
+		    echo "<div class='divTableCelle'><div class='inactive-mode-cell' title='Time Slot 1 disabled'>Disabled</div></div>\n";
 	    }
 	    ?>
     </div>
@@ -463,12 +463,12 @@ if (isProcessRunning("M17Gateway")) {
            <?php
 	    if (getConfigItem("DMR Network", "Slot2", $_SESSION['MMDVMHostConfigs']) == 1) {
                 if (preg_match("/Not/",getActualLink($reverseLogLinesMMDVM, "DMR Slot 2"))) {
-                        echo "<div class='divTableCell middle'><div class='cell_content active-mode-cell' title='No TG'>No TG</div></div>\n";
+                        echo "<div class='divTableCell><div class='active-mode-cell' title='No TG'>No TG</div></div>\n";
                 } else {
-			echo "<div class='divTableCell middle'><div class='cell_content active-mode-cell' title='Time Slot 2 Enabled'>".substr(getActualLink($reverseLogLinesMMDVM, "DMR Slot 2"), -11)."</div></div>\n";
+			echo "<div class='divTableCell'><div class='active-mode-cell' title='Time Slot 2 Enabled'>".substr(getActualLink($reverseLogLinesMMDVM, "DMR Slot 2"), -11)."</div></div>\n";
 		}
 	    } else {
-		    echo "<div class='divTableCell middle'><div class='cell_content inactive-mode-cell' title='Time Slot 2 disabled'>Disabled</div></div>\n";
+		    echo "<div class='divTableCell'><div class='inactive-mode-cell' title='Time Slot 2 disabled'>Disabled</div></div>\n";
 	    }
 	    ?>
     </div>
@@ -919,26 +919,26 @@ echo "<div class='divTableCell cell_content center'><div style=\"background: $ta
 ?>
   <div class="mode_flex row">
     <div class="mode_flex column">
-<?php	if ($testAPRSdmr == 1) { echo "<div class=\"divTableCell\"><div class=\"active-mode-cell\">DMR</div></div>"; } else { echo "<div class=\"divTableCell\"><div class=\"disabled-mode-cell\">DMR</div></div>"; } ?>
+<?php	if ($testAPRSdmr == 1) { echo "<div class=\"divTableCell\"><div class=\"active-mode-cell\">DMR</div></div>\n"; } else { echo "<div class=\"divTableCell\"><div class=\"disabled-mode-cell\">DMR</div></div>\n"; } ?>
     </div>
     <div class="mode_flex column">
-<?php	if ($testAPRSircddb == 1) { echo "<div class=\"divTableCell\"><div class=\"active-mode-cell\">ircDDB</div></div>"; } else { echo "<div class=\"divTableCell\"><div class=\"disabled-mode-cell\">ircDDB</div></div>"; } ?>
+<?php	if ($testAPRSircddb == 1) { echo "<div class=\"divTableCell\"><div class=\"active-mode-cell\">ircDDB</div></div>\n"; } else { echo "<div class=\"divTableCell\"><div class=\"disabled-mode-cell\">ircDDB</div></div>\n"; } ?>
     </div>
   </div>
   <div class="mode_flex row">
     <div class="mode_flex column">
-<?php	if ($testAPRSysf == 1) { echo "<div class=\"divTableCell\"><div class=\"active-mode-cell\">YSF</div></div>"; } else { echo "<div class=\"divTableCell\"><div class=\"disabled-mode-cell\">YSF</div></div>"; } ?>
+<?php	if ($testAPRSysf == 1) { echo "<div class=\"divTableCell\"><div class=\"active-mode-cell\">YSF</div></div>\n"; } else { echo "<div class=\"divTableCell\"><div class=\"disabled-mode-cell\">YSF</div></div>\n"; } ?>
       </div>
     <div class="mode_flex column">
-<?php	if ($testAPRSdgid == 1) { echo "<div class=\"divTableCell\"><div class=\"active-mode-cell\">DGId</div></div>"; } else { echo "<div class=\"divTableCell\"><div class=\"disabled-mode-cell\">DGId</div></div>"; } ?>
+<?php	if ($testAPRSdgid == 1) { echo "<div class=\"divTableCell\"><div class=\"active-mode-cell\">DGId</div></div>\n"; } else { echo "<div class=\"divTableCell\"><div class=\"disabled-mode-cell\">DGId</div></div>\n"; } ?>
       </div>
     </div>
   <div class="mode_flex row">
     <div class="mode_flex column">
-<?php	if ($testAPRSnxdn == 1) { echo "<div class=\"divTableCell\"><div class=\"active-mode-cell\">NXDN</div></div>"; } else { echo "<div class=\"divTableCell\"><div class=\"disabled-mode-cell\">NXDN</div></div>"; } ?>
+<?php	if ($testAPRSnxdn == 1) { echo "<div class=\"divTableCell\"><div class=\"active-mode-cell\">NXDN</div></div>\n"; } else { echo "<div class=\"divTableCell\"><div class=\"disabled-mode-cell\">NXDN</div></div>\n"; } ?>
     </div>
     <div class="mode_flex column">
-<?php	if ($testAPRSm17 == 1) { echo "<div class=\"divTableCell\"><div class=\"active-mode-cell\">M17</div></div>"; } else { echo "<div class=\"divTableCell\"><div class=\"disabled-mode-cell\">M17</div></div>"; } ?>
+<?php	if ($testAPRSm17 == 1) { echo "<div class=\"divTableCell\"><div class=\"active-mode-cell\">M17</div></div>\n"; } else { echo "<div class=\"divTableCell\"><div class=\"disabled-mode-cell\">M17</div></div>\n"; } ?>
     </div>
   </div>
 
