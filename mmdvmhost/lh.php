@@ -38,14 +38,14 @@ $Flags->LoadFlags();
 <div style="vertical-align: bottom; font-weight: bold; padding-top:14px;text-align:left;"><?php echo $lang['last_heard_list'];?></div>
   <table>
     <tr>
-      <th><a class="tooltip" href="#"><?php echo $lang['time'];?> (<?php echo date('T')?>)<span><b>Time in <?php echo date('T')?> time zone</b></span></a></th>
+      <th width="250px"><a class="tooltip" href="#"><?php echo $lang['time'];?> (<?php echo date('T')?>)<span><b>Time in <?php echo date('T')?> time zone</b></span></a></th>
       <th><a class="tooltip" href="#"><?php echo $lang['mode'];?><span><b>Transmitted Mode</b></span></a></th>
       <th width="85px"><a class="tooltip" href="#"><?php echo $lang['callsign'];?><span><b>Callsign</b></span></a></th>
 <?php
     if (file_exists("/etc/.CALLERDETAILS")) {
 ?>
       <th width="50px"><a class="tooltip" href="#">Country<span><b>Country</b></span></a></th>
-      <th><a class="tooltip" href="#">Name<span><b>Name</b></span></a></th>
+      <th class="noMob"><a class="tooltip" href="#">Name<span><b>Name</b></span></a></th>
 <?php
     }
 ?>
@@ -104,13 +104,13 @@ for ($i = 0;  ($i <= $lastHeardRows - 1); $i++) {
 			if (strpos($listElem[2],"-") > 0) { $listElem[2] = substr($listElem[2], 0, strpos($listElem[2],"-")); }
 			if ( $listElem[3] && $listElem[3] != '    ' ) {
 			    if (file_exists("/etc/.CALLERDETAILS")) {
-				echo "<td align=\"left\"><a href=\"http://www.qrz.com/db/$listElem[2]\" target=\"_blank\">$listElem[2]</a>//$listElem[8]</td><td>$flContent</td><td align='left'>$listElem[11]</td>";
+				echo "<td align=\"left\"><a href=\"http://www.qrz.com/db/$listElem[2]\" target=\"_blank\">$listElem[2]</a>//$listElem[8]</td><td>$flContent</td><td align='left' class='noMob'>$listElem[11]</td>";
 			    } else {
 				echo "<td align=\"left\"><a href=\"http://www.qrz.com/db/$listElem[2]\" target=\"_blank\">$listElem[2]</a>//$listElem[8]</td>";
 			    }
 			} else {
 			    if (file_exists("/etc/.CALLERDETAILS")) {
-				echo "<td align=\"left\"><a href=\"http://www.qrz.com/db/$listElem[2]\" target=\"_blank\">$listElem[2]</a></td><td>$flContent</td><td align='left'>$listElem[11]</td>";
+				echo "<td align=\"left\"><a href=\"http://www.qrz.com/db/$listElem[2]\" target=\"_blank\">$listElem[2]</a></td><td>$flContent</td><td align='left' class='noMob'>$listElem[11]</td>";
 			    } else {
 				echo "<td align=\"left\"><a href=\"http://www.qrz.com/db/$listElem[2]\" target=\"_blank\">$listElem[2]</a></td></td>";
 			    }
