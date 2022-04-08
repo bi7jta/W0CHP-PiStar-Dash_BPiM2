@@ -22,6 +22,10 @@ if (!class_exists('xGeoLookup')) require_once($_SERVER['DOCUMENT_ROOT'].'/classe
 $Flags = new xGeoLookup();
 $Flags->SetFlagFile("/usr/local/etc/country.csv");
 $Flags->LoadFlags();
+// DMR config test for name row
+if ($_SESSION['MMDVMHostConfigs']['DMR']['Enable'] == 1) {
+    	$testMMDVModeDMR = TRUE;
+}
 ?>
 <input type="hidden" name="lh-autorefresh" value="OFF" />
   <div style="float: right; vertical-align: bottom; padding-top: 0px;" id="lhAR">
@@ -45,6 +49,10 @@ $Flags->LoadFlags();
     if (file_exists("/etc/.CALLERDETAILS")) {
 ?>
       <th width="50px"><a class="tooltip" href="#">Country<span><b>Country</b></span></a></th>
+<?php
+    }
+    if (file_exists("/etc/.CALLERDETAILS") && $testMMDVModeDMR == TRUE) {
+?>
       <th class="noMob"><a class="tooltip" href="#">Name<span><b>Name</b></span></a></th>
 <?php
     }
@@ -90,29 +98,33 @@ for ($i = 0;  ($i <= $lastHeardRows - 1); $i++) {
 		echo "<td align=\"left\">".str_replace('Slot ', 'TS', $listElem[1])."</td>";
 		if (is_numeric($listElem[2]) || strpos($listElem[2], "openSPOT") !== FALSE) {
 		    if (file_exists("/etc/.CALLERDETAILS")) {
-                        echo "<td align=\"left\">$listElem[2]</td><td colspan='2'>$flContent</td>";
+                        echo "<td align=\"left\">$listElem[2]</td><td>$flContent</td>";
 		    } else {
                         echo "<td align=\"left\">$listElem[2]</td>";
 		    }
 		} elseif (!preg_match('/[A-Za-z].*[0-9]|[0-9].*[A-Za-z]/', $listElem[2])) {
 		    if (file_exists("/etc/.CALLERDETAILS")) {
-                        echo "<td align=\"left\">$listElem[2]</td><td colspan='2'>$flContent</td>";
+                        echo "<td align=\"left\">$listElem[2]</td><td>$flContent</td>";
 		    } else {
                         echo "<td align=\"left\">$listElem[2]</td>";
 		    }
 		} else {
 			if (strpos($listElem[2],"-") > 0) { $listElem[2] = substr($listElem[2], 0, strpos($listElem[2],"-")); }
 			if ( $listElem[3] && $listElem[3] != '    ' ) {
-			    if (file_exists("/etc/.CALLERDETAILS")) {
-				echo "<td align=\"left\"><a href=\"http://www.qrz.com/db/$listElem[2]\" target=\"_blank\">$listElem[2]</a>//$listElem[8]</td><td>$flContent</td><td align='left' class='noMob'>$listElem[11]</td>";
+    			    if (file_exists("/etc/.CALLERDETAILS") && $testMMDVModeDMR == TRUE) {
+				echo "<td align=\"left\"><a href=\"http://www.qrz.com/db/$listElem[2]\" target=\"_blank\">$listElem[2]</a>/$listElem[8]</td><td>$flContent</td><td align='left' class='noMob'>$listElem[11]</td>";
+			    } elseif (file_exists("/etc/.CALLERDETAILS") && $testMMDVModeDMR == FALSE) {
+				echo "<td align=\"left\"><a href=\"http://www.qrz.com/db/$listElem[2]\" target=\"_blank\">$listElem[2]</a>/$listElem[8]</td><td>$flContent</td>";
 			    } else {
-				echo "<td align=\"left\"><a href=\"http://www.qrz.com/db/$listElem[2]\" target=\"_blank\">$listElem[2]</a>//$listElem[8]</td>";
+				echo "<td align=\"left\"><a href=\"http://www.qrz.com/db/$listElem[2]\" target=\"_blank\">$listElem[2]</a>/$listElem[8]</td>>";
 			    }
 			} else {
-			    if (file_exists("/etc/.CALLERDETAILS")) {
+    			    if (file_exists("/etc/.CALLERDETAILS") && $testMMDVModeDMR == TRUE) {
 				echo "<td align=\"left\"><a href=\"http://www.qrz.com/db/$listElem[2]\" target=\"_blank\">$listElem[2]</a></td><td>$flContent</td><td align='left' class='noMob'>$listElem[11]</td>";
+			    } elseif (file_exists("/etc/.CALLERDETAILS") && $testMMDVModeDMR == FALSE) {
+				echo "<td align=\"left\"><a href=\"http://www.qrz.com/db/$listElem[2]\" target=\"_blank\">$listElem[2]</a></td><td>$flContent</td></td>";
 			    } else {
-				echo "<td align=\"left\"><a href=\"http://www.qrz.com/db/$listElem[2]\" target=\"_blank\">$listElem[2]</a></td></td>";
+				echo "<td align=\"left\"><a href=\"http://www.qrz.com/db/$listElem[2]\" target=\"_blank\">$listElem[2]</a></td>";
 			    }
 			}
 		}
