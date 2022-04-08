@@ -22,10 +22,9 @@ if (!class_exists('xGeoLookup')) require_once($_SERVER['DOCUMENT_ROOT'].'/classe
 $Flags = new xGeoLookup();
 $Flags->SetFlagFile("/usr/local/etc/country.csv");
 $Flags->LoadFlags();
-// DMR config test for name row
-if ($_SESSION['MMDVMHostConfigs']['DMR']['Enable'] == 1) {
-    	$testMMDVModeDMR = TRUE;
-}
+
+// for name column
+$testMMDVModeDMR = getConfigItem("DMR", "Enable", $_SESSION['MMDVMHostConfigs']);
 ?>
 <input type="hidden" name="lh-autorefresh" value="OFF" />
   <div style="float: right; vertical-align: bottom; padding-top: 0px;" id="lhAR">
@@ -51,7 +50,7 @@ if ($_SESSION['MMDVMHostConfigs']['DMR']['Enable'] == 1) {
       <th width="50px"><a class="tooltip" href="#">Country<span><b>Country</b></span></a></th>
 <?php
     }
-    if (file_exists("/etc/.CALLERDETAILS") && $testMMDVModeDMR == TRUE) {
+    if (file_exists("/etc/.CALLERDETAILS") && $testMMDVModeDMR == 1 ) {
 ?>
       <th class="noMob"><a class="tooltip" href="#">Name<span><b>Name</b></span></a></th>
 <?php
@@ -111,17 +110,17 @@ for ($i = 0;  ($i <= $lastHeardRows - 1); $i++) {
 		} else {
 			if (strpos($listElem[2],"-") > 0) { $listElem[2] = substr($listElem[2], 0, strpos($listElem[2],"-")); }
 			if ( $listElem[3] && $listElem[3] != '    ' ) {
-    			    if (file_exists("/etc/.CALLERDETAILS") && $testMMDVModeDMR == TRUE) {
+			    if (file_exists("/etc/.CALLERDETAILS") && $testMMDVModeDMR == 1 ) {
 				echo "<td align=\"left\"><a href=\"http://www.qrz.com/db/$listElem[2]\" target=\"_blank\">$listElem[2]</a>/$listElem[8]</td><td>$flContent</td><td align='left' class='noMob'>$listElem[11]</td>";
-			    } elseif (file_exists("/etc/.CALLERDETAILS") && $testMMDVModeDMR == FALSE) {
+			    } elseif (file_exists("/etc/.CALLERDETAILS") && $testMMDVModeDMR == 0 ) {
 				echo "<td align=\"left\"><a href=\"http://www.qrz.com/db/$listElem[2]\" target=\"_blank\">$listElem[2]</a>/$listElem[8]</td><td>$flContent</td>";
 			    } else {
 				echo "<td align=\"left\"><a href=\"http://www.qrz.com/db/$listElem[2]\" target=\"_blank\">$listElem[2]</a>/$listElem[8]</td>>";
 			    }
 			} else {
-    			    if (file_exists("/etc/.CALLERDETAILS") && $testMMDVModeDMR == TRUE) {
+			    if (file_exists("/etc/.CALLERDETAILS") && $testMMDVModeDMR == 1 ) {
 				echo "<td align=\"left\"><a href=\"http://www.qrz.com/db/$listElem[2]\" target=\"_blank\">$listElem[2]</a></td><td>$flContent</td><td align='left' class='noMob'>$listElem[11]</td>";
-			    } elseif (file_exists("/etc/.CALLERDETAILS") && $testMMDVModeDMR == FALSE) {
+			    } elseif (file_exists("/etc/.CALLERDETAILS") && $testMMDVModeDMR == 0 ) {
 				echo "<td align=\"left\"><a href=\"http://www.qrz.com/db/$listElem[2]\" target=\"_blank\">$listElem[2]</a></td><td>$flContent</td></td>";
 			    } else {
 				echo "<td align=\"left\"><a href=\"http://www.qrz.com/db/$listElem[2]\" target=\"_blank\">$listElem[2]</a></td>";
