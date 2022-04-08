@@ -1488,7 +1488,7 @@ function getActualLink($logLines, $mode) {
 		return getDSTARLinks();
     	    } 
 	    else {
-    		return "Service Not Started";
+    		return "<div class='inactive-mode-cell'>Service Not Started</div>";
     	    }
             break;
 
@@ -1535,7 +1535,7 @@ function getActualLink($logLines, $mode) {
 		return "No TG";
 	    }
 	    else {
-		return "Service Not Started";
+		return "<div class='inactive-mode-cell'>Service Not Started</div>";
 	    }
             break; 
 
@@ -1595,7 +1595,7 @@ function getActualLink($logLines, $mode) {
 		return "Not Linked";
             } 
 	    else {
-		return "Service Not Started";
+		return "<div class='inactive-mode-cell'>Service Not Started</div>";
             }
             break;
 	    
@@ -1636,7 +1636,7 @@ function getActualLink($logLines, $mode) {
 		return "Not Linked";
             } 
 	    else {
-		return "Service Not Started";
+		return "<div class='inactive-mode-cell'>Service Not Started</div>";
             }
             break;
 
@@ -1665,7 +1665,7 @@ function getActualLink($logLines, $mode) {
 		return "Not Linked";
             }
 	    else {
-		return "Service Not Started";
+		return "<div class='inactive-mode-cell'>Service Not Started</div>";
             }
 	    break;
  
@@ -1709,11 +1709,11 @@ function getActualLink($logLines, $mode) {
         return "Not Linked";
 	    } 
 	    else {
-		return "Service Not Started";
+		return "<div class='inactive-mode-cell'>Service Not Started</div>";
             }
 	    break;
     }
-    return "Service Not Started";
+    return "<div class='inactive-mode-cell'>ervice Not Started</div>";
 }
 
 function decodeAlias($logLine) {

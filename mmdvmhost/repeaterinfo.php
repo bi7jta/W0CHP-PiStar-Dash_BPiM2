@@ -322,7 +322,11 @@ if (isProcessRunning("M17Gateway")) {
 		}
         }
         if ($_SESSION['ircDDBConfigs']['ircddbEnabled'] == 1) {
+	    if (isProcessRunning("ircddbgatewayd")) {
 	        echo "<div class='divTableRow center'><div class='divTableHeadCell'>ircDDB</div></div><div class='divTableRow center'><div class='divTableCell cell_content' style=\"background: $tableRowEvenBg;\">".substr($_SESSION['ircDDBConfigs']['ircddbHostname'], 0 ,18)."</div></div>\n";
+	    } else {
+	        echo "<div class='divTableRow center'><div class='divTableHeadCell'>ircDDB</div></div><div class='divTableRow center'><div class='divTableCell cell_content'><div class='inactive-mode-cell'>Service Not Started</div></div></div>\n";
+	    }
         }
 	?>
   </div>
@@ -449,12 +453,12 @@ if (isProcessRunning("M17Gateway")) {
 	    <?php
 	    if (getConfigItem("DMR Network", "Slot1", $_SESSION['MMDVMHostConfigs']) == 1) {
 		if (preg_match("/Not/",getActualLink($reverseLogLinesMMDVM, "DMR Slot 1"))) {
-                        echo "<div class='divTableCell'><div class='active-mode-cell' title='No TG'>No TG</div></div>\n";
+                        echo "<div class='divTableCell'><div class='cell_content' title='No TG'>No TG</div></div>\n";
 		} else {
 		    echo "<div class='divTableCell'><div class='active-mode-cell' title='Time Slot 1 Enabled'>".substr(getActualLink($reverseLogLinesMMDVM, "DMR Slot 1"), -11)."</div></div>\n";
 		}
 	    } else {
-		    echo "<div class='divTableCelle'><div class='inactive-mode-cell' title='Time Slot 1 disabled'>Disabled</div></div>\n";
+		    echo "<div class='divTableCell'><div class='inactive-mode-cell' title='Time Slot 1 disabled'>Disabled</div></div>\n";
 	    }
 	    ?>
     </div>
@@ -463,7 +467,7 @@ if (isProcessRunning("M17Gateway")) {
            <?php
 	    if (getConfigItem("DMR Network", "Slot2", $_SESSION['MMDVMHostConfigs']) == 1) {
                 if (preg_match("/Not/",getActualLink($reverseLogLinesMMDVM, "DMR Slot 2"))) {
-                        echo "<div class='divTableCell'><div class='active-mode-cell' title='No TG'>No TG</div></div>\n";
+                        echo "<div class='divTableCell'><div class='cell_content' title='No TG'>No TG</div></div>\n";
                 } else {
 			echo "<div class='divTableCell'><div class='active-mode-cell' title='Time Slot 2 Enabled'>".substr(getActualLink($reverseLogLinesMMDVM, "DMR Slot 2"), -11)."</div></div>\n";
 		}
@@ -540,7 +544,7 @@ if (isProcessRunning("M17Gateway")) {
 			}
 		    }
 		    else {
-			echo "<div class='divTableRow center'><div class='divTableCell' style=\"background: $tableRowEvenBg;\">Service Not Started</div></div>\n";
+			echo "<div class='divTableRow center'><div class='divTableCell cell_content'><div class='inactive-mode-cell'>Service Not Started</div></div></div>\n";
 		    }
 		}
 		else {
@@ -548,7 +552,7 @@ if (isProcessRunning("M17Gateway")) {
 		}
 	    }
 	    else {
-		echo "<div class='divTableRow center'><div class='divTableCell' style=\"background:#606060; color:#b0b0b0;\">No DMR Network</div></div>\n";
+		echo "<div class='divTableRow center'><div class='divTableCell cell_content'><div class='inactive-mode-cell'>No DMR Network</div></div></div>\n";
 	    }
         ?>
       </div>
@@ -675,7 +679,7 @@ if (getServiceEnabled('/etc/dgidgateway') == 1 )  { // Hide DGId GW info when GW
           else if (isProcessRunning("DGIdGateway")) {
             echo "<div class='divTableCell cell_content'><div style=\"background: $tableRowEvenBg;\" title=\"".getDGIdLinks()."\">".getDGIdLinks()."</div></div>\n";
         } else {
-            echo "<div class='divTableCell cell_content'><div style=\"background: $tableRowEvenBg;\" title=\"Service Not Started\">Service Not Started</div></div>\n";
+            echo "<div class='divTableCell cell_content'><div class='inactive-mode-cell'>Service Not Started</div></div>\n";
         }
 ?>
     </div>
@@ -843,7 +847,7 @@ if (getConfigItem("NXDN", "RAN", $_SESSION['MMDVMHostConfigs'])) {
 		echo "<div class='divTableCell cell_content'><div style=\"background: $tableRowEvenBg;\" title=\"".$dapnetGatewayRemoteTooltip."\">".$dapnetGatewayRemoteAddr."</div></div>\n";
 	    }
 	    else {
-		echo "<div class='divTableCell cell_content'><div style=\"background: $tableRowEvenBg;\">Service Not Started</div></div>\n";
+		echo "<div class='divTableCell cell_content'><div class='inactive-mode-cell'>Service Not Started</div></div>\n";
 	    }
 ?>
     </div>
@@ -869,7 +873,7 @@ if (getConfigItem("NXDN", "RAN", $_SESSION['MMDVMHostConfigs'])) {
 <?php
 if (!isProcessRunning("APRSGateway")) {
 ?>
-<?php echo "<div class='divTableCell center'><div style=\"background-color: $tableRowEvenBg;\" title=\"Service Not Started\">Service Not Started</div></div>\n"; ?>
+<?php echo "<div class='divTableCell cell_content'><div class='inactive-mode-cell'>Service Not Started</div></div>\n"; ?>
     </div>
   </div>
 </div>
