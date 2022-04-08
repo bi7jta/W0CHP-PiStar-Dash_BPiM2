@@ -1234,6 +1234,7 @@ function getHeardList($logLines) {
 	$id ="";
 	if ($mode == "D-Star") {
 	    $id = substr($callsign2, strpos($callsign2,"/") + 1);
+	    $id = preg_replace('/\/(.?)$/', ""); // "/INFO" etc screws up table fields
 	}
 	
 	$target = trim(substr($logLine, strpos($logLine, "to") + 3));
