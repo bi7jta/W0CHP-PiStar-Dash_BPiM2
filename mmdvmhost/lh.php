@@ -96,14 +96,18 @@ for ($i = 0;  ($i <= $lastHeardRows - 1); $i++) {
 		echo"<td align=\"left\">$local_time</td>";
 		echo "<td align=\"left\">".str_replace('Slot ', 'TS', $listElem[1])."</td>";
 		if (is_numeric($listElem[2]) || strpos($listElem[2], "openSPOT") !== FALSE) {
-		    if (file_exists("/etc/.CALLERDETAILS")) {
+		    if (file_exists("/etc/.CALLERDETAILS") && $testMMDVModeDMR == 1 ) {
                         echo "<td align=\"left\">$listElem[2]</td><td>$flContent</td><td align='left' class='noMob'>$listElem[11]</td>";
+		    } elseif (file_exists("/etc/.CALLERDETAILS") && $testMMDVModeDMR == 0 ) {
+                        echo "<td align=\"left\">$listElem[2]</td>><td>$flContent</td>";
 		    } else {
                         echo "<td align=\"left\">$listElem[2]</td>";
 		    }
 		} elseif (!preg_match('/[A-Za-z].*[0-9]|[0-9].*[A-Za-z]/', $listElem[2])) {
-		    if (file_exists("/etc/.CALLERDETAILS")) {
+		    if (file_exists("/etc/.CALLERDETAILS") && $testMMDVModeDMR == 1 ) {
                         echo "<td align=\"left\">$listElem[2]</td><td>$flContent</td><td align='left' class='noMob'>$listElem[11]</td>";
+		    } elseif (file_exists("/etc/.CALLERDETAILS") && $testMMDVModeDMR == 0 ) {
+                        echo "<td align=\"left\">$listElem[2]</td>><td>$flContent</td>";
 		    } else {
                         echo "<td align=\"left\">$listElem[2]</td>";
 		    }
