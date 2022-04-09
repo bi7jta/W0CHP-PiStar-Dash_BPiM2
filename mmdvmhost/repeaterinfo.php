@@ -114,6 +114,8 @@ if (isProcessRunning("M17Gateway")) {
     FillConnectionStatus($remoteM17GResults, $remoteCommandEnabled, $remoteCommandPort);
 }
 
+// get number of DMR Masters configged for DMRGw:
+$numDMRmasters = exec('/usr/local/bin/RemoteCommand 7643 status | grep -o "conn" | wc -l');
 ?>
 
 <div class="mode_flex" id="rptInfoTable">
@@ -489,7 +491,11 @@ if (isProcessRunning("M17Gateway")) {
   </div>
 </div>
 <div class="divTable">
+  <?php if ($numDMRmasters <= 1) { ?>
   <div class="divTableHead"><?php echo $lang['dmr_master'];?></div>
+  <?php } else { ?>
+  <div class="divTableHead">DMR Masters</div>
+  <?php } ?>
   <div class="divTableBody">
 	    <?php
 	    if (getEnabled("DMR Network", $_SESSION['MMDVMHostConfigs']) == 1) {
