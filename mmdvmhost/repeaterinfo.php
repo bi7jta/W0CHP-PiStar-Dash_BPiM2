@@ -115,7 +115,7 @@ if (isProcessRunning("M17Gateway")) {
 }
 
 // get number of DMR Masters configged for DMRGw:
-$numDMRmasters = exec('/usr/local/bin/RemoteCommand 7643 status | grep -o "conn" | wc -l');
+$numDMRmasters = exec('cd /var/log/pi-star ; /usr/local/bin/RemoteCommand 7643 status | grep -o "conn" | wc -l');
 ?>
 
 <div class="mode_flex" id="rptInfoTable">
