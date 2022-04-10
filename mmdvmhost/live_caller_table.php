@@ -17,10 +17,10 @@ if (file_exists('/etc/.CALLERDETAILS')) {
       <th width="50px">Country</th>
       <th>Name</th>
       <th>Location</th>
-      <th>Src</th>
-      <th>Mode</th>
-      <th>Target</th>
-      <th>Duration</th>
+      <th><a class="tooltip" href="#"><?php echo $lang['src'];?><span><b>Received from source</b></span></a></th>
+      <th><a class="tooltip" href="#"><?php echo $lang['mode'];?><span><b>Transmitted Mode</b></span></a></th>
+      <th><a class="tooltip" href="#"><?php echo $lang['target'];?><span><b>Target, D-Star Reflector, DMR Talk Group etc</b></span></a></th>
+      <th><a class="tooltip" href="#"><?php echo $lang['dur'];?>(s)<span><b>Duration in Seconds</b></span></a></th>
     </tr>
 <?php
 // get the data from the MMDVMHost logs
