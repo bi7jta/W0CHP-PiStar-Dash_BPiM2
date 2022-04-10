@@ -85,7 +85,7 @@ if ( $testMMDVModeDMR == 1 ) {
 	    // re-add all static
             $bmStaticAddAllCmd = ("sudo /usr/local/sbin/bm_static_tgs_addall $sanitizedKey $dmrID");
             if (!empty(escapeshellcmd($_POST["tgStaticReAdd"]))) {
-	        // make certain that a previous saves/dropped file actually exits
+	        // make certain that a previous saved/dropped file actually exists
 	        if (file_exists("/etc/.bm_tgs.json.saved")) {
             	    exec($bmStaticAddAllCmd);
             	    // Output to the browser
@@ -160,9 +160,10 @@ if ( $testMMDVModeDMR == 1 ) {
                             exec($bmStaticMassAddCmd);
                             exec('sudo mount -o remount,ro /');
                             // Output to the browser
+			    $str = preg_replace('#\s+#',',',trim($massTGs));
 		    	    echo '<br /><div style="text-align:left;font-weight:bold;">BrandMeister Manager</div>'."\n";
                             echo "<table>\n<tr><th>Command Output</th></tr>\n<tr><td>";
-                            print "<p>All Submitted Static Talkgroups Added to slot ".$_POST['massTGslotSelected']."!<br /> Page reloading...</p>";
+                            print "<p>All Submitted Static Talkgroups ($str) Added to slot ".$_POST['massTGslotSelected']."!<br /> Page reloading...</p>";
                             echo "</td></tr>\n</table>\n";
                             // Clean up...
                             unset($_POST);
@@ -193,9 +194,10 @@ if ( $testMMDVModeDMR == 1 ) {
                             exec($bmStaticMassDelCmd);
                             exec('sudo mount -o remount,ro /');
                             // Output to the browser
+			    $str = preg_replace('#\s+#',',',trim($massTGs)); 
 		    	    echo '<br /><div style="text-align:left;font-weight:bold;">BrandMeister Manager</div>'."\n";
                             echo "<table>\n<tr><th>Command Output</th></tr>\n<tr><td>";
-                            print "<p>All Submitted Static Talkgroups Deleted from slot ".$_POST['massTGslotSelected']."!<br /> Page reloading...</p>";
+                            print "<p>All Submitted Static Talkgroups ($str) Deleted from slot ".$_POST['massTGslotSelected']."!<br /> Page reloading...</p>";
                             echo "</td></tr>\n</table>\n";
                             // Clean up...
                             unset($_POST);
@@ -322,6 +324,16 @@ if ( $testMMDVModeDMR == 1 ) {
 	    else { // Do this when we are not handling post data
 		    // If there is a BM API Key
             if (isset($bmAPIkey) || isset($bmAPIkeyV2)) {
+
+	    $jsonContext = stream_context_create(array('http'=>array('timeout' => 2, 'header' => 'User-Agent: Pi-Star '.$_SESSION['PiStarRelease']['Pi-Star']['Version'].'W0CHP-Dashboard for '.$dmrID) )); // Add Timout and User Agent to include DMRID
+	    if (isset($bmAPIkeyV2)) {
+		$json = json_decode(@file_get_contents("https://api.brandmeister.network/v2/device/$dmrID/profile", true, $jsonContext));
+	    } else {
+		$json = json_decode(@file_get_contents("https://api.brandmeister.network/v1.0/repeater/?action=PROFILE&q=$dmrID", true, $jsonContext));
+	    }  
+	    // Set some Variables
+	    $bmStaticTGList = "";
+	    if (isset($json->staticSubscriptions)) { $bmStaticTGListJson = $json->staticSubscriptions; }
 		    echo '<br /><div style="text-align:left;font-weight:bold;">BrandMeister Manager</div>'."\n";
 		    echo '<form id="bm_man" action="'.htmlentities($_SERVER['PHP_SELF']."?func=bm_man").'" method="post">'."\n";
 		    echo '<table style="white-space: normal;">'."\n";
@@ -343,21 +355,29 @@ if ( $testMMDVModeDMR == 1 ) {
 		    echo '  </tr>'."\n";
 		    echo '  <tr>'."\n";
 		    echo '    <th><a class=tooltip href="#">Mass Drop / Mass Re-Add Static Talkgroups<span><b>Mass Drop / Mass Re-Add Static Talkgroups</b></span></a></th>'."\n";
-		    echo '    <th colspan="3"><a class=tooltip href="#">Batch-Add/Batch-Delete Static Talkgroups<span><b>Batch-Add/Batch-Delete Static Talkgroups</b></span></a></th>'."\n";
+		    echo '    <th colspan="3"><a class=tooltip href="#">Bulk-Add/Bulk-Delete Static Talkgroups<span><b>Bulk-Add/Bulk-Delete Static Talkgroups</b></span></a></th>'."\n";
 		    echo '  </tr>'."\n";
 		    echo '  <tr>'."\n";
-		    echo '    <td><input type="submit" value="Drop All Static TGs" id="tgStaticDropAll" name="tgStaticDropAll"/><br />'."\n";
-		    echo '      <input type="submit" value="Re-Add All Previous  Static TGs" id="tgStaticReAdd" name="tgStaticReAdd"/></td>'."\n";
-		    echo '    <td><b>Enter Talkgroups:</b><br /><textarea style="vertical-align: middle; resize: none;" rows="5" cols="20" name="massTGlist" placeholder="One per line."></textarea></td>'."\n";
-		    echo '    <td><b>Slot:</b><br /><br /><input type="radio" id="massts1" name="massTGslotSelected" value="1" '.((getConfigItem("General", "Duplex", $_SESSION['MMDVMHostConfigs']) == "1") ? '' : '').'/><label for="ts1"/>TS1</label> <input type="radio" id="massts2" name="massTGslotSelected" value="2" checked="checked"/><label for="ts2"/>TS2</td>'."\n";
-		    echo '    <td><input type="radio" id="masstgAdd" name="massTGaction" value="ADD" /><label for="tgAdd">Add</label> <input type="radio" id="masstgDel" name="massTGaction" value="DEL" checked="checked" /><label for="tgDel">Delete</label>&nbsp;<input type="submit" value="Batch Add/Delete Static TGs" id="tgStaticBatch" name="tgStaticBatch"/></td>'."\n";
+		    if (!file_exists("/etc/.bm_tgs.json.saved") && !empty($bmStaticTGListJson)) {
+			echo '    <td><input type="submit" value="Drop All Static TGs" id="tgStaticDropAll" name="tgStaticDropAll" /><br />'."\n";
+		    } else {
+			echo '    <td><input type="button" disabled value="Drop All Static TGs" id="tgStaticDropAll" name="tgStaticDropAll" /><br />'."\n";
+		    }
+		    if (file_exists("/etc/.bm_tgs.json.saved") && empty($bmStaticTGListJson)) { 
+			echo '      <input type="submit" value="Re-Add All Previous  Static TGs" id="tgStaticReAdd" name="tgStaticReAdd"/></td>'."\n";
+		    } else {
+			echo '      <input type="button" disabled value="Re-Add All Previous  Static TGs" id="tgStaticReAdd" name="tgStaticReAdd"/></td>'."\n";
+		    }
+		    echo '    <td><b>Enter Talkgroups:</b><p><textarea style="vertical-align: middle; resize: none;" rows="5" cols="20" name="massTGlist" placeholder="One per line."></textarea></p></td>'."\n";
+		    echo '    <td><b>Slot:</b><br /><br /><input type="radio" id="massts1" name="massTGslotSelected" value="1" '.((getConfigItem("General", "Duplex", $_SESSION['MMDVMHostConfigs']) == "1") ? '' : '').'/><label for="massts1"/>TS1</label>&nbsp;<input type="radio" id="massts2" name="massTGslotSelected" value="2" checked="checked"/><label for="massts2"/>TS2</label></td>'."\n";
+		    echo '    <td><input type="radio" id="masstgAdd" name="massTGaction" value="ADD" /><label for="tgAdd">Add</label> <input type="radio" id="masstgDel" name="massTGaction" value="DEL" checked="checked" /><label for="tgDel">Delete</label>&nbsp;<input type="submit" value="Bulk Add/Delete Static TGs" id="tgStaticBatch" name="tgStaticBatch"/></td>'."\n";
 		    echo '  </tr>'."\n";
 		    echo '  <tr>'."\n";
 		    echo '    <td style="white-space:normal;padding: 3px;">This function drops all current static talkgroups, OR re-adds the previously-dropped static talkgroups.</td>'."\n";
-		    echo '    <td colspan="3" style="white-space:normal;padding: 3px;">This function mass/batch-adds or deletes up to 5 static talkgroups. Enter one talkgroup per line.'."\n";
+		    echo '    <td colspan="3" style="white-space:normal;padding: 3px;">This function mass/bulk-adds or deletes up to 5 static talkgroups. Enter one talkgroup per line.'."\n";
 		    echo '  </tr>'."\n";
 		    echo '  <tr>'."\n";
-		    echo '    <td colspan="4" style="white-space:normal;padding: 3px;">(Note: Give all mass/batch static talkgroup management functions some time to process, due to the nature of BrandMeister not natively supporting mass-management functions for static takgroups.)'."\n";
+		    echo '    <td colspan="4" style="white-space:normal;padding: 3px;">(Note: Give all mass/bulk static talkgroup management functions some time to process, due to the nature of BrandMeister not natively supporting mass-management functions for static takgroups.)'."\n";
 		    echo '  </tr>'."\n";
 		    echo '</table>'."\n";
 		    echo '</form>'."\n";
