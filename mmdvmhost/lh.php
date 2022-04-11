@@ -99,7 +99,7 @@ for ($i = 0;  ($i <= $lastHeardRows - 1); $i++) {
 		    if (file_exists("/etc/.CALLERDETAILS") && $testMMDVModeDMR == 1 ) {
                         echo "<td align=\"left\">$listElem[2]</td><td>$flContent</td><td align='left' class='noMob'>$listElem[11]</td>";
 		    } elseif (file_exists("/etc/.CALLERDETAILS") && $testMMDVModeDMR == 0 ) {
-                        echo "<td align=\"left\">$listElem[2]</td>><td>$flContent</td>";
+                        echo "<td align=\"left\">$listElem[2]</td><td>$flContent</td>";
 		    } else {
                         echo "<td align=\"left\">$listElem[2]</td>";
 		    }
@@ -107,7 +107,7 @@ for ($i = 0;  ($i <= $lastHeardRows - 1); $i++) {
 		    if (file_exists("/etc/.CALLERDETAILS") && $testMMDVModeDMR == 1 ) {
                         echo "<td align=\"left\">$listElem[2]</td><td>$flContent</td><td align='left' class='noMob'>$listElem[11]</td>";
 		    } elseif (file_exists("/etc/.CALLERDETAILS") && $testMMDVModeDMR == 0 ) {
-                        echo "<td align=\"left\">$listElem[2]</td>><td>$flContent</td>";
+                        echo "<td align=\"left\">$listElem[2]</td><td>$flContent</td>";
 		    } else {
                         echo "<td align=\"left\">$listElem[2]</td>";
 		    }
@@ -119,7 +119,7 @@ for ($i = 0;  ($i <= $lastHeardRows - 1); $i++) {
 			    } elseif (file_exists("/etc/.CALLERDETAILS") && $testMMDVModeDMR == 0 ) {
 				echo "<td align=\"left\"><a href=\"http://www.qrz.com/db/$listElem[2]\" target=\"_blank\">$listElem[2]</a>/$listElem[8]</td><td>$flContent</td>";
 			    } else {
-				echo "<td align=\"left\"><a href=\"http://www.qrz.com/db/$listElem[2]\" target=\"_blank\">$listElem[2]</a>/$listElem[8]</td>>";
+				echo "<td align=\"left\"><a href=\"http://www.qrz.com/db/$listElem[2]\" target=\"_blank\">$listElem[2]</a>/$listElem[8]</td>";
 			    }
 			} else {
 			    if (file_exists("/etc/.CALLERDETAILS") && $testMMDVModeDMR == 1 ) {
