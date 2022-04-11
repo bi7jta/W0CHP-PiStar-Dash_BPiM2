@@ -99,21 +99,21 @@ function formatSize( $bytes ) {
 	<script type="text/javascript" src="/js/jquery.min.js?version=<?php echo $versionCmd; ?>"></script>
 	<script type="text/javascript" src="/js/jquery-timing.min.js?version=<?php echo $versionCmd; ?>"></script>
 	<style>  
-	 .progress .bar + .bar {
-	     -webkit-box-shadow: inset 1px 0 0 rgba(0, 0, 0, 0.15), inset 0 -1px 0 rgba(0, 0, 0, 0.15);
-	     -moz-box-shadow: inset 1px 0 0 rgba(0, 0, 0, 0.15), inset 0 -1px 0 rgba(0, 0, 0, 0.15);
-	     box-shadow: inset 1px 0 0 rgba(0, 0, 0, 0.15), inset 0 -1px 0 rgba(0, 0, 0, 0.15);
-	 }
-	 .progress-info .bar, .progress .bar-info {
-	     background-color: #4bb1cf;
-	     background-image: -moz-linear-gradient(top, #5bc0de, #339bb9);
-	     background-image: -webkit-gradient(linear, 0 0, 0 100%, from(#5bc0de), to(#339bb9));
-	     background-image: -webkit-linear-gradient(top, #5bc0de, #339bb9);
-	     background-image: -o-linear-gradient(top, #5bc0de, #339bb9);
-	     background-image: linear-gradient(to bottom, #5bc0de, #339bb9);
-	     background-repeat: repeat-x;
-	     filter: progid: DXImageTransform.Microsoft.gradient(startColorstr='#ff5bc0de', endColorstr='#ff339bb9', GradientType=0);
-	 }
+         .progress .bar + .bar {
+             -webkit-box-shadow: inset 1px 0 0 rgba(0, 0, 0, 0.15), inset 0 -1px 0 rgba(0, 0, 0, 0.15);
+             -moz-box-shadow: inset 1px 0 0 rgba(0, 0, 0, 0.15), inset 0 -1px 0 rgba(0, 0, 0, 0.15);
+             box-shadow: inset 1px 0 0 rgba(0, 0, 0, 0.15), inset 0 -1px 0 rgba(0, 0, 0, 0.15);
+         }
+         .progress-info .bar, .progress .bar-info {
+             background-color: #347B90;
+             background-image: -moz-linear-gradient(top, #3B8BA3, #2D6B7D);
+             background-image: -webkit-gradient(linear, 0 0, 0 100%, from(#3B8BA3), to(2D6B7D));
+             background-image: -webkit-linear-gradient(top, #3B8BA3, #2D6B7D);
+             background-image: -o-linear-gradient(top, #3B8BA3, #2D6B7D);
+             background-image: linear-gradient(to bottom, #3B8BA3e, #2D6B7D);
+             background-repeat: repeat-x;
+             filter: progid: DXImageTransform.Microsoft.gradient(startColorstr='#ff5bc0de', endColorstr='#ff339bb9', GradientType=0);
+         }
 	</style>
 	<script type="text/javascript">
 	 function refreshTable () {
@@ -158,7 +158,7 @@ function formatSize( $bytes ) {
 			<a class="menuupdate" href="/admin/update.php"><?php echo $lang['update'];?></a>
 			<a class="menupower" href="/admin/power.php"><?php echo $lang['power'];?></a>
 			<a class="menuadmin" href="/admin/"><?php echo $lang['admin'];?></a>
-            <a class="menulive" href="/live/">Live Caller</a>
+            		<a class="menulive" href="/live/">Live Caller</a>
 			<a class="menudashboard" href="/"><?php echo $lang['dashboard'];?></a>
 		    </div> 
 		</p>
