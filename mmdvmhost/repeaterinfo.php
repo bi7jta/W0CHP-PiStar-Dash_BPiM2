@@ -22,6 +22,11 @@ if (isset($_SESSION['CSSConfigs']['Background']['TableRowBgEvenColor'])) {
 } else {
     $tableRowEvenBg = "inherit";
 }
+if (isset($_SESSION['CSSConfigs']['ExtraSettings']['TableBorderColor'])) {
+    $tableBorderColor = $_SESSION['CSSConfigs']['ExtraSettings']['TableBorderColor'];
+} else {
+    $tableBorderColor = "inherit";
+}
 
 function FillConnectionHosts(&$destArray, $remoteEnabled, $remotePort) {
     if (($remoteEnabled == 1) && ($remotePort != 0)) {
@@ -455,12 +460,12 @@ $numDMRmasters = exec('cd /var/log/pi-star ; /usr/local/bin/RemoteCommand 7643 s
 	    <?php
 	    if (getConfigItem("DMR Network", "Slot1", $_SESSION['MMDVMHostConfigs']) == 1) {
 		if (preg_match("/Not/",getActualLink($reverseLogLinesMMDVM, "DMR Slot 1"))) {
-                        echo "<div class='divTableCell'><div class='cell_content' title='No TG'>No TG</div></div>\n";
+                        echo "<div class='divTableCell cell_content middle' title='No TG'>No TG</div>\n";
 		} else {
-		    echo "<div class='divTableCell'><div class='active-mode-cell' title='Time Slot 1 Enabled'>".substr(getActualLink($reverseLogLinesMMDVM, "DMR Slot 1"), -11)."</div></div>\n";
+		    echo "<div class='divTableCell cell_content middle active-mode-cell' title='Time Slot 1 Enabled' style='border: .5px solid $tableBorderColor;'>".substr(getActualLink($reverseLogLinesMMDVM, "DMR Slot 1"), -11)."</div>\n";
 		}
 	    } else {
-		    echo "<div class='divTableCell'><div class='inactive-mode-cell' title='Time Slot 1 disabled'>Disabled</div></div>\n";
+		    echo "<div class='divTableCell cell_content middle inactive-mode-cell' title='Time Slot 1 disabled'>Disabled</div>\n";
 	    }
 	    ?>
     </div>
@@ -469,12 +474,12 @@ $numDMRmasters = exec('cd /var/log/pi-star ; /usr/local/bin/RemoteCommand 7643 s
            <?php
 	    if (getConfigItem("DMR Network", "Slot2", $_SESSION['MMDVMHostConfigs']) == 1) {
                 if (preg_match("/Not/",getActualLink($reverseLogLinesMMDVM, "DMR Slot 2"))) {
-                        echo "<div class='divTableCell'><div class='cell_content' title='No TG'>No TG</div></div>\n";
+                        echo "<div class='divTableCell cell_content middle' title='No TG'>No TG</div>\n";
                 } else {
-			echo "<div class='divTableCell'><div class='active-mode-cell' title='Time Slot 2 Enabled'>".substr(getActualLink($reverseLogLinesMMDVM, "DMR Slot 2"), -11)."</div></div>\n";
+			echo "<div class='divTableCell cell_content middle active-mode-cell' title='Time Slot 2 Enabled' style='border: .5px solid $tableBorderColor;'>".substr(getActualLink($reverseLogLinesMMDVM, "DMR Slot 2"), -11)."</div>\n";
 		}
 	    } else {
-		    echo "<div class='divTableCell'><div class='inactive-mode-cell' title='Time Slot 2 disabled'>Disabled</div></div>\n";
+		    echo "<div class='divTableCell cell_content middle inactive-mode-cell' title='Time Slot 2 disabled'>Disabled</div>\n";
 	    }
 	    ?>
     </div>

@@ -258,23 +258,6 @@ require_once $_SERVER['DOCUMENT_ROOT'].'/config/version.php';
 		    }
 		}
 
-		function endsWith($haystack, $needle)
-		{
-		    $length = strlen($needle);
-		    
-		    if ($length == 0) {
-			return true;
-		    }
-		    
-		    return (strcasecmp(substr($haystack, -$length), $needle) == 0);
-		}
-
-		function beginsWith($haystack, $needle)
-		{
-		    $length = strlen($needle);
-		    return substr($haystack, 0, $length) === $needle;
-		}
-		
 		//this is the function going to update your ini file
 		function update_ini_file($data, $filepath) {
 		    $content = "";
@@ -341,11 +324,11 @@ require_once $_SERVER['DOCUMENT_ROOT'].'/config/version.php';
 			        echo "<tr><td align=\"right\" style='padding-left:10em;width:150px;'>$key</td><td align=\"left\"><input type=\"text\" class=\"colorwell\" name=\"{$section}[$key]\" value=\"$value\" /></td><td align='left' style='word-wrap: break-word;white-space: normal;'>(the Main Content font color, used across most of the Dashboard's informational/data text; default is \"#000000\" [black].)</td></tr>\n";
 			    } elseif (endsWith($key, 'Color')) { 
 			        echo "<tr><td align=\"right\" style='padding-left:10em;width:150px;'>$key</td><td align=\"left\" colspan='2'><input type=\"text\" class=\"colorwell\" name=\"{$section}[$key]\" value=\"$value\" /></td></tr>\n";
-			    } elseif (beginsWith($key, 'MainFontSize')) {
+			    } elseif (startsWith($key, 'MainFontSize')) {
 			        echo "<tr><td align=\"right\" style='padding-left:10em;width:150px;'>$key</td><td align=\"left\"><input type=\"text\" name=\"{$section}[$key]\" value=\"$value\" size='3' maxlength='2' /></td><td align='left' style='word-wrap: break-word;white-space: normal;'>(the Main Content font size, in pixels, used across most of the Dashboard's informational/data text; default is 18 pixels.)</td></tr>\n";
-			    } elseif (beginsWith($key, 'BodyFontSize')) {
+			    } elseif (startsWith($key, 'BodyFontSize')) {
 			        echo "<tr><td align=\"right\" style='padding-left:10em;width:150px;'>$key</td><td align=\"left\"><input type=\"text\" name=\"{$section}[$key]\" value=\"$value\" size='3' maxlength='2' /></td><td align='left' style='word-wrap: break-word;white-space: normal;'>(the Body font size, in pixels, used across most of the Dashboard's non-data/non-informational text; default is 17 pixels.)</td></tr>\n";
-			    } elseif (beginsWith($key, 'HeaderFont')) {
+			    } elseif (startsWith($key, 'HeaderFont')) {
 			        echo "<tr><td align=\"right\" style='padding-left:10em;width:150px;'>$key</td><td align=\"left\"><input type=\"text\" name=\"{$section}[$key]\" value=\"$value\" size='3' maxlength='2' /></td><td align='left' style='word-wrap: break-word;white-space: normal;'>(the Header font size, in pixels; default is 34 pixels.)</td></tr>\n";
 			    } elseif (endsWith($key, 'HeardRows')) {
 			        echo "<tr><td align=\"right\" style='padding-left:15em;width:150px;'>$key</td><td align=\"left\"><input type=\"text\" name=\"{$section}[$key]\" value=\"$value\" size='3' maxlength='3' /></td><td align='left' style='word-wrap: break-word;white-space: normal;'>(The number of rows displayed on the Dashboard; default is 40 rows, and 100 rows is the maximum allowed.)</td></tr>\n";
