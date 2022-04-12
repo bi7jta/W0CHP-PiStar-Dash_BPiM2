@@ -56,7 +56,7 @@ checkSessionValidity();
 	<meta http-equiv="cache-control" content="no-cache, no-store, must-revalidate" />
 	<meta http-equiv="expires" content="0" />
 	<meta http-equiv="pragma" content="no-cache" />
-	<link rel="shortcut icon" href="/images/favicon.ico" type="image/x-icon" />
+	<link rel="shortcut icon" href="/images/favicon.ico?version=<?php echo $versionCmd; ?>" type="image/x-icon" />
 	<title><?php echo "$MYCALL"." - ".$lang['digital_voice']." ".$lang['dashboard'];?></title>
 	<link rel="stylesheet" type="text/css" href="/css/font-awesome-4.7.0/css/font-awesome.min.css" />
 	<?php include_once "config/browserdetect.php"; ?>
@@ -67,7 +67,7 @@ checkSessionValidity();
 	</script>
         <link href="/js/select2/css/select2.min.css?version=<?php echo $versionCmd; ?>" rel="stylesheet" />
         <script src="/js/select2/js/select2.min.js?version=<?php echo $versionCmd; ?>"></script>
-         <script type="text/javascript">
+        <script type="text/javascript">
           $(document).ready(function() {
             $('.ysfLinkHost').select2();
             $('.p25LinkHost').select2();
@@ -77,30 +77,24 @@ checkSessionValidity();
             $('.dmrMasterHost3Startup').select2();
             $('.xlxMod').select2();
           });
-        </script>
-        <script>
-        $(document).ready(function(){
-          setInterval(function(){
-              $("#CheckUpdate").load(window.location.href + " #CheckUpdate" );
-              },300000);
-          });
-        </script>
-        <script>
-        $(document).ready(function(){
-          setInterval(function(){
-              $("#CheckMessage").load(window.location.href + " #CheckMessage" );
-              },3600000);
-          });
-        </script>
-	<script>
-        jQuery(document).ready(function() {
-	  $('.menuhwinfo').click(function() {
-	    $(".hw_toggle").slideToggle(function() {
-	      localStorage.setItem('visible', $(this).is(":visible"));
-	    })
+          $(document).ready(function(){
+            setInterval(function(){
+                $("#CheckUpdate").load(window.location.href + " #CheckUpdate" );
+                },300000);
+            });
+          $(document).ready(function(){
+            setInterval(function(){
+                $("#CheckMessage").load(window.location.href + " #CheckMessage" );
+                },3600000);
+            });
+          $(document).ready(function() {
+	    $('.menuhwinfo').click(function() {
+	      $(".hw_toggle").slideToggle(function() {
+	        localStorage.setItem('visible', $(this).is(":visible"));
+	      })
+	    });
+	    $('.hw_toggle').toggle(localStorage.getItem('visible') === 'true');
 	  });
-	  $('.hw_toggle').toggle(localStorage.getItem('visible') === 'true');
-	});
 	</script>
     </head>
     <body>
