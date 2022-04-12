@@ -94,14 +94,12 @@ checkSessionValidity();
         </script>
 	<script>
         jQuery(document).ready(function() {
-	    $("#hw_details").click(function(){
-		$("#hw_info").toggle("fast");
-		if(jQuery(this).text() == 'Show SysInfo'){
-		    jQuery(this).text('Hide SysInfo');
-		} else {
-		    jQuery(this).text('Show SysInfo');
-		}
-	    });
+	  $('.menuhwinfo').click(function() {
+	    $(".hw_toggle").slideToggle(function() {
+	      localStorage.setItem('visible', $(this).is(":visible"));
+	    })
+	  });
+	  $('.hw_toggle').toggle(localStorage.getItem('visible') === 'true');
 	});
 	</script>
     </head>
@@ -170,12 +168,12 @@ checkSessionValidity();
 			    echo ' <a class="menuupdate" href="/admin/update.php">'.$lang['update'].'</a>'."\n";
 			    echo ' <a class="menuexpert" href="/admin/expert/">Expert</a>'."\n";
 			    echo ' <a class="menupower" href="/admin/power.php">'.$lang['power'].'</a>'."\n";
-			    echo ' <a class="menusysinfo" href="/admin/sysinfo.php">Hardware/Software Details</a>'."\n";
+			    echo ' <a class="menusysinfo" href="/admin/sysinfo.php">System  Details</a>'."\n";
 			    echo ' <a class="menulogs" href="/admin/live_modem_log.php">'.$lang['live_logs'].'</a>'."\n";
 			} ?>
 			<a class="menuadmin" href="/admin/"><?php echo $lang['admin'];?></a>
 			<a class="menulive" href="/live/">Live Caller</a>
-			<a id="hw_details" class="menuhwinfo" href='#'>Hide SysInfo</a>
+			<a class="menuhwinfo" href='#'>Toggle SysInfo</a>
 			<a class="menudashboard" href="/"><?php echo $lang['dashboard'];?></a>
 		    </div> 
 		</p>
@@ -221,7 +219,7 @@ checkSessionValidity();
                     echo 'setTimeout(reloadRadioInfo, 1000);'."\n";
                     echo '$(window).trigger(\'resize\');'."\n";
                     echo '</script>'."\n";
-                    echo "<div id='hw_info'>\n";
+                    echo "<div id='hw_info' class='hw_toggle'>\n";
                     echo '<div id="hwInfo">'."\n";
                     include 'dstarrepeater/hw_info.php';
                     echo '</div>'."\n";
