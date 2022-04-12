@@ -295,7 +295,6 @@ require_once $_SERVER['DOCUMENT_ROOT'].'/config/version.php';
 		    exec('sudo cp /tmp/bW1kd4jg6b3N0DQo.tmp /etc/pistar-css.ini');  // Move the file back
 		    exec('sudo chmod 644 /etc/pistar-css.ini');                     // Set the correct runtime permissions
 		    exec('sudo chown root:root /etc/pistar-css.ini');               // Set the owner
-		    exec('sudo mount -o remount,ro /');                             // Make rootfs read-only
 		    
 		    return $success;
 		}
