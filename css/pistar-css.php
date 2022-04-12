@@ -786,8 +786,9 @@ select {
     text-decoration: inherit;
     padding-right: 0.2em;
 }
+
 .menuhwinfo:before {
-    content: "\f012";
+    content: "\f0ce";
     font-family: FontAwesome;
     font-style: normal;
     font-weight: normal;
