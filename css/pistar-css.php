@@ -702,7 +702,7 @@ select {
     visibility: hidden;
 }
 
-.menuconfig .menuadmin .menudashboard .menulive .menuupdate .menuupgrade .menupower .menulogs .menubackup .menuexpert .menureset .menusysinfo {
+.menuhwinfo .menuconfig .menuadmin .menudashboard .menucaller .menulive .menuupdate .menuupgrade .menupower .menulogs .menubackup .menuexpert .menureset .menusysinfo {
     position: relative;
 }
 
@@ -777,6 +777,24 @@ select {
     text-decoration: inherit;
     padding-right: 0.2em;
 }
+
+.menucaller:before {
+    content: "\f130";
+    font-family: FontAwesome;
+    font-style: normal;
+    font-weight: normal;
+    text-decoration: inherit;
+    padding-right: 0.2em;
+}
+.menuhwinfo:before {
+    content: "\f012";
+    font-family: FontAwesome;
+    font-style: normal;
+    font-weight: normal;
+    text-decoration: inherit;
+    padding-right: 0.2em;
+}
+
 .menubackup:before {
     content: "\f187";
     font-family: FontAwesome;

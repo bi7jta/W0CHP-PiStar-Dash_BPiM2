@@ -92,7 +92,18 @@ checkSessionValidity();
               },3600000);
           });
         </script>
-
+	<script>
+        jQuery(document).ready(function() {
+	    $("#hw_details").click(function(){
+		$("#hw_info").toggle("fast");
+		if(jQuery(this).text() == 'Show SysInfo'){
+		    jQuery(this).text('Hide SysInfo');
+		} else {
+		    jQuery(this).text('Show SysInfo');
+		}
+	    });
+	});
+	</script>
     </head>
     <body>
 	<div class="container">
@@ -129,9 +140,9 @@ checkSessionValidity();
                    update();
                  });
                 </script>
-                <div style="text-align: left; padding-left: 8px; padding-top: 5px; float: left;">
-                <span id="timer"></span>
-            </div>
+		<div style="text-align: left; padding-left: 8px; padding-top: 5px; float: left;">
+		    <span id="timer"></span>
+		</div>
 	    <?php 
 	    if ($_SERVER["PHP_SELF"] != "/admin/index.php")  {
             ?>
@@ -139,12 +150,12 @@ checkSessionValidity();
 	    <div style="float: right; vertical-align: bottom; padding-top: 0px;">
 	       <div class="grid-container" style="display: inline-grid; grid-template-columns: auto 40px; padding: 0 8px 0 5px; grid-column-gap: 5px;">
 		<?php if(isset($_SESSION['PiStarRelease']['Pi-Star']['ProcNum']) && ($_SESSION['PiStarRelease']['Pi-Star']['ProcNum'] >= 4)) { ?>
-		 <div class="grid-item" style="padding-top: 5px;" title="Display Caller Details">Caller Details: </div>
+		 <div class="grid-item menucaller" style="padding-top: 5px;" title="Display Caller Details">Caller Details: </div>
 	    	   <div class="grid-item">
 		    <div>
 			<input id="toggle-display-lastcaller" class="toggle toggle-round-flat" type="checkbox" name="display-lastcaller" value="ON" <?php if(file_exists('/etc/.CALLERDETAILS')) { echo 'checked="checked"';}?> aria-checked="true" aria-label="Display Caller Details" onchange="setLastCaller(this)" /><label for="toggle-display-lastcaller" ></label>
 		<?php } else { ?>
-		 <div class="grid-item" style="padding-top: 5px;opacity: 0.5;" title="Function Disabled: Hardware too weak.">Caller Details: </div>
+		 <div class="grid-item menucaller" style="padding-top: 5px;opacity: 0.5;" title="Function Disabled: Hardware too weak.">Caller Details: </div>
 	    	   <div class="grid-item">
 		    <div>
 			<input id="toggle-display-lastcaller" class="toggle toggle-round-flat" type="checkbox" name="display-lastcaller" value="ON"  aria-checked="true" aria-label="Display Last Caller Details" disabled="disabled" title="Function Disabled: Hardware too weak." /><label for="toggle-display-lastcaller" title="Function Disabled: Hardware too weak."></label>
@@ -159,11 +170,12 @@ checkSessionValidity();
 			    echo ' <a class="menuupdate" href="/admin/update.php">'.$lang['update'].'</a>'."\n";
 			    echo ' <a class="menuexpert" href="/admin/expert/">Expert</a>'."\n";
 			    echo ' <a class="menupower" href="/admin/power.php">'.$lang['power'].'</a>'."\n";
-			    echo ' <a class="menusysinfo" href="/admin/sysinfo.php">Sysinfo</a>'."\n";
+			    echo ' <a class="menusysinfo" href="/admin/sysinfo.php">Hardware/Software Details</a>'."\n";
 			    echo ' <a class="menulogs" href="/admin/live_modem_log.php">'.$lang['live_logs'].'</a>'."\n";
 			} ?>
 			<a class="menuadmin" href="/admin/"><?php echo $lang['admin'];?></a>
 			<a class="menulive" href="/live/">Live Caller</a>
+			<a id="hw_details" class="menuhwinfo" href='#'>Hide SysInfo</a>
 			<a class="menudashboard" href="/"><?php echo $lang['dashboard'];?></a>
 		    </div> 
 		</p>
@@ -190,7 +202,6 @@ checkSessionValidity();
 	        }
 	    }
 	    ?>
-	    
 	    <?php
             // Output some default features
             if ($_SERVER["PHP_SELF"] == "/index.php" || $_SERVER["PHP_SELF"] == "/admin/index.php")
@@ -203,9 +214,6 @@ checkSessionValidity();
                     echo 'setTimeout(reloadHwInfo, 15000);'."\n";
                     echo '$(window).trigger(\'resize\');'."\n";
                     echo '</script>'."\n";
-                    echo '<div id="hwInfo">'."\n";
-                    include 'dstarrepeater/hw_info.php';
-                    echo '</div>'."\n";
                     echo '<script type="text/javascript">'."\n";
                     echo 'function reloadRadioInfo(){'."\n";
                     echo '  $("#radioInfo").load("/mmdvmhost/radioinfo.php",function(){ setTimeout(reloadRadioInfo, 1000) });'."\n";
@@ -213,11 +221,16 @@ checkSessionValidity();
                     echo 'setTimeout(reloadRadioInfo, 1000);'."\n";
                     echo '$(window).trigger(\'resize\');'."\n";
                     echo '</script>'."\n";
+                    echo "<div id='hw_info'>\n";
+                    echo '<div id="hwInfo">'."\n";
+                    include 'dstarrepeater/hw_info.php';
+                    echo '</div>'."\n";
                     echo '<div id="radioInfo">'."\n";
                     include 'mmdvmhost/radioinfo.php';
                     echo '</div>'."\n";
-                    echo '</div>'."\n";
                     echo '<br class="noMob" />'."\n";
+                    echo '</div>'."\n";
+                    echo '</div>'."\n";
             }
 
         // First lets figure out if we are in MMDVMHost mode, or dstarrepeater mode;
@@ -529,7 +542,7 @@ checkSessionValidity();
                 	        data:{action:'enable'},
 				success: function(data) { 
      				    $('#lcmsg').html(data).fadeIn('slow');
-				    $('#lcmsg').html(\"<div style='padding:8px;font-style:italic;font-weight:bold;'>For optimal performace, the number of Last Heard rows will be decreased while Caller Details function is enabled.</div>\").fadeIn('slow')
+				    $('#lcmsg').html(\"<div style='padding:8px;font-style:italic;font-weight:bold;'>For optimal performance, the number of Last Heard rows will be decreased while Caller Details function is enabled.</div>\").fadeIn('slow')
      				    $('#lcmsg').delay(4000).fadeOut('slow');
 				}
          	             });";

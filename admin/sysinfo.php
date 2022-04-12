@@ -87,7 +87,7 @@ function formatSize( $bytes ) {
 	<meta name="language" content="English" />
 	<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
 	<meta name="Author" content="Andrew Taylor (MW0MWZ), Chip Cuccio (W0CHP)" />
-	<meta name="Description" content="Pi-Star SysInfo" />
+	<meta name="Description" content="Pi-Star Hardware/Software Details" />
 	<meta name="KeyWords" content="MMDVMHost,ircDDBGateway,D-Star,ircDDB,DMRGateway,DMR,YSFGateway,YSF,C4FM,NXDNGateway,NXDN,P25Gateway,P25,Pi-Star,DL5DI,DG9VH,MW0MWZ,W0CHP" />
 	<meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate" />
 	<meta http-equiv="pragma" content="no-cache" />
@@ -127,7 +127,7 @@ function formatSize( $bytes ) {
 	<div class="container">
 	    <div class="header">
 		<div style="font-size: 10px; text-align: left; padding-left: 8px; float: left;">Hostname: <?php echo exec('cat /etc/hostname'); ?></div><div style="font-size: 10px; text-align: right; padding-right: 8px;">Pi-Star: <?php echo $_SESSION['PiStarRelease']['Pi-Star']['Version'].'<br />';?> <?php echo $version; system('/usr/local/sbin/pistar-check4updates'); ?></div>
-		<h1>Pi-Star <?php echo $lang['digital_voice']." ".$lang['dashboard']." - SysInfo";?></h1>
+		<h1>Pi-Star <?php echo $lang['digital_voice']." ".$lang['dashboard']." - Hardware/Software Details ";?></h1>
 		<p>
 		    <div class="navbar">
               <script type= "text/javascript">

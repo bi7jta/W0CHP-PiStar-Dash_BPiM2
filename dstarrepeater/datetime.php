@@ -9,4 +9,4 @@ if (constant("TIME_FORMAT") == "24") {
 
 echo $local_time;
 
- ?>
+?>
