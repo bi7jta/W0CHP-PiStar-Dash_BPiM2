@@ -246,9 +246,9 @@ function getAPRSISserver() {
     $server_list = "/usr/local/etc/aprs_servers.json";
 
     if (file_exists($logAPRSISNow) || file_exists($logAPRSISPrevious)) {
-		$logLine = exec("tail -2 $logAPRSISNow | grep \"".$logSearchString."\" ");
+	$logLine = exec("tail -2 $logAPRSISNow | grep \"".$logSearchString."\" ");
        	if (!$logLine) {
-			$logLine = exec("tail -2 $logAPRSISPrevious | grep \"".$logSearchString."\" ");
+	    $logLine = exec("tail -2 $logAPRSISPrevious | grep \"".$logSearchString."\" ");
        	}
     } else
        	{
@@ -261,7 +261,7 @@ function getAPRSISserver() {
             $APRSISserver = str_replace(",", "", $match[0]); // remove occasional commas after server name
 	    $FQDN = exec("cat $server_list | jq '.[]' | grep -B 10 $APRSISserver | grep fqdn | sed -r 's/\"fqdn\"://g;s/\s+//g;s/\"//g;s/,//g'");
 	    $APRSISserver = "<a href='http://$FQDN:14501' target='_new'>$APRSISserver</a>";
-	    }
+	}
     }
     return $APRSISserver;
 }
