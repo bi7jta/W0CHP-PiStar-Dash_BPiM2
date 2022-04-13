@@ -17,6 +17,7 @@ foreach ($transmissions as $transmission) {
     $transmission_json['time_utc'] = trim($transmission[0]);
     $transmission_json['mode'] = trim($transmission[1]);
     $transmission_json['callsign'] = trim($transmission[2]);
+    $transmission_json['name'] = trim($transmission[11]);
     $transmission_json['callsign_suffix'] = trim($transmission[3]);
     $transmission_json['target'] = trim($transmission[4]);
     $transmission_json['src'] = trim($transmission[5]);
