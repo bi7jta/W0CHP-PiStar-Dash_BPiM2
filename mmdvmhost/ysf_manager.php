@@ -148,8 +148,8 @@ if (isset($_SESSION['YSFGatewayConfigs']['Remote Commands']['Enable']) && (isset
 				</select>
 			</td>
 			<td>
-			    <input type="radio" name="Link" value="LINK" />Link
-			    <input type="radio" name="Link" value="UNLINK" checked="checked"  />Un-Link
+			    <input type="radio" id="link" name="Link" value="LINK" /> <label for="link"/>Link</label>
+			    <input type="radio" id="unlink" name="Link" value="UNLINK" checked="checked"  /> <label for="unlink"/>Un-Link</label>
 			</td>
 			<td>
 			    <input type="hidden" name="func" value="ysf_man" />

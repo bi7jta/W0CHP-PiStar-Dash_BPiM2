@@ -94,21 +94,34 @@ if ( $testMMDVModeDMR == 1 ) {
 	$bmDynamicTGList = "";
         $bmDynanicTGname = "";
         $bmDynanicTGexpire = "";
-	
+
 	// Pull the information from JSON
 	if (isset($json->staticSubscriptions)) { $bmStaticTGListJson = $json->staticSubscriptions;
             foreach($bmStaticTGListJson as $staticTG) {
+		$len = strlen($staticTG->talkgroup);
+		if ($len == 2) {
+		    $sep = "&nbsp;&nbsp;&nbsp;&nbsp;";
+		} elseif ($len == 3) {
+		    $sep = "&nbsp;&nbsp;&nbsp;";
+		} elseif ($len == 4) {
+		    $sep = "&nbsp;&nbsp;";
+		} elseif ($len == 5) {
+		    $sep = "&nbsp;";
+		} else {
+		    $sep = "";
+		}
+
                 if (getConfigItem("DMR Network", "Slot1", $_SESSION['MMDVMHostConfigs']) && $staticTG->slot == "1") {
                     $bmStaticTGname = exec("grep -w \"$staticTG->talkgroup\" /usr/local/etc/BM_TGs.json | cut -d\":\" -f2- | tr -cd \"'[:alnum:]\/ -\"");
-                    $bmStaticTGList .= "&bull; TG".$staticTG->talkgroup.": ".StripStupidComments($bmStaticTGname)."<span style='float:right;'>(Slot ".$staticTG->slot.")</span><br />";
+                    $bmStaticTGList .= "&bull; TG".$staticTG->talkgroup.":$sep".StripStupidComments($bmStaticTGname)."<span style='float:right;'>(Slot ".$staticTG->slot.")</span><br />";
                 }
                 else if (getConfigItem("DMR Network", "Slot2", $_SESSION['MMDVMHostConfigs']) && $staticTG->slot == "2") {
                     $bmStaticTGname = exec("grep -w \"$staticTG->talkgroup\" /usr/local/etc/BM_TGs.json | cut -d\":\" -f2- | tr -cd \"'[:alnum:]\/ -\"");
-                    $bmStaticTGList .= "&bull; TG".$staticTG->talkgroup.": ".StripStupidComments($bmStaticTGname)."<span style='float:right;'>(Slot ".$staticTG->slot.")</span><br />";
+                    $bmStaticTGList .= "&bull; TG".$staticTG->talkgroup.":$sep".StripStupidComments($bmStaticTGname)."<span style='float:right;'>(Slot ".$staticTG->slot.")</span><br />";
                 }
                 else if (getConfigItem("DMR Network", "Slot1", $_SESSION['MMDVMHostConfigs']) == "0" && getConfigItem("DMR Network", "Slot2", $_SESSION['MMDVMHostConfigs']) && $staticTG->slot == "0") {
                     $bmStaticTGname = exec("grep -w \"$staticTG->talkgroup\" /usr/local/etc/BM_TGs.json | cut -d\":\" -f2- | tr -cd \"'[:alnum:]\/ -\"");
-                    $bmStaticTGList .= "&bull; TG".$staticTG->talkgroup.": ".StripStupidComments($bmStaticTGname)."<span style='float:right;'>(Slot ".$staticTG->slot.")</span><br />";
+                    $bmStaticTGList .= "&bull; TG".$staticTG->talkgroup.":$sep".StripStupidComments($bmStaticTGname)."<span style='float:right;'>(Slot ".$staticTG->slot.")</span><br />";
                 }
             }
             $bmStaticTGList = wordwrap($bmStaticTGList, 135, "\n");

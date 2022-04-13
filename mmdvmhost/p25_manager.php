@@ -128,8 +128,8 @@ if ( $testMMDVModeP25 == 1 ) {
 				</select>
 			</td>
 			<td>
-			    <input type="radio" name="Link" value="LINK" checked="checked" />Link
-			    <input type="radio" name="Link" value="UNLINK" />Un-Link
+                            <input type="radio" id="link" name="Link" value="LINK" /> <label for="link"/>Link</label>
+                            <input type="radio" id="unlink" name="Link" value="UNLINK" checked="checked"  /> <label for="unlink"/>Un-Link</label>
 			</td>
 			<td>
 			    <input type="submit" name="p25MgrSubmit" value="Request Change" />
