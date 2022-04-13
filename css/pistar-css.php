@@ -448,7 +448,7 @@ input.toggle-round-flat:focus + label {
     flex-grow: 1;
     font-family: 'Source Sans Pro', sans-serif;
     border: 2px solid <?php echo $tableBorderColor; ?>;
-    padding: 2px;
+    padding: 3px;
 }
 
 .mode_flex button > span  {
@@ -456,17 +456,17 @@ input.toggle-round-flat:focus + label {
     flex-wrap: wrap;
     display: flex; 
     justify-content: center;
-    margin: 2px;
+    margin: 5px;
     text-align: center;
 }
 
 textarea, input[type='text'], input[type='password'] {
         font-size: <?php echo $bodyFontSize; ?>px;
         font-family: 'Inconsolata', monospace;
-        border: 1px solid black;
+        border: 1px solid <?php echo $tableBorderColor; ?>;
         padding: 5px;
         margin 3px;
-        background: silver;
+        background: #D6D6D6;
 }
 
 input[type=button], input[type=submit], input[type=reset], input[type=radio], button {
@@ -504,10 +504,10 @@ input:disabled + label {
 }
 
 select {
-    background: silver;
+    background: #D6D6D6;
     font-family: 'Inconsolata', monospace;
     font-size: <?php echo $bodyFontSize; ?>px;
-    border: 1px solid black;
+    border: 1px solid <?php echo $tableBorderColor; ?>;
     color: black;
     padding: 5px;
     text-decoration: none;
@@ -518,14 +518,14 @@ select {
   font-family: 'Inconsolata', monospace;
   color: black;
   font-size: <?php echo $bodyFontSize; ?>px !important;
-  background: silver;
+  background: #D6D6D6;
 }
 
 .select2-results__options{
   color: black;
   font-size:<?php echo $bodyFontSize; ?>px !important;
   font-family: 'Inconsolata', monospace;
-  background: silver;
+  background: #D6D6D6;
 }
 
 [class^='select2'] {
