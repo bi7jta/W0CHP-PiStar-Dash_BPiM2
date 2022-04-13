@@ -32,6 +32,7 @@ if ($_SERVER["PHP_SELF"] == "/admin/expert/jitter_test.php") {
     if ($_GET['group'] == "dmrplus")      { $target = "DMR+"; }
     if ($_GET['group'] == "hblink")       { $target = "HB"; }
     if ($_GET['group'] == "freedmr")      { $target = "FreeDMR"; }
+    if ($_GET['group'] == "freedmr_sa")   { $target = "FD"; }
     if ($_GET['group'] == "xlx")          { $target = "XLX"; }
   } else { $target = ""; }
 
@@ -137,15 +138,16 @@ if ($_SERVER["PHP_SELF"] == "/admin/expert/jitter_test.php") {
   <div class="contentwide">
   <table width="100%">
   <?php if (empty($target)) { ?>
-  <tr><th>Network Jitter Test</th></tr>
+  <tr><th>DMR Network Jitter Test</th></tr>
   <tr><td>
   <form method="get" action="<?php ($_SERVER["PHP_SELF"]); ?>">
-  <p>Select network to test:
-    [ BrandMeister:<input type="radio" value="brandmeister" name="group" /> |
+  <p>
+    BrandMeister:<input type="radio" value="brandmeister" name="group" /> |
     HB-Link:<input type="radio" value="hblink" name="group" /> |
-    FreeDMR:<input type="radio" value="freedmr" name="group" /> |
+    FreeDMR:<input type="radio" value="freedmr" name="group" /><br />
+    FreeDMR/FreeStar/System-X Stand-alone Hosts:<input type="radio" value="freedmr_sa" name="group" /> |
     XLX Hosts:<input type="radio" value="xlx" name="group" /> |
-    DMR+:<input type="radio" value="dmrplus" name="group" /> ]
+    DMR+:<input type="radio" value="dmrplus" name="group" />
     <input type="submit" name="sumbit" value="Start Test" />
     </p>
   </form>
@@ -165,12 +167,13 @@ if ($_SERVER["PHP_SELF"] == "/admin/expert/jitter_test.php") {
   <tr><th>DMR Network Jitter Test</th></tr>
   <tr><td>
   <form method="get" action="<?php ($_SERVER["PHP_SELF"]); ?>">
-  <p>Select network to test:
-    [ BrandMeister:<input type="radio" value="brandmeister" name="group" /> |
+  <p>
+    BrandMeister:<input type="radio" value="brandmeister" name="group" /> |
     HB-Link:<input type="radio" value="hblink" name="group" /> |
-    FreeDMR:<input type="radio" value="freedmr" name="group" /> |
+    FreeDMR:<input type="radio" value="freedmr" name="group" /><br />
+    FreeDMR/FreeStar/System-X Stand-alone Hosts:<input type="radio" value="freedmr_sa" name="group" /> |
     XLX Hosts:<input type="radio" value="xlx" name="group" /> |
-    DMR+:<input type="radio" value="dmrplus" name="group" /> ]
+    DMR+:<input type="radio" value="dmrplus" name="group" />
     <input type="submit" name="sumbit" value="Start Test" />
     </p>
   </form>

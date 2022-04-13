@@ -90,18 +90,18 @@ if ($_SERVER["PHP_SELF"] == "/admin/power.php") {
 			    <tr><th colspan="2"><?php echo $lang['power'];?></th></tr>
 			    <?php
 			    if ( escapeshellcmd($_POST["action"]) == "reboot" ) {
-				echo '<tr><td colspan="2" style="background: #000000; color: #00ff00;"><br /><br />Your Pi-Star Hotspot is rebooting...,
+				echo '<tr><td colspan="2" style="background: #000000; color: #00ff00;"><br /><br />Your Hotspot is rebooting...,
 				   <br />You will be re-directed back to the
 				   <br />dashboard automatically in 90 seconds.<br /><br /><br />
 				   <script language="JavaScript" type="text/javascript">
-                                   setTimeout("location.href = \'/index.php\'", 90000);
+                                   setTimeout("location.href = \'/\'", 90000);
 				   </script>
 				   </td></tr>'; 
                 system('sudo sync && sudo sync && sudo sync && sudo mount -o remount,ro / > /dev/null &');
                 exec('sudo reboot > /dev/null &');
 			    }
 			    else if ( escapeshellcmd($_POST["action"]) == "shutdown" ) {
-				echo '<tr><td colspan="2" style="background: #000000; color: #00ff00;"><br /><br />Shutdown command has been sent to your Pi-Star Hotspot 
+				echo '<tr><td colspan="2" style="background: #000000; color: #00ff00;"><br /><br />Shutdown command has been sent to your Hotspot 
 				   <br /> please wait at least 60 seconds for it to fully shutdown<br />before removing the power.<br /><br /><br /></td></tr>';
                 system('sudo sync && sudo sync && sudo sync && sudo mount -o remount,ro / > /dev/null &');
                 exec('sudo shutdown -h now > /dev/null &');
