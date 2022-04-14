@@ -54,21 +54,9 @@ if ($cpuTempC <= 59) { $cpuTempHTML = "<div class=\"divTableCell cell_content\" 
 if ($cpuTempC >= 60) { $cpuTempHTML = "<div class=\"divTableCell cell_content\" style=\"background: #fa0;color:black;\">".$cpuTempF."&deg;F / ".$cpuTempC."&deg;C</div>\n"; }
 if ($cpuTempC >= 80) { $cpuTempHTML = "<div class=\"divTableCell cell_content\" style=\"background: #f00;color:black;font-weight:bold;\">".$cpuTempF."&deg;F / ".$cpuTempC."&deg;C</div>\n"; }
 
-// Gather CPU Loads
-//$cpuLoad = sys_getloadavg();
-$stat1 = file('/proc/stat'); 
-sleep(1); 
-$stat2 = file('/proc/stat'); 
-$info1 = explode(" ", preg_replace("!cpu +!", "", $stat1[0])); 
-$info2 = explode(" ", preg_replace("!cpu +!", "", $stat2[0])); 
-$dif = array(); 
-$dif['user'] = $info2[0] - $info1[0]; 
-$dif['nice'] = $info2[1] - $info1[1]; 
-$dif['sys'] = $info2[2] - $info1[2]; 
-$dif['idle'] = $info2[3] - $info1[3]; 
-$total = array_sum($dif); 
-$cpuLoad = array(); 
-foreach($dif as $x=>$y) $cpuLoad[$x] = sprintf('%.0f',round($y / $total * 100, 1));
+$loads = sys_getloadavg();
+$core_nums = trim(shell_exec("grep -P '^processor' /proc/cpuinfo|wc -l"));
+$load = round($loads[0]/($core_nums + 1)*100, 2);
 
 // get ram
 $sysRamUsed = $system['mem_info']['MemTotal'] - $system['mem_info']['MemFree'] - $system['mem_info']['Buffers'] - $system['mem_info']['Cached'];
@@ -90,7 +78,7 @@ $ramDeetz = formatSize($sysRamUsed). " of ".formatSize($system['mem_info']['MemT
       <div class="divTableCell cell_content"><?php echo php_uname('n');?></div>
       <div class="divTableCell cell_content"><?php echo exec('/usr/local/sbin/platformDetect.sh');?></div>
       <div class="divTableCell cell_content"><?php echo php_uname('r');?></div>
-      <div class="divTableCell cell_content">User: <?php echo $cpuLoad['user'];?>% - Sys: <?php echo $cpuLoad['sys'];?>%</div>
+      <div class="divTableCell cell_content"><?php echo $load; ?>%</div>
       <div class="divTableCell cell_content"><?php echo $ramDeetz;?></div>
       <div class="divTableCell cell_content"><?php echo $rootfs_used;?></div>
       <?php echo $cpuTempHTML; ?>
