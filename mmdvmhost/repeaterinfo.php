@@ -460,12 +460,12 @@ $numDMRmasters = exec('cd /var/log/pi-star ; /usr/local/bin/RemoteCommand 7643 s
 	    <?php
 	    if (getConfigItem("DMR Network", "Slot1", $_SESSION['MMDVMHostConfigs']) == 1) {
 		if (preg_match("/Not/",getActualLink($reverseLogLinesMMDVM, "DMR Slot 1"))) {
-                        echo "<div class='divTableCell cell_content middle' title='No TG'>No TG</div>\n";
+                        echo "<div class='divTableCell cell_content middle' title='No TG'><div style=\"background: $tableRowEvenBg;\">No TG</div></div>\n";
 		} else {
 		    echo "<div class='divTableCell cell_content middle active-mode-cell' title='Time Slot 1 Enabled' style='border: .5px solid $tableBorderColor;'>".substr(getActualLink($reverseLogLinesMMDVM, "DMR Slot 1"), -11)."</div>\n";
 		}
 	    } else {
-		    echo "<div class='divTableCell cell_content middle inactive-mode-cell' title='Time Slot 1 disabled'>Disabled</div>\n";
+		    echo "<div class='divTableCell cell_content middle inactive-mode-cell' title='Time Slot 1 disabled'><div style=\"background: $tableRowEvenBg;\">Disabled</div></div>\n";
 	    }
 	    ?>
     </div>
@@ -474,12 +474,12 @@ $numDMRmasters = exec('cd /var/log/pi-star ; /usr/local/bin/RemoteCommand 7643 s
            <?php
 	    if (getConfigItem("DMR Network", "Slot2", $_SESSION['MMDVMHostConfigs']) == 1) {
                 if (preg_match("/Not/",getActualLink($reverseLogLinesMMDVM, "DMR Slot 2"))) {
-                        echo "<div class='divTableCell cell_content middle' title='No TG'>No TG</div>\n";
+                        echo "<div class='divTableCell cell_content middle' title='No TG'><div style=\"background: $tableRowEvenBg;\">No TG</div></div>\n";
                 } else {
 			echo "<div class='divTableCell cell_content middle active-mode-cell' title='Time Slot 2 Enabled' style='border: .5px solid $tableBorderColor;'>".substr(getActualLink($reverseLogLinesMMDVM, "DMR Slot 2"), -11)."</div>\n";
 		}
 	    } else {
-		    echo "<div class='divTableCell cell_content middle inactive-mode-cell' title='Time Slot 2 disabled'>Disabled</div>\n";
+		    echo "<div class='divTableCell cell_content middle inactive-mode-cell' title='Time Slot 2 disabled'><div style=\"background: $tableRowEvenBg;\">Disabled</div></div>\n";
 	    }
 	    ?>
     </div>
@@ -487,9 +487,9 @@ $numDMRmasters = exec('cd /var/log/pi-star ; /usr/local/bin/RemoteCommand 7643 s
       <div class="divTableHeadCell">Beacons</div>
            <?php
             if (getConfigItem("DMR", "Beacons", $_SESSION['MMDVMHostConfigs']) == 1) {
-		echo "<div class='divTableCell cell_content middle active-mode-cell'>Enabled</div>\n";
+		echo "<div class='divTableCell cell_content middle active-mode-cell' style='border: .5px solid $tableBorderColor;'>Enabled</div>\n";
 	    } else {
-		echo "<div class='divTableCell cell_content middle'>Disabled</div>\n";
+		echo "<div class='divTableCell cell_content middle'><div style=\"background: $tableRowEvenBg;\">Disabled</div></div>\n";
 	    }
 	    ?>
       </div>
@@ -905,14 +905,11 @@ if (!isProcessRunning("APRSGateway")) {
 <div class="divTable">
   <div class="divTableBody">
     <div class="divTableRow center">
-<?php echo "<div class='divTableCell cell_content center active-mode-cell' title=\"Connected to Pool: ".$_SESSION['APRSGatewayConfigs']['APRS-IS']['Server']."\">".substr($_SESSION['APRSGatewayConfigs']['APRS-IS']['Server'], 0, 23)."</div>\n"; ?>
+      <div class='divTableHeadCell'>Pool</div> 
+<?php echo "<div class='divTableCell cell_content center' title=\"Connected to Pool: ".$_SESSION['APRSGatewayConfigs']['APRS-IS']['Server']."\">".substr($_SESSION['APRSGatewayConfigs']['APRS-IS']['Server'], 0, 23)."</div>\n"; ?>
     </div>
-  </div>
-</div>
-<div class="divTable">
-  <div class="divTableHead">Current APRS Server</div>
-  <div class="divTableBody">
     <div class="divTableRow center">
+      <div class="divTableHeadCell">Server</div>
 <?php 
 echo "<div class='divTableCell cell_content center'><div style=\"background: $tableRowEvenBg;\">".getAPRSISserver()."</div></div>\n"; ?>
     </div>
