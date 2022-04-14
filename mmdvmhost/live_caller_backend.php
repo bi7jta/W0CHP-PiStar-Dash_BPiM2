@@ -208,8 +208,8 @@ list ($Flag, $Name) = $Flags->GetFlag($listElem[2]);
 if (is_numeric($listElem[2]) || strpos($listElem[2], "openSPOT") !== FALSE || !preg_match('/[A-Za-z].*[0-9]|[0-9].*[A-Za-z]/', $listElem[2])) {
     $flContent = "";
 } else {
-    if (file_exists($_SERVER['DOCUMENT_ROOT']."/images/flags/".$Flag.".png")) {
-	    $flContent = "<img src='/images/flags/$Flag.png?version=$versionCmd' alt='$Name' title='$Name' style='height:50px;border: 2px solid black;' />";
+    if (file_exists($_SERVER['DOCUMENT_ROOT']."/images/flags/250px/".$Flag.".png")) {
+	    $flContent = "<img src='/images/flags/250px/$Flag.png?version=$versionCmd' alt='$Name' title='$Name' style='width:200px; border: 2px solid black;' />";
     } else {
 	$flContent = "";
     }
@@ -219,7 +219,12 @@ if (is_numeric($listElem[2]) || strpos($listElem[2], "openSPOT") !== FALSE || !p
   <div class='row'>
     <div class='column'>
       <div class='orange-column'>
-        <span class='oc_call'><?php echo "$listElem[2] <div style='vertical-align:middle;display:inline;margin:0 0 0 -0.29em'>$flContent</div>"; ?></span>
+        <span class='oc_call'><?php echo "$listElem[2]"; ?></span>
+      </div>
+    </div>
+    <div class='column'>
+      <div class='orange-column'>
+        <span style="position: relative; top: 30%; transform: translateY(-50%);"><?php echo $flContent; ?></span>
       </div>
     </div>
     <div class='column'>
