@@ -150,7 +150,7 @@
 				<input type="hidden" name="Link" value="LINK" />
 				<input type="submit" name="xlxMgrSubmit" value="Request Change" />
 			    </td>
-        		    <td style="white-space:normal;text-align:left;">Select the "Unlink" module to pause XLX DMR traffic, yet remain connected to the XLX Reflector.</td>
+        		    <td style="white-space:normal;">Select the "Unlink" module to pause XLX DMR traffic, yet remain connected to the XLX Reflector.</td>
 			</tr>
                         <tr>
                           <td colspan="4" style="white-space:normal;padding: 3px;">

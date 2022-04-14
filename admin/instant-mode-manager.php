@@ -143,7 +143,6 @@ if (!empty($_POST["submit_mode"]) && empty($_POST["mode_sel"])) { //handler for 
             <label for="mode-sel-2"'.(($DSTAR=='0' && isPaused("D-Star")?" class='paused-mode-span' title='Paused'":"")).'>D-Star</label>
             &nbsp;| <input name="mode_sel" '.(($P25=='0' && !isPaused("P25")?'disabled="disabled"':"")).' access="false" id="mode-sel-3"  value="P25" type="radio">
             <label for="mode-sel-3"'.(($P25=='0' && isPaused("P25")?" class='paused-mode-span' title='Paused'":"")).'>P25</label>
-			<br /><br />
             <input name="mode_sel" '.(($NXDN=='0' && !isPaused("NXDN")?'disabled="disabled"':"")).' access="false" id="mode-sel-4"  value="NXDN" type="radio">
             <label for="mode-sel-4"'.(($NXDN=='0' && isPaused("NXDN")?" class='paused-mode-span' title='Paused'":"")).'>NXDN</label>
             &nbsp;| <input name="mode_sel" '.(($M17=='0' && !isPaused("M17")?'disabled="disabled"':"")).' access="false" id="mode-sel-5"  value="M17" type="radio">
