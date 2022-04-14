@@ -1,5 +1,6 @@
 <?php
 include_once $_SERVER['DOCUMENT_ROOT'].'/config/config.php';          // MMDVMDash Config
+include_once $_SERVER['DOCUMENT_ROOT'].'/config/version.php';         // Version Lib
 include_once $_SERVER['DOCUMENT_ROOT'].'/mmdvmhost/tools.php';        // MMDVMDash Tools
 include_once $_SERVER['DOCUMENT_ROOT'].'/mmdvmhost/functions.php';    // MMDVMDash Functions
 // geoLookup/flags
@@ -208,7 +209,7 @@ if (is_numeric($listElem[2]) || strpos($listElem[2], "openSPOT") !== FALSE || !p
     $flContent = "";
 } else {
     if (file_exists($_SERVER['DOCUMENT_ROOT']."/images/flags/".$Flag.".png")) {
-	    $flContent = "<img src='/images/flags/$Flag.png' alt='$Name' title='$Name' style='height:50px;border: 2px solid black;' />";
+	    $flContent = "<img src='/images/flags/$Flag.png?version=$versionCmd' alt='$Name' title='$Name' style='height:50px;border: 2px solid black;' />";
     } else {
 	$flContent = "";
     }
