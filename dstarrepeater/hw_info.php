@@ -55,7 +55,7 @@ if ($cpuTempC >= 60) { $cpuTempHTML = "<div class=\"divTableCell cell_content\" 
 if ($cpuTempC >= 80) { $cpuTempHTML = "<div class=\"divTableCell cell_content\" style=\"background: #f00;color:black;font-weight:bold;\">".$cpuTempF."&deg;F / ".$cpuTempC."&deg;C</div>\n"; }
 
 $loads = sys_getloadavg();
-$core_nums = trim(shell_exec("grep -P '^processor' /proc/cpuinfo|wc -l"));
+$core_nums = trim(shell_exec("grep -c '^processor' /proc/cpuinfo"));
 $load = round($loads[0]/($core_nums + 1)*100, 2);
 
 // get ram
