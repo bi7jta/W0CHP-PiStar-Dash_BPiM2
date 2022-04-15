@@ -10,10 +10,11 @@ It's *strongly* recommended that you read and heed the [rules and
 caveats](https://w0chp.net/w0chp-pistar-dash/#rules).
 
 Users of `W0CHP-PiStar-Dash` are on [Module **E** of
-XLX493](https://w0chp.net/articles/wpsd-support-on-xlx493/). If you're lucky;
-and if I'm in a good mood and/or if my availability allows, I can help on there
-too. A very easy way to connect to the support reflector, is via BrandMeister DMR,
-TalkGroup `3170603`.
+XLX493](https://w0chp.net/xlx493-reflector/). If you're lucky; and if I'm in a
+good mood and/or if my availability allows, I can help on there.  Other users
+on there are usually happy to help, too.  A very easy way to connect to the
+support reflector, is via DMR; BrandMeister and/or TGIF Network, TalkGroup
+`3170603`.
 
 ## Installing `W0CHP-PiStar-Dash`
 
@@ -252,7 +253,7 @@ Credit also goes to the awesome Daniel Caujolle-Bert, `F1RMB`, for creating his
 personal and customized fork of Pi-Star; as his fork was foundational and
 inspirational to my `W0CHP-PiStar-Dash`.
 
-The country flags and callsign-to-country flag GeoLookup code was adopted from
+The callsign-to-country flag GeoLookup code was adopted from
 [xlxd](https://github.com/LX3JL/xlxd)... authored by Jean-Luc Deltombe,
 `LX3JL`; and Luc Engelmann, `LX1IQ`. [I run an XLX(d)
 reflector](https://w0chp/net/xlx493-reflector/), *plus*, I was able to adopt some of its code
