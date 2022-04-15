@@ -209,7 +209,7 @@ if (is_numeric($listElem[2]) || strpos($listElem[2], "openSPOT") !== FALSE || !p
     $flContent = "";
 } else {
     if (file_exists($_SERVER['DOCUMENT_ROOT']."/images/flags/250px/".$Flag.".png")) {
-	    $flContent = "<img src='/images/flags/250px/$Flag.png?version=$versionCmd' alt='$Name' title='$Name' style='width:200px; border: 2px solid black;' />";
+	    $flContent = "<img src='/images/flags/250px/$Flag.png?version=$versionCmd' alt='$Name' title='$Name' style='width:200px;' />";
     } else {
 	$flContent = "";
     }

@@ -14,7 +14,7 @@ if (file_exists('/etc/.CALLERDETAILS')) {
 <div style="vertical-align: bottom; font-weight: bold;text-align:left;margin-top:-8px;">Current / Last Caller Details</div>
   <table style="word-wrap: break-word; white-space:normal;">
     <tr>
-      <th width="150px"><a class="tooltip" href="#"><?php echo $lang['callsign'];?><span><b>Callsign</b></span></a></th>
+      <th width="170px"><a class="tooltip" href="#"><?php echo $lang['callsign'];?><span><b>Callsign</b></span></a></th>
       <th width="50px">Country</th>
       <th>Name</th>
       <th>Location</th>
@@ -78,13 +78,13 @@ for ($i = 0;  ($i <= 0); $i++) { //Last 20  calls
 		$dt = new DateTime($utc_time, $utc_tz);
 		$duration = $now->getTimestamp() - $dt->getTimestamp();
 		$duration_string = $duration<999 ? round($duration) . "+" : "&infin;";
-		$duration = "<td style=\"background:#d11141;color:#fff;\">TX " . $duration_string . " sec</td>";
+		$duration = "<td style=\"background:#d11141;color:#fff;font-size:1.3em;\">TX " . $duration_string . " sec</td>";
 	    } else if ($listElem[6] == "DMR Data") {
-		$duration =  "<td style=\"background:#00718F;color:#fff;\">DMR Data</td>";
+		$duration =  "<td style=\"background:#00718F;color:#ff;font-size:1.3em;\">DMR Data</td>";
 	    } else if ($listElem[6] == "POCSAG Data") {
-		$duration =  "<td style=\"background:#00718F;color:#fff;\">POCSAG Data</td>";
+		$duration =  "<td style=\"background:#00718F;color:#fff;font-size:1.3em;\">POCSAG Data</td>";
 	    } else {
-		$duration = "<td>$listElem[6]s</td>";
+		$duration = "<td style='font-size:1.3em;'>$listElem[6]s</td>";
 	    }
 
 	    if ($listElem[8] == null) {
@@ -176,24 +176,24 @@ for ($i = 0;  ($i <= 0); $i++) { //Last 20  calls
 		$city = "";
 		$state = "";
 		$country = "---";
-		$duration = "<td>---</td>";
+		$duration = "<td style='font-size:1.3em;'>---</td>";
 	    }
 	    // init geo/flag class
 	    list ($Flag, $Name) = $Flags->GetFlag($listElem[2]);
 	    if (is_numeric($listElem[2]) || strpos($listElem[2], "openSPOT") !== FALSE || !preg_match('/[A-Za-z].*[0-9]|[0-9].*[A-Za-z]/', $listElem[2])) {
  		$flContent = "---";
 	    } elseif (file_exists($_SERVER['DOCUMENT_ROOT']."/images/flags/".$Flag.".png")) {
-		$flContent = "<a class='tooltip' href=\"http://www.qrz.com/db/$listElem[2]\" target=\"_blank\"><img src='/images/flags/$Flag.png?version=$versionCmd' alt='' style='height:20px;border: 1px solid black;' /><span><b>$Name</b></span></a>";
+		$flContent = "<a class='tooltip' href=\"http://www.qrz.com/db/$listElem[2]\" target=\"_blank\"><img src='/images/flags/$Flag.png?version=$versionCmd' alt='' style='height:30px;' /><span><b>$Name</b></span></a>";
 	    } else {
 		$flContent = "---";
 	    }
 
 ?>
   <tr>
-    <td style="padding:3px 0 5px 0;"><strong style="font-size:1.3em;"><?php echo $callsign ?? ' '; ?></strong></td>
+    <td style="padding:3px 0 5px 0;"><strong style="font-size:1.5em;"><?php echo $callsign ?? ' '; ?></strong></td>
     <td><?php echo $flContent; ?></td>
-    <td><?php echo $name ?? ' '; ?></td>
-    <td><?php
+    <td style="font-size:1.3em;"><?php echo $name ?? ' '; ?></td>
+    <td style="font-size:1.3em;"><?php
 		if (!empty($city)) {
 			echo $city .", ";
 		}
@@ -204,13 +204,13 @@ for ($i = 0;  ($i <= 0); $i++) { //Last 20  calls
 		} ?></td>
     <?php
 	if ($listElem[5] == "RF") {
-		echo "<td><span style='color:$backgroundModeCellInactiveColor;font-weight:bold;'>RF</span></td>";
+		echo "<td style='font-size:1.3em;'><span style='color:$backgroundModeCellInactiveColor;font-weight:bold;'>RF</span></td>";
 	} else {
-    		echo" <td>".$source ?? ' '."</td>";
+    		echo" <td style='font-size:1.3em;'>".$source ?? ' '."</td>";
 	}
     ?>
-    <td><?php echo $mode ?? ' '; ?></td>
-    <td><?php echo $target ?? ' '; ?></td>
+    <td style="font-size:1.3em;"><?php echo $mode ?? ' '; ?></td>
+    <td style="font-size:1.3em;"><?php echo $target ?? ' '; ?></td>
     <?php echo $duration; ?>
    </tr>
 <?php
