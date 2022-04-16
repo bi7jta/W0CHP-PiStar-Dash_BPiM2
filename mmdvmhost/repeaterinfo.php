@@ -680,13 +680,6 @@ if (getServiceEnabled('/etc/dgidgateway') == 1 )  { // Hide DGId GW info when GW
 ?>
 <div class="divTable">
   <div class="divTableHead">DG-ID Gateway Status</div>
-  <div class="divTableBody">
-    <div class="divTableRow center">
-      <?php showMode("DG-ID Network", $_SESSION['DGIdGatewayConfigs']);  ?>
-    </div>
-  </div>
-</div>
-<div class="divTable">
   <div class="divTableHead">Current DG-ID</div>
   <div class="divTableBody">
     <div class="divTableRow center">
