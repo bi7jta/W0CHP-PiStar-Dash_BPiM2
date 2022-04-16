@@ -5,11 +5,18 @@ if (file_exists('/etc/.CALLERDETAILS')) {
     include_once $_SERVER['DOCUMENT_ROOT'].'/mmdvmhost/tools.php';        // MMDVMDash Tools
     include_once $_SERVER['DOCUMENT_ROOT'].'/mmdvmhost/functions.php';    // MMDVMDash Functions
     include_once $_SERVER['DOCUMENT_ROOT'].'/config/language.php';        // Translation Code
+
     // geoLookup/flags
     if (!class_exists('xGeoLookup')) require_once($_SERVER['DOCUMENT_ROOT'].'/classes/class.GeoLookup.php');
     $Flags = new xGeoLookup();
     $Flags->SetFlagFile("/usr/local/etc/country.csv");
     $Flags->LoadFlags();
+
+if (isset($_SESSION['CSSConfigs']['Background'])) {
+    $backgroundModeCellActiveColor = $_SESSION['CSSConfigs']['Background']['ModeCellActiveColor'];
+    $backgroundModeCellPausedColor = $_SESSION['CSSConfigs']['Background']['ModeCellPausedColor'];
+    $backgroundModeCellInactiveColor = $_SESSION['CSSConfigs']['Background']['ModeCellInactiveColor'];
+}
 ?>
 <div style="vertical-align: bottom; font-weight: bold;text-align:left;margin-top:-8px;">Current / Last Caller Details</div>
   <table style="word-wrap: break-word; white-space:normal;">
@@ -183,7 +190,7 @@ for ($i = 0;  ($i <= 0); $i++) { //Last 20  calls
 	    if (is_numeric($listElem[2]) || strpos($listElem[2], "openSPOT") !== FALSE || !preg_match('/[A-Za-z].*[0-9]|[0-9].*[A-Za-z]/', $listElem[2])) {
  		$flContent = "---";
 	    } elseif (file_exists($_SERVER['DOCUMENT_ROOT']."/images/flags/".$Flag.".png")) {
-		$flContent = "<a class='tooltip' href=\"http://www.qrz.com/db/$listElem[2]\" target=\"_blank\"><img src='/images/flags/$Flag.png?version=$versionCmd' alt='' style='height:30px;' /><span><b>$Name</b></span></a>";
+		$flContent = "<a class='tooltip' href=\"http://www.qrz.com/db/$listElem[2]\" target=\"_blank\"><img src='/images/flags/$Flag.png?version=$versionCmd' alt='' style='height:25px;' /><span><b>$Name</b></span></a>";
 	    } else {
 		$flContent = "---";
 	    }
