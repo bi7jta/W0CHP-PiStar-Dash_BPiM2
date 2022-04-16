@@ -128,7 +128,11 @@ $ModemTCXO = str_replace("MHz", " MHz",$_SESSION['PiStarRelease']['Pi-Star']['TC
       <div class="divTableCell cell_content middle" style="background: <?php echo $tableRowEvenBg; ?>;"><?php if(empty($ModemFW)) { echo '(updating)'; } else { echo $ModemFW; } ?></div>
       <div class="divTableCell cell_content middle" style="background: <?php echo $tableRowEvenBg; ?>;"><?php if(empty($ModemTCXO)) { echo '(updating)'; } else { echo $ModemTCXO; } ?></div>
       <div class="divTableCell cell_content middle" style="background: <?php echo $tableRowEvenBg; ?>;"><?php echo getConfigItem("Modem", "UARTPort", $_SESSION['MMDVMHostConfigs']); ?></div>
+<?php if (!empty(getConfigItem("Modem", "UARTSpeed", $_SESSION['MMDVMHostConfigs']))) { ?>
       <div class="divTableCell cell_content middle" style="background: <?php echo $tableRowEvenBg; ?>;"><?php echo number_format(getConfigItem("Modem", "UARTSpeed", $_SESSION['MMDVMHostConfigs'])); ?> bps</div>
+<?php } else { ?>
+      <div class="divTableCell cell_content middle" style="background: <?php echo $tableRowEvenBg; ?>;"><a href="/admin/configure.php#modem_speed">Please Set Modem Speed...</a></div>
+<?php } ?>
     </div>
   </div>
 </div>

@@ -4349,18 +4349,18 @@ else:
 		<option<?php if ($configModem['Modem']['Hardware'] === 'opengd77') {		echo ' selected="selected"';}?> value="opengd77">OpenGD77 DMR hotspot (USB)</option>
     </select></td>
     </tr>
-	<tr>
+	<tr id="modem_speed">
 	    <td align="left"><a class="tooltip2" href="#">Modem Baud Rate:<span><b>Baudrate</b>Serial speed (most Hats are using 115200)</span></a></td>
 	    <td align="left" colspan="3"><select name="confHardwareSpeed">
 		<?php
-		$modemSpeeds = [1200, 2400, 4800, 9600, 19200, 38400, 57600, 115200];
+		$modemSpeeds = [115200, 57600, 38400, 19200, 9600, 4800, 2400, 1200];
 		foreach($modemSpeeds as $modemSpeed) {
-			    if ($configmmdvm['Modem']['UARTSpeed'] == $modemSpeed) {
-					echo " <option value=\"$modemSpeed\" selected=\"selected\">$modemSpeed</option>\n";
-			    } 
-		    	else {
-					echo " <option value=\"$modemSpeed\">$modemSpeed</option>\n";
-				}
+		    if ($configmmdvm['Modem']['UARTSpeed'] == $modemSpeed) {
+			echo " <option value=\"$modemSpeed\" selected=\"selected\">$modemSpeed</option>\n";
+		    } 
+		    else {
+			echo " <option value=\"$modemSpeed\">$modemSpeed</option>\n";
+		    }
 		}
 		?>
 		</select></td>
