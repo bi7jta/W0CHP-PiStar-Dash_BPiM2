@@ -920,7 +920,7 @@ echo "<div class='divTableCell cell_content center'><div style=\"background: $ta
   <div class="divTable">
     <div class="divTableBody">
       <div class="divTableRow center">
-<?php echo "<div class='divTableCell cell_content center' style=\"background: $tableRowEvenBg;\" title=\"No Mode(s) Selected\">No Mode(s) Selected</div>\n"; ?>
+<?php echo "<div class='divTableCell cell_content center' style=\"background: $tableRowEvenBg;\" title=\"No Mode(s) Selected\"><a href='/admin/configure.php#APRSgw'>No Mode(s) Selected</a></div>\n"; ?>
       </div>
     </div>
   </div>
