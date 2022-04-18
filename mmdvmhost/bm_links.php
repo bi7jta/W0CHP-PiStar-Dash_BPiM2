@@ -100,13 +100,13 @@ if ( $testMMDVModeDMR == 1 ) {
             foreach($bmStaticTGListJson as $staticTG) {
 		$len = strlen($staticTG->talkgroup);
 		if ($len == 2) {
-		    $sep = "&nbsp;&nbsp;&nbsp;&nbsp;";
+		    $sep = "&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;";
 		} elseif ($len == 3) {
-		    $sep = "&nbsp;&nbsp;&nbsp;";
+		    $sep = "&nbsp;&nbsp;&nbsp;&nbsp;";
 		} elseif ($len == 4) {
-		    $sep = "&nbsp;&nbsp;";
+		    $sep = "&nbsp;&nbsp;&nbsp;";
 		} elseif ($len == 5) {
-		    $sep = "&nbsp;";
+		    $sep = "&nbsp;&nbsp;";
 		} else {
 		    $sep = "";
 		}
