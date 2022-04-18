@@ -350,7 +350,7 @@ if ( $testMMDVModeDMR == 1 ) {
 		    echo '    <td><input type="text" id="tgNr" name="tgNr" size="10" maxlength="7" oninput="enableOnNonEmpty(\'tgNr\', \'tgSubmit\', \'tgAdd\', \'tgDel\'); return false;"/></td>'."\n";
 		    echo '    <td><input type="radio" id="ts1" name="TS" value="1" '.((getConfigItem("General", "Duplex", $_SESSION['MMDVMHostConfigs']) == "1") ? '' : '').'/><label for="ts1"/>TS1</label> <input type="radio" id="ts2" name="TS" value="2" checked="checked"/><label for="ts2"/>TS2</td>'."\n";
 		    echo '    <td style="white-space:nowrap;"><input type="radio" id="tgAdd" name="TGmgr" value="ADD" checked="checked" /><label for="tgAdd">Add</label> <input type="radio" id="tgDel" name="TGmgr" value="DEL" checked="checked" /><label for="tgDel">Delete</label>&nbsp;<input type="submit" value="Add/Delete Static" id="tgSubmit" name="tgSubmit"/></td>'."\n";
-		    echo '    <td><input type="submit" value="Drop QSO" title="Drop current QSO" name="dropQso" /><br />'."\n";
+		    echo '    <td><input type="submit" value="Drop QSO" title="Drop current QSO" name="dropQso" />&nbsp;'."\n";
 		    echo '      <input type="submit" value="Drop All Dynamic" title="Drop all dynamic groups" name="dropDyn" /></td>'."\n";
 		    echo '  </tr>'."\n";
 		    echo '  <tr>'."\n";
