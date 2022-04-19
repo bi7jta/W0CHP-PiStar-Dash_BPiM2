@@ -28,8 +28,8 @@ if (isset($_SESSION['CSSConfigs']['Background'])) {
   <table style="white-space:normal; word-wrap:break;">
     <tr>
       <th width="250px"><a class="tooltip" href="#"><?php echo $lang['time'];?> (<?php echo date('T')?>)<span><b>Time in <?php echo date('T')?> time zone</b></span></a></th>
-      <th><a class="tooltip" href="#"><?php echo $lang['mode'];?><span><b>Transmitted Mode</b></span></a></th>
       <th><a class="tooltip" href="#"><?php echo $lang['callsign'];?><span><b>Callsign</b></span></a></th>
+      <th><a class="tooltip" href="#"><?php echo $lang['mode'];?><span><b>Transmitted Mode</b></span></a></th>
       <th><a class="tooltip" href="#"><?php echo $lang['target'];?><span><b>Target, D-Star Reflector, DMR Talk Group etc</b></span></a></th>
       <th><a class="tooltip" href="#"><?php echo $lang['src'];?><span><b>Received from source</b></span></a></th>
       <th><a class="tooltip" href="#"><?php echo $lang['dur'];?>(s)<span><b>Duration in Seconds</b></span></a></th>
@@ -55,7 +55,6 @@ for ($i = 0; $i < count($localTXList); $i++) {
                             }
 			echo"<tr>";
 			echo"<td align=\"left\">$local_time</td>";
-			echo "<td align=\"left\">".str_replace('Slot ', 'TS', $listElem[1])."</td>";
 			if (is_numeric($listElem[2]) || strpos($listElem[2], "openSPOT") !== FALSE) {
 				echo "<td align=\"left\">$listElem[2]</td>";
 			} elseif (!preg_match('/[A-Za-z].*[0-9]|[0-9].*[A-Za-z]/', $listElem[2])) {
@@ -68,6 +67,7 @@ for ($i = 0; $i < count($localTXList); $i++) {
 					echo "<td align=\"left\"><a href=\"http://www.qrz.com/db/$listElem[2]\" target=\"_blank\">$listElem[2]</a></td>";
 				}
 			}
+			echo "<td align=\"left\">".str_replace('Slot ', 'TS', $listElem[1])."</td>";
 			if (strlen($listElem[4]) == 1) { $listElem[4] = str_pad($listElem[4], 8, " ", STR_PAD_LEFT); }
 			echo"<td align=\"left\">".str_replace(" ","&nbsp;", $listElem[4])."</td>";
 			if ($listElem[5] == "RF"){

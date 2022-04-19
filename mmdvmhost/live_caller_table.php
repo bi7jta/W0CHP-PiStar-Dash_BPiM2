@@ -25,9 +25,9 @@ if (isset($_SESSION['CSSConfigs']['Background'])) {
       <th width="50px">Country</th>
       <th>Name</th>
       <th>Location</th>
-      <th><a class="tooltip" href="#"><?php echo $lang['src'];?><span><b>Received from source</b></span></a></th>
       <th><a class="tooltip" href="#"><?php echo $lang['mode'];?><span><b>Transmitted Mode</b></span></a></th>
       <th><a class="tooltip" href="#"><?php echo $lang['target'];?><span><b>Target, D-Star Reflector, DMR Talk Group etc</b></span></a></th>
+      <th><a class="tooltip" href="#"><?php echo $lang['src'];?><span><b>Received from source</b></span></a></th>
       <th><a class="tooltip" href="#"><?php echo $lang['dur'];?>(s)<span><b>Duration in Seconds</b></span></a></th>
     </tr>
 <?php
@@ -209,16 +209,16 @@ for ($i = 0;  ($i <= 0); $i++) { //Last 20  calls
 		} if (!empty($country)) { 
 			echo $country; 
 		} ?></td>
+    <td style="font-size:1.3em;"><?php echo $mode ?? ' '; ?></td>
+    <td style="font-size:1.3em;"><?php echo $target ?? ' '; ?></td>
     <?php
 	if ($listElem[5] == "RF") {
 		echo "<td style='font-size:1.3em;'><span style='color:$backgroundModeCellInactiveColor;font-weight:bold;'>RF</span></td>";
 	} else {
     		echo" <td style='font-size:1.3em;'>".$source ?? ' '."</td>";
 	}
+        echo $duration;
     ?>
-    <td style="font-size:1.3em;"><?php echo $mode ?? ' '; ?></td>
-    <td style="font-size:1.3em;"><?php echo $target ?? ' '; ?></td>
-    <?php echo $duration; ?>
    </tr>
 <?php
 	    }
