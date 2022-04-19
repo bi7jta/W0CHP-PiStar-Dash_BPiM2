@@ -95,6 +95,16 @@ checkSessionValidity();
 	    });
 	    $('.hw_toggle').toggle(localStorage.getItem('visible') === 'true');
 	  });
+        jQuery(document).ready(function() {
+          jQuery('#lh_details').click(function(){
+            jQuery('#lh_info').slideToggle('slow');
+            if(jQuery(this).text() == 'Hide Last Heard...'){
+                jQuery(this).text('Display Last Heard...');
+            } else {
+                jQuery(this).text('Hide Last Heard...');
+            }
+          });
+        });
 	</script>
     </head>
     <body>
@@ -413,6 +423,22 @@ checkSessionValidity();
 		    }
         	}
 
+	    if ($_SERVER["PHP_SELF"] == "/admin/index.php") {
+		echo '<div class="contentwide">'."\n";
+	    	echo '<script type="text/javascript">'."\n";
+	    	echo 'function reloadSysInfo(){'."\n";
+	    	echo '  $("#sysInfo").load("/dstarrepeater/system.php",function(){ setTimeout(reloadSysInfo,5000) });'."\n";
+	    	echo '}'."\n";
+	    	echo 'setTimeout(reloadSysInfo,5000);'."\n";
+	    	echo '$(window).trigger(\'resize\');'."\n";
+	    	echo '</script>'."\n";
+	    	if (empty($_POST) && empty($_GET) || $_GET['func'] == "main") {				// only show services on main admin page
+		    echo '<div id="sysInfo">'."\n";
+		    include 'dstarrepeater/system.php';				// Basic System Info
+		    echo '</div></div>'."\n";
+                }
+            }
+    
 		// begin admin selection form
 		if ($_SERVER["PHP_SELF"] == "/admin/index.php") {
 		    if ((!empty($_POST) || !empty($_GET)) && ($_GET['func'] != 'main')) { echo '<br />'; }
@@ -508,22 +534,6 @@ checkSessionValidity();
 		    }
 		}
 
-	    if ($_SERVER["PHP_SELF"] == "/admin/index.php") {
-		echo '<div class="contentwide">'."\n";
-	    	echo '<script type="text/javascript">'."\n";
-	    	echo 'function reloadSysInfo(){'."\n";
-	    	echo '  $("#sysInfo").load("/dstarrepeater/system.php",function(){ setTimeout(reloadSysInfo,5000) });'."\n";
-	    	echo '}'."\n";
-	    	echo 'setTimeout(reloadSysInfo,5000);'."\n";
-	    	echo '$(window).trigger(\'resize\');'."\n";
-	    	echo '</script>'."\n";
-	    	if (empty($_POST) && empty($_GET) || $_GET['func'] == "main") {				// only show services on main admin page
-		    echo '<div id="sysInfo">'."\n";
-		    include 'dstarrepeater/system.php';				// Basic System Info
-		    echo '</div></div>'."\n";
-                }
-            }
-    
 	if ($_SERVER["PHP_SELF"] == "/index.php" || $_SERVER["PHP_SELF"] == "/admin/index.php") {
 		echo '<script type="text/javascript">'."\n";
         	echo 'function setLastCaller(obj) {'."\n";
@@ -605,23 +615,39 @@ checkSessionValidity();
 		echo '$(window).trigger(\'resize\');'."\n";
 		echo '</script>'."\n";
     }
-	    	if (empty($_POST) && empty($_GET) || $_GET['func'] == "main") {	// only show localtx and lastheard on main admin page (not sections)
-		    echo '<div id="liveCallerDeets">'."\n";
-		    include 'mmdvmhost/live_caller_table.php';
- 		    echo '</div>'."\n";
 
-		    echo '<div id="localTxs">'."\n";
-		    include 'mmdvmhost/localtx.php';				// MMDVMDash Local Trasmissions
-		    echo '</div>'."\n";
+		if ($_SERVER["PHP_SELF"] == "/admin/index.php") {
+		    echo '<div style="text-align:left;font-weight:bold;"><a href="#lh_info" id="lh_details">Display Last Heard...</a></div><br />';
+		    echo '<div id="lh_info" style="display:none;">';
+                    echo '<div id="liveCallerDeets">'."\n";
+                    include 'mmdvmhost/live_caller_table.php';
+                    echo '</div>'."\n";
 
-		    echo '<div id="lastHeard">'."\n";
-		    include 'mmdvmhost/lh.php';					// MMDVMDash Last Heard
-		    echo '</div>'."\n";
+                    echo '<div id="localTxs">'."\n";
+                    include 'mmdvmhost/localtx.php';                            // MMDVMDash Local Trasmissions
+                    echo '</div>'."\n";
+
+                    echo '<div id="lastHeard">'."\n";
+                    include 'mmdvmhost/lh.php';                                 // MMDVMDash Last Heard
+                    echo '</div>'."\n";
+                    echo '</div>'."\n";
+                } else {
+                    echo '<div id="liveCallerDeets">'."\n";
+                    include 'mmdvmhost/live_caller_table.php';
+                    echo '</div>'."\n";
+
+                    echo '<div id="localTxs">'."\n";
+                    include 'mmdvmhost/localtx.php';                            // MMDVMDash Local Trasmissions
+                    echo '</div>'."\n";
+
+                    echo '<div id="lastHeard">'."\n";
+                    include 'mmdvmhost/lh.php';                                 // MMDVMDash Last Heard
+                    echo '</div>'."\n";
 		}
 
 		// If POCSAG is enabled, show the information panel
         if ( $testMMDVModePOCSAG == 1 ) {
-            if (empty($_POST) && empty($_GET) || ($_POST["func"] == "pocsag_man" || $_GET["func"] == "pocsag_man")) { // display pages in pocsag mgr or main admin only with no other func requested
+            if (($_SERVER["PHP_SELF"] == "/index.php" || $_POST["func"] == "pocsag_man" || $_GET["func"] == "pocsag_man")) { // display pages in pocsag mgr or main dash page only with no other func requested
 	            $myOrigin = ($_SERVER["PHP_SELF"] == "/admin/index.php" ? "admin" : "other");
 		    
 		        echo '<script type="text/javascript">'."\n";
@@ -640,7 +666,7 @@ checkSessionValidity();
 		        echo 'pagesto = setTimeout(reloadPages, 10000, "?origin='.$myOrigin.'");'."\n";
 		        echo '$(window).trigger(\'resize\');'."\n";
 		        echo '</script>'."\n";
-		        echo '<br />'."\n".'<div id="Pages">'."\n";
+		        echo "\n".'<div id="Pages">'."\n";
 		        include 'mmdvmhost/pages.php';				// POCSAG Messages
 		        echo '</div>'."\n";
 		    }
