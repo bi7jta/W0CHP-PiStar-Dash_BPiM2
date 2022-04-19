@@ -39,6 +39,10 @@ unset($_SESSION['DvModemTCXOFreq']);
 
 checkSessionValidity();
 
+if (isset($_SESSION['CSSConfigs']['Text'])) {
+    $textSections = $_SESSION['CSSConfigs']['Text']['TextSectionColor'];
+}
+
 ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
 	  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
@@ -617,7 +621,7 @@ checkSessionValidity();
     }
 
 		if ($_SERVER["PHP_SELF"] == "/admin/index.php") {
-		    echo '<div style="text-align:left;font-weight:bold;"><a href="#lh_info" id="lh_details">Display Last Heard...</a></div><br />';
+		    echo '<div style="text-align:left;font-weight:bold;"><a style="color:'.$textSections.';text-decoration:underline;" href="#lh_info" id="lh_details">Display Last Heard...</a></div><br />';
 		    echo '<div id="lh_info" style="display:none;">';
                     echo '<div id="liveCallerDeets">'."\n";
                     include 'mmdvmhost/live_caller_table.php';
