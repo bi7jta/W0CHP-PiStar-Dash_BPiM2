@@ -386,21 +386,24 @@ if (isset($_SESSION['CSSConfigs']['Text'])) {
         	include 'mmdvmhost/tgif_manager.php';			// TGIF DMR Link Manager
 		}
 		
-        $testMMDVModeYSF = getConfigItem("System Fusion", "Enable", $_SESSION['MMDVMHostConfigs']);
-        $testDMR2YSF = $_SESSION['DMR2YSFConfigs']['Enabled']['Enabled'];
-        if ($testMMDVModeYSF == 1 || $testDMR2YSF == 1) {
+		$testMMDVModeYSF = getConfigItem("System Fusion", "Enable", $_SESSION['MMDVMHostConfigs']);
+		$testDMR2YSF = $_SESSION['DMR2YSFConfigs']['Enabled']['Enabled'];
+		if ($testMMDVModeYSF == 1 || $testDMR2YSF == 1) {
 		    if ($_SERVER["PHP_SELF"] == "/admin/index.php" && $_POST["func"] == "ysf_man" || $_GET["func"] == "ysf_man") { 	// Admin Only Option
 				include 'mmdvmhost/ysf_manager.php';		// YSF Links
 		    }
 		}
 		$testMMDVModeP25net = getConfigItem("P25 Network", "Enable", $_SESSION['MMDVMHostConfigs']);
-		if ( $testMMDVModeP25net == 1 ) {				// If P25 network is enabled, add these extra features.
+                $testYSF2P25 = $_SESSION['YSF2P25Configs']['Enabled']['Enabled'];
+		if ( $testMMDVModeP25net == 1 || $testYSF2P25 == 1) {				// If P25 network is enabled, add these extra features.
 		    if ($_SERVER["PHP_SELF"] == "/admin/index.php" && $_POST["func"] == "p25_man" || $_GET["func"] == "p25_man") { 	// Admin Only Option *p25 mgr)
 				include 'mmdvmhost/p25_manager.php';		// P25 Links
 		    }
 		}
-		$testMMDVModeNXDNnet = getConfigItem("NXDN Network", "Enable", $_SESSION['MMDVMHostConfigs']);
-		if ( $testMMDVModeNXDNnet == 1 ) {				// If NXDN network is enabled, add these extra features.
+		$testMMDVModeNXDN = getConfigItem("NXDN Network", "Enable", $_SESSION['MMDVMHostConfigs']);
+		$testDMR2NXDN = $_SESSION['DMR2NXDNConfigs']['Enabled']['Enabled'];
+		$testYSF2NXDN = $_SESSION['YSF2NXDNConfigs']['Enabled']['Enabled'];
+		if ( $testMMDVModeNXDN == 1 || $testDMR2NXDN == 1 || $testYSF2NXDN == 1 ) {
 		    if ($_SERVER["PHP_SELF"] == "/admin/index.php" && $_POST["func"] == "nxdn_man" || $_GET["func"] == "nxdn_man") { 	// Admin Only Option (nxdn mgr)
 				include 'mmdvmhost/nxdn_manager.php';		// NXDN Links
 		    }
@@ -497,15 +500,18 @@ if (isset($_SESSION['CSSConfigs']['Text'])) {
                     echo '        <div class="mode_flex row">'."\n";
 		    echo '          <div class="mode_flex column">'."\n";
                     $testMMDVModeP25 = getConfigItem("P25", "Enable", $_SESSION['MMDVMHostConfigs']);
-                    if ($testMMDVModeP25 == 1) {
+                    $testYSF2P25 = $_SESSION['YSF2P25Configs']['Enabled']['Enabled'];
+                    if ( $testMMDVModeP25 == 1 || $testYSF2P25 == 1) {
 		    	echo '		<button form="admin_sel" type="submit" value="p25_man" name="func"><span>P25 Manager</span></button>'."\n";
 		    }
 		    else {
 		    	echo '		<button form="admin_sel" disabled="disabled" type="submit" value="p25_man" name="func"><span>P25 Manager</span></button>'."\n";
 		    }
 		    echo '          </div><div class="mode_flex column">'."\n";
-                    $testMMDVModeNXDN = getConfigItem("NXDN", "Enable", $_SESSION['MMDVMHostConfigs']);
-                    if ($testMMDVModeNXDN == 1 && !isPaused("NXDN")) {
+		    $testMMDVModeNXDN = getConfigItem("NXDN Network", "Enable", $_SESSION['MMDVMHostConfigs']);
+                    $testDMR2NXDN = $_SESSION['DMR2NXDNConfigs']['Enabled']['Enabled'];
+                    $testYSF2NXDN = $_SESSION['YSF2NXDNConfigs']['Enabled']['Enabled'];
+                    if (($testMMDVModeNXDN == 1 || $testDMR2NXDN == 1 || $testYSF2NXDN == 1) && !isPaused("NXDN")) {
 		    	echo '		<button form="admin_sel" type="submit" value="nxdn_man" name="func"><span>NXDN Manager</span></button>'."\n";
 		    }
 		    else {

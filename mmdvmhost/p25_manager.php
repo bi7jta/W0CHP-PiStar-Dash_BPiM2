@@ -18,7 +18,8 @@ include_once $_SERVER['DOCUMENT_ROOT'].'/config/language.php';        // Transla
 
 // Check if P25 is Enabled
 $testMMDVModeP25 = getConfigItem("P25 Network", "Enable", $_SESSION['MMDVMHostConfigs']);
-if ( $testMMDVModeP25 == 1 ) {
+$testYSF2P25 = $_SESSION['YSF2P25Configs']['Enabled']['Enabled'];
+if ( $testMMDVModeP25 == 1 || $testYSF2P25 == 1 ) {
     // Check that the remote is enabled
     if (isset($_SESSION['P25GatewayConfigs']['Remote Commands']['Enable']) && (isset($_SESSION['P25GatewayConfigs']['Remote Commands']['Port'])) && ($_SESSION['P25GatewayConfigs']['Remote Commands']['Enable'] == 1)) {
 	$remotePort = $_SESSION['P25GatewayConfigs']['Remote Commands']['Port'];
@@ -78,7 +79,10 @@ if ( $testMMDVModeP25 == 1 ) {
 				<?php
 				if (isset($_SESSION['P25GatewayConfigs']['Network']['Startup'])) {
 				    $testP25Host = $_SESSION['P25GatewayConfigs']['Network']['Startup'];
-				}
+                                } elseif
+                                    (isset($_SESSION['P25GatewayConfigs']['Network']['Static'])) {
+                                        $testP25Host = $_SESSION['P25GatewayConfigs']['Network']['Static'];
+                                }
 				else {
 				    $testP25Host = "none";
 				}

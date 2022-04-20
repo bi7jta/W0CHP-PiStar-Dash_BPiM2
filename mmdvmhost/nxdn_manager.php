@@ -18,7 +18,9 @@ include_once $_SERVER['DOCUMENT_ROOT'].'/config/language.php';        // Transla
 
 // Check if NXDN is Enabled
 $testMMDVModeNXDN = getConfigItem("NXDN Network", "Enable", $_SESSION['MMDVMHostConfigs']);
-if ( $testMMDVModeNXDN == 1 ) {
+$testDMR2NXDN = $_SESSION['DMR2NXDNConfigs']['Enabled']['Enabled'];
+$testYSF2NXDN = $_SESSION['YSF2NXDNConfigs']['Enabled']['Enabled'];
+if ( $testMMDVModeNXDN == 1 || $testDMR2NXDN == 1 || $testYSF2NXDN == 1 ) {
     // Check that the remote is enabled
     if (isset($_SESSION['NXDNGatewayConfigs']['Remote Commands']['Enable']) && (isset($_SESSION['NXDNGatewayConfigs']['Remote Commands']['Port'])) && ($_SESSION['NXDNGatewayConfigs']['Remote Commands']['Enable'] == 1)) {
 	$remotePort = $_SESSION['NXDNGatewayConfigs']['Remote Commands']['Port'];
@@ -81,6 +83,9 @@ if ( $testMMDVModeNXDN == 1 ) {
 				    $nxdnHosts = fopen("/usr/local/etc/NXDNHosts.txt", "r");
 				    if (isset($_SESSION['NXDNGatewayConfigs']['Network']['Startup'])) {
 					$testNXDNHost = $_SESSION['NXDNGatewayConfigs']['Network']['Startup'];
+				    } elseif
+					 (isset($_SESSION['NXDNGatewayConfigs']['Network']['Static'])) {
+					    $testNXDNHost = $_SESSION['NXDNGatewayConfigs']['Network']['Static'];
 				    }
 				    else {
 					$testNXDNHost = "";

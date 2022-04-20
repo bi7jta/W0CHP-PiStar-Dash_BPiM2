@@ -124,7 +124,7 @@ Run:
 
 * User-Configurable 24 or 12 hour time display across the dashboard.
 
-* Searchable drop-downs for massive host lists in configuration/admin pages. E.g. YSF Hosts, XLX Hosts, DMR Hosts, etc.
+* Searchable drop-downs for massive host lists in configuration/admin pages. E.g. D-Star Refs., YSF Hosts, XLX Hosts, DMR Hosts, etc.
 
 * BrandMeister Manager revamps galore:
 
@@ -150,7 +150,7 @@ Run:
   
   * Disable / Enable Cron, in order to prevent updates and Pi-Star services restarting during middle-of-the-night/early AM operation.
 
-* YSF link manager gives the ability to change links/rooms on-the-fly, rather than going through the large (and slow) configuration page.
+* YSF/NXDN/P25 link managers gives the ability to change links/rooms on-the-fly, rather than going through the large (and slow) configuration page.
 
 * Connected FCS and YSF reflector names and numerical ID both displayed in dashboard left panel.
 

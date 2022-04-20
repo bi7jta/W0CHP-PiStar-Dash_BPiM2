@@ -1526,7 +1526,7 @@ function getActualMode($metaLastHeard, &$configs) {
 // returns link-states of all D-Star-modules
 function getDSTARLinks() {
     if (filesize(LINKLOGPATH."/Links.log") == 0) {
-	return "Not Linked";
+	return "<div class='inactive-mode-cell'>Not Linked</div>";
     }
     if ($linkLog = fopen(LINKLOGPATH."/Links.log",'r')) {
 	while ($linkLine = fgets($linkLog)) {
@@ -1691,7 +1691,7 @@ function getActualLink($logLines, $mode) {
 			return $to;
 		    }
 		}
-		return "Not Linked";
+		return "<div class='inactive-mode-cell'>Not Linked</div>";
             } 
 	    else {
 		return "<div class='inactive-mode-cell'>Service Not Started</div>";
@@ -1729,10 +1729,10 @@ function getActualLink($logLines, $mode) {
                    return "TG".$to;
 		    }
 			else if (strpos($logLine,"Starting NXDNGateway") || strpos($logLine,"Unlinking") || strpos($logLine,"Unlinked")) {
-			return "Not Linked";
+			return "<div class='inactive-mode-cell'>Not Linked</div>";
 		    }
 		}
-		return "Not Linked";
+		return "<div class='inactive-mode-cell'>Not Linked</div>";
             } 
 	    else {
 		return "<div class='inactive-mode-cell'>Service Not Started</div>";
@@ -1758,10 +1758,10 @@ function getActualLink($logLines, $mode) {
 			return (substr($logLine, 47, 9));
 		    }
 		    else if (strpos($logLine,"Starting M17Gateway") || strpos($logLine,"Unlinking") || strpos($logLine,"Unlinked")) {
-			return "Not Linked";
+			return "<div class='inactive-mode-cell'>Not Linked</div>";
 		    }
 		}
-		return "Not Linked";
+		return "<div class='inactive-mode-cell'>Not Linked</div>";
             }
 	    else {
 		return "<div class='inactive-mode-cell'>Service Not Started</div>";
@@ -1802,10 +1802,10 @@ function getActualLink($logLines, $mode) {
                 return "TG".$to;
 			}
 			if (strpos($logLine,"Starting P25Gateway") || strpos($logLine,"Unlinking") || strpos($logLine,"Unlinked")) {
-			return "Not Linked";
+			return "<div class='inactive-mode-cell'>Not Linked</div>";
 		    }
 		}
-        return "Not Linked";
+        	return "<<div class='inactive-mode-cell'>Not Linked</div>";
 	    } 
 	    else {
 		return "<div class='inactive-mode-cell'>Service Not Started</div>";

@@ -4423,7 +4423,7 @@ else:
 </td>
 </tr>
     <tr>
-    <td align="left"><a class="tooltip2" href="#"><?php echo $lang['aprs_host'];?>:<span><b>APRS Gateway Host Pool</b>Set your prefered APRS host pool here.</span></a></td>
+    <td align="left"><a class="tooltip2" href="#"><?php echo $lang['aprs_host'];?>:<span><b>APRS Gateway Host Pool</b>Set your preferred APRS host pool here.</span></a></td>
     <td colspan="3" style="text-align: left;"><select name="selectedAPRSHost">
 <?php 
         //$testAPSRHost = $configs['aprsHostname']; // I see no def. of this in the upstream code, so we'll define it below by loading & parsing the config...
@@ -4503,7 +4503,7 @@ else:
     <th align="left" colspan="4">Main DMR Network Settings</th>
     </tr>
     <tr>
-    <td align="left"><a class="tooltip2" href="#"><?php echo $lang['dmr_master'];?>:<span><b>DMR Master (MMDVMHost)</b>Set your prefered DMR master here</span></a></td>
+    <td align="left"><a class="tooltip2" href="#"><?php echo $lang['dmr_master'];?>:<span><b>DMR Master (MMDVMHost)</b>Set your preferred DMR master here</span></a></td>
     <td style="text-align: left;" colspan="3"><select name="dmrMasterHost" class="dmrMasterHost">
 <?php
         $testMMDVMdmrMaster = $configmmdvm['DMR Network']['Address'];
@@ -4525,7 +4525,7 @@ else:
     <th align="left"colspan="4">BrandMeister Network Settings</th>
     </tr>
     <tr>
-    <td align="left"><a class="tooltip2" href="#"><?php echo $lang['bm_master'];?>:<span><b>BrandMeister Master</b>Set your prefered DMR master here</span></a></td>
+    <td align="left"><a class="tooltip2" href="#"><?php echo $lang['bm_master'];?>:<span><b>BrandMeister Master</b>Set your preferred DMR master here</span></a></td>
     <td style="text-align: left;" colspan="3"><select name="dmrMasterHost1" class="dmrMasterHost1">
 <?php
 	$dmrMasterFile1 = fopen("/usr/local/etc/DMR_Hosts.txt", "r");
@@ -4602,7 +4602,7 @@ else:
     <th align="left" colspan="4">DMR+ Network Settings</th>
     </tr>
     <tr>
-    <td align="left"><a class="tooltip2" href="#"><?php echo $lang['dmr_plus_master'];?>:<span><b>DMR+ Master</b>Set your prefered DMR master here</span></a></td>
+    <td align="left"><a class="tooltip2" href="#"><?php echo $lang['dmr_plus_master'];?>:<span><b>DMR+ Master</b>Set your preferred DMR master here</span></a></td>
     <td style="text-align: left;" colspan="3"><select name="dmrMasterHost2" class="dmrMasterHost2">
 <?php
 	$dmrMasterFile2 = fopen("/usr/local/etc/DMR_Hosts.txt", "r");
@@ -4672,7 +4672,7 @@ else:
     <th align="left" colspan="4">XLX Network Settings</th>
     </tr>
     <tr>
-    <td align="left"><a class="tooltip2" href="#"><?php echo $lang['xlx_master'];?>:<span><b>XLX Master</b>Set your prefered XLX master here</span></a></td>
+    <td align="left"><a class="tooltip2" href="#"><?php echo $lang['xlx_master'];?>:<span><b>XLX Master</b>Set your preferred XLX master here</span></a></td>
     <td style="text-align: left;" colspan="3"><select name="dmrMasterHost3" class="dmrMasterHost3">
 <?php
 	$dmrMasterFile3 = fopen("/usr/local/etc/DMR_Hosts.txt", "r");
@@ -5061,7 +5061,7 @@ fclose($dextraFile);
     <input type="radio" name="confDefRefAuto" value="OFF"<?php if ($configs['atStartup1'] == '0') {echo ' checked="checked"';} ?> />Manual</td>
     </tr>
     <tr>
-    <td align="left"><a class="tooltip2" href="#"><?php echo $lang['dstar_irc_lang'];?>:<span><b>ircDDBGateway Language</b>Set your prefered language here</span></a></td>
+    <td align="left"><a class="tooltip2" href="#"><?php echo $lang['dstar_irc_lang'];?>:<span><b>ircDDBGateway Language</b>Set your preferred language here</span></a></td>
     <td colspan="2" style="text-align: left;"><select name="ircDDBGatewayAnnounceLanguage">
 <?php
         $testIrcLanguage = $configs['language'];
@@ -5131,7 +5131,7 @@ $ysfHosts = fopen("/usr/local/etc/YSFHosts.txt", "r"); ?>
     <th colspan="2"><a class="tooltip" href="#"><?php echo $lang['value'];?><span><b>Value</b>The current value from the<br />configuration files</span></a></th>
     </tr>
     <tr>
-    <td align="left"><a class="tooltip2" href="#"><?php echo $lang['ysf_startup_host'];?>:<span><b>YSF Host</b>Set your prefered YSF Host here</span></a></td>
+    <td align="left"><a class="tooltip2" href="#"><?php echo $lang['ysf_startup_host'];?>:<span><b>YSF Host</b>Set your preferred YSF Host here</span></a></td>
     <td colspan="2" style="text-align: left;"><select name="ysfStartupHost" class="ysfStartupHost">
 <?php
         if (isset($configysfgateway['Network']['Startup'])) {
@@ -5272,7 +5272,7 @@ $ysfHosts = fopen("/usr/local/etc/YSFHosts.txt", "r"); ?>
 ?>
     </td></tr>
     <tr>
-    <td align="left"><a class="tooltip2" href="#"><?php echo $lang['dmr_master'];?>:<span><b>DMR Master (YSF2DMR)</b>Set your prefered DMR master here</span></a></td>
+    <td align="left"><a class="tooltip2" href="#"><?php echo $lang['dmr_master'];?>:<span><b>DMR Master (YSF2DMR)</b>Set your preferred DMR master here</span></a></td>
     <td colspan="2" style="text-align: left;"><select name="ysf2dmrMasterHost" class="ysf2dmrMasterHost">
 <?php
         $testMMDVMysf2dmrMaster = $configysf2dmr['DMR Network']['Address'];
@@ -5311,7 +5311,7 @@ $ysfHosts = fopen("/usr/local/etc/YSFHosts.txt", "r"); ?>
       <td align="left" colspan="2"><input type="text" name="ysf2nxdnId" size="13" maxlength="5" value="<?php if (isset($configysf2nxdn['NXDN Network']['Id'])) { echo $configysf2nxdn['NXDN Network']['Id']; } ?>" /></td>
     </tr>
     <tr>
-        <td align="left"><a class="tooltip2" href="#"><?php echo $lang['nxdn_startup_host'];?>:<span><b>NXDN Host</b>Set your prefered NXDN Host here</span></a></td>
+        <td align="left"><a class="tooltip2" href="#"><?php echo $lang['nxdn_hosts'];?>:<span><b>NXDN Host</b>Set your preferred NXDN Host here</span></a></td>
         <td colspan="2" style="text-align: left;"><select name="ysf2nxdnStartupDstId" class="ysf2nxdnStartupDstId">
 <?php
 	$nxdnHosts = fopen("/usr/local/etc/NXDNHosts.txt", "r");
@@ -5351,7 +5351,7 @@ $ysfHosts = fopen("/usr/local/etc/YSFHosts.txt", "r"); ?>
       <td align="left" colspan="2"><input type="text" name="ysf2p25Id" size="13" maxlength="7" value="<?php if (isset($configysf2p25['P25 Network']['Id'])) { echo $configysf2p25['P25 Network']['Id']; } ?>" /></td>
     </tr>
     <tr>
-      <td align="left"><a class="tooltip2" href="#"><?php echo $lang['p25_startup_host'];?>:<span><b>P25 Host</b>Set your prefered P25 Host here</span></a></td>
+      <td align="left"><a class="tooltip2" href="#"><?php echo $lang['p25_hosts'];?>:<span><b>P25 Host</b>Set your preferred P25 Host here</span></a></td>
       <td colspan="2" style="text-align: left;"><select name="ysf2p25StartupDstId" class="ysf2p25StartupDstId">
 <?php
 	$p25Hosts = fopen("/usr/local/etc/P25Hosts.txt", "r");
@@ -5407,7 +5407,7 @@ $p25Hosts = fopen("/usr/local/etc/P25Hosts.txt", "r");
     <th colspan="2"><a class="tooltip" href="#"><?php echo $lang['value'];?><span><b>Value</b>The current value from the<br />configuration files</span></a></th>
     </tr>
     <tr>
-    <td align="left"><a class="tooltip2" href="#"><?php echo $lang['p25_hosts'];?>:<span><b>P25 Host</b>Set your prefered P25 Host here</span></a></td>
+    <td align="left"><a class="tooltip2" href="#"><?php echo $lang['p25_hosts'];?>:<span><b>P25 Host</b>Set your preferred P25 Host here</span></a></td>
     <td style="text-align: left;"><select name="p25StartupHost" class="p25StartupHost">
 <?php
     if (isset($configp25gateway['Network']['Startup'])) { $testP25Host = $configp25gateway['Network']['Startup']; }
@@ -5459,7 +5459,7 @@ $p25Hosts = fopen("/usr/local/etc/P25Hosts.txt", "r");
         <th colspan="2"><a class="tooltip" href="#"><?php echo $lang['value'];?><span><b>Value</b>The current value from the<br />configuration files</span></a></th>
       </tr>
       <tr>
-        <td align="left"><a class="tooltip2" href="#"><?php echo $lang['nxdn_hosts'];?>:<span><b>NXDN Host</b>Set your prefered NXDN Host here</span></a></td>
+        <td align="left"><a class="tooltip2" href="#"><?php echo $lang['nxdn_hosts'];?>:<span><b>NXDN Host</b>Set your preferred NXDN Host here</span></a></td>
         <td style="text-align: left;"><select name="nxdnStartupHost" class="nxdnStartupHost">
 <?php
 	if (file_exists('/etc/nxdngateway')) {
@@ -5517,7 +5517,7 @@ $p25Hosts = fopen("/usr/local/etc/P25Hosts.txt", "r");
 				    <th colspan="2"><a class="tooltip" href="#"><?php echo $lang['value'];?><span><b>Value</b>The current value from the<br />configuration files</span></a></th>
 				</tr>
 				<tr>
-				    <td align="left"><a class="tooltip2" href="#">M17 Startup Reflector:<span><b>Startup Reflector</b>Set your prefered M17 reflector here</span></a></td>
+				    <td align="left"><a class="tooltip2" href="#">M17 Startup Reflector:<span><b>Startup Reflector</b>Set your preferred M17 reflector here</span></a></td>
 				    <td style="text-align: left;"><select name="m17StartupRef" class="M17Ref">
 					<?php
 					if ($m17MasterHandle = @fopen("/usr/local/etc/M17Hosts.txt", 'r'))
