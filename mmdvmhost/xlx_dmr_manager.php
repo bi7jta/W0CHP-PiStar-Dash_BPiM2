@@ -103,7 +103,7 @@
 ?>
     </select></td>
     <?php if (isset($configdmrgateway['XLX Network']['TG'])) { ?>
-    <td><select name="dmrMasterHost3StartupModule" class="xlxMod">
+    <td><select name="dmrMasterHost3StartupModule" class="ModSel">
 <?php
        if ((isset($configdmrgateway['XLX Network']['Module'])) && ($configdmrgateway['XLX Network']['Module'] != "@")) {                                                 
                 echo '        <option value="'.$configdmrgateway['XLX Network']['Module'].'" selected="selected">'.$configdmrgateway['XLX Network']['Module'].'</option>'."\n";

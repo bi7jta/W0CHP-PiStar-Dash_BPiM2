@@ -84,9 +84,9 @@ if ($_SERVER["PHP_SELF"] == "/admin/index.php") {
 	<form action="/admin/?func=ds_man" method="post">
 	    <table>
 		<tr>
-		    <th width="150"><a class="tooltip" href="#">Radio Module<span><b>Radio Module</b></span></a></th>
-		    <th width="180"><a class="tooltip" href="#">Reflector<span><b>Reflector</b></span></a></th>
-		    <th width="150"><a class="tooltip" href="#">Link / Unlink<span><b>Link or unlink</b></span></a></th>
+		    <th><a class="tooltip" href="#">Radio Module<span><b>Radio Module</b></span></a></th>
+		    <th><a class="tooltip" href="#">Reflector<span><b>Reflector</b></span></a></th>
+		    <th><a class="tooltip" href="#">Link / Unlink<span><b>Link or unlink</b></span></a></th>
 		    <th><a class="tooltip" href="#">Action<span><b>Action</b></span></a></th>
 		</tr>
 		<tr>
@@ -161,7 +161,7 @@ if ($_SERVER["PHP_SELF"] == "/admin/index.php") {
 			    ?>
 			</select><input name="RefName" style="display:none;" disabled="disabled" type="text" size="7" maxlength="7"
 					onblur="if(this.value==''){toggleField(this,this.previousSibling);}" />
-			<select name="Letter">
+			<select name="Letter" class="ModSel">
 			    <?php echo "  <option value=\"".substr($_SESSION['ircDDBConfigs']['reflector1'], 7)."\" selected=\"selected\">".substr($_SESSION['ircDDBConfigs']['reflector1'], 7)."</option>\n"; ?>
 			    <option>A</option>
 			    <option>B</option>

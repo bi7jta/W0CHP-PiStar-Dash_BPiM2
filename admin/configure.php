@@ -468,7 +468,8 @@ $MYCALL=strtoupper($callsign);
           $('.p25StartupHost').select2();
           $('.nxdnStartupHost').select2();
           $('.confDefRef').select2();
-          $('.xlxMod').select2();
+          $('.ModSel').select2();
+          $('.M17Ref').select2();
       });
     </script>
     <script type="text/javascript" src="/js/functions.js?version=<?php echo $versionCmd; ?>"></script>
@@ -4715,7 +4716,7 @@ else:
     <?php if (isset($configdmrgateway['XLX Network']['TG'])) { ?>
     <tr>
     <td align="left"><a class="tooltip2" href="#">XLX Startup Module:<span><b>XLX Startup Module override</b>Default will use the host file option, or override it here.</span></a></td>
-    <td align="left" colspan="3"><select class="xlxMod" name="dmrMasterHost3StartupModule">
+    <td align="left" colspan="3"><select class="ModSel" name="dmrMasterHost3StartupModule">
 <?php
 	if ((isset($configdmrgateway['XLX Network']['Module'])) && ($configdmrgateway['XLX Network']['Module'] != "@")) {
 		echo '        <option value="'.$configdmrgateway['XLX Network']['Module'].'" selected="selected">'.$configdmrgateway['XLX Network']['Module'].'</option>'."\n";
@@ -4942,7 +4943,7 @@ else:
     <tr>
     <td align="left"><a class="tooltip2" href="#"><?php echo $lang['dstar_rpt1'];?>:<span><b>RPT1 Callsign</b>This is the RPT1 field for your radio</span></a></td>
     <td align="left" colspan="2"><?php echo str_replace(' ', '&nbsp;', substr($configdstar['callsign'], 0, 7)) ?>
-	<select name="confDStarModuleSuffix">
+	<select name="confDStarModuleSuffix" class="ModSel">
 	<?php echo "  <option value=\"".substr($configdstar['callsign'], 7)."\" selected=\"selected\">".substr($configdstar['callsign'], 7)."</option>\n"; ?>
         <option>A</option>
         <option>B</option>
@@ -5025,7 +5026,7 @@ fclose($dextraFile);
 ?>
     </select><input name="confDefRef" style="display:none;" disabled="disabled" type="text" size="7" maxlength="7"
             onblur="if(this.value==''){toggleField(this,this.previousSibling);}" />
-    <select name="confDefRefLtr">
+    <select name="confDefRefLtr" class="ModSel">
 	<?php echo "  <option value=\"".substr($configs['reflector1'], 7)."\" selected=\"selected\">".substr($configs['reflector1'], 7)."</option>\n"; ?>
         <option>A</option>
         <option>B</option>
@@ -5517,7 +5518,7 @@ $p25Hosts = fopen("/usr/local/etc/P25Hosts.txt", "r");
 				</tr>
 				<tr>
 				    <td align="left"><a class="tooltip2" href="#">M17 Startup Reflector:<span><b>Startup Reflector</b>Set your prefered M17 reflector here</span></a></td>
-				    <td style="text-align: left;"><select name="m17StartupRef">
+				    <td style="text-align: left;"><select name="m17StartupRef" class="M17Ref">
 					<?php
 					if ($m17MasterHandle = @fopen("/usr/local/etc/M17Hosts.txt", 'r'))
 					{
@@ -5552,7 +5553,7 @@ $p25Hosts = fopen("/usr/local/etc/P25Hosts.txt", "r");
 					?>
 				    </select>
 				    
-				    &nbsp;Startup Module:<select name="m17StartupModule">
+				    &nbsp;Startup Module:<select name="m17StartupModule" class="ModSel">
 					<?php
 					$m17ModuleList = ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z'];
 					foreach ($m17ModuleList as $module) {

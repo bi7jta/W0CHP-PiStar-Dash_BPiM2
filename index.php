@@ -79,7 +79,8 @@ if (isset($_SESSION['CSSConfigs']['Text'])) {
             $('.RefName').select2();
             $('.dmrMasterHost3').select2();
             $('.dmrMasterHost3Startup').select2();
-            $('.xlxMod').select2();
+            $('.ModSel').select2();
+            $('.M17Ref').select2();
           });
           $(document).ready(function(){
             setInterval(function(){

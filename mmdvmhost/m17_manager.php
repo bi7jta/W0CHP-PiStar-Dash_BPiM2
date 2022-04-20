@@ -94,7 +94,7 @@ if ($_SERVER["PHP_SELF"] == "/admin/index.php") { // Stop this working outside o
 			    }
 			    ?>
 			    <td>
-				<select name="m17LinkHost">
+				<select name="m17LinkHost" class="M17Ref">
 				    <?php
 				    if ($m17CurrentHost == "") {
 					echo "      <option value=\"none\" selected=\"selected\">None</option>\n";
@@ -120,7 +120,7 @@ if ($_SERVER["PHP_SELF"] == "/admin/index.php") { // Stop this working outside o
 				</select>
 			    </td>
 			    <td>
-				<select name="m17LinkModule">
+				<select name="m17LinkModule" class="ModSel">
 				    <?php
 				    $m17ModuleList = ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z'];
 				    foreach ($m17ModuleList as $module) {
