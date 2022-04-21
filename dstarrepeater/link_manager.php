@@ -57,21 +57,21 @@ if ($_SERVER["PHP_SELF"] == "/admin/index.php") {
 	    
 	    if ($module != $targetRef && $_POST["Link"] == "LINK") {	// Sanity check that we are not connecting to ourself
 		echo "<div style='text-align:left;font-weight:bold;'>D-Star Link Manager</div>\n";
-		echo "<table>\n<tr><th>Command Output</th></tr>\n<tr><td>";
-		echo exec($linkCommand);
-		echo "</td></tr>\n</table>\n";
+		echo "<table>\n<tr><th>Command Output</th></tr>\n<tr><td><br />";
+		echo system($linkCommand);
+		echo "<br /><br /></td></tr>\n</table>\n";
 	    }
 	    if ($module == $targetRef && $_POST["Link"] == "LINK") {	// Sanity Check Failed
 		echo "<div style='text-align:left;font-weight:bold;'>D-Star Link Manager</div>\n";
 		echo "<table>\n<tr><th>Command Output</th></tr>\n<tr><td>";
-		echo "Cannot link to myself - Aborting link request!";
-		echo "</td></tr>\n</table>\n";
+		echo "<br />Cannot link to myself - Aborting link request!<br />";
+		echo "<br /></td></tr>\n</table>\n";
 	    }
 	    if ($_POST["Link"] == "UNLINK") {				// Allow Unlink no matter what
 		echo "<div style='text-align:left;font-weight:bold;'>D-Star Link Manager</div>\n";
-		echo "<table>\n<tr><th>Command Output</th></tr>\n<tr><td>";
-		echo exec($unlinkCommand);
-		echo "</td></tr>\n</table>\n";
+		echo "<table>\n<tr><th>Command Output</th></tr>\n<tr><td><br />";
+		echo system($unlinkCommand);
+		echo "<br /><br /></td></tr>\n</table>\n";
 	    }
 	}
 	
