@@ -147,6 +147,11 @@ table td {
     font-size: <?php echo "$mainFontSize"; ?>px;
 }
 
+#liveCallerDeets table tr:hover td, #localTxs table tr:hover td, #lastHeard table tr:hover td, #bmLinks table tr:hover td {
+     background-color: <?php echo $backgroundDropdownHover; ?>; 
+     color: <?php echo $textDropdownHover; ?>; 
+}
+
 .divTable{
     font-family:  'Source Sans Pro', sans-serif;
     display: table;

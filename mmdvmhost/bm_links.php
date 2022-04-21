@@ -136,7 +136,7 @@ if ( $testMMDVModeDMR == 1 ) {
             if (preg_match('/TG/', $bmDynamicTGList) == false) { $bmDynamicTGList = "<tr><td colspan='4'>No Talkgroups Linked</td></tr>"; }
         } else { $bmDynamicTGList = "<tr><td colspan='4'>No Talkgroups Linked</td></tr>"; }
 	    echo '<div style="text-align:left;font-weight:bold;">ActiveBrandMeister Connections</div>
-  <table>
+  <table id="bmLinks">
     <tr style="font-size:1.1em;">
       <th><a class=tooltip href="#">Static Talkgroups<span><b>Statically linked talkgroups</b></span></a></th>
       <th><a class=tooltip href="#">Dynamic Talkgroups<span><b>Dynamically linked talkgroups</b></span></a></th>
