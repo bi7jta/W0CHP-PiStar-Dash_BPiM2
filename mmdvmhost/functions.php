@@ -1805,7 +1805,7 @@ function getActualLink($logLines, $mode) {
 			return "<div class='inactive-mode-cell'>Not Linked</div>";
 		    }
 		}
-        	return "<<div class='inactive-mode-cell'>Not Linked</div>";
+        	return "<div class='inactive-mode-cell'>Not Linked</div>";
 	    } 
 	    else {
 		return "<div class='inactive-mode-cell'>Service Not Started</div>";
