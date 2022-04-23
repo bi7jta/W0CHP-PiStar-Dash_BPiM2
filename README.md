@@ -18,13 +18,13 @@ support reflector, is via DMR; BrandMeister and/or TGIF Network, TalkGroup
 
 ## Installing `W0CHP-PiStar-Dash`
 
-**Note: You need to have a Pi-Star hotspot running at least v4.1.6!**
+**Note: You need to have a Pi-Star hotspot running at least v4.1.6!**[^1]
 
 1. Make a backup of your configuration if you wish -- just in case.
 
 2. Open an SSH session to your Pi-Star instance.
 
-3. Run this to familiarize yourself with the available options/arguments:
+3. Run this to familiarize yourself with the available options/arguments:[^2]
 
     ```text
     curl -Ls https://w0chp.net/WPSD-Install | sudo env NO_SELF_UPDATE=1 bash -s -- -h
@@ -67,7 +67,7 @@ support reflector, is via DMR; BrandMeister and/or TGIF Network, TalkGroup
 
 Once you install `W0CHP-PiStar-Dash`, it will automatically be kept up-to-date
 with any new features/versions/etc. This is made possible via the native,
-nightly Pi-Star updating process.
+nightly Pi-Star updating process.[^3]
 
 You can also manually invoke the update process via the dashboard admin section
 (`Admin -> Update`), or by command line:
@@ -92,103 +92,70 @@ Run:
 
 ## Features, Enhancements and Omissions (not an exhaustive list)
 
-* Updated user interface elements galore, styling, wider, bigger, updated fonts, etc.
-
-* Country-of-origin flags for callsigns.
+### Functionality Features
 
 * Full M17 Protocol Support.
-
 * Full APRSGateway Support: Selectable APRS Data Sharing with specific modes.
-
 * Full DGId Support.
-
 * Selectable DMR Roaming Beacon Support: Network or Interval Mode (or disabled).
-
 * "Live Caller" screen; similar to a "virtual Nextion screen"; displays current caller information in real-time.
-
 * Current/Last Caller Details on Main Dashboard (name/location, when available).
-
-* Improved and graphical CSS/color styling configuration page; easily change the look and feel of the dashboard.
-
-* User-Configurable number of displayed Last Heard dashboard rows (defaults to 40, and 100 is the maximum).
-
-* User-Configurable font size for most of the pertinent dashboard information.
-
-* Reorganized and sectioned configuration page for better usability.
-
+* YSF/NXDN/P25 link managers gives the ability to change links/rooms on-the-fly, rather than going through the large (and slow) configuration page.
 * XLX Hosts are now searchable/selectable in DMR Master selection in configuration page.
-
 * "XLX DMR Link Manager" allows fast switching of XLX reflectors and modules, as well as unlinking from modules to "pause" traffic.
-
-* System process status reorganized into clean grid pattern, with more core service status being displayed.
-
-* User-Configurable 24 or 12 hour time display across the dashboard.
-
 * Searchable drop-downs for massive host lists in configuration/admin pages. E.g. D-Star Refs., YSF Hosts, XLX Hosts, DMR Hosts, etc.
-
 * BrandMeister Manager revamps galore:
-
   * Now displays connected actual talk group names.
-
   * Reflector functionality removed per [BrandMeister's announcement](https://news.brandmeister.network/brandmeister-dmr-reflectors-support-ending-by-end-of-2020/).
-
   * Connected dynamic talk groups now display idle-timeout time (due to no TX).
-
   * Added ability to mass-drop your static talk groups; and mass re-add the previously
     linked static talk groups.
-
    * Added ability to batch add/delete up to 5 static talk groups at a time (for now)
-
-* TGIF Manager; now displays connected actual talk group names. (**NOTE**: Since TGIF has moved to a new platform with no API available, this currently does not work until TGIF's API is made avaiable.)
-
+* TGIF Manager; now displays connected actual talk group names. (**NOTE**: Since TGIF has moved to a new platform with no API available, this currently does not work until TGIF's API is made available.)
 * "Instant Mode Manager" added to admin page; allows you to instantly pause or resume selected radio modes. Handy for attending
   nets, quieting a busy mode, to temporarily eliminate "mode monopolization", etc.
-
 * "System Manager" added to admin page; allows you to instantly:
-
   * Disable / Enable the intrusive and slow Pi-Star Firewall.
-  
   * Disable / Enable Cron, in order to prevent updates and Pi-Star services restarting during middle-of-the-night/early AM operation.
-
-* YSF/NXDN/P25 link managers gives the ability to change links/rooms on-the-fly, rather than going through the large (and slow) configuration page.
-
-* Connected FCS and YSF reflector names and numerical ID both displayed in dashboard left panel.
-
+  * Enable / Disable Pi-Star Remote and Pi-Star Watchdog
 * Ability to configure POCSAG hang-time from the config page.
 
-* Additional hardware and system information displayed in top header.
+### User Interface / Design Features
 
+* Updated user interface elements galore, styling, wider, bigger, updated fonts, etc.
+* Country-of-origin flags for callsigns.
+* Improved and graphical CSS/color styling configuration page; easily change the look and feel of the dashboard.
+* User-Configurable number of displayed Last Heard dashboard rows (defaults to 40, and 100 is the maximum).
+* User-Configurable font size for most of the pertinent dashboard information.
+* Reorganized and sectioned configuration page for better usability.
+* System process status reorganized into clean grid pattern, with more core service status being displayed.
+* User-Configurable 24 or 12 hour time display across the dashboard.
+* Connected FCS and YSF reflector names and numerical ID both displayed in dashboard left panel.
+* Additional hardware, radio and system information displayed in top header; which can be toggled.
 * Admin page split up into logical sub-sections/sub-pages, in order to present
   better feedback messages when making changes.
-  * Note: Last-Heard and other dynamic tables are now only displayed in the main admin page.
-    Once entering the sub-pages, the focus is now on the task-at-hand, and the dynamic tables are not displayed.
-
-* Much more. See [screenshots below](#screenshots).
+  * Note: Last-Heard and other dynamic tables are hidden in the admin sections by default, allowing users
+    to focus on the tasks-at-hand and their outputs. The Last-Heard data can be toggled in these areas, however.
 
 ### Features in Official Pi-Star Which are Intentionally Omitted in `W0CHP-PiStar-Dash`
 
 * Upgrade notice/nag in header (unnecessary and a hacky implementation). This has been replaced by my own
   unobtrusive dashboard update notifier; displayed in the upper-right hand side of the top header.
-
 * "GPS" link in Call Sign column of dashboard (superfluous and unreliable).
-
 * Selectable Call Sign link to either QRZ.com or RadioID.com (both services
   suck, and the implementation of this feature is poor and unintuitive. Left
   the original function linking to QRZ.com).
-
 * CPU Temp. in header; when CPU is running "cool" or "normal" recommended temps, the cell background
   is no longer colored green. Only when the CPU is running beyond recommended temps, is the cell colored
   orange or red.
-
 * No reboot/shutdown nag screen/warning from admin page (Superfluous; you
   click it, it will reboot/shutdown without warning.).
-
 * Yellow DMR Mode cell in left panel when there's a DMR network password/login
   issue (poor/inaccurate and taxing implementation, and can confuse power users that
   utilize my Instant Mode Manager, where the default cell is amber colored for
   paused modes [color is user-configurable].).
 
-	Instead, the *actual* network name is highlighted in red when there's a login issue (courtesy of F1RMB's excellent code).
+    Instead, the *actual* network name is highlighted in red when there's a login issue (courtesy of `F1RMB`'s excellent code).
 
 ## Notes about CSS, and custom CSS you may have previously applied
 
@@ -253,11 +220,16 @@ Credit also goes to the awesome Daniel Caujolle-Bert, `F1RMB`, for creating his
 personal and customized fork of Pi-Star; as his fork was foundational and
 inspirational to my `W0CHP-PiStar-Dash`.
 
+The USA callsign lookup fallback function uses a terrific API,
+[callook.info](https://callook.info/), provided by Josh Dick, `W1JDD`.
+
 The callsign-to-country flag GeoLookup code was adopted from
 [xlxd](https://github.com/LX3JL/xlxd)... authored by Jean-Luc Deltombe,
 `LX3JL`; and Luc Engelmann, `LX1IQ`. [I run an XLX(d)
-reflector](https://w0chp/net/xlx493-reflector/), *plus*, I was able to adopt some of its code
+reflector](/xlx493-reflector/), *plus*, I was able to adopt some of its code
 for `W0CHP-PiStar-Dash`, ergo, I am very grateful.
+The excellent country flag images are courtesy of [Hampus Joakim
+Borgos](https://github.com/hampusborgos/country-flags).
 
 Credit must also be given to to Kim Heinz Hübel, `DG9VH`, who arguably created
 the very first MMDVMHost dashboard, of which, spawned the entire Pi-Star
@@ -268,3 +240,24 @@ a true gentleman, scholar and incredibly talented hacker...Jonathan Naylor,
 `G4KLX`; for the suite of MMDVM and related client tools. Pi-Star would have
 no reason to exist, without Jonathan's incredible and prolific contributions
 and gifts to the ham community.
+
+[^1]: `W0CHP-PiStar-Dash` was not created for single-core and low-powered hardware; such as
+      the first generation RPi Zero, etc. (`armv6l`). This software will run very slow on under-powered hardware.
+      Please consider yourself warned. Also, please ignore all of the idiot hams on various
+      support mediums saying, *"anything more than a Pi Zero is overkill"*. These ignoramuses
+      have no idea what goes on under the hood in order to display meaningful info on the
+      dashboard. Hint: it's a lot, and it's very resource-intensive. Ignore them...they are dumb and
+      they have no idea what they are talking about.
+
+[^2]: Piping to `bash`/shells/etc. from an online source is controversial (do
+      a google search about it). However it's convenient, and one can [view & inspect
+      the full & actual source code of the installer](https://repo.w0chp.net/Chipster/W0CHP-PiStar-Installer/src/branch/master/WPSD-Installer)
+      prior to piping to `bash` or installing.
+
+[^3]: `W0CHP-PiStar-Dash` occasionally queries the git repository server in
+      order to determine if updates are available. In the spirit of full-disclosure,
+      I wanted to mention this. This is no different than how the official Pi-Star
+      software functions (but doesn't make this well-known). Additionally, every
+      `W0CHP-PiStar-Dash` installation has a unique UUID generated for it; for
+      web/repo-traffic capacity planning/analytics, as well as for troubleshooting
+      purposes. You can find the unique UUID within the `/etc/pistar-release` file.

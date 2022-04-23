@@ -69,7 +69,8 @@ if ( $testMMDVModeP25 == 1 || $testYSF2P25 == 1 ) {
 	    <form action="//<?php echo htmlentities($_SERVER['HTTP_HOST']).htmlentities($_SERVER['PHP_SELF']); ?>?func=p25_man" method="post">
 		<table>
 		    <tr>
-			<th width="150"><a class="tooltip" href="#">Reflector<span><b>Reflector</b></span></a></th>
+			<th width="150"><a class="tooltip" href="#">Select Reflector<span><b>Select Reflector</b></span></a></th>
+			<th width="150"><a class="tooltip" href="#">Current Link<span><b>Current Link</b></span></a></th>
 			<th width="150"><a class="tooltip" href="#">Link / Unlink<span><b>Link or unlink</b></span></a></th>
 			<th width="150"><a class="tooltip" href="#">Action<span><b>Action</b></span></a></th>
 		    </tr>
@@ -128,9 +129,19 @@ if ( $testMMDVModeP25 == 1 || $testYSF2P25 == 1 ) {
 				    }
 				    fclose($p25Hosts2);
 				}
+
+				$target = getActualLink($logLinesP25Gateway, "P25");
+				$target = str_replace("TG", "", $target);
+				$target_lookup = exec("grep -w \"$target\" /usr/local/etc/TGList_P25.txt | awk -F';' '{print $2}'");
+				if (!empty($target_lookup)) {
+				    $target = "TG $target: $target_lookup";
+				} else {
+				    $target = $target;
+				}
 				?>
 				</select>
 			</td>
+			<td><?php echo "<strong>$target</strong"; ?></td>
 			<td>
                             <input type="radio" id="link" name="Link" value="LINK" /> <label for="link"/>Link</label>
                             <input type="radio" id="unlink" name="Link" value="UNLINK" checked="checked"  /> <label for="unlink"/>Un-Link</label>

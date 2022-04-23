@@ -1864,7 +1864,7 @@ function getName($callsign) {
             $name_full = $result->name; // grab name value from json
             $name_array = explode(' ', $name_full);
             foreach($name_array as $key => $value) {
-                $name = implode (" ",$name_array);
+                $name = implode (" ", $name_array);
             }
             $name = ucwords(strtolower($name)); // name result is all UPPER. Convert to Camel Case.
         }   

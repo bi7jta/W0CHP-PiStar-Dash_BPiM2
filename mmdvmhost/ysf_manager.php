@@ -72,7 +72,8 @@ if (isset($_SESSION['YSFGatewayConfigs']['Remote Commands']['Enable']) && (isset
 	    <form action="//<?php echo htmlentities($_SERVER['HTTP_HOST']).htmlentities($_SERVER['PHP_SELF']); ?>?func=ysf_man" method="post">
 		<table>
 		    <tr>
-			<th width="150"><a class="tooltip" href="#">Reflector<span><b>Reflector</b></span></a></th>
+			<th width="150"><a class="tooltip" href="#">Select Reflector<span><b>Select Reflector</b></span></a></th>
+			<th width="150"><a class="tooltip" href="#">Current Link<span><b>Current Link</b></span></a></th>
 			<th width="150"><a class="tooltip" href="#">Link / Un-link<span><b>Link or Un-link</b></span></a></th>
 			<th width="150"><a class="tooltip" href="#">Action<span><b>Action</b></span></a></th>
 		    </tr>
@@ -148,6 +149,65 @@ if (isset($_SESSION['YSFGatewayConfigs']['Remote Commands']['Enable']) && (isset
 				</select>
 			</td>
 			<td>
+			<?php
+			$ysfLinkedTo = getActualLink($reverseLogLinesYSFGateway, "YSF");
+			if ($ysfLinkedTo == 'Not Linked' || $ysfLinkedTo == 'Service Not Started') {
+			    $ysfLinkedToTxt = $ysfLinkedTo;
+			    $ysfLinkState = '';
+			} else {
+			    $ysfHostFile = fopen("/usr/local/etc/YSFHosts.txt", "r");
+			    $ysfLinkedToTxt = "null";
+			    while (!feof($ysfHostFile)) {
+				$ysfHostFileLine = fgets($ysfHostFile);
+				$ysfRoomTxtLine = preg_split('/;/', $ysfHostFileLine);
+
+				if (empty($ysfRoomTxtLine[0]) || empty($ysfRoomTxtLine[1]))
+				    continue;
+
+				if (($ysfRoomTxtLine[0] == $ysfLinkedTo) || ($ysfRoomTxtLine[1] == $ysfLinkedTo)) {
+ 				    $ysfRoomNo = "YSF".$ysfRoomTxtLine[0];
+				    $ysfLinkedToTxt = $ysfRoomTxtLine[1];
+				    break;
+				}
+			    }
+			    fclose($ysfHostFile);
+			    $fcsHostFile = fopen("/usr/local/etc/FCSHosts.txt", "r");
+			    $ysfLinkedToTxt = "null";
+			    while (!feof($fcsHostFile)) {
+				$ysfHostFileLine = fgets($fcsHostFile);
+				$ysfRoomTxtLine = preg_split('/;/', $ysfHostFileLine);
+
+				if (empty($ysfRoomTxtLine[0]) || empty($ysfRoomTxtLine[1]))
+				    continue;
+
+				if (($ysfRoomTxtLine[0] == $ysfLinkedTo) || ($ysfRoomTxtLine[1] == $ysfLinkedTo)) {
+				    $ysfLinkedToTxt = $ysfRoomTxtLine[1];
+				    $ysfRoomNo = $ysfRoomTxtLine[0];
+				    break;
+				}
+			    }
+			    fclose($fcsHostFile);
+
+			    if ($ysfLinkedToTxt != "null") {
+				$ysfLinkState = 'In Room: ';
+			    } else {
+				$ysfLinkedToTxt = $ysfLinkedTo;
+				$ysfLinkState = 'Linked to: ';
+			    }
+
+			    $ysfLinkedToTxt = str_replace('_', ' ', $ysfLinkedToTxt);
+ 			}
+
+			if (empty($ysfRoomNo) || ($ysfRoomNo == "null")) {
+			    $ysfTableData = "$ysfLinkState <strong>$ysfLinkedToTxt</strong>";
+			} else {
+			    $ysfTableData = "$ysfLinkState <strong>$ysfLinkedToTxt ($ysfRoomNo)</strong>";
+			}
+
+			echo $ysfTableData;
+			?>
+			</td>
+			<td>
 			    <input type="radio" id="link" name="Link" value="LINK" /> <label for="link"/>Link</label>
 			    <input type="radio" id="unlink" name="Link" value="UNLINK" checked="checked"  /> <label for="unlink"/>Un-Link</label>
 			</td>
@@ -157,7 +217,7 @@ if (isset($_SESSION['YSFGatewayConfigs']['Remote Commands']['Enable']) && (isset
 			</td>
 		    </tr>
                     <tr>
-                      <td colspan="3" style="white-space:normal;padding: 3px;">
+                      <td colspan="4" style="white-space:normal;padding: 3px;">
                         [ <a href="https://w0chp.net/ysf-reflectors/" target="_blank">List of YSF Reflectors (searchable/downloadable)</a> |
                         <a href="https://w0chp.net/fcs-reflectors/" target="_blank">List of FCS Reflectors (searchable/downloadable)</a> ]
                       </td>

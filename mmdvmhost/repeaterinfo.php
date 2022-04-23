@@ -63,7 +63,7 @@ function GetActiveConnectionStyle($masterStates, $key) {
     global $tableRowEvenBg;
     if (count($masterStates)) {
 	    if (isset($masterStates[$key])) {
-		if ($key == "xlx" && file_exists("/etc/.XLX_paused")) { // xlx dmr manager logid
+		if ($key == "xlx" && file_exists("/etc/.XLX_paused")) { // xlx dmr manager logic
 		    return "class=\"paused-mode-cell\" title=\"User Unlinked\"";
 		} else if (($masterStates[$key] == "n/a") || ($masterStates[$key] == "disc")) {
 		    return "class=\"error-state-cell\"";

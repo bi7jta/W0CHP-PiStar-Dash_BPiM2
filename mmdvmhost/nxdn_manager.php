@@ -72,7 +72,8 @@ if ( $testMMDVModeNXDN == 1 || $testDMR2NXDN == 1 || $testYSF2NXDN == 1 ) {
 		<form action="//<?php echo htmlentities($_SERVER['HTTP_HOST']).htmlentities($_SERVER['PHP_SELF']); ?>?func=nxdn_man" method="post">
 		    <table>
 			<tr>
-			    <th width="150"><a class="tooltip" href="#">Reflector<span><b>Reflector</b></span></a></th>
+			    <th width="150"><a class="tooltip" href="#">Select Reflector<span><b>Select Reflector</b></span></a></th>
+			    <th width="150"><a class="tooltip" href="#">Current Link<span><b>Current Link</b></span></a></th>
 			    <th width="150"><a class="tooltip" href="#">Link / Un-Link<span><b>Link / Un-Link</b></span></a></th>
 			    <th width="150"><a class="tooltip" href="#">Action<span><b>Action</b></span></a></th>
 			</tr>
@@ -131,9 +132,19 @@ if ( $testMMDVModeNXDN == 1 || $testDMR2NXDN == 1 || $testYSF2NXDN == 1 ) {
 					}
 					fclose($nxdnHosts2);
 				    }
+
+                                    $target = getActualLink($logLinesNXDNGateway, "NXDN");
+                                    $target = str_replace("TG", "", $target);
+				    $target_lookup = exec("grep -w \"$target\" /usr/local/etc/TGList_NXDN.txt | awk -F';' '{print $2}'");
+				    if (!empty($target_lookup)) {
+					$target = "TG $target: $target_lookup";
+				    } else {
+					$target = $target;
+				    }
 				    ?>
 				</select>
 			    </td>
+			    <td><?php echo "<strong>$target</strong"; ?></td>
 			    <td>
                             <input type="radio" id="link" name="Link" value="LINK" /> <label for="link"/>Link</label>
                             <input type="radio" id="unlink" name="Link" value="UNLINK" checked="checked"  /> <label for="unlink"/>Un-Link</label>
