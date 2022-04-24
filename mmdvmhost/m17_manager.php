@@ -78,8 +78,8 @@ if ($_SERVER["PHP_SELF"] == "/admin/index.php") { // Stop this working outside o
 		<form action="//<?php echo htmlentities($_SERVER['HTTP_HOST']).htmlentities($_SERVER['PHP_SELF']); ?>?func=m17_man" method="post">
 		    <table>
 			<tr>
-			    <th width="150"><a class="tooltip" href="#">Reflector<span><b>Reflector</b></span></a></th>
-			    <th width="150"><a class="tooltip" href="#">Module<span><b>Module</b></span></a></th>
+			    <th width="150"><a class="tooltip" href="#">Select Reflector / Module <span><b>Select Reflector Module</b></span></a></th>
+			    <th width="150"><a class="tooltip" href="#">Current Link<span><b>Current Link</b></span></a></th>
 			    <th width="150"><a class="tooltip" href="#">Link / Un-Link<span><b>Link / Un-Link</b></span></a></th>
 			    <th width="150"><a class="tooltip" href="#">Action<span><b>Action</b></span></a></th>
 			</tr>
@@ -102,24 +102,34 @@ if ($_SERVER["PHP_SELF"] == "/admin/index.php") { // Stop this working outside o
 				    else {
 					echo "      <option value=\"none\">None</option>\n";
 				    }
-				    if ($m17Hosts = fopen("/usr/local/etc/M17Hosts.txt", "r")) {
-					while ($m17HostsLine = fgets($m17Hosts)) {
-					    $m17Host = preg_split('/\s+/', $m17HostsLine);
-					    if ((strpos($m17Host[0], '#') === FALSE ) && ($m17Host[0] != '')) {
-						if ($m17CurrentHost == $m17Host[0]) {
-						    echo "      <option value=\"$m17Host[0]\" selected=\"selected\">$m17Host[0]</option>\n";
-						}
-						else {
-						    echo "      <option value=\"$m17Host[0]\">$m17Host[0]</option>\n";
+
+				    if ($m17MasterHandle = @fopen("/usr/local/etc/M17Hosts.txt", 'r')) {
+					$m17StartupHostWithModule = (isset($configm17gateway['Network']['Startup']) ? $configm17gateway['Network']['Startup'] : "");
+					$m17StartupHost = "";
+					$m17StartupModule = "A";
+					if ($m17StartupHostWithModule != "") {
+					    $m17StartupHost = substr($m17StartupHostWithModule, 0, -2);
+						$m17StartupModule = substr($m17StartupHostWithModule, -1);
+					}
+					if ($m17StartupHost == "") {
+					    echo "      <option value=\"NONE\" selected=\"selected\">None</option>\n";
+					} else {
+					    echo "      <option value=\"NONE\">None</option>\n";
+					}
+					while ($m17MasterLine = fgets($m17MasterHandle)) {
+					    $m17MasterHost = preg_split('/\s+/', $m17MasterLine);
+					    if ((strpos($m17MasterHost[0], '#') === FALSE) && ($m17MasterHost[0] != '')) {
+						if ($m17MasterHost[0] == $m17StartupHost) {
+						    echo "      <option value=\"$m17MasterHost[0]\" selected=\"selected\">$m17MasterHost[0]</option>\n";
+						} else {
+						    echo "      <option value=\"$m17MasterHost[0]\">$m17MasterHost[0]</option>\n";
 						}
 					    }
 					}
-					fclose($m17Hosts);
+					    fclose($m17MasterHandle);
 				    }
 				    ?>
 				</select>
-			    </td>
-			    <td>
 				<select name="m17LinkModule" class="ModSel">
 				    <?php
 				    $m17ModuleList = ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z'];
@@ -134,6 +144,7 @@ if ($_SERVER["PHP_SELF"] == "/admin/index.php") { // Stop this working outside o
 				    ?>
 				</select>
 			    </td>
+			    <td><strong><?php echo "$m17CurrentHost Module $m17CurrentModule"; ?>
 			    <td>
                               <input type="radio" id="link" name="Link" value="LINK" /> <label for="link"/>Link</label>
                               <input type="radio" id="unlink" name="Link" value="UNLINK" checked="checked"  /> <label for="unlink"/>Un-Link</label>
