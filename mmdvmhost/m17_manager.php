@@ -126,7 +126,7 @@ if ($_SERVER["PHP_SELF"] == "/admin/index.php") { // Stop this working outside o
 						}
 					    }
 					}
-					    fclose($m17MasterHandle);
+					fclose($m17MasterHandle);
 				    }
 				    ?>
 				</select>
