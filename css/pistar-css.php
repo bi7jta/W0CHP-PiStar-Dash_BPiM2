@@ -222,34 +222,40 @@ a:link, a:visited {
     color: <?php echo $textLinks; ?>
 }
 
-
-a.tooltip {
-   text-decoration      : none;
-   color: <?php echo $textContent; ?>;
+a.tooltip, a.tooltip:link, a.tooltip:visited, a.tooltip:active  {
+    text-decoration: none;
+    position: relative;
+    color: #D3D3D3;
 }
 
 a.tooltip:hover {
-   position             : relative;
+    text-decoration: none;
+    color: #FFFFFF;
+    background: transparent;
 }
 
 a.tooltip span {
-   display              : none
+    text-decoration: none;
+    display: none;
 }
 
 a.tooltip:hover span {
-   background           : #000000;
-   opacity              : 0.8;
-   border               : none;
-   border-radius        : 5px 5px 5px 5px;
-   text-decoration      : none;
-   white-space          : nowrap;
-   color                : #D3D3D3;
-   padding              : 6px 6px 6px 6px;
-   margin               : 10px;
-   display              : block;
-   z-index              : 50; 
-   position             : absolute;
-   top                  : 10px;
+    text-decoration: none;
+    display: block;
+    position: absolute;
+    top: 20px;
+    left: 0;
+    z-index: 100;
+    font: 14px 'Source Sans Pro', sans-serif; 
+    text-align: left;
+    white-space: nowrap;
+    background: #000000;
+    opacity: 0.8;
+    border: none;
+    border-radius: 3px;
+    color: #D3D3D3;
+    padding: 2px;
+
 }
 
 th:last-child a.tooltip:hover span {
@@ -258,19 +264,29 @@ th:last-child a.tooltip:hover span {
 }
 
 a.tooltip span b {
+    text-decoration: none;
+    font: 14px 'Source Sans Pro', sans-serif; 
+    display: block;
+    margin: 0;
     font-weight: bold;
+    background: #000000;
+    opacity: 0.8;
+    border: none;
+    border-radius: 3px;
+    color: #D3D3D3;
+    padding: 2px;
 }
 
 a.tooltip2, a.tooltip2:link, a.tooltip2:visited, a.tooltip2:active  {
     text-decoration: none;
     position: relative;
     font-weight: bold;
-    color: <?php echo $textContent; ?>;
+    color: #D3D3D3;
 }
 
 a.tooltip2:hover {
     text-decoration: none;
-    color: <?php echo $textContent; ?>;
+    color: #D3D3D3;
     background: transparent;
 }
 
@@ -280,23 +296,33 @@ a.tooltip2 span {
 }
 
 a.tooltip2:hover span {
-   background           : #000000;
-   opacity              : 0.8;
-   border               : none;
-   border-radius        : 5px 5px 5px 5px;
-   text-decoration      : none;
-   white-space          : nowrap;
-   color                : #D3D3D3;
-   padding              : 6px 6px 6px 6px;
-   margin               : 10px;
-   display              : block;
-   z-index              : 50; 
-   position             : absolute;
-   top                  : 10px;
+    text-decoration: none;
+    display: block;
+    position: absolute;
+    top: 20px;
+    left: 0;
+    width: 202px;
+    z-index: 100;
+    font: 14px 'Source Sans Pro', sans-serif; 
+    text-align: left;
+    white-space: normal;
+    background: #000000;
+    opacity: 0.8;
+    border: none;
+    border-radius: 3px;
+    color: #D3D3D3;
+    padding: 2px;
 }
 
 a.tooltip2 span b {
+    text-decoration: none;
+    font: 14px 'Source Sans Pro', sans-serif;
+    display: block;
+    margin: 0;
     font-weight: bold;
+    border: none;
+    color: #D3D3D3;
+    padding: 0px;
 }
 
 ul {
