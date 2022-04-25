@@ -230,7 +230,6 @@ a.tooltip, a.tooltip:link, a.tooltip:visited, a.tooltip:active  {
 
 a.tooltip:hover {
     text-decoration: none;
-    color: #FFFFFF;
     background: transparent;
 }
 
@@ -246,15 +245,14 @@ a.tooltip:hover span {
     top: 20px;
     left: 0;
     z-index: 100;
-    font: 14px 'Source Sans Pro', sans-serif; 
+    font: 16px 'Source Sans Pro', sans-serif; 
     text-align: left;
     white-space: nowrap;
     background: #000000;
     opacity: 0.8;
     border: none;
-    border-radius: 3px;
     color: #e9e9e9;
-    padding: 2px;
+    padding: 8px;
 
 }
 
@@ -265,16 +263,15 @@ th:last-child a.tooltip:hover span {
 
 a.tooltip span b {
     text-decoration: none;
-    font: 14px 'Source Sans Pro', sans-serif; 
+    font: 16px 'Source Sans Pro', sans-serif; 
     display: block;
     margin: 0;
     font-weight: bold;
     background: #000000;
-    opacity: 0.8;
+    opacity: 0.9;
     border: none;
-    border-radius: 3px;
     color: #e9e9e9;
-    padding: 2px;
+    padding: 4px 4px 3px 4px;
 }
 
 a.tooltip2, a.tooltip2:link, a.tooltip2:visited, a.tooltip2:active  {
@@ -303,20 +300,19 @@ a.tooltip2:hover span {
     left: 0;
     width: 202px;
     z-index: 100;
-    font: 14px 'Source Sans Pro', sans-serif; 
+    font: 16px 'Source Sans Pro', sans-serif; 
     text-align: left;
     white-space: normal;
     background: #000000;
-    opacity: 0.8;
+    opacity: 0.9;
     border: none;
-    border-radius: 3px;
     color: #e9e9e9;
-    padding: 2px;
+    padding: 8px;
 }
 
 a.tooltip2 span b {
     text-decoration: none;
-    font: 14px 'Source Sans Pro', sans-serif;
+    font: 16px 'Source Sans Pro', sans-serif;
     display: block;
     margin: 0;
     font-weight: bold;
