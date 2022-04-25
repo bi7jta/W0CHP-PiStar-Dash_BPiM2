@@ -44,12 +44,8 @@ $testMMDVModeDMR = getConfigItem("DMR", "Enable", $_SESSION['MMDVMHostConfigs'])
     <tr>
       <th width="250px"><a class="tooltip" href="#"><?php echo $lang['time'];?> (<?php echo date('T')?>)<span><b>Time in <?php echo date('T')?> time zone</b></span></a></th>
       <th width="85px"><a class="tooltip" href="#"><?php echo $lang['callsign'];?><span><b>Callsign</b></span></a></th>
-<?php
-    if (file_exists("/etc/.CALLERDETAILS")) {
-?>
       <th width="50px"><a class="tooltip" href="#">Country<span><b>Country</b></span></a></th>
 <?php
-    }
     if (file_exists("/etc/.CALLERDETAILS") && $testMMDVModeDMR == 1 ) {
 ?>
       <th class="noMob"><a class="tooltip" href="#">Name<span><b>Name</b></span></a></th>
@@ -102,10 +98,8 @@ for ($i = 0;  ($i <= $lastHeardRows - 1); $i++) {
 			} else {
                             echo "<td align=\"left\">$listElem[2]</td><td>$flContent</td><td align='left' class='noMob'>$listElem[11]</td>";
 			}
-		    } elseif (file_exists("/etc/.CALLERDETAILS") && $testMMDVModeDMR == 0 ) {
-                        echo "<td align=\"left\">$listElem[2]</td><td>$flContent</td>";
 		    } else {
-                        echo "<td align=\"left\">$listElem[2]</td>";
+                        echo "<td align=\"left\">$listElem[2]</td><td>$flContent</td>";
 		    }
 		} elseif (!preg_match('/[A-Za-z].*[0-9]|[0-9].*[A-Za-z]/', $listElem[2])) {
 		    if (file_exists("/etc/.CALLERDETAILS") && $testMMDVModeDMR == 1 ) {
@@ -114,41 +108,35 @@ for ($i = 0;  ($i <= $lastHeardRows - 1); $i++) {
 			} else {
                             echo "<td align=\"left\">$listElem[2]</td><td>$flContent</td><td align='left' class='noMob'>$listElem[11]</td>";
 			}
-		    } elseif (file_exists("/etc/.CALLERDETAILS") && $testMMDVModeDMR == 0 ) {
-                        echo "<td align=\"left\">$listElem[2]</td><td>$flContent</td>";
 		    } else {
-                        echo "<td align=\"left\">$listElem[2]</td>";
+                        echo "<td align=\"left\">$listElem[2]</td><td>$flContent</td>";
 		    }
 		} else {
-			if (strpos($listElem[2],"-") > 0) { $listElem[2] = substr($listElem[2], 0, strpos($listElem[2],"-")); }
-			if ( $listElem[3] && $listElem[3] != '    ' ) {
-			    if (file_exists("/etc/.CALLERDETAILS") && $testMMDVModeDMR == 1 ) {
-				echo "<td align=\"left\"><a href=\"http://www.qrz.com/db/$listElem[2]\" target=\"_blank\">$listElem[2]</a>/$listElem[8]</td><td>$flContent</td><td align='left' class='noMob'>$listElem[11]</td>";
-			    } elseif (file_exists("/etc/.CALLERDETAILS") && $testMMDVModeDMR == 0 ) {
-				echo "<td align=\"left\"><a href=\"http://www.qrz.com/db/$listElem[2]\" target=\"_blank\">$listElem[2]</a>/$listElem[8]</td><td>$flContent</td>";
-			    } else {
-				echo "<td align=\"left\"><a href=\"http://www.qrz.com/db/$listElem[2]\" target=\"_blank\">$listElem[2]</a>/$listElem[8]</td>";
-			    }
+		    if (strpos($listElem[2],"-") > 0) { $listElem[2] = substr($listElem[2], 0, strpos($listElem[2],"-")); }
+		    if ( $listElem[3] && $listElem[3] != '    ' ) {
+			if (file_exists("/etc/.CALLERDETAILS") && $testMMDVModeDMR == 1 ) {
+			    echo "<td align=\"left\"><a href=\"http://www.qrz.com/db/$listElem[2]\" target=\"_blank\">$listElem[2]</a>/$listElem[8]</td><td>$flContent</td><td align='left' class='noMob'>$listElem[11]</td>";
 			} else {
-			    if (file_exists("/etc/.CALLERDETAILS") && $testMMDVModeDMR == 1 ) {
-				echo "<td align=\"left\"><a href=\"http://www.qrz.com/db/$listElem[2]\" target=\"_blank\">$listElem[2]</a></td><td>$flContent</td><td align='left' class='noMob'>$listElem[11]</td>";
-			    } elseif (file_exists("/etc/.CALLERDETAILS") && $testMMDVModeDMR == 0 ) {
-				echo "<td align=\"left\"><a href=\"http://www.qrz.com/db/$listElem[2]\" target=\"_blank\">$listElem[2]</a></td><td>$flContent</td></td>";
-			    } else {
-				echo "<td align=\"left\"><a href=\"http://www.qrz.com/db/$listElem[2]\" target=\"_blank\">$listElem[2]</a></td>";
-			    }
+			    echo "<td align=\"left\"><a href=\"http://www.qrz.com/db/$listElem[2]\" target=\"_blank\">$listElem[2]</a>/$listElem[8]</td><td>$flContent</td>";
 			}
+		    } else {
+			if (file_exists("/etc/.CALLERDETAILS") && $testMMDVModeDMR == 1 ) {
+			    echo "<td align=\"left\"><a href=\"http://www.qrz.com/db/$listElem[2]\" target=\"_blank\">$listElem[2]</a></td><td>$flContent</td><td align='left' class='noMob'>$listElem[11]</td>";
+			} else {
+			    echo "<td align=\"left\"><a href=\"http://www.qrz.com/db/$listElem[2]\" target=\"_blank\">$listElem[2]</a></td><td>$flContent</td></td>";
+			}
+		    }
 		}
 		echo "<td align=\"left\">".str_replace('Slot ', 'TS', $listElem[1])."</td>";
 		if (strlen($listElem[4]) == 1) { $listElem[4] = str_pad($listElem[4], 8, " ", STR_PAD_LEFT); }
 		if ( substr($listElem[4], 0, 6) === 'CQCQCQ' ) {
-			echo "<td align=\"left\">$listElem[4]</td>";
+		    echo "<td align=\"left\">$listElem[4]</td>";
 		} else {
-			echo "<td align=\"left\">".str_replace(" ","&nbsp;", $listElem[4])."</td>";
+		    echo "<td align=\"left\">".str_replace(" ","&nbsp;", $listElem[4])."</td>";
 		}
 
 
-		if ($listElem[5] == "RF"){
+		if ($listElem[5] == "RF") {
 			echo "<td><span style='color:$backgroundModeCellInactiveColor;font-weight:bold;'>RF</span></td>";
 		} else {
 			echo "<td>$listElem[5]</td>";
