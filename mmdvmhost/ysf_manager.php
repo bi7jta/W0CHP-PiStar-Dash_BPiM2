@@ -202,8 +202,6 @@ if (isset($_SESSION['YSFGatewayConfigs']['Remote Commands']['Enable']) && (isset
 			} else {
 			    $ysfTableData = "$ysfLinkState $ysfLinkedToTxt ($ysfRoomNo)";
 			}
-
-			echo $ysfTableData;
 			?>
 			<td><strong><?php echo $ysfTableData; ?></strong></td>
 			<td>
