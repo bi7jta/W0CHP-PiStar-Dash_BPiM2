@@ -89,7 +89,7 @@ for ($i = 0;  ($i <= $lastHeardRows - 1); $i++) {
 		if (is_numeric($listElem[2]) || strpos($listElem[2], "openSPOT") !== FALSE || !preg_match('/[A-Za-z].*[0-9]|[0-9].*[A-Za-z]/', $listElem[2])) {
 		    $flContent = " ";
 		} elseif (file_exists($_SERVER['DOCUMENT_ROOT']."/images/flags/".$Flag.".png")) {
-		    $flContent = "<a class='tooltip' href=\"http://www.qrz.com/db/$listElem[2]\" target=\"_blank\"><img src='/images/flags/$Flag.png?version=$versionCmd' alt='' style='height:18px;' /><span><b>$Name</b></span></a>";
+		    $flContent = "<a class='tooltip' href=\"http://www.qrz.com/db/$listElem[2]\" target=\"_blank\"><div style='padding: 0 12px;'><img src='/images/flags/$Flag.png?version=$versionCmd' alt='' style='height:18px;' /></div><span><b>$Name</b></span></a>";
 		} else {
 		    $flContent = " ";
 		}
@@ -97,7 +97,11 @@ for ($i = 0;  ($i <= $lastHeardRows - 1); $i++) {
 		echo"<td align=\"left\">$local_time</td>";
 		if (is_numeric($listElem[2]) || strpos($listElem[2], "openSPOT") !== FALSE) {
 		    if (file_exists("/etc/.CALLERDETAILS") && $testMMDVModeDMR == 1 ) {
-                        echo "<td align=\"left\">$listElem[2]</td><td>$flContent</td><td align='left' class='noMob'>$listElem[11]</td>";
+			if ($flContent = " " && empty($listElem[11])) {
+			    echo "<td align=\"left\">$listElem[2]</td><td align=\"left\" colspan='2'>&nbsp</td>";
+			} else {
+                            echo "<td align=\"left\">$listElem[2]</td><td>$flContent</td><td align='left' class='noMob'>$listElem[11]</td>";
+			}
 		    } elseif (file_exists("/etc/.CALLERDETAILS") && $testMMDVModeDMR == 0 ) {
                         echo "<td align=\"left\">$listElem[2]</td><td>$flContent</td>";
 		    } else {
@@ -105,7 +109,11 @@ for ($i = 0;  ($i <= $lastHeardRows - 1); $i++) {
 		    }
 		} elseif (!preg_match('/[A-Za-z].*[0-9]|[0-9].*[A-Za-z]/', $listElem[2])) {
 		    if (file_exists("/etc/.CALLERDETAILS") && $testMMDVModeDMR == 1 ) {
-                        echo "<td align=\"left\">$listElem[2]</td><td>$flContent</td><td align='left' class='noMob'>$listElem[11]</td>";
+			if ($flContent = " " && empty($listElem[11])) {
+			    echo "<td align=\"left\">$listElem[2]</td><td align=\"left\" colspan='2'>&nbsp</td>";
+			} else {
+                            echo "<td align=\"left\">$listElem[2]</td><td>$flContent</td><td align='left' class='noMob'>$listElem[11]</td>";
+			}
 		    } elseif (file_exists("/etc/.CALLERDETAILS") && $testMMDVModeDMR == 0 ) {
                         echo "<td align=\"left\">$listElem[2]</td><td>$flContent</td>";
 		    } else {
