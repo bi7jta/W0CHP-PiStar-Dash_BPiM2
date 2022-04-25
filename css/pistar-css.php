@@ -225,7 +225,7 @@ a:link, a:visited {
 a.tooltip, a.tooltip:link, a.tooltip:visited, a.tooltip:active  {
     text-decoration: none;
     position: relative;
-    color: #D3D3D3;
+    color: #e9e9e9;
 }
 
 a.tooltip:hover {
@@ -253,7 +253,7 @@ a.tooltip:hover span {
     opacity: 0.8;
     border: none;
     border-radius: 3px;
-    color: #D3D3D3;
+    color: #e9e9e9;
     padding: 2px;
 
 }
@@ -273,7 +273,7 @@ a.tooltip span b {
     opacity: 0.8;
     border: none;
     border-radius: 3px;
-    color: #D3D3D3;
+    color: #e9e9e9;
     padding: 2px;
 }
 
@@ -281,12 +281,12 @@ a.tooltip2, a.tooltip2:link, a.tooltip2:visited, a.tooltip2:active  {
     text-decoration: none;
     position: relative;
     font-weight: bold;
-    color: #D3D3D3;
+    color: #e9e9e9;
 }
 
 a.tooltip2:hover {
     text-decoration: none;
-    color: #D3D3D3;
+    color: #e9e9e9;
     background: transparent;
 }
 
@@ -310,7 +310,7 @@ a.tooltip2:hover span {
     opacity: 0.8;
     border: none;
     border-radius: 3px;
-    color: #D3D3D3;
+    color: #e9e9e9;
     padding: 2px;
 }
 
@@ -321,7 +321,7 @@ a.tooltip2 span b {
     margin: 0;
     font-weight: bold;
     border: none;
-    color: #D3D3D3;
+    color: #e9e9e9;
     padding: 0px;
 }
 
