@@ -17,20 +17,7 @@ if (isset($_SESSION['CSSConfigs']['Background'])) {
     $backgroundModeCellPausedColor = $_SESSION['CSSConfigs']['Background']['ModeCellPausedColor'];
     $backgroundModeCellInactiveColor = $_SESSION['CSSConfigs']['Background']['ModeCellInactiveColor'];
 }
-?>
-<div style="vertical-align: bottom; font-weight: bold;text-align:left;margin-top:-8px;">Current / Last Caller Details</div>
-  <table style="word-wrap: break-word; white-space:normal;">
-    <tr>
-      <th width="170px"><a class="tooltip" href="#"><?php echo $lang['callsign'];?><span><b>Callsign</b></span></a></th>
-      <th width="50px">Country</th>
-      <th>Name</th>
-      <th>Location</th>
-      <th><a class="tooltip" href="#"><?php echo $lang['mode'];?><span><b>Transmitted Mode</b></span></a></th>
-      <th><a class="tooltip" href="#"><?php echo $lang['target'];?><span><b>Target, D-Star Reflector, DMR Talk Group etc</b></span></a></th>
-      <th><a class="tooltip" href="#"><?php echo $lang['src'];?><span><b>Received from source</b></span></a></th>
-      <th><a class="tooltip" href="#"><?php echo $lang['dur'];?>(s)<span><b>Duration in Seconds</b></span></a></th>
-    </tr>
-<?php
+
 // get the data from the MMDVMHost logs
 $i = 0;
 for ($i = 0;  ($i <= 0); $i++) { //Last 20  calls
@@ -43,9 +30,9 @@ for ($i = 0;  ($i <= 0); $i++) { //Last 20  calls
             $dt = new DateTime($utc_time, $utc_tz);
             $dt->setTimeZone($local_tz);
 	    if (constant("TIME_FORMAT") == "24") {
-		$local_time = $dt->format('H:i:s M. jS');
+		$local_time = $dt->format('H:i:s M. j');
 	    } else {
-		$local_time = $dt->format('h:i:s A M. jS');
+		$local_time = $dt->format('h:i:s A M. j');
 	    }
             // YSF sometimes has malformed calls with a space and freeform text...address these
             if (preg_match('/ /', $listElem[2])) {
@@ -196,11 +183,24 @@ for ($i = 0;  ($i <= 0); $i++) { //Last 20  calls
 	    }
 
 ?>
-  <tr>
-    <td style="padding:3px 0 5px 0;"><strong style="font-size:1.5em;"><?php echo $callsign ?? ' '; ?></strong></td>
-    <td><?php echo $flContent; ?></td>
-    <td style="font-size:1.3em;"><?php echo $name ?? ' '; ?></td>
-    <td style="font-size:1.3em;"><?php
+<div style="vertical-align: bottom; font-weight: bold;text-align:left;margin-top:-8px;">Current / Last Caller Details</div>
+  <table style="word-wrap: break-word; white-space:normal;">
+    <tr>
+      <th width="170px"><a class="tooltip" href="#"><?php echo $lang['callsign'];?><span><b>Callsign</b></span></a></th>
+      <th width="50px">Country</th>
+      <th>Name</th>
+      <th class='noMob'>Location</th>
+      <th><a class="tooltip" href="#"><?php echo $lang['mode'];?><span><b>Transmitted Mode</b></span></a></th>
+      <th><a class="tooltip" href="#"><?php echo $lang['target'];?><span><b>Target, D-Star Reflector, DMR Talk Group etc</b></span></a></th>
+      <th><a class="tooltip" href="#"><?php echo $lang['src'];?><span><b>Received from source</b></span></a></th>
+      <th><a class="tooltip" href="#"><?php echo $lang['dur'];?>(s)<span><b>Duration in Seconds</b></span></a></th>
+    </tr>
+
+    <tr>
+      <td style="padding:3px 0 5px 0;"><strong style="font-size:1.5em;"><?php echo $callsign ?? ' '; ?></strong></td>
+      <td><?php echo $flContent; ?></td>
+      <td style="font-size:1.3em;"><?php echo $name ?? ' '; ?></td>
+      <td class='noMob' style="font-size:1.3em;"><?php
 		if (!empty($city)) {
 			echo $city .", ";
 		}
@@ -209,9 +209,9 @@ for ($i = 0;  ($i <= 0); $i++) { //Last 20  calls
 		} if (!empty($country)) { 
 			echo $country; 
 		} ?></td>
-    <td style="font-size:1.3em;"><?php echo $mode ?? ' '; ?></td>
-    <td style="font-size:1.3em;"><?php echo $target ?? ' '; ?></td>
-    <?php
+      <td style="font-size:1.3em;"><?php echo $mode ?? ' '; ?></td>
+      <td style="font-size:1.3em;"><?php echo $target ?? ' '; ?></td>
+      <?php
 	if ($listElem[5] == "RF") {
 		echo "<td style='font-size:1.3em;'><span style='color:$backgroundModeCellInactiveColor;font-weight:bold;'>RF</span></td>";
 	} else {
@@ -219,13 +219,13 @@ for ($i = 0;  ($i <= 0); $i++) { //Last 20  calls
 	}
         echo $duration;
     ?>
-   </tr>
+     </tr>
 <?php
 	    }
 	}
     }
 ?>
-</table>
+  </table>
 <br />
 <?php
 }

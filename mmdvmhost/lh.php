@@ -71,9 +71,9 @@ for ($i = 0;  ($i <= $lastHeardRows - 1); $i++) {
                 $dt = new DateTime($utc_time, $utc_tz);
                 $dt->setTimeZone($local_tz);
                 if (constant("TIME_FORMAT") == "24") {
-                    $local_time = $dt->format('H:i:s M. jS');
+                    $local_time = $dt->format('H:i:s M. j');
                 } else {
-                    $local_time = $dt->format('h:i:s A M. jS');
+                    $local_time = $dt->format('h:i:s A M. j');
                 }
                 // malformed calls with a space and freeform text...address these
                 if (preg_match('/ /', $listElem[2])) {
@@ -94,7 +94,7 @@ for ($i = 0;  ($i <= $lastHeardRows - 1); $i++) {
 		if (is_numeric($listElem[2]) || strpos($listElem[2], "openSPOT") !== FALSE) {
 		    if (file_exists("/etc/.CALLERDETAILS") && $testMMDVModeDMR == 1 ) {
 			if ($flContent = " " && empty($listElem[11])) {
-			    echo "<td align=\"left\">$listElem[2]</td><td align=\"left\" colspan='2'>&nbsp</td>";
+			    echo "<td class='noMob' align=\"left\">$listElem[2]</td><td align=\"left\" colspan='2'>&nbsp</td>";
 			} else {
                             echo "<td align=\"left\">$listElem[2]</td><td>$flContent</td><td align='left' class='noMob'>$listElem[11]</td>";
 			}
@@ -104,7 +104,7 @@ for ($i = 0;  ($i <= $lastHeardRows - 1); $i++) {
 		} elseif (!preg_match('/[A-Za-z].*[0-9]|[0-9].*[A-Za-z]/', $listElem[2])) {
 		    if (file_exists("/etc/.CALLERDETAILS") && $testMMDVModeDMR == 1 ) {
 			if ($flContent = " " && empty($listElem[11])) {
-			    echo "<td align=\"left\">$listElem[2]</td><td align=\"left\" colspan='2'>&nbsp</td>";
+			    echo "<td class='noMob' align=\"left\">$listElem[2]</td><td align=\"left\" colspan='2'>&nbsp</td>";
 			} else {
                             echo "<td align=\"left\">$listElem[2]</td><td>$flContent</td><td align='left' class='noMob'>$listElem[11]</td>";
 			}

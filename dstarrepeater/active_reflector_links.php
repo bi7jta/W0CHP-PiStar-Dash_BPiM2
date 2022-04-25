@@ -116,9 +116,9 @@ if (isset($_SESSION['CSSConfigs']['Background'])) {
                             $dt = new DateTime($utc_time, $utc_tz);
                             $dt->setTimeZone($local_tz);
                             if (constant("TIME_FORMAT") == "24") {
-                                $local_time = date('H:i:s M. jS');
+                                $local_time = date('H:i:s M. j');
                             } else {
-                                $local_time = date('h:i:s A M. jS');
+                                $local_time = date('h:i:s A M. j');
                             }
 			    print "<td>$local_time</td>";
 			    print "</tr>\n";
@@ -171,9 +171,9 @@ if (isset($_SESSION['CSSConfigs']['Background'])) {
                             $dt = new DateTime($utc_time, $utc_tz);
                             $dt->setTimeZone($local_tz);
                             if (constant("TIME_FORMAT") == "24") {
-                                $local_time = date('H:i:s M. jS');
+                                $local_time = date('H:i:s M. j');
                             } else {
-                                $local_time = date('h:i:s A M. jS');
+                                $local_time = date('h:i:s A M. j');
                             }
 			    print "<td>$local_time</td>";
 			    print "</tr>\n";
@@ -220,9 +220,9 @@ if (isset($_SESSION['CSSConfigs']['Background'])) {
                         $dt = new DateTime($utc_time, $utc_tz);
                         $dt->setTimeZone($local_tz);
                         if (constant("TIME_FORMAT") == "24") {
-                            $local_time = date('H:i:s M. jS');
+                            $local_time = date('H:i:s M. j');
                         } else {
-                            $local_time = date('h:i:s A M. jS');
+                            $local_time = date('h:i:s A M. j');
                         }
                         print "<td>$local_time</td>";
                         print "</tr>\n";

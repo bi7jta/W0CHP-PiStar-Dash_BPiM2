@@ -53,9 +53,9 @@ include_once $_SERVER['DOCUMENT_ROOT'].'/config/language.php';	      // Translat
                 $dt = new DateTime($utc_time, $utc_tz);
                 $dt->setTimeZone($local_tz);
                 if (constant("TIME_FORMAT") == "24") {
-                    $local_time = date('H:i:s M. jS');
+                    $local_time = date('H:i:s M. j');
                 } else {
-                    $local_time = date('h:i:s A M. jS');
+                    $local_time = date('h:i:s A M. j');
                 }
                 print "<td align=\"left\">$local_time</td>";
 		print "<td align=\"left\" width=\"180\"><a href=\"http://www.qrz.com/db/$MyCallLink\" target=\"_blank\">$MyCall</a>";
