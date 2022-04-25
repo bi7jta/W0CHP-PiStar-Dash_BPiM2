@@ -148,7 +148,6 @@ if (isset($_SESSION['YSFGatewayConfigs']['Remote Commands']['Enable']) && (isset
 				?>
 				</select>
 			</td>
-			<td>
 			<?php
 			$ysfLinkedTo = getActualLink($reverseLogLinesYSFGateway, "YSF");
 			if ($ysfLinkedTo == 'Not Linked' || $ysfLinkedTo == 'Service Not Started') {
@@ -199,14 +198,14 @@ if (isset($_SESSION['YSFGatewayConfigs']['Remote Commands']['Enable']) && (isset
  			}
 
 			if (empty($ysfRoomNo) || ($ysfRoomNo == "null")) {
-			    $ysfTableData = "$ysfLinkState <strong>$ysfLinkedToTxt</strong>";
+			    $ysfTableData = "$ysfLinkState $ysfLinkedToTxt";
 			} else {
-			    $ysfTableData = "$ysfLinkState <strong>$ysfLinkedToTxt ($ysfRoomNo)</strong>";
+			    $ysfTableData = "$ysfLinkState $ysfLinkedToTxt ($ysfRoomNo)";
 			}
 
 			echo $ysfTableData;
 			?>
-			</td>
+			<td><strong><?php echo $ysfTableData; ?></strong></td>
 			<td>
 			    <input type="radio" id="link" name="Link" value="LINK" /> <label for="link"/>Link</label>
 			    <input type="radio" id="unlink" name="Link" value="UNLINK" checked="checked"  /> <label for="unlink"/>Un-Link</label>

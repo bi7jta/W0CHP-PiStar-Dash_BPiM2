@@ -144,7 +144,7 @@ if ( $testMMDVModeNXDN == 1 || $testDMR2NXDN == 1 || $testYSF2NXDN == 1 ) {
 				    ?>
 				</select>
 			    </td>
-			    <td><?php echo "<strong>$target</strong"; ?></td>
+			    <td><strong><?php echo $target; ?></strong></td>
 			    <td>
                             <input type="radio" id="link" name="Link" value="LINK" /> <label for="link"/>Link</label>
                             <input type="radio" id="unlink" name="Link" value="UNLINK" checked="checked"  /> <label for="unlink"/>Un-Link</label>

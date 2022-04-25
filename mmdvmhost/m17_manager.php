@@ -144,7 +144,7 @@ if ($_SERVER["PHP_SELF"] == "/admin/index.php") { // Stop this working outside o
 				    ?>
 				</select>
 			    </td>
-			    <td><strong><?php echo "$m17CurrentHost Module $m17CurrentModule"; ?>
+			    <td><strong><?php echo "$m17CurrentHost Module $m17CurrentModule"; ?></strong></td>
 			    <td>
                               <input type="radio" id="link" name="Link" value="LINK" /> <label for="link"/>Link</label>
                               <input type="radio" id="unlink" name="Link" value="UNLINK" checked="checked"  /> <label for="unlink"/>Un-Link</label>
