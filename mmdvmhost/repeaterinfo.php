@@ -484,10 +484,12 @@ $numDMRmasters = exec('cd /var/log/pi-star ; /usr/local/bin/RemoteCommand 7643 s
 	    ?>
     </div>
     <div class="divTableRow center">
-      <div class="divTableHeadCell">Beacons</div>
+      <div class="divTableHeadCell" title="DMR Roaming Beacons">Beacons</div>
            <?php
-            if (getConfigItem("DMR", "Beacons", $_SESSION['MMDVMHostConfigs']) == 1) {
-		echo "<div class='divTableCell cell_content middle active-mode-cell' style='border: .5px solid $tableBorderColor;'>Enabled</div>\n";
+            if (getConfigItem("DMR", "Beacons", $_SESSION['MMDVMHostConfigs']) == 1 && getConfigItem("DMR", "BeaconInterval", $_SESSION['MMDVMHostConfigs']) != null) {
+		echo "<div class='divTableCell cell_content middle active-mode-cell' style='border: .5px solid $tableBorderColor;'>Timed</div>\n";
+	    } elseif  (getConfigItem("DMR", "Beacons", $_SESSION['MMDVMHostConfigs']) == 1 && getConfigItem("DMR", "BeaconInterval", $_SESSION['MMDVMHostConfigs']) == null) {
+		echo "<div class='divTableCell cell_content middle active-mode-cell' style='border: .5px solid $tableBorderColor;'>Network</div>\n";
 	    } else {
 		echo "<div class='divTableCell cell_content middle'><div style=\"background: $tableRowEvenBg;\">Disabled</div></div>\n";
 	    }

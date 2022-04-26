@@ -159,12 +159,11 @@ a:link, a:visited {
 a.tooltip, a.tooltip:link, a.tooltip:visited, a.tooltip:active  {
     text-decoration: none;
     position: relative;
-    color: <?php echo $textTableHeaderColor; ?>;
+    color: #e9e9e9;
 }
 
 a.tooltip:hover {
     text-decoration: none;
-    color: #FFFFFF;
     background: transparent;
 }
 
@@ -178,39 +177,46 @@ a.tooltip:hover span {
     display: block;
     position: absolute;
     top: 20px;
-    left: 0;
-    width: 200px;
+    left: 0; 
     z-index: 100;
-    color: #000000;
-    border:1px solid #000000;
-    background: #f7f7f7;
-    font: 12px 'Source Sans Pro', sans-serif; 
+    font: 16px 'Source Sans Pro', sans-serif;
     text-align: left;
+    white-space: nowrap;
+    background: #000000;
+    opacity: 0.8;
+    border: none;
+    color: #e9e9e9;
+    padding: 8px;
+}
+
+th:last-child a.tooltip:hover span {
+    left: auto;
+    right: 0;
 }
 
 a.tooltip span b {
     text-decoration: none;
+    font: 16px 'Source Sans Pro', sans-serif;
     display: block;
-    color: #000000;
     margin: 0;
-    padding: 0;
-    font-size: 12px;
     font-weight: bold;
-    border: 0px;
-    border-bottom: 1px solid black;
-    background: #d0d0d0;
+    background: #000000;
+    opacity: 0.9;
+    border: none;
+    color: #e9e9e9;
+    padding: 4px 4px 3px 4px;
 }
 
 a.tooltip2, a.tooltip2:link, a.tooltip2:visited, a.tooltip2:active  {
     text-decoration: none;
     position: relative;
     font-weight: bold;
-    color: #000000;
+    color: #e9e9e9;
 }
 
 a.tooltip2:hover {
     text-decoration: none;
-    color: #000000;
+    color: #e9e9e9;
     background: transparent;
 }
 
@@ -219,32 +225,33 @@ a.tooltip2 span {
     display: none;
 }
 
-a.tooltip2:hover span {
+ia.tooltip2:hover span {
     text-decoration: none;
     display: block;
     position: absolute;
     top: 20px;
     left: 0;
-    width: 200px;
+    width: 202px;
     z-index: 100;
-    color: #000000;
-    border:1px solid #000000;
-    background: #f7f7f7;
-    font: 12px 'Source Sans Pro', sans-serif; 
+    font: 16px 'Source Sans Pro', sans-serif;
     text-align: left;
+    white-space: normal;
+    background: #000000;
+    opacity: 0.9;
+    border: none;
+    color: #e9e9e9;
+    padding: 8px;
 }
 
 a.tooltip2 span b {
     text-decoration: none;
+    font: 16px 'Source Sans Pro', sans-serif;
     display: block;
-    color: #000000;
     margin: 0;
-    padding: 0;
-    font-size: 12px;
     font-weight: bold;
-    border: 0px;
-    border-bottom: 1px solid black;
-    background: #d0d0d0;
+    border: none;
+    color: #e9e9e9;
+    padding: 0px;
 }
 
 ul {

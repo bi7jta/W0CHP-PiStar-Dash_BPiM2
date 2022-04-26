@@ -253,7 +253,6 @@ a.tooltip:hover span {
     border: none;
     color: #e9e9e9;
     padding: 8px;
-
 }
 
 th:last-child a.tooltip:hover span {
