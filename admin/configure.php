@@ -242,7 +242,7 @@ if (isset($configmmdvm['GPSD'])) {
 }
 
 //
-// Remove ['DMR Network']['Type'], as it's pointless to use 'Direct' mode
+// Reset ['DMR Network']['Type'](Direct); deprectated with new mmdvmhost
 //
 if (isset($configmmdvm['DMR Network']['Type'])) {
     unset($configmmdvm['DMR Network']['Type']);
@@ -289,6 +289,17 @@ $M17GatewayAPRS     = $configm17gateway['APRS']['Enable'];
 // form handler for DMR beacon
 $DMRBeaconEnable    = $configmmdvm['DMR']['Beacons'];
 $DMRBeaconModeNet   = "0" ;
+
+
+// Check for newer MMDVMHost, which by default uses DMRGW and DMR2*****
+if ((($configmmdvm['DMR Network']['Address'] == "127.0.0.1") || ($configmmdvm['DMR Network']['Address'] == "127.0.0.2") || ($configmmdvm['DMR Network']['Address'] == "127.0.0.3")) === FALSE) {
+    // Convert DMR Network section to use DMRGateway instead of direct access
+    $configmmdvm['DMR Network']['Address'] = "127.0.0.1";
+    $configmmdvm['DMR Network']['Port'] = "62031";
+    $configmmdvm['DMR Network']['Local'] = "62032";
+    $configmmdvm['DMR Network']['Password'] = "none";
+    $configdmrgateway['DMR Network 1']['Enabled'] = "1";
+}
 
 //
 // Check for DMRGateway RemoteCommand and enable if it isn't...
@@ -1525,65 +1536,64 @@ if (!empty($_POST)):
 	  if ($configmmdvm['NXDN']['Id'] > 65535) { unset($configmmdvm['NXDN']['Id']); }
 	}
 
-	// Set DMR Master Server
-	if (empty($_POST['dmrMasterHost']) != TRUE ) {
-	  $dmrMasterHostArr = explode(',', escapeshellcmd($_POST['dmrMasterHost']));
-	  $configmmdvm['DMR Network']['Address'] = $dmrMasterHostArr[0];
-	  $configmmdvm['DMR Network']['Password'] = '"'.$dmrMasterHostArr[1].'"';
-	  $configmmdvm['DMR Network']['Port'] = $dmrMasterHostArr[2];
-	  $configmmdvm['DMR Network']['RemotePort'] = $dmrMasterHostArr[2];
-	  if ($dmrMasterHostArr[0] == '127.0.0.1' && $dmrMasterHostArr[2] == '62031') {
-		  // DMR Gateway
-		  $configmmdvm['DMR Network']['Type'] = "Gateway";
-	  } else {
-		  // Everything Else
-		  $configmmdvm['DMR Network']['Type'] = "Direct";
-	  }
-	  if ((isset($_POST['bmHSSecurity'])) && substr($dmrMasterHostArr[3], 0, 2) == "BM") {
-		  if (empty($_POST['bmHSSecurity']) != TRUE ) {
-			  $configModem['BrandMeister']['Password'] = '"'.$_POST['bmHSSecurity'].'"';
-			  if ($dmrMasterHostArr[0] != '127.0.0.1') { $configmmdvm['DMR Network']['Password'] = '"'.$_POST['bmHSSecurity'].'"'; }
-		  } else {
-			  unset ($configModem['BrandMeister']['Password']);
-		  }
-	  }
-
-	  if ((isset($_POST['tgifHSSecurity'])) && substr($dmrMasterHostArr[3], 0, 4) == "TGIF") {
-		  if (empty($_POST['tgifHSSecurity']) != TRUE ) {
-			  $configModem['TGIF']['Password'] = '"'.$_POST['tgifHSSecurity'].'"';
-			  if ($dmrMasterHostArr[0] != '127.0.0.1') { $configmmdvm['DMR Network']['Password'] = '"'.$_POST['tgifHSSecurity'].'"'; }
-		  } else {
-			  unset ($configModem['TGIF']['Password']);
-		  }
-	  }
-
-		if (substr($dmrMasterHostArr[3], 0, 2) == "BM") {
-			unset ($configmmdvm['DMR Network']['Options']);
-			unset ($configdmrgateway['DMR Network 2']['Options']);
-			unset ($configmmdvm['DMR Network']['Local']);
-			unset ($configmmdvm['DMR Network']['LocalPort']);
-			unset ($configysf2dmr['DMR Network']['Options']);
-			unset ($configysf2dmr['DMR Network']['Local']);
-			if (isset($configModem['BrandMeister']['Password'])) {
-				$configmmdvm['DMR Network']['Password'] = '"'.str_replace('"', "", $configModem['BrandMeister']['Password']).'"';
+		    // Set DMR Master Server
+		    if (empty($_POST['dmrMasterHost']) != TRUE ) {
+			$dmrMasterHostArr = explode(',', escapeshellcmd($_POST['dmrMasterHost']));
+			$configmmdvm['DMR Network']['Address'] = $dmrMasterHostArr[0];
+			$configmmdvm['DMR Network']['RemoteAddress'] = $dmrMasterHostArr[0];
+			$configmmdvm['DMR Network']['Password'] = '"'.$dmrMasterHostArr[1].'"';
+			$configmmdvm['DMR Network']['Port'] = $dmrMasterHostArr[2];
+			$configmmdvm['DMR Network']['RemotePort'] = $dmrMasterHostArr[2];
+			if (empty($_POST['bmHSSecurity']) != TRUE ) {
+			    $configModem['BrandMeister']['Password'] = '"'.$_POST['bmHSSecurity'].'"';
+			    if ($dmrMasterHostArr[0] != '127.0.0.1') {
+				$configmmdvm['DMR Network']['Password'] = '"'.$_POST['bmHSSecurity'].'"';
+			    }
 			}
-		}
-
-		// DMR Gateway
-		if ($dmrMasterHostArr[0] == '127.0.0.1' && $dmrMasterHostArr[2] == '62031') {
-			unset ($configmmdvm['DMR Network']['Options']);
-			//unset ($configdmrgateway['DMR Network 2']['Options']);
-			$configmmdvm['DMR Network']['Local'] = "62032";
-			$configmmdvm['DMR Network']['LocalPort'] = "62032";
-			unset ($configysf2dmr['DMR Network']['Options']);
-			$configysf2dmr['DMR Network']['Local'] = "62032";
-			if (isset($configdmr2ysf['DMR Network']['LocalAddress'])) {
+			else {
+			    unset($configModem['BrandMeister']['Password']);
+			}
+			if ((isset($_POST['tgifHSSecurity'])) && substr($dmrMasterHostArr[3], 0, 4) == "TGIF") {
+			    if (empty($_POST['tgifHSSecurity']) != TRUE ) {
+				$configModem['TGIF']['Password'] = '"'.$_POST['tgifHSSecurity'].'"';
+				if ($dmrMasterHostArr[0] != '127.0.0.1') {
+				    $configmmdvm['DMR Network']['Password'] = '"'.$_POST['tgifHSSecurity'].'"';
+				}
+			    }
+			    else {
+				unset ($configModem['TGIF']['Password']);
+			    }
+			}
+			if (substr($dmrMasterHostArr[3], 0, 2) == "BM") {
+			    unset ($configmmdvm['DMR Network']['Options']);
+			    unset ($configdmrgateway['DMR Network 2']['Options']);
+			    unset ($configmmdvm['DMR Network']['Local']);
+			    unset ($configmmdvm['DMR Network']['LocalPort']);
+			    unset ($configysf2dmr['DMR Network']['Options']);
+			    unset ($configysf2dmr['DMR Network']['Local']);
+			}
+			// DMR Gateway
+			if ($dmrMasterHostArr[0] == '127.0.0.1' && $dmrMasterHostArr[2] == '62031') {
+			    unset ($configmmdvm['DMR Network']['Options']);
+			    unset($configmmdvm['DMR Network']['Type']);
+			    //unset ($configdmrgateway['DMR Network 2']['Options']);
+			    $configmmdvm['DMR Network']['Local'] = "62032";
+			    $configmmdvm['DMR Network']['LocalPort'] = "62032";
+			    unset ($configysf2dmr['DMR Network']['Options']);
+			    $configysf2dmr['DMR Network']['Local'] = "62032";
+			    if (isset($configdmr2ysf['DMR Network']['LocalAddress'])) {
 				$configdmr2ysf['DMR Network']['LocalAddress'] = "127.0.0.1";
-			}
-			if (isset($configdmr2nxdn['DMR Network']['LocalAddress'])) {
+			    }
+			    if (isset($configdmr2nxdn['DMR Network']['LocalAddress'])) {
 				$configdmr2nxdn['DMR Network']['LocalAddress'] = "127.0.0.1";
+			    }
 			}
-		}
+			else {
+			    if (!isset($configmmdvm['DMR Network']['Type'])) {
+				$configmmdvm['DMR Network']['Type'] = "Gateway";
+			    }
+			}
+
 
 		// DMR2YSF
 		if ($dmrMasterHostArr[0] == '127.0.0.2' && $dmrMasterHostArr[2] == '62033') {
@@ -2727,23 +2737,6 @@ if (!empty($_POST)):
 	}
 
 	// Add missing values to DMRGateway
-	# the following "if" statement addresses (user-initiated?) missing values from
-	# https://repo.w0chp.net/Chipster/W0CHP-PiStar-Dash/issues/9
-	if (empty($_POST['dmrMasterHost']) != TRUE ) {
-	    $dmrMasterHostArr = explode(',', escapeshellcmd($_POST['dmrMasterHost']));
-	    if ($dmrMasterHostArr[0] == '127.0.0.1') {
-		$usingDMRgw = "true";
-	    }
-	}
-	if (($configmmdvm['DMR Network']['Type'] = "Gateway") || ($usingDMRgw == "true")) {
-	    $configdmrgateway['General']['RptAddress'] = "127.0.0.1";
-	    $configdmrgateway['General']['RptPort'] = "62032";
-	    $configdmrgateway['General']['LocalAddress'] = "127.0.0.1";
-	    $configdmrgateway['General']['LocalPort'] = "62031";
-	    $configdmrgateway['General']['Daemon'] = "1";
-	    $configdmrgateway['General']['RuleTrace'] = "0";
-	    $configmmdvm['DMR Network']['RemoteAddress'] = "127.0.0.1";
-	}
 	if (!isset($configdmrgateway['Info']['Enabled'])) { $configdmrgateway['Info']['Enabled'] = "0"; }
 	if (!isset($configdmrgateway['Info']['Power'])) { $configdmrgateway['Info']['Power'] = $configmmdvm['Info']['Power']; }
 	if (!isset($configdmrgateway['Info']['Height'])) { $configdmrgateway['Info']['Height'] = $configmmdvm['Info']['Height']; }
@@ -2858,7 +2851,7 @@ if (!empty($_POST)):
 	if (isset($configmmdvm['DMR']['Beacons'])) { $configmmdvm['DMR']['Beacons'] = $DMRBeaconEnable; }
 	if (!isset($configmmdvm['DMR']['BeaconDuration'])) { $configmmdvm['DMR']['BeaconDuration'] = "3"; }
 	if (!isset($configmmdvm['DMR']['OVCM'])) { $configmmdvm['DMR']['OVCM'] = "0"; }
-	if (!isset($configmmdvm['DMR Network']['Type'])) { $configmmdvm['DMR Network']['Type'] = "Direct"; }
+	if (!isset($configmmdvm['DMR Network']['Type'])) { $configmmdvm['DMR Network']['Type'] = "Gateway"; }
 	if (!isset($configmmdvm['P25']['RemoteGateway'])) { $configmmdvm['P25']['RemoteGateway'] = "0"; }
 	if (!isset($configmmdvm['P25']['TXHang'])) { $configmmdvm['P25']['TXHang'] = "5"; }
 	if (!isset($configmmdvm['OLED']['Scroll'])) { $configmmdvm['OLED']['Scroll'] = "0"; }
@@ -4481,18 +4474,24 @@ else:
     <td align="left"><a class="tooltip2" href="#"><?php echo $lang['dmr_master'];?>:<span><b>DMR Master (MMDVMHost)</b>Set your preferred DMR master here</span></a></td>
     <td style="text-align: left;" colspan="3"><select name="dmrMasterHost" class="dmrMasterHost">
 <?php
-        $testMMDVMdmrMaster = $configmmdvm['DMR Network']['Address'];
-	$testMMDVMdmrMasterPort = $configmmdvm['DMR Network']['Port'];
-        while (!feof($dmrMasterFile)) {
-                $dmrMasterLine = fgets($dmrMasterFile);
-                $dmrMasterHost = preg_split('/\s+/', $dmrMasterLine);
-                if ((strpos($dmrMasterHost[0], '#') === FALSE ) && ($dmrMasterHost[0] != '')) {
-                        if (($testMMDVMdmrMaster == $dmrMasterHost[2]) && ($testMMDVMdmrMasterPort == $dmrMasterHost[4])) { echo "      <option value=\"$dmrMasterHost[2],$dmrMasterHost[3],$dmrMasterHost[4],$dmrMasterHost[0]\" selected=\"selected\">$dmrMasterHost[0]</option>\n"; $dmrMasterNow = $dmrMasterHost[0]; }
-                        else { echo "      <option value=\"$dmrMasterHost[2],$dmrMasterHost[3],$dmrMasterHost[4],$dmrMasterHost[0]\">$dmrMasterHost[0]</option>\n"; }
-                }
-        }
-        fclose($dmrMasterFile);
-        ?>
+$testMMDVMdmrMaster = $configmmdvm['DMR Network']['Address'];
+$testMMDVMdmrMasterPort = $configmmdvm['DMR Network']['Port'];
+$dmrMasterNow = "";
+while (!feof($dmrMasterFile)) {
+    $dmrMasterLine = fgets($dmrMasterFile);
+    $dmrMasterHost = preg_split('/\s+/', $dmrMasterLine);
+    if ((strpos($dmrMasterHost[0], '#') === FALSE ) &&
+	((substr($dmrMasterHost[0], 0, 10) == "DMRGateway") ||
+	 (substr($dmrMasterHost[0], 0, 8) == "DMR2NXDN") ||
+	 (substr($dmrMasterHost[0], 0, 7) == "DMR2YSF")) && ($dmrMasterHost[0] != '')) {
+	if (($testMMDVMdmrMaster == $dmrMasterHost[2]) && ($testMMDVMdmrMasterPort == $dmrMasterHost[4])) {
+	    echo "      <option value=\"$dmrMasterHost[2],$dmrMasterHost[3],$dmrMasterHost[4],$dmrMasterHost[0]\" selected=\"selected\">$dmrMasterHost[0]</option>\n"; $dmrMasterNow = $dmrMasterHost[0]; }
+	else {
+	    echo "      <option value=\"$dmrMasterHost[2],$dmrMasterHost[3],$dmrMasterHost[4],$dmrMasterHost[0]\">$dmrMasterHost[0]</option>\n"; }
+    }
+}
+fclose($dmrMasterFile);
+?>
     </select></td>
     </tr>
 <?php if ($dmrMasterNow == "DMRGateway") { ?>
