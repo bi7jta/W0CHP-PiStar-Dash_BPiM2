@@ -226,12 +226,13 @@ a:link, a:visited {
 a.tooltip, a.tooltip:link, a.tooltip:visited, a.tooltip:active  {
     text-decoration: none;
     position: relative;
-    color: #e9e9e9;
+    color: <?php echo $textBanners; ?>;
 }
 
 a.tooltip:hover {
     text-decoration: none;
     background: transparent;
+    color: <?php echo $textBanners; ?>;
 }
 
 a.tooltip span {
@@ -278,13 +279,13 @@ a.tooltip2, a.tooltip2:link, a.tooltip2:visited, a.tooltip2:active  {
     text-decoration: none;
     position: relative;
     font-weight: bold;
-    color: #e9e9e9;
+    color: <?php echo $textContent; ?>;
 }
 
 a.tooltip2:hover {
     text-decoration: none;
-    color: #e9e9e9;
     background: transparent;
+    color: <?php echo $textContent; ?>;
 }
 
 a.tooltip2 span {
