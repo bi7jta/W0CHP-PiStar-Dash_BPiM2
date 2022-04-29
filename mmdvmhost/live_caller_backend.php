@@ -155,7 +155,9 @@ if (!is_numeric($listElem[2])) {
     }
     if (empty($callMatch[0])) {
 	$name = getName($listElem[2]);
-	$country = "---";
+	// init geo/flag class for country name as fallback
+	list ($Flag, $Name) = $Flags->GetFlag($listElem[2]);
+	$country = $Name;
     }
 }
 

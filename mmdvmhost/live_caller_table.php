@@ -128,7 +128,9 @@ for ($i = 0;  ($i <= 0); $i++) { //Last 20  calls
 		}	
 		if (empty($callMatch[0])) {
 		    $name = getName($listElem[2]);
-		    $country = "---";
+	    	    // init geo/flag class for country name as fallback
+	    	    list ($Flag, $Name) = $Flags->GetFlag($listElem[2]);
+		    $country = $Name;
 		}
 	    }
 
