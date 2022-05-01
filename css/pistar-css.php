@@ -250,10 +250,9 @@ a.tooltip:hover span {
     font: 16px 'Source Sans Pro', sans-serif; 
     text-align: left;
     white-space: nowrap;
-    background: #000000;
-    opacity: 0.8;
     border: none;
     color: #e9e9e9;
+    background: rgba(0, 0, 0, .8);
     padding: 8px;
 }
 
@@ -268,11 +267,9 @@ a.tooltip span b {
     display: block;
     margin: 0;
     font-weight: bold;
-    background: #000000;
-    opacity: 0.9;
     border: none;
     color: #e9e9e9;
-    padding: 4px 4px 3px 4px;
+    padding: 0px;
 }
 
 a.tooltip2, a.tooltip2:link, a.tooltip2:visited, a.tooltip2:active  {
@@ -304,10 +301,9 @@ a.tooltip2:hover span {
     font: 16px 'Source Sans Pro', sans-serif; 
     text-align: left;
     white-space: normal;
-    background: #000000;
-    opacity: 0.9;
     border: none;
     color: #e9e9e9;
+    background: rgba(0, 0, 0, .8);
     padding: 8px;
 }
 

@@ -118,9 +118,9 @@ function listDAPNETGWMessages($logLinesDAPNETGateway, $tillMYRIC) {
 	$dt = new DateTime($utc_time, $utc_tz);
 	$dt->setTimeZone($local_tz);
     if (constant("TIME_FORMAT") == "24") {
-        $local_time = $dt->format('H:i:s M. j');
+        $local_time = $dt->format('H:i:s M j');
     } else {
-        $local_time = $dt->format('h:i:s A M. j');
+        $local_time = $dt->format('h:i:s A M j');
     }
 	$pocsag_timeslot = $dapnetMessageArr["6"];
 	$pocsag_ric = str_replace(',', '', $dapnetMessageArr["8"]);

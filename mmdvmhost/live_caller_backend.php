@@ -9,9 +9,9 @@ $Flags = new xGeoLookup();
 $Flags->SetFlagFile("/usr/local/etc/country.csv");
 $Flags->LoadFlags();
 if (constant("TIME_FORMAT") == "24") {
-    $local_time = date('H:i:s M. j');
+    $local_time = date('H:i:s M j');
 } else {
-    $local_time = date('h:i:s A M. j');
+    $local_time = date('h:i:s A M j');
 }
 
 // Get the CPU temp and color value accordingly...

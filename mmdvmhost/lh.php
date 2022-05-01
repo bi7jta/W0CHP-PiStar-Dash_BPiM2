@@ -71,9 +71,9 @@ for ($i = 0;  ($i <= $lastHeardRows - 1); $i++) {
                 $dt = new DateTime($utc_time, $utc_tz);
                 $dt->setTimeZone($local_tz);
                 if (constant("TIME_FORMAT") == "24") {
-                    $local_time = $dt->format('H:i:s M. j');
+                    $local_time = $dt->format('H:i:s M j');
                 } else {
-                    $local_time = $dt->format('h:i:s A M. j');
+                    $local_time = $dt->format('h:i:s A M j');
                 }
                 // malformed calls with a space and freeform text...address these
                 if (preg_match('/ /', $listElem[2])) {
