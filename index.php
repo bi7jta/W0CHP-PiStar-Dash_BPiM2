@@ -76,7 +76,28 @@ if (isset($_SESSION['CSSConfigs']['Text'])) {
             $('.ysfLinkHost').select2();
             $('.p25LinkHost').select2();
             $('.nxdnLinkHost').select2();
-            $('.RefName').select2();
+            $(".RefName").select2({
+              tags: true,
+              dropdownAutoWidth : true,
+              createTag: function (params) {
+                return {
+                  id: params.term,
+                  text: params.term,
+                  newOption: true
+                }
+              },
+              templateResult: function (data) {
+                var $result = $("<span></span>");
+
+                $result.text(data.text);
+
+                if (data.newOption) {
+                  $result.append(" <em>(Search existing or enter and save custom reflector value)</em>");
+                }
+
+                return $result;
+              }
+            });
             $('.dmrMasterHost3').select2();
             $('.dmrMasterHost3Startup').select2();
             $('.ModSel').select2();
