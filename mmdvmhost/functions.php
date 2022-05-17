@@ -236,10 +236,10 @@ function getDVModemFirmware() {
 			$modemFirmware = "ZUMspot:".strtok(substr($logLine, 75, 12), ' ');
 		}
 		if (strpos($logLine, 'description: MMDVM_HS_Hat-')) {
-			$modemFirmware = "HS_Hat:".strtok(substr($logLine, 80, 12), ' ');
+			$modemFirmware = "MMDVM_HS_Hat:".strtok(substr($logLine, 80, 12), ' ');
 		}
 		if (strpos($logLine, 'description: MMDVM_HS_Dual_Hat-')) {
-			$modemFirmware = "HS_Hat:".strtok(substr($logLine, 85, 12), ' ');
+			$modemFirmware = "MMDVM_HS_Dual_Hat:".strtok(substr($logLine, 85, 12), ' ');
 		}
 		if (strpos($logLine, 'description: D2RG_MMDVM_HS-')) {
 			$modemFirmware = "HS_Hat:".strtok(substr($logLine, 81, 12), ' ');
@@ -263,7 +263,7 @@ function getDVModemFirmware() {
 			$modemFirmware = "OpenGD77:".strtok(substr($logLine, 79, 12), ' ');
 		}
 		if (strpos($logLine, 'description: SkyBridge-')) {
-			$modemFirmware = "SkyBrg:".strtok(substr($logLine, 77, 12), ' ');
+			$modemFirmware = "SkyBridge:".strtok(substr($logLine, 77, 12), ' ');
 		}
 	}
 	return $modemFirmware;
