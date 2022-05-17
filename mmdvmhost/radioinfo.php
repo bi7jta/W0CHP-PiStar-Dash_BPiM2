@@ -22,9 +22,6 @@ if (isset($_SESSION['CSSConfigs']['Background']['TableRowBgEvenColor'])) {
 } else {
     $tableRowEvenBg = "inherit";
 }
-$ModemFW = $_SESSION['PiStarRelease']['Pi-Star']['Firmware'];
-
-$ModemTCXO = str_replace("MHz", " MHz",$_SESSION['PiStarRelease']['Pi-Star']['TCXO']);
 
 ?>
 
@@ -125,8 +122,8 @@ $ModemTCXO = str_replace("MHz", " MHz",$_SESSION['PiStarRelease']['Pi-Star']['TC
       <div class="divTableCell cell_content middle" style="background: <?php echo $tableRowEvenBg; ?>;"><?php echo getMHZ(getConfigItem("Info", "TXFrequency", $_SESSION['MMDVMHostConfigs'])); ?></div>
       <div class="divTableCell cell_content middle" style="background: <?php echo $tableRowEvenBg; ?>;"><?php echo getMHZ(getConfigItem("Info", "RXFrequency", $_SESSION['MMDVMHostConfigs'])); ?></div>
       <div class="divTableCell cell_content middle" style="background: <?php echo $tableRowEvenBg; ?>;"><?php if(getConfigItem("General", "Duplex", $_SESSION['MMDVMHostConfigs']) == "1") { echo "Duplex"; } else { echo "Simplex"; } ?></div>
-      <div class="divTableCell cell_content middle" style="background: <?php echo $tableRowEvenBg; ?>;"><?php if(empty($ModemFW)) { echo '(updating)'; } else { echo $ModemFW; } ?></div>
-      <div class="divTableCell cell_content middle" style="background: <?php echo $tableRowEvenBg; ?>;"><?php if(empty($ModemTCXO)) { echo '(updating)'; } else { echo $ModemTCXO; } ?></div>
+      <div class="divTableCell cell_content middle" style="background: <?php echo $tableRowEvenBg; ?>;"><?php echo $_SESSION['DvModemFWVersion']; ?></div>
+      <div class="divTableCell cell_content middle" style="background: <?php echo $tableRowEvenBg; ?>;"><?php echo $_SESSION['DvModemTCXOFreq']; ?></div>
       <div class="divTableCell cell_content middle" style="background: <?php echo $tableRowEvenBg; ?>;"><?php echo getConfigItem("Modem", "UARTPort", $_SESSION['MMDVMHostConfigs']); ?></div>
 <?php if (!empty(getConfigItem("Modem", "UARTSpeed", $_SESSION['MMDVMHostConfigs']))) { ?>
       <div class="divTableCell cell_content middle" style="background: <?php echo $tableRowEvenBg; ?>;"><?php echo number_format(getConfigItem("Modem", "UARTSpeed", $_SESSION['MMDVMHostConfigs'])); ?> bps</div>

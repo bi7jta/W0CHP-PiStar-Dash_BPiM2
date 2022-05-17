@@ -77,6 +77,12 @@ function checkSessionValidity() {
     loadSessionConfigFile('M17GatewayConfigs', '/etc/m17gateway');
     loadSessionConfigFile('P25GatewayConfigs', '/etc/p25gateway');
     loadSessionConfigFile('CSSConfigs', '/etc/pistar-css.ini');
+    if (!isset($_SESSION['DvModemFWVersion']) || (count($_SESSION['DvModemFWVersion'], COUNT_RECURSIVE) < 1)) {
+	$_SESSION['DvModemFWVersion'] = getDVModemFirmware();
+    }
+    if (!isset($_SESSION['DvModemTCXOFreq']) || (count($_SESSION['DvModemTCXOFreq'], COUNT_RECURSIVE) < 1)) {
+	$_SESSION['DvModemTCXOFreq'] = getDVModemTCXOFreq();
+    }
 }
 
 function get_string_between($string, $start, $end) {
