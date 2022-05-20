@@ -80,9 +80,11 @@
 		<form action="./?func=xlx_man" method="post">
 		    <table>
 			<tr>
-			    <th>Reflector</th>
-			    <th>Module</th>
-			    <th colspan="2">&nbsp;</th>
+			    <th width="150"><a class="tooltip" href="#">Select Reflector<span><b>Select Reflector</b></span></a></th>
+			    <th width="150"><a class="tooltip" href="#">Module<span><b>Module</b></span></a></th>
+			    <th width="150"><a class="tooltip" href="#">Current Link<span><b>Current Link</b></span></a></th>
+			    <th width="150"><a class="tooltip" href="#">Action<span><b>Action</b></span></a></th>
+			    <th></th>
 			</tr>
 			<tr>
 			<td><select name="xlxLinkHost" class="dmrMasterHost3Startup">
@@ -145,15 +147,18 @@
         <option value="Z">Z</option>
     </select>
 	</td>
-    <?php } ?>
+    <?php } 
+$target = `/usr/local/bin/RemoteCommand 7643 hosts | egrep -oh 'XLX(.*)\"' | awk {'print $1'} | sed 's/"//g' | sed 's/_/ Module /g'`; 
+?>
+			    <td><strong><?php echo $target; ?></strong></td>
 			    <td>
 				<input type="hidden" name="Link" value="LINK" />
 				<input type="submit" name="xlxMgrSubmit" value="Request Change" />
 			    </td>
-        		    <td style="white-space:normal;">Select the "Unlink" module to pause XLX DMR traffic, yet remain connected to the XLX Reflector.</td>
+        		    <td style="white-space:normal;padding: 3px;">Select the "Unlink" module to pause XLX DMR traffic, yet remain connected to the XLX Reflector.</td>
 			</tr>
                         <tr>
-                          <td colspan="4" style="white-space:normal;padding: 3px;">
+                          <td colspan="5" style="white-space:normal;padding: 3px;">
                             <b><a href="https://w0chp.net/xlx-reflectors/" target="_blank">List of XLX Reflectors (searchable/downloadable)</a></b>
 			      (Note: Not all XLX Reflectors support DMR.)
                           </td>
