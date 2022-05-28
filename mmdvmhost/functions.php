@@ -268,22 +268,25 @@ function getDVModemFirmware() {
 	}
 	return $modemFirmware;
 }
+
 function getDVModemTCXOFreq() {
-	$logMMDVMNow = MMDVMLOGPATH."/".MMDVMLOGPREFIX."-".gmdate("Y-m-d").".log";
-	$logMMDVMPrevious = MMDVMLOGPATH."/".MMDVMLOGPREFIX."-".gmdate("Y-m-d", time() - 86340).".log";
-	$logSearchString = "MMDVM protocol version";
-	$logLine = '';
-	$modemTCXOFreq = '';
-	$logLine = exec("grep \"".$logSearchString."\" ".$logMMDVMNow." | tail -1");
-	if (!$logLine) { $logLine = exec("grep \"".$logSearchString."\" ".$logMMDVMPrevious." | tail -1"); }
-	if ($logLine) {
-		if ((strpos($logLine, 'Mhz') !== false) or (strpos($logLine, 'MHz') !== false)) {
-			$modemTCXOFreq = $logLine;
-			$modemTCXOFreq = preg_replace('/.*(\d{2}\.\d{3,4}\s{0,1}M[Hh]z).*/', "$1", $modemTCXOFreq);
-			$modemTCXOFreq = str_replace("MHz"," MHz", $modemTCXOFreq);
-		}
-	}
-	return $modemTCXOFreq;
+    $logMMDVMNow = MMDVMLOGPATH."/".MMDVMLOGPREFIX."-".gmdate("Y-m-d").".log";
+    $logMMDVMPrevious = MMDVMLOGPATH."/".MMDVMLOGPREFIX."-".gmdate("Y-m-d", time() - 86340).".log";
+    $logSearchString = "MMDVM protocol version";
+    $logLine = '';
+    $modemTCXOFreq = '';
+    
+    $logLine = exec("grep \"".$logSearchString."\" ".$logMMDVMNow." | tail -1");
+    if (!$logLine) { $logLine = exec("grep \"".$logSearchString."\" ".$logMMDVMPrevious." | tail -1"); }
+    
+    if ($logLine) {
+        if (strpos($logLine, 'MHz') !== false) {
+            $modemTCXOFreq = $logLine;
+            $modemTCXOFreq = preg_replace('/.*(\d{2}\.\d{3,4}\s{0,1}MHz).*/', "$1", $modemTCXOFreq);
+            $modemTCXOFreq = str_replace("MHz"," MHz", $modemTCXOFreq);
+        }
+    }
+    return $modemTCXOFreq;
 }
 
 //I: 2021-02-21 13:22:24.213 Opening UDP port on 8673
