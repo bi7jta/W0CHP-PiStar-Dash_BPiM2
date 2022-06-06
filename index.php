@@ -253,11 +253,11 @@ if (isset($_SESSION['CSSConfigs']['Text'])) {
                     echo '<div id="hwInfo">'."\n";
                     include 'dstarrepeater/hw_info.php';
                     echo '</div>'."\n";
+                    echo '</div>'."\n";
                     echo '<div id="radioInfo">'."\n";
                     include 'mmdvmhost/radioinfo.php';
                     echo '</div>'."\n";
                     echo '<br class="noMob" />'."\n";
-                    echo '</div>'."\n";
                     echo '</div>'."\n";
             }
 
