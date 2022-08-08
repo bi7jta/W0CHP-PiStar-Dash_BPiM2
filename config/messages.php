@@ -28,4 +28,10 @@ if($uuidLen > 17) {
     echo $result;
 }
 
+// F1RMB detected
+$str = `grep 'RMB' /etc/pistar-release`;
+if ($str == TRUE) {
+    $result = @file_get_contents('https://repo.w0chp.net/Chipster/WPSD_Messages/raw/branch/master/f1rmb-detected.html', false, $headers);
+    echo $result;
+}
 ?>
