@@ -121,16 +121,16 @@ if (isset($_SESSION['CSSConfigs']['Text'])) {
 	    });
 	    $('.hw_toggle').toggle(localStorage.getItem('visible') === 'true');
 	  });
-        jQuery(document).ready(function() {
-          jQuery('#lh_details').click(function(){
-            jQuery('#lh_info').slideToggle('slow');
-            if(jQuery(this).text() == 'Hide Last Heard...'){
-                jQuery(this).text('Display Last Heard...');
-            } else {
-                jQuery(this).text('Hide Last Heard...');
-            }
+	  jQuery(document).ready(function() {
+            jQuery('#lh_details').click(function(){
+              jQuery('#lh_info').slideToggle('slow');
+              if(jQuery(this).text() == 'Hide Last Heard...'){
+                  jQuery(this).text('Display Last Heard...');
+              } else {
+                  jQuery(this).text('Hide Last Heard...');
+             }
+            });
           });
-        });
 	</script>
     </head>
     <body>
