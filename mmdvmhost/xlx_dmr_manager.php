@@ -153,11 +153,11 @@ $target = `/usr/local/bin/RemoteCommand 7643 hosts | egrep -oh 'XLX(.*)\"' | awk
 <script>
           $(document).ready(function(){
             setInterval(function(){
-                $("#CheckLink").load(window.location.href + " #CheckLink" );
+                $(".CheckLink").load(window.location.href + " .CheckLink" );
                 },3000);
             });
 </script>
-			    <td id="CheckLink" style="text-align:center;"><strong><?php echo $target; ?></strong></td>
+			    <td><strong class="CheckLink"><?php echo $target; ?></strong></td>
 			    <td>
 				<input type="hidden" name="Link" value="LINK" />
 				<input type="submit" name="xlxMgrSubmit" value="Request Change" />
