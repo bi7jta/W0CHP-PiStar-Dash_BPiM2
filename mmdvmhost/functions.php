@@ -699,13 +699,13 @@ function getPSWState () {
 // status classes used in sysinfo.php
 function getStatusClass($status, $disabled = false) {
     if ($status) {
-    echo '<td class="active-service-cell" align="left">';
+    echo '<td class="active-service-cell" align="left" title="Service Active">';
     }
     else {
     if ($disabled)
-        echo '<td class="disabled-service-cell" align="left">';
+        echo '<td class="disabled-service-cell" align="left" title="Service Disabled">';
     else
-        echo '<td class="inactive-service-cell" align="left">';
+        echo '<td class="inactive-service-cell" align="left" title="Service Not Active">';
     }
 }
 
