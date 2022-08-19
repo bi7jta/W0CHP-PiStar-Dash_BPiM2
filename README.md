@@ -94,7 +94,7 @@ Run:
 
 ### Functionality Features
 
-* Full M17 Protocol Support.
+* Full M17 Protocol Support. ([See M17 Notes below...](#m17-notes))
 * Full APRSGateway Support: Selectable APRS Data Sharing with specific modes.
 * Full DGId Support.
 * Selectable DMR Roaming Beacon Support: Network or Interval Mode (or disabled).
@@ -156,6 +156,24 @@ Run:
   paused modes [color is user-configurable].).
 
     Instead, the *actual* network name is highlighted in red when there's a login issue (courtesy of `F1RMB`'s excellent code).
+
+## Notes about M17 Protocol Support {#m17-notes}
+
+M17 protocol support requires updated MMDVM Modem Firmware or MMDVM HotSpot
+Firmware of at least v1.6.0. Ergo, you will need to download, compile and
+install the [MMDVM modem firmware](https://github.com/g4klx/MMDVM) or the
+[MMDVM hotspot firmware](https://github.com/juribeparada/MMDVM_HS) yourself in
+order to gain full M17 protocol support.
+
+Please note, that if you uninstall `W0CHP-PiStar-Dash`, you will need to
+downgrade the MMDVM modem or hotspot firmware back to its original firmware. For MMDVM HS
+HAT users, you can simply run the following command:
+
+        sudo pistar-mmdvmhshatdowngrade
+
+Failure to downgrade the modem firmware when uninstalling `W0CHP-PiStar-Dash`
+will result in a non-functional hot spot, since the official current Pi-Star
+`MMDVMHost` binary is not compatible with newer MMDVM firmware.
 
 ## Notes about CSS, and custom CSS you may have previously applied
 
