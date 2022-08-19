@@ -157,24 +157,6 @@ Run:
 
     Instead, the *actual* network name is highlighted in red when there's a login issue (courtesy of `F1RMB`'s excellent code).
 
-## Notes about M17 Protocol Support {#m17-notes}
-
-M17 protocol support requires updated MMDVM Modem Firmware or MMDVM HotSpot
-Firmware of at least v1.6.0. Ergo, you will need to download, compile and
-install the [MMDVM modem firmware](https://github.com/g4klx/MMDVM) or the
-[MMDVM hotspot firmware](https://github.com/juribeparada/MMDVM_HS) yourself in
-order to gain full M17 protocol support.
-
-Please note, that if you uninstall `W0CHP-PiStar-Dash`, you will need to
-downgrade the MMDVM modem or hotspot firmware back to its original firmware. For MMDVM HS
-HAT users, you can simply run the following command:
-
-        sudo pistar-mmdvmhshatdowngrade
-
-Failure to downgrade the modem firmware when uninstalling `W0CHP-PiStar-Dash`
-will result in a non-functional hot spot, since the official current Pi-Star
-`MMDVMHost` binary is not compatible with newer MMDVM firmware.
-
 ## Notes about CSS, and custom CSS you may have previously applied
 
 1. When using the `-id` option, the "normal" Pi-Star colors are used, and no CSS is installed. Any custom CSS
@@ -206,6 +188,24 @@ will result in a non-functional hot spot, since the official current Pi-Star
 7. You can at any time start over and reset to the "normal" Pi-Star colors, by performing a CSS Factory Reset (`Configuration -> Expert -> Tools -> CSS Tool`).
 
 8. If you'd like to start over with the custom `W0CHP` colors/CSS, you can copy/paste [the following values](https://repo.w0chp.net/Chipster/W0CHP-PiStar-Installer/src/branch/master/supporting-files/pistar-css-W0CHP.ini) into your `/etc/pistar-css.ini`.
+
+## Notes about M17 Protocol Support {#m17-notes}
+
+M17 protocol support requires updated MMDVM Modem Firmware or MMDVM HotSpot
+Firmware of at least v1.6.0. Ergo, you will need to download, compile and
+install the [MMDVM modem firmware](https://github.com/g4klx/MMDVM) or the
+[MMDVM hotspot firmware](https://github.com/juribeparada/MMDVM_HS) yourself in
+order to gain full M17 protocol support.
+
+Please note, that if you uninstall `W0CHP-PiStar-Dash`, you will need to
+downgrade the MMDVM modem or hotspot firmware back to its original firmware. For MMDVM HS
+HAT users, you can simply run the following command:
+
+        sudo pistar-mmdvmhshatdowngrade
+
+Failure to downgrade the modem firmware when uninstalling `W0CHP-PiStar-Dash`
+will result in a non-functional hot spot, since the official current Pi-Star
+`MMDVMHost` binary is not compatible with newer MMDVM firmware.
 
 ## Screenshots
 
