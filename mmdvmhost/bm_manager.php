@@ -293,7 +293,7 @@ if ( $testMMDVModeDMR == 1 ) {
           $postHeaders = array(
             'Content-Type: accept: application/json',
             'Content-Length: '.strlen($postData),
-            'Authorization: '.$bmAPIkeyV2,
+            'Authorization: Bearer '.$bmAPIkeyV2,
             'User-Agent: Pi-Star Dashboard for '.$dmrID,
           );
 
