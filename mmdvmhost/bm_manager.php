@@ -27,6 +27,7 @@ if ( $testMMDVModeDMR == 1 ) {
     if (file_exists($bmAPIkeyFile) && fopen($bmAPIkeyFile,'r')) {
       $configBMapi = parse_ini_file($bmAPIkeyFile, true);
       $bmAPIkey = $configBMapi['key']['apikey'];
+      $sanitizedKey = str_replace('$', '\$', $bmAPIkey);
       // Check the BM API Key
       if ( strlen($bmAPIkey) <= 20 ) { unset($bmAPIkey); }
       if ( strlen($bmAPIkey) >= 200 ) { $bmAPIkeyV2 = $bmAPIkey; unset($bmAPIkey); }
@@ -61,14 +62,12 @@ if ( $testMMDVModeDMR == 1 ) {
 	fclose($dmrMasterFile);
     }
    
-    if ((substr($dmrMasterHost, 0, 3) == "BM ") && ($bmEnabled == true) && isset($_SESSION['BMAPIKey'])) { 
-	// OK this is Brandmeister, get some config and output the HTML
+    if ((substr($dmrMasterHost, 0, 3) == "BM ") && ($bmEnabled == true)) { 
+	// OK this is Brandmeister, get some configs and output the HTML
 	
 	// If there is a BM API Key
-	$bmAPIkey = $_SESSION['BMAPIKey'];
 	if (!empty($_POST) && (!empty($_POST["tgStaticDropAll"]) || !empty($_POST["tgStaticReAdd"]) || !empty($_POST["tgStaticBatch"]))) {  // Data has been posted for this page
             // Static TG handling...
-            $sanitizedKey = str_replace('$', '\$', $_SESSION['BMAPIKey']);
 	    // Drop all static:
 	    $bmStaticDropAllCmd = ("sudo /usr/local/sbin/bm_static_tgs_dropall $sanitizedKey $dmrID");
 	    if (!empty(escapeshellcmd($_POST["tgStaticDropAll"]))) {
@@ -115,7 +114,6 @@ if ( $testMMDVModeDMR == 1 ) {
             else {
                 $massTGslot = escapeshellcmd($_POST["massTGslotSelected"]);
             }
-            $sanitizedKey = str_replace('$', '\$', $_SESSION['BMAPIKey']);
             $bmStaticMassAddCmd = ("sudo /usr/local/sbin/bm_static_tgs_batchadd $sanitizedKey $dmrID $massTGslot");
             $bmStaticMassDelCmd = ("sudo /usr/local/sbin/bm_static_tgs_batchdel $sanitizedKey $dmrID $massTGslot");
 	    if (!empty(escapeshellcmd($_POST["tgStaticBatch"]))) {
@@ -210,7 +208,6 @@ if ( $testMMDVModeDMR == 1 ) {
 	    // begin single TG management / native api funcs
       if ( (isset($bmAPIkey)) && ( !empty($_POST) && ( isset($_POST["dropDyn"]) || isset($_POST["dropQso"]) || isset($_POST["tgSubmit"]) ) ) ) { // Data has been posted for this page
           $bmAPIurl = 'https://api.brandmeister.network/v1.0/repeater/';
-          $bmAPIkey = $_SESSION['BMAPIKey'];
           // Are we a repeater
           if ( getConfigItem("DMR Network", "Slot1", $mmdvmconfigs) == "0" ) {
               unset($_POST["TS"]);
