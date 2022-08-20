@@ -531,7 +531,7 @@ if (file_exists($bmAPIkeyFile) && fopen($bmAPIkeyFile,'r')) {
 <div>
   <table align="center" width="760px" style="margin: 0px 0px 10px 0px; width: 100%;">
     <tr>
-    <td align="center" valign="top" style="background-color: #ffff90; color: #906000;">Notice!: You have a legacy Brandmeister API v1 Key; click here for the announcement on how to migrate: <a href="https://news.brandmeister.network/introducing-user-api-keys/" target="new" alt="BM API Keys">BM API Key Announcement and Migration Instructions</a>.</td>
+    <td align="center" valign="top" style="background-color: #ffff90; color: #906000;">Notice! You have a legacy Brandmeister API v1 Key; click here for the announcement on how to migrate: <a href="https://news.brandmeister.network/introducing-user-api-keys/" target="new" alt="BM API Keys">BM API Key Announcement and Migration Instructions</a>.</td>
     </tr>
   </table>
 </div>
