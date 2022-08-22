@@ -17,10 +17,10 @@
 		<li class="has-subs"><a href="#">Quick Editors</a>
 		    <ul class="dropdown">
 		    	<li class="subs"><a href="edit_mmdvmhost.php">MMDVMHost</a></li>
-			<!-- DStar Sub -->
-			<li class="subs has-subs"><a href="#">DStar</a>
+			<!-- D-Star Sub -->
+			<li class="subs has-subs"><a href="#">D-Star</a>
 			    <ul class="dropdown">
-				<li class="subs"><a href="edit_dstarrepeater.php">DStarRepeater</a></li>
+				<li class="subs"><a href="edit_dstarrepeater.php">D-StarRepeater</a></li>
 				<li class="subs"><a href="edit_ircddbgateway.php">ircDDB Gateway</a></li>
 				<li class="subs"><a href="edit_timeserver.php">TimeServer</a></li>
 			    </ul>
@@ -62,10 +62,10 @@
 		    <ul class="dropdown">
 			<li class="subs"><a href="fulledit_mmdvmhost.php">MMDVMHost</a></li>
 			<li class="subs"><a href="fulledit_pistar-remote.php">PiStar-Remote</a></li>
-			<!-- DStar Sub -->
-			<li class="subs has-subs"><a href="#">DStar</a>
+			<!-- D-Star Sub -->
+			<li class="subs has-subs"><a href="#">D-Star</a>
 			    <ul class="dropdown">
-				<li class="subs"><a href="fulledit_dstarrepeater.php">DStarRepeater</a></li>
+				<li class="subs"><a href="fulledit_dstarrepeater.php">D-StarRepeater</a></li>
 				<li class="subs"><a href="fulledit_ircddbgateway.php">ircDDB Gateway</a></li>
 				<li class="subs"><a href="fulledit_timeserver.php">TimeServer</a></li>
 			    </ul>
