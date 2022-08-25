@@ -12,6 +12,8 @@ $configPistarRelease = array();
 $configPistarRelease = parse_ini_file($pistarReleaseConfig, true);
 // Load the Version Info
 require_once $_SERVER['DOCUMENT_ROOT'].'/config/version.php';
+// load config
+require_once $_SERVER['DOCUMENT_ROOT'].'/config/config.php';
 
 if (file_exists('/etc/default/shellinabox')) {
   $getPortCommand = "grep -m 1 'SHELLINABOX_PORT=' /etc/default/shellinabox | awk -F '=' '/SHELLINABOX_PORT=/ {print $2}'";
@@ -46,7 +48,12 @@ if ($_SERVER["PHP_SELF"] == "/admin/expert/ssh_access.php") {
     <div class="container">
     <div class="header">
     <div style="font-size: 10px; text-align: left; padding-left: 8px; float: left;">Hostname: <?php echo exec('cat /etc/hostname'); ?></div>
-    <div style="font-size: 10px; text-align: right; padding-right: 8px;">Pi-Star: <?php echo $_SESSION['PiStarRelease']['Pi-Star']['Version'].'<br />';?><div id="CheckUpdate"><?php echo $version; system('/usr/local/sbin/pistar-check4updates'); ?></div></div>
+    <div style="font-size: 10px; text-align: right; padding-right: 8px;">Pi-Star: <?php echo $_SESSION['PiStarRelease']['Pi-Star']['Version'].'<br />';?>
+    <?php if (constant("AUTO_UPDATE_CHECK") == "true") { ?> 
+    <div id="CheckUpdate"><?php echo $version; system('/usr/local/sbin/pistar-check4updates'); ?></div></div>
+    <?php } else { ?>
+    <div id="CheckUpdate"><?php echo $version; ?></div></div>
+    <?php } ?>    
     <h1>Pi-Star <?php echo $lang['digital_voice']." ".$lang['dashboard_for']." ".$_SESSION['MYCALL']; ?> - SSH Access</h1>
         <p>
         <div class="navbar">

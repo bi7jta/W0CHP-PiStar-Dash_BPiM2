@@ -1,5 +1,10 @@
 <div class="header">
-    <div style="font-size: 10px; text-align: left; padding-left: 8px; float: left;">Hostname: <?php echo exec('cat /etc/hostname'); ?></div><div style="font-size: 10px; text-align: right; padding-right: 8px;">Pi-Star: <?php echo $_SESSION['PiStarRelease']['Pi-Star']['Version'].'<br />';?> <?php echo $version; system('/usr/local/sbin/pistar-check4updates'); ?></div>
+    <div style="font-size: 10px; text-align: left; padding-left: 8px; float: left;">Hostname: <?php echo exec('cat /etc/hostname'); ?></div><div style="font-size: 10px; text-align: right; padding-right: 8px;">Pi-Star: <?php echo $_SESSION['PiStarRelease']['Pi-Star']['Version'].'<br />';?>
+    <?php if (constant("AUTO_UPDATE_CHECK") == "true") { ?> 
+    <div id="CheckUpdate"><?php echo $version; system('/usr/local/sbin/pistar-check4updates'); ?></div></div>
+    <?php } else { ?>
+    <div id="CheckUpdate"><?php echo $version; ?></div></div>
+    <?php } ?>    
     <h1>Pi-Star Digital Voice - Expert Area</h1>
     <p>
 	<div class="navbar">

@@ -14,6 +14,7 @@ if (!isset($_SESSION) || !is_array($_SESSION)) {
 // Load the language support
 require_once $_SERVER['DOCUMENT_ROOT'].'/config/language.php';
 require_once $_SERVER['DOCUMENT_ROOT'].'/config/version.php';
+require_once $_SERVER['DOCUMENT_ROOT'].'/config/config.php';
 
 // Sanity Check that this file has been opened correctly
 if ($_SERVER["PHP_SELF"] == "/admin/power.php") {
@@ -47,7 +48,12 @@ if ($_SERVER["PHP_SELF"] == "/admin/power.php") {
 	<body>
 	    <div class="container">
 		<div class="header">
-		    <div style="font-size: 10px; text-align: left; padding-left: 8px; float: left;">Hostname: <?php echo exec('cat /etc/hostname'); ?></div><div style="font-size: 10px; text-align: right; padding-right: 8px;">Pi-Star: <?php echo $_SESSION['PiStarRelease']['Pi-Star']['Version'].'<br />';?> <?php echo $version; system('/usr/local/sbin/pistar-check4updates'); ?></div>
+		    <div style="font-size: 10px; text-align: left; padding-left: 8px; float: left;">Hostname: <?php echo exec('cat /etc/hostname'); ?></div><div style="font-size: 10px; text-align: right; padding-right: 8px;">Pi-Star: <?php echo $_SESSION['PiStarRelease']['Pi-Star']['Version'].'<br />';?>
+		    <?php if (constant("AUTO_UPDATE_CHECK") == "true") { ?> 
+		    <div id="CheckUpdate"><?php echo $version; system('/usr/local/sbin/pistar-check4updates'); ?></div></div>
+		    <?php } else { ?>
+		    <div id="CheckUpdate"><?php echo $version; ?></div></div>
+		    <?php } ?>    
 		    <h1>Pi-Star <?php echo $lang['digital_voice']." - ".$lang['power'];?></h1>
 		    <p>
 			<div class="navbar">

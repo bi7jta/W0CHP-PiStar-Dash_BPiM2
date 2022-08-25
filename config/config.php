@@ -25,4 +25,5 @@ define("REBOOTMMDVM", "");
 define("REBOOTSYS", "");
 define("HALTSYS", "");
 define('TIME_FORMAT', '24');
+define('AUTO_UPDATE_CHECK', 'true');
 ?>
