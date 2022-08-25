@@ -3863,12 +3863,18 @@ if (!empty($_POST)):
 		$rollTimeZoneConfig = 'sudo sed -i "/date_default_timezone_set/c\\date_default_timezone_set(\''.escapeshellcmd($_POST['systemTimezone']).'\')\;" /var/www/dashboard/config/config.php';
 		system($rollTimeZoneConfig);
 	}
-    // 12 or 24 hour time?
+	// 12 or 24 hour time?
 	if (empty($_POST['systemTimeFormat']) != TRUE ) {
 		$rollTimeFormatConfig = 'sudo sed -i "/define(\'TIME_FORMAT\', /c\\\define(\'TIME_FORMAT\', \''.escapeshellcmd($_POST['systemTimeFormat']).'\')\;" /var/www/dashboard/config/config.php';
 		system($rollTimeFormatConfig);
 	}
     
+        // auto-update check?
+        if (empty($_POST['autoUpdateCheck']) != TRUE ) {
+                $rollUpdateCheckConfig = 'sudo sed -i "/define(\'AUTO_UPDATE_CHECK\', /c\\\define(\'AUTO_UPDATE_CHECK\', \''.escapeshellcmd($_POST['autoUpdateCheck']).'\')\;" /var/www/dashboard/config/config.php';
+                system($rollUpdateCheckConfig);
+        }
+
 	// Start all services
 	system('sudo systemctl daemon-reload > /dev/null 2>/dev/null &');	// Restart Systemd to account for any service changes
 	system('sudo REMOUNT_RO="NO" pistar-services start > /dev/null 2>/dev/null &');
@@ -4487,6 +4493,14 @@ else:
 	echo '    </select></td></tr>'."\n";
     }
 ?>
+    <tr>
+    <td align="left"><a class="tooltip2" href="#">Update Notifier:<span><b>Update Notifier</b>Enables/Disables automatic dashboard software update notifications.</span></a></td>
+    <td colspan="2" align="left">
+    <input type="radio" name="autoUpdateCheck" value="false" <?php if (constant("AUTO_UPDATE_CHECK") == "false") { echo 'checked="checked"'; } ?> />Disabled
+    <input type="radio" name="autoUpdateCheck" value="true" <?php if (constant("AUTO_UPDATE_CHECK") == "true") { echo 'checked="checked"'; } ?> />Enabled
+    </td>
+    <td align="left"style='word-wrap: break-word;white-space: normal;padding-left: 5px;'>Enables / Disables automatic dashboard software update notifications. When enabled, software update availability is displayed in the dashboard header.</td>
+    </tr>
     </table>
 	<div><input type="button" value="<?php echo $lang['apply'];?>" onclick="submitform()" /><br /><br /></div>
     <?php if (file_exists('/etc/dstar-radio.mmdvmhost') && $configmmdvm['DMR']['Enable'] == 1) {
