@@ -340,13 +340,18 @@ if ( $testMMDVModeDMR == 1 ) {
 		    echo '  </tr>'."\n";
 		    echo '  <tr>'."\n";
 		    echo '    <th><a class=tooltip href="#">Enter Static Talkgroup:<span><b>Enter the Talkgroup number</b></span></a></th>',"\n";
- 		    echo '    <th><a class=tooltip href="#">Slot<span><b>Where to link/unlink</b></span></a></th>'."\n";
+ 		    echo '    <th><a class=tooltip href="#">Timeslot<span><b>Where to link/unlink</b></span></a></th>'."\n";
 		    echo '    <th><a class=tooltip href="#">Add / Remove<span><b>Add or Remove</b></span></a></th>'."\n";
 		    echo '  </tr>'."\n";
 		    echo '  <tr>';
 		    echo '    <td><input type="text" id="tgNr" name="tgNr" size="10" maxlength="7" oninput="enableOnNonEmpty(\'tgNr\', \'tgSubmit\', \'tgAdd\', \'tgDel\'); return false;"/></td>'."\n";
-		    echo '    <td><input type="radio" id="ts1" name="TS" value="1" '.((getConfigItem("General", "Duplex", $_SESSION['MMDVMHostConfigs']) == "1") ? '' : '').'/><label for="ts1"/>TS1</label> <input type="radio" id="ts2" name="TS" value="2" checked="checked"/><label for="ts2"/>TS2</td>'."\n";
-		    echo '    <td style="white-space:nowrap;"><input type="radio" id="tgAdd" name="TGmgr" value="ADD" checked="checked" /><label for="tgAdd">Add</label> <input type="radio" id="tgDel" name="TGmgr" value="DEL" checked="checked" /><label for="tgDel">Delete</label>&nbsp;<input type="submit" value="Add/Delete Static" id="tgSubmit" name="tgSubmit"/></td>'."\n";
+		    if (getConfigItem("DMR Network", "Slot1", $_SESSION['MMDVMHostConfigs']) == "1") {
+		        echo '    <td><input type="radio" id="ts1" name="TS" value="1" /><label for="ts1"/>TS1</label>&nbsp;';
+		    } else {
+		        echo '    <td><input type="radio" id="ts1" name="TS" value="1" disabled="disabled" access="false"/><label for="ts1"/>TS1</label>&nbsp;';
+		    }
+		    echo '    <input type="radio" id="ts2" name="TS" value="2" checked="checked"/><label for="ts2"/>TS2</td>'."\n";
+		    echo '    <td style="white-space:nowrap;"><input type="radio" id="tgAdd" name="TGmgr" value="ADD" checked="checked" /><label for="tgAdd">Add</label> &nbsp;<input type="radio" id="tgDel" name="TGmgr" value="DEL" checked="checked" /><label for="tgDel">Delete</label>&nbsp;<input type="submit" value="Add/Delete Static" id="tgSubmit" name="tgSubmit"/></td>'."\n";
 		    echo '    <td><input type="submit" value="Drop QSO" title="Drop current QSO" name="dropQso" />&nbsp;'."\n";
 		    echo '      <input type="submit" value="Drop All Dynamic" title="Drop all dynamic groups" name="dropDyn" /></td>'."\n";
 		    echo '  </tr>'."\n";
@@ -366,8 +371,14 @@ if ( $testMMDVModeDMR == 1 ) {
 			echo '      <input type="button" disabled value="Re-Add All Previous  Static TGs" id="tgStaticReAdd" name="tgStaticReAdd"/></td>'."\n";
 		    }
 		    echo '    <td><b>Enter Talkgroups:</b><p><textarea style="vertical-align: middle; resize: none;" rows="5" cols="20" name="massTGlist" placeholder="One per line."></textarea></p></td>'."\n";
-		    echo '    <td><b>Slot:</b><br /><br /><input type="radio" id="massts1" name="massTGslotSelected" value="1" '.((getConfigItem("General", "Duplex", $_SESSION['MMDVMHostConfigs']) == "1") ? '' : '').'/><label for="massts1"/>TS1</label>&nbsp;<input type="radio" id="massts2" name="massTGslotSelected" value="2" checked="checked"/><label for="massts2"/>TS2</label></td>'."\n";
-		    echo '    <td><input type="radio" id="masstgAdd" name="massTGaction" value="ADD" /><label for="masstgAdd">Add</label> <input type="radio" id="masstgDel" name="massTGaction" value="DEL" checked="checked" /><label for="masstgDel">Delete</label>&nbsp;<input type="submit" value="Bulk Add/Delete Static TGs" id="tgStaticBatch" name="tgStaticBatch"/></td>'."\n";
+		    echo '    <td><b>Timelot:</b><br /><br />';
+		    if (getConfigItem("DMR Network", "Slot1", $_SESSION['MMDVMHostConfigs']) == "1") {
+		        echo '    <input type="radio" id="massts1" name="massTGslotSelected" value="1"/><label for="massts1"/>TS1</label>&nbsp;';
+		    } else {
+		        echo '    <input type="radio" id="massts1" name="massTGslotSelected" value="1" disabled="disabled" access="false"/><label for="massts1"/>TS1</label>&nbsp;';
+		    }
+		    echo '        <input type="radio" id="massts2" name="massTGslotSelected" value="2" checked="checked"/><label for="massts2"/>TS2</label></td>'."\n";
+		    echo '    <td><input type="radio" id="masstgAdd" name="massTGaction" value="ADD" /><label for="masstgAdd">Add</label> &nbsp;<input type="radio" id="masstgDel" name="massTGaction" value="DEL" checked="checked" /><label for="masstgDel">Delete</label>&nbsp;<input type="submit" value="Bulk Add/Delete Static TGs" id="tgStaticBatch" name="tgStaticBatch"/></td>'."\n";
 		    echo '  </tr>'."\n";
 		    echo '  <tr>'."\n";
 		    echo '    <td style="white-space:normal;padding: 3px;">This function drops all current static talkgroups, OR re-adds the previously-dropped static talkgroups.</td>'."\n";

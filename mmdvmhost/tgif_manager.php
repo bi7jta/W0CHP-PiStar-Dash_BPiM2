@@ -155,6 +155,7 @@ if (empty($dmrID) == false)
 	// Perform the GET request
 	$tgifApiUrl = "http://tgif.network:5040/api/sessions/update/".$dmrID."/".$targetSlot."/".$targetTG;
 	$result = file_get_contents($tgifApiUrl);
+
 	// Output to the browser
 	echo '<div style="text-align:left;font-weight:bold;">TGIF Manager</div>'."\n";
 	echo "<table>\n<tr><th>Command Output</th></tr>\n<tr><td>";
@@ -172,14 +173,19 @@ if (empty($dmrID) == false)
 	echo '<table>
     <tr>
       <th><a class=tooltip href="#">Enter Static Talkgroup:<span><b>Enter the Talkgroup number</b></span></a></th>
-      <th><a class=tooltip href="#">Slot<span><b>Where to link/unlink</b></span></a></th>
+      <th><a class=tooltip href="#">Timeslot<span><b>Where to link/unlink</b></span></a></th>
       <th><a class=tooltip href="#">Link / Unlink<span><b>Link or unlink</b></span></a></th>
       <th><a class=tooltip href="#">Action<span><b>Take Action</b></span></a></th>
     </tr>
     <tr>
-      <td><input type="text" id="tgifNumber" name="tgifNumber" size="10" maxlength="7" oninput="enableOnNonEmpty(\'tgifNumber\', \'tgifActionLink\'); return false;"/></td>
-      <td><input type="radio" id="ts1" name="tgifSlot" value="1" checked="checked" /><label for="ts1"/>TS1</label> <input type="radio" id="ts2" name="tgifSlot" value="2" /><label for="ts2"/>TS2</label></td>
-      <td><input type="radio" id="tgifActionLink" name="tgifAction" value="LINK"  /><label for="tgifActionLink"/>Link</label> <input type="radio" id="tgifActionUnLink" name="tgifAction" value="UNLINK" checked="checked" /><label for="tgifActionUnLink"/>Un-Link</label></td>
+      <td><input type="text" id="tgifNumber" name="tgifNumber" size="10" maxlength="7" oninput="enableOnNonEmpty(\'tgifNumber\', \'tgifActionLink\'); return false;"/></td>';
+    if (getConfigItem("DMR Network", "Slot1", $_SESSION['MMDVMHostConfigs']) == "1") {
+        echo '<td><input type="radio" id="ts1" name="tgifSlot" value="1" /><label for="ts1"/>TS1</label> &nbsp;';
+    } else {
+          echo '<td><input type="radio" id="ts1" name="tgifSlot" value="1" disabled="disabled" access="fasle"/><label for="ts1"/>TS1</label> &nbsp;';
+    }
+    echo '<input type="radio" id="ts2" name="tgifSlot" value="2" checked="checked" /><label for="ts2"/>TS2</label></td>
+      <td><input type="radio" id="tgifActionLink" name="tgifAction" value="LINK"  /><label for="tgifActionLink"/>Link</label> &nbsp;<input type="radio" id="tgifActionUnLink" name="tgifAction" value="UNLINK" checked="checked" /><label for="tgifActionUnLink"/>Un-Link</label></td>
       <td><input type="submit" value="Request Change" name="tgifSubmit" /></td>
     </tr>
     <tr>
