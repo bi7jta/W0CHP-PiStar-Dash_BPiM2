@@ -23,12 +23,12 @@ if (!isset($_SESSION) || !is_array($_SESSION)) {
     <th><a class=tooltip href="#">pistar-keeper<span><b>pistar-keeper</b></span></th>
   </tr>
   <tr>
-    <td><?php exec ("pgrep dstarrepeaterd", $dstarrepeaterpid); if (!empty($dstarrepeaterpid)) { echo "<img src=\"images/20green.png\">"; } else { echo "<img src=\"images/20red.png\">"; } ?></td>
-    <td><?php exec ("pgrep MMDVMHost", $mmdvmhostpid); if (!empty($mmdvmhostpid)) { echo "<img src=\"images/20green.png\">"; } else { echo "<img src=\"images/20red.png\">"; } ?></td>
-    <td><?php exec ("pgrep ircddbgatewayd", $ircddbgatewaypid); if (!empty($ircddbgatewaypid)) { echo "<img src=\"images/20green.png\">"; } else { echo "<img src=\"images/20red.png\">"; } ?></td>
-    <td><?php exec ("pgrep timeserverd", $timeserverpid); if (!empty($timeserverpid)) { echo "<img src=\"images/20green.png\">"; } else { echo "<img src=\"images/20red.png\">"; } ?></td>
-    <td><?php exec ("pgrep -f -a /usr/local/sbin/pistar-watchdog | sed '/pgrep/d'", $watchdogpid); if (!empty($watchdogpid)) { echo "<img src=\"images/20green.png\">"; } else { echo "<img src=\"images/20red.png\">"; } ?></td>
-    <td><?php exec ("pgrep -f -a /usr/local/sbin/pistar-keeper | sed '/pgrep/d'", $keeperpid); if (!empty($keeperpid)) { echo "<img src=\"images/20green.png\">"; } else { echo "<img src=\"images/20red.png\">"; } ?></td>
+    <td><?php exec ("pgrep dstarrepeaterd", $dstarrepeaterpid); if (!empty($dstarrepeaterpid)) { echo "<span class=\"green_dot\" title=\"Running\"></span>"; } else { echo "<span class=\"red_dot\" title=\"Not Running\"></span>"; } ?></td>
+    <td><?php exec ("pgrep MMDVMHost", $mmdvmhostpid); if (!empty($mmdvmhostpid)) { echo "<span class=\"green_dot\" title=\"Running\"></span>"; } else { echo "<span class=\"red_dot\" title=\"Not Running\"></span>"; } ?></td>
+    <td><?php exec ("pgrep ircddbgatewayd", $ircddbgatewaypid); if (!empty($ircddbgatewaypid)) { echo "<span class=\"green_dot\" title=\"Running\"></span>"; } else { echo "<span class=\"red_dot\" title=\"Not Running\"></span>"; } ?></td>
+    <td><?php exec ("pgrep timeserverd", $timeserverpid); if (!empty($timeserverpid)) { echo "<span class=\"green_dot\" title=\"Running\"></span>"; } else { echo "<span class=\"red_dot\" title=\"Not Running\"></span>"; } ?></td>
+    <td><?php exec ("pgrep -f -a /usr/local/sbin/pistar-watchdog | sed '/pgrep/d'", $watchdogpid); if (!empty($watchdogpid)) { echo "<span class=\"green_dot\" title=\"Running\"></span>"; } else { echo "<span class=\"red_dot\" title=\"Not Running\"></span>"; } ?></td>
+    <td><?php exec ("pgrep -f -a /usr/local/sbin/pistar-keeper | sed '/pgrep/d'", $keeperpid); if (!empty($keeperpid)) { echo "<span class=\"green_dot\" title=\"Running\"></span>"; } else { echo "<span class=\"red_dot\" title=\"Not Running\"></span>"; } ?></td>
   </tr>
 </table>
 <br />

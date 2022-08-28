@@ -10,6 +10,10 @@ if (!isset($_SESSION) || !is_array($_SESSION)) {
     include_once $_SERVER['DOCUMENT_ROOT'].'/config/language.php';        // Translation Code
     checkSessionValidity();
 }
+// Load the language support
+require_once $_SERVER['DOCUMENT_ROOT'].'/config/language.php';
+require_once $_SERVER['DOCUMENT_ROOT'].'/config/version.php';
+require_once $_SERVER['DOCUMENT_ROOT'].'/mmdvmhost/tools.php';
 
 ?>
 <b><?php echo $lang['dstar_config'];?></b>
@@ -32,58 +36,58 @@ if (!isset($_SESSION) || !is_array($_SESSION)) {
 	<td><?php if($_SESSION['ircDDBConfigs']['aprsEnabled'] == 1) { print $_SESSION['APRSGatewayConfigs']['APRS-IS']['Server']; } else { print "OFF"; } ?></td>
 	<?php
 	if($_SESSION['ircDDBConfigs']['ccsEnabled'] == 1) {
-	    print "<td><span style='color:#005028;font-weight:bold'>ON</span></td>";
+	    print "<td><span class='green_dot';font-weight:bold' title='On'></span></td>";
 	}
 	else {
-	    print "<td><span style='color:#8A0B2B;font-weight:bold;'>OFF</span></td>";
+	    print "<td><span class='red_dot';font-weight:bold' title='Off'></span></td>";
 	}
 	if($_SESSION['ircDDBConfigs']['dcsEnabled'] == 1) {
-	    print "<td><span style='color:#005028;font-weight:bold'>ON</span></td>";
+	    print "<td><span class='green_dot';font-weight:bold' title='On'></span></td>";
 	}
 	else {
-	    print "<td><span style='color:#8A0B2B;font-weight:bold;'>OFF</span></td>";
+	    print "<td><span class='red_dot';font-weight:bold' title='Off'></span></td>";
 	}
 	if($_SESSION['ircDDBConfigs']['dextraEnabled'] == 1) {
-	    print "<td><span style='color:#005028;font-weight:bold'>ON</span></td>";
+	    print "<td><span class='green_dot';font-weight:bold' title='On'></span></td>";
 	}
 	else {
-	    print "<td><span style='color:#8A0B2B;font-weight:bold;'>OFF</span></td>";
+	    print "<td><span class='red_dot';font-weight:bold' title='Off'></span></td>";
 	}
 	if($_SESSION['ircDDBConfigs']['dplusEnabled'] == 1) {
-	    print "<td><span style='color:#005028;font-weight:bold'>ON</span></td>";
+	    print "<td><span class='green_dot';font-weight:bold' title='On'></span></td>";
 	}
 	else {
-	    print "<td><span style='color:#8A0B2B;font-weight:bold;'>OFF</span></td>";
+	    print "<td><span class='red_dot';font-weight:bold' title='Off'></span></td>";
 	}
 	if($_SESSION['ircDDBConfigs']['dratsEnabled'] == 1) {
-	    print "<td><span style='color:#005028;font-weight:bold'>ON</span></td>";
+	    print "<td><span class='green_dot';font-weight:bold' title='On'></span></td>";
 	}
 	else {
-	    print "<td><span style='color:#8A0B2B;font-weight:bold;'>OFF</span></td>";
+	    print "<td><span class='red_dot';font-weight:bold' title='Off'></span></td>";
 	}
 	if($_SESSION['ircDDBConfigs']['infoEnabled'] == 1) {
-	    print "<td><span style='color:#005028;font-weight:bold'>ON</span></td>";
+	    print "<td><span class='green_dot';font-weight:bold' title='On'></span></td>";
 	}
 	else {
-	    print "<td><span style='color:#8A0B2B;font-weight:bold;'>OFF</span></td>";
+	    print "<td><span class='red_dot';font-weight:bold' title='Off'></span></td>";
 	}
 	if($_SESSION['ircDDBConfigs']['ircddbEnabled'] == 1) {
-	    print "<td><span style='color:#005028;font-weight:bold'>ON</span></td>";
+	    print "<td><span class='green_dot';font-weight:bold' title='On'></span></td>";
 	}
 	else {
-	    print "<td><span style='color:#8A0B2B;font-weight:bold;'>OFF</span></td>";
+	    print "<td><span class='red_dot';font-weight:bold' title='Off'></span></td>";
 	}
 	if($_SESSION['ircDDBConfigs']['echoEnabled'] == 1) {
-	    print "<td><span style='color:#005028;font-weight:bold'>ON</span></td>";
+	    print "<td><span class='green_dot';font-weight:bold' title='On'></span></td>";
 	}
 	else {
-	    print "<td><span style='color:#8A0B2B;font-weight:bold;'>OFF</span></td>";
+	    print "<td><span class='red_dot';font-weight:bold' title='Off'></span></td>";
 	}
 	if($_SESSION['ircDDBConfigs']['logEnabled'] == 1) {
-	    print "<td><span style='color:#005028;font-weight:bold'>ON</span></td>";
+	    print "<td><span class='green_dot';font-weight:bold' title='On'></span></td>";
 	}
 	else {
-	    print "<td><span style='color:#8A0B2B;font-weight:bold;'>OFF</span></td>";
+	    print "<td><span class='red_dot';font-weight:bold' title='Off'></span></td>";
 	}
   ?>
 </tr>
