@@ -1002,3 +1002,19 @@ td.lookatme {
   margin-top: -2px;
 }
 
+.red_dot {
+    height: 15px;
+    width: 15px;
+    background-color: red;
+    border-radius: 50%;
+    display: inline-block;
+}
+
+.green_dot {
+    height: 15px;
+    width: 15px;
+    background-color: limegreen;
+    border-radius: 50%;
+    display: inline-block;
+}
+

@@ -20,7 +20,7 @@ if (isset($_SESSION['CSSConfigs']['Background'])) {
     $backgroundModeCellInactiveColor = $_SESSION['CSSConfigs']['Background']['ModeCellInactiveColor'];
 }
 ?>
-<div style="text-align:left;font-weight:bold;"><?php echo$lang['d-star_link_status'];?></div>
+<div style="text-align:leftfont-weight:bold;"><?php echo$lang['d-star_link_status'];?></div>
 <table>
     <tr>
 	<th><a class="tooltip" href="#">Radio<span><b>Radio Module</b></span></a></th>
@@ -66,10 +66,10 @@ if (isset($_SESSION['CSSConfigs']['Background'])) {
 	    }
 	    $param="atStartup" . $i;
 	    if($_SESSION['ircDDBConfigs'][$param] == 1) {
-		print "<td><span style='color:$backgroundModeCellActiveColor;font-weight:bold'>Yes</span></td>";
+		print "<td><span title='Yes' class='green_dot style='font-weight:bold;'></span></td>";
 	    }
 	    else {
-		print "<td><span style='color:$backgroundModeCellInactiveColor;font-weight:bold;'>No</span></td>";
+		print "<td><span title='No' class='$red_dot' style='font-weight:bold;'></span></td>";
 	    }
 	    $param="reconnect" . $i;
 	    if(isset($_SESSION['ircDDBConfigs'][$param])) {
@@ -85,9 +85,8 @@ if (isset($_SESSION['CSSConfigs']['Background'])) {
 	    $j = 0;
 	    if (file_exists($linkLogPath) && (($linkLog = fopen($linkLogPath,'r')))) {
 		while ($linkLine = fgets($linkLog)) {
-		    //$statimg = "<img src=\"images/20red.png\">";
 		    $statimg = "Down";
-		    $color = $backgroundModeCellIanctiveColor;
+		    $color = "red_dot";
                     $linkDate = "&nbsp;";
                     $protocol = "&nbsp;";
                     $linkType = "&nbsp;";
@@ -99,14 +98,14 @@ if (isset($_SESSION['CSSConfigs']['Background'])) {
 		    // 2012-10-12 17:56:10: DCS link - Type: Repeater Rptr: DB0RPL B Refl: DCS015 B Dir: Outgoing
                     if(preg_match_all('/^(.{19}).*(D[A-Za-z]*).*Type: ([A-Za-z]*).*Rptr: (.{8}).*Refl: (.{8}).*Dir: Outgoing$/',$linkLine,$linx) > 0) {
 			$statimg = "Up";
-			$color = $backgroundModeCellActiveColor;
+			$color = "green_dot";
 			$linkDate = date("d-M-Y H:i:s", strtotime(substr($linx[1][0],0,19)));
                         $protocol = $linx[2][0];
                         $linkType = $linx[3][0];
                         $linkRptr = $linx[4][0];
                         $linkRefl = $linx[5][0];
 			if($linkRptr == $rptrcall) {
-			    print "<td><span style='color:$color;font-weight:bold;'>$statimg</span></td>";
+			    print "<td><span title='$statimg' class='$color' style='font-weight:bold;'></span></td>";
 			    print "<td>".str_replace(' ', '&nbsp;', substr($linkRefl,0,8))."</td>";
 			    print "<td>$protocol</td>";
 			    print "<td>Outgoing</td>";
@@ -130,7 +129,7 @@ if (isset($_SESSION['CSSConfigs']['Background'])) {
 	    }
 	    
 	    if ($tr == 1) {
-		print"<td><span style='color:$backgroundModeCellInactiveColor;font-weight:bold'>Down</span></td><td>None</td><td>--</td><td>----</td><td>----</td></tr>\n";
+		print"<td><span title='Down' class='red_dot' style='font-weight:bold;'></span></td><td>None</td><td>--</td><td>----</td><td>----</td></tr>\n";
 	    }
 	    // 00000000001111111111222222222233333333334444444444555555555566666666667777777777888888888899999999990000000000111111111122
 	    // 01234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901
@@ -139,7 +138,7 @@ if (isset($_SESSION['CSSConfigs']['Background'])) {
 	    if (file_exists($linkLogPath)  && ($linkLog = fopen($linkLogPath,'r'))) {
 		while ($linkLine = fgets($linkLog)) {
 		    $statimg = "Down";
-		    $color = $backgroundModeCellInactiveColor;
+		    $color = "red_dot";
                     $linkDate = "&nbsp;";
                     $protocol = "&nbsp;";
                     $linkType = "&nbsp;";
@@ -147,7 +146,7 @@ if (isset($_SESSION['CSSConfigs']['Background'])) {
                     $linkRefl = "&nbsp;";
                     if(preg_match_all('/^(.{19}).*(D[A-Za-z]*).*Type: ([A-Za-z]*).*Rptr: (.{8}).*Refl: (.{8}).*Dir: Incoming$/',$linkLine,$linx) > 0) {
 			$statimg = "Up";
-			$color = $backgroundModeCellActiveColor;
+			$color = "green_dot";
 			$linkDate = date("d-M-Y H:i:s", strtotime(substr($linx[1][0],0,19)));
                         $protocol = $linx[2][0];
                         $linkType = $linx[3][0];
@@ -161,7 +160,7 @@ if (isset($_SESSION['CSSConfigs']['Background'])) {
 			    print "<tr>";
 			    print "<td>".str_replace(' ', '&nbsp;', substr($rptrcall,0,8))."</td>";
 			    print "<td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td>";
-			    print "<td><span style='color:$color;font-weight:bold;'>$statimg</span></td>";
+			    print "<td><span title='$statimg' class='$color' style='font-weight:bold;'></span></td>";
 			    print "<td>".str_replace(' ', '&nbsp;', substr($linkRefl,0,8))."</td>";
 			    print "<td>$protocol</td>";
 			    print "<td>Incoming</td>";
@@ -190,7 +189,7 @@ if (isset($_SESSION['CSSConfigs']['Background'])) {
             if (file_exists($linkLogPath) && ($linkLog = fopen($linkLogPath,'r'))) {
                 while ($linkLine = fgets($linkLog)) {
                     $statimg = "Down";
-		    $color = $backgroundModeCellInactiveColor;
+		    $color = "red_dot";
                     $linkDate = "&nbsp;";
                     $protocol = "&nbsp;";
                     $linkType = "&nbsp;";
@@ -198,7 +197,7 @@ if (isset($_SESSION['CSSConfigs']['Background'])) {
                     $linkRefl = "&nbsp;";
                     if(preg_match_all('/^(.{19}).*(D[A-Za-z]*).*Type: ([A-Za-z]*).*User: (.[^\s]+).*Dir: Incoming$/',$linkLine,$linx) > 0) {
                         $statimg = "Up";
-			$color = $backgroundModeCellActiveColor;
+			$color = "green_dot";
                         $linkDate = date("d-M-Y H:i:s", strtotime(substr($linx[1][0],0,19)));
                         $protocol = $linx[2][0];
                         $linkType = $linx[3][0];
@@ -210,7 +209,7 @@ if (isset($_SESSION['CSSConfigs']['Background'])) {
 			print "<tr>";
                         print "<td>".str_replace(' ', '&nbsp;', substr($rptrcall,0,8))."</td>";
                         print "<td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td>";
-                        print "<td><span style='color:$color;font-weight:bold;'>$statimg</span></td>";
+                        print "<td><span title='$statimg' class='$color' style='font-weight:bold;'></span></td>";
                         print "<td>".str_replace(' ', '&nbsp;', substr($linkRptr,0,8))."</td>";
                         print "<td>$protocol</td>";
                         print "<td>Incoming</td>";
