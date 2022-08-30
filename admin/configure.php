@@ -4145,7 +4145,7 @@ else:
 <?php } ?>
 <?php if (file_exists('/etc/aprsgateway')) {
     echo "<tr id='APRSgw'>\n";
-    echo "<td align=\"left\"><a class=\"tooltip2\" href=\"#\">APRS Gateway Service<span><b>APRS Gateway Service</b>Enabling this feature will make your location public on the APRS Network.</span></a></td>\n";
+    echo "<td align=\"left\"><a class=\"tooltip2\" href=\"#\">APRS Gateway Service:<span><b>APRS Gateway Service</b>Enabling this feature will make your location public on the APRS Network.</span></a></td>\n";
     if ( $configaprsgw['Enabled']['Enabled'] == 1 ) {
         echo "<td align=\"left\" colspan=\"2\"><div class=\"switch\"><input id=\"toggle-aprsgateway\" class=\"toggle toggle-round-flat\" type=\"checkbox\" name=\"APRSGatewayEnable\" value=\"ON\" checked=\"checked\" aria-hidden=\"true\" tabindex=\"-1\" ".$toggleAPRSGatewayCheckboxCr." /><label id=\"aria-toggle-aprsgateway\" role=\"checkbox\" tabindex=\"0\" aria-label=\"Enable APRS Position Reporting\" aria-checked=\"true\" onKeyPress=\"toggleAPRSGatewayCheckbox()\" onclick=\"toggleAPRSGatewayCheckbox()\" for=\"toggle-aprsgateway\"><font style=\"font-size:0px\">Enable APRS Position Reporting</font></label></div></td>\n";
     } else {
@@ -4881,7 +4881,7 @@ fclose($dmrMasterFile);
     <th align="left" colspan="4">System-Wide DMR Settings</th>
     </tr>
     <tr>
-    <td align="left"><a class="tooltip2" href="#">DMR Roaming Beacon<span><b>Enable DMR Roaming Beacon</b>Enable DMR Roaming Beacons</span></a></td>
+    <td align="left"><a class="tooltip2" href="#">DMR Roaming Beacon:<span><b>Enable DMR Roaming Beacon</b>Enable DMR Roaming Beacons</span></a></td>
     <?php
     if ($configmmdvm['DMR']['Beacons'] == 1) {
         echo "<td align=\"left\" colspan=\"2\"><div class=\"switch\"><input id=\"toggle-dmrbeacon\" class=\"toggle toggle-round-flat\" type=\"checkbox\" name=\"DMRBeaconEnable\" value=\"ON\" checked=\"checked\" aria-hidden=\"true\" tabindex=\"-1\" ".$toggleDmrBeaconCr." /><label id=\"aria-toggle-dmrbeacon\" role=\"checkbox\" tabindex=\"0\" aria-label=\"Enable Beaconing\" aria-checked=\"true\" onKeyPress=\"toggleDmrBeacon()\" onclick=\"toggleDmrBeacon()\" for=\"toggle-dmrbeacon\"><font style=\"font-size:0px\">Enable DMR Beaconing</font></label></div>\n";
