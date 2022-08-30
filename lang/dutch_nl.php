@@ -85,7 +85,7 @@ $lang = array (
   "dstar_rpt2"                  =>  "RPT2 roepletters",
   "dstar_irc_password"          =>  "ircDDBGateway paswoord",
   "dstar_default_ref"           =>  "Standaard reflector",
-  "aprs_host"                   =>  "APRS Host",
+  "aprs_host"                   =>  "APRS Host Pool",
   "dstar_irc_lang"              =>  "ircDDBGateway taal",
   "dstar_irc_time"              =>  "Tijd uitzenden",
   // Config Page - YSF Configuration

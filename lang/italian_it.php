@@ -86,7 +86,7 @@ $lang = array (
   "dstar_rpt2"                  =>  "Nominativo RPT2",
   "dstar_irc_password"          =>  "ircDDBGateway Password",
   "dstar_default_ref"           =>  "Default Reflector",
-  "aprs_host"                   =>  "APRS Host",
+  "aprs_host"                   =>  "APRS Host Pool",
   "dstar_irc_lang"              =>  "ircDDBGateway Linguaggio",
   "dstar_irc_time"              =>  "Annuncio (Vocale) Orario",
   // Config Page - YSF Configuration
