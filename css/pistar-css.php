@@ -791,6 +791,15 @@ select {
     padding-right: 0.2em;
 }
 
+.menutgnames:before {
+    content: "\f05a";
+    font-family: FontAwesome;
+    font-style: normal;
+    font-weight: normal;
+    text-decoration: inherit;
+    padding-right: 0.2em;
+}
+
 .menuhwinfo:before {
     content: "\f0ce";
     font-family: FontAwesome;

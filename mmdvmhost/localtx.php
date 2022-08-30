@@ -12,18 +12,6 @@ if (isset($_SESSION['CSSConfigs']['Background'])) {
 }
 
 ?>
-<input type="hidden" name="localtx-autorefresh" value="OFF" />
-  <div style="float: right; vertical-align: bottom;" id="localtxAR">
-	<div class="grid-container" style="display: inline-grid; grid-template-columns: auto 40px; padding: 1px; grid-column-gap: 5px;">
-	    <div class="grid-item" style="margin-top:-3px;">Auto-Refresh
-	    </div>
-	    <div class="grid-item">
-		<div style="margin-top:-7px;">
-		  <input id="toggle-localtx-autorefresh" class="toggle toggle-round-flat" type="checkbox" name="localtx-autorefresh" value="ON" checked="checked" aria-checked="true" aria-label="Auto-Refresh" onchange="setLocalTXAutorefresh(this)" /><label for="toggle-localtx-autorefresh" ></label>
-		</div>
-	    </div>
-	</div>
-    </div>
   <div style="vertical-align: bottom; font-weight: bold; text-align:left;"><?php echo $lang['local_tx_list'];?></div>
   <table style="white-space:normal; word-wrap:break;">
     <tr>

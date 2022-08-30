@@ -176,28 +176,6 @@ if (isset($_SESSION['CSSConfigs']['Text'])) {
 		<div style="text-align: left; padding-left: 8px; padding-top: 5px; float: left;">
 		    <span id="timer"></span>
 		</div>
-	    <?php 
-	    if ($_SERVER["PHP_SELF"] != "/admin/index.php")  {
-            ?>
-	    <input type="hidden" name="display-lastcaller" value="OFF" />
-	    <div style="float: right; vertical-align: bottom; padding-top: 0px;">
-	       <div class="grid-container" style="display: inline-grid; grid-template-columns: auto 40px; padding: 0 8px 0 5px; grid-column-gap: 5px;">
-		<?php if(isset($_SESSION['PiStarRelease']['Pi-Star']['ProcNum']) && ($_SESSION['PiStarRelease']['Pi-Star']['ProcNum'] >= 4)) { ?>
-		 <div class="grid-item menucaller" style="padding-top: 5px;" title="Display Caller Details">Caller Details: </div>
-	    	   <div class="grid-item">
-		    <div>
-			<input id="toggle-display-lastcaller" class="toggle toggle-round-flat" type="checkbox" name="display-lastcaller" value="ON" <?php if(file_exists('/etc/.CALLERDETAILS')) { echo 'checked="checked"';}?> aria-checked="true" aria-label="Display Caller Details" onchange="setLastCaller(this)" /><label for="toggle-display-lastcaller" ></label>
-		<?php } else { ?>
-		 <div class="grid-item menucaller" style="padding-top: 5px;opacity: 0.5;" title="Function Disabled: Hardware too weak.">Caller Details: </div>
-	    	   <div class="grid-item">
-		    <div>
-			<input id="toggle-display-lastcaller" class="toggle toggle-round-flat" type="checkbox" name="display-lastcaller" value="ON"  aria-checked="true" aria-label="Display Last Caller Details" disabled="disabled" title="Function Disabled: Hardware too weak." /><label for="toggle-display-lastcaller" title="Function Disabled: Hardware too weak."></label>
-			<?php } ?>
-		    </div>
-		   </div>
-		 </div>
-	    </div>
-	    <?php } ?>
 			<a class="menuconfig" href="/admin/configure.php"><?php echo $lang['configuration'];?></a>
 			<?php if ($_SERVER["PHP_SELF"] == "/admin/index.php") {
 			    echo ' <a class="menuupdate" href="/admin/update.php">'.$lang['update'].'</a>'."\n";
@@ -628,29 +606,46 @@ if (isset($_SESSION['CSSConfigs']['Text'])) {
     		echo '        livecaller = setTimeout(reloadLiveCaller,1500,1500);'."\n";
     		echo '}'."\n";
 
-	   		echo 'function setLHAutorefresh(obj) {'."\n";
-    		echo '    if (obj.checked) {'."\n";
+		echo 'function setLHAutorefresh(obj) {'."\n";
     		echo '        lhto = setTimeout(reloadLastHeard,1500);'."\n";
-    		echo '    }'."\n";
-    		echo '    else {'."\n";
-    		echo '        clearTimeout(lhto);'."\n";
-    		echo '    }'."\n";
     		echo '}'."\n";
 		
 		echo 'function setLocalTXAutorefresh(obj) {'."\n";
-    		echo '    if (obj.checked) {'."\n";
     		echo '        ltxto = setTimeout(reloadLocalTX,1500);'."\n";
-    		echo '    }'."\n";
-    		echo '    else {'."\n";
-    		echo '        clearTimeout(ltxto);'."\n";
-    		echo '    }'."\n";
     		echo '}'."\n";
 		
 		echo 'lhto = setTimeout(reloadLastHeard,1500);'."\n";
 		echo 'ltxto = setTimeout(reloadLocalTX,1500);'."\n";
 		echo 'livecaller = setTimeout(reloadLiveCaller,1500);'."\n";
 		echo '$(window).trigger(\'resize\');'."\n";
-		echo '</script>'."\n";
+        	echo 'function setLHTGnames(obj) {'."\n";
+        	echo '    if (obj.checked) {'."\n";
+        	echo "        $.ajax({
+                	        type: \"POST\",
+  	          	        url: '/mmdvmhost/tgnames_ajax.php',
+                	        data:{action:'enable'},
+                                success: function(data) { 
+                                    $('#lcmsg').html(data).fadeIn('slow');
+                                    $('#lcmsg').html(\"<div style='padding:8px;font-style:italic;font-weight:bold;'>Talkgroup Names display enabled: Please wait until list is populated.</div>\").fadeIn('slow')
+                                    $('#lcmsg').delay(6000).fadeOut('slow');
+                                }
+         	             });";
+	        echo '    }'."\n";
+	        echo '    else {'."\n";
+	        echo "        $.ajax({
+	                        type: \"POST\",
+	                        url: '/mmdvmhost/tgnames_ajax.php',
+	                        data:{action:'disable'},
+                                success: function(data) { 
+                                    $('#lcmsg').html(data).fadeIn('slow');
+                                    $('#lcmsg').html(\"<div style='padding:8px;font-style:italic;font-weight:bold;'>Talkgroup Names display disabled: Please wait until list is cleared.</div>\").fadeIn('slow')
+                                    $('#lcmsg').delay(6000).fadeOut('slow');
+                                }
+	                      });";
+	        echo '    }'."\n";
+	        echo '}'."\n";
+    		echo '</script>'."\n";
+
     }
 
 		if ($_SERVER["PHP_SELF"] == "/admin/index.php") {
@@ -687,27 +682,22 @@ if (isset($_SESSION['CSSConfigs']['Text'])) {
             if (($_SERVER["PHP_SELF"] == "/index.php" || $_POST["func"] == "pocsag_man" || $_GET["func"] == "pocsag_man")) { // display pages in pocsag mgr or main dash page only with no other func requested
 	            $myOrigin = ($_SERVER["PHP_SELF"] == "/admin/index.php" ? "admin" : "other");
 		    
-		        echo '<script type="text/javascript">'."\n";
-		        echo 'var pagesto;'."\n";
-		        echo 'function setPagesAutorefresh(obj) {'."\n";
-	            echo '    if (obj.checked) {'."\n";
+		    echo '<script type="text/javascript">'."\n";
+		    echo 'var pagesto;'."\n";
+		    echo 'function setPagesAutorefresh(obj) {'."\n";
 	            echo '        pagesto = setTimeout(reloadPages, 10000, "?origin='.$myOrigin.'");'."\n";
-	            echo '    }'."\n";
-	            echo '    else {'."\n";
-	            echo '        clearTimeout(pagesto);'."\n";
-	            echo '    }'."\n";
-                echo '}'."\n";
-		        echo 'function reloadPages(OptStr){'."\n";
-		        echo '    $("#Pages").load("/mmdvmhost/pages.php"+OptStr, function(){ pagesto = setTimeout(reloadPages, 10000, "?origin='.$myOrigin.'") });'."\n";
-		        echo '}'."\n";
-		        echo 'pagesto = setTimeout(reloadPages, 10000, "?origin='.$myOrigin.'");'."\n";
-		        echo '$(window).trigger(\'resize\');'."\n";
-		        echo '</script>'."\n";
-		        echo "\n".'<div id="Pages">'."\n";
-		        include 'mmdvmhost/pages.php';				// POCSAG Messages
-		        echo '</div>'."\n";
-		    }
+		    echo '}'."\n";
+		    echo 'function reloadPages(OptStr){'."\n";
+		    echo '    $("#Pages").load("/mmdvmhost/pages.php"+OptStr, function(){ pagesto = setTimeout(reloadPages, 10000, "?origin='.$myOrigin.'") });'."\n";
+		    echo '}'."\n";
+		    echo 'pagesto = setTimeout(reloadPages, 10000, "?origin='.$myOrigin.'");'."\n";
+		    echo '$(window).trigger(\'resize\');'."\n";
+		    echo '</script>'."\n";
+		    echo "\n".'<div id="Pages">'."\n";
+		    include 'mmdvmhost/pages.php';				// POCSAG Messages
+		    echo '</div>'."\n";
 		}
+	    }
     }
 	    else if (file_exists('/etc/dstar-radio.dstarrepeater')) {
 		echo '<div class="contentwide">'."\n";

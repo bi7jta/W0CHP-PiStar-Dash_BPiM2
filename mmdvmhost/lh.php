@@ -27,18 +27,37 @@ $Flags->LoadFlags();
 // for name column
 $testMMDVModeDMR = getConfigItem("DMR", "Enable", $_SESSION['MMDVMHostConfigs']);
 ?>
-<input type="hidden" name="lh-autorefresh" value="OFF" />
-  <div style="float: right; vertical-align: bottom; padding-top: 0px;" id="lhAR">
+            <input type="hidden" name="display-lastcaller" value="OFF" />
+            <div style="float: right; vertical-align: bottom; padding-top: 0px;">
+               <div class="grid-container" style="display: inline-grid; grid-template-columns: auto 40px; padding: 1px;; grid-column-gap: 5px;">
+                <?php if(isset($_SESSION['PiStarRelease']['Pi-Star']['ProcNum']) && ($_SESSION['PiStarRelease']['Pi-Star']['ProcNum'] >= 4)) { ?>
+                 <div class="grid-item menucaller" style="padding: 10px 0 0 20px;" title="Display Caller Details">Caller Details: </div>
+                   <div class="grid-item">
+                    <div style="padding-top:6px;">
+                        <input id="toggle-display-lastcaller" class="toggle toggle-round-flat" type="checkbox" name="display-lastcaller" value="ON" <?php if(file_exists('/etc/.CALLERDETAILS')) { echo 'checked="checked"';}?> aria-checked="true" aria-label="Display Caller Details" onchange="setLastCaller(this)" /><label for="toggle-display-lastcaller" ></label>
+                <?php } else { ?>
+                 <div class="grid-item menucaller" style="padding: 10px 0 0 20px;opacity: 0.5;" title="Function Disabled: Hardware too weak.">Caller Details: </div>
+                   <div class="grid-item">
+                    <div style="padding-top:6px;">
+                        <input id="toggle-display-lastcaller" class="toggle toggle-round-flat" type="checkbox" name="display-lastcaller" value="ON"  aria-checked="true" aria-label="Display Last Caller Details" disabled="disabled" title="Function Disabled: Hardware too weak." /><label for="toggle-display-lastcaller" title="Function Disabled: Hardware too weak."></label>
+                        <?php } ?>
+                    </div>
+                   </div>
+                 </div>
+            </div>
+<input type="hidden" name="lh-tgnames" value="OFF" />
+  <div style="float: right; vertical-align: bottom; padding-top: 0px;" id="lhTGN">
         <div class="grid-container" style="display: inline-grid; grid-template-columns: auto 40px; padding: 1px; grid-column-gap: 5px;">
-            <div class="grid-item" style="padding-top: 10px;">Auto-Refresh
+            <div class="grid-item menutgnames" style="padding-top: 10px;">Display TG Names
             </div>
             <div class="grid-item">
-                <div style="padding-top:6px;">
-		  <input id="toggle-lh-autorefresh" class="toggle toggle-round-flat" type="checkbox" name="lh-autorefresh" value="ON" checked="checked" aria-checked="true" aria-label="Auto-Refresh" onchange="setLHAutorefresh(this)" /><label for="toggle-lh-autorefresh" ></label>
+                <div style="padding: 6px 20px 0 0;">
+		  <input id="toggle-lh-tgnames" class="toggle toggle-round-flat" type="checkbox" name="lh-tgnames" value="ON" <?php if(file_exists('/etc/.TGNAMES')) { echo 'checked="checked"';}?> aria-checked="true" aria-label="Show TG Names" onchange="setLHTGnames(this)" /><label for="toggle-lh-tgnames" ></label>
                 </div>
             </div>
         </div>
     </div>
+
 <div style="vertical-align: bottom; font-weight: bold; padding-top:14px;text-align:left;"><?php echo $lang['last_heard_list'];?></div>
   <table>
     <tr>
@@ -127,14 +146,69 @@ for ($i = 0;  ($i <= $lastHeardRows - 1); $i++) {
 			}
 		    }
 		}
-		echo "<td align=\"left\">".str_replace('Slot ', 'TS', $listElem[1])."</td>";
-		if (strlen($listElem[4]) == 1) { $listElem[4] = str_pad($listElem[4], 8, " ", STR_PAD_LEFT); }
-		if ( substr($listElem[4], 0, 6) === 'CQCQCQ' ) {
-		    echo "<td align=\"left\">$listElem[4]</td>";
-		} else {
-		    echo "<td align=\"left\">".str_replace(" ","&nbsp;", $listElem[4])."</td>";
-		}
 
+		echo "<td align=\"left\">".str_replace('Slot ', 'TS', $listElem[1])."</td>";
+
+		if (file_exists("/etc/.TGNAMES")) {
+		    if ($listElem[8] == null) {
+			$ber = "&nbsp;";
+		    } else {
+			$mode = $listElem[8];
+		    }
+		    if ($listElem[1] == null) {
+			$ber = "&nbsp;";
+		    } else {
+			$mode = $listElem[1];
+		    }
+
+		    if ( substr($listElem[4], 0, 6) === 'CQCQCQ' ) {
+			$target = $listElem[4];
+		    } else {
+			$target = str_replace(" ","&nbsp;", $listElem[4]);
+		    }
+		    $target = preg_replace('/TG /', '', $listElem[4]);
+		    if (strlen($target) >= 2) {
+		    	if (strpos($mode, 'DMR') !== false) {
+			    $target_lookup = exec("grep -w \"$target\" /usr/local/etc/groups.txt | awk -F, '{print $1}' | head -1 | tr -d '\"'");
+			    if (!empty($target_lookup)) {
+			        $target = $target_lookup;
+			        $stupid_bm = ['/ - 10 Minute Limit/', '/ NOT A CALL CHANNEL/', '/ NO NETS(.*?)/', '/ - .*/'];
+			        $target = preg_replace($stupid_bm, "", $target); // strip stupid fucking comments from BM admins in TG names. Idiots.
+			        $target = str_replace(": ", " - ", $target);
+			        $target = "TG $target";
+			    } else {
+			        $target = "TG $target";
+			    }
+			} else if (strpos($mode, 'NXDN') !== false) {
+			    $target_lookup = exec("grep -w \"$target\" /usr/local/etc/TGList_NXDN.txt | awk -F';' '{print $2}'");
+			    if (!empty($target_lookup)) {
+				$target = "TG $target - $target_lookup";
+			    }
+			} else if (strpos($mode, 'P25') !== false) {
+			    $target_lookup = exec("grep -w \"$target\" /usr/local/etc/TGList_P25.txt | awk -F';' '{print $2}'");
+			    if (!empty($target_lookup)) {
+				$target = "TG $target - $target_lookup";
+			    }
+			} else {
+			    $target = $target;
+			}
+		    } else {
+			$modeArray = array('DMR', 'NXDN', 'P25');
+			if (strpos($mode, $modeArray[0]) !== false) {
+			    $target = "TG $target";
+			} else {
+			    $target = $target;
+			}
+		    }
+		    echo "<td align=\"left\">$target</td>";
+		} else {
+		    if (strlen($listElem[4]) == 1) { $listElem[4] = str_pad($listElem[4], 8, " ", STR_PAD_LEFT); }
+		    if ( substr($listElem[4], 0, 6) === 'CQCQCQ' ) {
+			echo "<td align=\"left\">$listElem[4]</td>";
+		    } else {
+			echo "<td align=\"left\">".str_replace(" ","&nbsp;", $listElem[4])."</td>";
+		    }
+		}
 
 		if ($listElem[5] == "RF") {
 			echo "<td><span style='color:$backgroundModeCellInactiveColor;font-weight:bold;'>RF</span></td>";
