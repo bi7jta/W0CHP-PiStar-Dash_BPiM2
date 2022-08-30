@@ -112,7 +112,7 @@ $lang = array (
   "password"                    =>  "Mot de passe",
   "set_password"                =>  "D&eacute;finir le mot de passe",
   // Dashboard Front Page - Repeater Info Pannel
-  "modes_enabled"               =>  "Modes actifs",
+  "modes_enabled"               =>  "Mode Status",
   "net_status"                  =>  "&Eacute;tat du r&eacute;seau",
   "internet"                    =>  "Internet",
   "radio_info"                  =>  "Info Radio",

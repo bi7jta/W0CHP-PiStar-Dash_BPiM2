@@ -113,7 +113,7 @@ $lang = array (
   "password"                    =>  "contrasenya",
   "set_password"                =>  "Establir contrasenya",
   // Dashboard Front Page - Repeater Info Pannel
-  "modes_enabled"               =>  "Modes habilitats",
+  "modes_enabled"               =>  "Mode Status",
   "net_status"                  =>  "Estat de la xarxa",
   "internet"                    =>  "Internet",
   "radio_info"                  =>  "Informació de Ràdio",
