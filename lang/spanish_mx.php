@@ -120,9 +120,9 @@ $lang = array (
   "dstar_net"                   =>  "D-Star red",
   "dmr_repeater"                =>  "DMR Repetidor",
   "ysf_net"                     =>  "YSF red",
-  "p25_radio"                   =>  "P25 Radio",
+  "p25_radio"                   =>  "P25 Status",
   "p25_net"                     =>  "P25 red",
-  "nxdn_radio"                  =>  "NXDN Radio",
+  "nxdn_radio"                  =>  "NXDN Status",
   "nxdn_net"                    =>  "NXDN red",
   // Dashboard Front Page - Calls
   "time"                        =>  "Time",
@@ -156,7 +156,7 @@ $lang = array (
   "m17_config"                  =>  "M17 Configuration",
   "m17_mode"                    =>  "M17 Mode",
   "m17_startup_reflector"       =>  "M17 Startup Reflector",
-  "m17_repeater"                =>  "M17 Repeater",
+  "m17_repeater"                =>  "M17 Status",
   "m17_net"                     =>  "M17 Network"
 );
 ?>
