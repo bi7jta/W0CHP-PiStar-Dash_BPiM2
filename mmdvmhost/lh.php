@@ -45,6 +45,7 @@ $testMMDVModeDMR = getConfigItem("DMR", "Enable", $_SESSION['MMDVMHostConfigs'])
                    </div>
                  </div>
             </div>
+<?php if (getEnabled("DMR", $_SESSION['MMDVMHostConfigs']) == 1 || getEnabled("NXDN", $_SESSION['MMDVMHostConfigs']) == 1 || getEnabled("P25", $_SESSION['MMDVMHostConfigs']) == 1) { ?>
 <input type="hidden" name="lh-tgnames" value="OFF" />
   <div style="float: right; vertical-align: bottom; padding-top: 0px;" id="lhTGN">
         <div class="grid-container" style="display: inline-grid; grid-template-columns: auto 40px; padding: 1px; grid-column-gap: 5px;">
@@ -57,6 +58,7 @@ $testMMDVModeDMR = getConfigItem("DMR", "Enable", $_SESSION['MMDVMHostConfigs'])
             </div>
         </div>
     </div>
+<?php } ?>
 
 <div style="vertical-align: bottom; font-weight: bold; padding-top:14px;text-align:left;"><?php echo $lang['last_heard_list'];?></div>
   <table>
