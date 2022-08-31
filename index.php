@@ -627,7 +627,7 @@ if (isset($_SESSION['CSSConfigs']['Text'])) {
                                 success: function(data) { 
                                     $('#lcmsg').html(data).fadeIn('slow');
                                     $('#lcmsg').html(\"<div style='padding:8px;font-style:italic;font-weight:bold;'>Talkgroup Names display enabled: Please wait until list is populated.</div>\").fadeIn('slow')
-                                    $('#lcmsg').delay(6000).fadeOut('slow');
+                                    $('#lcmsg').delay(4000).fadeOut('slow');
                                 }
          	             });";
 	        echo '    }'."\n";
@@ -639,7 +639,7 @@ if (isset($_SESSION['CSSConfigs']['Text'])) {
                                 success: function(data) { 
                                     $('#lcmsg').html(data).fadeIn('slow');
                                     $('#lcmsg').html(\"<div style='padding:8px;font-style:italic;font-weight:bold;'>Talkgroup Names display disabled: Please wait until list is cleared.</div>\").fadeIn('slow')
-                                    $('#lcmsg').delay(6000).fadeOut('slow');
+                                    $('#lcmsg').delay(4000).fadeOut('slow');
                                 }
 	                      });";
 	        echo '    }'."\n";
