@@ -100,6 +100,7 @@ Run:
 * Selectable DMR Roaming Beacon Support: Network or Interval Mode (or disabled).
 * "Live Caller" screen; similar to a "virtual Nextion screen"; displays current caller information in real-time.
 * Current/Last Caller Details on Main Dashboard (name/location, when available).
+* Talkgroup Names display in target column (Brandmeister DMR, NXDN and P25 support only).
 * YSF/NXDN/P25 link managers gives the ability to change links/rooms on-the-fly, rather than going through the large (and slow) configuration page.
 * XLX Hosts are now searchable/selectable in DMR Master selection in configuration page.
 * "XLX DMR Link Manager" allows fast switching of XLX reflectors and modules, as well as unlinking from modules to "pause" traffic.
