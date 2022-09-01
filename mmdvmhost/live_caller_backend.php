@@ -82,7 +82,11 @@ if ($listElem[6] == null) {
 } else if ($listElem[6] == "POCSAG Data") {
         $duration =  "<span class='dur_data'>POCSAG Data</span>";
 } else {
-	$duration = $listElem[6]."s";
+	  $utc_time = $listElem[0];
+  $utc_tz =  new DateTimeZone('UTC');
+  $now = new DateTime("now", $utc_tz);
+  $dt = new DateTime($utc_time, $utc_tz);
+	$duration = $listElem[6]."s " . timeago( $dt->getTimestamp(), $now->getTimestamp());
 }
 
 if ($listElem[7] == null) {
