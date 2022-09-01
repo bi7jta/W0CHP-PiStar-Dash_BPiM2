@@ -683,9 +683,8 @@ input.toggle-round-flat:focus + label {
     background: <?php echo $backgroundModeCellInactiveColor; ?>;
 }
 
-#localtxAR,
-#lhAR,
-#pagesAR,
+#lhTGN,
+#lhCN,
 .noMob {
     display: none;
 }
