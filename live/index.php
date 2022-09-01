@@ -25,7 +25,7 @@ require_once $_SERVER['DOCUMENT_ROOT'].'/config/version.php';
         });
       </script>
       <div id="liveDetails">
-        <?php include '/mmdvmhost/live_caller_backend.php'; ?>
+        <?php include '../mmdvmhost/live_caller_backend.php'; ?>
       </div>
     </body>
 </html>
