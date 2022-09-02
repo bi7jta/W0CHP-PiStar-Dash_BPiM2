@@ -171,54 +171,54 @@ if ($_SERVER["PHP_SELF"] == "/admin/expert/calibration.php") {
             setTimeout(function(){ sendcmd('e', (~~'<?php echo $RXFrequency; ?>'+rxoffset).toString() ); }, 1000);
           }
           if (("\n"+data).includes("Complete...")) {
-            $('#ledStart').attr("src", '/images/20red.png');
-            $('#ledDStar').attr("src", '/images/20red.png');
-            $('#ledDMR').attr("src", '/images/20red.png');
-            $('#ledYSF').attr("src", '/images/20red.png');
-            $('#ledP25').attr("src", '/images/20red.png');
-            $('#ledNXDN').attr("src", '/images/20red.png');
+            $('#ledStart').attr("class", 'red_dot');
+            $('#ledDStar').attr("class", 'red_dot');
+            $('#ledDMR').attr("class", 'red_dot');
+            $('#ledYSF').attr("class", 'red_dot');
+            $('#ledP25').attr("class", 'red_dot');
+            $('#ledNXDN').attr("class", 'red_dot');
             document.getElementById("btnStart").disabled = false;
           }
 
           if (("\n"+data).includes("\nBER Test Mode (FEC) for D-Star")) {
-            $('#ledStart').attr("src", '/images/20green.png');
-            $('#ledDStar').attr("src", '/images/20green.png');
-            $('#ledDMR').attr("src", '/images/20red.png');
-            $('#ledYSF').attr("src", '/images/20red.png');
-            $('#ledP25').attr("src", '/images/20red.png');
-            $('#ledNXDN').attr("src", '/images/20red.png');
+            $('#ledStart').attr("class", 'green_dot');
+            $('#ledDStar').attr("class", 'green_dot');
+            $('#ledDMR').attr("class", 'red_dot');
+            $('#ledYSF').attr("class", 'red_dot');
+            $('#ledP25').attr("class", 'red_dot');
+            $('#ledNXDN').attr("class", 'red_dot');
           }
           if (("\n"+data).includes("\nBER Test Mode (FEC) for DMR Simplex")) {
-            $('#ledStart').attr("src", '/images/20green.png');
-            $('#ledDStar').attr("src", '/images/20red.png');
-            $('#ledDMR').attr("src", '/images/20green.png');
-            $('#ledYSF').attr("src", '/images/20red.png');
-            $('#ledP25').attr("src", '/images/20red.png');
-            $('#ledNXDN').attr("src", '/images/20red.png');
+            $('#ledStart').attr("class", 'green_dot');
+            $('#ledDStar').attr("class", 'red_dot');
+            $('#ledDMR').attr("class", 'green_dot');
+            $('#ledYSF').attr("class", 'red_dot');
+            $('#ledP25').attr("class", 'red_dot');
+            $('#ledNXDN').attr("class", 'red_dot');
           }
           if (("\n"+data).includes("\nBER Test Mode (FEC) for YSF")) {
-            $('#ledStart').attr("src", '/images/20green.png');
-            $('#ledDStar').attr("src", '/images/20red.png');
-            $('#ledDMR').attr("src", '/images/20red.png');
-            $('#ledYSF').attr("src", '/images/20green.png');
-            $('#ledP25').attr("src", '/images/20red.png');
-            $('#ledNXDN').attr("src", '/images/20red.png');
+            $('#ledStart').attr("class", 'green_dot');
+            $('#ledDStar').attr("class", 'red_dot');
+            $('#ledDMR').attr("class", 'red_dot');
+            $('#ledYSF').attr("class", 'green_dot');
+            $('#ledP25').attr("class", 'red_dot');
+            $('#ledNXDN').attr("class", 'red_dot');
           }
           if (("\n"+data).includes("\nBER Test Mode (FEC) for P25")) {
-            $('#ledStart').attr("src", '/images/20green.png');
-            $('#ledDStar').attr("src", '/images/20red.png');
-            $('#ledDMR').attr("src", '/images/20red.png');
-            $('#ledYSF').attr("src", '/images/20red.png');
-            $('#ledP25').attr("src", '/images/20green.png');
-            $('#ledNXDN').attr("src", '/images/20red.png');
+            $('#ledStart').attr("class", 'green_dot');
+            $('#ledDStar').attr("class", 'red_dot');
+            $('#ledDMR').attr("class", 'red_dot');
+            $('#ledYSF').attr("class", 'red_dot');
+            $('#ledP25').attr("class", 'green_dot');
+            $('#ledNXDN').attr("class", 'red_dot');
           }
           if (("\n"+data).includes("\nBER Test Mode (FEC) for NXDN")) {
-            $('#ledStart').attr("src", '/images/20green.png');
-            $('#ledDStar').attr("src", '/images/20red.png');
-            $('#ledDMR').attr("src", '/images/20red.png');
-            $('#ledYSF').attr("src", '/images/20red.png');
-            $('#ledP25').attr("src", '/images/20red.png');
-            $('#ledNXDN').attr("src", '/images/20green.png');
+            $('#ledStart').attr("class", 'green_dot');
+            $('#ledDStar').attr("class", 'red_dot');
+            $('#ledDMR').attr("class", 'red_dot');
+            $('#ledYSF').attr("class", 'red_dot');
+            $('#ledP25').attr("class", 'red_dot');
+            $('#ledNXDN').attr("class", 'green_dot');
           }
           
           if (data.includes("voice end received,")) {
@@ -227,7 +227,7 @@ if ($_SERVER["PHP_SELF"] == "/admin/expert/calibration.php") {
 
           var regex = / frequency: (\d+)/g
           while (match = regex.exec(data)) {
-            $('#ledStart').attr("src", '/images/20green.png');
+            $('#ledStart').attr("class", 'green_dot');
             $("#lblFrequency").text(match[1] + ' Hz');
             $("#lblOffset").text(~~match[1] - ~~'<?php echo $RXFrequency; ?>');
           }
@@ -292,7 +292,7 @@ if ($_SERVER["PHP_SELF"] == "/admin/expert/calibration.php") {
     <td align="center" valign="top"><table border="0" cellspacing="0" cellpadding="5">
       <tr>
         <td><input name="btnStart" type="button" id="btnStart" onclick="sendaction('start');" value="Start" /></td>
-        <td><img src="/images/20red.png" name="ledStart" width="20" height="20" id="ledStart" /></td>
+        <td><span class="red_dot" name="ledStart" width="20" height="20" id="ledStart"></span></td>
       </tr>
       <tr>
         <td><input name="btnStop" type="button" id="btnStop" onclick="sendcmd('q');" value="Stop" /></td>
@@ -303,23 +303,23 @@ if ($_SERVER["PHP_SELF"] == "/admin/expert/calibration.php") {
     <td align="center" valign="top"><table border="0" cellspacing="0" cellpadding="4">
       <tr>
         <td><input name="btnDStar" type="button" id="btnDStar" onclick="sendcmd('k');" value="D-Star" /></td>
-        <td><img src="/images/20red.png" name="ledDStar" width="20" height="20" id="ledDStar" /></td>
+        <td><span class="red_dot" name="ledDStar" width="20" height="20" id="ledDStar"></span></td>
         </tr>
       <tr>
         <td><input name="btnDMR" type="button" id="btnDMR" onclick="sendcmd('b');" value="DMR" /></td>
-        <td><img src="/images/20red.png" name="ledDMR" width="20" height="20" id="ledDMR" /></td>
+        <td><span class="red_dot" name="ledDMR" width="20" height="20" id="ledDMR"></span></td>
         </tr>
       <tr>
         <td><input name="btnYSF" type="button" id="btnYSF" onclick="sendcmd('J');" value="YSF" /></td>
-        <td><img src="/images/20red.png" name="ledYSF" width="20" height="20" id="ledYSF" /></td>
+        <td><span class="red_dot" name="ledYSF" width="20" height="20" id="ledYSF"></span></td>
         </tr>
       <tr>
         <td><input name="btnP25" type="button" id="btnP25" onclick="sendcmd('j');" value="P25" /></td>
-        <td><img src="/images/20red.png" name="ledP25" width="20" height="20" id="ledP25" /></td>
+        <td><span class="red_dot" name="ledP25" width="20" height="20" id="ledP25"></span></td>
         </tr>
       <tr>
         <td><input name="btnNXDN" type="button" id="btnNXDN" onclick="sendcmd('n');" value="NXDN" /></td>
-        <td><img src="/images/20red.png" name="ledNXDN" width="20" height="20" id="ledNXDN" /></td>
+        <td><span class="red_dot" name="ledNXDN" width="20" height="20" id="ledNXDN"></span></td>
         </tr>
     </table></td>
 
