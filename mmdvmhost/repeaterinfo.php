@@ -758,7 +758,7 @@ if (getServiceEnabled('/etc/dgidgateway') == 1 )  { // Hide DGId GW info when GW
 		echo "<div class='divTableCell cell_content'><div style=\"background: $tableRowEvenBg;\">Mode Paused</div></div>\n";
 	    } else {
 		$P25tg = str_replace("TG", "", getActualLink($logLinesP25Gateway, "P25"));
-		if (strpos($P25tg, 'Not Linked')) {
+		if (strpos($P25tg, 'Not Linked') || strpos($P25Ntg, 'Service Not Started')) {
 		    echo "<div class='divTableCell cell_content'><div ".GetActiveConnectionStyle($remoteP25GResults, "p25").">$P25tg</div></div>\n";
 		} else {
 		    $P25_target = exec("grep -w \"$P25tg\" /usr/local/etc/TGList_P25.txt | awk -F';' '{print $2}'");
@@ -800,7 +800,7 @@ if (getConfigItem("NXDN", "RAN", $_SESSION['MMDVMHostConfigs'])) {
 	    echo "<div class='divTableCell cell_content'><div style=\"background: $tableRowEvenBg;\">Mode Paused</div></div>\n";
 	} else {
 	    $NXDNtg = str_replace("TG", "", getActualLink($logLinesNXDNGateway, "NXDN"));
-	    if (strpos($NXDNtg, 'Not Linked')) {
+	    if (strpos($NXDNtg, 'Not Linked') || strpos($NXDNtg, 'Service Not Started')) {
 	        echo "<div class='divTableCell cell_content'><div ".GetActiveConnectionStyle($remoteNXDNGResults, "nxdn").">$NXDNtg</div></div>\n";
 	    } else {
 	        $NXDN_target = exec("grep -w \"$NXDNtg\" /usr/local/etc/TGList_NXDN.txt | awk -F';' '{print $2}'");
