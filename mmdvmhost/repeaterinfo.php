@@ -740,7 +740,6 @@ if (getServiceEnabled('/etc/dgidgateway') == 1 )  { // Hide DGId GW info when GW
 <br />
 <?php
 	}
-	
 	$testMMDVModeP25 = getConfigItem("P25 Network", "Enable", $_SESSION['MMDVMHostConfigs']);
 	if ( isset($_SESSION['YSF2P25Configs']['Enabled']['Enabled']) ) { $testYSF2P25 = $_SESSION['YSF2P25Configs']['Enabled']['Enabled']; }
 	if ( $testMMDVModeP25 == 1 || $testYSF2P25 || isPaused("P25") ) { //Hide the P25 information when P25 Network mode not enabled.
@@ -755,12 +754,13 @@ if (getServiceEnabled('/etc/dgidgateway') == 1 )  { // Hide DGId GW info when GW
 	    }
 	    echo "</div>\n<div class='divTableRow center'>\n";
 	    echo "<div class='divTableHeadCell'>".$lang['p25_net']."</div>\n";
-		if (isPaused("P25")) {
-	    	echo "<div class='divTableCell cell_content'><div style=\"background: $tableRowEvenBg;\">Mode Paused</div></div>\n";
-		} else {
-		    echo "<div class='divTableCell cell_content'><div ".GetActiveConnectionStyle($remoteP25GResults, "p25").">".getActualLink($logLinesP25Gateway, "P25")."</div></div>\n";
-
-		}
+	    if (isPaused("P25")) {
+		echo "<div class='divTableCell cell_content'><div style=\"background: $tableRowEvenBg;\">Mode Paused</div></div>\n";
+	    } else {
+		$P25tg = str_replace("TG", "", getActualLink($logLinesP25Gateway, "P25"));
+		$P25_target = exec("grep -w \"$P25tg\" /usr/local/etc/TGList_P25.txt | awk -F';' '{print $2}'");
+		echo "<div class='divTableCell cell_content'><div ".GetActiveConnectionStyle($remoteP25GResults, "p25").">TG $P25tg<br /><small>($P25_target)</small></div></div>\n";
+	    }
 ?>
     </div>
   </div>
@@ -795,7 +795,9 @@ if (getConfigItem("NXDN", "RAN", $_SESSION['MMDVMHostConfigs'])) {
 	if (isPaused("NXDN")) {
 	    echo "<div class='divTableCell cell_content'><div style=\"background: $tableRowEvenBg;\">Mode Paused</div></div>\n";
 	} else {
-	    echo "<div class='divTableCell cell_content'><div ".GetActiveConnectionStyle($remoteNXDNGResults, "nxdn").">".getActualLink($logLinesNXDNGateway, "NXDN")."</div></div>\n";
+	    $NXDNtg = str_replace("TG", "", getActualLink($logLinesNXDNGateway, "NXDN"));
+	    $NXDN_target = exec("grep -w \"$NXDNtg\" /usr/local/etc/TGList_NXDN.txt | awk -F';' '{print $2}'");
+	    echo "<div class='divTableCell cell_content'><div ".GetActiveConnectionStyle($remoteNXDNGResults, "nxdn").">TG $NXDNtg<br /><small>($NXDN_target)</small></div></div>\n";
 	}
 ?>
     </div>
