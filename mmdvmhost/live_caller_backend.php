@@ -172,7 +172,7 @@ if (strlen($target) >= 2) {
                 $target = $target_lookup;
                 $stupid_bm = ['/ - 10 Minute Limit/', '/ NOT A CALL CHANNEL/', '/ NO NETS(.*?)/', '/ - .*/'];
                 $target = preg_replace($stupid_bm, "", $target); // strip stupid fucking comments from BM admins in TG names. Idiots.
-                $target = str_replace(":", " - ", $target);
+                $target = str_replace(": ", " (", $target.")");
                 $target = "TG $target";
         } else {
                 $target = "TG $target";
@@ -180,12 +180,12 @@ if (strlen($target) >= 2) {
     } else if (strpos($mode, 'NXDN') !== false) {
         $target_lookup = exec("grep -w \"$target\" /usr/local/etc/TGList_NXDN.txt | awk -F';' '{print $2}'");
         if (!empty($target_lookup)) {
-                $target = "TG $target - $target_lookup";
+                $target = "TG $target ($target_lookup)";
         }
     } else if (strpos($mode, 'P25') !== false) {
         $target_lookup = exec("grep -w \"$target\" /usr/local/etc/TGList_P25.txt | awk -F';' '{print $2}'");
         if (!empty($target_lookup)) {
-                $target = "TG $target - $target_lookup";
+                $target = "TG $target ($target_lookup)";
         }
     } else {
         $target = $target;
