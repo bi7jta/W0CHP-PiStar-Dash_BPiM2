@@ -78,7 +78,12 @@ for ($i = 0;  ($i <= 0); $i++) { //Last 20  calls
 	    } else if ($listElem[6] == "POCSAG Data") {
 		$duration =  "<td style=\"background:#00718F;color:#fff;font-size:1.3em;\">POCSAG Data</td>";
 	    } else {
-		$duration = "<td style='font-size:1.3em;'>$listElem[6]s</td>";
+		$utc_time = $listElem[0];
+		$utc_tz =  new DateTimeZone('UTC');
+		$now = new DateTime("now", $utc_tz);
+ 		$dt = new DateTime($utc_time, $utc_tz);
+		$TA = timeago( $dt->getTimestamp(), $now->getTimestamp() );
+		$duration = "<td style='font-size:1.3em;'>$listElem[6]s ($TA)</td>";
 	    }
 
 	    if ($listElem[8] == null) {

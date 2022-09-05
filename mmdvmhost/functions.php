@@ -1891,7 +1891,7 @@ function getName($callsign) {
  */
 function timeago( $date, $now ) {
   $timestamp   = $date;	
-  $strTime     = array( "second", "minute", "hour", "day", "month", "year" );
+  $strTime     = array( "sec", "min", "hr", "day", "month", "year" );
   $length      = array( "60","60","24","30","12","10" );
   $currentTime = $now;
   if( $currentTime >= $timestamp ) {
