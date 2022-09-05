@@ -758,7 +758,7 @@ if (getServiceEnabled('/etc/dgidgateway') == 1 )  { // Hide DGId GW info when GW
 		echo "<div class='divTableCell cell_content'><div style=\"background: $tableRowEvenBg;\">Mode Paused</div></div>\n";
 	    } else {
 		$P25tg = str_replace("TG", "", getActualLink($logLinesP25Gateway, "P25"));
-		if (strpos($P25tg, 'Not Linked') || strpos($P25Ntg, 'Service Not Started')) {
+		if (strpos($P25tg, 'Not Linked') || strpos($P25tg, 'Service Not Started')) {
 		    echo "<div class='divTableCell cell_content'><div ".GetActiveConnectionStyle($remoteP25GResults, "p25").">$P25tg</div></div>\n";
 		} else {
 		    $P25_target = exec("grep -w \"$P25tg\" /usr/local/etc/TGList_P25.txt | awk -F';' '{print $2}'");
