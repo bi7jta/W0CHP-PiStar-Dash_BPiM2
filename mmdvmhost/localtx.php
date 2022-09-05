@@ -136,7 +136,13 @@ for ($i = 0; $i < $TXListLim; $i++) {
 			} else if ($listElem[6] == "DMR Data") {
 				echo "<td colspan =\"3\" style=\"background:#00718F;color:#fff;\">DMR Data</td>";
 			} else {
-				echo"<td>$listElem[6]</td>"; //duration
+				$utc_time = $listElem[0];
+				$utc_tz =  new DateTimeZone('UTC');
+				$now = new DateTime("now", $utc_tz);
+ 				$dt = new DateTime($utc_time, $utc_tz);
+				$TA = timeago( $dt->getTimestamp(), $now->getTimestamp() );
+				$duration = "<td>$listElem[6]s ($TA)</td>";
+				echo "$duration"; //duration
 				
 				// Colour the BER Field
 				if (floatval($listElem[8]) == 0) { echo "<td>$listElem[8]</td>"; }
