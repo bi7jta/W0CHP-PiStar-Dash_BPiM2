@@ -106,7 +106,7 @@ if (isset($_SESSION['CSSConfigs']['Text'])) {
           $(document).ready(function(){
             setInterval(function(){
                 $("#CheckUpdate").load(window.location.href + " #CheckUpdate" );
-                },300000);
+                },10000);
             });
           $(document).ready(function(){
             setInterval(function(){
