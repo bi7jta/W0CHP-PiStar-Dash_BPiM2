@@ -202,7 +202,9 @@ Please note, that if you uninstall `W0CHP-PiStar-Dash`, you will need to
 downgrade the MMDVM modem or hotspot firmware back to its original firmware. For MMDVM HS
 HAT users, you can simply run the following command:
 
-        sudo pistar-mmdvmhshatdowngrade
+```text
+sudo pistar-mmdvmhshatdowngrade
+```
 
 Failure to downgrade the modem firmware when uninstalling `W0CHP-PiStar-Dash`
 will result in a non-functional hot spot, since the official current Pi-Star
