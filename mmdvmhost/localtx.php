@@ -81,7 +81,7 @@ for ($i = 0; $i < $TXListLim; $i++) {
 				        $target = $target_lookup;
 				        $stupid_bm = ['/ - 10 Minute Limit/', '/ NOT A CALL CHANNEL/', '/ NO NETS(.*?)/', '/ - .*/'];
 				        $target = preg_replace($stupid_bm, "", $target); // strip stupid fucking comments from BM admins in TG names. Idiots.
-				        $target = str_replace(": ", " (", $target.")");
+				        $target = str_replace(": ", " <span class='noMob'>(", $target.")</span>");
 				        $target = "TG $target";
 				    } else {
 				        $target = "TG $target";
@@ -89,12 +89,12 @@ for ($i = 0; $i < $TXListLim; $i++) {
 				} else if (strpos($mode, 'NXDN') !== false) {
 				    $target_lookup = exec("grep -w \"$target\" /usr/local/etc/TGList_NXDN.txt | awk -F';' '{print $2}'");
 				    if (!empty($target_lookup)) {
-					$target = "TG $target ($target_lookup)";
+					$target = "TG $target <span class='noMob'>($target_lookup)</span>";
 				    }
 				} else if (strpos($mode, 'P25') !== false) {
 				    $target_lookup = exec("grep -w \"$target\" /usr/local/etc/TGList_P25.txt | awk -F';' '{print $2}'");
 				    if (!empty($target_lookup)) {
-					$target = "TG $target ($target_lookup)";
+					$target = "TG $target <span class='noMob'>($target_lookup)</span>";
 				    }
 				} else {
 				    $target = $target;
@@ -141,7 +141,7 @@ for ($i = 0; $i < $TXListLim; $i++) {
 				$now = new DateTime("now", $utc_tz);
  				$dt = new DateTime($utc_time, $utc_tz);
 				$TA = timeago( $dt->getTimestamp(), $now->getTimestamp() );
-				$duration = "<td>$listElem[6]s ($TA)</td>";
+				$duration = "<td>$listElem[6]s <span class='noMob'>($TA)</span></td>";
 				echo "$duration"; //duration
 				
 				// Colour the BER Field

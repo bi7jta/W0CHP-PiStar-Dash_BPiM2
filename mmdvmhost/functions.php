@@ -1232,20 +1232,20 @@ function getHeardList($logLines) {
 		    }
 		    if ($relint > 0) {
 			if ($signal = 9) {
-			    $rssi = "<span><img style='margin-bottom:-2px;' src='/images/5-bar.png' /></span> S{$signal}+{$relint}dB ({$dBraw})";
+			    $rssi = "<span><img style='margin-bottom:-2px;' src='/images/5-bar.png' /></span> S{$signal}+{$relint}dB <span class='noMob'>({$dBraw})</span>";
 			} elseif ($signal < 9 && $signal >= 7) {
-			    $rssi = "<span><img style='margin-bottom:-2px;' src='/images/4-bar.png' /></span> S{$signal}+{$relint}dB ({$dBraw})";
+			    $rssi = "<span><img style='margin-bottom:-2px;' src='/images/4-bar.png' /></span> S{$signal}+{$relint}dB <span class='noMob'>({$dBraw})</span>";
 			} elseif ($signal < 7 && $signal >= 5) {
-			    $rssi = "<span><img style='margin-bottom:-2px;' src='/images/3-bar.png' /></span> S{$signal}+{$relint}dB ({$dBraw})";
+			    $rssi = "<span><img style='margin-bottom:-2px;' src='/images/3-bar.png' /></span> S{$signal}+{$relint}dB <span class='noMob'>({$dBraw})</span>";
 			} elseif ($signal < 5  && $signal >= 3) {
-			    $rssi = "<span><img style='margin-bottom:-2px;' src='/images/2-bar.png' /></span> S{$signal}+{$relint}dB ({$dBraw})";
+			    $rssi = "<span><img style='margin-bottom:-2px;' src='/images/2-bar.png' /></span> S{$signal}+{$relint}dB <span class='noMob'>({$dBraw})</span>";
 			} elseif ($signal < 3  && $signal >= 1) {
-			    $rssi = "<span><img style='margin-bottom:-2px;' src='/images/1-bar.png' /></span> S{$signal}+{$relint}dB ({$dBraw})";
+			    $rssi = "<span><img style='margin-bottom:-2px;' src='/images/1-bar.png' /></span> S{$signal}+{$relint}dB <span class='noMob'>({$dBraw})</span>";
 			} else {
-			    $rssi = "S{$signal}+{$relint}dB ({$dBraw})";
+			    $rssi = "S{$signal}+{$relint}dB <span class='noMob'>({$dBraw})</span>";
 			}
 		    } else {
-			$rssi = "S{$signal} ({$dBraw})";
+			$rssi = "S{$signal} <span class='noMob'>({$dBraw})</span>";
 		    }
 		}
 	    }
