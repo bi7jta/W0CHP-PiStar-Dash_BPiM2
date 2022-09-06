@@ -97,6 +97,8 @@ for ($i = 0;  ($i <= 0); $i++) { //Last 20  calls
 	    } else {
 		$mode = $listElem[1];
 	    }
+
+	    $mode = str_replace("Slot ", "TS", $mode);
 			
 	    if (!is_numeric($listElem[2])) {
         	$searchCall = $listElem[2];
