@@ -75,8 +75,8 @@ for ($i = 0;  ($i <= 0); $i++) { //Last 20  calls
 		$duration = "<td style=\"background:#d11141;color:#fff;font-size:1.3em;\">TX " . $duration_string . " sec</td>";
 	    } else if ($listElem[6] == "DMR Data") {
 		$duration =  "<td style=\"background:#00718F;color:#ff;font-size:1.3em;\">DMR Data</td>";
-	    } else if ($listElem[6] == "POCSAG Data") {
-		$duration =  "<td style=\"background:#00718F;color:#fff;font-size:1.3em;\">POCSAG Data</td>";
+	    } else if ($listElem[6] == "POCSAG") {
+		$duration =  "<td style=\"background:#00718F;color:#fff;font-size:1.3em;\">POCSAG</td>";
 	    } else {
 		$utc_time = $listElem[0];
 		$utc_tz =  new DateTimeZone('UTC');

@@ -79,8 +79,8 @@ if ($listElem[6] == null) {
 } else if ($listElem[6] == "DMR Data")
     {
 	$duration =  "<span class='dur_data'>DMR Data</span>";
-} else if ($listElem[6] == "POCSAG Data") {
-        $duration =  "<span class='dur_data'>POCSAG Data</span>";
+} else if ($listElem[6] == "POCSAG") {
+        $duration =  "<span class='dur_data'>POCSAG</span>";
 } else {
   $utc_time = $listElem[0];
   $utc_tz =  new DateTimeZone('UTC');

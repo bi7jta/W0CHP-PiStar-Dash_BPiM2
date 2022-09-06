@@ -108,7 +108,7 @@ if (isset($_SESSION['CSSConfigs']['Background']['TableRowBgEvenColor'])) {
                     echo "<div class=\"divTableCell middle cell_content\" style=\"background:#ffc425;color:#000000;font-weight:bold;padding:2px;\">Standby: NXDN</div>\n"; 
                 }   
                 else if (getActualMode($lastHeard, $_SESSION['MMDVMHostConfigs']) === 'POCSAG') {
-                    echo "<div class=\"divTableCell middle cell_content\" style=\"color:#fff; background:#d11141; font-weight:bold;padding:2px;\">TX: POCSAG Data</div>\n";
+                    echo "<div class=\"divTableCell middle cell_content\" style=\"color:#fff; background:#d11141; font-weight:bold;padding:2px;\">TX: POCSAG</div>\n";
                 }   
                 else {
                     echo "<div class=\"divTableCell middle cell_content\">".getActualMode($lastHeard, $_SESSION['MMDVMHostConfigs'])."</div>\n";

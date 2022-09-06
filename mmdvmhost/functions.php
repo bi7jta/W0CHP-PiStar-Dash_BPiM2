@@ -1411,8 +1411,8 @@ function getHeardList($logLines) {
 		break;
 	    case "POCSAG":
 		$callsign	= "DAPNET";
-		$target		= "DAPNET Recipient";
-		$duration	= "POCSAG Data";
+		$target		= "";
+		$duration	= "POCSAG";
 		$loss		= "";
                 $ber		= "";
 		break;
