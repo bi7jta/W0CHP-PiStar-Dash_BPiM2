@@ -28,7 +28,7 @@ $Flags->LoadFlags();
 $testMMDVModeDMR = getConfigItem("DMR", "Enable", $_SESSION['MMDVMHostConfigs']);
 ?>
             <input type="hidden" name="display-lastcaller" value="OFF" />
-            <div style="float: right; vertical-align: bottom; padding-top: 0px;">
+            <div style="float: right; vertical-align: bottom; padding-top: 0px;" id="lhCN">
                <div class="grid-container" style="display: inline-grid; grid-template-columns: auto 40px; padding: 1px;; grid-column-gap: 5px;">
                 <?php if(isset($_SESSION['PiStarRelease']['Pi-Star']['ProcNum']) && ($_SESSION['PiStarRelease']['Pi-Star']['ProcNum'] >= 4)) { ?>
                  <div class="grid-item menucaller" style="padding: 10px 0 0 20px;" title="Display Caller Details">Caller Details: </div>
