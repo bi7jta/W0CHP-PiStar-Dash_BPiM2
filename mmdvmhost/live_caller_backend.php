@@ -170,7 +170,7 @@ if (strlen($target) >= 2) {
         $target_lookup = exec("grep -w \"$target\" /usr/local/etc/groups.txt | awk -F, '{print $1}' | head -1 | tr -d '\"'");
         if (!empty($target_lookup)) {
                 $target = $target_lookup;
-                $stupid_bm = ['/ - 10 Minute Limit/', '/ NOT A CALL CHANNEL/', '/ NO NETS(.*?)/', '/ - .*/'];
+                $stupid_bm = ['/ - 10 Minute Limit/', '/ NOT A CALL CHANNEL/', '/ NO NETS(.*?)/', '/ - .*/, '/!/''];
                 $target = preg_replace($stupid_bm, "", $target); // strip stupid fucking comments from BM admins in TG names. Idiots.
                 $target = str_replace(": ", " (", $target.")");
                 $target = "TG $target";
