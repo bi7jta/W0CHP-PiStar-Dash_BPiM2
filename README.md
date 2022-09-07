@@ -107,7 +107,6 @@ Run:
 * Searchable drop-downs for massive host lists in configuration/admin pages. E.g. D-Star Refs., YSF Hosts, XLX Hosts, DMR Hosts, etc.
 * BrandMeister Manager revamps galore:
   * Now displays connected actual talk group names.
-  * Reflector functionality removed per [BrandMeister's announcement](https://news.brandmeister.network/brandmeister-dmr-reflectors-support-ending-by-end-of-2020/).
   * Connected dynamic talk groups now display idle-timeout time (due to no TX).
   * Added ability to mass-drop your static talk groups; and mass re-add the previously
     linked static talk groups.
