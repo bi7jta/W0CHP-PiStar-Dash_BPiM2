@@ -73,13 +73,13 @@ if ( $testMMDVModeDMR == 1 ) {
 	    if (!empty(escapeshellcmd($_POST["tgStaticDropAll"]))) {
 	        exec($bmStaticDropAllCmd);
                 // Output to the browser
-		echo '<br /><div style="text-align:left;font-weight:bold;">BrandMeister Manager</div>'."\n";
+		echo '<br /><div style="text-align:left;font-weight:bold;" id="cmdOut">BrandMeister Manager</div>'."\n";
                 echo "<table>\n<tr><th>Command Output</th></tr>\n<tr><td>";
                 print "<p>All Static Talkgroups Dropped!<br /> Page reloading...</p>";
                 echo "</td></tr>\n</table>\n";
                 // Clean up...
                 unset($_POST);
-                echo '<script type="text/javascript">setTimeout(function() { window.location=window.location;},3000);</script>';
+                echo '<script type="text/javascript">setTimeout(function() { window.location.href = "./?func=bm_man";},3000);</script>';
 	    }
 	    // re-add all static
             $bmStaticAddAllCmd = ("sudo /usr/local/sbin/bm_static_tgs_addall $sanitizedKey $dmrID");
@@ -88,23 +88,23 @@ if ( $testMMDVModeDMR == 1 ) {
 	        if (file_exists("/etc/.bm_tgs.json.saved")) {
             	    exec($bmStaticAddAllCmd);
             	    // Output to the browser
-		    echo '<br /><div style="text-align:left;font-weight:bold;">BrandMeister Manager</div>'."\n";
+		    echo '<br /><div style="text-align:left;font-weight:bold;" id="cmdOut">BrandMeister Manager</div>'."\n";
             	    echo "<table>\n<tr><th>Command Output</th></tr>\n<tr><td>";
             	    print "<p>All Previous Static Talkgroups Re-Added!<br /> Page reloading...</p>";
             	    echo "</td></tr>\n</table>\n";
             	    // Clean up...
             	    unset($_POST);
-            	    echo '<script type="text/javascript">setTimeout(function() { window.location=window.location;},3000);</script>';
+            	    echo '<script type="text/javascript">setTimeout(function() { window.location.href = "./?func=bm_man";},3000);</script>';
 	        }
 	        else {
             	    // Output to the browser
-		    echo '<br /><div style="text-align:left;font-weight:bold;">BrandMeister Manager</div>'."\n";
+		    echo '<br /><div style="text-align:left;font-weight:bold;" id="cmdOut">BrandMeister Manager</div>'."\n";
             	    echo "<table>\n<tr><th>Command Output</th></tr>\n<tr><td>";
             	    print "<p>No Previous Static Talkgroups Dropped. Nothing To Do!!<br /> Page reloading...</p>";
             	    echo "</td></tr>\n</table>\n";
             	    // Clean up...
             	    unset($_POST);
-            	    echo '<script type="text/javascript">setTimeout(function() { window.location=window.location;},3000);</script>';
+            	    echo '<script type="text/javascript">setTimeout(function() { window.location.href = "./?func=bm_man";},3000);</script>';
 	        }
             }
 	    // batch-add/delete static
@@ -120,13 +120,13 @@ if ( $testMMDVModeDMR == 1 ) {
                 $massTGs = escapeshellcmd($_POST['massTGlist']);
                 if (strlen($massTGs)==0) {
                     // Output to the browser
-		    echo '<br /><div style="text-align:left;font-weight:bold;">BrandMeister Manager</div>'."\n";
+		    echo '<br /><div style="text-align:left;font-weight:bold;" id="cmdOut">BrandMeister Manager</div>'."\n";
                     echo "<table>\n<tr><th>Command Output</th></tr>\n<tr><td>";
                     print "<p>No talkgroups defined! <br /> Page reloading...</p>";
                     echo "</td></tr>\n</table>\n";
                     // Clean up...
                     unset($_POST);
-                    echo '<script type="text/javascript">setTimeout(function() { window.location=window.location;},3000);</script>';
+                    echo '<script type="text/javascript">setTimeout(function() { window.location.href = "./?func=bm_man";},3000);</script>';
                 }
                 else  {
 		    if (escapeshellcmd($_POST["massTGaction"] == "ADD")) {
@@ -140,13 +140,13 @@ if ( $testMMDVModeDMR == 1 ) {
                         $massTGcount = substr_count($massTGs, "\n") + 1;
 		        if ($massTGcount > "5") {
                             // Output to the browser
-		    	    echo '<br /><div style="text-align:left;font-weight:bold;">BrandMeister Manager</div>'."\n";
+		    	    echo '<br /><div style="text-align:left;font-weight:bold;" id="cmdOut">BrandMeister Manager</div>'."\n";
                             echo "<table>\n<tr><th>Command Output</th></tr>\n<tr><td>";
                             print "<p>No more than 5 talkgroups can be defined at a time! <br /> Page reloading...</p>";
                             echo "</td></tr>\n</table>\n";
                             // Clean up...
                             unset($_POST);
-                            echo '<script type="text/javascript">setTimeout(function() { window.location=window.location;},3000);</script>';
+                            echo '<script type="text/javascript">setTimeout(function() { window.location.href = "./?func=bm_man";},3000);</script>';
                        } else // 5 or less tgs submitted. keep going...
 		           {
                             exec('sudo mount -o remount,rw /');
@@ -159,13 +159,13 @@ if ( $testMMDVModeDMR == 1 ) {
                             exec('sudo mount -o remount,ro /');
                             // Output to the browser
 			    $str = preg_replace('#\s+#',',',trim($massTGs));
-		    	    echo '<br /><div style="text-align:left;font-weight:bold;">BrandMeister Manager</div>'."\n";
+		    	    echo '<br /><div style="text-align:left;font-weight:bold;" id="cmdOut">BrandMeister Manager</div>'."\n";
                             echo "<table>\n<tr><th>Command Output</th></tr>\n<tr><td>";
                             print "<p>All Submitted Static Talkgroups ($str) Added to slot ".$_POST['massTGslotSelected']."!<br /> Page reloading...</p>";
                             echo "</td></tr>\n</table>\n";
                             // Clean up...
                             unset($_POST);
-                            echo '<script type="text/javascript">setTimeout(function() { window.location=window.location;},3000);</script>';
+                            echo '<script type="text/javascript">setTimeout(function() { window.location.href = "./?func=bm_man";},3000);</script>';
 		        }
 		    } elseif
 		        (escapeshellcmd($_POST["massTGaction"] == "DEL")) {
@@ -175,13 +175,13 @@ if ( $testMMDVModeDMR == 1 ) {
                         $massTGcount = substr_count($massTGs, "\n") + 1;
 		        if ($massTGcount > "5") {
                             // Output to the browser
-		    	    echo '<br /><div style="text-align:left;font-weight:bold;">BrandMeister Manager</div>'."\n";
+		    	    echo '<br /><div style="text-align:left;font-weight:bold;" id="cmdOut">BrandMeister Manager</div>'."\n";
                             echo "<table>\n<tr><th>Command Output</th></tr>\n<tr><td>";
                             print "<p>No more than 5 talkgroups can be defined at a time! <br /> Page reloading...</p>";
                             echo "</td></tr>\n</table>\n";
                             // Clean up...
                             unset($_POST);
-                            echo '<script type="text/javascript">setTimeout(function() { window.location=window.location;},3000);</script>';
+                            echo '<script type="text/javascript">setTimeout(function() { window.location.href = "./?func=bm_man";},3000);</script>';
                        } else
 		           {
                             exec('sudo mount -o remount,rw /');
@@ -193,13 +193,13 @@ if ( $testMMDVModeDMR == 1 ) {
                             exec('sudo mount -o remount,ro /');
                             // Output to the browser
 			    $str = preg_replace('#\s+#',',',trim($massTGs)); 
-		    	    echo '<br /><div style="text-align:left;font-weight:bold;">BrandMeister Manager</div>'."\n";
+		    	    echo '<br /><div style="text-align:left;font-weight:bold;" id="cmdOut">BrandMeister Manager</div>'."\n";
                             echo "<table>\n<tr><th>Command Output</th></tr>\n<tr><td>";
                             print "<p>All Submitted Static Talkgroups ($str) Deleted from slot ".$_POST['massTGslotSelected']."!<br /> Page reloading...</p>";
                             echo "</td></tr>\n</table>\n";
                             // Clean up...
                             unset($_POST);
-                            echo '<script type="text/javascript">setTimeout(function() { window.location=window.location;},3000);</script>';
+                            echo '<script type="text/javascript">setTimeout(function() { window.location.href = "./?func=bm_man";},3000);</script>';
 		       }
                    }
                 }
@@ -252,14 +252,14 @@ if ( $testMMDVModeDMR == 1 ) {
           $result = @file_get_contents($bmAPIurl, false, $context);
           $feedback=json_decode($result);
           // Output to the browser
-	  echo '<br /><div style="text-align:left;font-weight:bold;">BrandMeister Manager</div>'."\n";
+	  echo '<br /><div style="text-align:left;font-weight:bold;" id="cmdOut">BrandMeister Manager</div>'."\n";
           echo "<table>\n<tr><th>Command Output</th></tr>\n<tr><td><p>";
           //echo "Sending command to BrandMeister API";
           if (isset($feedback)) { print "BrandMeister APIv1: ".$feedback->{'message'}; } else { print "BrandMeister APIv1: No Response"; }
           echo " <br />Page reloading...</p></td></tr>\n</table>\n";
           // Clean up...
           unset($_POST);
-          echo '<script type="text/javascript">setTimeout(function() { window.location=window.location;},3000);</script>';
+          echo '<script type="text/javascript">setTimeout(function() { window.location.href = "./?func=bm_man";},3000);</script>';
 	  }
       elseif ( (isset($bmAPIkeyV2)) && ( (isset($bmAPIkeyV2)) && ( !empty($_POST) && ( isset($_POST["dropDyn"]) || isset($_POST["dropQso"]) || isset($_POST["tgSubmit"]) ) ) ) ) { // Data has been posted for this page
           $bmAPIurl = 'https://api.brandmeister.network/v2/device/';
@@ -308,7 +308,7 @@ if ( $testMMDVModeDMR == 1 ) {
           $result = @file_get_contents($bmAPIurl, false, $context);
           $feedback=json_decode($result);
           // Output to the browser
-	  echo '<br /><div style="text-align:left;font-weight:bold;">BrandMeister Manager</div>'."\n";
+	  echo '<br /><div style="text-align:left;font-weight:bold;" id="cmdOut">BrandMeister Manager</div>'."\n";
           echo "<table>\n<tr><th>Command Output</th></tr>\n<tr><td><p>";
           //echo "Sending command to BrandMeister API";
           //if (isset($feedback)) { print "BrandMeister APIv2: ".$feedback->{'message'}; } else { print "BrandMeister APIv2: No Response"; }
@@ -316,7 +316,7 @@ if ( $testMMDVModeDMR == 1 ) {
           echo " <br />Page reloading...</p></td></tr>\n</table>\n";
           // Clean up...
           unset($_POST);
-          echo '<script type="text/javascript">setTimeout(function() { window.location=window.location;},3000);</script>';
+          echo '<script type="text/javascript">setTimeout(function() { window.location.href = "./?func=bm_man"; },3000);</script>';
 	    }
 	    else { // Do this when we are not handling post data
 		    // If there is a BM API Key
@@ -331,8 +331,8 @@ if ( $testMMDVModeDMR == 1 ) {
 	    // Set some Variables
 	    $bmStaticTGList = "";
 	    if (isset($json->staticSubscriptions)) { $bmStaticTGListJson = $json->staticSubscriptions; }
-		    echo '<br /><div style="text-align:left;font-weight:bold;">BrandMeister Manager</div>'."\n";
-		    echo '<form id="bm_man" action="'.htmlentities($_SERVER['PHP_SELF']."?func=bm_man").'" method="post">'."\n";
+		    echo '<br /><div style="text-align:left;font-weight:bold;" id="cmdOut">BrandMeister Manager</div>'."\n";
+		    echo '<form id="bm_man" action="'.htmlentities($_SERVER['PHP_SELF']."?func=bm_man#cmdOut").'" method="post">'."\n";
 		    echo '<table style="white-space: normal;">'."\n";
 		    echo '  <tr>'."\n";
 		    echo '    <th colspan="3">Single Static Talkgroup Tools</th>'."\n";

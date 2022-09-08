@@ -861,7 +861,7 @@ function getMMDVMLog() {
         } else { // caller names/last caller selected! keep perf. in check..
 	    if(isset($_SESSION['PiStarRelease']['Pi-Star']['ProcNum']) && ($_SESSION['PiStarRelease']['Pi-Star']['ProcNum'] >= 4)) { // multi-core
 		if ($_SESSION['CSSConfigs']['ExtraSettings']['LastHeardRows'] > 40 ) {  // more than 40 rows selected
-		    $logLines1 = explode("\n", `tail -500 $logPath | sed '/\(CSBK\|overflow\|Downlink\|Valid\|Invalid\)/d' | egrep -h "from|end|watchdog|lost|Alias|0000"`); // search last 1500 lines
+		    $logLines1 = explode("\n", `tail -500 $logPath | sed '/\(CSBK\|overflow\|Downlink\|Valid\|Invalid\)/d' | egrep -h "from|end|watchdog|lost|Alias|0000"`); // search last 500 lines
 		} else {
 		    $logLines1 = explode("\n", `tail -250 $logPath | sed '/\(CSBK\|overflow\|Downlink\|Valid\|Invalid\)/d' | egrep -h "from|end|watchdog|lost|Alias|0000"`); // 40 or less rows selected
 		}
