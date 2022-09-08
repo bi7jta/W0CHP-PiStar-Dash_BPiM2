@@ -248,10 +248,15 @@ for ($i = 0;  ($i <= $lastHeardRows - 1); $i++) {
 			else { echo "<td class='noMob'><span style='color:$backgroundModeCellInactiveColor;font-weight:bold;'>$listElem[8]</span></td>"; }
 		}
 		echo"</tr>\n";
-		if (!empty($listElem[10] && file_exists("/etc/.SHOWDMRTA"))) {
+		if (!empty($listElem[10] && file_exists("/etc/.SHOWDMRTA")) && (!file_exists('/etc/.CALLERDETAILS'))) {
 		    echo "<tr>";
-		    echo "<td colspan='2' style='background:$backgroundContent;'></td>";
-		    echo "<td colspan='6' style=\"text-align:left;background:#0000ff;color:#fff;\">&#8593; $listElem[10]</td>";
+		    echo "<td style='background:$backgroundContent;'></td>";
+		    echo "<td colspan='8' style=\"text-align:left;background:#0000ff;color:#fff;\">&#8593; $listElem[10]</td>";
+		    echo "</tr>";
+		} elseif (!empty($listElem[10] && file_exists("/etc/.SHOWDMRTA")) && (file_exists('/etc/.CALLERDETAILS'))) {
+		    echo "<tr>";
+		    echo "<td style='background:$backgroundContent;'></td>";
+		    echo "<td colspan='9' style=\"text-align:left;background:#0000ff;color:#fff;\">&#8593; $listElem[10]</td>";
 		    echo "</tr>";
 		}
 	    }

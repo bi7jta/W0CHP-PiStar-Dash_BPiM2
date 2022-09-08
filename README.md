@@ -102,7 +102,6 @@ Run:
 * Current/Last Caller Details on Main Dashboard (name/location, when available).
 * Talkgroup Names display in target column (Brandmeister DMR, NXDN and P25 support only).
 * YSF/NXDN/P25 link managers gives the ability to change links/rooms on-the-fly, rather than going through the large (and slow) configuration page.
-* XLX Hosts are now searchable/selectable in DMR Master selection in configuration page.
 * "XLX DMR Link Manager" allows fast switching of XLX reflectors and modules, as well as unlinking from modules to "pause" traffic.
 * Searchable drop-downs for massive host lists in configuration/admin pages. E.g. D-Star Refs., YSF Hosts, XLX Hosts, DMR Hosts, etc.
 * BrandMeister Manager revamps galore:
