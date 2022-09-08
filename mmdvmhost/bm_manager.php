@@ -284,6 +284,13 @@ if ( $testMMDVModeDMR == 1 ) {
               'group' => $targetTG              
             );
           }
+	  // for feedback
+	  if ($_POST["TGmgr"] == "ADD") {
+	    $v2fb = "Added";
+	  }
+	  elseif ($_POST["TGmgr"] == "DEL") {
+	    $v2fb = "Deleted";
+	  }
           // Build the Query
           $postData = '';
           if ($_POST["TGmgr"] == "ADD") { $postData = json_encode($postDataTG); }
@@ -312,7 +319,7 @@ if ( $testMMDVModeDMR == 1 ) {
           echo "<table>\n<tr><th>Command Output</th></tr>\n<tr><td><p>";
           //echo "Sending command to BrandMeister API";
           //if (isset($feedback)) { print "BrandMeister APIv2: ".$feedback->{'message'}; } else { print "BrandMeister APIv2: No Response"; }
-          if (isset($feedback)) { print "BrandMeister APIv2: OK"; } else { print "BrandMeister APIv2: No Response"; }
+          if (isset($feedback)) { print "TG $targetTG on Timeslot $targetSlot $v2fb;<br />BrandMeister APIv2: Success."; } else { print "BrandMeister APIv2: No Response"; }
           echo " <br />Page reloading...</p></td></tr>\n</table>\n";
           // Clean up...
           unset($_POST);
