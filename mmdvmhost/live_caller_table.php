@@ -141,6 +141,7 @@ for ($i = 0;  ($i <= 0); $i++) { //Last 20  calls
 		}
 	    }
 
+	if (file_exists("/etc/.TGNAMES")) {
 	    if (strlen($target) >= 2) {
 		if (strpos($mode, 'DMR') !== false) {
 		    $target_lookup = exec("grep -w \"$target\" /usr/local/etc/groups.txt | awk -F, '{print $1}' | head -1 | tr -d '\"'");
@@ -174,6 +175,9 @@ for ($i = 0;  ($i <= 0); $i++) { //Last 20  calls
 		    $target = $target;
 		}
 	    }
+	} else {
+	    $target = $target;
+	}
 
 	    if($listElem[2] == "4000" || $listElem[2] == "9990" || $listElem[2] == "DAPNET") {
 		$name = "---";
