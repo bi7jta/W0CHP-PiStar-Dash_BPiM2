@@ -34,7 +34,7 @@ body, font {
     color : <?php echo $textBanners; ?>;
     font-family : 'Source Sans Pro', sans-serif;
     text-align : left;
-    padding : 5px 0px 5px 0px;
+    padding : 5px 0 0 0;
     margin: 0 3px;
 }
 
