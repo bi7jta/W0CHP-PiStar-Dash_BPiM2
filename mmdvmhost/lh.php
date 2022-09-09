@@ -111,7 +111,7 @@ for ($i = 0;  ($i <= $lastHeardRows - 1); $i++) {
 		    $flContent = " ";
 		}
 		echo"<tr>";
-		echo"<td align=\"left\">$local_time</td>";
+		echo"<td align=\"left\" title='Row #".($i+1)."'>$local_time</td>";
 		if (is_numeric($listElem[2]) || strpos($listElem[2], "openSPOT") !== FALSE) {
 		    if (file_exists("/etc/.CALLERDETAILS") && $testMMDVModeDMR == 1 ) {
 			if ($flContent = " " && empty($listElem[11])) {
