@@ -624,6 +624,11 @@ if (isset($_SESSION['CSSConfigs']['Text'])) {
                 	        type: \"POST\",
   	          	        url: '/mmdvmhost/tgnames_ajax.php',
                 	        data:{action:'enable'},
+                                success: function(data) { 
+                                    $('#lcmsg').html(data).fadeIn('slow');
+                                    $('#lcmsg').html(\"<div style='padding:8px;font-style:italic;font-weight:bold;'>Talkgroup Names display enabled: Please wait until data populated.</div>\").fadeIn('slow')
+                                    $('#lcmsg').delay(4000).fadeOut('slow');
+                                }
          	             });";
 	        echo '    }'."\n";
 	        echo '    else {'."\n";
@@ -631,6 +636,11 @@ if (isset($_SESSION['CSSConfigs']['Text'])) {
 	                        type: \"POST\",
 	                        url: '/mmdvmhost/tgnames_ajax.php',
 	                        data:{action:'disable'},
+                                success: function(data) { 
+                                    $('#lcmsg').html(data).fadeIn('slow');
+                                    $('#lcmsg').html(\"<div style='padding:8px;font-style:italic;font-weight:bold;'>Talkgroup Names display disabled: Please wait until data is cleared.</div>\").fadeIn('slow')
+                                    $('#lcmsg').delay(4000).fadeOut('slow');
+                                }
 	                      });";
 	        echo '    }'."\n";
 	        echo '}'."\n";
