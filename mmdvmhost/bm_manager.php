@@ -158,7 +158,7 @@ if ( $testMMDVModeDMR == 1 ) {
                             exec($bmStaticMassAddCmd);
                             exec('sudo mount -o remount,ro /');
                             // Output to the browser
-			    $str = preg_replace('#\s+#',',',trim($massTGs));
+			    $str = preg_replace('#\s+#',', ',trim($massTGs));
 		    	    echo '<br /><div style="text-align:left;font-weight:bold;" id="cmdOut">BrandMeister Manager</div>'."\n";
                             echo "<table>\n<tr><th>Command Output</th></tr>\n<tr><td>";
                             print "<p>All Submitted Static Talkgroups ($str) Added to slot ".$_POST['massTGslotSelected']."!<br /> Page reloading...</p>";
@@ -192,7 +192,7 @@ if ( $testMMDVModeDMR == 1 ) {
                             exec($bmStaticMassDelCmd);
                             exec('sudo mount -o remount,ro /');
                             // Output to the browser
-			    $str = preg_replace('#\s+#',',',trim($massTGs)); 
+			    $str = preg_replace('#\s+#',', ',trim($massTGs)); 
 		    	    echo '<br /><div style="text-align:left;font-weight:bold;" id="cmdOut">BrandMeister Manager</div>'."\n";
                             echo "<table>\n<tr><th>Command Output</th></tr>\n<tr><td>";
                             print "<p>All Submitted Static Talkgroups ($str) Deleted from slot ".$_POST['massTGslotSelected']."!<br /> Page reloading...</p>";
