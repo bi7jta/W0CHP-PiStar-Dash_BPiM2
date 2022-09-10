@@ -80,50 +80,50 @@ if ($_SERVER["PHP_SELF"] == "/admin/config_backup.php") {
 			    $backupZip = "/tmp/config_backup.zip";
 			    $hostNameInfo = exec('cat /etc/hostname');
 			    
-			    $output .= shell_exec("sudo rm -rf $backupZip 2>&1")."\n";
-			    $output .= shell_exec("sudo rm -rf $backupDir 2>&1")."\n";
-			    $output .= shell_exec("sudo mkdir $backupDir 2>&1")."\n";
+			    $output .= shell_exec("sudo rm -rf $backupZip > /dev/null")."\n";
+			    $output .= shell_exec("sudo rm -rf $backupDir > /dev/null")."\n";
+			    $output .= shell_exec("sudo mkdir $backupDir > /dev/null")."\n";
 			    if (shell_exec('cat /etc/dhcpcd.conf | grep "static ip_address" | grep -v "#"')) {
-				    $output .= shell_exec("sudo cp /etc/dhcpcd.conf $backupDir 2>&1")."\n";
+				    $output .= shell_exec("sudo cp /etc/dhcpcd.conf $backupDir > /dev/null")."\n";
 			    }
-			    $output .= shell_exec("sudo cp /etc/wpa_supplicant/wpa_supplicant.conf $backupDir 2>&1")."\n";
-                	    $output .= shell_exec("sudo cp /etc/hostapd/hostapd.conf $backupDir 2>&1")."\n";
-			    $output .= shell_exec("sudo cp /etc/pistar-css.ini $backupDir 2>&1")."\n";
-			    $output .= shell_exec("sudo cp /etc/aprsgateway $backupDir 2>&1")."\n";
-			    $output .= shell_exec("sudo cp /etc/ircddbgateway $backupDir 2>&1")."\n";
-			    $output .= shell_exec("sudo cp /etc/mmdvmhost $backupDir 2>&1")."\n";
-			    $output .= shell_exec("sudo cp /etc/dstarrepeater $backupDir 2>&1")."\n";
-			    $output .= shell_exec("sudo cp /etc/dapnetgateway $backupDir 2>&1")."\n";
-                	    $output .= shell_exec("sudo cp /etc/pistar-css.ini $backupDir 2>&1");
-			    $output .= shell_exec("sudo cp /etc/p25gateway $backupDir 2>&1")."\n";
-			    $output .= shell_exec("sudo cp /etc/ysfgateway $backupDir 2>&1")."\n";
-			    $output .= shell_exec("sudo cp /etc/dmr2nxdn $backupDir 2>&1")."\n";
-			    $output .= shell_exec("sudo cp /etc/dmr2ysf $backupDir 2>&1")."\n";
-			    $output .= shell_exec("sudo cp /etc/nxdn2dmr $backupDir 2>&1")."\n";
-			    $output .= shell_exec("sudo cp /etc/ysf2dmr $backupDir 2>&1")."\n";
-                	    $output .= shell_exec("sudo cp /etc/dgidgateway $backupDir 2>&1");
-                	    $output .= shell_exec("sudo cp /etc/nxdngateway $backupDir 2>&1");
-                	    $output .= shell_exec("sudo cp /etc/m17gateway $backupDir 2>&1");
-			    $output .= shell_exec("sudo cp /etc/ysf2nxdn $backupDir 2>&1")."\n";
-			    $output .= shell_exec("sudo cp /etc/ysf2p25 $backupDir 2>&1")."\n";
-			    $output .= shell_exec("sudo cp /etc/dmrgateway $backupDir 2>&1")."\n";
-			    $output .= shell_exec("sudo cp /etc/starnetserver $backupDir 2>&1")."\n";
-			    $output .= shell_exec("sudo cp /etc/timeserver $backupDir 2>&1")."\n";
-			    $output .= shell_exec("sudo cp /etc/dstar-radio.* $backupDir 2>&1")."\n";
-			    $output .= shell_exec("sudo cp /etc/pistar-remote $backupDir 2>&1")."\n";
-			    $output .= shell_exec("sudo cp /etc/hosts $backupDir 2>&1")."\n";
-			    $output .= shell_exec("sudo cp /etc/hostname $backupDir 2>&1")."\n";
-			    $output .= shell_exec("sudo cp /etc/bmapi.key $backupDir 2>&1")."\n";
-			    $output .= shell_exec("sudo cp /etc/dapnetapi.key $backupDir 2>&1")."\n";
-                            $output .= shell_exec("sudo cp /etc/default/gpsd $backupDir 2>&1")."\n";
-			    $output .= shell_exec("sudo cp /etc/*_paused $backupDir 2>&1")."\n";
-			    $output .= shell_exec("sudo cp /usr/local/etc/RSSI.dat $backupDir 2>&1")."\n";
-			    $output .= shell_exec("sudo cp /var/www/dashboard/config/ircddblocal.php $backupDir 2>&1")."\n";
-			    $output .= shell_exec("sudo cp /var/www/dashboard/config/config.php $backupDir 2>&1")."\n";
-			    $output .= shell_exec("sudo cp /var/www/dashboard/config/language.php $backupDir 2>&1")."\n";
-			    $output .= shell_exec('sudo find /root/ -maxdepth 1 -name "*Hosts.txt" -exec cp {} /tmp/config_backup \; 2>&1')."\n";
+			    $output .= shell_exec("sudo cp /etc/wpa_supplicant/wpa_supplicant.conf $backupDir > /dev/null")."\n";
+                	    $output .= shell_exec("sudo cp /etc/hostapd/hostapd.conf $backupDir > /dev/null")."\n";
+			    $output .= shell_exec("sudo cp /etc/pistar-css.ini $backupDir > /dev/null")."\n";
+			    $output .= shell_exec("sudo cp /etc/aprsgateway $backupDir > /dev/null")."\n";
+			    $output .= shell_exec("sudo cp /etc/ircddbgateway $backupDir > /dev/null")."\n";
+			    $output .= shell_exec("sudo cp /etc/mmdvmhost $backupDir > /dev/null")."\n";
+			    $output .= shell_exec("sudo cp /etc/dstarrepeater $backupDir > /dev/null")."\n";
+			    $output .= shell_exec("sudo cp /etc/dapnetgateway $backupDir > /dev/null")."\n";
+                	    $output .= shell_exec("sudo cp /etc/pistar-css.ini $backupDir > /dev/null");
+			    $output .= shell_exec("sudo cp /etc/p25gateway $backupDir > /dev/null")."\n";
+			    $output .= shell_exec("sudo cp /etc/ysfgateway $backupDir > /dev/null")."\n";
+			    $output .= shell_exec("sudo cp /etc/dmr2nxdn $backupDir > /dev/null")."\n";
+			    $output .= shell_exec("sudo cp /etc/dmr2ysf $backupDir > /dev/null")."\n";
+			    $output .= shell_exec("sudo cp /etc/nxdn2dmr $backupDir > /dev/null")."\n";
+			    $output .= shell_exec("sudo cp /etc/ysf2dmr $backupDir > /dev/null")."\n";
+                	    $output .= shell_exec("sudo cp /etc/dgidgateway $backupDir > /dev/null");
+                	    $output .= shell_exec("sudo cp /etc/nxdngateway $backupDir > /dev/null");
+                	    $output .= shell_exec("sudo cp /etc/m17gateway $backupDir > /dev/null");
+			    $output .= shell_exec("sudo cp /etc/ysf2nxdn $backupDir > /dev/null")."\n";
+			    $output .= shell_exec("sudo cp /etc/ysf2p25 $backupDir > /dev/null")."\n";
+			    $output .= shell_exec("sudo cp /etc/dmrgateway $backupDir > /dev/null")."\n";
+			    $output .= shell_exec("sudo cp /etc/starnetserver $backupDir > /dev/null")."\n";
+			    $output .= shell_exec("sudo cp /etc/timeserver $backupDir > /dev/null")."\n";
+			    $output .= shell_exec("sudo cp /etc/dstar-radio.* $backupDir > /dev/null")."\n";
+			    $output .= shell_exec("sudo cp /etc/pistar-remote $backupDir > /dev/null")."\n";
+			    $output .= shell_exec("sudo cp /etc/hosts $backupDir > /dev/null")."\n";
+			    $output .= shell_exec("sudo cp /etc/hostname $backupDir > /dev/null")."\n";
+			    $output .= shell_exec("sudo cp /etc/bmapi.key $backupDir > /dev/null")."\n";
+			    $output .= shell_exec("sudo cp /etc/dapnetapi.key $backupDir > /dev/null")."\n";
+                            $output .= shell_exec("sudo cp /etc/default/gpsd $backupDir > /dev/null")."\n";
+			    $output .= shell_exec("sudo cp /etc/*_paused $backupDir > /dev/null")."\n";
+			    $output .= shell_exec("sudo cp /usr/local/etc/RSSI.dat $backupDir > /dev/null")."\n";
+			    $output .= shell_exec("sudo cp /var/www/dashboard/config/ircddblocal.php $backupDir > /dev/null")."\n";
+			    $output .= shell_exec("sudo cp /var/www/dashboard/config/config.php $backupDir > /dev/null")."\n";
+			    $output .= shell_exec("sudo cp /var/www/dashboard/config/language.php $backupDir > /dev/null")."\n";
+			    $output .= shell_exec('sudo find /root/ -maxdepth 1 -name "*Hosts.txt" -exec cp {} /tmp/config_backup \; > /dev/null')."\n";
 			    $output .= "Compressing backup files\n";
-			    $output .= shell_exec("sudo zip -j $backupZip $backupDir/* 2>&1")."\n";
+			    $output .= shell_exec("sudo zip -j $backupZip $backupDir/* > /dev/null")."\n";
 			    $output .= "Starting download\n";
 
 			    echo "<tr><td align=\"left\"><pre>$output</pre></td></tr>\n";
@@ -155,8 +155,8 @@ if ($_SERVER["PHP_SELF"] == "/admin/config_backup.php") {
 			    $output = "Uploading your Config data\n";
 			    
 			    $target_dir = "/tmp/config_restore/";
-			    shell_exec("sudo rm -rf $target_dir 2>&1");
-			    shell_exec("mkdir $target_dir 2>&1");
+			    shell_exec("sudo rm -rf $target_dir > /dev/null");
+			    shell_exec("mkdir $target_dir > /dev/null");
 			    if($_FILES["fileToUpload"]["name"]) {
 				$filename = $_FILES["fileToUpload"]["name"];
 	  			$source = $_FILES["fileToUpload"]["tmp_name"];
@@ -199,29 +199,29 @@ if ($_SERVER["PHP_SELF"] == "/admin/config_backup.php") {
 				$output .= "Stopping Services.\n";
 				
 				// Stop the DV Services
-			    	shell_exec('sudo REMOUNT_RO="NO" pistar-services fullstop 2>&1');
+			    	shell_exec('sudo REMOUNT_RO="NO" pistar-services fullstop > /dev/null');
 	
 				// Make the disk Writable
-				shell_exec('sudo mount -o remount,rw / 2>&1');
+				shell_exec('sudo mount -o remount,rw / > /dev/null');
 				
 				// Overwrite the configs
 				$output .= "Writing new Config\n";
-				$output .= shell_exec("sudo rm -f /etc/dstar-radio.* /etc/bmapi.key /etc/dapnetapi.key 2>&1")."\n";
-                                $output .= shell_exec("sudo mv -fv /tmp/config_restore/gpsd /etc/default/ 2>&1")."\n";
-				$output .= shell_exec("sudo mv -fv /tmp/config_restore/RSSI.dat /usr/local/etc/ 2>&1")."\n";
-				$output .= shell_exec("sudo mv -fv /tmp/config_restore/ircddblocal.php /var/www/dashboard/config/ 2>&1")."\n";
-				$output .= shell_exec("sudo mv -fv /tmp/config_restore/config.php /var/www/dashboard/config/ 2>&1")."\n";
-				$output .= shell_exec("sudo mv -fv /tmp/config_restore/language.php /var/www/dashboard/config/ 2>&1")."\n";
-				$output .= shell_exec('sudo find /tmp/config_restore/ -maxdepth 1 -name "*Hosts.txt" -exec mv -fv {} /root \; 2>&1')."\n";
-				$output .= shell_exec("sudo mv -fv /tmp/config_restore/wpa_supplicant.conf /etc/wpa_supplicant/ 2>&1")."\n";
-                		$output .= shell_exec("sudo mv -fv /tmp/config_restore/hostapd.conf /etc/hostapd/ 2>&1")."\n";
-				$output .= shell_exec("sudo mv -fv /tmp/config_restore/*_paused /etc/ 2>&1")."\n";
-				$output .= shell_exec("sudo mv -fv /tmp/config_restore/* /etc/ 2>&1")."\n";
+				$output .= shell_exec("sudo rm -f /etc/dstar-radio.* /etc/bmapi.key /etc/dapnetapi.key > /dev/null")."\n";
+                                $output .= shell_exec("sudo mv -fv /tmp/config_restore/gpsd /etc/default/ > /dev/null")."\n";
+				$output .= shell_exec("sudo mv -fv /tmp/config_restore/RSSI.dat /usr/local/etc/ > /dev/null")."\n";
+				$output .= shell_exec("sudo mv -fv /tmp/config_restore/ircddblocal.php /var/www/dashboard/config/ > /dev/null")."\n";
+				$output .= shell_exec("sudo mv -fv /tmp/config_restore/config.php /var/www/dashboard/config/ > /dev/null")."\n";
+				$output .= shell_exec("sudo mv -fv /tmp/config_restore/language.php /var/www/dashboard/config/ > /dev/null")."\n";
+				$output .= shell_exec('sudo find /tmp/config_restore/ -maxdepth 1 -name "*Hosts.txt" -exec mv -fv {} /root \; > /dev/null')."\n";
+				$output .= shell_exec("sudo mv -fv /tmp/config_restore/wpa_supplicant.conf /etc/wpa_supplicant/ > /dev/null")."\n";
+                		$output .= shell_exec("sudo mv -fv /tmp/config_restore/hostapd.conf /etc/hostapd/ > /dev/null")."\n";
+				$output .= shell_exec("sudo mv -fv /tmp/config_restore/*_paused /etc/ > /dev/null")."\n";
+				$output .= shell_exec("sudo mv -fv /tmp/config_restore/* /etc/ > /dev/null")."\n";
 				
 				//Restore the Timezone Config
 				$timeZone = shell_exec('grep date /var/www/dashboard/config/config.php | grep -o "\'.*\'" | sed "s/\'//g"');
 				$timeZone = preg_replace( "/\r|\n/", "", $timeZone);                    //Remove the linebreaks
-				shell_exec('sudo timedatectl set-timezone '.$timeZone.' 2>&1');
+				shell_exec('sudo timedatectl set-timezone '.$timeZone.' > /dev/null');
 				
 				//Restore ircDDGBateway Link Manager Password
 				$ircRemotePassword = shell_exec('grep remotePassword /etc/ircddbgateway | awk -F\'=\' \'{print $2}\'');
@@ -229,14 +229,14 @@ if ($_SERVER["PHP_SELF"] == "/admin/config_backup.php") {
 				
 				// Update the hosts files
 				$output .= "Updating Hostfiles.\n";
-				shell_exec('sudo /usr/local/sbin/HostFilesUpdate.sh 2>&1');
+				shell_exec('sudo /usr/local/sbin/HostFilesUpdate.sh > /dev/null');
 				
 				// Make the disk Read-Only
-				shell_exec('sudo mount -o remount,ro / 2>&1');
+				shell_exec('sudo mount -o remount,ro / > /dev/null');
 				
 				// Start the services
 				$output .= "Starting Services.\n";
-			    shell_exec('sudo pistar-services start 2>&1');
+			    	shell_exec('sudo pistar-services start > /dev/null');
 	
 				// Complete
 				$output .= "Configuration Restore Complete.\n";
