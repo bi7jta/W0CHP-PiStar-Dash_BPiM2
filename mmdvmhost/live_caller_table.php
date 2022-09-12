@@ -184,6 +184,9 @@ for ($i = 0;  ($i <= 0); $i++) { //Last 20  calls
 		$city = "";
 		$state = "";
 		$country = "---";
+		if ($listElem[2] == "DAPNET") {
+		    $target = "---";
+		}
 		$duration = "<td style='font-size:1.3em;'>---</td>";
 	    }
 	    // init geo/flag class

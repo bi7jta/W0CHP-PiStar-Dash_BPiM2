@@ -448,21 +448,14 @@ $numDMRmasters = exec('cd /var/log/pi-star ; /usr/local/bin/RemoteCommand 7643 s
   <div class="divTableHead"><?php echo $lang['dmr_repeater'];?></div>
   <div class="divTableBody">
     <div class="divTableRow center">
-      <div class="divTableHeadCell">DMR ID</div>
-      <div class="divTableCell cell_content" style="background: <?php echo $tableRowEvenBg; ?>;"><?php echo getConfigItem("General", "Id", $_SESSION['MMDVMHostConfigs']); ?></div>
-    </div>
-    <div class="divTableRow center">
-      <div class="divTableHeadCell">DMR CC</div>
-      <div class="divTableCell cell_content" style="background: <?php echo $tableRowEvenBg; ?>;"><?php echo getConfigItem("DMR", "ColorCode", $_SESSION['MMDVMHostConfigs']); ?></div>
-    </div>
-    <div class="divTableRow center">
       <div class="divTableHeadCell">TS1</div>
 	    <?php
 	    if (getConfigItem("DMR Network", "Slot1", $_SESSION['MMDVMHostConfigs']) == 1) {
 		if (preg_match("/Not/",getActualLink($reverseLogLinesMMDVM, "DMR Slot 1"))) {
                         echo "<div class='divTableCell cell_content middle' title='No TG'><div style=\"background: $tableRowEvenBg;\">No TG</div></div>\n";
 		} else {
-		    echo "<div class='divTableCell cell_content middle active-mode-cell' title='Time Slot 1 Enabled' style='border: .5px solid $tableBorderColor;'>".substr(getActualLink($reverseLogLinesMMDVM, "DMR Slot 1"), -11)."</div>\n";
+		    $slot1Link = substr(getActualLink($reverseLogLinesMMDVM, "DMR Slot 1"), -11); 
+		    echo "<div class='divTableCell cell_content middle active-mode-cell' title='Time Slot 1 Enabled: Linked to $slot1Link' style='border: .5px solid $tableBorderColor;'>$slot1Link</div>\n";
 		}
 	    } else {
 		    echo "<div class='divTableCell cell_content middle inactive-mode-cell' title='Time Slot 1 disabled' style='border: .5px solid $tableBorderColor;'>Disabled</div>\n";
@@ -476,7 +469,8 @@ $numDMRmasters = exec('cd /var/log/pi-star ; /usr/local/bin/RemoteCommand 7643 s
                 if (preg_match("/Not/",getActualLink($reverseLogLinesMMDVM, "DMR Slot 2"))) {
                         echo "<div class='divTableCell cell_content middle' title='No TG'><div style=\"background: $tableRowEvenBg;\">No TG</div></div>\n";
                 } else {
-			echo "<div class='divTableCell cell_content middle active-mode-cell' title='Time Slot 2 Enabled' style='border: .5px solid $tableBorderColor;'>".substr(getActualLink($reverseLogLinesMMDVM, "DMR Slot 2"), -11)."</div>\n";
+		    	$slot2Link = substr(getActualLink($reverseLogLinesMMDVM, "DMR Slot 2"), -11); 
+			echo "<div class='divTableCell cell_content middle active-mode-cell' title='Time Slot 2 Enabled: Linked to $slot2Link' style='border: .5px solid $tableBorderColor;'>$slot2Link</div>\n";
 		}
 	    } else {
 		    echo "<div class='divTableCell cell_content middle inactive-mode-cell' title='Time Slot 2 disabled' style='border: .5px solid $tableBorderColor;'>Disabled</div>\n";
@@ -484,18 +478,26 @@ $numDMRmasters = exec('cd /var/log/pi-star ; /usr/local/bin/RemoteCommand 7643 s
 	    ?>
     </div>
     <div class="divTableRow center">
-      <div class="divTableHeadCell" title="DMR Roaming Beacons">Roaming Beacons</div>
+      <div class="divTableHeadCell" title="DMR Roaming Beacons">Beacons</div>
            <?php
             if (getConfigItem("DMR", "Beacons", $_SESSION['MMDVMHostConfigs']) == 1 && getConfigItem("DMR", "BeaconInterval", $_SESSION['MMDVMHostConfigs']) != null) {
-		echo "<div class='divTableCell cell_content middle active-mode-cell' style='border: .5px solid $tableBorderColor;'>Timed Mode</div>\n";
+		echo "<div class='divTableCell cell_content middle active-mode-cell' style='border: .5px solid $tableBorderColor;' title='Enabled: Timed Mode'>Timed Mode</div>\n";
 	    } elseif  (getConfigItem("DMR", "Beacons", $_SESSION['MMDVMHostConfigs']) == 1 && getConfigItem("DMR", "BeaconInterval", $_SESSION['MMDVMHostConfigs']) == null) {
-		echo "<div class='divTableCell cell_content middle active-mode-cell' style='border: .5px solid $tableBorderColor;'>Network Mode</div>\n";
+		echo "<div class='divTableCell cell_content middle active-mode-cell' style='border: .5px solid $tableBorderColor;' title='Enabled: Network Mode'>Net. Mode</div>\n";
 	    } else {
 		echo "<div class='divTableCell cell_content middle'><div style=\"background: $tableRowEvenBg;\">Disabled</div></div>\n";
 	    }
 	    ?>
       </div>
   </div>
+    <div class="divTableRow center">
+      <div class="divTableHeadCell">DMR ID</div>
+      <div class="divTableCell cell_content" style="background: <?php echo $tableRowEvenBg; ?>;"><?php echo getConfigItem("General", "Id", $_SESSION['MMDVMHostConfigs']); ?></div>
+    </div>
+    <div class="divTableRow center">
+      <div class="divTableHeadCell">DMR CC</div>
+      <div class="divTableCell cell_content" style="background: <?php echo $tableRowEvenBg; ?>;"><?php echo getConfigItem("DMR", "ColorCode", $_SESSION['MMDVMHostConfigs']); ?></div>
+    </div>
 </div>
 <div class="divTable">
   <?php if ($numDMRmasters <= 1) { ?>
@@ -518,22 +520,27 @@ $numDMRmasters = exec('cd /var/log/pi-star ; /usr/local/bin/RemoteCommand 7643 s
 				$xlxMasterHostLinkState = exec('grep \'XLX, Linking\|XLX, Unlinking\|XLX, Logged\' /var/log/pi-star/DMRGateway-'.gmdate("Y-m-d", time() - 86340).'.log | tail -1 | awk \'{print $5 " " $8 " " $9}\'');
 			    }
 			    
-			    if ($xlxMasterHostLinkState != "") {
-				if ( strpos($xlxMasterHostLinkState, 'Linking') !== false ) {
-				    $xlxMasterHost1 = str_replace('Linking ', '', $xlxMasterHostLinkState);
-				}
-				else if ( strpos($xlxMasterHostLinkState, 'Unlinking') !== false ) {
-				    $xlxMasterHost1 = "XLX Not Linked";
-				}
-				else if ( strpos($xlxMasterHostLinkState, 'Logged') !== false ) {
-				    $xlxMasterHost1 = "XLX Not Linked";
-				}
-			    }
-			    else {
-				// There is no trace of XLX in the logfile.
-				$xlxMasterHost1 = "".$xlxMasterHost1." ".$_SESSION['DMRGatewayConfigs']['XLX Network']['Module']."";
-			    }
-			    
+                            if ($xlxMasterHostLinkState != "") {
+                                if ( strpos($xlxMasterHostLinkState, 'Linking') !== false ) {
+                                    $xlxMasterHost1 = str_replace('Linking ', '', $xlxMasterHostLinkState);
+				    $xlxMasterHost1 = str_replace(" ", " Module ", $xlxMasterHost1); 
+                                    $xlxMasterHost1Tooltip= $xlxMasterHost1; 
+                                }
+                                else if ( strpos($xlxMasterHostLinkState, 'Unlinking') !== false ) {
+                                    $xlxMasterHost1 = "XLX Not Linked";
+                                    $xlxMasterHost1Tooltip= $xlxMasterHost1;
+                                }
+                                else if ( strpos($xlxMasterHostLinkState, 'Logged') !== false ) {
+                                    $xlxMasterHost1 = "XLX Not Linked";
+                                    $xlxMasterHost1Tooltip= $xlxMasterHost1;
+                                }
+                            }
+                            else {
+                                // There is no trace of XLX in the logfile.
+                                $xlxMasterHost1 = "".$xlxMasterHost1." ".$_SESSION['DMRGatewayConfigs']['XLX Network']['Module']."";
+                                $xlxMasterHost1Tooltip= $xlxMasterHost1;    
+                            }
+ 
 			    echo "<div class='divTableRow center'><div class='divTableCell'><div " .GetActiveConnectionStyle($remoteDMRgwResults, "xlx")." title=\"".$xlxMasterHost1Tooltip."\">".$xlxMasterHost1."</div></div></div>\n";
 			}
 			if ($_SESSION['DMRGatewayConfigs']['DMR Network 1']['Enabled'] == 1) {
