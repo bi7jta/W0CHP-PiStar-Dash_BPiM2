@@ -2828,7 +2828,7 @@ if (!empty($_POST)):
 		$configdmrgateway['APRS']['Address'] = "127.0.0.1";
 		$configdmrgateway['APRS']['Port'] = "8673";
 		$configdmrgateway['APRS']['Suffix'] = "R";
-		$configdmrgateway['APRS']['Description'] = "DMRGateway";
+		$configdmrgateway['APRS']['Description'] = "APRS for DMRGateway";
 	}
 
 	// DMRGateway can break the lines with quotes in, when DMRGateway is off...
@@ -2863,7 +2863,7 @@ if (!empty($_POST)):
 	$configm17gateway['APRS']['Enable'] = $M17GatewayAPRS;
        	$configm17gateway['APRS']['Address'] = "127.0.0.1";
        	$configm17gateway['APRS']['Port'] = "8673";
-       	$configm17gateway['APRS']['Description'] = "M17Gateway";
+       	$configm17gateway['APRS']['Description'] = "APRS for M17Gateway";
        	$configm17gateway['APRS']['Suffix'] = "M";
         $configm17gateway['Remote Commands']['Enable'] = "1";
         $configm17gateway['Remote Commands']['Port'] = "6075";
@@ -3120,7 +3120,7 @@ if (!empty($_POST)):
 	$configdgidgateway['APRS']['Address'] = "127.0.0.1";
 	$configdgidgateway['APRS']['Port'] = "8673";
 	$configdgidgateway['APRS']['Suffix'] = "Y";
-	$configdgidgateway['APRS']['Description'] = "DGIdGateway";
+	$configdgidgateway['APRS']['Description'] = "APRS for DGIdGateway";
 
 	// Clean up for NXDN Gateway
 	if (file_exists('/etc/nxdngateway')) {
@@ -3156,7 +3156,7 @@ if (!empty($_POST)):
 		if(!isset($confignxdngateway['APRS']['Address'])) { $confignxdngateway['APRS']['Server'] = "127.0.0.1"; }
 		if(!isset($confignxdngateway['APRS']['Port'])) { $confignxdngateway['APRS']['Port'] = "8673"; }
 		if(!isset($confignxdngateway['APRS']['Suffix'])) { $confignxdngateway['APRS']['Suffix'] = "N"; }
-		if(!isset($confignxdngateway['APRS']['Description'])) { $confignxdngateway['APRS']['Description'] = "NXDN Gateway"; }
+		if(!isset($confignxdngateway['APRS']['Description'])) { $confignxdngateway['APRS']['Description'] = "APRS for NXDNGateway"; }
 		// GPSd stuff
 		if(!isset($confignxdngateway['GPSD']['Enable'])) { $confignxdngateway['GPSD']['Enable'] = "0"; }
 		if(!isset($confignxdngateway['GPSD']['Address'])) { $confignxdngateway['GPSD']['Address'] = "127.0.0.1"; }
@@ -3191,7 +3191,7 @@ if (!empty($_POST)):
 	if (!isset($confignxdngateway['APRS']['Address'])) { $confignxdngateway['APRS']['Address'] = "127.0.0.1"; }
 	if (!isset($confignxdngateway['APRS']['Port'])) { $confignxdngateway['APRS']['Port'] = "8673"; }
 	if (!isset($confignxdngateway['APRS']['Suffix'])) { $confignxdngateway['APRS']['Suffix'] = "N"; }
-	if (!isset($confignxdngateway['APRS']['Description'])) { $confignxdngateway['APRS']['Description'] = "NXDN Gateway"; }
+	if (!isset($confignxdngateway['APRS']['Description'])) { $confignxdngateway['APRS']['Description'] = "APRS for NXDNGateway"; }
 	if (!isset($confignxdngateway['GPSD']['Enable'])) { $confignxdngateway['GPSD']['Enable'] = "0"; }
 	if (!isset($confignxdngateway['GPSD']['Address'])) { $confignxdngateway['GPSD']['Address'] = "127.0.0.1"; }
 	if (!isset($confignxdngateway['GPSD']['Port'])) { $confignxdngateway['GPSD']['Port'] = "2947"; }
@@ -3232,7 +3232,7 @@ if (!empty($_POST)):
 	if (!isset($configysfgateway['APRS']['Enable'])) { $configysfgateway['APRS']['Enable'] = "0"; }
 	if (!isset($configysfgateway['APRS']['Address'])) { $configysfgateway['APRS']['Address'] = "127.0.0.1"; }
 	if (!isset($configysfgateway['APRS']['Port'])) { $configysfgateway['APRS']['Port'] = "8673"; }
-	if (!isset($configysfgateway['APRS']['Description'])) { $configysfgateway['APRS']['Description'] = "YSFGateway"; }
+	if (!isset($configysfgateway['APRS']['Description'])) { $configysfgateway['APRS']['Description'] = "APRS for YSFGateway"; }
 	if (!isset($configysfgateway['APRS']['Suffix'])) { $configysfgateway['APRS']['Suffix'] = "Y"; }
 	if (isset($configysfgateway['aprs.fi'])) { unset($configysfgateway['aprs.fi']); }
 	if (isset($configysfgateway['APRS']['Enable'])) { $configysfgateway['APRS']['Enable'] = $YSFGatewayAPRS; }
