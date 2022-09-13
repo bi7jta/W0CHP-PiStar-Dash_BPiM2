@@ -1011,6 +1011,8 @@ td.lookatme {
   margin-top: -2px;
 }
 
+/* indicators */
+
 .red_dot {
     height: 15px;
     width: 15px;
@@ -1025,5 +1027,49 @@ td.lookatme {
     background-color: limegreen;
     border-radius: 50%;
     display: inline-block;
+}
+
+/* RSSI meters */
+meter {
+  --background: #ddd;
+  --optimum: limegreen;
+  --sub-optimum: orange;
+  --sub-sub-optimum: red;
+  border: 2px solid black;
+}
+
+/* The gray background in Chrome, etc. */
+meter::-webkit-meter-bar {
+  background: var(--background);
+}
+
+/* The green (optimum) bar in Firefox */
+meter:-moz-meter-optimum::-moz-meter-bar {
+  background: var(--optimum);
+}
+
+/* The green (optimum) bar in Chrome etc. */
+meter::-webkit-meter-optimum-value {
+  background: var(--optimum);
+}
+
+/* The yellow (sub-optimum) bar in Firefox */
+meter:-moz-meter-sub-optimum::-moz-meter-bar {
+  background: var(--sub-optimum);
+}
+
+/* The yellow (sub-optimum) bar in Chrome etc. */
+meter::-webkit-meter-suboptimum-value {
+  background: var(--sub-optimum);
+}
+
+/* The red (even less good) bar in Firefox */
+meter:-moz-meter-sub-sub-optimum::-moz-meter-bar {
+  background: var(--sub-sub-optimum);
+}
+
+/* The red (even less good) bar in Chrome etc. */
+meter::-webkit-meter-even-less-good-value {
+  background: var(--sub-sub-optimum);
 }
 

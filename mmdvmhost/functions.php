@@ -1232,15 +1232,15 @@ function getHeardList($logLines) {
 		    }
 		    if ($relint > 0) {
 			if ($signal = 9) {
-			    $rssi = "<span><img style='margin-bottom:-2px;' src='/images/5-bar.png' /></span> S{$signal}+{$relint}dB <span class='noMob'>({$dBraw})</span>";
+			    $rssi = "<span><meter id='S-meter' value=\"1\" high=\"1\"></meter></span> S{$signal}+{$relint}dB <span class='noMob'>({$dBraw})</span>";
 			} elseif ($signal < 9 && $signal >= 7) {
-			    $rssi = "<span><img style='margin-bottom:-2px;' src='/images/4-bar.png' /></span> S{$signal}+{$relint}dB <span class='noMob'>({$dBraw})</span>";
+			    $rssi = "<span><meter id='S-meter' value=\".8\" low=\".8\"></meter></span> S{$signal}+{$relint}dB <span class='noMob'>({$dBraw})</span>";
 			} elseif ($signal < 7 && $signal >= 5) {
-			    $rssi = "<span><img style='margin-bottom:-2px;' src='/images/3-bar.png' /></span> S{$signal}+{$relint}dB <span class='noMob'>({$dBraw})</span>";
+			    $rssi = "<span><meter id='S-meter' value=\".6\" high=\".5\"></meter></span> S{$signal}+{$relint}dB <span class='noMob'>({$dBraw})</span>";
 			} elseif ($signal < 5  && $signal >= 3) {
-			    $rssi = "<span><img style='margin-bottom:-2px;' src='/images/2-bar.png' /></span> S{$signal}+{$relint}dB <span class='noMob'>({$dBraw})</span>";
+			    $rssi = "<span><meter low=\".5\" optimum=\".8\" high=\".75\" value=\".3\"></meter></span> S{$signal}+{$relint}dB <span class='noMob'>({$dBraw})</span>";
 			} elseif ($signal < 3  && $signal >= 1) {
-			    $rssi = "<span><img style='margin-bottom:-2px;' src='/images/1-bar.png' /></span> S{$signal}+{$relint}dB <span class='noMob'>({$dBraw})</span>";
+			    $rssi = "<span><meter low=\".25\" optimum=\".8\" high=\".75\" value=\".15\"></meter></span> S{$signal}+{$relint}dB <span class='noMob'>({$dBraw})</span>";
 			} else {
 			    $rssi = "S{$signal}+{$relint}dB <span class='noMob'>({$dBraw})</span>";
 			}
