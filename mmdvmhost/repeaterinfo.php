@@ -458,7 +458,7 @@ $numDMRmasters = exec('cd /var/log/pi-star ; /usr/local/bin/RemoteCommand 7643 s
 		    echo "<div class='divTableCell cell_content middle active-mode-cell' title='Time Slot 1 Enabled: Linked to $slot1Link' style='border: .5px solid $tableBorderColor;'>$slot1Link</div>\n";
 		}
 	    } else {
-		    echo "<div class='divTableCell cell_content middle inactive-mode-cell' title='Time Slot 1 disabled' style='border: .5px solid $tableBorderColor;'>Disabled</div>\n";
+		    echo "<div class='divTableCell cell_content middle title='Time Slot 1 disabled' style='border: .5px solid $tableBorderColor;'>Disabled</div>\n";
 	    }
 	    ?>
     </div>
@@ -473,7 +473,7 @@ $numDMRmasters = exec('cd /var/log/pi-star ; /usr/local/bin/RemoteCommand 7643 s
 			echo "<div class='divTableCell cell_content middle active-mode-cell' title='Time Slot 2 Enabled: Linked to $slot2Link' style='border: .5px solid $tableBorderColor;'>$slot2Link</div>\n";
 		}
 	    } else {
-		    echo "<div class='divTableCell cell_content middle inactive-mode-cell' title='Time Slot 2 disabled' style='border: .5px solid $tableBorderColor;'>Disabled</div>\n";
+		    echo "<div class='divTableCell cell_content middle title='Time Slot 2 disabled' style='border: .5px solid $tableBorderColor;'>Disabled</div>\n";
 	    }
 	    ?>
     </div>

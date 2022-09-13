@@ -18,6 +18,7 @@ include_once $_SERVER['DOCUMENT_ROOT'].'/config/language.php';        // Transla
 
 // Check if DMR is Enabled
 $testMMDVModeDMR = getConfigItem("DMR", "Enable", $_SESSION['MMDVMHostConfigs']);
+$mmdvmconfigs = $_SESSION['MMDVMHostConfigs'];
 
 if ( $testMMDVModeDMR == 1 ) {
     $bmEnabled = true;
@@ -108,12 +109,15 @@ if ( $testMMDVModeDMR == 1 ) {
 	        }
             }
 	    // batch-add/delete static
-	    if (!isset($_POST["massTGslotSelected"])) {
-                $massTGslot = "0";
-            }
-            else {
-                $massTGslot = escapeshellcmd($_POST["massTGslotSelected"]);
-            }
+	    if ( getConfigItem("DMR Network", "Slot1", $mmdvmconfigs) == "0" ) {
+		unset($_POST["massTGslotSelected"]);
+		$massTGslot = "0";
+		$destSlot = "2";
+	    } else {
+		$massTGslot = escapeshellcmd($_POST["massTGslotSelected"]);
+		$destSlot = $massTGslot;
+	    }
+	    
             $bmStaticMassAddCmd = ("sudo /usr/local/sbin/bm_static_tgs_batchadd $sanitizedKey $dmrID $massTGslot");
             $bmStaticMassDelCmd = ("sudo /usr/local/sbin/bm_static_tgs_batchdel $sanitizedKey $dmrID $massTGslot");
 	    if (!empty(escapeshellcmd($_POST["tgStaticBatch"]))) {
@@ -161,7 +165,7 @@ if ( $testMMDVModeDMR == 1 ) {
 			    $str = preg_replace('#\s+#',', ',trim($massTGs));
 		    	    echo '<br /><div style="text-align:left;font-weight:bold;" id="cmdOut">BrandMeister Manager</div>'."\n";
                             echo "<table>\n<tr><th>Command Output</th></tr>\n<tr><td>";
-                            print "<p>All Submitted Static Talkgroups ($str) Added to slot ".$_POST['massTGslotSelected']."!<br /> Page reloading...</p>";
+                            print "<p>All Submitted Static Talkgroups ($str) Added to slot $destSlot! <br /> Page reloading...</p>";
                             echo "</td></tr>\n</table>\n";
                             // Clean up...
                             unset($_POST);
@@ -195,7 +199,7 @@ if ( $testMMDVModeDMR == 1 ) {
 			    $str = preg_replace('#\s+#',', ',trim($massTGs)); 
 		    	    echo '<br /><div style="text-align:left;font-weight:bold;" id="cmdOut">BrandMeister Manager</div>'."\n";
                             echo "<table>\n<tr><th>Command Output</th></tr>\n<tr><td>";
-                            print "<p>All Submitted Static Talkgroups ($str) Deleted from slot ".$_POST['massTGslotSelected']."!<br /> Page reloading...</p>";
+                            print "<p>All Submitted Static Talkgroups ($str) Deleted from slot $destSlot!<br /> Page reloading...</p>";
                             echo "</td></tr>\n</table>\n";
                             // Clean up...
                             unset($_POST);
@@ -319,7 +323,12 @@ if ( $testMMDVModeDMR == 1 ) {
           echo "<table>\n<tr><th>Command Output</th></tr>\n<tr><td><p>";
           //echo "Sending command to BrandMeister API";
           //if (isset($feedback)) { print "BrandMeister APIv2: ".$feedback->{'message'}; } else { print "BrandMeister APIv2: No Response"; }
-          if (isset($feedback)) { print "TG $targetTG on Timeslot $targetSlot $v2fb;<br />BrandMeister APIv2: Success."; } else { print "BrandMeister APIv2: No Response"; }
+	  if ($targetSlot == "0") {
+	      $dispSlot= "2";
+          } else {
+	      $dispSlot = $targetSlot;
+	  }
+          if (isset($feedback)) { print "TG $targetTG on Timeslot $dispSlot $v2fb;<br />BrandMeister APIv2: Success."; } else { print "BrandMeister APIv2: No Response"; }
           echo " <br />Page reloading...</p></td></tr>\n</table>\n";
           // Clean up...
           unset($_POST);
