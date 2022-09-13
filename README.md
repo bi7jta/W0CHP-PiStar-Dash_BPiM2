@@ -100,7 +100,7 @@ Run:
 * Selectable DMR Roaming Beacon Support: Network or Interval Mode (or disabled).
 * "Live Caller" screen; similar to a "virtual Nextion screen"; displays current caller information in real-time.
 * Current/Last Caller Details on Main Dashboard (name/location, when available).
-* Talkgroup Names display in target column (Brandmeister DMR, NXDN and P25 support only).
+* Talkgroup Names display in target fields (Brandmeister DMR, NXDN and P25 support only).
 * YSF/NXDN/P25 link managers gives the ability to change links/rooms on-the-fly, rather than going through the large (and slow) configuration page.
 * "XLX DMR Link Manager" allows fast switching of XLX reflectors and modules, as well as unlinking from modules to "pause" traffic.
 * Searchable drop-downs for massive host lists in configuration/admin pages. E.g. D-Star Refs., YSF Hosts, XLX Hosts, DMR Hosts, etc.
@@ -109,7 +109,7 @@ Run:
   * Connected dynamic talk groups now display idle-timeout time (due to no TX).
   * Added ability to mass-drop your static talk groups; and mass re-add the previously
     linked static talk groups.
-   * Added ability to batch add/delete up to 5 static talk groups at a time (for now)
+  * Added ability to batch add/delete up to 10 static talk groups at a time.
 * TGIF Manager; now displays connected actual talk group names. (**NOTE**: Since TGIF has moved to a new platform with no API available, this currently does not work until TGIF's API is made available.)
 * "Instant Mode Manager" added to admin page; allows you to instantly pause or resume selected radio modes. Handy for attending
   nets, quieting a busy mode, to temporarily eliminate "mode monopolization", etc.

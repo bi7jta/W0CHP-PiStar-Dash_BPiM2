@@ -1623,7 +1623,7 @@ function getActualLink($logLines, $mode) {
 			}
 			if ($from !== "") {
 			    if ($from === "4000") {
-				return "No TG";
+				return "Unlinked";
 			    }
 			}
 			if ($to !== "") {
@@ -1631,7 +1631,7 @@ function getActualLink($logLines, $mode) {
 				continue;
 			    }
 			    if ($to === "TG 4000") {
-				return "No TG";
+				return "Unlinked";
 			    }
 			    if (strpos($to, ',') !== false) {
 				$to = substr($to, 0, strpos($to, ','));
@@ -1640,7 +1640,7 @@ function getActualLink($logLines, $mode) {
 			}
 		    }
 		}
-		return "No TG";
+		return "Unlinked";
 	    }
 	    else {
 		return "<div class='inactive-mode-cell'>Service Not Started</div>";

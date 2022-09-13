@@ -112,10 +112,10 @@ if ( $testMMDVModeDMR == 1 ) {
 	    if ( getConfigItem("DMR Network", "Slot1", $mmdvmconfigs) == "0" ) {
 		unset($_POST["massTGslotSelected"]);
 		$massTGslot = "0";
-		$destSlot = "2";
+		$dispSlot = "2";
 	    } else {
 		$massTGslot = escapeshellcmd($_POST["massTGslotSelected"]);
-		$destSlot = $massTGslot;
+		$dispSlot = $massTGslot;
 	    }
 	    
             $bmStaticMassAddCmd = ("sudo /usr/local/sbin/bm_static_tgs_batchadd $sanitizedKey $dmrID $massTGslot");
@@ -140,18 +140,18 @@ if ( $testMMDVModeDMR == 1 ) {
                         $massTGs = explode("\n", str_replace("\r", "", $massTGs));
 		        // put data posted into clean array with newline as delimeter
 		        $massTGs = implode("\n", $massTGs);
-		        // limit the number of talkgroups per form entry (5, for now).
+		        // limit the number of talkgroups per form entry (10, for now).
                         $massTGcount = substr_count($massTGs, "\n") + 1;
-		        if ($massTGcount > "5") {
+		        if ($massTGcount > "10") {
                             // Output to the browser
 		    	    echo '<br /><div style="text-align:left;font-weight:bold;" id="cmdOut">BrandMeister Manager</div>'."\n";
                             echo "<table>\n<tr><th>Command Output</th></tr>\n<tr><td>";
-                            print "<p>No more than 5 talkgroups can be defined at a time! <br /> Page reloading...</p>";
+                            print "<p>No more than 10 talkgroups can be defined at a time! <br /> Page reloading...</p>";
                             echo "</td></tr>\n</table>\n";
                             // Clean up...
                             unset($_POST);
                             echo '<script type="text/javascript">setTimeout(function() { window.location.href = "./?func=bm_man";},3000);</script>';
-                       } else // 5 or less tgs submitted. keep going...
+                       } else // 10 or less tgs submitted. keep going...
 		           {
                             exec('sudo mount -o remount,rw /');
                             $handleBatch = fopen("/var/www/dashboard/.bm_tgs.batch", 'w+');
@@ -165,7 +165,7 @@ if ( $testMMDVModeDMR == 1 ) {
 			    $str = preg_replace('#\s+#',', ',trim($massTGs));
 		    	    echo '<br /><div style="text-align:left;font-weight:bold;" id="cmdOut">BrandMeister Manager</div>'."\n";
                             echo "<table>\n<tr><th>Command Output</th></tr>\n<tr><td>";
-                            print "<p>All Submitted Static Talkgroups ($str) Added to slot $destSlot! <br /> Page reloading...</p>";
+                            print "<p>All Submitted Static Talkgroups ($str) Added to slot $dispSlot! <br /> Page reloading...</p>";
                             echo "</td></tr>\n</table>\n";
                             // Clean up...
                             unset($_POST);
@@ -177,11 +177,11 @@ if ( $testMMDVModeDMR == 1 ) {
                         $massTGs = explode("\n", str_replace("\r", "", $massTGs));
 		        $massTGs = implode("\n", $massTGs);
                         $massTGcount = substr_count($massTGs, "\n") + 1;
-		        if ($massTGcount > "5") {
+		        if ($massTGcount > "10") {
                             // Output to the browser
 		    	    echo '<br /><div style="text-align:left;font-weight:bold;" id="cmdOut">BrandMeister Manager</div>'."\n";
                             echo "<table>\n<tr><th>Command Output</th></tr>\n<tr><td>";
-                            print "<p>No more than 5 talkgroups can be defined at a time! <br /> Page reloading...</p>";
+                            print "<p>No more than 10 talkgroups can be defined at a time! <br /> Page reloading...</p>";
                             echo "</td></tr>\n</table>\n";
                             // Clean up...
                             unset($_POST);
@@ -199,7 +199,7 @@ if ( $testMMDVModeDMR == 1 ) {
 			    $str = preg_replace('#\s+#',', ',trim($massTGs)); 
 		    	    echo '<br /><div style="text-align:left;font-weight:bold;" id="cmdOut">BrandMeister Manager</div>'."\n";
                             echo "<table>\n<tr><th>Command Output</th></tr>\n<tr><td>";
-                            print "<p>All Submitted Static Talkgroups ($str) Deleted from slot $destSlot!<br /> Page reloading...</p>";
+                            print "<p>All Submitted Static Talkgroups ($str) Deleted from slot $dispSlot!<br /> Page reloading...</p>";
                             echo "</td></tr>\n</table>\n";
                             // Clean up...
                             unset($_POST);
@@ -386,7 +386,7 @@ if ( $testMMDVModeDMR == 1 ) {
 		    } else {
 			echo '      <input type="button" disabled value="Re-Add All Previous  Static TGs" id="tgStaticReAdd" name="tgStaticReAdd"/></td>'."\n";
 		    }
-		    echo '    <td><b>Enter Talkgroups:</b><p><textarea style="vertical-align: middle; resize: none;" rows="5" cols="20" name="massTGlist" placeholder="One per line."></textarea></p></td>'."\n";
+		    echo '    <td><b>Enter Talkgroups:</b><br /><small>(max. 10)</small><p><textarea style="vertical-align: middle; resize: none;" rows="5" cols="20" name="massTGlist" placeholder="One per line."></textarea></p></td>'."\n";
 		    echo '    <td><b>Timelot:</b><br /><br />';
 		    if (getConfigItem("DMR Network", "Slot1", $_SESSION['MMDVMHostConfigs']) == "1") {
 		        echo '    <input type="radio" id="massts1" name="massTGslotSelected" value="1"/><label for="massts1"/>TS1</label>&nbsp;';
@@ -398,7 +398,7 @@ if ( $testMMDVModeDMR == 1 ) {
 		    echo '  </tr>'."\n";
 		    echo '  <tr>'."\n";
 		    echo '    <td style="white-space:normal;padding: 3px;">This function drops all current static talkgroups, OR re-adds the previously-dropped static talkgroups.</td>'."\n";
-		    echo '    <td colspan="3" style="white-space:normal;padding: 3px;">This function mass/bulk-adds or deletes up to 5 static talkgroups. Enter one talkgroup per line.'."\n";
+		    echo '    <td colspan="3" style="white-space:normal;padding: 3px;">This function mass/bulk-adds or deletes up to 10 static talkgroups. Enter one talkgroup per line.'."\n";
 		    echo '  </tr>'."\n";
 		    echo '  <tr>'."\n";
 		    echo '    <td colspan="4" style="white-space:normal;padding: 3px;">(Note: Give all mass/bulk static talkgroup management functions some time to process, due to the nature of BrandMeister not natively supporting mass-management functions for static takgroups.)'."\n";

@@ -452,10 +452,10 @@ $numDMRmasters = exec('cd /var/log/pi-star ; /usr/local/bin/RemoteCommand 7643 s
 	    <?php
 	    if (getConfigItem("DMR Network", "Slot1", $_SESSION['MMDVMHostConfigs']) == 1) {
 		if (preg_match("/Not/",getActualLink($reverseLogLinesMMDVM, "DMR Slot 1"))) {
-                        echo "<div class='divTableCell cell_content middle' title='No TG'><div style=\"background: $tableRowEvenBg;\">No TG</div></div>\n";
+                        echo "<div class='divTableCell cell_content middle' title='Unlinked'><div style=\"background: $tableRowEvenBg;\">Unlinked</div></div>\n";
 		} else {
 		    $slot1Link = substr(getActualLink($reverseLogLinesMMDVM, "DMR Slot 1"), -11); 
-		    echo "<div class='divTableCell cell_content middle active-mode-cell' title='Time Slot 1 Enabled: Linked to $slot1Link' style='border: .5px solid $tableBorderColor;'>$slot1Link</div>\n";
+		    echo "<div class='divTableCell cell_content middle active-mode-cell' title='Time Slot 1 Enabled: $slot1Link' style='border: .5px solid $tableBorderColor;'>$slot1Link</div>\n";
 		}
 	    } else {
 		    echo "<div class='divTableCell cell_content middle title='Time Slot 1 disabled' style='border: .5px solid $tableBorderColor;'>Disabled</div>\n";
@@ -467,10 +467,10 @@ $numDMRmasters = exec('cd /var/log/pi-star ; /usr/local/bin/RemoteCommand 7643 s
            <?php
 	    if (getConfigItem("DMR Network", "Slot2", $_SESSION['MMDVMHostConfigs']) == 1) {
                 if (preg_match("/Not/",getActualLink($reverseLogLinesMMDVM, "DMR Slot 2"))) {
-                        echo "<div class='divTableCell cell_content middle' title='No TG'><div style=\"background: $tableRowEvenBg;\">No TG</div></div>\n";
+                        echo "<div class='divTableCell cell_content middle' title='Unlinked'><div style=\"background: $tableRowEvenBg;\">Unlinked</div></div>\n";
                 } else {
 		    	$slot2Link = substr(getActualLink($reverseLogLinesMMDVM, "DMR Slot 2"), -11); 
-			echo "<div class='divTableCell cell_content middle active-mode-cell' title='Time Slot 2 Enabled: Linked to $slot2Link' style='border: .5px solid $tableBorderColor;'>$slot2Link</div>\n";
+			echo "<div class='divTableCell cell_content middle active-mode-cell' title='Time Slot 2 Enabled: $slot2Link' style='border: .5px solid $tableBorderColor;'>$slot2Link</div>\n";
 		}
 	    } else {
 		    echo "<div class='divTableCell cell_content middle title='Time Slot 2 disabled' style='border: .5px solid $tableBorderColor;'>Disabled</div>\n";
