@@ -123,7 +123,7 @@ if ( $testMMDVModeDMR == 1 ) {
 		    $now = new DateTime();
 		    $then = new DateTime( "@" . $dynamicTG->timeout);
 		    $diff = $then->diff($now);
-		    $bmDynanicTGexpire = $diff->format('%i:%S');
+		    $bmDynanicTGexpire = $diff->format('%i:%S mins');
 		    $bmDynamicTGname = exec("grep -w \"$dynamicTG->talkgroup\" /usr/local/etc/BM_TGs.json | cut -d\":\" -f2- | tr -cd \"'[:alnum:]\/ -\"");
 		    $bmDynamicTGList .= "<tr><td align='left' style='padding-left: 8px;'>TG ".$dynamicTG->talkgroup."</td><td align='left' style='padding-left: 8px;'>".StripStupidComments($bmDynamicTGname)."</td><td align='left' style='padding-left: 8px;'>".$dynamicTG->slot."</td><td align='left' style='padding-left: 8px;' id='tgTimeout'>".date("$local_time", substr($dynamicTG->timeout, 0, 10))." ".date('T'). " ($bmDynanicTGexpire remaining)</td></tr>";
                 }
@@ -131,7 +131,7 @@ if ( $testMMDVModeDMR == 1 ) {
 		    $now = new DateTime();
 		    $then = new DateTime( "@" . $dynamicTG->timeout);
 		    $diff = $then->diff($now);
-		    $bmDynanicTGexpire = $diff->format('%i:%S');
+		    $bmDynanicTGexpire = $diff->format('%i:%S mins');
 		    $bmDynamicTGname = exec("grep -w \"$dynamicTG->talkgroup\" /usr/local/etc/BM_TGs.json | cut -d\":\" -f2- | tr -cd \"'[:alnum:]\/ -\"");
 		    $bmDynamicTGList .= "<tr><td align='left' style='padding-left: 8px;'>TG ".$dynamicTG->talkgroup."</td><td align='left' style='padding-left: 8px;'>".StripStupidComments($bmDynamicTGname)."</td><td align='left' style='padding-left: 8px;'>".$dynamicTG->slot."</td><td align='left' style='padding-left: 8px;'>".date("$local_time", substr($dynamicTG->timeout, 0, 10))." ".date('T')." ($bmDynanicTGexpire remaining)</td></tr>";
                 }

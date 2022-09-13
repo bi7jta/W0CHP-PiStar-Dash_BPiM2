@@ -149,7 +149,7 @@ for ($i = 0;  ($i <= 0); $i++) { //Last 20  calls
 			$target = $target_lookup;
 			$stupid_bm = ['/ - 10 Minute Limit/', '/ NOT A CALL CHANNEL/', '/ NO NETS(.*?)/', '/ - .*/', '/!/'];
 			$target = preg_replace($stupid_bm, "", $target); // strip stupid fucking comments from BM admins in TG names. Idiots.
-			$target = str_replace(": ", " <span class='noMob'>(", $target.")</span>");
+			$target = str_replace(": ", " <span class='noMob'>(BM ", $target.")</span>");
 			$target = "TG $target";
 		    } else {
 			$target = "TG $target";

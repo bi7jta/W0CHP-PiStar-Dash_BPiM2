@@ -172,7 +172,7 @@ if (strlen($target) >= 2) {
                 $target = $target_lookup;
                 $stupid_bm = ['/ - 10 Minute Limit/', '/ NOT A CALL CHANNEL/', '/ NO NETS(.*?)/', '/ - .*/', '/!/'];
                 $target = preg_replace($stupid_bm, "", $target); // strip stupid fucking comments from BM admins in TG names. Idiots.
-                $target = str_replace(": ", " (", $target.")");
+                $target = str_replace(": ", " (BM ", $target.")");
                 $target = "TG $target";
         } else {
                 $target = "TG $target";
