@@ -590,7 +590,7 @@ $numDMRmasters = exec('cd /var/log/pi-star ; /usr/local/bin/RemoteCommand 7643 s
 			$ysfLinkedTo = "Mode Paused";
 			$ysfLinkStateTooltip = $ysfLinkedTo;
 		} else {
-            $ysfLinkedTo = getActualLink($reverseLogLinesYSFGateway, "YSF");
+            		$ysfLinkedTo = getActualLink($reverseLogLinesYSFGateway, "YSF");
 		}
 	    if ($ysfLinkedTo == 'Not Linked' || $ysfLinkedTo == 'Service Not Started') {
                 $ysfLinkedToTxt = $ysfLinkedTo;
@@ -676,7 +676,11 @@ if (isPaused("YSF")) {
 ?>
     <div class="divTableRow center">
 <?php
-	echo "<div class='divTableCell cell_content'><div ".GetActiveConnectionStyle($remoteYSFGResults, "ysf")." title=\"".$ysfLinkedToTooltip."\">".$ysfTableData."</div></div>\n";
+	if (isProcessRunning("YSFGateway")) {
+	    echo "<div class='divTableCell cell_content'><div ".GetActiveConnectionStyle($remoteYSFGResults, "ysf")." title=\"".$ysfLinkedToTooltip."\">".$ysfTableData."</div></div>\n";
+	} else {
+	    echo "<div class='divTableCell cell_content'><div class='inactive-mode-cell'>Service Not Started</div></div>\n";
+	}	      
 ?>
     </div>
   </div>

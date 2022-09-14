@@ -1700,10 +1700,10 @@ function getActualLink($logLines, $mode) {
 			return $to;
 		    }
 		}
-		return "<div class='inactive-mode-cell'>Not Linked</div>";
+		return "Not Linked";
             } 
 	    else {
-		return "<div class='inactive-mode-cell'>Service Not Started</div>";
+		return "Service Not Started";
             }
             break;
 	    
