@@ -148,7 +148,7 @@
     </select>
 	</td>
     <?php } 
-$target = `/usr/local/bin/RemoteCommand 7643 hosts | egrep -oh 'XLX(.*)\"' | awk {'print $1'} | sed 's/"//g' | sed 's/_/ Module /g'`; 
+$target = `cd /var/log/pi-star; /usr/local/bin/RemoteCommand 7643 hosts | egrep -oh 'XLX(.*)\"' | awk {'print $1'} | sed 's/"//g' | sed 's/_/ Module /g'`; 
 ?>
 <script>
           $(document).ready(function(){

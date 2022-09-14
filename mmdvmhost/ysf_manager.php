@@ -203,7 +203,14 @@ if (isset($_SESSION['YSFGatewayConfigs']['Remote Commands']['Enable']) && (isset
 			    $ysfTableData = "$ysfLinkState $ysfLinkedToTxt ($ysfRoomNo)";
 			}
 			?>
-			<td><strong><?php echo $ysfTableData; ?></strong></td>
+			<script>
+          			$(document).ready(function(){
+            			setInterval(function(){
+                			$(".CheckLink").load(window.location.href + " .CheckLink" );
+                			},3000);
+            			});
+			</script>
+			<td><strong class="CheckLink"><?php echo $ysfTableData; ?></strong></td>
 			<td>
 			    <input type="radio" id="link" name="Link" value="LINK" /> <label for="link"/>Link</label>
 			    <input type="radio" id="unlink" name="Link" value="UNLINK" checked="checked"  /> <label for="unlink"/>Un-Link</label>
