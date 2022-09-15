@@ -182,10 +182,11 @@ if ($_SERVER["PHP_SELF"] == "/admin/expert/mmdvm_config_manager.php") {
 			</table>
 		</form>
 	<br />
+	<br />
 
-	<table width="100%">
+	<table>
 		<tr>
-			<th colspan="2" style="background:crimson;">Delete a Saved Config</th>
+			<th colspan="2"">Delete a Saved Config</th>
 		</tr>
 		<tr>
 			<td colspan="2">
@@ -205,7 +206,7 @@ if ($_SERVER["PHP_SELF"] == "/admin/expert/mmdvm_config_manager.php") {
 				}
 				?>
 					</select>
-					<input type="submit" name="remove_config" value="Delete Config">
+					<input style="background:crimson;color:white;" type="submit" name="remove_config" value="Delete Config">
 				</form>
 				<?php } ?>
 			</td>
