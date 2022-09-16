@@ -108,7 +108,9 @@ if ($_SERVER["PHP_SELF"] == "/admin/expert/mmdvm_config_manager.php") {
                                    setTimeout("location.href = \''.$_SERVER["PHP_SELF"].'\'", 3000);
 				   </script>
 				   </td></tr>';
+				   exec('sudo mount -o remount,rw /');
 				   exec("sudo cp -a /etc/mmdvmhost /etc/mmdvmhost_configs/mmdvmhost-$desc > /dev/null");
+				   exec('sudo mount -o remount,ro /');
 				}
 			    }
 			    else if ( escapeshellcmd($_POST["restore_config"]) ) {
@@ -118,7 +120,9 @@ if ($_SERVER["PHP_SELF"] == "/admin/expert/mmdvm_config_manager.php") {
                                    setTimeout("location.href = \''.$_SERVER["PHP_SELF"].'\'", 3000);
 				   </script>
 				   </td></tr>';
+				   exec('sudo mount -o remount,rw /');
 				   exec("sudo cp -a /etc/mmdvmhost_configs/".$_POST['configs']." /etc/mmdvmhost > /dev/null");
+				   exec('sudo mount -o remount,ro /');
 				   exec("sudo systemctl restart mmdvmhost.service & > /dev/null");
 			    }
 			    else if ( escapeshellcmd($_POST["remove_config"]) ) {
@@ -128,7 +132,9 @@ if ($_SERVER["PHP_SELF"] == "/admin/expert/mmdvm_config_manager.php") {
                                    setTimeout("location.href = \''.$_SERVER["PHP_SELF"].'\'", 3000);
 				   </script>
 				   </td></tr>';
+				   exec('sudo mount -o remount,rw /');
 				   exec("sudo rm -f /etc/mmdvmhost_configs/".$_POST['delete_configs']." > /dev/null");
+				   exec('sudo mount -o remount,ro /');
 			    }
 			    unset($_POST);
 			    ?>
