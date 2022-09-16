@@ -221,7 +221,7 @@ $numDMRmasters = exec('cd /var/log/pi-star ; /usr/local/bin/RemoteCommand 7643 s
     </div>
     <div class="mode_flex column">
       <div class="divTableCell">
-        <?php if (isPaused("YSF")) { echo '<div class="paused-mode-cell" title="YSF Mode Paused">DG-ID Net</div>'; } else { showMode("DG-ID Network", $_SESSION['DGIdGatewayConfigs']); } ?>
+        <?php if (getServiceEnabled('/etc/dgidgateway') == 1 && (isPaused("YSF"))) { echo '<div class="paused-mode-cell" title="YSF Mode Paused">DG-ID Net</div>'; } else { showMode("DG-ID Network", $_SESSION['DGIdGatewayConfigs']); } ?>
       </div>
     </div>
   </div>

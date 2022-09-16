@@ -86,11 +86,14 @@ if ($_SERVER["PHP_SELF"] == "/admin/index.php") { // Stop this working outside o
 			<tr>
 			    <?php
 			    $m17CurrentHost = "";
-			    $m17CurrentModule = "A";
+			    $m17CurrentModule = "";
 			    $m17Linked = getActualLink($reverseLogLinesM17Gateway, "M17");
-			    if (strpos($m17Linked, " Not ") === false) {
+			    if (strpos($m17Linked, "Not") === false) {
 				$m17CurrentHost = substr($m17Linked, 0, -2);
-				$m17CurrentModule = substr($m17Linked, -1);
+				$m17CurrentModule = "Module " .substr($m17Linked, -1)."";
+			    } else {
+				$m17CurrentHost = "Not Linked";
+				$m17CurrentModule = "";
 			    }
 			    ?>
 			    <td>
@@ -151,7 +154,7 @@ if ($_SERVER["PHP_SELF"] == "/admin/index.php") { // Stop this working outside o
 			                },3000);
 			            });
 			    </script>
-			    <td><strong class="CheckLink"><?php echo "$m17CurrentHost Module $m17CurrentModule"; ?></strong></td>
+			    <td><strong class="CheckLink"><?php echo "$m17CurrentHost $m17CurrentModule"; ?></strong></td>
 			    <td>
                               <input type="radio" id="link" name="Link" value="LINK" /> <label for="link"/>Link</label>
                               <input type="radio" id="unlink" name="Link" value="UNLINK" checked="checked"  /> <label for="unlink"/>Un-Link</label>

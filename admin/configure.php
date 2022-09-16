@@ -2866,7 +2866,7 @@ if (!empty($_POST)):
        	$configm17gateway['APRS']['Description'] = "APRS for M17Gateway";
        	$configm17gateway['APRS']['Suffix'] = "M";
         $configm17gateway['Remote Commands']['Enable'] = "1";
-        $configm17gateway['Remote Commands']['Port'] = "6075";
+        $configm17gateway['Remote Commands']['Port'] = "6076";
         $configm17gateway['Log']['DisplayLevel'] = "0";
         $configm17gateway['Log']['FileLevel'] = "2";
         $configm17gateway['Log']['FilePath'] = "/var/log/pi-star";

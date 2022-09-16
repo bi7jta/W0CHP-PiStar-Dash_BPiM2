@@ -132,11 +132,15 @@ if ( $testMMDVModeP25 == 1 || $testYSF2P25 == 1 ) {
 
 				$target = getActualLink($logLinesP25Gateway, "P25");
 				$target = str_replace("TG", "", $target);
-				$target_lookup = exec("grep -w \"$target\" /usr/local/etc/TGList_P25.txt | awk -F';' '{print $2}'");
-				if (!empty($target_lookup)) {
-				    $target = "TG $target: $target_lookup";
+				if (strpos($target, "Not") === false) {	
+				    $target_lookup = exec("grep -w \"$target\" /usr/local/etc/TGList_P25.txt | awk -F';' '{print $2}'");
+				    if (!empty($target_lookup)) {
+				        $target = "TG $target: $target_lookup";
+				    } else {
+				        $target = $target;
+				    }
 				} else {
-				    $target = $target;
+				    $target = "Not Linked";
 				}
 				?>
 				</select>

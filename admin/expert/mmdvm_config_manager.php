@@ -141,6 +141,23 @@ if ($_SERVER["PHP_SELF"] == "/admin/expert/mmdvm_config_manager.php") {
 			</table>
 		    <?php }
 		    else { ?>
+                        <?php
+                        // check that no modes are paused. If so, bail and direct user to unpause...
+                        $is_paused = glob('/etc/*_paused');
+                        $repl_str = array('/\/etc\//', '/_paused/');
+                        $paused_modes = preg_replace($repl_str, '', $is_paused);
+                        if (!empty($is_paused)) {
+                                echo '<h1>IMPORTANT:</h1>';
+                                echo '<p><b>One or more modes have been detected to have been "paused" by you</b>:</p>';
+                                foreach($paused_modes as $mode) {
+                                        echo "<h3>$mode</h3>";
+                                }
+                                echo '<p>You must "resume" all of the modes you have paused in order to make any configuration changes...</p>';
+                                echo '<p>Go the <a style="text-decoration:underline;color:inherit;" href="/admin/?func=mode_man">Instant Mode Manager page to Resume the paused mode(s)</a>. Once that\'s completed, this configuration page will be enabled.</p>';
+                                echo '<br />'."\n";
+                                echo '<br />';
+                        } else {
+                        ?>
 			<form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="post">
 			    <table width="100%">
 				<tr>
@@ -219,6 +236,7 @@ if ($_SERVER["PHP_SELF"] == "/admin/expert/mmdvm_config_manager.php") {
 		</tr>
 	</table>
 	<?php } ?>
+    <?php } ?>
 
 		</div>
 		<div class="footer">

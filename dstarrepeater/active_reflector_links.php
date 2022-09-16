@@ -129,7 +129,7 @@ if (isset($_SESSION['CSSConfigs']['Background'])) {
 	    }
 	    
 	    if ($tr == 1) {
-		print"<td><span title='Down' class='red_dot' style='font-weight:bold;'></span></td><td>None</td><td>--</td><td>----</td><td>----</td></tr>\n";
+		print"<td><span title='Down' class='red_dot' style='font-weight:bold;'></span></td><td>Not Linked</td><td>--</td><td>----</td><td>----</td></tr>\n";
 	    }
 	    // 00000000001111111111222222222233333333334444444444555555555566666666667777777777888888888899999999990000000000111111111122
 	    // 01234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901
