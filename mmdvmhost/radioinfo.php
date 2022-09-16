@@ -65,7 +65,7 @@ if (isset($_SESSION['CSSConfigs']['Background']['TableRowBgEvenColor'])) {
                 }
                 else if (getActualMode($lastHeard, $_SESSION['MMDVMHostConfigs']) === NULL) {
                     if (isProcessRunning("MMDVMHost")) {
-                        echo "<div ass=\"divTableCell middle active-mode-cell\" style=\"font-weight:bold;padding:2px;\">IDLE</div>\n";
+			echo "<div class=\"divTableCell middle cell_content\" style=\"font-weight:bold;padding:2px;\">IDLE</div>\n";
                     }
                     else {
                         echo "<div class='error-state-cell divTableCell middle cell_content' style=\"font-weight:bold;color:#ffffff;padding:2px;\">OFFLINE</div>\n";
@@ -87,7 +87,7 @@ if (isset($_SESSION['CSSConfigs']['Background']['TableRowBgEvenColor'])) {
                     echo "<div class=\"divTableCell middle cell_content active-mode-cell\" style=\"font-weight:bold;padding:2px;\">RX: YSF</div>\n";
                 }
                 else if (getActualMode($lastHeard, $_SESSION['MMDVMHostConfigs']) === 'YSF') {
-                    echo "<div class=\"divTableCell middle cell_content active-mode-cell\" style=\"font-weight:bold;padding:2px;\">Standby: YSF</div>\n";
+                    echo "<div class=\"divTableCell middle cell_content\" style=\"background:#ffc425;color:#000000;font-weight:bold;padding:2px;\">Standby: YSF</div>\n";
                 }
                 else if ($listElem[2] && $listElem[6] == null && getActualMode($lastHeard, $_SESSION['MMDVMHostConfigs']) === 'P25') {
                     echo "<div class=\"divTableCell middle cell_content active-mode-cell\" style=\"font-weight:bold;padding:2px;\">RX: P25</div>\n";
