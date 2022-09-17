@@ -36,7 +36,7 @@ if ($_SERVER["PHP_SELF"] == "/admin/expert/mmdvm_config_manager.php") {
 	    <meta http-equiv="pragma" content="no-cache" />
 	    <link rel="shortcut icon" href="/images/favicon.ico" type="image/x-icon" />
 	    <meta http-equiv="Expires" content="0" />
-	    <title>Pi-Star - <?php echo $lang['digital_voice']." ".$lang['dashboard']."";?> - MMDVM Config Manager</title>
+	    <title>Pi-Star - <?php echo $lang['digital_voice']." ".$lang['dashboard']."";?> - Config Manager</title>
 	    <link rel="stylesheet" type="text/css" href="/css/font-awesome-4.7.0/css/font-awesome.min.css" />
 	    <link rel="stylesheet" type="text/css" href="/css/pistar-css.php?version=<?php echo $versionCmd; ?>" />
         <script type="text/javascript" src="/js/jquery.min.js?version=<?php echo $versionCmd; ?>"></script>
@@ -51,7 +51,7 @@ if ($_SERVER["PHP_SELF"] == "/admin/expert/mmdvm_config_manager.php") {
 		    <?php } else { ?>
 		    <div id="CheckUpdate"><?php echo $version; ?></div></div>
 		    <?php } ?>    
-		    <h1>Pi-Star <?php echo $lang['digital_voice'];?>  - MMDVM Config Manager</h1>
+		    <h1>Pi-Star <?php echo $lang['digital_voice'];?>  - Config Manager</h1>
 		    <p>
 			<div class="navbar">
               <script type= "text/javascript">
@@ -90,7 +90,7 @@ if ($_SERVER["PHP_SELF"] == "/admin/expert/mmdvm_config_manager.php") {
 		<div class="contentwide">
 		    <?php if (!empty($_POST)) { ?>
 			<table width="100%">
-			    <tr><th colspan="2">MMDVMHost Configuration Manager</th></tr>
+			    <tr><th colspan="2">Configuration Manager</th></tr>
 			    <?php
 			    if ( escapeshellcmd($_POST["save_current_config"]) ) {
 				if (!ctype_alnum($_POST['config_desc'])) {
@@ -102,18 +102,62 @@ if ($_SERVER["PHP_SELF"] == "/admin/expert/mmdvm_config_manager.php") {
 				   </td></tr>';
 				} else {
 				   $desc = $_POST['config_desc'];
-				   echo '<tr><td colspan="2"><br />Saving Current Config to "mmdvmhost-'.$desc.'"...
+				   echo '<tr><td colspan="2"><br />Saving Current Config, "'.$desc.'"...
 				   <br />Page reloading...<br /><br />
 				   <script language="JavaScript" type="text/javascript">
                                    setTimeout("location.href = \''.$_SERVER["PHP_SELF"].'\'", 3000);
 				   </script>
 				   </td></tr>';
 				   exec('sudo mount -o remount,rw /');
-				   exec("sudo cp -a /etc/mmdvmhost /etc/mmdvmhost_configs/mmdvmhost-$desc > /dev/null");
+				   exec("sudo mkdir -p /etc/WPSD_config_mgr/$desc > /dev/null");
+				   $backupDir = "/etc/WPSD_config_mgr/$desc";
+                            	   exec("sudo rm -rf $backupZip > /dev/null")."\n";
+                            	   exec("sudo rm -rf $backupDir > /dev/null")."\n";
+                            	   exec("sudo mkdir $backupDir > /dev/null")."\n";
+                            	   if (exec('cat /etc/dhcpcd.conf | grep "static ip_address" | grep -v "#"')) {
+                                       exec("sudo cp /etc/dhcpcd.conf $backupDir > /dev/null")."\n";
+                            	   }
+                            	   exec("sudo cp /etc/wpa_supplicant/wpa_supplicant.conf $backupDir > /dev/null")."\n";
+                            	   exec("sudo cp /etc/hostapd/hostapd.conf $backupDir > /dev/null")."\n";
+                            	   exec("sudo cp /etc/pistar-css.ini $backupDir > /dev/null")."\n";
+                            	   exec("sudo cp /etc/aprsgateway $backupDir > /dev/null")."\n";
+                            	   exec("sudo cp /etc/ircddbgateway $backupDir > /dev/null")."\n";
+                            	   exec("sudo cp /etc/mmdvmhost $backupDir > /dev/null")."\n";
+                            	   exec("sudo cp /etc/dstarrepeater $backupDir > /dev/null")."\n";
+                            	   exec("sudo cp /etc/dapnetgateway $backupDir > /dev/null")."\n";
+                            	   exec("sudo cp /etc/pistar-css.ini $backupDir > /dev/null");
+                            	   exec("sudo cp /etc/p25gateway $backupDir > /dev/null")."\n";
+                            	   exec("sudo cp /etc/ysfgateway $backupDir > /dev/null")."\n";
+                            	   exec("sudo cp /etc/dmr2nxdn $backupDir > /dev/null")."\n";
+                            	   exec("sudo cp /etc/dmr2ysf $backupDir > /dev/null")."\n";
+                            	   exec("sudo cp /etc/nxdn2dmr $backupDir > /dev/null")."\n";
+                            	   exec("sudo cp /etc/ysf2dmr $backupDir > /dev/null")."\n";
+                            	   exec("sudo cp /etc/dgidgateway $backupDir > /dev/null");
+                            	   exec("sudo cp /etc/nxdngateway $backupDir > /dev/null");
+                            	   exec("sudo cp /etc/m17gateway $backupDir > /dev/null");
+                            	   exec("sudo cp /etc/ysf2nxdn $backupDir > /dev/null")."\n";
+                            	   exec("sudo cp /etc/ysf2p25 $backupDir > /dev/null")."\n";
+                            	   exec("sudo cp /etc/dmrgateway $backupDir > /dev/null")."\n";
+                            	   exec("sudo cp /etc/starnetserver $backupDir > /dev/null")."\n";
+                            	   exec("sudo cp /etc/timeserver $backupDir > /dev/null")."\n";
+                            	   exec("sudo cp /etc/dstar-radio.* $backupDir > /dev/null")."\n";
+                            	   exec("sudo cp /etc/pistar-remote $backupDir > /dev/null")."\n";
+                            	   exec("sudo cp /etc/hosts $backupDir > /dev/null")."\n";
+                            	   exec("sudo cp /etc/hostname $backupDir > /dev/null")."\n";
+                            	   exec("sudo cp /etc/bmapi.key $backupDir > /dev/null")."\n";
+                            	   exec("sudo cp /etc/dapnetapi.key $backupDir > /dev/null")."\n";
+                            	   exec("sudo cp /etc/default/gpsd $backupDir > /dev/null")."\n";
+                            	   exec("sudo cp /etc/*_paused $backupDir > /dev/null")."\n";
+                            	   exec("sudo cp /usr/local/etc/RSSI.dat $backupDir > /dev/null")."\n";
+                            	   exec("sudo cp /var/www/dashboard/config/ircddblocal.php $backupDir > /dev/null")."\n";
+                            	   exec("sudo cp /var/www/dashboard/config/config.php $backupDir > /dev/null")."\n";
+			    	   exec("sudo cp /var/www/dashboard/config/language.php $backupDir > /dev/null")."\n";
+				   exec("sudo sh -c 'cp -a /root/*Hosts.txt' $backupDir > /dev/null")."\n";
 				   exec('sudo mount -o remount,ro /');
 				}
 			    }
 			    else if ( escapeshellcmd($_POST["restore_config"]) ) {
+				   $backupDir = '/etc/WPSD_config_mgr/'.$_POST['configs'].'';
 				   echo '<tr><td colspan="2"><br />Restoring and Applying Config, "' .$_POST['configs'].'"...
 				   <br />Page reloading...<br /><br />
 				   <script language="JavaScript" type="text/javascript">
@@ -121,9 +165,12 @@ if ($_SERVER["PHP_SELF"] == "/admin/expert/mmdvm_config_manager.php") {
 				   </script>
 				   </td></tr>';
 				   exec('sudo mount -o remount,rw /');
-				   exec("sudo cp -a /etc/mmdvmhost_configs/".$_POST['configs']." /etc/mmdvmhost > /dev/null");
+				   exec("sudo sh -c 'cp -a $backupDir/*Hosts.txt /root/' > /dev/null");
+				   exec("sudo sh -c 'rm -rf $backupDir/*Hosts.txt' > /dev/null");
+				   exec("sudo sh -c 'cp -a $backupDir/* /etc/' > /dev/null");
+				   exec("sudo sh -c 'cp -a /root/*Hosts.txt $backupDir' > /dev/null");
 				   exec('sudo mount -o remount,ro /');
-				   exec("sudo systemctl restart mmdvmhost.service & > /dev/null");
+				   exec("sudo pistar-services restart > /dev/null &");
 			    }
 			    else if ( escapeshellcmd($_POST["remove_config"]) ) {
 				   echo '<tr><td colspan="2"><br />Deleting Config, "' .$_POST['delete_configs'].'"...
@@ -133,7 +180,7 @@ if ($_SERVER["PHP_SELF"] == "/admin/expert/mmdvm_config_manager.php") {
 				   </script>
 				   </td></tr>';
 				   exec('sudo mount -o remount,rw /');
-				   exec("sudo rm -f /etc/mmdvmhost_configs/".$_POST['delete_configs']." > /dev/null");
+				   exec("sudo rm -rf /etc/WPSD_config_mgr/".$_POST['delete_configs']." > /dev/null");
 				   exec('sudo mount -o remount,ro /');
 			    }
 			    unset($_POST);
@@ -161,7 +208,7 @@ if ($_SERVER["PHP_SELF"] == "/admin/expert/mmdvm_config_manager.php") {
 			<form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="post">
 			    <table width="100%">
 				<tr>
-				    <th colspan="2">MMDVMHost Configuration Manager</th>
+				    <th colspan="2">Configuration Manager</th>
 				</tr>
 				<tr>
 				    <th width="50%">Save Current Config</th>
@@ -178,8 +225,8 @@ if ($_SERVER["PHP_SELF"] == "/admin/expert/mmdvm_config_manager.php") {
 
 					<td>
 						<?php
-						$config_dir = "/etc/mmdvmhost_configs";
-						if (count(glob("$config_dir/mmdvmhost-*")) == 0) {
+						$config_dir = "/etc/WPSD_config_mgr";
+						if (count(glob("$config_dir/*")) == 0) {
 						?>
 							No saved configs yet!
 						<?php } else { ?>
@@ -187,8 +234,8 @@ if ($_SERVER["PHP_SELF"] == "/admin/expert/mmdvm_config_manager.php") {
 							<label for="configs">Choose a saved config:</label>
 							<select name="configs" id="configs" form="list_configs">
 							<?php
-							foreach ( glob("$config_dir/mmdvmhost-*") as $file ) {
-								$config_file = str_replace("$config_dir/", "", $file);
+							foreach ( glob("$config_dir/*") as $dir ) {
+								$config_file = str_replace("$config_dir/", "", $dir);
 								echo "<option name='selected_config' value='$config_file'>$config_file</option>";
 							}
 							?>
@@ -200,7 +247,7 @@ if ($_SERVER["PHP_SELF"] == "/admin/expert/mmdvm_config_manager.php") {
 				</tr>
 
 				<tr>
-					<td colspan="2" style="white-space:normal;padding: 3px;">This function allows you save multiple versions and configurations of your MMDVMHost setup;  and then restore/re-apply them as-needed for different uses, etc.<br />Restoring and re-applying a configuration is instant.</td>
+					<td colspan="2" style="white-space:normal;padding: 3px;">This function allows you save multiple versions and configurations of your setup;  and then restore/re-apply them as-needed for different uses, etc.<br />Restoring and re-applying a configuration is instant.</td>
 				</tr>
 			</table>
 		</form>
@@ -209,22 +256,22 @@ if ($_SERVER["PHP_SELF"] == "/admin/expert/mmdvm_config_manager.php") {
 
 	<table>
 		<tr>
-			<th colspan="2"">Delete a Saved Config</th>
+			<th colspan="2">Delete a Saved Config</th>
 		</tr>
 		<tr>
 			<td colspan="2">
-				<?php
-				$config_dir = "/etc/mmdvmhost_configs";
-				if (count(glob("$config_dir/mmdvmhost-*")) == 0) {
-				?>
+                                <?php
+                                $config_dir = "/etc/WPSD_config_mgr";
+                                if (count(glob("$config_dir/*")) == 0) {
+                                ?>
 				No saved configs yet!
 				<?php } else { ?>
 				<form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="post" id="del_configs">
 					<label for="delete_configs">Choose config to delete:</label>
 					<select name="delete_configs" id="configs" form="del_configs">
 				<?php
-				foreach ( glob("$config_dir/mmdvmhost-*") as $file ) {
-					$config_file = str_replace("$config_dir/", "", $file);
+				foreach ( glob("$config_dir/*") as $dir ) {
+					$config_file = str_replace("$config_dir/", "", $dir);
 					echo "<option name='selected_config' value='$config_file'>$config_file</option>";
 				}
 				?>
