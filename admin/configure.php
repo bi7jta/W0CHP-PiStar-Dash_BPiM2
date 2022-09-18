@@ -3168,6 +3168,7 @@ if (!empty($_POST)):
 		unset($configdmrgateway['XLX Network 2']);
 
 	// Add P25Gateway Options
+        $configp25gateway['Network']['InactivityTimeout'] = "1440";
 	if (!isset($configp25gateway['Remote Commands']['Enable'])) { $configp25gateway['Remote Commands']['Enable'] = "1"; }
 	if (!isset($configp25gateway['Remote Commands']['Port'])) { $configp25gateway['Remote Commands']['Port'] = "6074"; }
 	if (isset($configp25gateway['General']['Announcements'])) { unset($configp25gateway['General']['Announcements']); }
@@ -3205,8 +3206,8 @@ if (!empty($_POST)):
 	if (!isset($configysfgateway['aprs.fi']['Enable'])) { $configysfgateway['aprs.fi']['Enable'] = "1"; }
 	//unset($configysfgateway['Network']);
 	if (isset($ysfTmpStartup)) { $configysfgateway['Network']['Startup'] = $ysfTmpStartup; }
-	if (!isset($configysfgateway['Network']['InactivityTimeout'])) { $configysfgateway['Network']['InactivityTimeout'] = "0"; }
-	if (!isset($configysfgateway['Network']['Revert'])) { $configysfgateway['Network']['Revert'] = "0"; }
+	$configysfgateway['Network']['InactivityTimeout'] = "1440";
+	$configysfgateway['Network']['Revert'] = "1";
 	$configysfgateway['Network']['Debug'] = "0";
 	$configysfgateway['YSF Network']['Enable'] = "1";
 	$configysfgateway['YSF Network']['Port'] = "42000";
