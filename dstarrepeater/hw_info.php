@@ -64,15 +64,7 @@ $sysRamPercent = sprintf('%.2f',($sysRamUsed / $system['mem_info']['MemTotal']) 
 $ramDeetz = formatSize($sysRamUsed). " of ".formatSize($system['mem_info']['MemTotal']). " ($sysRamPercent% used)";
 
 // inet traffic
-$grabIfaces = explode("\n", exec('netstat -i'));
-foreach ($grabIfaces as $line) {
-    if (strpos($line, 'wlan0') !== false) {
-        $iface = "wlan0";
-    } else {
-        $iface = "eth0";
-    }
-}
-
+$iface = $_SESSION['PiStarRelease']['Pi-Star']['iface'];
 $Data = VNStatGetData($iface, $VNStat['Binary']);
 for ($i=0;$i<count($VNStat['Interfaces']);$i++) {
     if ($Data[0][$i]['time'] > 0) {
