@@ -330,7 +330,7 @@ require_once $_SERVER['DOCUMENT_ROOT'].'/config/version.php';
 			    } elseif (startsWith($key, 'HeaderFont')) {
 			        echo "<tr><td align=\"right\" style='padding-left:10em;width:150px;'>$key</td><td align=\"left\"><input type=\"text\" name=\"{$section}[$key]\" value=\"$value\" size='3' maxlength='2' /></td><td align='left' style='word-wrap: break-word;white-space: normal;'>(the Header font size, in pixels; default is 34 pixels.)</td></tr>\n";
 			    } elseif (endsWith($key, 'HeardRows')) {
-			        echo "<tr><td align=\"right\" style='padding-left:15em;width:150px;'>$key</td><td align=\"left\"><input type=\"text\" name=\"{$section}[$key]\" value=\"$value\" size='3' maxlength='3' /></td><td align='left' style='word-wrap: break-word;white-space: normal;'>(The number of rows displayed on the Dashboard; default is 40 rows, and 100 rows is the maximum allowed.)</td></tr>\n";
+			        echo "<tr><td align=\"right\" style='padding-left:15em;width:150px;'>$key</td><td align=\"left\"><input type=\"text\" name=\"{$section}[$key]\" value=\"$value\" size='3' maxlength='3' /></td><td align='left' style='word-wrap: break-word;white-space: normal;'>(The number of rows displayed on the Dashboard; default is 40 rows, and 100 rows is the maximum allowed.*)</td></tr>\n";
 		            } else {
 			        echo "<tr><td align=\"right\" style='padding-left:15em;width:150px;'>$key</td><td align=\"left\" colspan='2'><input type=\"text\" name=\"{$section}[$key]\" value=\"$value\" /></td></tr>\n";
                 }
@@ -339,9 +339,9 @@ require_once $_SERVER['DOCUMENT_ROOT'].'/config/version.php';
 		    echo '<input type="submit" value="'.$lang['apply'].'" />'."\n";
 		    echo "<br />\n";
         }
-		echo "</form>";
-		echo "<br /><br />\n";
-		echo 'If you took it all too far and now it makes you feel sick, click below to reset the values to default.'."\n";
+		echo "</form>\n";
+		echo "<p> * Because of the way Pi-Star parses log files to display last heard data, it is not guaranteed that the number of rows specified will be displayed.</p>\n";
+		echo '<p>Click below to reset the values to default...</p>'."\n";
 		echo '<form id="cssUpload" action="" method="POST" enctype="multipart/form-data">'."\n";
 		echo '  <div><input id="fileid" name="cssFile" type="file" hidden/></div>'."\n";
 		echo '  <div><input type="hidden" name="cssUpload" value="1" /></div>'."\n";
