@@ -95,7 +95,7 @@ for ($i=0;$i<count($VNStat['Interfaces']);$i++) {
       <div class="divTableCell cell_content"><?php echo $load; ?>%</div>
       <div class="divTableCell cell_content"><?php echo $ramDeetz;?></div>
       <div class="divTableCell cell_content"><?php echo $rootfs_used;?></div>
-      <div class="divTableCell cell_content"><a class="tooltip" href="#" style="border-bottom:1px dotted;"><?php echo $NetworkTraffic;?><span><strong>Total Combined Network Traffic</strong><br /><?php echo $NetTrafficTotal;?></a></span></div>
+      <div class="divTableCell cell_content"><?php echo $NetworkTraffic;?></div>
       <?php echo $cpuTempHTML; ?>
     </div>
   </div>
