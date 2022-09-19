@@ -72,6 +72,7 @@ foreach ($grabIfaces as $line) {
         $iface = "eth0";
     }
 }
+
 $Data = VNStatGetData($iface, $VNStat['Binary']);
 for ($i=0;$i<count($VNStat['Interfaces']);$i++) {
     if ($Data[0][$i]['time'] > 0) {
