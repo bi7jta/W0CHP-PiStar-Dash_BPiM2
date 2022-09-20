@@ -17,6 +17,10 @@ require_once $_SERVER['DOCUMENT_ROOT'].'/mmdvmhost/functions.php';
 require_once $_SERVER['DOCUMENT_ROOT'].'/config/ircddblocal.php';
 require_once $_SERVER['DOCUMENT_ROOT'].'/config/language.php';
 
+if(empty($_GET['force'])) {
+    $_GET['force'] = 'false';
+}
+
 // Load the pistar-release file
 $pistarReleaseConfig = '/etc/pistar-release';
 $configPistarRelease = parse_ini_file($pistarReleaseConfig, true);

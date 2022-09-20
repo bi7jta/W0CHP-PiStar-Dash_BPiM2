@@ -30,7 +30,7 @@ $YSF    = ($configmmdvm['System Fusion']['Enable']);
 $P25    = ($configmmdvm['P25']['Enable']);
 $NXDN   = ($configmmdvm['NXDN']['Enable']);
 $M17    = ($configmmdvm['M17']['Enable']);
-$AX25   = ($configmmdvm['AX 25']['Enable']);
+$AX25   = ($configmmdvm['AX.25']['Enable']);
 $POCSAG = ($configmmdvm['POCSAG']['Enable']);
 $APRS   = ($configaprsgw['Enabled']['Enabled']);
 

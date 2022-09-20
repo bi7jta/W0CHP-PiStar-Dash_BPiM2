@@ -11,6 +11,10 @@ if (!isset($_SESSION) || !is_array($_SESSION)) {
     checkSessionValidity();
 }
 
+if (isset($_SESSION['CSSConfigs']['Text']['TextColor'])) {
+    $textContent = $_SESSION['CSSConfigs']['Text']['TextColor'];
+}
+
 function system_information() {
     @list($system, $host, $kernel) = preg_split('/[\s,]+/', php_uname('a'), 5);
     $meminfo = false;
@@ -65,17 +69,14 @@ $ramDeetz = formatSize($sysRamUsed). " of ".formatSize($system['mem_info']['MemT
 
 // inet traffic
 $iface = $_SESSION['PiStarRelease']['Pi-Star']['iface'];
-$Data = VNStatGetData($iface, $VNStat['Binary']);
-for ($i=0;$i<count($VNStat['Interfaces']);$i++) {
-    if ($Data[0][$i]['time'] > 0) {
-	if (strstr("0.00 KB", kbytes_to_string($Data[0][$i]['rx'])) == false) {
-	    $NetworkTraffic = kbytes_to_string($Data[0][$i]['rx']) . " &darr; / " . kbytes_to_string($Data[0][$i]['tx']). " &uarr;";
-	    $NetTrafficTotal = kbytes_to_string($Data[0][$i]['rx'] + $Data[0][$i]['tx']);
-	} else {
-	    $NetworkTraffic = "(Collecting data, please wait.)";
-	    $NetTrafficTotal = "(Collecting data, please wait.)";
-	}
-    }
+$VNStatGetData = exec("vnstat -s -i $iface | grep today | sed 's/today//g' | awk '{print $1\" \"$2\" \"$4\" \"$5\" \"$7\" \"$8}'"); // fields: rx[0] unit[1] tx[2] unit[3] total[4] unit[5]
+if (empty($VNStatGetData) == false) {
+    $Data = explode(" ", $VNStatGetData);
+    $NetworkTraffic = "$Data[0] $Data[1] &darr; / $Data[2] $Data[3]  &uarr;";
+    $NetTrafficTotal = "$Data[4] $Data[5]";
+} else {
+    $NetworkTraffic = "(collecting data, please wait.)";
+    $NetTrafficTotal = "(collecting data, please wait.)";
 }
 ?>
 <div class="divTable" id="hwInfoTable">
@@ -95,7 +96,7 @@ for ($i=0;$i<count($VNStat['Interfaces']);$i++) {
       <div class="divTableCell cell_content"><?php echo $load; ?>%</div>
       <div class="divTableCell cell_content"><?php echo $ramDeetz;?></div>
       <div class="divTableCell cell_content"><?php echo $rootfs_used;?></div>
-      <div class="divTableCell cell_content" title="Total Combined Network Traffic: <?php echo $NetTrafficTotal; ?>"><?php echo $NetworkTraffic;?></div>
+      <div class="divTableCell cell_content"><a class="tooltip" href="#" style="border-bottom:1px dotted;color: <?php echo $textContent; ?>;"><?php echo $NetworkTraffic;?><span><strong>Total Combined Network Traffic</strong><br /><?php echo $NetTrafficTotal;?></a></span></div>
       <?php echo $cpuTempHTML; ?>
     </div>
   </div>

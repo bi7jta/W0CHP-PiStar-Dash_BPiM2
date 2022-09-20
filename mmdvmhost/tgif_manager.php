@@ -189,7 +189,7 @@ if (empty($dmrID) == false)
       <td><input type="submit" value="Request Change" name="tgifSubmit" /></td>
     </tr>
     <tr>
-      <td colspan="4" style="white-space:normal;padding: 3px;background:'.$tableRowOddBg.'">Your Hotspot/Repeater ID: <a href="https://tgif.network/profile.php?tab=SelfCare" target="_new" title="Click to view your hotspot info on TGIF">'.$dmrID.'</a>  | <a href="https://w0chp.net/tgif-talkgroups/" target="_blank">List of All TGIF Talkgroups (sortable/searchable/downloadable)...</a></td>
+      <td colspan="4" style="white-space:normal;padding: 3px;">Your Hotspot/Repeater ID: <a href="https://tgif.network/profile.php?tab=SelfCare" target="_new" title="Click to view your hotspot info on TGIF">'.$dmrID.'</a>  | <a href="https://w0chp.net/tgif-talkgroups/" target="_blank">List of All TGIF Talkgroups (sortable/searchable/downloadable)...</a></td>
     </tr>
     </table></form>'."\n";
     }

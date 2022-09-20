@@ -42,7 +42,12 @@ checkSessionValidity();
 if (isset($_SESSION['CSSConfigs']['Text'])) {
     $textSections = $_SESSION['CSSConfigs']['Text']['TextSectionColor'];
 }
-
+if(empty($_GET['func'])) {
+    $_GET['func'] = "index";
+}
+if(empty($_POST['func'])) {
+    $_POST['func'] = "index";
+}
 ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
 	  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">

@@ -81,7 +81,7 @@ $remoteDMRgwResults = [];
 $remoteYSFGResults = [];
 $remoteP25GResults = [];
 $remoteNXDNGResults = [];
-$remoteM17GResults = [];
+$remoteM17GWResults = [];
 
 if (isProcessRunning("MMDVMHost")) {
     $cfgItemEnabled = getConfigItem("Remote Control", "Enable", $_SESSION['MMDVMHostConfigs']);

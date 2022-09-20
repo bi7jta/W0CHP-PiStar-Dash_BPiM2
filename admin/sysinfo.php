@@ -171,7 +171,7 @@ function formatSize( $bytes ) {
 
 		    // Ram information
 		    if ($system['mem_info']) {
-			echo "  <tr><th>Memory</th><th>Stats</th></tr>\n";
+			echo "  <tr><th align='left'>Memory</th><th align='left'>Stats</th></tr>\n";
 			$sysRamUsed = $system['mem_info']['MemTotal'] - $system['mem_info']['MemFree'] - $system['mem_info']['Buffers'] - $system['mem_info']['Cached'];
 			$sysRamPercent = sprintf('%.2f',($sysRamUsed / $system['mem_info']['MemTotal']) * 100);
 			echo "  <tr><td align=\"left\">RAM</td><td align=\"left\"><div class='progress progress-info' style='margin-bottom: 0;'><div class='bar' style='width: ".$sysRamPercent."%;'>Used&nbsp;".$sysRamPercent."%</div></div>";
@@ -179,7 +179,7 @@ function formatSize( $bytes ) {
 		    }
 		    // Filesystem Information
 		    if (count($system['partitions']) > 0) {
-			echo "  <tr><th>Mount</th><th>Stats</th></tr>\n";
+			echo "  <tr><th align='left'>Mountpint</th><th align='left'>Stats</th></tr>\n";
 			foreach($system['partitions'] as $fs) {
 			    if ($fs['Used']['value'] > 0 && $fs['FileSystem']['text']!= "none" && $fs['FileSystem']['text']!= "udev") {
 				$diskFree = $fs['Free']['value'];
@@ -193,7 +193,7 @@ function formatSize( $bytes ) {
 			}
 		    }
 		    // Binary Information
-		    echo "  <tr><th>Binary</th><th>Version</th></tr>\n";
+		    echo "  <tr><th align='left'>Software Binary</th><th align='left'>Version</th></tr>\n";
 		    if (is_executable('/usr/local/bin/MMDVMHost')) {
 			$MMDVMHost_Ver = exec('/usr/local/bin/MMDVMHost -v | cut -d\' \' -f 3-');
 			echo "  <tr>";getStatusClass(isProcessRunning("MMDVMHost"), true); echo "MMDVMHost</td><td align=\"left\">".$MMDVMHost_Ver."</td></tr>\n";

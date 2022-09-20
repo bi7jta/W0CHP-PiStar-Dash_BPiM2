@@ -1341,7 +1341,7 @@ function getHeardList($logLines) {
 	$id ="";
 	if ($mode == "D-Star") {
 	    $id = substr($callsign2, strpos($callsign2,"/") + 1);
-	    $id = preg_replace('/\/(.?)$/', ""); // "/INFO" etc screws up table fields
+	    $id = preg_replace('/\/(.?)$/', "", $id); // "/INFO" etc screws up table fields
 	}
 	
 	$target = trim(substr($logLine, strpos($logLine, "to") + 3));
@@ -1797,20 +1797,30 @@ function getActualLink($logLines, $mode) {
         // 2020-11-04 08:40:35.499 Unlinking from 10100 due to inactivity
         // 2020-11-04 08:40:35.499 Unlinking from reflector 10100 by M1ABC
         // 2020-11-04 08:40:35.499 Unlinked from reflector 10100 by remote command
-	    if (isProcessRunning("P25Gateway")) {
-		foreach($logLines as $logLine) {
-		    $to = "";
-			if (strpos($logLine, "Statically linked to")) {
-			$to = preg_replace('/[^0-9]/', '', substr($logLine, 55, 5));
-			$to = preg_replace('/[^0-9]/', '', $to);
-            return "TG".$to;
-		    }
-            if (strpos($logLine,"Switched to reflector")) {
-                $to = preg_replace('/[^0-9]/', '', substr($logLine, 46, 5));
-                $to = preg_replace('/[^0-9]/', '', $to);
-                return "TG".$to;
-			}
-			if (strpos($logLine,"Starting P25Gateway") || strpos($logLine,"Unlinking") || strpos($logLine,"Unlinked")) {
+            if (isProcessRunning("P25Gateway")) {
+                foreach($logLines as $logLine) {
+                    $to = "";
+                        if (strpos($logLine, "Statically linked to")) {
+                        $to = preg_replace('/[^0-9]/', '', substr($logLine, 55, 5));
+                        $to = preg_replace('/[^0-9]/', '', $to);
+                        $num = 0;
+                        $P25link = fopen("/tmp/P25Link.txt", "w");
+                        $num = fwrite($P25link,$to);
+                        fclose($P25link);
+                        $to = file_get_contents("/tmp/p25tg.txt");
+                        return "TG".$to;
+                    }
+            	    if (strpos($logLine,"Switched to reflector")) {
+                	$to = preg_replace('/[^0-9]/', '', substr($logLine, 46, 5));
+                	$to = preg_replace('/[^0-9]/', '', $to);
+                	$num = 0;
+                	$P25link = fopen("/tmp/p25tg.txt", "w");
+                	$num = fwrite($P25link,$to);
+                	fclose($P25link);
+                	$to = file_get_contents("/tmp/p25tg.txt");
+                	return "TG".$to;
+            	    }
+		    if (strpos($logLine,"Starting P25Gateway") || strpos($logLine,"Unlinking") || strpos($logLine,"Unlinked")) {
 			return "<div class='inactive-mode-cell'>Not Linked</div>";
 		    }
 		}
