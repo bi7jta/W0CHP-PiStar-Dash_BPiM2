@@ -179,7 +179,7 @@ function formatSize( $bytes ) {
 		    }
 		    // Filesystem Information
 		    if (count($system['partitions']) > 0) {
-			echo "  <tr><th align='left'>Mountpint</th><th align='left'>Stats</th></tr>\n";
+			echo "  <tr><th align='left'>Mountpoint</th><th align='left'>Stats</th></tr>\n";
 			foreach($system['partitions'] as $fs) {
 			    if ($fs['Used']['value'] > 0 && $fs['FileSystem']['text']!= "none" && $fs['FileSystem']['text']!= "udev") {
 				$diskFree = $fs['Free']['value'];
