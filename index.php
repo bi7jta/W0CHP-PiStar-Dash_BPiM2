@@ -378,7 +378,9 @@ if(empty($_POST['func'])) {
 		if ($_SERVER["PHP_SELF"] == "/admin/index.php" && $_POST["func"] == "bm_man" || $_GET["func"] == "bm_man") {		// Admin Only Options (BM mgr)
 			include 'mmdvmhost/bm_manager.php';                     // BM DMR Link Manager
 		}
-		
+
+		// will re-enable if/when TGIF provides a public API for their new (2022) platform
+		/*
 		if ($_SERVER["PHP_SELF"] == "/admin/index.php" && $_POST["func"] == "tgif_man" || $_GET["func"] == "tgif_man") {	// Admin Only Option (tgif links)
 		    echo '<script type="text/javascript">'."\n";
         	    echo 'function reloadtgifConnections(){'."\n";
@@ -391,6 +393,8 @@ if(empty($_POST['func'])) {
 		    include 'mmdvmhost/tgif_links.php';			// TGIF Links
 		    echo '</div>'."\n";
 		}
+		*/
+
 		if ($_SERVER["PHP_SELF"] == "/admin/index.php" && $_POST["func"] == "tgif_man" || $_GET["func"] == "tgif_man") {	// Admin Only Options (tgi mgr)
         	include 'mmdvmhost/tgif_manager.php';			// TGIF DMR Link Manager
 		}
