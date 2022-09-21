@@ -75,8 +75,8 @@ if (empty($VNStatGetData) == false) {
     $NetworkTraffic = "$Data[0] $Data[1] &darr; / $Data[2] $Data[3]  &uarr;";
     $NetTrafficTotal = "$Data[4] $Data[5]";
 } else {
-    $NetworkTraffic = "(collecting data, please wait.)";
-    $NetTrafficTotal = "(collecting data, please wait.)";
+    $NetworkTraffic = "(Collecting data, please wait.)";
+    $NetTrafficTotal = "(Collecting data, please wait.)";
 }
 ?>
 <div class="divTable" id="hwInfoTable">
