@@ -376,11 +376,10 @@ h1 {
 input.toggle-round-flat + label {
     padding: 1px;
     margin: 3px;
-    border: 1px solid transparent;
     width: 33px;
-    height: 18px;
-    background-color: #dddddd;
-    border-radius: 10px;
+    height: 20px;
+    background-color: #5C5C5C;
+    border-radius: 5px;
     transition: background 0.4s;
 }
 
@@ -396,9 +395,8 @@ input.toggle-round-flat + label:before {
     left: 1px;
     bottom: 1px;
     right: 1px;
-    background-color: #999;
     background: <?php echo $backgroundContent; ?>;
-    border-radius: 10px;
+    border-radius: 5px;
     transition: background 0.4s;
 }
 
@@ -407,24 +405,23 @@ input.toggle-round-flat + label:after {
     left: 2px;
     bottom: 2px;
     width: 16px;
-    background-color:  #999;
-    border-radius: 12px;
+    background: #999;
+    border-radius: 5px;
     transition: margin 0.4s, background 0.4s;
 }
 
 input.toggle-round-flat:checked + label {
-    background-color: #ddd;
+    background: #5C5C5C;
 }
 
 input.toggle-round-flat:checked + label:after {
     margin-left: 14px;
-    background-color: <?php echo $backgroundBanners; ?>;
+    background: <?php echo $backgroundServiceCellActiveColor; ?>;;
 }
 
 input.toggle-round-flat:focus + label {
-    box-shadow: 0 0 2px <?php echo $backgroundBanners; ?>;
+    box-shadow: 0 0 1px <?php echo $backgroundServiceCellActiveColor; ?>;;
     padding: 1px;
-    border: 1px solid <?php echo $backgroundBanners; ?>;
     z-index: 5;
 }
 
