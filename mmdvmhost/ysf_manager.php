@@ -151,7 +151,7 @@ if (isset($_SESSION['YSFGatewayConfigs']['Remote Commands']['Enable']) && (isset
 			<?php
 			$ysfLinkedTo = getActualLink($reverseLogLinesYSFGateway, "YSF");
 			if ($ysfLinkedTo == 'Not Linked' || $ysfLinkedTo == 'Service Not Started') {
-			    $ysfLinkedToTxt = $ysfLinkedTo;
+			    $ysfLinkedToTxt = 'Not Linked';
 			    $ysfLinkState = '';
 			} else {
 			    $ysfHostFile = fopen("/usr/local/etc/YSFHosts.txt", "r");

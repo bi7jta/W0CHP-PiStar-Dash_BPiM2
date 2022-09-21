@@ -1778,15 +1778,15 @@ function getActualLink($logLines, $mode) {
 	    break;
  
 	case "P25":
-	    // 00000000001111111111222222222233333333334444444444555555555566666666667777777777888888888899999999990000000000111111111122
-	    // 01234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901
+	// 00000000001111111111222222222233333333334444444444555555555566666666667777777777888888888899999999990000000000111111111122
+	// 01234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901
         // **
         // ** out of date, not supported anymore by the gateway
         // **
-	    // 2000-01-01 00:00:00.000 Linked at startup to reflector 10100
-	    // 2000-01-01 00:00:00.000 Unlinked from reflector 10100 by M1ABC
-	    // 2000-01-01 00:00:00.000 Linked to reflector 10200 by M1ABC
-	    // 2000-01-01 00:00:00.000 No response from 10200, unlinking
+	// 2000-01-01 00:00:00.000 Linked at startup to reflector 10100
+	// 2000-01-01 00:00:00.000 Unlinked from reflector 10100 by M1ABC
+	// 2000-01-01 00:00:00.000 Linked to reflector 10200 by M1ABC
+	// 2000-01-01 00:00:00.000 No response from 10200, unlinking
         // **
         // ** Latest P25Gateway
         // **
@@ -1797,42 +1797,60 @@ function getActualLink($logLines, $mode) {
         // 2020-11-04 08:40:35.499 Unlinking from 10100 due to inactivity
         // 2020-11-04 08:40:35.499 Unlinking from reflector 10100 by M1ABC
         // 2020-11-04 08:40:35.499 Unlinked from reflector 10100 by remote command
-            if (isProcessRunning("P25Gateway")) {
-                foreach($logLines as $logLine) {
-                    $to = "";
-                        if (strpos($logLine, "Statically linked to")) {
-                        $to = preg_replace('/[^0-9]/', '', substr($logLine, 55, 5));
-                        $to = preg_replace('/[^0-9]/', '', $to);
-                        $num = 0;
-                        $P25link = fopen("/tmp/P25Link.txt", "w");
-                        $num = fwrite($P25link,$to);
-                        fclose($P25link);
-                        $to = file_get_contents("/tmp/P25Link.txt");
-                        return "TG".$to;
-                    }
-            	    if (strpos($logLine,"Switched to reflector")) {
-                	$to = preg_replace('/[^0-9]/', '', substr($logLine, 46, 5));
-                	$to = preg_replace('/[^0-9]/', '', $to);
-                	$num = 0;
-                	$P25link = fopen("/tmp/P25Link.txt", "w");
-                	$num = fwrite($P25link,$to);
-                	fclose($P25link);
-                	$to = file_get_contents("/tmp/P25Link.txt");
-                	return "TG".$to;
-            	    }
-		    if (strpos($logLine,"Starting P25Gateway") || strpos($logLine,"Unlinking") || strpos($logLine,"Unlinked")) {
-			return "<div class='inactive-mode-cell'>Not Linked</div>";
+	    if (isProcessRunning("P25Gateway")) {
+		foreach ( array_reverse($logLines) as $logLine ) {
+		    $to = "";
+		    if (strpos($logLine,"Linked to")) {
+			$to = preg_replace('/[^0-9]/', '', substr($logLine, 50, 5));
+			$to = preg_replace('/[^0-9]/', '', $to);
+			$p25cache = fopen("/tmp/P25Link.txt", "w");
+			$num = fwrite($p25cache,$to);
+			fclose($p25cache);
+			return "TG".$to;
+		    }
+		    if (strpos($logLine,"Linked at startup to")) {
+		    	$to = preg_replace('/[^0-9]/', '', substr($logLine, 59, 5));
+		    	$to = preg_replace('/[^0-9]/', '', $to);
+		    	$p25cache = fopen("/tmp/P25Link.txt", "w");
+		    	$num = fwrite($p25cache,$to);
+		    	fclose($p25cache);
+		    	return "TG".$to;
+		    }
+		    if (strpos($logLine,"Switched to reflector")) {
+		    	$to = preg_replace('/[^0-9]/', '', substr($logLine, 46, 5));
+		    	$to = preg_replace('/[^0-9]/', '', $to);
+		    	$p25cache = fopen("/tmp/P25Link.txt", "w");
+		    	$num = fwrite($p25cache,$to);
+		    	fclose($p25cache);
+		    	return "TG".$to;
+		    }
+		    if (strpos($logLine,"Starting P25Gateway")) {
+		    	return "<div class='inactive-mode-cell'>Not Linked</div>";
+		    }
+		    if (strpos($logLine,"unlinking")) {
+		    	return "<div class='inactive-mode-cell'>Not Linked</div>";
+		    }
+		    if (strpos($logLine,"Unlinking")) {
+		    	return "<div class='inactive-mode-cell'>Not Linked</div>";
+		    }
+		    if (strpos($logLine,"Unlinked")) {
+		    	$num = 0;
+		    	$p25cache = fopen("/tmp/P25Link.txt", "w");
+		    	$num = fwrite($p25cache,"Not Linked");
+		    	fclose($p25cache);
+		    	return "<div class='inactive-mode-cell'>Not Linked</div>";
 		    }
 		}
-        	return "<div class='inactive-mode-cell'>Not Linked</div>";
-	    } 
-	    else {
+		$to = file_get_contents("/tmp/P25Link.txt");
+		return "TG".$to;
+	    } else {
 		return "<div class='inactive-mode-cell'>Service Not Started</div>";
-            }
+	    }
 	    break;
-    }
-    return "<div class='inactive-mode-cell'>ervice Not Started</div>";
+	}
+	return "<div class='inactive-mode-cell'S>ervice Not Started</div>";
 }
+
 
 function decodeAlias($logLine) {
   if (substr($logLine, 34, 2) !=="04")
