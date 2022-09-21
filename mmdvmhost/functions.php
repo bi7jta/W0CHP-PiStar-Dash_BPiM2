@@ -1803,17 +1803,17 @@ function getActualLink($logLines, $mode) {
                         $P25link = fopen("/tmp/P25Link.txt", "w");
                         $num = fwrite($P25link,$to);
                         fclose($P25link);
-                        $to = file_get_contents("/tmp/p25tg.txt");
+                        $to = file_get_contents("/tmp/P25Link.txt");
                         return "TG".$to;
                     }
             	    if (strpos($logLine,"Switched to reflector")) {
                 	$to = preg_replace('/[^0-9]/', '', substr($logLine, 46, 5));
                 	$to = preg_replace('/[^0-9]/', '', $to);
                 	$num = 0;
-                	$P25link = fopen("/tmp/p25tg.txt", "w");
+                	$P25link = fopen("/tmp/P25Link.txt", "w");
                 	$num = fwrite($P25link,$to);
                 	fclose($P25link);
-                	$to = file_get_contents("/tmp/p25tg.txt");
+                	$to = file_get_contents("/tmp/P25Link.txt");
                 	return "TG".$to;
             	    }
 		    if (strpos($logLine,"Starting P25Gateway") || strpos($logLine,"Unlinking") || strpos($logLine,"Unlinked")) {
