@@ -452,13 +452,30 @@ $numDMRmasters = exec('cd /var/log/pi-star ; /usr/local/bin/RemoteCommand 7643 s
 	    <?php
 	    if (getConfigItem("DMR Network", "Slot1", $_SESSION['MMDVMHostConfigs']) == 1) {
 		if (preg_match("/Not/",getActualLink($reverseLogLinesMMDVM, "DMR Slot 1"))) {
-                        echo "<div class='divTableCell cell_content middle' title='Unlinked'><div style=\"background: $tableRowEvenBg;\">Unlinked</div></div>\n";
+		    echo "<div class='divTableCell cell_content middle' title='Unlinked'><div style=\"background: $tableRowEvenBg;\">Unlinked</div></div>\n";
 		} else {
 		    $slot1Link = substr(getActualLink($reverseLogLinesMMDVM, "DMR Slot 1"), -11); 
-		    echo "<div class='divTableCell cell_content middle active-mode-cell' title='Time Slot 1 Enabled: $slot1Link' style='border: .5px solid $tableBorderColor;'>$slot1Link</div>\n";
+		    if (file_exists("/etc/.TGNAMES")) {
+			$slot1Link = str_replace("TG ", "", $slot1Link);
+			if (strlen($slot1Link) >= 2) {
+			    $target_lookup = trim(exec("grep -w \"$slot1Link\" /usr/local/etc/groups.txt | awk -F, '{print $1}' | head -1 | tr -d '\"'"));
+			    if (!empty($target_lookup)) {
+				$TGname = str_replace("$slot1Link: ", "BM ", $target_lookup);
+				$stupid_bm = ['/ - 10 Minute Limit/', '/ NOT A CALL CHANNEL/', '/ NO NETS(.*?)/', '/ - .*/', '/!/'];
+				$TGname = preg_replace($stupid_bm, "", $TGname); // strip stupid fucking comments from BM admins in TG names. Idiots.
+				echo "<div class='divTableCell cell_content middle active-mode-cell' title='Time Slot 1 Enabled: TG $slot1Link' style='border: .5px solid $tableBorderColor;'>TG $slot1Link<br /><small>($TGname)</small></div>\n";
+			    } else {
+				echo "<div class='divTableCell cell_content middle active-mode-cell' title='Time Slot 1 Enabled: $slot1Link' style='border: .5px solid $tableBorderColor;'>$slot1Link</div>\n";
+			    }
+			} else {
+			    echo "<div class='divTableCell cell_content middle active-mode-cell' title='Time Slot 1 Enabled: $slot1Link' style='border: .5px solid $tableBorderColor;'>$slot1Link</div>\n";
+			}
+		    } else {
+			echo "<div class='divTableCell cell_content middle active-mode-cell' title='Time Slot 1 Enabled: $slot1Link' style='border: .5px solid $tableBorderColor;'>$slot1Link</div>\n";
+		    }
 		}
 	    } else {
-		    echo "<div class='divTableCell cell_content middle title='Time Slot 1 disabled' style='border: .5px solid $tableBorderColor;'>Disabled</div>\n";
+		echo "<div class='divTableCell cell_content middle title='Time Slot 1 disabled' style='border: .5px solid $tableBorderColor;'>Disabled</div>\n";
 	    }
 	    ?>
     </div>
@@ -467,14 +484,32 @@ $numDMRmasters = exec('cd /var/log/pi-star ; /usr/local/bin/RemoteCommand 7643 s
            <?php
 	    if (getConfigItem("DMR Network", "Slot2", $_SESSION['MMDVMHostConfigs']) == 1) {
                 if (preg_match("/Not/",getActualLink($reverseLogLinesMMDVM, "DMR Slot 2"))) {
-                        echo "<div class='divTableCell cell_content middle' title='Unlinked'><div style=\"background: $tableRowEvenBg;\">Unlinked</div></div>\n";
-                } else {
-		    	$slot2Link = substr(getActualLink($reverseLogLinesMMDVM, "DMR Slot 2"), -11); 
-			echo "<div class='divTableCell cell_content middle active-mode-cell' title='Time Slot 2 Enabled: $slot2Link' style='border: .5px solid $tableBorderColor;'>$slot2Link</div>\n";
+		    echo "<div class='divTableCell cell_content middle' title='Unlinked'><div style=\"background: $tableRowEvenBg;\">Unlinked</div></div>\n";
+		} else {
+		    $slot2Link = substr(getActualLink($reverseLogLinesMMDVM, "DMR Slot 2"), -11); 
+		    if (file_exists("/etc/.TGNAMES")) {
+			$slot2Link = str_replace("TG ", "", $slot2Link);
+			if (strlen($slot2Link) >= 2) {
+			    $target_lookup = trim(exec("grep -w \"$slot2Link\" /usr/local/etc/groups.txt | awk -F, '{print $1}' | head -1 | tr -d '\"'"));
+			    if (!empty($target_lookup)) {
+				$TGname = str_replace("$slot2Link: ", "BM ", $target_lookup);
+				$stupid_bm = ['/ - 10 Minute Limit/', '/ NOT A CALL CHANNEL/', '/ NO NETS(.*?)/', '/ - .*/', '/!/'];
+				$TGname = preg_replace($stupid_bm, "", $TGname); // strip stupid fucking comments from BM admins in TG names. Idiots.
+				echo "<div class='divTableCell cell_content middle active-mode-cell' title='Time Slot 1 Enabled: TG $slot2Link' style='border: .5px solid $tableBorderColor;'>TG $slot2Link<br /><small>($TGname)</small></div>\n";
+			    } else {
+				echo "<div class='divTableCell cell_content middle active-mode-cell' title='Time Slot 1 Enabled: $slot2Link' style='border: .5px solid $tableBorderColor;'>$slot2Link</div>\n";
+			    }
+			} else {
+			    echo "<div class='divTableCell cell_content middle active-mode-cell' title='Time Slot 1 Enabled: $slot2Link' style='border: .5px solid $tableBorderColor;'>$slot2Link</div>\n";
+			}
+		    } else {
+			echo "<div class='divTableCell cell_content middle active-mode-cell' title='Time Slot 1 Enabled: $slot2Link' style='border: .5px solid $tableBorderColor;'>$slot2Link</div>\n";
+		    }
 		}
 	    } else {
-		    echo "<div class='divTableCell cell_content middle title='Time Slot 2 disabled' style='border: .5px solid $tableBorderColor;'>Disabled</div>\n";
+		echo "<div class='divTableCell cell_content middle title='Time Slot 1 disabled' style='border: .5px solid $tableBorderColor;'>Disabled</div>\n";
 	    }
+
 	    ?>
     </div>
     <div class="divTableRow center">
@@ -772,8 +807,12 @@ if (getServiceEnabled('/etc/dgidgateway') == 1 )  { // Hide DGId GW info when GW
 		if (strpos($P25tg, 'Not Linked') || strpos($P25tg, 'Service Not Started')) {
 		    echo "<div class='divTableCell cell_content'><div ".GetActiveConnectionStyle($remoteP25GResults, "p25").">$P25tg</div></div>\n";
 		} else {
-		    $P25_target = exec("grep -w \"$P25tg\" /usr/local/etc/TGList_P25.txt | awk -F';' '{print $2}'");
-		    echo "<div class='divTableCell cell_content'><div ".GetActiveConnectionStyle($remoteP25GResults, "p25").">TG $P25tg<br /><small>($P25_target)</small></div></div>\n";
+		    if (file_exists("/etc/.TGNAMES")) {
+			$P25_target = exec("grep -w \"$P25tg\" /usr/local/etc/TGList_P25.txt | awk -F';' '{print $2}'");
+			echo "<div class='divTableCell cell_content'><div ".GetActiveConnectionStyle($remoteP25GResults, "p25").">TG $P25tg<br /><small>($P25_target)</small></div></div>\n";
+		    } else {
+			echo "<div class='divTableCell cell_content'><div ".GetActiveConnectionStyle($remoteP25GResults, "p25").">TG $P25tg</div></div>\n";
+		    }
 		}
 	    }
 ?>
@@ -812,10 +851,14 @@ if (getConfigItem("NXDN", "RAN", $_SESSION['MMDVMHostConfigs'])) {
 	} else {
 	    $NXDNtg = str_replace("TG", "", getActualLink($logLinesNXDNGateway, "NXDN"));
 	    if (strpos($NXDNtg, 'Not Linked') || strpos($NXDNtg, 'Service Not Started')) {
-	        echo "<div class='divTableCell cell_content'><div ".GetActiveConnectionStyle($remoteNXDNGResults, "nxdn").">$NXDNtg</div></div>\n";
+		echo "<div class='divTableCell cell_content'><div ".GetActiveConnectionStyle($remoteNXDNGResults, "nxdn").">$NXDNtg</div></div>\n";
 	    } else {
-	        $NXDN_target = exec("grep -w \"$NXDNtg\" /usr/local/etc/TGList_NXDN.txt | awk -F';' '{print $2}'");
-	        echo "<div class='divTableCell cell_content'><div ".GetActiveConnectionStyle($remoteNXDNGResults, "nxdn").">TG $NXDNtg<br /><small>($NXDN_target)</small></div></div>\n";
+		if (file_exists("/etc/.TGNAMES")) {
+		    $NXDN_target = exec("grep -w \"$NXDNtg\" /usr/local/etc/TGList_NXDN.txt | awk -F';' '{print $2}'");
+		    echo "<div class='divTableCell cell_content'><div ".GetActiveConnectionStyle($remoteNXDNGResults, "nxdn").">TG $NXDNtg<br /><small>($NXDN_target)</small></div></div>\n";
+	    	} else {
+		    echo "<div class='divTableCell cell_content'><div ".GetActiveConnectionStyle($remoteNXDNGResults, "nxdn").">TG $NXDNtg</div></div>\n";
+		}
 	    }
 	}
 ?>

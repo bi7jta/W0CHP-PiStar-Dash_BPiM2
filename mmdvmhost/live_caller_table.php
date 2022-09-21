@@ -176,7 +176,12 @@ for ($i = 0;  ($i <= 0); $i++) { //Last 20  calls
 		}
 	    }
 	} else {
-	    $target = $target;
+	    $modeArray = array('DMR', 'NXDN', 'P25');
+	    if (strpos($mode, $modeArray[0]) !== false) {
+		$target = "TG $target";
+	    } else {
+		$target = $target;
+	    }
 	}
 
 	    if($listElem[2] == "4000" || $listElem[2] == "9990" || $listElem[2] == "DAPNET") {
