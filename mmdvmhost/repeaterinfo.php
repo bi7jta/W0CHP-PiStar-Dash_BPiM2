@@ -62,13 +62,13 @@ function FillConnectionStatus(&$destArray, $remoteEnabled, $remotePort) {
 function GetActiveConnectionStyle($masterStates, $key) {
     global $tableRowEvenBg;
     if (count($masterStates)) {
-	    if (isset($masterStates[$key])) {
-		if ($key == "xlx" && file_exists("/etc/.XLX_paused")) { // xlx dmr manager logic
-		    return "class=\"paused-mode-cell\" title=\"User Unlinked\"";
-		} else if (($masterStates[$key] == "n/a") || ($masterStates[$key] == "disc")) {
-		    return "class=\"error-state-cell\"";
-	        }
+	if (isset($masterStates[$key])) {
+	    if ($key == "xlx" && file_exists("/etc/.XLX_paused")) { // xlx dmr manager logic
+		return "class=\"paused-mode-cell\" title=\"User Unlinked\"";
+	    } else if (($masterStates[$key] == "n/a") || ($masterStates[$key] == "disc")) {
+		return "class=\"error-state-cell\"";
 	    }
+	}
     }
     return "style='background: $tableRowEvenBg;'";
 }
@@ -550,11 +550,12 @@ $numDMRmasters = exec('cd /var/log/pi-star ; /usr/local/bin/RemoteCommand 7643 s
 			    
                             if (file_exists("/var/log/pi-star/DMRGateway-".gmdate("Y-m-d").".log")) {
 				$xlxMasterHostLinkState = exec('grep \'XLX, Linking\|XLX, Unlinking\|XLX, Logged\' /var/log/pi-star/DMRGateway-'.gmdate("Y-m-d").'.log | tail -1 | awk \'{print $5 " " $8 " " $9}\'');
-			    }
-			    else {
+				if(empty($xlxMasterHostLinkState)) {
+				    $xlxMasterHostLinkState = exec('grep \'XLX, Linking\|XLX, Unlinking\|XLX, Logged\' /var/log/pi-star/DMRGateway-'.gmdate("Y-m-d", time() - 86340).'.log | tail -1 | awk \'{print $5 " " $8 " " $9}\'');
+				}
+			    } else {
 				$xlxMasterHostLinkState = exec('grep \'XLX, Linking\|XLX, Unlinking\|XLX, Logged\' /var/log/pi-star/DMRGateway-'.gmdate("Y-m-d", time() - 86340).'.log | tail -1 | awk \'{print $5 " " $8 " " $9}\'');
 			    }
-			    
                             if ($xlxMasterHostLinkState != "") {
                                 if ( strpos($xlxMasterHostLinkState, 'Linking') !== false ) {
                                     $xlxMasterHost1 = str_replace('Linking ', '', $xlxMasterHostLinkState);
