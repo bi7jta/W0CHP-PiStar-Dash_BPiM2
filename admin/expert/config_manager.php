@@ -148,6 +148,9 @@ if ($_SERVER["PHP_SELF"] == "/admin/expert/config_manager.php") {
                             	   exec("sudo cp /etc/dapnetapi.key $backupDir > /dev/null")."\n";
                             	   exec("sudo cp /etc/default/gpsd $backupDir > /dev/null")."\n";
                             	   exec("sudo cp /etc/*_paused $backupDir > /dev/null")."\n";
+                            	   exec("sudo cp /etc/.CALLERDETAILS $backupDir > /dev/null")."\n";
+                            	   exec("sudo cp /etc/.pistar-css.ini.user $backupDir > /dev/null")."\n";
+                            	   exec("sudo cp /etc/.TGNAMES $backupDir > /dev/null")."\n";
                             	   exec("sudo cp /usr/local/etc/RSSI.dat $backupDir > /dev/null")."\n";
                             	   exec("sudo cp /var/www/dashboard/config/ircddblocal.php $backupDir > /dev/null")."\n";
                             	   exec("sudo cp /var/www/dashboard/config/config.php $backupDir > /dev/null")."\n";
