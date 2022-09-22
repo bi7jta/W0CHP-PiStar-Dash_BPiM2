@@ -43,10 +43,10 @@ if (isset($_SESSION['CSSConfigs']['Text'])) {
     $textSections = $_SESSION['CSSConfigs']['Text']['TextSectionColor'];
 }
 if(empty($_GET['func'])) {
-    $_GET['func'] = "index";
+    $_GET['func'] = "main";
 }
 if(empty($_POST['func'])) {
-    $_POST['func'] = "index";
+    $_POST['func'] = "main";
 }
 ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
@@ -453,7 +453,7 @@ if(empty($_POST['func'])) {
 	    	echo 'setTimeout(reloadSysInfo,5000);'."\n";
 	    	echo '$(window).trigger(\'resize\');'."\n";
 	    	echo '</script>'."\n";
-	    	if (empty($_POST) && empty($_GET) || $_GET['func'] == "main") {				// only show services on main admin page
+	    	if ($_GET['func'] == "main") {				// only show services on main admin page
 		    echo '<div id="sysInfo">'."\n";
 		    include 'dstarrepeater/system.php';				// Basic System Info
 		    echo '</div></div>'."\n";
@@ -462,7 +462,7 @@ if(empty($_POST['func'])) {
     
 		// begin admin selection form
 		if ($_SERVER["PHP_SELF"] == "/admin/index.php") {
-		    if ((!empty($_POST) || !empty($_GET)) && ($_GET['func'] != 'main')) { echo '<br />'; }
+		    if ($_GET['func'] != 'main') { echo '<br />'; }
                     echo '<div style="text-align:left;font-weight:bold;">Admin Sections</div>'."\n";
 		    echo '<form method="get" id="admin_sel" name="admin_sel" action="/admin/" style="padding-bottom:10px;">'."\n";
 		    echo '      <div class="mode_flex">'."\n";
@@ -553,7 +553,7 @@ if(empty($_POST['func'])) {
 		    echo '      </div></div>'."\n".'</div>'."\n";
 		    echo '      <div><b>Note:</b> Modes/networks/services not <a href="/admin/configure.php" style="text-decoration:underline;color:inherit;">globally configured/enabled</a>, or that are paused, are not selectable here until they are enabled or <a href="./?func=mode_man" style="text-decoration:underline;color:inherit;">resumed from pause</a>.</div>'."\n";
 		    echo ' </form>'."\n";
-		    if (!empty($_GET) && $_GET['func'] != "main") {
+		    if ($_GET['func'] != "main") {
 			echo "</div>\n";
 		    }
 		}
