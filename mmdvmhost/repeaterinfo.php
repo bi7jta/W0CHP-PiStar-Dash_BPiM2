@@ -875,7 +875,7 @@ if (getConfigItem("NXDN", "RAN", $_SESSION['MMDVMHostConfigs'])) {
 	if ( $testMMDVModeM17 == 1 || isPaused("M17") ) { //Hide the M17 Reflector information when M17 Network not enabled.
 ?>
 <div class="divTable">
-  <div class="divTableHead">M17 Repeater</div>
+  <div class="divTableHead">M17 Status</div>
   <div class="divTableBody">
     <div class="divTableRow center">
 <?php
