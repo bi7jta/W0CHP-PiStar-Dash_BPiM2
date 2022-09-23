@@ -467,7 +467,7 @@ textarea, input[type='text'], input[type='password'] {
         border: 1px solid <?php echo $tableBorderColor; ?>;
         padding: 5px;
         margin 3px;
-        background: #D6D6D6;
+        background: #e2e2e2;
 }
 
 input[type=button], input[type=submit], input[type=reset], input[type=radio], button {
@@ -505,7 +505,7 @@ input:disabled + label {
 }
 
 select {
-    background: #D6D6D6;
+    background: #e2e2e2;
     font-family: 'Inconsolata', monospace;
     font-size: <?php echo $bodyFontSize; ?>px;
     border: 1px solid <?php echo $tableBorderColor; ?>;
@@ -519,14 +519,14 @@ select {
   font-family: 'Inconsolata', monospace;
   color: black;
   font-size: <?php echo $bodyFontSize; ?>px !important;
-  background: #D6D6D6;
+  background: #e2e2e2;
 }
 
 .select2-results__options{
   color: black;
   font-size:<?php echo $bodyFontSize; ?>px !important;
   font-family: 'Inconsolata', monospace;
-  background: #D6D6D6;
+  background: #e2e2e2;
 }
 
 [class^='select2'] {
