@@ -6,9 +6,11 @@ include_once $_SERVER['DOCUMENT_ROOT'].'/mmdvmhost/tools.php';        // MMDVMDa
 include_once $_SERVER['DOCUMENT_ROOT'].'/mmdvmhost/functions.php';    // MMDVMDash Functions
 include_once $_SERVER['DOCUMENT_ROOT'].'/config/language.php';        // Translation Code
 
+$PS_ver = $_SESSION['PiStarRelease']['Pi-Star']['Version'];
+
 $headers = stream_context_create(Array("http" => Array("method"  => "GET",
                                                        "timeout" => 1,
-                                                       "header"  => "User-agent: WPSD-Messages",
+                                                       "header"  => "User-agent: WPSD-Messages - $PS_VER, $version",
                                                        'request_fulluri' => True )));
 /*
 // old pistar
