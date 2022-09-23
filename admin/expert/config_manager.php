@@ -174,7 +174,8 @@ if ($_SERVER["PHP_SELF"] == "/admin/expert/config_manager.php") {
 				   exec("sudo sh -c 'cp -a $backupDir/.CALLERDETAILS /etc/' > /dev/null");
 				   exec("sudo sh -c 'cp -a $backupDir/.TGNAMES /etc/' > /dev/null");
 				   exec("sudo sh -c 'cp -a $backupDir/.pistar-css.ini.user /etc/' > /dev/null");
-				   exec("sudo sh -c 'cp -a $backupDir/*.php /etc/var/www/dashboard/config/' > /dev/null");
+				   exec("sudo sh -c 'cp -a $backupDir/*.php /var/www/dashboard/config/' > /dev/null");
+				   exec("sudo chown -R www-data:www-data /var/www/dashboard/ > /dev/null");
 				   exec("sudo sh -c 'cp -a /root/*Hosts.txt $backupDir' > /dev/null");
 				   exec('sudo mount -o remount,ro /');
 				   exec("sudo pistar-services restart > /dev/null &");
