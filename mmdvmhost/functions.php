@@ -1840,6 +1840,9 @@ function getActualLink($logLines, $mode) {
 		    	fclose($p25cache);
 		    	return "<div class='inactive-mode-cell'>Not Linked</div>";
 		    }
+		    if(!file_exists("/tmp/P25Link.txt")) {
+		    	return "<div class='inactive-mode-cell'>Not Linked</div>";
+		    }
 		}
 		$to = file_get_contents("/tmp/P25Link.txt");
 		return "TG".$to;
