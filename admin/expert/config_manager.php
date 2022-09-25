@@ -44,49 +44,7 @@ if ($_SERVER["PHP_SELF"] == "/admin/expert/config_manager.php") {
 	</head>
 	<body>
 	    <div class="container">
-		<div class="header">
-		    <div style="font-size: 10px; text-align: left; padding-left: 8px; float: left;">Hostname: <?php echo exec('cat /etc/hostname'); ?></div><div style="font-size: 10px; text-align: right; padding-right: 8px;">Pi-Star: <?php echo $_SESSION['PiStarRelease']['Pi-Star']['Version'].'<br />';?>
-		    <?php if (constant("AUTO_UPDATE_CHECK") == "true") { ?> 
-		    <div id="CheckUpdate"><?php echo $version; system('/usr/local/sbin/pistar-check4updates'); ?></div></div>
-		    <?php } else { ?>
-		    <div id="CheckUpdate"><?php echo $version; ?></div></div>
-		    <?php } ?>    
-		    <h1>Pi-Star <?php echo $lang['digital_voice'];?>  - Config Manager</h1>
-		    <p>
-			<div class="navbar">
-              <script type= "text/javascript">
-               $(document).ready(function() {
-                 setInterval(function() {
-                   $("#timer").load("/dstarrepeater/datetime.php");
-                   }, 1000);
-
-                 function update() {
-                   $.ajax({
-                     type: 'GET',
-                     cache: false,
-                     url: '/dstarrepeater/datetime.php',
-                     timeout: 1000,
-                     success: function(data) {
-                       $("#timer").html(data); 
-                       window.setTimeout(update, 1000);
-                     }
-                   });
-                 }
-                 update();
-               });
-              </script>
-              <div style="font-size:<?php echo($TextFontSize);?>px; text-align: left; padding-left: 8px; padding-top: 5px; float: left;">
-                <span id="timer"></span>
-            </div>
-			    <a class="menuconfig" href="/admin/configure.php"><?php echo $lang['configuration'];?></a>
-			    <a class="menubackup" href="/admin/config_backup.php"><?php echo $lang['backup_restore'];?></a>
-			    <a class="menuupdate" href="/admin/update.php"><?php echo $lang['update'];?></a>
-			    <a class="menuadmin" href="/admin/"><?php echo $lang['admin'];?></a>
-			    <a class="menulive" href="/live/">Live Caller</a>
-			    <a class="menudashboard" href="/"><?php echo $lang['dashboard'];?></a>
-			</div>
-		    </p>
-		</div>
+<?php include './header-menu.inc'; ?>
 		<div class="contentwide">
 		    <?php if (!empty($_POST)) { ?>
 			<table width="100%">
