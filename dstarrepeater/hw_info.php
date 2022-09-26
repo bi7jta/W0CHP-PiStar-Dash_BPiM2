@@ -91,7 +91,7 @@ if (empty($VNStatGetData) == false) {
       <div class="divTableHeadCell"><a class="tooltip" href="#"><?php echo $lang['cpu_temp'];?><span><strong>CPU Temp</strong></a><span></div>
     </div>
     <div class="divTableRow">
-      <div class="divTableCell cell_content"><?php echo exec('/usr/local/sbin/platformDetect.sh');?></div>
+      <div class="divTableCell cell_content"><?php echo $_SESSION['PiStarRelease']['Pi-Star']['Platform'];?></div>
       <div class="divTableCell cell_content"><?php echo php_uname('r');?></div>
       <div class="divTableCell cell_content"><?php echo $load; ?>%</div>
       <div class="divTableCell cell_content"><?php echo $ramDeetz;?></div>
