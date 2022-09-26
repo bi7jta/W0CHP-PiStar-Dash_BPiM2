@@ -75,7 +75,7 @@ if(empty($_POST['func'])) {
 	 $.ajaxSetup({ cache: false });
 	</script>
         <link href="/js/select2/css/select2.min.css?version=<?php echo $versionCmd; ?>" rel="stylesheet" />
-        <script src="/js/select2/js/select2.min.js?version=<?php echo $versionCmd; ?>"></script>
+        <script src="/js/select2/js/select2.full.min.js?version=<?php echo $versionCmd; ?>"></script>
         <script type="text/javascript">
           $(document).ready(function() {
             $('.ysfLinkHost').select2();
@@ -97,7 +97,7 @@ if(empty($_POST['func'])) {
                 $result.text(data.text);
 
                 if (data.newOption) {
-                  $result.append(" <em>(Search existing or enter and save custom reflector value)</em>");
+                  $result.append(" <em>(Search existing, or enter and save custom reflector value.)</em>");
                 }
 
                 return $result;

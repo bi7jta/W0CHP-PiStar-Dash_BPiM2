@@ -426,7 +426,7 @@ $MYCALL=strtoupper($callsign);
     <?php include_once "../config/browserdetect.php"; ?>
     <script type="text/javascript" src="/js/jquery.min.js?version=<?php echo $versionCmd; ?>"></script>
     <link href="/js/select2/css/select2.min.css?version=<?php echo $versionCmd; ?>" rel="stylesheet" />
-    <script src="/js/select2/js/select2.min.js?version=<?php echo $versionCmd; ?>"></script>
+    <script src="/js/select2/js/select2.full.min.js?version=<?php echo $versionCmd; ?>"></script>
     <script type="text/javascript">
 	function disablesubmitbuttons() {
 		var inputs = document.getElementsByTagName('input');
