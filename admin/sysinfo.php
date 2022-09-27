@@ -93,7 +93,7 @@ function formatSize( $bytes ) {
 	<meta http-equiv="pragma" content="no-cache" />
 	<link rel="shortcut icon" href="/images/favicon.ico" type="image/x-icon" />
 	<meta http-equiv="Expires" content="0" />
-	<title>Pi-Star - <?php echo $lang['digital_voice']." ".$lang['dashboard']." - ".$lang['update'];?></title>
+	<title>Pi-Star - Hardware/Software Details</title>
 	<link rel="stylesheet" type="text/css" href="/css/pistar-css.php?version=<?php echo $versionCmd; ?>" />
 	<link rel="stylesheet" type="text/css" href="/css/font-awesome-4.7.0/css/font-awesome.min.css" />
 	<script type="text/javascript" src="/js/jquery.min.js?version=<?php echo $versionCmd; ?>"></script>
@@ -222,8 +222,12 @@ function formatSize( $bytes ) {
 			$DGIdGateway_Ver = exec('/usr/local/bin/DGIdGateway -v | cut -d\' \' -f 3-');
 			echo "  <tr>";getStatusClass(isProcessRunning("DGIdGateway"), true); echo "DGIdGateway</td><td align=\"left\">".$DGIdGateway_Ver."</td></tr>\n";
 		    }
+		    if (is_executable('/usr/local/bin/dstarrepeaterd')) {
+			$dstarrepeater_Ver = $_SESSION['PiStarRelease']['Pi-Star']['dstarrepeater'];
+			echo "  <tr>";getStatusClass(isProcessRunning("dstarrepeaterd"), true); echo "dstarrepeaterd</td><td align=\"left\">".$dstarrepeater_Ver."</td></tr>\n";
+		    }
 		    if (is_executable('/usr/local/bin/ircddbgatewayd')) {
-			$ircDDBGateway_Ver = exec("grep ircddbgateway /etc/pistar-release | awk '{print $3}'");
+			$ircDDBGateway_Ver = $_SESSION['PiStarRelease']['Pi-Star']['ircddbgateway'];
 			echo "  <tr>";getStatusClass(isProcessRunning("ircddbgatewayd"), true); echo "ircDDBGateway</td><td align=\"left\">".$ircDDBGateway_Ver."</td></tr>\n";
 		    }
 		    if (is_executable('/usr/local/bin/YSF2DMR')) {
