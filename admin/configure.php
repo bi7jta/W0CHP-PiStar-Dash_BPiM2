@@ -17,10 +17,6 @@ require_once $_SERVER['DOCUMENT_ROOT'].'/mmdvmhost/functions.php';
 require_once $_SERVER['DOCUMENT_ROOT'].'/config/ircddblocal.php';
 require_once $_SERVER['DOCUMENT_ROOT'].'/config/language.php';
 
-if(empty($_GET['force'])) {
-    $_GET['force'] = 'false';
-}
-
 // Load the pistar-release file
 $pistarReleaseConfig = '/etc/pistar-release';
 $configPistarRelease = parse_ini_file($pistarReleaseConfig, true);
@@ -592,7 +588,7 @@ if (file_exists($bmAPIkeyFile) && fopen($bmAPIkeyFile,'r')) {
 $is_paused = glob('/etc/*_paused');
 $repl_str = array('/\/etc\//', '/_paused/');
 $paused_modes = preg_replace($repl_str, '', $is_paused);
-if (!empty($is_paused) && $_GET['force'] != true) {
+if (!empty($is_paused)) {
     //HTML output starts here
     echo '<div class="contentwide" style="color:inherit;">'."\n";
     echo '<h1>IMPORTANT:</h1>';
@@ -3957,13 +3953,10 @@ else:
 	<div><input type="hidden" name="factoryReset" value="1" /></div>
 </form>
 
-<?php if($_GET['force'] == true) {
-    echo '<form id="config" action="'.htmlspecialchars($_SERVER["PHP_SELF"]).'?force=true" method="post">';
-} else {
+<?php
     echo '<form id="config" action="'.htmlspecialchars($_SERVER["PHP_SELF"]).'" method="post">';
-}
 ?>
-	<h2><?php echo $lang['control_software'];?></h2>
+    <h2><?php echo $lang['control_software'];?></h2>
     <table>
     <tr>
     <th width="200"><a class="tooltip" href="#"><?php echo $lang['setting'];?><span><b>Setting</b></span></a></th>
@@ -4157,47 +4150,48 @@ else:
         echo "<td align=\"left\" colspan=\"2\"><div class=\"switch\"><input id=\"toggle-aprsgateway\" class=\"toggle toggle-round-flat\" type=\"checkbox\" name=\"APRSGatewayEnable\" value=\"ON\" aria-hidden=\"true\" tabindex=\"-1\" ".$toggleAPRSGatewayCheckboxCr." /><label id=\"aria-toggle-aprsgateway\" role=\"checkbox\" tabindex=\"0\" aria-label=\"Enable APRS Position Reporting\" aria-checked=\"false\" onKeyPress=\"toggleAPRSGatewayCheckbox()\" onclick=\"toggleAPRSGatewayCheckbox()\" for=\"toggle-aprsgateway\"><font style=\"font-size:0px\">Enable APRS Position Reporting</font></label></div></td>\n";
     }
 } ?>
-<td>
+<td style='word-wrap: break-word;white-space: normal;padding-left: 5px;' align="left">
 <div style="display:block;text-align:left;">
     <div style="display:block;">
         <div style="display:block;">
         <label for="aprsgw-service-selection" style="display: inline-block;">Send APRS Data to Modes:</label>
             <div style="display: inline-block;vertical-align: middle;">
                 [ <input name="DMRGatewayAPRS" id="aprsgw-service-selection-0" value="DMRGatewayAPRS" type="checkbox"
-				<?php if($DMRGatewayAPRS == '1') { echo(' checked="checked"'); }
-                      if ($configaprsgw['Enabled']['Enabled'] == 0)  { echo(' disabled="disabled"'); }?> >
+				<?php if($DMRGatewayAPRS == '1' && $configmmdvm['DMR Network']['Enable'] == 1) { echo(' checked="checked"'); }
+                      if ($configaprsgw['Enabled']['Enabled'] == 0 || $configmmdvm['DMR Network']['Enable'] == 0)  { echo(' disabled="disabled"'); }?> >
                 <label for="aprsgw-service-selection-0">DMR</label> |
             </div>
             <div style="display: inline-block;vertical-align: middle;">
                 <input name="YSFGatewayAPRS" id="aprsgw-service-selection-1" value="YSFGatewayAPRS" type="checkbox"
-				<?php if($YSFGatewayAPRS == '1') { echo(' checked="checked"'); }
-					if ($configaprsgw['Enabled']['Enabled'] == 0)  { echo(' disabled="disabled"'); }?> >
+				<?php if(($YSFGatewayAPRS == '1' && $configmmdvm['System Fusion Network']['Enable'] == 1) || ($configaprsgw['Enabled']['Enabled'] == 1 && $configdmr2ysf['Enabled']['Enabled'] == "1")) { echo(' checked="checked"'); }
+					if (($configaprsgw['Enabled']['Enabled'] == 0 && $configmmdvm['System Fusion Network']['Enable'] == 0) || ($configaprsgw['Enabled']['Enabled'] == 0 && $configdmr2ysf['Enabled']['Enabled'] == "0"))  { echo(' disabled="disabled"'); }?> >
                 <label for="aprsgw-service-selection-1">YSF</label> |
             </div>
             <div style="display: inline-block;vertical-align: middle;">
                 <input name="DGIdGatewayAPRS" id="aprsgw-service-selection-2" value="DGIdGatewayAPRS" type="checkbox"
-				<?php if($DGIdGatewayAPRS == '1') { echo(' checked="checked"'); }
-					if ($configaprsgw['Enabled']['Enabled'] == 0)  { echo(' disabled="disabled"'); }?> >
+				<?php if($DGIdGatewayAPRS == '1' && $configaprsgw['Enabled']['Enabled'] == 1) { echo(' checked="checked"'); }
+					if ($configaprsgw['Enabled']['Enabled'] == 0 ||  $configdgidgateway['Enabled']['Enabled'] == "0")  { echo(' disabled="disabled"'); }?> >
                 <label for="aprsgw-service-selection-2">DGId</label> |
             </div>
             <div style="display: inline-block;vertical-align: middle;">
                 <input name="NXDNGatewayAPRS"  id="aprsgw-service-selection-3" value="NXDNGatewayAPRS" type="checkbox"
-				<?php if($NXDNGatewayAPRS == '1') { echo(' checked="checked"'); }
-					if ($configaprsgw['Enabled']['Enabled'] == 0)  { echo(' disabled="disabled"'); }?> >
+				<?php if($NXDNGatewayAPRS == '1' && $configmmdvm['NXDN Network']['Enable'] == 1) { echo(' checked="checked"'); }
+					if ($configaprsgw['Enabled']['Enabled'] == 0 || $configmmdvm['NXDN Network']['Enable'] == 0)  { echo(' disabled="disabled"'); }?> >
                 <label for="aprsgw-service-selection-3">NXDN</label> |
             </div>
             <div style="display: inline-block;vertical-align: middle;">
                 <input name="M17GatewayAPRS" id="aprsgw-service-selection-4" value="M17GatewayAPRS" type="checkbox"
-				<?php if($M17GatewayAPRS == '1') { echo(' checked="checked"'); }
-					if ($configaprsgw['Enabled']['Enabled'] == 0)  { echo(' disabled="disabled"'); }?> >
+				<?php if($M17GatewayAPRS == '1' && $configmmdvm['M17 Network']['Enable'] == 1) { echo(' checked="checked"'); }
+					if ($configaprsgw['Enabled']['Enabled'] == 0 || $configmmdvm['M17 Network']['Enable'] == 0)  { echo(' disabled="disabled"'); }?> >
                 <label for="aprsgw-service-selection-4">M17</label> |
             </div>
             <div style="display: inline-block;vertical-align: middle;">
                 <input name="IRCDDBGatewayAPRS" id="aprsgw-service-selection-5" value="IRCDDBGatewayAPRS" type="checkbox"
-				<?php if($IRCDDBGatewayAPRS == '1') { echo(' checked="checked"'); }
-					if ($configaprsgw['Enabled']['Enabled'] == 0)  { echo(' disabled="disabled"'); }?> >
+				<?php if($IRCDDBGatewayAPRS == '1' && $configs['ircddbEnabled'] == "1" && $configmmdvm['D-Star Network']['Enable'] == 1) { echo(' checked="checked"'); }
+					if ($configaprsgw['Enabled']['Enabled'] == 0 || $configs['ircddbEnabled'] == "0" || $configmmdvm['D-Star Network']['Enable'] == 0)  { echo(' disabled="disabled"'); }?> >
                 <label for="aprsgw-service-selection-5">ircDDB</label> ]
             </div>
+	    <br /><br /><em>(Note: Both APRS Gateway and the Radio/MMDVM Mode must be enabled in order to be selected.)</em>
         </div>
     </div>
 </div>
@@ -4269,7 +4263,7 @@ else:
     <input type="radio" name="autoUpdateCheck" value="false" <?php if (constant("AUTO_UPDATE_CHECK") == "false") { echo 'checked="checked"'; } ?> />Disabled
     <input type="radio" name="autoUpdateCheck" value="true" <?php if (constant("AUTO_UPDATE_CHECK") == "true") { echo 'checked="checked"'; } ?> />Enabled
     </td>
-    <td align="left"style='word-wrap: break-word;white-space: normal;padding-left: 5px;'>Enables / Disables automatic dashboard software update notifications. When enabled, software update availability is displayed in the dashboard header.</td>
+    <td align="left" style='word-wrap: break-word;white-space: normal;padding-left: 5px;'>Enables / Disables automatic dashboard software update notifications. When enabled, software update availability is displayed in the dashboard header.</td>
     </tr>
     </table>
 	<div><input type="button" value="<?php echo $lang['apply'];?>" onclick="submitform()" /><br /><br /></div>
@@ -4934,7 +4928,7 @@ fclose($dmrMasterFile);
       <label for="nodePub" style="display: inline-block;">Public</label>
 <?php } ?>
     </td>
-    <td align="left"style='word-wrap: break-word;white-space: normal;padding-left: 5px;'><b>Note:</b> Public mode cannot be enabled without entering at least one allowed DMR ID in the access list below and applying the changes FIRST.</td>
+    <td align="left"style='word-wrap: break-word;white-space: normal;padding-left: 5px;'><em><b>Note:</b> Public mode cannot be enabled without entering at least one allowed DMR ID in the access list below and applying the changes FIRST.</em></td>
     </tr>
     <tr>
     <td align="left"><a class="tooltip2" href="#">DMR Access List:<span><b>DMR IDs</b>Set the DMR IDs here that should have access to your hotspot, expected comma seperated list.</span></a></td>
@@ -5149,7 +5143,7 @@ fclose($dextraFile);
 		echo "<td align=\"left\"><div class=\"switch\"><input id=\"toggle-dplusHostFiles\" class=\"toggle toggle-round-flat\" type=\"checkbox\" name=\"confHostFilesNoDExtra\" value=\"ON\" aria-hidden=\"true\" tabindex=\"-1\" ".$toggleDstarDplusHostfilesCr." /><label id=\"aria-toggle-dplusHostFiles\" role=\"checkbox\" tabindex=\"0\" aria-label=\"Use D-Plus for XRF Hosts\" aria-checked=\"false\" onKeyPress=\"toggleDstarDplusHostfiles()\" onclick=\"toggleDstarDplusHostfiles()\" for=\"toggle-dplusHostFiles\"><font style=\"font-size:0px\">Use D-Plus for XRF Hosts</font></label></div></td>\n";
 	}
     ?>
-    <td align="left">Note: Update Required if changed</td>
+    <td align="left"><em>Note: Update Required if changed</em></td>
     </tr>
     </table>
 	<div><input type="button" value="<?php echo $lang['apply'];?>" onclick="submitform()" /><br /><br /></div>
@@ -5235,7 +5229,7 @@ $ysfHosts = fopen("/usr/local/etc/YSFHosts.txt", "r"); ?>
 		echo "<td align=\"left\"><div class=\"switch\"><input id=\"toggle-confHostFilesYSFUpper\" class=\"toggle toggle-round-flat\" type=\"checkbox\" name=\"confHostFilesYSFUpper\" value=\"ON\" aria-hidden=\"true\" tabindex=\"-1\" ".$toggleHostFilesYSFUpperCr." /><label id=\"aria-toggle-confHostFilesYSFUpper\" role=\"checkbox\" tabindex=\"0\" aria-label=\"Uppercase Host Files\" aria-checked=\"false\" onKeyPress=\"toggleHostFilesYSFUpper()\" onclick=\"toggleHostFilesYSFUpper()\" for=\"toggle-confHostFilesYSFUpper\"><font style=\"font-size:0px\">Uppercase Host files</font></label></div></td>\n";
 	}
     ?>
-    <td align="left">Note: Update Required if changed</td>
+    <td align="left"><em>Note: Update Required if changed</em></td>
     </tr>
     <tr>
     <td align="left"><a class="tooltip2" href="#">WiresX Passthrough:<span><b>WiresX Auto Passthrough</b>Use this to automatically send WiresX commands through to YSF2xxx cross-over modes.</span></a></td>
@@ -5728,7 +5722,7 @@ $p25Hosts = fopen("/usr/local/etc/P25Hosts.txt", "r");
 	  echo "   <td align=\"left\"><input type=\"radio\" name=\"autoAP\" value=\"ON\" checked=\"checked\" />On <input type=\"radio\" name=\"autoAP\" value=\"OFF\" />Off</td>\n";
 	}
       ?>
-      <td align="left">Note: Reboot Required if changed</td>
+      <td align="left"><em>Note: Reboot Required if changed</em></td>
     </tr>
     <?php } ?>
     <tr>

@@ -15,10 +15,6 @@ if (!isset($_SESSION) || !is_array($_SESSION)) {
 require_once $_SERVER['DOCUMENT_ROOT'].'/config/language.php';
 require_once $_SERVER['DOCUMENT_ROOT'].'/config/version.php';
 
-if(empty($_GET['force'])) {
-    $_GET['force'] = 'false';
-}
-
 ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
 	  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
@@ -46,10 +42,16 @@ if(empty($_GET['force'])) {
                 $is_paused = glob('/etc/*_paused');
                 $repl_str = array('/\/etc\//', '/_paused/');
                 $paused_modes = preg_replace($repl_str, '', $is_paused);
-                if (!empty($is_paused) && $_GET['force'] != true) {
+                if (!empty($is_paused)) {
                     //HTML output starts here
                     include './header-menu-disabled.inc';
-                    echo '<div class="contentwide">'."\n";
+		    echo '            <div class="contentwide">
+
+              <div class="divTable">
+                <div class="divTableBody">
+                  <div class="divTableRow">
+                    <div class="divTableCellSans">
+                    <h2 style="color:inherit;">Expert Editors &amp; Tools</h2>';
                     echo '<h1>IMPORTANT:</h1>';
                     echo '<p><b>One or more modes have been detected to have been "paused" by you</b>:</p>';
                     foreach($paused_modes as $mode) {
@@ -58,6 +60,20 @@ if(empty($_GET['force'])) {
                     echo '<p>You must "resume" all of the modes you have paused in order to make any configuration changes...</p>';
                     echo '<p>Go the <a href="/admin/?func=mode_man" style="text-decoration:underline;color:inherit;">Instant Mode Manager page to Resume the paused mode(s)</a>. Once that\'s completed, this configuration page will be enabled.</p>';
                     echo '<br />'."\n";
+		    echo '                </div>
+              </div>
+            </div>
+          </div>
+
+        </div>
+            <div class="footer">
+                Pi-Star web config, &copy; Andy Taylor (MW0MWZ) 2014-'.date("Y").'.<br />
+                <a href="https://w0chp.net/w0chp-pistar-dash/" style="color: #ffffff; text-decoration:underline;">W0CHP-PiStar-Dash</a> enhancements by W0CHP<br />
+            </div>
+
+        </div>
+    </body>
+</html>';
                     die();
 } else {
 	    include './header-menu.inc';
