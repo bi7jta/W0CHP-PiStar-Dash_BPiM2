@@ -136,9 +136,9 @@ for ($i = 0;  ($i <= $lastHeardRows - 1); $i++) {
 		    if (strpos($listElem[2],"-") > 0) { $listElem[2] = substr($listElem[2], 0, strpos($listElem[2],"-")); }
 		    if ( $listElem[3] && $listElem[3] != '    ' ) {
 			if (file_exists("/etc/.CALLERDETAILS") && $testMMDVModeDMR == 1 ) {
-			    echo "<td align=\"left\"><a href=\"http://www.qrz.com/db/$listElem[2]\" target=\"_blank\">$listElem[2]</a>/$listElem[8]</td><td>$flContent</td><td align='left' class='noMob'>$listElem[11]</td>";
+			    echo "<td align=\"left\"><a href=\"http://www.qrz.com/db/$listElem[2]\" target=\"_blank\">$listElem[2]</a>/$listElem[3]</td><td>$flContent</td><td align='left' class='noMob'>$listElem[11]</td>";
 			} else {
-			    echo "<td align=\"left\"><a href=\"http://www.qrz.com/db/$listElem[2]\" target=\"_blank\">$listElem[2]</a>/$listElem[8]</td><td>$flContent</td>";
+			    echo "<td align=\"left\"><a href=\"http://www.qrz.com/db/$listElem[2]\" target=\"_blank\">$listElem[2]</a>/$listElem[3]</td><td>$flContent</td>";
 			}
 		    } else {
 			if (file_exists("/etc/.CALLERDETAILS") && $testMMDVModeDMR == 1 ) {

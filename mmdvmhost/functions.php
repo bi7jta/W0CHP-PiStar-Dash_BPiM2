@@ -1328,6 +1328,19 @@ function getHeardList($logLines) {
 	$callsign = $callsign2;
 	$callsign = trim($callsign);
 
+	$timestamp = substr($logLine, 3, 19);
+	$mode = substr($logLine, 27, strpos($logLine,",") - 27);
+	$callsign2 = substr($logLine, strpos($logLine,"from") + 5, strpos($logLine,"to") - strpos($logLine,"from") - 6);                                                                   
+	$callsign = $callsign2;
+	if (strpos($callsign2,"/") > 0) {
+	    $callsign = substr($callsign2, 0, strpos($callsign2,"/"));
+	}
+	$callsign = trim($callsign);
+	$id ="";
+	if ($mode == "D-Star") {
+	    $id = substr($callsign2, strpos($callsign2,"/") + 1);
+	}
+
         if (strpos($logLine, "Name:")) {
             $dbName2 = substr($logLine, strpos($logLine, "Name:") + 5);
             $dbName2 = trim($dbName2);
@@ -1338,12 +1351,6 @@ function getHeardList($logLines) {
 	    $dbName = " ";
 	}
 
-	$id ="";
-	if ($mode == "D-Star") {
-	    $id = substr($callsign2, strpos($callsign2,"/") + 1);
-	    $id = preg_replace('/\/(.?)$/', ""); // "/INFO" etc screws up table fields
-	}
-	
 	$target = trim(substr($logLine, strpos($logLine, "to") + 3));
 	$target = preg_replace('/ - Name(.*)/', '', $target);
 	// Handle more verbose logging from MMDVMHost
