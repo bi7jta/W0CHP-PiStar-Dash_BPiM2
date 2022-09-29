@@ -294,11 +294,11 @@ $numDMRmasters = exec('cd /var/log/pi-star ; /usr/local/bin/RemoteCommand 7643 s
 
 <br />
 
-	<?php
-	$testMMDVModeDSTAR = getConfigItem("D-Star", "Enable", $_SESSION['MMDVMHostConfigs']);
-	if ( $testMMDVModeDSTAR == 1 || isPaused("D-Star") ) { //Hide the D-Star Reflector information when D-Star Network not enabled.
- 	    $linkedTo = getActualLink($reverseLogLinesMMDVM, "D-Star");
-	?>
+<?php
+$testMMDVModeDSTAR = getConfigItem("D-Star", "Enable", $_SESSION['MMDVMHostConfigs']);
+if ( $testMMDVModeDSTAR == 1 || isPaused("D-Star") ) { //Hide the D-Star Reflector information when D-Star Network not enabled.
+    $linkedTo = getActualLink($reverseLogLinesMMDVM, "D-Star");
+?>
 <div class="divTable">
   <div class="divTableHead"><?php echo $lang['dstar_repeater'];?></div>
   <div class="divTableBody">
@@ -516,9 +516,9 @@ $numDMRmasters = exec('cd /var/log/pi-star ; /usr/local/bin/RemoteCommand 7643 s
       <div class="divTableHeadCell" title="DMR Roaming Beacons">Beacons</div>
            <?php
             if (getConfigItem("DMR", "Beacons", $_SESSION['MMDVMHostConfigs']) == 1 && getConfigItem("DMR", "BeaconInterval", $_SESSION['MMDVMHostConfigs']) != null) {
-		echo "<div class='divTableCell cell_content middle active-mode-cell' style='border: .5px solid $tableBorderColor;' title='Enabled: Timed Mode'>Timed Mode</div>\n";
+		echo "<div class='divTableCell cell_content middle;' title='Enabled: Timed Mode'>Timed Mode</div>\n";
 	    } elseif  (getConfigItem("DMR", "Beacons", $_SESSION['MMDVMHostConfigs']) == 1 && getConfigItem("DMR", "BeaconInterval", $_SESSION['MMDVMHostConfigs']) == null) {
-		echo "<div class='divTableCell cell_content middle active-mode-cell' style='border: .5px solid $tableBorderColor;' title='Enabled: Network Mode'>Net. Mode</div>\n";
+		echo "<div class='divTableCell cell_content middle;' title='Enabled: Network Mode'>Net. Mode</div>\n";
 	    } else {
 		echo "<div class='divTableCell cell_content middle'><div style=\"background: $tableRowEvenBg;\">Disabled</div></div>\n";
 	    }
