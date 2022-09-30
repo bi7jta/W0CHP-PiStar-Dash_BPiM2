@@ -452,7 +452,8 @@ $MYCALL=strtoupper($callsign);
 		}
 	}
 	function resizeIframe(obj) {
-		obj.style.height = obj.contentWindow.document.documentElement.scrollHeight + 'px';
+		var numpix = parseInt(obj.contentWindow.document.body.scrollHeight, 10);
+		obj.style.height = numpix + 'px';
 	}
 	function getLocation() {
 		if (navigator.geolocation) {
@@ -1813,20 +1814,20 @@ if (!empty($_POST)):
 	// Set P25 Hang Timers
 	if (empty($_POST['p25RfHangTime']) != TRUE ) {
 	  $configmmdvm['P25']['ModeHang'] = preg_replace('/[^0-9]/', '', $_POST['p25RfHangTime']);
-      $configp25gateway['Network']['RFHangTime'] = "0";
+	  $configp25gateway['Network']['RFHangTime'] = "0";
 	}
 	if (empty($_POST['p25NetHangTime']) != TRUE ) {
 	  $configmmdvm['P25 Network']['ModeHang'] = preg_replace('/[^0-9]/', '', $_POST['p25NetHangTime']);
-      $configp25gateway['Network']['NetHangTime'] = "0";
+	  $configp25gateway['Network']['NetHangTime'] = "0";
 	}
 	// Set NXDN Hang Timers
 	if (empty($_POST['nxdnRfHangTime']) != TRUE ) {
 	  $configmmdvm['NXDN']['ModeHang'] = preg_replace('/[^0-9]/', '', $_POST['nxdnRfHangTime']);
-      $confignxdngateway['Network']['RFHangTime'] = "0";
+	  $confignxdngateway['Network']['RFHangTime'] = "0";
 	}
 	if (empty($_POST['nxdnNetHangTime']) != TRUE ) {
 	  $configmmdvm['NXDN Network']['ModeHang'] = preg_replace('/[^0-9]/', '', $_POST['nxdnNetHangTime']);
-      $confignxdngateway['Network']['NetHangTime'] = "0";
+	  $confignxdngateway['Network']['NetHangTime'] = "0";
 	}
 	// Set M17 Hang Timers
 	if (empty($_POST['m17RfHangTime']) != TRUE ) {

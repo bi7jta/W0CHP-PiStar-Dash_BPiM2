@@ -208,7 +208,7 @@ for ($i = 0;  ($i <= 0); $i++) { //Last 20  calls
 <div style="vertical-align: bottom; font-weight:bold;text-align:left;margin-top:-12px;">Current / Last Caller Details</div>
   <table style="word-wrap: break-word; white-space:normal;">
     <tr>
-      <th width="170px"><a class="tooltip" href="#"><?php echo $lang['callsign'];?><span><b>Callsign</b></span></a></th>
+      <th><a class="tooltip" href="#"><?php echo $lang['callsign'];?><span><b>Callsign</b></span></a></th>
       <th width="50px">Country</th>
       <th>Name</th>
       <th class='noMob'>Location</th>
