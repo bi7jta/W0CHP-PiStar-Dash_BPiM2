@@ -330,9 +330,9 @@ if ( $testMMDVModeDSTAR == 1 || isPaused("D-Star") ) { //Hide the D-Star Reflect
         }
         if ($_SESSION['ircDDBConfigs']['ircddbEnabled'] == 1) {
 	    if (isProcessRunning("ircddbgatewayd")) {
-	        echo "<div class='divTableRow center'><div class='divTableHeadCell'>ircDDB</div></div><div class='divTableRow center'><div class='divTableCell cell_content' style=\"background: $tableRowEvenBg;\">".substr($_SESSION['ircDDBConfigs']['ircddbHostname'], 0 ,18)."</div></div>\n";
+	        echo "<div class='divTableRow center'><div class='divTableHeadCell'>ircDDB Host</div></div><div class='divTableRow center'><div class='divTableCell cell_content' style=\"background: $tableRowEvenBg;\">".substr($_SESSION['ircDDBConfigs']['ircddbHostname'], 0 ,18)."</div></div>\n";
 	    } else {
-	        echo "<div class='divTableRow center'><div class='divTableHeadCell'>ircDDB</div></div><div class='divTableRow center'><div class='divTableCell cell_content'><div class='inactive-mode-cell'>Service Not Started</div></div></div>\n";
+	        echo "<div class='divTableRow center'><div class='divTableHeadCell'>ircDDB Host</div></div><div class='divTableRow center'><div class='divTableCell cell_content'><div class='inactive-mode-cell'>Service Not Started</div></div></div>\n";
 	    }
         }
 	?>
