@@ -219,7 +219,7 @@ for ($i = 0;  ($i <= 0); $i++) { //Last 20  calls
     </tr>
 
     <tr>
-      <td style="padding:3px 0 5px 0;"><strong style="font-size:1.5em;"><?php echo $callsign ?? ' '; ?></strong></td>
+      <td style="padding:3px 20px 5px 20px;"><strong style="font-size:1.5em;"><?php echo $callsign ?? ' '; ?></strong></td>
       <td><?php echo $flContent; ?></td>
       <td style="font-size:1.3em;"><?php echo $name ?? ' '; ?></td>
       <td class='noMob' style="font-size:1.3em;"><?php
