@@ -10,7 +10,7 @@ $PS_ver = $_SESSION['PiStarRelease']['Pi-Star']['Version'];
 
 $headers = stream_context_create(Array("http" => Array("method"  => "GET",
                                                        "timeout" => 1,
-                                                       "header"  => "User-agent: WPSD-Messages - $PS_VER, $version",
+                                                       "header"  => "User-agent: WPSD-Messages - $PS_ver $versionCmd",
                                                        'request_fulluri' => True )));
 /*
 // old pistar
