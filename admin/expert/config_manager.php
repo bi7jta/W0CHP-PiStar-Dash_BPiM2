@@ -126,13 +126,13 @@ if ($_SERVER["PHP_SELF"] == "/admin/expert/config_manager.php") {
 				   </script>
 				   </td></tr>';
 				   exec('sudo mount -o remount,rw /');
+				   exec("sudo sh -c 'mv $backupDir/*.php /var/www/dashboard/config/' > /dev/null");
 				   exec("sudo sh -c 'cp -a $backupDir/*Hosts.txt /root/' > /dev/null");
 				   exec("sudo sh -c 'rm -rf $backupDir/*Hosts.txt' > /dev/null");
 				   exec("sudo sh -c 'cp -a $backupDir/* /etc/' > /dev/null");
 				   exec("sudo sh -c 'cp -a $backupDir/.CALLERDETAILS /etc/' > /dev/null");
 				   exec("sudo sh -c 'cp -a $backupDir/.TGNAMES /etc/' > /dev/null");
 				   exec("sudo sh -c 'cp -a $backupDir/.pistar-css.ini.user /etc/' > /dev/null");
-				   exec("sudo sh -c 'cp -a $backupDir/*.php /var/www/dashboard/config/' > /dev/null");
 				   exec("sudo chown -R www-data:www-data /var/www/dashboard/ > /dev/null");
 				   exec("sudo sh -c 'cp -a /root/*Hosts.txt $backupDir' > /dev/null");
 				   exec('sudo mount -o remount,ro /');
