@@ -20,6 +20,23 @@ require_once $_SERVER['DOCUMENT_ROOT'].'/config/config.php';
 if ($_SERVER["PHP_SELF"] == "/admin/expert/config_manager.php") {
     // Sanity Check Passed.
     header('Cache-Control: no-cache');
+
+if (isset($_SESSION['CSSConfigs']['Background'])) {
+    $backgroundModeCellActiveColor = $_SESSION['CSSConfigs']['Background']['ModeCellActiveColor'];
+}
+
+$config_dir = "/etc/WPSD_config_mgr";
+$curr_config = trim(file_get_contents('/etc/.WPSD_config'));
+$saved = date("M. d Y @ h:i A", filemtime("$config_dir" . "/". "$curr_config"));
+if (file_exists('/etc/.WPSD_config') && count(glob("$config_dir/*")) > 0) {
+    if (is_dir("$config_dir" . "/" ."$curr_config") != false ) {
+    	 $curr_config = "<span style='color:$backgroundModeCellActiveColor;'>".trim(file_get_contents('/etc/.WPSD_config'))."</span><br /><small>(Saved: ".$saved."</small>)";
+    } else {
+	$curr_config = "Current Config Deleted! You may want to restore a saved config, or save a new config.";
+    }
+} else {
+    $curr_config = "No saved configs yet!";
+}
 ?>
     <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
 	      "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
@@ -48,11 +65,11 @@ if ($_SERVER["PHP_SELF"] == "/admin/expert/config_manager.php") {
 		<div class="contentwide">
 		    <?php if (!empty($_POST)) { ?>
 			<table width="100%">
-			    <tr><th colspan="2">Configuration Manager</th></tr>
+			    <tr><th colspan="3">Configuration Manager</th></tr>
 			    <?php
 			    if ( escapeshellcmd($_POST["save_current_config"]) ) {
 				if (!ctype_alnum($_POST['config_desc'])) {
-				   echo '<tr><td colspan="2"><br />No Spaces nor Non-Alpha-Numeric Characters are Permitted...
+				   echo '<tr><td colspan="3"><br />No Spaces nor Non-Alpha-Numeric Characters are Permitted...
 				   <br />Page reloading...<br /><br />
 				   <script language="JavaScript" type="text/javascript">
                                    setTimeout("location.href = \''.$_SERVER["PHP_SELF"].'\'", 3000);
@@ -60,7 +77,7 @@ if ($_SERVER["PHP_SELF"] == "/admin/expert/config_manager.php") {
 				   </td></tr>';
 				} else {
 				   $desc = $_POST['config_desc'];
-				   echo '<tr><td colspan="2"><br />Saving Current Config, "'.$desc.'"...
+				   echo '<tr><td colspan="3"><br />Saving Current Config, "'.$desc.'"...
 				   <br />Page reloading...<br /><br />
 				   <script language="JavaScript" type="text/javascript">
                                    setTimeout("location.href = \''.$_SERVER["PHP_SELF"].'\'", 3000);
@@ -69,7 +86,6 @@ if ($_SERVER["PHP_SELF"] == "/admin/expert/config_manager.php") {
 				   exec('sudo mount -o remount,rw /');
 				   exec("sudo mkdir -p /etc/WPSD_config_mgr/$desc > /dev/null");
 				   $backupDir = "/etc/WPSD_config_mgr/$desc";
-                            	   exec("sudo rm -rf $backupZip > /dev/null")."\n";
                             	   exec("sudo rm -rf $backupDir > /dev/null")."\n";
                             	   exec("sudo mkdir $backupDir > /dev/null")."\n";
                             	   if (exec('cat /etc/dhcpcd.conf | grep "static ip_address" | grep -v "#"')) {
@@ -114,12 +130,13 @@ if ($_SERVER["PHP_SELF"] == "/admin/expert/config_manager.php") {
                             	   exec("sudo cp /var/www/dashboard/config/config.php $backupDir > /dev/null")."\n";
 			    	   exec("sudo cp /var/www/dashboard/config/language.php $backupDir > /dev/null")."\n";
 				   exec("sudo sh -c 'cp -a /root/*Hosts.txt' $backupDir > /dev/null")."\n";
+				   exec("sudo sh -c \"echo $desc > /etc/.WPSD_config\"");
 				   exec('sudo mount -o remount,ro /');
 				}
 			    }
 			    else if ( escapeshellcmd($_POST["restore_config"]) ) {
 				   $backupDir = '/etc/WPSD_config_mgr/'.$_POST['configs'].'';
-				   echo '<tr><td colspan="2"><br />Restoring and Applying Config, "' .$_POST['configs'].'"...
+				   echo '<tr><td colspan="3"><br />Restoring and Applying Config, "' .$_POST['configs'].'"...
 				   <br />Page reloading...<br /><br />
 				   <script language="JavaScript" type="text/javascript">
                                    setTimeout("location.href = \''.$_SERVER["PHP_SELF"].'\'", 3000);
@@ -135,11 +152,12 @@ if ($_SERVER["PHP_SELF"] == "/admin/expert/config_manager.php") {
 				   exec("sudo sh -c 'cp -a $backupDir/.pistar-css.ini.user /etc/' > /dev/null");
 				   exec("sudo chown -R www-data:www-data /var/www/dashboard/ > /dev/null");
 				   exec("sudo sh -c 'cp -a /root/*Hosts.txt $backupDir' > /dev/null");
+				   exec("sudo sh -c \"echo ".$_POST['configs']." > /etc/.WPSD_config\"");
 				   exec('sudo mount -o remount,ro /');
 				   exec("sudo pistar-services restart > /dev/null &");
 			    }
 			    else if ( escapeshellcmd($_POST["remove_config"]) ) {
-				   echo '<tr><td colspan="2"><br />Deleting Config, "' .$_POST['delete_configs'].'"...
+				   echo '<tr><td colspan="3"><br />Deleting Config, "' .$_POST['delete_configs'].'"...
 				   <br />Page reloading...<br /><br />
 				   <script language="JavaScript" type="text/javascript">
                                    setTimeout("location.href = \''.$_SERVER["PHP_SELF"].'\'", 3000);
@@ -174,13 +192,15 @@ if ($_SERVER["PHP_SELF"] == "/admin/expert/config_manager.php") {
 			<form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="post">
 			    <table width="100%">
 				<tr>
-				    <th colspan="2">Configuration Manager</th>
+				    <th colspan="3">Configuration Manager</th>
 				</tr>
 				<tr>
-				    <th width="50%">Save Current Config</th>
+				    <th>Current Running Config</th>
+				    <th>Save Current Config</th>
                                     <th>Restore Config</th>
 				</tr>
 				<tr>
+				  <td style="white-space:normal;"><?php echo $curr_config; ?></td>
 					<td>
 						<form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="post" id="save_config">
 							<label for="config">Save the Current Config:</label>
@@ -191,7 +211,6 @@ if ($_SERVER["PHP_SELF"] == "/admin/expert/config_manager.php") {
 
 					<td>
 						<?php
-						$config_dir = "/etc/WPSD_config_mgr";
 						if (count(glob("$config_dir/*")) == 0) {
 						?>
 							No saved configs yet!
@@ -213,7 +232,7 @@ if ($_SERVER["PHP_SELF"] == "/admin/expert/config_manager.php") {
 				</tr>
 
 				<tr>
-					<td colspan="2" style="white-space:normal;padding: 3px;">This function allows you save multiple versions and configurations of your setup;  and then restore/re-apply them as-needed for different uses, etc.<br />Restoring and re-applying a configuration is instant.</td>
+					<td colspan="3" style="white-space:normal;padding: 3px;">This function allows you save multiple versions and configurations of your setup;  and then restore/re-apply them as-needed for different uses, etc.<br />Restoring and re-applying a configuration is instant.</td>
 				</tr>
 			</table>
 		</form>
@@ -222,12 +241,11 @@ if ($_SERVER["PHP_SELF"] == "/admin/expert/config_manager.php") {
 
 	<table>
 		<tr>
-			<th colspan="2">Delete a Saved Config</th>
+			<th colspan="3">Delete a Saved Config</th>
 		</tr>
 		<tr>
-			<td colspan="2">
+			<td colspan="3">
                                 <?php
-                                $config_dir = "/etc/WPSD_config_mgr";
                                 if (count(glob("$config_dir/*")) == 0) {
                                 ?>
 				No saved configs yet!
