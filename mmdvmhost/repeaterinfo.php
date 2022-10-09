@@ -461,7 +461,7 @@ if ( $testMMDVModeDSTAR == 1 || isPaused("D-Star") ) { //Hide the D-Star Reflect
 			    $target_lookup = trim(exec("grep -w \"$slot1Link\" /usr/local/etc/groups.txt | awk -F, '{print $1}' | head -1 | tr -d '\"'"));
 			    if (!empty($target_lookup)) {
 				$TGname = str_replace("$slot1Link: ", "BM ", $target_lookup);
-				$stupid_bm = ['/ - 10 Minute Limit/', '/ NOT A CALL CHANNEL/', '/ NO NETS(.*?)/', '/ - .*/', '/!/'];
+				$stupid_bm = ['/ - 10 Minute Limit/', '/ NOT A CALL CHANNEL/', '/ NO NETS(.*?)/', '/!/'];
 				$TGname = preg_replace($stupid_bm, "", $TGname); // strip stupid fucking comments from BM admins in TG names. Idiots.
 				echo "<div class='divTableCell cell_content middle active-mode-cell' title='Time Slot 1 Enabled: TG $slot1Link' style='border: .5px solid $tableBorderColor;'>TG $slot1Link<br /><small>($TGname)</small></div>\n";
 			    } else {
@@ -493,7 +493,7 @@ if ( $testMMDVModeDSTAR == 1 || isPaused("D-Star") ) { //Hide the D-Star Reflect
 			    $target_lookup = trim(exec("grep -w \"$slot2Link\" /usr/local/etc/groups.txt | awk -F, '{print $1}' | head -1 | tr -d '\"'"));
 			    if (!empty($target_lookup)) {
 				$TGname = str_replace("$slot2Link: ", "BM ", $target_lookup);
-				$stupid_bm = ['/ - 10 Minute Limit/', '/ NOT A CALL CHANNEL/', '/ NO NETS(.*?)/', '/ - .*/', '/!/'];
+				$stupid_bm = ['/ - 10 Minute Limit/', '/ NOT A CALL CHANNEL/', '/ NO NETS(.*?)/', '/!/'];
 				$TGname = preg_replace($stupid_bm, "", $TGname); // strip stupid fucking comments from BM admins in TG names. Idiots.
 				echo "<div class='divTableCell cell_content middle active-mode-cell' title='Time Slot 1 Enabled: TG $slot2Link' style='border: .5px solid $tableBorderColor;'>TG $slot2Link<br /><small>($TGname)</small></div>\n";
 			    } else {
