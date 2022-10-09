@@ -1543,7 +1543,7 @@ function getActualMode($metaLastHeard, &$configs) {
 // returns link-states of all D-Star-modules
 function getDSTARLinks() {
     if (filesize(LINKLOGPATH."/Links.log") == 0) {
-	return "<div class='inactive-mode-cell'>Not Linked</div>";
+	return "<div>Linking...</div>";
     }
     if ($linkLog = fopen(LINKLOGPATH."/Links.log",'r')) {
 	while ($linkLine = fgets($linkLog)) {
