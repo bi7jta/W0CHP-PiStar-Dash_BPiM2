@@ -396,8 +396,6 @@ function ensureOptionsIsQuoted(&$opt) {
 }
 
 
-$progname = basename($_SERVER['SCRIPT_FILENAME'],".php");
-$rev=$version;
 $MYCALL=strtoupper($callsign);
 ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
@@ -409,7 +407,7 @@ $MYCALL=strtoupper($callsign);
     <meta name="robots" content="follow" />
     <meta name="language" content="English" />
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-    <?php echo "<meta name=\"GENERATOR\" content=\"$progname $rev\" />\n"; ?>
+    <?php echo "<meta name=\"generator\" content=\"$version\" />\n"; ?>
     <meta name="Author" content="Andrew Taylor (MW0MWZ), Chip Cuccio (W0CHP)" />
     <meta name="Description" content="Pi-Star Configuration" />
     <meta name="KeyWords" content="Pi-Star" />
@@ -418,7 +416,7 @@ $MYCALL=strtoupper($callsign);
     <link rel="shortcut icon" href="/images/favicon.ico" type="image/x-icon" />
     <meta http-equiv="Expires" content="0" />
     <title><?php echo "$MYCALL"." - ".$lang['digital_voice']." ".$lang['dashboard']." - ".$lang['configuration'];?></title>
-    <link rel="stylesheet" type="text/css" href="/css/font-awesome-4.7.0/css/font-awesome.min.css" />
+    <link rel="stylesheet" type="text/css" href="/css/font-awesome-4.7.0/css/font-awesome.min.css?version=<?php echo $versionCmd; ?>" />
     <?php include_once "../config/browserdetect.php"; ?>
     <script type="text/javascript" src="/js/jquery.min.js?version=<?php echo $versionCmd; ?>"></script>
     <link href="/js/select2/css/select2.min.css?version=<?php echo $versionCmd; ?>" rel="stylesheet" />
