@@ -1346,7 +1346,8 @@ function getHeardList($logLines) {
             $dbName2 = trim($dbName2);
             $dbName2 = explode("Name:", $dbName2)[0];
             $dbName2 = str_replace("Name:", "", $dbName2);
-	    $dbName  = ucfirst(strtolower($dbName2)); // fix malformed cases in shitty-ass RadioID DB :-(
+	    //$dbName  = ucfirst(strtolower($dbName2)); // fix malformed cases in shitty-ass RadioID DB :-(
+	    $dbName  = $dbName2; // fix malformed cases in shitty-ass RadioID DB :-(
         } else {
 	    $dbName = " ";
 	}
