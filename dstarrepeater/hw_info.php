@@ -69,10 +69,10 @@ $ramDeetz = formatSize($sysRamUsed). " of ".formatSize($system['mem_info']['MemT
 
 // inet traffic
 $iface = $_SESSION['PiStarRelease']['Pi-Star']['iface'];
-$VNStatGetData = exec("vnstat -s -i $iface | grep today | sed 's/today//g' | awk '{print $1\" \"$2\" \"$4\" \"$5\" \"$7\" \"$8}'"); // fields: rx[0] unit[1] tx[2] unit[3] total[4] unit[5]
+$VNStatGetData = exec("vnstat -i $iface | grep today | sed 's/today//g' | awk '{print $1\" \"$2\" \"$4\" \"$5\" \"$7\" \"$8\" \"$10\" \"$11}'"); // fields: rx[0] unit[1] tx[2] unit[3] total[4] unit[5] rate[6] unit[7]
 if (empty($VNStatGetData) == false) {
     $Data = explode(" ", $VNStatGetData);
-    $NetworkTraffic = "$Data[0] $Data[1] &darr; / $Data[2] $Data[3]  &uarr;";
+    $NetworkTraffic = "$Data[0] $Data[1] &darr; / $Data[2] $Data[3] &uarr; <small>($Data[6] $Data[7] avg. rate)</small>";
     $NetTrafficTotal = "$Data[4] $Data[5]";
 } else {
     $NetworkTraffic = "(Collecting data, please wait.)";
@@ -82,22 +82,18 @@ if (empty($VNStatGetData) == false) {
 <div class="divTable" id="hwInfoTable">
   <div class="divTableBody">
     <div class="divTableRow">
-      <div class="divTableHeadCell"><a class="tooltip" href="#"><?php echo $lang['platform'];?><span><strong>Uptime:<br /></strong><?php echo str_replace(',', ',<br />', exec('uptime -p'));?></a></span></div>
-      <div class="divTableHeadCell"><a class="tooltip" href="#"><?php echo $lang['kernel'];?><span><strong>Release:<br /></strong>This is the version<br />number of the Linux Kernel running<br />on this Raspberry Pi.</a></span></div>
       <div class="divTableHeadCell"><a class="tooltip" href="#"><?php echo $lang['cpu_load'];?><span><strong>CPU Load</strong></a></span></div>
+      <div class="divTableHeadCell"><a class="tooltip" href="#"><?php echo $lang['cpu_temp'];?><span><strong>CPU Temp</strong></a><span></div>
       <div class="divTableHeadCell"><a class="tooltip" href="#">Memory Usage<span><strong>Memory Usage</strong></a></span></div>
       <div class="divTableHeadCell"><a class="tooltip" href="#">Disk Usage<span><strong>Disk Usage</strong></a></span></div>
       <div class="divTableHeadCell"><a class="tooltip" href="#">Network Traffic<span><strong>Total Network Traffic Today</strong><br />(Interface: <?php echo($iface); ?>)</a></span></div>
-      <div class="divTableHeadCell"><a class="tooltip" href="#"><?php echo $lang['cpu_temp'];?><span><strong>CPU Temp</strong></a><span></div>
     </div>
     <div class="divTableRow">
-      <div class="divTableCell cell_content"><?php echo $_SESSION['PiStarRelease']['Pi-Star']['Platform'];?></div>
-      <div class="divTableCell cell_content"><?php echo php_uname('r');?></div>
       <div class="divTableCell cell_content"><?php echo $load; ?>%</div>
+      <?php echo $cpuTempHTML; ?>
       <div class="divTableCell cell_content"><?php echo $ramDeetz;?></div>
       <div class="divTableCell cell_content"><?php echo $rootfs_used;?></div>
-      <div class="divTableCell cell_content"><a class="tooltip" href="#" style="border-bottom:1px dotted;color: <?php echo $textContent; ?>;"><?php echo $NetworkTraffic;?><span><strong>Total Combined Network Traffic</strong><br /><?php echo $NetTrafficTotal;?></a></span></div>
-      <?php echo $cpuTempHTML; ?>
+      <div class="divTableCell cell_content"><a class="tooltip" href="#" style="border-bottom:1px dotted;color: <?php echo $textContent; ?>;"><?php echo $NetworkTraffic;?><span><strong>Total Combined Network Traffic Today</strong><br /><?php echo $NetTrafficTotal;?></a></span></div>
     </div>
   </div>
 </div>
