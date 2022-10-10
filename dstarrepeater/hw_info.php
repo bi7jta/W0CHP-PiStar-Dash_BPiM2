@@ -82,7 +82,7 @@ if (empty($VNStatGetData) == false) {
 <div class="divTable" id="hwInfoTable">
   <div class="divTableBody">
     <div class="divTableRow">
-      <div class="divTableHeadCell"><a class="tooltip" href="#"><?php echo $lang['cpu_load'];?><span><strong>CPU Load</strong></a></span></div>
+      <div class="divTableHeadCell"><a class="tooltip" href="#"><?php echo $lang['cpu_load'];?><span><strong>Plaform Info</strong><br/>Platform: <?php echo $_SESSION['PiStarRelease']['Pi-Star']['Platform'];?><br />Linux Kernel: <?php echo php_uname('r');?></a></span></div>
       <div class="divTableHeadCell"><a class="tooltip" href="#"><?php echo $lang['cpu_temp'];?><span><strong>CPU Temp</strong></a><span></div>
       <div class="divTableHeadCell"><a class="tooltip" href="#">Memory Usage<span><strong>Memory Usage</strong></a></span></div>
       <div class="divTableHeadCell"><a class="tooltip" href="#">Disk Usage<span><strong>Disk Usage</strong></a></span></div>
