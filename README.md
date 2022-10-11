@@ -81,7 +81,7 @@ sudo pistar-update
 Run:
 
 ```text
- curl -Ls https://w0chp.net/WPSD-Install | sudo env NO_SELF_UPDATE=1 bash -s -- -rd
+sudo WPSD-Installer -rd
 ```
 
 ...And the original Pi-Star Dashboard will be restored.
