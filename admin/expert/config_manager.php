@@ -150,6 +150,9 @@ if (file_exists('/etc/.WPSD_config') && count(glob("$config_dir/*")) > 0) {
 				   exec("sudo sh -c 'cp -a $backupDir/.CALLERDETAILS /etc/' > /dev/null");
 				   exec("sudo sh -c 'cp -a $backupDir/.TGNAMES /etc/' > /dev/null");
 				   exec("sudo sh -c 'cp -a $backupDir/.pistar-css.ini.user /etc/' > /dev/null");
+                                   exec("sudo cp /var/www/dashboard/config/ircddblocal.php $backupDir > /dev/null")."\n";
+                                   exec("sudo cp /var/www/dashboard/config/config.php $backupDir > /dev/null")."\n";
+                                   exec("sudo cp /var/www/dashboard/config/language.php $backupDir > /dev/null")."\n";
 				   exec("sudo chown -R www-data:www-data /var/www/dashboard/ > /dev/null");
 				   exec("sudo sh -c 'cp -a /root/*Hosts.txt $backupDir' > /dev/null");
 				   exec("sudo sh -c \"echo ".$_POST['configs']." > /etc/.WPSD_config\"");
