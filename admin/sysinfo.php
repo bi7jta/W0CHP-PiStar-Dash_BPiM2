@@ -16,8 +16,6 @@ require_once $_SERVER['DOCUMENT_ROOT'].'/config/language.php';
 require_once $_SERVER['DOCUMENT_ROOT'].'/config/version.php';
 include_once('mmdvmhost/tools.php');
 
-$iface = $_SESSION['PiStarRelease']['Pi-Star']['iface'];
-
 function system_information() {
     @list($system, $host, $kernel) = preg_split('/[\s,]+/', php_uname('a'), 5);
     $meminfo = false;
@@ -276,8 +274,6 @@ function formatSize( $bytes ) {
                         $NEXTIONDRIVER_Ver = exec('/usr/local/bin/NextionDriver -V | head -n 2 | cut -d\' \' -f 3');
                         echo "  <tr>";getStatusClass(isProcessRunning("NextionDriver"), true); echo "NextionDriver</td><td align=\"left\">".$NEXTIONDRIVER_Ver."</td></tr>\n";
                     }
-		    echo "<tr><th colspan='2' align='left'>Network Statistics for Interface: <code>$iface</code></th></tr>";
-		    include 'traffic-stats_inc.php';
 		    ?>
 		</table>
 	    </div>
