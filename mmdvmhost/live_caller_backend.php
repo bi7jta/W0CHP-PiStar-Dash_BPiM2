@@ -76,6 +76,9 @@ if ($listElem[6] == null) {
 	$duration = $now->getTimestamp() - $dt->getTimestamp();
 	$duration_string = $duration<999 ? round($duration) . "+" : "&infin;";
 	$duration = "<span class='dur_tx'>TX " . $duration_string . " sec</span>";
+	// dynamic TX <title>
+	echo "<script>if(typeof window.original_title === 'undefined'){window.original_title = jQuery('title').text();}</script>";
+	echo $_SESSION['MYCALL'] != $listElem[2] ? "<script>jQuery('title').text('>$listElem[2]<');</script>" : "<script>jQuery('title').text('TX');</script>";
 } else if ($listElem[6] == "DMR Data")
     {
 	$duration =  "<span class='dur_data'>DMR Data</span>";
@@ -87,6 +90,8 @@ if ($listElem[6] == null) {
   $now = new DateTime("now", $utc_tz);
   $dt = new DateTime($utc_time, $utc_tz);
   $duration = $listElem[6].'s (' . timeago( $dt->getTimestamp(), $now->getTimestamp() ) . ')';
+  // dynamic <title> reset
+  echo "<script>if(typeof window.original_title !== 'undefined'){jQuery('title').text(window.original_title)}</script>";
 }
 
 if ($listElem[7] == null) {
