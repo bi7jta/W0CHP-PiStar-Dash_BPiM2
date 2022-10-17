@@ -73,6 +73,9 @@ for ($i = 0;  ($i <= 0); $i++) { //Last 20  calls
 		$duration = $now->getTimestamp() - $dt->getTimestamp();
 		$duration_string = $duration<999 ? round($duration) . "+" : "&infin;";
 		$duration = "<td style=\"background:#d11141;color:#fff;font-size:1.3em;\">TX " . $duration_string . " sec</td>";
+		// dynamic TX <title>
+		echo "<script>if(typeof window.original_title === 'undefined'){window.original_title = jQuery('title').text();}</script>";
+		echo $_SESSION['MYCALL'] != $listElem[2] ? "<script>jQuery('title').text('>$listElem[2]<');</script>" : "<script>jQuery('title').text('TX');</script>";
 	    } else if ($listElem[6] == "DMR Data") {
 		$duration =  "<td style=\"background:#00718F;color:#ff;font-size:1.3em;\">DMR Data</td>";
 	    } else if ($listElem[6] == "POCSAG") {
@@ -84,6 +87,8 @@ for ($i = 0;  ($i <= 0); $i++) { //Last 20  calls
  		$dt = new DateTime($utc_time, $utc_tz);
 		$TA = timeago( $dt->getTimestamp(), $now->getTimestamp() );
 		$duration = "<td style='font-size:1.3em;'>$listElem[6]s <span class='noMob'>($TA)</span></td>";
+    // dynamic <title> reset
+    echo "<script>if(typeof window.original_title !== 'undefined'){jQuery('title').text(window.original_title)}</script>";
 	    }
 
 	    if ($listElem[8] == null) {
