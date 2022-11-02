@@ -150,6 +150,9 @@ for ($i = 0;  ($i <= $lastHeardRows - 1); $i++) {
 		}
 
 		echo "<td align=\"left\">".str_replace('Slot ', 'TS', $listElem[1])."</td>";
+		if (strpos($listElem[4], "via ")) {
+		    $listElem[4] = preg_replace("/via (.*)/", "<span class='noMob'>via $1</span>", $listElem[4]);
+		}
 		if (strlen($listElem[4]) == 1) { $listElem[4] = str_pad($listElem[4], 8, " ", STR_PAD_LEFT); }
 		if ( substr($listElem[4], 0, 6) === 'CQCQCQ' ) {
 		    echo "<td align=\"left\">$listElem[4]</td>";
