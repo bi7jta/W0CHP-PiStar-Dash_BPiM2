@@ -65,19 +65,18 @@ $status = exec('systemctl status mmdvm-log-backup.timer | grep masked');
                                    setTimeout("location.href = \''.$_SERVER["PHP_SELF"].'\'", 3000);
 				   </script>
 				   </td></tr>';
+				   exec ("sudo pistar-services fullstop");
 				   exec ('sudo mount -o remount,rw /');
-				   exec ("sudo sytemctl stop mmdvmhost.service");
                                    exec ('sudo systemctl stop mmdvm-log-backup.timer');
                                    exec ('sudo systemctl stop mmdvm-log-backup.service');
                                    exec ('sudo systemctl stop mmdvm-log-restore.service');
                                    exec ('sudo systemctl stop mmdvm-log-shutdown.service');
 				   exec ("sudo rm -rf $log_dir/MMDVM* $log_backup_dir/* > /dev/null");
-				   exec ("sudo systemctl restart mmdvmhost.service");
+				   exec ("sudo pistar-services start");
                                    exec ('sudo systemctl restart mmdvm-log-backup.timer');
                                    exec ('sudo systemctl restart mmdvm-log-backup.service');
                                    exec ('sudo systemctl restart mmdvm-log-restore.service');
                                    exec ('sudo systemctl restart mmdvm-log-shutdown.service');
-				   exec ('sudo mount -o remount,ro /');
 			    }
 			    else if ( escapeshellcmd($_POST["disable_backups"]) ) {
 				   echo '<tr><td colspan="2"><br />Disabling Automatic Log Backups...
