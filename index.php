@@ -147,12 +147,13 @@ if(empty($_POST['func'])) {
 		<div id="CheckUpdate"><?php echo $version; ?></div></div>
 		<?php } ?>
 		<h1>Pi-Star <?php echo $lang['digital_voice']." ".$lang['dashboard_for']." <code style='font-weight:550;'>".$_SESSION['MYCALL']."</code>"; ?></h1>
+		<!-- Disable check for M2z M2u
 		<div id="CheckMessage">
 		<?php
 		    include('config/messages.php');
 		?>
 		</div>
-
+    -->
 		<p>
  		<div class="navbar">
                 <script type= "text/javascript">

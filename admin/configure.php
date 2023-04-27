@@ -665,7 +665,6 @@ if (!empty($_POST)):
 
 	// Let the services actualy stop
 	sleep(3);
-
 	// Factory Reset Handler Here
 	if (empty($_POST['factoryReset']) != TRUE ) {
 	  echo "<br />\n";
@@ -949,7 +948,6 @@ if (!empty($_POST)):
 	} else {
 		$DMRBeaconModeNet = "0";
 	}
-
 	// Set ircDDBGateway and TimeServer language
 	if (empty($_POST['ircDDBGatewayAnnounceLanguage']) != TRUE) {
 	  $ircDDBGatewayAnnounceLanguageArr = explode(',', escapeshellcmd($_POST['ircDDBGatewayAnnounceLanguage']));
@@ -958,7 +956,6 @@ if (!empty($_POST)):
 	  system($rollIrcDDBGatewayLang);
 	  system($rollTimeserverLang);
 	}
-
 	// Clear timeserver modules
 	$rollTimeserverBandA = 'sudo sed -i "/sendA=/c\\sendA=0" /etc/timeserver';
 	$rollTimeserverBandB = 'sudo sed -i "/sendB=/c\\sendB=0" /etc/timeserver';
@@ -970,7 +967,6 @@ if (!empty($_POST)):
 	system($rollTimeserverBandC);
 	system($rollTimeserverBandD);
 	system($rollTimeserverBandE);
-
 	// Set the POCSAG Frequency
 	if (empty($_POST['pocsagFrequency']) != TRUE ) {
 	  $newPocsagFREQ = preg_replace('/[^0-9\.]/', '', $_POST['pocsagFrequency']);
@@ -1054,7 +1050,6 @@ if (!empty($_POST)):
 	  $confignxdngateway['Info']['RXFrequency'] = $newFREQrx;
 	  $confignxdngateway['Info']['TXFrequency'] = $newFREQtx;
 	  $confignxdngateway['General']['Suffix'] = "N";
-
 	  system($rollFREQirc);
 	  system($rollFREQdvap);
 	  system($rollFREQdvmegaRx);
@@ -1062,7 +1057,6 @@ if (!empty($_POST)):
 	  system($rollModeDuplex);
 	  system($rollGatewayType);
 	  system($rollFREQOffset);
-
 	// Set RPT1 and RPT2
 	  if (empty($_POST['confDStarModuleSuffix'])) {
 	    if ($newFREQtx >= 1240000000 && $newFREQtx <= 1300000000) {
@@ -1229,7 +1223,7 @@ if (!empty($_POST)):
 	  system($rollIRCrepeaterBand1);
 	  system($rollIRCrepeaterCall1);
 	  }
-
+ 
 	// Set Callsign
 	if (empty($_POST['confCallsign']) != TRUE ) {
 	  $newCallsignUpper = strtoupper(preg_replace('/[^A-Za-z0-9]/', '', $_POST['confCallsign']));
@@ -2494,7 +2488,7 @@ if (!empty($_POST)):
 	  system($rollRepeaterAddress1);
 	  system($rollRepeaterPort1);
 	}
-
+ 
 	// Set the Dashboard Public
 	if (empty($_POST['dashAccess']) != TRUE ) {
 	  $publicDashboard = 'sudo sed -i \'/$ipVar 80 80/c\\\t\t$DAEMON -u ${igdURL} -e ${hostVar}_Dash -a $ipVar 80 80 TCP > /dev/null 2>&1\' /usr/local/sbin/pistar-upnp.service';
@@ -3337,6 +3331,13 @@ if (!empty($_POST)):
 		}
 
 	if (!$handleMMDVMHostConfig = fopen('/tmp/bW1kdm1ob3N0DQo.tmp', 'w')) {
+		
+		echo "<br />\n";
+          echo "<table>\n";
+          echo "<tr><th>ERROR</th></tr>\n";
+          echo "<tr><td>Unable to fopen configuration file(s)...</td><tr>\n";
+          echo "<tr><td>/tmp/bW1kdm1ob3N0DQo.tmp...</td></tr>\n";
+          echo "</table>\n";   
 		return false;
 	}
 	if (!is_writable('/tmp/bW1kdm1ob3N0DQo.tmp')) {
