@@ -13,17 +13,17 @@ $headers = stream_context_create(Array("http" => Array("method"  => "GET",
                                                        "header"  => "User-agent: WPSD-Messages - $PS_ver $versionCmd",
                                                        'request_fulluri' => True )));
 // older wpsd with very old uuid scheme
-$UUID = $_SESSION['PiStarRelease']['Pi-Star']['UUID'];
-$uuidLen = strlen($UUID);
-if($uuidLen > 17) {
-    $result = @file_get_contents('https://repo.w0chp.net/Chipster/WPSD_Messages/raw/branch/master/update-req-uuid.html', false, $headers);
-    echo $result;
-}
+//$UUID = $_SESSION['PiStarRelease']['Pi-Star']['UUID'];
+//$uuidLen = strlen($UUID);
+//if($uuidLen > 17) {
+//    $result = @file_get_contents('https://repo.w0chp.net/Chipster/WPSD_Messages/raw/branch/master/update-req-uuid.html', false, $headers);
+//    echo $result;
+//}
 
 // F1RMB detected
-$str = `grep -- '-RMB' /etc/pistar-release`;
-if ($str == TRUE) {
-    $result = @file_get_contents('https://repo.w0chp.net/Chipster/WPSD_Messages/raw/branch/master/f1rmb-detected.html', false, $headers);
-    echo $result;
-}
+//$str = `grep -- '-RMB' /etc/pistar-release`;
+//if ($str == TRUE) {
+//    $result = @file_get_contents('https://repo.w0chp.net/Chipster/WPSD_Messages/raw/branch/master/f1rmb-detected.html', false, $headers);
+//    echo $result;
+//}
 ?>
