@@ -71,6 +71,7 @@ $lang = array (
   // Config Page - DMR Configuration
   "dmr_master"                  =>  "DMR 主机",
   "bm_master"                   =>  "BrandMeister 主机 ",
+  "bm_hotspot_security"         =>  "BrandMeister 热点密码 ",
   "bm_network"                  =>  "BrandMeister 网络",
   "dmr_plus_master"             =>  "DMR+ 主机 ",
   "dmr_plus_network"            =>  "DMR+ 网络",
