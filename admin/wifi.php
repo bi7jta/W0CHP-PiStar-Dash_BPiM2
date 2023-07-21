@@ -280,7 +280,7 @@ echo '<br />
 			$output .= '<div id="Networkbox'.$ssids.'" class="NetworkBoxes">Network '.$ssids."\n";
 			$output .= '<input type="button" value="Delete" onclick="DeleteNetwork('.$ssids.')" /><br />'."\n";
 			$output .= '<span class="tableft" id="lssid'.$ssids.'">SSID :</span><input type="text" id="ssid'.$ssids.'" name="ssid'.$ssids.'" value="'.$ssid[$ssids].'" onkeyup="CheckSSID(this)" /><br />'."\n";
-			$output .= '<span class="tableft" id="lpsk'.$ssids.'">PSK :</span><input type="password" id="psk'.$ssids.'" name="psk'.$ssids.'" value="'.$psk[$ssids].'" onkeyup="CheckPSK(this)" /><br /><br /></div>'."\n";
+			$output .= '<span class="tableft" id="lpsk'.$ssids.'">PSK :</span><input type="text" id="psk'.$ssids.'" name="psk'.$ssids.'" value="'.$psk[$ssids].'" onkeyup="CheckPSK(this)" /><br /><br /></div>'."\n";
 		}
 		$output .= '</div>'."\n";
 		$output .= '<div class="infobox">'."\n";

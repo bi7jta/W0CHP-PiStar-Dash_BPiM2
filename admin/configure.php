@@ -4576,7 +4576,7 @@ fclose($dmrMasterFile);
     <tr>
       <td align="left"><a class="tooltip2" href="#"><?php if(empty($lang['bm_hotspot_security']))  {echo "BM Hotspot Security";} else { echo $lang['bm_hotspot_security']; }?>:<span><b>BrandMeister Password</b>Override the Password for BrandMeister with your own custom password, make sure you already configured this using BM Self Care. Empty the field to use the default.</span></a></td>
       <td align="left" colspan="3">
-        <input type="" name="bmHSSecurity" size="30" maxlength="30" value="<?php if (isset($configModem['BrandMeister']['Password'])) {echo $configModem['BrandMeister']['Password'];} ?>"></input>
+        <input type="text" name="bmHSSecurity" size="30" maxlength="30" value="<?php if (isset($configModem['BrandMeister']['Password'])) {echo $configModem['BrandMeister']['Password'];} ?>"></input>
       </td>
     </tr>
     <tr>
