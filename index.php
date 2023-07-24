@@ -197,27 +197,6 @@ if(empty($_POST['func'])) {
 	    </div>
 
 	    <?php
-	    // Check if config files need updating but supress if new installation
-	    if (($_SERVER["PHP_SELF"] == "/admin/index.php") || ($_SERVER["PHP_SELF"] == "/index.php")) {
-		$configUpNeeded = $_SESSION['PiStarRelease']['Pi-Star']['ConfUpdReqd'];
-                if (!isset($configUpNeeded) || ($configUpNeeded < $configUpdateRequired) && file_exists('/etc/dstar-radio.mmdvmhost') || file_exists('/etc/dstar-radio.dstarrepeater')) {	
-	    ?>
-		<div>
-		    <div style="background-color: #FFCC00; color: #000;text-align:center; padding:10px 0; margin: 0px 0px 10px 0px; width: 100%;">
-				<p>
-				<b>IMPORTANT</b><br />
-				<br />
-				Your configuration needs to be updated.<br />
-				Go to the <a href="/admin/configure.php" style="text-decoration:underline;font-weight:bold;">Configuration Page</a> and click on any "Apply Changes" button.<br />
-				<br />This message will disappear once this has been completed.<br />
-				</p>
-		    </div>
-		</div>
-	    <?php
-	        }
-	    }
-	    ?>
-	    <?php
             // Output some default features
             if ($_SERVER["PHP_SELF"] == "/index.php" || $_SERVER["PHP_SELF"] == "/admin/index.php")
             {
