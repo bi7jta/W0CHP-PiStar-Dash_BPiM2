@@ -4921,15 +4921,12 @@ fclose($dmrMasterFile);
     <td align="left" colspan="2">
     <input type="radio" name="nodeMode" id="nodePriv" value="prv"<?php if ($configmmdvm['DMR']['SelfOnly'] == 1) {echo ' checked="checked"';} ?> />
       <label for="nodePriv" style="display: inline-block;">Private</label>
-<?php if (empty($configmmdvm['DMR']['WhiteList'])) { ?>
-    <input type="radio" name="nodeMode" id="nodePub" value="pub" disabled="diabled" />
-      <label for="nodePub" style="display: inline-block;">Public</label>
-<?php } else { ?>
+
     <input type="radio" name="nodeMode" id="nodePub" value="pub"<?php if ($configmmdvm['DMR']['SelfOnly'] == 0) {echo ' checked="checked"';} ?> />
       <label for="nodePub" style="display: inline-block;">Public</label>
-<?php } ?>
+
     </td>
-    <td align="left"style='word-wrap: break-word;white-space: normal;padding-left: 5px;'><em><b>Note:</b> Public mode cannot be enabled without entering at least one allowed DMR ID in the access list below and applying the changes FIRST.</em></td>
+    <td align="left"style='word-wrap: break-word;white-space: normal;padding-left: 5px;'><em><b>Note:</b> Let it BLANK if you want any DMRid access your hotspot.</em></td>
     </tr>
     <tr>
     <td align="left"><a class="tooltip2" href="#">DMR Access List:<span><b>DMR IDs</b>Set the DMR IDs here that should have access to your hotspot, expected comma seperated list.</span></a></td>
