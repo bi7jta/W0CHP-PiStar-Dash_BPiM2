@@ -2735,15 +2735,16 @@ if (!empty($_POST)):
 	    }
 	  }
 	  if (escapeshellcmd($_POST['nodeMode']) == 'pub' ) { // public node
-	    if (empty($_POST['confDMRWhiteList'] == TRUE)) {  // user didn't add any DMR ID's to ACL. Force back to private node...
-		$configmmdvm['DMR']['SelfOnly'] = 1;
-		$configmmdvm['D-Star']['SelfOnly'] = 1;
-		$configmmdvm['System Fusion']['SelfOnly'] = 1;
-		$configmmdvm['P25']['SelfOnly'] = 1;
-		$configmmdvm['NXDN']['SelfOnly'] = 1;
-		$configmmdvm['M17']['SelfOnly'] = 1;
-		system('sudo sed -i "/restriction=/c\\restriction=1" /etc/dstarrepeater');
-	    } else {  // OK we have DMRid(s) in the ACL, open her up...
+        //Make it simple, let public mode easy use
+	    //if (empty($_POST['confDMRWhiteList'] == TRUE)) {  // user didn't add any DMR ID's to ACL. Force back to private node...
+		//$configmmdvm['DMR']['SelfOnly'] = 1;
+		//$configmmdvm['D-Star']['SelfOnly'] = 1;
+		//$configmmdvm['System Fusion']['SelfOnly'] = 1;
+		//$configmmdvm['P25']['SelfOnly'] = 1;
+		//$configmmdvm['NXDN']['SelfOnly'] = 1;
+		//$configmmdvm['M17']['SelfOnly'] = 1;
+		//system('sudo sed -i "/restriction=/c\\restriction=1" /etc/dstarrepeater');
+	    //} else {  // OK we have DMRid(s) in the ACL, open her up...
 		$configmmdvm['DMR']['SelfOnly'] = 0;
 		$configmmdvm['D-Star']['SelfOnly'] = 0;
 		$configmmdvm['System Fusion']['SelfOnly'] = 0;
