@@ -2752,7 +2752,7 @@ if (!empty($_POST)):
 		$configmmdvm['NXDN']['SelfOnly'] = 0;
 		$configmmdvm['M17']['SelfOnly'] = 0;
 		system('sudo sed -i "/restriction=/c\\restriction=0" /etc/dstarrepeater');
-	    }
+	    //}
 	  }
 	}
 
