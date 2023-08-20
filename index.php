@@ -191,6 +191,7 @@ if(empty($_POST['func'])) {
 			<a class="menuadmin" href="/admin/"><?php echo $lang['admin'];?></a>
 			<a class="menulive" href="/live/">Live Caller</a>
 			<a class="menuhwinfo" href='#'>Toggle SysInfo</a>
+			<a class="menudashboard" href="/admin/wifi.php?page=wlan0_info">WiFi Config</a>
 			<a class="menudashboard" href="/"><?php echo $lang['dashboard'];?></a>
 		    </div> 
 		</p>
@@ -752,7 +753,7 @@ if(empty($_POST['func'])) {
 	<div class="footer">
 	   <?php 
 		echo 'Pi-Star / Pi-Star Dashboard, &copy; Andy Taylor (MW0MWZ) 2014-'.date("Y").'<br />'."\n";
-		echo '<a href="https://w0chp.net/w0chp-pistar-dash/" style="color: #ffffff; text-decoration:underline;">W0CHP-PiStar-Dash</a> enhancements by W0CHP';
+		echo '<a href="https://w0chp.net/w0chp-pistar-dash/" style="color: #ffffff; text-decoration:underline;">W0CHP-PiStar-Dash</a> enhancements by W0CHP | <a href="https://github.com/BI7JTA" style="color: #ffffff; text-decoration:underline;">BPiM2 Gitee,Github</a> Modified by BI7JTA';
 	   ?>
 	  <br />USA Callsign/Name Lookups Provided by <a href="https://callook.info/" style="color: #ffffff; text-decoration:underline;">Callook.Info</a>
 	</div>

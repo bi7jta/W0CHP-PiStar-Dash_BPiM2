@@ -16,7 +16,7 @@ require_once $_SERVER['DOCUMENT_ROOT'].'/config/language.php';
 require_once $_SERVER['DOCUMENT_ROOT'].'/config/version.php';
 
 // Sanity Check that this file has been opened correctly
-if ($_SERVER["PHP_SELF"] == "/admin/live_modem_log.php") {
+if ($_SERVER["PHP_SELF"] == "/admin/live_DMRGateway_log.php") {
     
     // Sanity Check Passed.
     header('Cache-Control: no-cache');
@@ -28,7 +28,7 @@ if ($_SERVER["PHP_SELF"] == "/admin/live_modem_log.php") {
     
     if (isset($_GET['ajax'])) {
 	if (file_exists('/etc/dstar-radio.mmdvmhost')) {
-	    $logfile = "/var/log/pi-star/MMDVM-".gmdate('Y-m-d').".log";
+	    $logfile = "/var/log/pi-star/DMRGateway-".gmdate('Y-m-d').".log";
 	}
 	else if (file_exists('/etc/dstar-radio.dstarrepeater')) {
 	    if (file_exists("/var/log/pi-star/DStarRepeater-".gmdate('Y-m-d').".log")) {
@@ -83,7 +83,7 @@ if ($_SERVER["PHP_SELF"] == "/admin/live_modem_log.php") {
     <script type="text/javascript">
     $(function() {
       $.repeat(1000, function() {
-        $.get('/admin/live_modem_log.php?ajax', function(data) {
+        $.get('/admin/live_DMRGateway_log.php?ajax', function(data) {
           if (data.length < 1) return;
           var objDiv = document.getElementById("tail");
           var isScrolledToBottom = objDiv.scrollHeight - objDiv.clientHeight <= objDiv.scrollTop + 1;

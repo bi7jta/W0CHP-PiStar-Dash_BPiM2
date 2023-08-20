@@ -167,8 +167,10 @@ switch($page) {
 <!-- <input type="submit" value="ifup wlan0" name="ifup_wlan0" /> -->
 <!-- <input type="button" value="Refresh" onclick="document.location.reload(true)" /> -->
 <input type="button" value="Refresh" onclick="window.location.href=\'wifi.php?page=wlan0_info\'" />
-<input type="submit" value="Reset WiFi Adapter" name="reset wlan0" />
-<input type="button" value="Configure WiFi" name="wpa_conf" onclick="document.location=\'?page=\'+this.name" />
+<!--input type="submit" value="Reset WiFi Adapter" name="reset wlan0" /-->
+<input type="button" value="Configure WiFi" name="wpa_conf" onclick="document.location=\'?page=\'+this.name" /> 
+<input type="button" value="Reboot" onclick="window.location.href=\'../../admin/power.php\'" />
+<input type="button" value="HomePage" onclick="window.location.href=\'../../\'" />
 </form>
 <div class="infoheader">Wireless Information and Statistics</div>
 <div class="intinfo"><div class="intheader">Interface Information</div>
