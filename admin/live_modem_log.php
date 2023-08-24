@@ -145,7 +145,13 @@ if ($_SERVER["PHP_SELF"] == "/admin/live_modem_log.php") {
 		  <tr><th><?php echo $lang['live_logs'];?></th></tr>
 		  <tr><td align="left"><div id="tail">Starting logging, please wait...<br /></div></td></tr>
 		  <tr><th align="right">
-          <button class="button" onclick="location.href='/admin/download_modem_log.php'" style="margin:2px 5px;">Download this Log</button>
+          <button class="button" onclick="location.href='/admin/live_modem_log.php'" style="margin:2px 5px;">View MMDVM log</button>
+          <button class="button" onclick="location.href='/admin/live_DMRGateway_log.php'" style="margin:2px 5px;">View DMRGateway log</button>
+          <button class="button" onclick="location.href='/admin/live_YSFGateway_log.php'" style="margin:2px 5px;">View YSFGateway log</button>
+          <button class="button" onclick="location.href='/admin/live_D-STARGateway_log.php'" style="margin:2px 5px;">View D-STAR log</button>
+          <button class="button" onclick="location.href='/admin/download_ircDDBGateway_log.php'" style="margin:2px 5px;">Download download_ircDDBGateway_log Log</button>
+          <button class="button" onclick="location.href='/admin/download_DMRGateway_log.php'" style="margin:2px 5px;">Download download_DMRGateway_log Log</button>
+          <button class="button" onclick="location.href='/admin/download_modem_log.php'" style="margin:2px 5px;">Download MMDVM Log</button>
           <button class="button" onclick="location.href='/admin/download_all_logs.php'" style="margin:2px 5px;">Download All Logs</button>
 		  </th></tr>
 	      </table>
