@@ -547,8 +547,6 @@ $MYCALL=strtoupper($callsign);
 			<a class="menureset" href="javascript:factoryReset();"><?php echo $lang['factory_reset'];?></a>
 			<a class="menubackup" href="/admin/config_backup.php"><?php echo $lang['backup_restore'];?></a>
 			<a class="menuupdate" href="/admin/update.php"><?php echo $lang['update'];?></a>
-            <a class="menuupdate" href="/admin/InstallNextionDriver.php">InstallNextionDriver</a>
-            <a class="menuupdate" href="/admin/UnInstallNextionDriver.php">UnInstallNextionDriver</a>
 			<a class="menuexpert" href="/admin/expert/">Expert</a>
 			<a class="menupower" href="/admin/power.php"><?php echo $lang['power'];?></a>
 			<a class="menuadmin" href="/admin/"><?php echo $lang['admin'];?></a>
