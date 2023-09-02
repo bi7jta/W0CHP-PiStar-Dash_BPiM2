@@ -18,7 +18,8 @@ if ($_SERVER["PHP_SELF"] == "/admin/download_all_logs.php") {
     exec("sudo rm -rf ".$backupZip." 2>&1");
     exec("sudo rm -rf ".$backupDir." 2>&1");
     exec("sudo mkdir -p ".$backupDir."/pi-star ".$backupDir."/nginx ".$backupDir."/dmesg 2>&1");
-    exec("sudo /bin/bash -c 'for f in /var/log/pi-star/*; do cat \$f | gzip > ".$backupDir."/pi-star/`basename \$f`.gz; done' 2>&1");
+    #exec("sudo /bin/bash -c 'for f in /var/log/pi-star/*; do cat \$f | gzip > ".$backupDir."/pi-star/`basename \$f`.gz; done' 2>&1");
+    exec("sudo /bin/bash -c 'cp /var/log/pi-star/* $backupDir ' 2>&1");
     exec("sudo /bin/bash -c 'cat /var/log/nginx/error.log | gzip > ".$backupDir."/nginx/error.log.gz' 2>&1");
     exec("sudo /bin/bash -c 'dmesg | gzip > ".$backupDir."/dmesg/dmesg.txt.gz' 2>&1");
     exec("sudo /bin/bash -c 'cd ".$backupDir." && zip -r9 ".$backupZip." ./ && rm -rf ".$backupDir."' 2>&1");
