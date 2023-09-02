@@ -145,19 +145,20 @@ if ($_SERVER["PHP_SELF"] == "/admin/live_YSFGateway_log.php") {
       <tr><th><?php echo $lang['live_logs'];?></th></tr>
       <tr><td align="left"><div id="tail">Starting logging, if you need the old logs, Download it...<br /></div></td></tr>
       <tr><th align="right">
-          <button class="button" onclick="location.href='/admin/live_modem_log.php'" style="margin:2px 5px;">View MMDVM log</button>
-          <button class="button" onclick="location.href='/admin/live_DMRGateway_log.php'" style="margin:2px 5px;">View DMRGateway log</button>
-          <button class="button" onclick="location.href='/admin/live_YSFGateway_log.php'" style="margin:2px 5px;">View YSFGateway log</button>
+          <button class="button" onclick="location.href='/admin/live_modem_log.php'" style="margin:2px 5px;">View Pi-Star log</button>
           <button class="button" onclick="location.href='/admin/live_ircDDBGateway_log.php'" style="margin:2px 5px;">View D-STAR log</button>
+          <button class="button" onclick="location.href='/admin/live_DMRGateway_log.php'" style="margin:2px 5px;">View DMRGateway log</button>
+          <button class="button" onclick="location.href='/admin/live_YSFGateway_log.php'" style="margin:2px 5px;">View YSFGateway log</button> 
           <button class="button" onclick="location.href='/admin/live_P25Gateway_log.php'" style="margin:2px 5px;">View P25Gateway log</button>   
       </th></tr>
       <tr><th align="right"> 
-          <button class="button" onclick="location.href='/admin/download_all_logs.php'" style="margin:2px 5px;">Download All Logs</button>
-          <button class="button" onclick="location.href='/admin/download_modem_log.php'" style="margin:2px 5px;">Download MMDVM Log</button>
-          <button class="button" onclick="location.href='/admin/download_DMRGateway_log.php'" style="margin:2px 5px;">Download DMRGateway Log</button>
+          
+          <button class="button" onclick="location.href='/admin/download_modem_log.php'" style="margin:2px 5px;">Download Pi-Star Log</button>
           <button class="button" onclick="location.href='/admin/download_ircDDBGateway_log.php'" style="margin:2px 5px;">Download D-STAR Log</button>
+          <button class="button" onclick="location.href='/admin/download_DMRGateway_log.php'" style="margin:2px 5px;">Download DMRGateway Log</button> 
           <button class="button" onclick="location.href='/admin/download_YSFGateway_log.php'" style="margin:2px 5px;">Download YSFGateway Log</button>
           <button class="button" onclick="location.href='/admin/download_P25Gateway_log.php'" style="margin:2px 5px;">Download P25Gateway Log</button>
+          <button class="button" onclick="location.href='/admin/download_all_logs.php'" style="margin:2px 5px;">Download All Logs</button>
       </th></tr>
         </table>
 	  </div>
