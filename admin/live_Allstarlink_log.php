@@ -16,7 +16,7 @@ require_once $_SERVER['DOCUMENT_ROOT'].'/config/language.php';
 require_once $_SERVER['DOCUMENT_ROOT'].'/config/version.php';
 
 // Sanity Check that this file has been opened correctly
-if ($_SERVER["PHP_SELF"] == "/admin/live_modem_log.php") {
+if ($_SERVER["PHP_SELF"] == "/admin/live_Allstarlink_log.php") {
     
     // Sanity Check Passed.
     header('Cache-Control: no-cache');
@@ -27,18 +27,9 @@ if ($_SERVER["PHP_SELF"] == "/admin/live_modem_log.php") {
     }
     
     if (isset($_GET['ajax'])) {
-	if (file_exists('/etc/dstar-radio.mmdvmhost')) {
-	    $logfile = "/var/log/pi-star/MMDVM-".gmdate('Y-m-d').".log";
-	}
-	else if (file_exists('/etc/dstar-radio.dstarrepeater')) {
-	    if (file_exists("/var/log/pi-star/DStarRepeater-".gmdate('Y-m-d').".log")) {
-		$logfile = "/var/log/pi-star/DStarRepeater-".gmdate('Y-m-d').".log";
-	    }
-	    else if (file_exists("/var/log/pi-star/dstarrepeaterd-".gmdate('Y-m-d').".log")) {
-		$logfile = "/var/log/pi-star/dstarrepeaterd-".gmdate('Y-m-d').".log";
-	    }
-	}
 	
+  $logfile = "/var/log/asterisk/messages";
+
 	if (empty($logfile) || !file_exists($logfile)) {
 	    exit();
 	}
@@ -83,7 +74,7 @@ if ($_SERVER["PHP_SELF"] == "/admin/live_modem_log.php") {
     <script type="text/javascript">
     $(function() {
       $.repeat(1000, function() {
-        $.get('/admin/live_modem_log.php?ajax', function(data) {
+        $.get('/admin/live_Allstarlink_log.php?ajax', function(data) {
           if (data.length < 1) return;
           var objDiv = document.getElementById("tail");
           var isScrolledToBottom = objDiv.scrollHeight - objDiv.clientHeight <= objDiv.scrollTop + 1;
@@ -142,10 +133,9 @@ if ($_SERVER["PHP_SELF"] == "/admin/live_modem_log.php") {
 	  </div>
 	  <div class="contentwide">
 	      <table width="100%">
-		  <tr><th><?php echo $lang['live_logs'];?></th></tr>
+		  <tr><th><?php echo "live_MMDVM_Bridge_log" ?></th></tr>
 		  <tr><td align="left"><div id="tail">Starting logging, if you need the old logs, Download it...<br /></div></td></tr>
-
-      <tr><th align="right">
+		  <tr><th align="right">
           <button class="button" onclick="location.href='/admin/live_Analog_Bridge_log.php'" style="margin:2px 5px;">View Analog_Bridge log</button>
           <button class="button" onclick="location.href='/admin/live_MMDVM_Bridge_log.php'" style="margin:2px 5px;">View MMDVM_Bridge log</button>
           <button class="button" onclick="location.href='/admin/live_Allstarlink_log.php'" style="margin:2px 5px;">View Allstarlink log</button>
@@ -166,7 +156,6 @@ if ($_SERVER["PHP_SELF"] == "/admin/live_modem_log.php") {
           <button class="button" onclick="location.href='/admin/download_P25Gateway_log.php'" style="margin:2px 5px;">Download P25Gateway Log</button>
           <button class="button" onclick="location.href='/admin/download_all_logs.php'" style="margin:2px 5px;">Download All Logs</button>
       </th></tr>
-
 	      </table>
 	  </div>
     <div class="footer">

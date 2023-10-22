@@ -66,10 +66,13 @@ require_once $_SERVER['DOCUMENT_ROOT'].'/config/version.php';
           </div>
 
         </div>
-            <div class="footer">
-                Pi-Star web config, &copy; Andy Taylor (MW0MWZ) 2014-'.date("Y").'.<br />
-                <a href="https://w0chp.net/w0chp-pistar-dash/" style="color: #ffffff; text-decoration:underline;">W0CHP-PiStar-Dash</a> enhancements by W0CHP<br />
-            </div>
+    <div class="footer">
+       <?php 
+        echo 'Pi-Star / Pi-Star Dashboard, &copy; Andy Taylor (MW0MWZ) 2014-'.date("Y").'<br />'."\n";
+        echo '<a href="https://w0chp.net/w0chp-pistar-dash/" style="color: #ffffff; text-decoration:underline;">W0CHP-PiStar-Dash</a> enhancements by W0CHP'.'<br />'."\n";
+        echo 'Add <a href="https://github.com/BI7JTA" style="color: #ffffff; text-decoration:underline;">Allstarlink,DVSwitch,BPiM2</a> Modified by BI7JTA';
+       ?>
+    </div>
 
         </div>
     </body>
@@ -105,10 +108,13 @@ require_once $_SERVER['DOCUMENT_ROOT'].'/config/version.php';
 	  </div>
 
 	</div>
-	    <div class="footer">
-		Pi-Star web config, &copy; Andy Taylor (MW0MWZ) 2014-<?php echo date("Y"); ?>.<br />
-		<a href="https://w0chp.net/w0chp-pistar-dash/" style="color: #ffffff; text-decoration:underline;">W0CHP-PiStar-Dash</a> enhancements by W0CHP<br />
-	    </div>
+    <div class="footer">
+       <?php 
+        echo 'Pi-Star / Pi-Star Dashboard, &copy; Andy Taylor (MW0MWZ) 2014-'.date("Y").'<br />'."\n";
+        echo '<a href="https://w0chp.net/w0chp-pistar-dash/" style="color: #ffffff; text-decoration:underline;">W0CHP-PiStar-Dash</a> enhancements by W0CHP'.'<br />'."\n";
+        echo 'Add <a href="https://github.com/BI7JTA" style="color: #ffffff; text-decoration:underline;">Allstarlink,DVSwitch,BPiM2</a> Modified by BI7JTA';
+       ?>
+    </div>
 	    
 	</div>
     </body>

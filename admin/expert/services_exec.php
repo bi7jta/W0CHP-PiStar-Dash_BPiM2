@@ -33,8 +33,33 @@ switch ($action) {
     case "updatehostsfiles":
 	$cmdresult = exec('sudo -- /bin/bash -c "/usr/local/sbin/pistar-services fullstop; mount -o remount,rw /; /usr/local/sbin/HostFilesUpdate.sh; /usr/local/sbin/pistar-services restart;"', $cmdoutput, $retvalue);
 	break;
+
+    case "Allstarlink_status":
+    $cmdresult = exec('sudo systemctl status asterisk', $cmdoutput, $retvalue);
+    break;
+
+    case "MMDVM_Bridge_status":
+    $cmdresult = exec('sudo systemctl status mmdvm_bridge', $cmdoutput, $retvalue);
+    break;
+
+    case "Analog_Bridge_status":
+    $cmdresult = exec('sudo systemctl status analog_bridge', $cmdoutput, $retvalue);
+    break;
+
+    case "Allstarlink_restart":
+    $cmdresult = exec('sudo systemctl restart asterisk', $cmdoutput, $retvalue);
+    break;
+
+    case "MMDVM_Bridge_restart":
+    $cmdresult = exec('sudo systemctl restart mmdvm_bridge', $cmdoutput, $retvalue);
+    break;
+
+    case "Analog_Bridge_restart":
+    $cmdresult = exec('sudo systemctl restart analog_bridge', $cmdoutput, $retvalue);
+    break;
+
     default:
-	$cmdoutput = array('error !');
+	$cmdoutput = array('error No operate call  !');
 }
 echo "<br />";
 foreach ($cmdoutput as $l) {

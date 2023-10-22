@@ -549,6 +549,7 @@ $MYCALL=strtoupper($callsign);
 			<a class="menuupdate" href="/admin/update.php"><?php echo $lang['update'];?></a>
             <a class="menuupdate" href="/admin/InstallNextionDriver.php">InstallNextionDriver</a>
             <a class="menuupdate" href="/admin/UnInstallNextionDriver.php">UnInstallNextionDriver</a>
+            <a class="menuexpert" href="/admin/expert/">Allstarlink</a> 
 			<a class="menuexpert" href="/admin/expert/">Expert</a>
 			<a class="menupower" href="/admin/power.php"><?php echo $lang['power'];?></a>
 			<a class="menuadmin" href="/admin/"><?php echo $lang['admin'];?></a>
@@ -3874,7 +3875,7 @@ if (!empty($_POST)):
 
 else:
 	// Output the HTML Form here
-	if ((file_exists('/etc/dstar-radio.mmdvmhost') || file_exists('/etc/dstar-radio.dstarrepeater')) && !$configModem['Modem']['Hardware']) { echo "<script type\"text/javascript\">\n\talert(\"WARNING:\\nThe Modem selection section has been updated,\\nPlease re-select your modem from the list.\")\n</script>\n"; }
+	//if ((file_exists('/etc/dstar-radio.mmdvmhost') || file_exists('/etc/dstar-radio.dstarrepeater')) && !$configModem['Modem']['Hardware']) { echo "<script type\"text/javascript\">\n\talert(\"WARNING:\\nThe Modem selection section has been updated,\\nPlease re-select your modem from the list.\")\n</script>\n"; }
 	if (strpos($_SERVER['HTTP_USER_AGENT'], 'Chrome') !== false) {
 		$toggleDMRCheckboxCr			= 'onclick="toggleDMRCheckbox()"';
 		$toggleDSTARCheckboxCr			= 'onclick="toggleDSTARCheckbox()"';
@@ -4102,13 +4103,15 @@ else:
 	    	<option<?php if ($configModem['Modem']['Hardware'] === 'nanodv') {		echo ' selected="selected"';}?> value="nanodv">MMDVM_NANO_DV (BG4TGO) for NanoPi AIR (GPIO)</option>
 	    	<option<?php if ($configModem['Modem']['Hardware'] === 'nanodvusb') {		echo ' selected="selected"';}?> value="nanodvusb">MMDVM_NANO_DV (BG4TGO) for NanoPi AIR (USB)</option>
 		<option<?php if ($configModem['Modem']['Hardware'] === 'opengd77') {		echo ' selected="selected"';}?> value="opengd77">OpenGD77 DMR hotspot (USB)</option>
-    </select></td>
+    </select>
+      Reference: for GPIO [STM32-DVM / MMDVM_HS - Raspberry Pi Hat (GPIO)]; for USB [STM32-DVM (USB)]
+    </td>
     </tr>
 	<tr id="modem_speed">
 	    <td align="left"><a class="tooltip2" href="#">Modem Baud Rate:<span><b>Baudrate</b>Serial speed (most Hats are using 115200)</span></a></td>
 	    <td align="left" colspan="3"><select name="confHardwareSpeed">
 		<?php
-		$modemSpeeds = [115200, 57600, 38400, 19200, 9600, 4800, 2400, 1200];
+		$modemSpeeds = [115200, 460800, 57600, 38400, 19200, 9600, 4800, 2400, 1200];
 		foreach($modemSpeeds as $modemSpeed) {
 		    if ($configmmdvm['Modem']['UARTSpeed'] == $modemSpeed) {
 			echo " <option value=\"$modemSpeed\" selected=\"selected\">$modemSpeed</option>\n";
@@ -4118,7 +4121,9 @@ else:
 		    }
 		}
 		?>
-		</select></td>
+		</select>
+        Reference: for Normal Modem [115200]; for FM Network/Repeater to Allstarlink [460800]
+    </td>
 	</tr>
 <?php } ?>
 <?php if (file_exists('/etc/aprsgateway')) {
@@ -5757,12 +5762,15 @@ echo '
     </form>
 <?php endif; ?>
 <br />
-</div>
-<div class="footer">
-Pi-Star web config, &copy; Andy Taylor (MW0MWZ) 2014-<?php echo date("Y"); ?>.<br />
-<a href="https://w0chp.net/w0chp-pistar-dash/" style="color: #ffffff; text-decoration:underline;">W0CHP-PiStar-Dash</a> enhancements by W0CHP
-<br />
-</div>
+
+    <div class="footer">
+       <?php 
+        echo 'Pi-Star / Pi-Star Dashboard, &copy; Andy Taylor (MW0MWZ) 2014-'.date("Y").'<br />'."\n";
+        echo '<a href="https://w0chp.net/w0chp-pistar-dash/" style="color: #ffffff; text-decoration:underline;">W0CHP-PiStar-Dash</a> enhancements by W0CHP'.'<br />'."\n";
+        echo 'Add <a href="https://github.com/BI7JTA" style="color: #ffffff; text-decoration:underline;">Allstarlink,DVSwitch,BPiM2</a> Modified by BI7JTA';
+       ?>
+    </div>
+
 </div>
 </body>
 </html>
@@ -5772,11 +5780,15 @@ Pi-Star web config, &copy; Andy Taylor (MW0MWZ) 2014-<?php echo date("Y"); ?>.<b
 <br />
 <br />
 </div>
-<div class="footer">
-Pi-Star web config, &copy; Andy Taylor (MW0MWZ) 2014-<?php echo date("Y"); ?>.<br />
-<a href="https://w0chp.net/w0chp-pistar-dash/" style="color: #ffffff; text-decoration:underline;">W0CHP-PiStar-Dash</a> enhancements by W0CHP
-<br />
-</div>
+
+    <div class="footer">
+       <?php 
+        echo 'Pi-Star / Pi-Star Dashboard, &copy; Andy Taylor (MW0MWZ) 2014-'.date("Y").'<br />'."\n";
+        echo '<a href="https://w0chp.net/w0chp-pistar-dash/" style="color: #ffffff; text-decoration:underline;">W0CHP-PiStar-Dash</a> enhancements by W0CHP'.'<br />'."\n";
+        echo 'Add <a href="https://github.com/BI7JTA" style="color: #ffffff; text-decoration:underline;">Allstarlink,DVSwitch,BPiM2</a> Modified by BI7JTA';
+       ?>
+    </div>
+
 </div>
 </body>
 </html>

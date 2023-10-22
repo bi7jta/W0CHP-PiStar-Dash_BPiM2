@@ -320,7 +320,7 @@ a.tooltip2 span b {
 
 ul {
     padding: 5px;
-    margin: 10px 0;
+    margin: 25px 0;
     list-style: none;
     float: left;
 }

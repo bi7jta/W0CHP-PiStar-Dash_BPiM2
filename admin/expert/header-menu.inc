@@ -149,6 +149,48 @@
 			<li class="subs"><a href="/config/changelog.php">ChangeLog</a></li>
 		    </ul>
 		</li>
+
+		<li class="has-subs"><a href="#">Allstarlink</a>
+		    <ul class="dropdown">
+			<li class="subs"><a href="fulledit_asterisk_iax.php">iax.conf</a></li>
+			<li class="subs"><a href="fulledit_asterisk_rpt.php">rpt.conf</a></li>
+			<li class="subs"><a href="fulledit_asterisk_sip.php">sip.conf</a></li>
+			<li class="subs"><a href="fulledit_asterisk_extensions.php">extensions.conf</a></li>  
+			<li class="subs"><a href="fulledit_asterisk_manager.php">manager.conf</a></li>  
+			<!-- D-Star Sub -->
+			</ul>
+		</li>
+
+		<li class="has-subs"><a href="#">DVSwitch</a>
+		    <ul class="dropdown">
+			<li class="subs"><a href="fulledit_Analog_Bridge.ini.php">Analog_Bridge.ini</a></li>
+			<li class="subs"><a href="fulledit_MMDVM_Bridge.ini.php">MMDVM_Bridge.ini</a></li>
+			<li class="subs"><a href="fulledit_DVSwitch.ini.php">DVSwitch.ini</a></li>
+			<!-- D-Star Sub -->
+			</ul>
+		</li>
+
+			
+		<li class="has-subs"><a href="#">Allstarlink Services</a>
+            <ul class="dropdown">
+			<li class="subs"><a href="services.php?action=Allstarlink_status">Allstarlink_status</a></li>
+			<li class="subs"><a href="services.php?action=MMDVM_Bridge_status">MMDVM_Bridge_status</a></li>
+			<li class="subs"><a href="services.php?action=Analog_Bridge_status">Analog_Bridge_status</a></li> 
+			<li class="subs"><a href="services.php?action=Allstarlink_restart">Allstarlink_restart</a></li>
+			<li class="subs"><a href="services.php?action=MMDVM_Bridge_restart">MMDVM_Bridge_restart</a></li>
+			<li class="subs"><a href="services.php?action=Analog_Bridge_restart">Analog_Bridge_restart</a></li> 
+			</ul>
+		</li>
+
+		<li class="has-subs"><a href="#">Allsarlink logs</a>
+            <ul class="dropdown">
+			<li class="subs"><a href="/admin/live_Allstarlink_log.php">Allstarlink log</a></li>
+			<li class="subs"><a href="/admin/live_MMDVM_Bridge_log.php">MMDVM_Bridge log</a></li>
+			<li class="subs"><a href="/admin/live_Analog_Bridge_log.php">Analog_Bridge log</a></li> 
+			<li class="subs"><a href="/admin/live_modem_log.php">FM Log</a></li> 
+			</ul>
+		</li>
+
 	    </ul>
 	</div>
     </p>

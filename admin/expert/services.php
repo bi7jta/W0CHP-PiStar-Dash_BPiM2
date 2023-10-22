@@ -57,6 +57,26 @@ require_once $_SERVER['DOCUMENT_ROOT'].'/config/version.php';
 		else if (strcmp($action, 'updatehostsfiles') == 0) {
 		    $action_msg = 'Updating The Hosts Files';
 		}
+
+		else if (strcmp($action, 'Allstarlink_status') == 0) {
+		    $action_msg = 'Allstarlink_status';
+		}
+		else if (strcmp($action, 'MMDVM_Bridge_status') == 0) {
+		    $action_msg = 'MMDVM_Bridge_status';
+		}
+		else if (strcmp($action, 'Analog_Bridge_status') == 0) {
+		    $action_msg = 'Analog_Bridge_status';
+		}
+		else if (strcmp($action, 'Allstarlink_restart') == 0) {
+		    $action_msg = 'Allstarlink_restart';
+		}
+		else if (strcmp($action, 'MMDVM_Bridge_restart') == 0) {
+		    $action_msg = 'MMDVM_Bridge_restart';
+		}
+		else if (strcmp($action, 'Analog_Bridge_restart') == 0) {
+		    $action_msg = 'Analog_Bridge_restart';
+		}
+		
 		else {
 		    $action_msg = 'Unknown Action';
 		}
@@ -82,10 +102,13 @@ require_once $_SERVER['DOCUMENT_ROOT'].'/config/version.php';
 		    </td></tr>
 		</table>
 	    </div>
-	    <div class="footer">
-		Pi-Star web config, &copy; Andy Taylor (MW0MWZ) 2014-<?php echo date("Y"); ?>.<br />
-		<a href="https://w0chp.net/w0chp-pistar-dash/" style="color: #ffffff; text-decoration:underline;">W0CHP-PiStar-Dash</a> enhancements by W0CHP<br />
-	    </div>
+    <div class="footer">
+       <?php 
+        echo 'Pi-Star / Pi-Star Dashboard, &copy; Andy Taylor (MW0MWZ) 2014-'.date("Y").'<br />'."\n";
+        echo '<a href="https://w0chp.net/w0chp-pistar-dash/" style="color: #ffffff; text-decoration:underline;">W0CHP-PiStar-Dash</a> enhancements by W0CHP'.'<br />'."\n";
+        echo 'Add <a href="https://github.com/BI7JTA" style="color: #ffffff; text-decoration:underline;">Allstarlink,DVSwitch,BPiM2</a> Modified by BI7JTA';
+       ?>
+    </div>
 	    
 	</div>
     </body>
