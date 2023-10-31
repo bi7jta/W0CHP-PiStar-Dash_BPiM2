@@ -12,20 +12,12 @@ include_once('css-base.php');
 }
 
 body, font {
-    font: <?php echo $bodyFontSize; ?>px 'Source Sans Pro', sans-serif;
-    color: #ffffff;
+    font: 18px 'Source Sans Pro', sans-serif;
     -webkit-text-size-adjust: none;
+    color: <?php echo $textContent; ?>;
     -moz-text-size-adjust: none;
     -ms-text-size-adjust: none;
     text-size-adjust: none;
-}
-
-.center {
-    text-align: center;
-}
-
-.middle {
-    vertical-align: middle;
 }
 
 .header {
@@ -34,39 +26,43 @@ body, font {
     color : <?php echo $textBanners; ?>;
     font-family : 'Source Sans Pro', sans-serif;
     text-align : left;
-    padding : 5px 0 0 0;
-    margin: 0 3px;
-}
+    padding : 5px 0px 5px 0px;
+ }
 
 .header h1 {
-    margin-top:-10px;
-    font-size: <?php echo $headerFontSize; ?>px;
+   font-weight: 500;
 }
 
 .nav {
-    float: left;
+    float : left;
     margin : 0;
-    padding : 3px;
-    width : 230px;
+    padding : 3px 3px 3px 3px;
+    width : 160px;
     background : <?php echo $backgroundNavPanel; ?>;
     font-weight : normal;
     min-height : 100%;
 }
 
+#hwInfo,
+#radioInfo,
+#pocsag-sec {
+    display: none;
+}
+
 .content {
-    margin : 0 0 0 240px;
-    padding : 1px 3px 5px 3px;
+    padding : 5px 5px 5px 5px;
     color : <?php echo $textSections; ?>;
     background : <?php echo $backgroundContent; ?>;
     text-align: center;
+    font-size: 1.4em;
 }
 
 .contentwide {
-    padding: 3px;
-    color: <?php echo $textSections; ?>;
+    padding: 5px 5px 5px 5px;
+    color : <?php echo $textSections; ?>;
     background: <?php echo $backgroundContent; ?>;
     text-align: center;
-    margin-top: 5px;
+    font-size: 1.4em;
 }
 
 .contentwide h2 {
@@ -86,47 +82,45 @@ body, font {
     font-size : 9px;
     text-align : center;
     padding : 10px 0 10px 0;
-    clear : both;
-}
-
-tt, code, kbd, pre {
-        font-family: 'Inconsolata', monospace !important;
+    clear: both;
 }
 
 #tail {
-    font-family: 'Inconsolata', monospace;
-    height: 640px;
-    width: 100%;
+    height: 450px;
+    width: 805px;
     overflow-y: scroll;
     overflow-x: scroll;
-    color: #4DEEEA;
+    color: #00ff00;
     background: #000000;
-    font-size: 17px;
 }
 
 table {
     vertical-align: middle;
     text-align: center;
     empty-cells: show;
-    padding: 0px;
+    padding-left: 0px;
+    padding-right: 0px;
+    padding-top: 0px;
+    padding-bottom: 0px;
     border-collapse:collapse;
-    border-spacing: 5px;
-    border: .5px solid <?php echo $tableBorderColor; ?>;
+    border-color: #000000;
+    border-style: solid;
+    border-spacing: 4px;
+    border-width: 2px;
     text-decoration: none;
-    background: #000000;
+    color: <?php echo $textContent; ?>;
+    background: <?php echo $backgroundContent; ?>;
     font-family: 'Source Sans Pro', sans-serif;
     width: 100%;
     white-space: nowrap;
 }
 
 table th {
-    font-family:  'Source Sans Pro', sans-serif;
-    border: .5px solid <?php echo $tableBorderColor; ?>;
-    font-weight: 600;
+    font-family: 'Inconsolata', monospace;
     text-decoration: none;
     color : <?php echo $textBanners; ?>;
     background: <?php echo $backgroundBanners; ?>;
-    padding: 5px;
+    border: 1px solid #c0c0c0;
 }
 
 table tr:nth-child(even) {
@@ -138,79 +132,16 @@ table tr:nth-child(odd) {
 }
 
 table td {
-    color: <?php echo $textContent; ?>;
     font-family: 'Inconsolata', monospace;
-    font-weight: 500;
     text-decoration: none;
-    border: .5px solid <?php echo $tableBorderColor; ?>;
-    padding: 5px;
-    font-size: <?php echo "$mainFontSize"; ?>px;
-}
-
-#liveCallerDeets table tr:hover td, #localTxs table tr:hover td, #lastHeard table tr:hover td, #bmLinks table tr:hover td,
-#liveCallerDeets table tr:hover td a, #localTxs table tr:hover td a, #lastHeard table tr:hover td a, #bmLinks table tr:hover td a {
-     background-color: <?php echo $backgroundDropdownHover; ?>; 
-     color: <?php echo $textDropdownHover; ?>; 
-}
-
-.divTable{
-    font-family:  'Source Sans Pro', sans-serif;
-    display: table;
-    border-collapse: collapse;
-    width: 100%;
-}
-
-.divTableRow {
-    display: table-row;
-    width: auto;
-    clear: both;
-}
-
-.divTableHead, .divTableHeadCell {
-    color : <?php echo $textBanners; ?>;
-    background: <?php echo $backgroundBanners; ?>;
-    border: .5px solid <?php echo $tableBorderColor; ?>;
+    border: 1px solid #000000;
+    overflow-x: hidden;
     font-weight: 600;
-    text-decoration: none;
-    padding: 5px;
-    caption-side: top;
-    display: table-caption; 
-    text-align: center;
-    vertical-align: middle;
-}
-
-.divTableCellSans {
-    font-size: <?php echo "$contentFontSize"; ?>px;
-    color: <?php echo $textContent; ?>;
-}
-
-.divTableCell {
-    font-family: 'Inconsolata', monospace;
-    font-weight: 500;
-    font-size: <?php echo "$mainFontSize"; ?>px;
-    border: .5px solid <?php echo $tableBorderColor; ?>;
-    color: <?php echo $textContent; ?>;
-}
-
-.divTableCell, .divTableHeadCell {
-    display: table-cell;
-}
-
-.divTableBody {
-    display: table-row-group;
-}
-
-.divTableBody .divTableRow {
-    background: <?php echo $tableRowEvenBg; ?>;
-}
-
-.divTableCell.cell_content {
-    padding: 5px;
 }
 
 body {
     background: <?php echo $backgroundPage; ?>;
-    color: <?php echo $textContent; ?>;
+    color: #000000;
 }
 
 a {
@@ -226,13 +157,12 @@ a:link, a:visited {
 a.tooltip, a.tooltip:link, a.tooltip:visited, a.tooltip:active  {
     text-decoration: none;
     position: relative;
-    color: <?php echo $textBanners; ?>;
+    color: #e9e9e9;
 }
 
 a.tooltip:hover {
     text-decoration: none;
     background: transparent;
-    color: <?php echo $textBanners; ?>;
 }
 
 a.tooltip span {
@@ -245,14 +175,15 @@ a.tooltip:hover span {
     display: block;
     position: absolute;
     top: 20px;
-    left: 0;
+    left: 0; 
     z-index: 100;
-    font: <?php echo $bodyFontSize; ?>px 'Inconsolata', monospace; 
+    font: 16px 'Source Sans Pro', sans-serif;
     text-align: left;
     white-space: nowrap;
+    background: #000000;
+    opacity: 0.8;
     border: none;
     color: #e9e9e9;
-    background: rgba(0, 0, 0, .9);
     padding: 8px;
 }
 
@@ -263,26 +194,28 @@ th:last-child a.tooltip:hover span {
 
 a.tooltip span b {
     text-decoration: none;
-    font: <?php echo $bodyFontSize; ?>px 'Inconsolata', monospace;
+    font: 16px 'Source Sans Pro', sans-serif;
     display: block;
     margin: 0;
     font-weight: bold;
+    background: #000000;
+    opacity: 0.9;
     border: none;
     color: #e9e9e9;
-    padding: 0px;
+    padding: 4px 4px 3px 4px;
 }
 
 a.tooltip2, a.tooltip2:link, a.tooltip2:visited, a.tooltip2:active  {
     text-decoration: none;
     position: relative;
     font-weight: bold;
-    color: <?php echo $textContent; ?>;
+    color: #e9e9e9;
 }
 
 a.tooltip2:hover {
     text-decoration: none;
+    color: #e9e9e9;
     background: transparent;
-    color: <?php echo $textContent; ?>;
 }
 
 a.tooltip2 span {
@@ -290,7 +223,7 @@ a.tooltip2 span {
     display: none;
 }
 
-a.tooltip2:hover span {
+ia.tooltip2:hover span {
     text-decoration: none;
     display: block;
     position: absolute;
@@ -298,12 +231,13 @@ a.tooltip2:hover span {
     left: 0;
     width: 202px;
     z-index: 100;
-    font: 16px 'Source Sans Pro', sans-serif; 
+    font: 16px 'Source Sans Pro', sans-serif;
     text-align: left;
     white-space: normal;
+    background: #000000;
+    opacity: 0.9;
     border: none;
     color: #e9e9e9;
-    background: rgba(0, 0, 0, .9);
     padding: 8px;
 }
 
@@ -320,7 +254,7 @@ a.tooltip2 span b {
 
 ul {
     padding: 5px;
-    margin: 25px 0;
+    margin: 10px 0;
     list-style: none;
     float: left;
 }
@@ -336,7 +270,7 @@ ul li a {
     float:left;
     color: #999;
     cursor: pointer;
-    font: 600 14px/22px 'Source Sans Pro', sans-serif;
+    font: 900 14px/22px "Arial", Helvetica, 'Source Sans Pro', sans-serif;
 }
 
 ul li a span {
@@ -347,16 +281,16 @@ ul li a span {
 }
 
 ul.mmenu li a.current, ul.mmenu li a:hover {
+    background: url(/images/buttonbg.png) no-repeat top right;
     color: #0d5f83;
 }
 
 ul.mmenu li a.current span, ul.mmenu li a:hover span {
-    color: #0d5f83;
+    background: url(/images/buttonbg.png) no-repeat top left;
 }
 
 h1 {
     text-align: center;
-    font-weight: 600;
 }
 
 /* CSS Toggle Code here */
@@ -373,13 +307,17 @@ h1 {
     outline: none;
 }
 
+input:disabled + label {
+    color: #cccccc;
+}
+
 input.toggle-round-flat + label {
     padding: 1px;
-    margin: 3px;
+    border: 1px solid transparent;
     width: 33px;
-    height: 20px;
-    background-color: #5C5C5C;
-    border-radius: 5px;
+    height: 18px;
+    background-color: #dddddd;
+    border-radius: 10px;
     transition: background 0.4s;
 }
 
@@ -395,8 +333,9 @@ input.toggle-round-flat + label:before {
     left: 1px;
     bottom: 1px;
     right: 1px;
+    background-color: #fff;
     background: <?php echo $backgroundContent; ?>;
-    border-radius: 5px;
+    border-radius: 10px;
     transition: background 0.4s;
 }
 
@@ -405,151 +344,51 @@ input.toggle-round-flat + label:after {
     left: 2px;
     bottom: 2px;
     width: 16px;
-    background: #999;
-    border-radius: 5px;
+    background-color: #dddddd;
+    border-radius: 12px;
     transition: margin 0.4s, background 0.4s;
 }
 
 input.toggle-round-flat:checked + label {
-    background: #5C5C5C;
+    background-color: <?php echo $backgroundBanners; ?>;
 }
 
 input.toggle-round-flat:checked + label:after {
     margin-left: 14px;
-    background: <?php echo $backgroundServiceCellActiveColor; ?>;;
+    background-color: <?php echo $backgroundBanners; ?>;
 }
 
 input.toggle-round-flat:focus + label {
-    box-shadow: 0 0 1px <?php echo $backgroundServiceCellActiveColor; ?>;;
+    box-shadow: 0 0 2px <?php echo $backgroundBanners; ?>;
     padding: 1px;
+    border: 1px solid <?php echo $backgroundBanners; ?>;
     z-index: 5;
 }
 
-.mode_flex .row {
-  display: flex;
-  flex-direction: row;
-  flex-wrap: wrap;
-  width: 100%;
-}
-
-.mode_flex .column {
-  display: flex;
-  flex-direction: column;
-  flex-basis: 100%;
-  flex: 1;
-}
-
-.mode_flex button {
-    background: <?php echo $backgroundNavbar ?>;
-    color: <?php echo $textNavbar ?>;
-    flex-basis: 25%;
-    flex-shrink: 0;
-    text-align: center;
-    justify-content: center;
-    flex-grow: 1;
-    font-family: 'Source Sans Pro', sans-serif;
-    border: 2px solid <?php echo $tableBorderColor; ?>;
-    padding: 3px;
-}
-
-.mode_flex button > span  {
-    align-items: center; 
-    flex-wrap: wrap;
-    display: flex; 
-    justify-content: center;
-    margin: 5px;
-    text-align: center;
-}
-
-textarea, input[type='text'], input[type='password'] {
-        font-size: <?php echo $bodyFontSize; ?>px;
-        font-family: 'Inconsolata', monospace;
-        border: 1px solid <?php echo $tableBorderColor; ?>;
-        padding: 5px;
-        margin 3px;
-        background: #e2e2e2;
-}
-
-input[type=button], input[type=submit], input[type=reset], input[type=radio], button {
-    font-size: <?php echo $bodyFontSize; ?>px;
-    font-family: 'Source Sans Pro', sans-serif;
-    border: 1px solid <?php echo $tableBorderColor; ?>;
-    padding: 5px;
-    text-decoration: none;
-    margin: 3px;
-    cursor: pointer;
-    background: <?php echo $backgroundNavbar ?>;
-    color: <?php echo $textNavbar ?>;
-}
-
-input[type=button]:hover, input[type=submit]:hover, input[type=reset]:hover, button:hover {
-    color: <?php echo $textNavbarHover; ?>;
-    background-color: <?php echo $backgroundNavbarHover; ?>;
-}
-
-input[type=button]:disabled {
-    opacity: 0.7;
-    cursor: not-allowed;
-}
-
-button:disabled {
-    cursor: not-allowed;
-    color: <?php echo $textModeCellDisabledColor; ?>;
-    background: <?php echo $backgroundModeCellDisabledColor; ?>;
-}
-
-input:disabled + label {
-    color: #000;
-    opacity: 0.6;
-    cursor: not-allowed;
-}
-
-select {
-    background: #e2e2e2;
-    font-family: 'Inconsolata', monospace;
-    font-size: <?php echo $bodyFontSize; ?>px;
-    border: 1px solid <?php echo $tableBorderColor; ?>;
-    color: black;
-    padding: 5px;
-    text-decoration: none;
-    margin: 3px;
-}
-
-.select2-selection__rendered {
-  font-family: 'Inconsolata', monospace;
-  color: black;
-  font-size: <?php echo $bodyFontSize; ?>px !important;
-  background: #e2e2e2;
-}
-
-.select2-results__options{
-  color: black;
-  font-size:<?php echo $bodyFontSize; ?>px !important;
-  font-family: 'Inconsolata', monospace;
-  background: #e2e2e2;
-}
-
-[class^='select2'] {
-  border-radius: 0px !important;
-}
-
+/* put the same color as in left vertical status */
 .navbar {
     overflow: hidden;
     background-color: <?php echo $backgroundNavbar; ?>;
 }
 
+/* Links inside the navbar */
 .navbar a {
     float: right;
     font-family : 'Source Sans Pro', sans-serif;
-    font-size: <?php echo $bodyFontSize; ?>px;
+    font-size: 14px;
     color: <?php echo $textNavbar; ?>;
     text-align: center;
     padding: 5px 8px;
     text-decoration: none;
+    -webkit-transition: all 0.25s ease-out;
+    -moz-transition: all 0.25s ease-out;
+    -ms-transition: all 0.25s ease-out;
+    -o-transition: all 0.25s ease-out;
+    transition: all 0.25s ease-out;
 }
 
 .dropdown .dropbutton {
-    font-size: <?php echo $bodyFontSize; ?>px;
+    font-size: 14px;
     border: none;
     outline: none;
     color: <?php echo $textNavbar; ?>;
@@ -564,6 +403,7 @@ select {
     background-color: <?php echo $backgroundNavbarHover; ?>;
 }
 
+ /* put the same color as in left vertical status */
 .lnavbar {
     overflow: hidden;
     background-color: <?php echo $backgroundNavbar; ?>;
@@ -582,7 +422,7 @@ select {
 
 .dropdown {
     position: absolute;
-    top: 127px;
+    top: 123px;
     width: 170px;
     opacity: 0;
     visibility: hidden;
@@ -591,6 +431,11 @@ select {
 .mainnav ul {
     padding: 0;
     list-style: none;
+    -webkit-transition: all 0.25s ease-out;
+    -moz-transition: all 0.25s ease-out;
+    -ms-transition: all 0.25s ease-out;
+    -o-transition: all 0.25s ease-out;
+    transition: all 0.25s ease-out;
 }
 
 .mainnav li {
@@ -607,7 +452,7 @@ select {
     display: inline-block;
     padding: 1px 10px;
     font-family : 'Source Sans Pro', sans-serif;
-    font-size: <?php echo $bodyFontSize; ?>px;
+    font-size: 14px;
     color: <?php echo $textNavbar; ?>;
     text-align: center;
     text-decoration: none;
@@ -703,7 +548,7 @@ select {
     visibility: hidden;
 }
 
-.menuhwinfo .menuconfig .menuadmin .menudashboard .menucaller .menulive .menuupdate .menuupgrade .menupower .menulogs .menubackup .menuexpert .menureset .menusysinfo {
+.menuconfig .menuadmin .menudashboard .menuupdate .menuupgrade .menupower .menulogs .menubackup .menuexpert .menureset .menusysinfo {
     position: relative;
 }
 
@@ -770,42 +615,6 @@ select {
     padding-right: 0.2em;
 }
 
-.menulive:before {
-    content: "\f21e";
-    font-family: FontAwesome;
-    font-style: normal;
-    font-weight: normal;
-    text-decoration: inherit;
-    padding-right: 0.2em;
-}
-
-.menucaller:before {
-    content: "\f130";
-    font-family: FontAwesome;
-    font-style: normal;
-    font-weight: normal;
-    text-decoration: inherit;
-    padding-right: 0.2em;
-}
-
-.menutgnames:before {
-    content: "\f05a";
-    font-family: FontAwesome;
-    font-style: normal;
-    font-weight: normal;
-    text-decoration: inherit;
-    padding-right: 0.2em;
-}
-
-.menuhwinfo:before {
-    content: "\f0ce";
-    font-family: FontAwesome;
-    font-style: normal;
-    font-weight: normal;
-    text-decoration: inherit;
-    padding-right: 0.2em;
-}
-
 .menubackup:before {
     content: "\f187";
     font-family: FontAwesome;
@@ -859,59 +668,42 @@ select {
 
 .disabled-mode-cell {
     color: <?php echo $textModeCellDisabledColor; ?>;
-    padding:2px;
-    text-align: center;
-    border:0;
     background: <?php echo $backgroundModeCellDisabledColor; ?>;
 }
 
 .active-mode-cell {
     color: <?php echo $textModeCellActiveColor; ?>;
-    border:0;
-    text-align: center;
-    padding:2px;
     background: <?php echo $backgroundModeCellActiveColor; ?>;
 }
 
 .inactive-mode-cell {
     color: <?php echo $textModeCellInactiveColor; ?>;
-    border:0;
-    text-align: center;
-    padding:2px;
     background: <?php echo $backgroundModeCellInactiveColor; ?>;
 }
 
-.paused-mode-cell {
-    color: <?php echo $textModeCellActiveColor; ?>;
-    border:0;
-    text-align: center;
-    padding:2px;
-    background: <?php echo $backgroundModeCellPausedColor; ?>;
+#lhTGN,
+#lhCN,
+.noMob {
+    display: none;
 }
 
-.paused-mode-span {
-    background: <?php echo $backgroundModeCellPausedColor; ?>;
-}
-
-.error-state-cell {
-    color: <?php echo $textModeCellInactiveColor; ?>;
-    text-align: center;
-    border:0;
-    background: <?php echo $backgroundModeCellInactiveColor; ?>;
-}
-
+/*
 .table-container {
     position: relative;
+    overflow: auto;
+    max-height: 255px;
 }
+*/
 
 /* Tame Firefox Buttons */
+/*
 @-moz-document url-prefix() {
     select,
     input {
         margin : 0;
         padding : 0;
         border-width : 1px;
-        font : 14px 'Inconsolata', monospace;
+        font : 12px 'Source Sans Pro', sans-serif;
     }
     input[type="button"], button, input[type="submit"] {
         padding : 0px 3px 0px 3px;
@@ -919,154 +711,4 @@ select {
         -moz-border-radius : 3px 3px 3px 3px;
     }
 }
-
-hr {
-  display: block;
-  height: 1px;
-  border: 0;
-  border-top: 1px solid <?php echo $tableBorderColor; ?>;
-  margin: 1em 0;
-  padding: 0; 
-}
-
-.status-grid {
-  display: grid;
-  grid-template-columns: auto auto auto auto auto auto;
-  grid-template-rows: auto auto auto auto auto;
-  margin:0;
-  padding:0;
-}
-
-
-.status-grid .grid-item {
-  padding: 1px;
-  border: .5px solid <?php echo $tableBorderColor; ?>;
-  text-align: center;
-}
-
-@-webkit-keyframes Pulse {
-  from {
-    opacity: 0;
-  }
-
-  50% {
-    opacity: 1;
-  }
-
-  to {
-    opacity: 0;
-  }
-}
-
-@keyframes Pulse {
-  from {
-    opacity: 0;
-  }
-
-  50% {
-    opacity: 1;
-  }
-
-  to {
-    opacity: 0;
-  }
-}
-
-td.lookatme {
-  display: table-cell;
-}
-
-.lookatme {
-  color: #630030;
-  opacity: 1;
-  position: relative;
-  display: inline-block;
-  font-weight:bold;
-  font-size:10px;
-  padding:1px;
-  margin: 0 0 0 1px;
-}
-
-/* this pseudo element will be faded in and out in front /*
-/* of the lookatme element to create an efficient animation. */
-.lookatme:after {
-  color: #e33100;
-  text-shadow: 0 0 5px #e33100;
-  /* in the html, the lookatme-text attribute must */
-  /* contain the same text as the .lookatme element */
-  content: attr(lookatme-text);
-  padding: inherit;
-  position: absolute;
-  inset: 0 0 0 0;
-  z-index: 1;
-  /* 20 steps / 2 seconds = 10fps */
-  -webkit-animation: 2s infinite Pulse steps(20);
-  animation: 2s infinite Pulse steps(20);
-}
-
-#hwInfoTable {
-  margin-top: -2px;
-}
-
-/* indicators */
-
-.red_dot {
-    height: 15px;
-    width: 15px;
-    background-color: red;
-    border-radius: 50%;
-    display: inline-block;
-}
-
-.green_dot {
-    height: 15px;
-    width: 15px;
-    background-color: limegreen;
-    border-radius: 50%;
-    display: inline-block;
-}
-
-/* RSSI meters */
-meter {
-  --background: #ddd;
-  --optimum: limegreen;
-  --sub-optimum: orange;
-  --sub-sub-optimum: red;
-  border: 2px solid black;
-}
-
-/* The gray background in Chrome, etc. */
-meter::-webkit-meter-bar {
-  background: var(--background);
-}
-
-/* The green (optimum) bar in Firefox */
-meter:-moz-meter-optimum::-moz-meter-bar {
-  background: var(--optimum);
-}
-
-/* The green (optimum) bar in Chrome etc. */
-meter::-webkit-meter-optimum-value {
-  background: var(--optimum);
-}
-
-/* The yellow (sub-optimum) bar in Firefox */
-meter:-moz-meter-sub-optimum::-moz-meter-bar {
-  background: var(--sub-optimum);
-}
-
-/* The yellow (sub-optimum) bar in Chrome etc. */
-meter::-webkit-meter-suboptimum-value {
-  background: var(--sub-optimum);
-}
-
-/* The red (even less good) bar in Firefox */
-meter:-moz-meter-sub-sub-optimum::-moz-meter-bar {
-  background: var(--sub-sub-optimum);
-}
-
-/* The red (even less good) bar in Chrome etc. */
-meter::-webkit-meter-even-less-good-value {
-  background: var(--sub-sub-optimum);
-}
-
+*/

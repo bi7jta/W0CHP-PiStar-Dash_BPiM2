@@ -192,7 +192,11 @@
 			<li class="subs"><a href="/admin/live_modem_log.php">FM Log</a></li> 
 			</ul>
 		</li>
-
+		<li class="has-subs"><a href="#">NextionDriver</a>
+            <ul class="dropdown">
+			<li class="subs"><a href="/admin/InstallNextionDriver.php">InstallNextionDriver</a></li>
+			<li class="subs"><a href=/admin/UnInstallNextionDriver.php">UnInstallNextionDriver</a></li>
+			</ul>
 		<li class="has-subs"><a href="#">Others</a>
             <ul class="dropdown">
 			<li class="subs"><a href="fulledit_Modify-And-Todo-list.txt.php">UpdateList</a></li>
