@@ -157,6 +157,8 @@
 			<li class="subs"><a href="fulledit_asterisk_sip.php">sip.conf</a></li>
 			<li class="subs"><a href="fulledit_asterisk_extensions.php">extensions.conf</a></li>  
 			<li class="subs"><a href="fulledit_asterisk_manager.php">manager.conf</a></li>  
+			<li class="subs"><a href="fulledit_asterisk_supermon.ini.php">supermon.ini</a></li>  
+			
 			<!-- D-Star Sub -->
 			</ul>
 		</li>
@@ -191,6 +193,12 @@
 			</ul>
 		</li>
 
+		<li class="has-subs"><a href="#">Others</a>
+            <ul class="dropdown">
+			<li class="subs"><a href="fulledit_Modify-And-Todo-list.txt.php">UpdateList</a></li>
+			<li class="subs"><a href="services.php?action=RunUpdatePatch">RunUpdatePatch</a></li>
+			</ul>
+		</li>
 	    </ul>
 	</div>
     </p>

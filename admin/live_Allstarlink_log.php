@@ -133,7 +133,7 @@ if ($_SERVER["PHP_SELF"] == "/admin/live_Allstarlink_log.php") {
 	  </div>
 	  <div class="contentwide">
 	      <table width="100%">
-		  <tr><th><?php echo "live_MMDVM_Bridge_log" ?></th></tr>
+		  <tr><th><?php echo "/var/log/asterisk/messages" ?></th></tr>
 		  <tr><td align="left"><div id="tail">Starting logging, if you need the old logs, Download it...<br /></div></td></tr>
 		  <tr><th align="right">
           <button class="button" onclick="location.href='/admin/live_Analog_Bridge_log.php'" style="margin:2px 5px;">View Analog_Bridge log</button>
