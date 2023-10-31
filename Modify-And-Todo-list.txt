@@ -1,17 +1,49 @@
 BI7JTA Dashboard update records
 
 New feature:
-1,
+1, install HDMI GUI,
 2,
 3,
 
 Bug fix:
-1,
+1, pistar-daily.cron
+2, 
+3, install webssh: Shellinabox 
+
+sudo apt-get install -y shellinabox
+sudo sed -i  "/SHELLINABOX_PORT/d" /etc/default/shellinabox
+sudo sed -i  "/SHELLINABOX_ARGS/d" /etc/default/shellinabox
+sed -i '$aSHELLINABOX_PORT=4200\nSHELLINABOX_ARGS="--no-beep --disable-ssl-menu --disable-ssl --css=/etc/shellinabox/options-enabled/00_White\\ On\\ Black.css"' /etc/default/shellinabox
+cat /etc/default/shellinabox
+sudo service shellinabox restart
+
+# Disable Nginx access.log 
+sudo sh -c 'echo "" > /var/log/nginx/access.log' 
+sudo sed -i  "/access_log \/var\/log\/nginx\/access.log;/d" /etc/nginx/nginx.conf
+sudo nginx -s reload
+#sudo systemctl restart mmdvmhost
+
+
+# HDMI not sleep
+sudo sed -i  "s#\#xserver-command=X#xserver-command=X\ -s\ 0\ -dpms#g" /etc/lightdm/lightdm.conf
+
+
+TODO List:
+1, Allstarlink Node list: 41522 UK HUMNET ,27339 EAST COAST REFLECTOR, 42732 VK6 HUB, 27225 PHILADELPHIA HUB, 41120 sTARLINK ,40894 UK PARROT, 
 2,
 3,
 
-TODO List:
-1,
-2,
-3,
+# DVSwtich server clear logs for web loading
+sudo sh -c 'echo "" > /var/log/P25Reflector/P25Reflector-date "+%Y-%m-%d".log'
+sudo sh -c 'echo "" > /var/log/YSFReflector/YSFReflector-date "+%Y-%m-%d".log'
+
+echo '$(tail -500 /var/log/P25Reflector/P25Reflector-date "+%Y-%m-%d".log)' > /var/log/P25Reflector/P25Reflector-date "+%Y-%m-%d".log
+echo '$(tail -500 /var/log/YSFReflector/YSFReflector-date "+%Y-%m-%d".log)' > /var/log/YSFReflector/YSFReflector-date "+%Y-%m-%d".log
+
+# Not need this scripts
+sudo cp /usr/local/sbin/patch-scripts/pistar-hourly /etc/cron.hourly/
+sudo cp /usr/local/sbin/patch-scripts/pistar-daily /etc/cron.daily/
+sudo chmod +x /etc/cron.hourly/pistar-hourly 
+sudo chmod +x /etc/cron.daily/pistar-daily
+
 
