@@ -57,6 +57,9 @@ require_once $_SERVER['DOCUMENT_ROOT'].'/config/version.php';
 		else if (strcmp($action, 'updatehostsfiles') == 0) {
 		    $action_msg = 'Updating The Hosts Files';
 		}
+		else if (strcmp($action, 'HostFilesExcludeDMRidsUpdate') == 0) {
+		    $action_msg = 'Updating The Hosts Files only';
+		}
 
 		else if (strcmp($action, 'Allstarlink_status') == 0) {
 		    $action_msg = 'Allstarlink_status';

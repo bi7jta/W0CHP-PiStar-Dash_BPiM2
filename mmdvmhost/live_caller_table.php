@@ -205,7 +205,7 @@ for ($i = 0;  ($i <= 0); $i++) { //Last 20  calls
 	    if (is_numeric($listElem[2]) || strpos($listElem[2], "openSPOT") !== FALSE || !preg_match('/[A-Za-z].*[0-9]|[0-9].*[A-Za-z]/', $listElem[2])) {
  		$flContent = "---";
 	    } elseif (file_exists($_SERVER['DOCUMENT_ROOT']."/images/flags/".$Flag.".png")) {
-		$flContent = "<a class='tooltip' href=\"http://www.qrz.com/db/$listElem[2]\" target=\"_blank\"><img src='/images/flags/$Flag.png?version=$versionCmd' alt='' style='height:25px;' /><span>$Name</span></a>";
+		$flContent = "<a class='tooltip' href=\"http://www.qrz.com/db/$listElem[2]\" target=\"_blank\"><img src='/images/flags/$Flag.png?version=$versionCmd' alt='' style='height:55px;' /><span>$Name</span></a>";
 	    } else {
 		$flContent = "---";
 	    }
@@ -215,7 +215,7 @@ for ($i = 0;  ($i <= 0); $i++) { //Last 20  calls
   <table style="word-wrap: break-word; white-space:normal;">
     <tr>
       <th><a class="tooltip" href="#"><?php echo $lang['callsign'];?><span><b>Callsign</b></span></a></th>
-      <th width="50px">Country</th>
+      <th width="100px">Country</th>
       <th>Name</th>
       <th class='noMob'>Location</th>
       <th><a class="tooltip" href="#"><?php echo $lang['mode'];?><span><b>Transmitted Mode</b></span></a></th>
@@ -225,10 +225,10 @@ for ($i = 0;  ($i <= 0); $i++) { //Last 20  calls
     </tr>
 
     <tr>
-      <td style="padding:3px 20px 5px 20px;"><strong style="font-size:1.5em;"><?php echo $callsign ?? ' '; ?></strong></td>
+      <td style="padding:3px 20px 5px 20px;"><strong style="font-size:4.0em;"><?php echo $callsign ?? ' '; ?></strong></td>
       <td><?php echo $flContent; ?></td>
-      <td style="font-size:1.3em;"><?php echo $name ?? ' '; ?></td>
-      <td class='noMob' style="font-size:1.3em;"><?php
+      <td style="font-size:2.2em;"><?php echo $name ?? ' '; ?></td>
+      <td class='noMob' style="font-size:1.8em;"><?php
 		if (!empty($city)) {
 			echo $city .", ";
 		}
@@ -237,8 +237,8 @@ for ($i = 0;  ($i <= 0); $i++) { //Last 20  calls
 		} if (!empty($country)) { 
 			echo $country; 
 		} ?></td>
-      <td style="font-size:1.3em;"><?php echo $mode ?? ' '; ?></td>
-      <td style="font-size:1.3em;"><?php echo $target ?? ' '; ?></td>
+      <td style="font-size:1.8em;"><?php echo $mode ?? ' '; ?></td>
+      <td style="font-size:1.8em;"><?php echo $target ?? ' '; ?></td>
       <?php
 	if ($listElem[5] == "RF") {
 		echo "<td style='font-size:1.3em;'><span style='color:$backgroundModeCellInactiveColor;font-weight:bold;'>RF</span></td>";

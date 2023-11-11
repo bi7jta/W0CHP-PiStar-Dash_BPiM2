@@ -12,7 +12,7 @@ if (!isset($_SESSION) || !is_array($_SESSION)) {
 }
 
 $editorname = 'DCS Hosts';
-$configfile = '/root/DCS_Hosts.txt';
+$configfile = '/usr/local/etc/DCS_Hosts.txt';
 $tempfile = '/tmp/hjuTqB75YtgCn.tmp';
 
 require_once('fulledit_template.php');

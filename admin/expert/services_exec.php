@@ -32,7 +32,10 @@ switch ($action) {
 	break;
     case "updatehostsfiles":
 	$cmdresult = exec('sudo -- /bin/bash -c "/usr/local/sbin/pistar-services fullstop; mount -o remount,rw /; /usr/local/sbin/HostFilesUpdate.sh; /usr/local/sbin/pistar-services restart;"', $cmdoutput, $retvalue);
-	break;
+	break; 
+    case "HostFilesExcludeDMRidsUpdate":
+    $cmdresult = exec('sudo -- /bin/bash -c "mount -o remount,rw /; sudo chmod +x /usr/local/sbin/HostFilesExcludeDMRidsUpdate.sh;sudo /usr/local/sbin/HostFilesExcludeDMRidsUpdate.sh;"', $cmdoutput, $retvalue);
+    break;
 
     case "Allstarlink_status":
     $cmdresult = exec('sudo systemctl status asterisk', $cmdoutput, $retvalue);

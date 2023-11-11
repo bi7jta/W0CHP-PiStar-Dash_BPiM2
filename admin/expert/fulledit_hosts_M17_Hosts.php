@@ -12,7 +12,7 @@ if (!isset($_SESSION) || !is_array($_SESSION)) {
 }
 
 $editorname = 'M17 Hosts';
-$configfile = '/root/M17Hosts.txt';
+$configfile = '/usr/local/etc/M17Hosts.txt';
 $tempfile = '/tmp/908jKH897jkKLJKJHGhg.tmp';
 
 require_once('fulledit_template.php');

@@ -12,7 +12,7 @@ if (!isset($_SESSION) || !is_array($_SESSION)) {
 }
 
 $editorname = 'DExtra Hosts';
-$configfile = '/root/DExtra_Hosts.txt';
+$configfile = '/usr/local/etc/DExtra_Hosts.txt';
 $tempfile = '/tmp/hjQK9Yc7xLvdP.tmp';
 
 require_once('fulledit_template.php');

@@ -546,6 +546,7 @@ $MYCALL=strtoupper($callsign);
             </div>
 			<a class="menureset" href="javascript:factoryReset();"><?php echo $lang['factory_reset'];?></a>
 			<a class="menubackup" href="/admin/config_backup.php"><?php echo $lang['backup_restore'];?></a>
+            <a class="menuupdate" href="/admin/update_HostFile_DMRIds.php">update_HostsIds</a>
 			<a class="menuupdate" href="/admin/update.php"><?php echo $lang['update'];?></a>
             <a class="menuexpert" href="/admin/expert/">Allstarlink</a> 
 			<a class="menuexpert" href="/admin/expert/">Expert</a>
@@ -2974,7 +2975,7 @@ if (!empty($_POST)):
 	// Add missing options to YSFGateway
 	if (!isset($configysfgateway['General']['WiresXMakeUpper'])) { $configysfgateway['General']['WiresXMakeUpper'] = "1"; }
 	if (!isset($configysfgateway['Network']['Revert'])) { $configysfgateway['Network']['Revert'] = "0"; }
-	if (!isset($configysfgateway['Network']['Port'])) { $configysfgateway['Network']['Port'] = "42000"; }
+	if (!isset($configysfgateway['Network']['Port'])) { $configysfgateway['Network']['Port'] = "4200"; }
 	if (isset($configysfgateway['Network']['YSF2DMRAddress'])) { unset($configysfgateway['Network']['YSF2DMRAddress']); }
 	if (isset($configysfgateway['Network']['YSF2DMRPort'])) { unset($configysfgateway['Network']['YSF2DMRPort']); }
 	unset($configysfgateway['Network']['DataPort']);
@@ -2985,8 +2986,8 @@ if (!empty($_POST)):
 	if ($configdgidgateway['Enabled']['Enabled'] == "1") { // if DGId is enabled by user, use the proper DGId ports, otherwise, use MMDVMHost ports:
 	    $configysfgateway['General']['LocalPort'] = "42025";
 	} else {
-	    $configysfgateway['General']['LocalPort'] = "42000";
-	    $configmmdvm['System Fusion Network']['GatewayPort'] = "42000"; // ensure MMDVMhost uses new YSFgw port when reverting
+	    $configysfgateway['General']['LocalPort'] = "4200";
+	    $configmmdvm['System Fusion Network']['GatewayPort'] = "4200"; // ensure MMDVMhost uses new YSFgw port when reverting
 	}
 	if ($configdgidgateway['Enabled']['Enabled'] == "1") {
 	    $configysfgateway['General']['RptPort'] = "42026";

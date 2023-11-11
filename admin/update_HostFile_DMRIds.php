@@ -19,7 +19,7 @@ require_once $_SERVER['DOCUMENT_ROOT'].'/config/version.php';
 setlocale(LC_ALL, "LC_CTYPE=en_GB.UTF-8;LC_NUMERIC=C;LC_TIME=C;LC_COLLATE=C;LC_MONETARY=C;LC_MESSAGES=C;LC_PAPER=C;LC_NAME=C;LC_ADDRESS=C;LC_TELEPHONE=C;LC_MEASUREMENT=C;LC_IDENTIFICATION=C");
 
 // Sanity Check that this file has been opened correctly
-if ($_SERVER["PHP_SELF"] == "/admin/update.php") {
+if ($_SERVER["PHP_SELF"] == "/admin/update_HostFile_DMRIds.php") {
 
    if (!isset($_GET['ajax'])) {
     if (!file_exists('/var/log/pi-star')) {
@@ -29,10 +29,8 @@ if ($_SERVER["PHP_SELF"] == "/admin/update.php") {
     }
      system('sudo touch /var/log/pi-star/pi-star_update.log > /dev/null 2>&1 &');
      system('sudo echo "" > /var/log/pi-star/pi-star_update.log > /dev/null 2>&1 &');
-     system('sudo cp /usr/local/sbin/pistar-update /usr/local/sbin/pistar-update_Dashboard > /dev/null 2>&1 &');
-     system('sudo chmod +x /usr/local/sbin/pistar-update_Dashboard > /dev/null 2>&1 &');
-     system('sudo sed -i  "/\/usr\/local\/sbin\/HostFilesUpdate.sh/d" /usr/local/sbin/pistar-update_Dashboard > /dev/null 2>&1 &'); 
-     system('sudo /usr/local/sbin/pistar-update_Dashboard > /dev/null 2>&1 &');
+     system('sudo chmod +x /usr/local/sbin/pistar-update_Hostfile_DMRIds > /dev/null 2>&1 &');
+     system('sudo /usr/local/sbin/pistar-update_Hostfile_DMRIds > /dev/null 2>&1 &');
   }
 
   // Sanity Check Passed.
@@ -93,7 +91,7 @@ if ($_SERVER["PHP_SELF"] == "/admin/update.php") {
     <script type="text/javascript">
     $(function() {
       $.repeat(1000, function() {
-        $.get('/admin/update.php?ajax', function(data) {
+        $.get('/admin/update_HostFile_DMRIds.php?ajax', function(data) {
           if (data.length < 1) return;
           var objDiv = document.getElementById("tail");
           var isScrolledToBottom = objDiv.scrollHeight - objDiv.clientHeight <= objDiv.scrollTop + 1;

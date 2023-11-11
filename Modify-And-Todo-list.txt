@@ -31,7 +31,54 @@ sudo sed -i  "s#\#xserver-command=X#xserver-command=X\ -s\ 0\ -dpms#g" /etc/ligh
 .has-subs .has-subs .dropdown .subs {
     position: relative;
     top: -152px;
+############END##################
 
+# Fixed User pi-star not No permission to download files to /usr/local/etc
+fixed by changed HTTPs to http @/user/local/sbin/HostFilesUpdate.sh
+
+Questions:
+We trust you have received the usual lecture from the local System
+Administrator. It usually boils down to these three things
+
+Modify file use su root:allstarlink,  /etc/sudoers.d
+# User privilege specification
+root	ALL=(ALL:ALL) ALL
+pi-star  ALL=(ALL) ALL
+
+# Allow members of group sudo to execute any command
+%sudo   ALL=(ALL:ALL) NOPASSWD:NOPASSWD: ALL   
+##################END############
+
+# Fix https download HOST from www.bi7jta.org, http is OK.
+sudo curl -# -o ${XLXHOSTS}  https://www.bi7jta.org/files/dmrids-and-hosts/XLXHosts.txt --user-agent "Pi-Star"
+##O=-#      #                                                                                                                                                                                       
+curl: (60) SSL certificate problem: unable to get local issuer certificate
+More details here: https://curl.haxx.se/docs/sslcerts.html
+
+curl failed to verify the legitimacy of the server and therefore could not
+establish a secure connection to it. To learn more about this situation and
+how to fix it, please visit the web page mentioned above.
+
+sudo curl -# -o ${XLXHOSTS}  http://www.bi7jta.org/files/dmrids-and-hosts/XLXHosts.txt --user-agent "Pi-Star"
+############################################################################################################################################################################################## 100.0%
+
+# Fixed 修复FCS端口与DVSwtich USRP to ASL冲突问题
+/opt/Analog_Bridge/Analog_Bridge.ini 44001 改为 44002
+# txPort = 44002                          ; Transmit USRP frames on this port
+/etc/asterisk/rpt.conf  44001 改为 44002
+rxchannel = USRP/127.0.0.1:44001:44002; Local DVSwitch AnalogBridge, GNU Radio interface USRP
+
+# 修复：
+专家模式fulledit顶部菜单问题
+主机文件无法编辑问题
+YSF2DMR默认配置端口问题，
+IDs更新地址从org改为官方，增加下载前判断，
+
+
+#已知问题：
+1，FM Network,FM Mode 只能工作在Duplex模式，但可以使用一台车台
+2，YSF2DMR与FM Network 不能同时打开，
+3，
 
 TODO List:
 1, Allstarlink Node list: 41522 UK HUMNET ,27339 EAST COAST REFLECTOR, 42732 VK6 HUB, 27225 PHILADELPHIA HUB, 41120 sTARLINK ,40894 UK PARROT, 
