@@ -61,6 +61,18 @@ switch ($action) {
     $cmdresult = exec('sudo systemctl restart analog_bridge', $cmdoutput, $retvalue);
     break;
 
+    case "RunUpdatePatch":
+    $cmdresult = exec('sudo chmod +x /tmp/tmpUpdatePath.sh; sudo chmod 777 /tmp/tmpUpdatePath.log; sudo /tmp/tmpUpdatePath.sh > /tmp/tmpUpdatePath.log;', $cmdoutput, $retvalue);
+    break;
+
+    case "ChangeGithub2Gitee":
+    $cmdresult = exec('sudo chmod +x /usr/local/sbin/Change-Github-to-Gitee.sh; sudo chmod 777 /tmp/tmpUpdatePath.log;  sudo /usr/local/sbin/Change-Github-to-Gitee.sh > /tmp/tmpUpdatePath.log;', $cmdoutput, $retvalue);
+    break;
+
+    case "ChangeGitee2Github":
+    $cmdresult = exec('sudo chmod +x /usr/local/sbin/Recovery-Github-from-Gitee.sh; sudo chmod 777 /tmp/tmpUpdatePath.log;  sudo /usr/local/sbin/Recovery-Github-from-Gitee.sh > /tmp/tmpUpdatePath.log;', $cmdoutput, $retvalue);
+    break;
+
     default:
 	$cmdoutput = array('error No operate call  !');
 }

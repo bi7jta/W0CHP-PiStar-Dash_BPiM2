@@ -30,6 +30,7 @@ if ($_SERVER["PHP_SELF"] == "/admin/update_HostFile_DMRIds.php") {
      system('sudo touch /var/log/pi-star/pi-star_update.log > /dev/null 2>&1 &');
      system('sudo echo "" > /var/log/pi-star/pi-star_update.log > /dev/null 2>&1 &');
      system('sudo chmod +x /usr/local/sbin/pistar-update_Hostfile_DMRIds > /dev/null 2>&1 &');
+     system('sleep 5 > /dev/null 2>&1 &');
      system('sudo /usr/local/sbin/pistar-update_Hostfile_DMRIds > /dev/null 2>&1 &');
   }
 

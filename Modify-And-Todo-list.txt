@@ -1,8 +1,8 @@
 BI7JTA Dashboard update records
 
 New feature:
-1, install HDMI GUI,
-2,
+1, 增加执行脚本调用入口 http://192.168.31.21/admin/expert/fulledit_tmpUpdatePath.php
+2, 
 3,
 
 Bug fix:
@@ -33,7 +33,7 @@ sudo sed -i  "s#\#xserver-command=X#xserver-command=X\ -s\ 0\ -dpms#g" /etc/ligh
     top: -152px;
 ############END##################
 
-# Fixed User pi-star not No permission to download files to /usr/local/etc
+# 修复不是sudo组成员问题：User pi-star not No permission to download files to /usr/local/etc
 fixed by changed HTTPs to http @/user/local/sbin/HostFilesUpdate.sh
 
 Questions:
@@ -74,6 +74,7 @@ rxchannel = USRP/127.0.0.1:44001:44002; Local DVSwitch AnalogBridge, GNU Radio i
 YSF2DMR默认配置端口问题，
 IDs更新地址从org改为官方，增加下载前判断，
 
+# 修复SSL更新问题，curl +k 忽略SSL证书检查
 
 #已知问题：
 1，FM Network,FM Mode 只能工作在Duplex模式，但可以使用一台车台
@@ -82,7 +83,7 @@ IDs更新地址从org改为官方，增加下载前判断，
 
 TODO List:
 1, Allstarlink Node list: 41522 UK HUMNET ,27339 EAST COAST REFLECTOR, 42732 VK6 HUB, 27225 PHILADELPHIA HUB, 41120 sTARLINK ,40894 UK PARROT, 
-2,
+2, install HDMI GUI, install SDR++ GUI，
 3,
 
 # DVSwtich server clear logs for web loading

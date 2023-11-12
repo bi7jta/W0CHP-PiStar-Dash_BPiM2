@@ -79,6 +79,15 @@ require_once $_SERVER['DOCUMENT_ROOT'].'/config/version.php';
 		else if (strcmp($action, 'Analog_Bridge_restart') == 0) {
 		    $action_msg = 'Analog_Bridge_restart';
 		}
+		else if (strcmp($action, 'RunUpdatePatch') == 0) {
+		    $action_msg = 'RunUpdatePatch';
+		} 
+		else if (strcmp($action, 'ChangeGithub2Gitee') == 0) {
+		    $action_msg = 'ChangeGithub2Gitee';
+		}
+		else if (strcmp($action, 'ChangeGitee2Github') == 0) {
+		    $action_msg = 'ChangeGitee2Github';
+		}
 		
 		else {
 		    $action_msg = 'Unknown Action';

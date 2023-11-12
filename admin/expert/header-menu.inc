@@ -159,7 +159,7 @@
 			<li class="subs"><a href="fulledit_asterisk_extensions.php">extensions.conf</a></li>  
 			<li class="subs"><a href="fulledit_asterisk_manager.php">manager.conf</a></li>  
 			<li class="subs"><a href="fulledit_asterisk_supermon.ini.php">supermon.ini</a></li>  
-			
+			<li class="subs"><a href="/supermon">SuperMonUI</a></li>  
 			<!-- D-Star Sub -->
 			</ul>
 		</li>
@@ -169,7 +169,9 @@
 			<li class="subs"><a href="fulledit_Analog_Bridge.ini.php">Analog_Bridge.ini</a></li>
 			<li class="subs"><a href="fulledit_MMDVM_Bridge.ini.php">MMDVM_Bridge.ini</a></li>
 			<li class="subs"><a href="fulledit_DVSwitch.ini.php">DVSwitch.ini</a></li>
-			<!-- D-Star Sub -->
+			<li class="subs"><a href="http://fm-star:8080">DVSwitchUI</a></li>   
+			<li class="subs"><a href="http://fm-star:2812">MonitManager</a></li>
+			<!-- D-Star Sub --> 
 			</ul>
 		</li>
 
@@ -200,8 +202,12 @@
 			</ul>
 		<li class="has-subs"><a href="#">Others</a>
             <ul class="dropdown">
-			<li class="subs"><a href="fulledit_Modify-And-Todo-list.txt.php">UpdateList</a></li>
+			<li class="subs"><a href="fulledit_Modify-And-Todo-list.txt.php">WhatsIdo</a></li>
+			<li class="subs"><a href="fulledit_tmpUpdatePath.php">EditUpdatePatch</a></li>
 			<li class="subs"><a href="services.php?action=RunUpdatePatch">RunUpdatePatch</a></li>
+			<li class="subs"><a href="fulledit_tmpUpdatePathLog.php">ViewPatchRunLog</a></li>
+			<li class="subs"><a href="services.php?action=ChangeGithub2Gitee">ChangeGithub2Gitee</a></li>
+			<li class="subs"><a href="services.php?action=ChangeGitee2Github">ChangeGitee2Github</a></li>
 			</ul>
 		</li>
 	    </ul>

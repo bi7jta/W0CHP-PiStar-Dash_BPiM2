@@ -543,13 +543,13 @@ $MYCALL=strtoupper($callsign);
               </script>
               <div style="font-size:<?php echo($TextFontSize);?>px; text-align: left; padding-left: 8px; padding-top: 5px; float: left;">
                 <span id="timer"></span>
-            </div>
-			<a class="menureset" href="javascript:factoryReset();"><?php echo $lang['factory_reset'];?></a>
-			<a class="menubackup" href="/admin/config_backup.php"><?php echo $lang['backup_restore'];?></a>
-            <a class="menuupdate" href="/admin/update_HostFile_DMRIds.php">update_HostsIds</a>
+            </div> 
+			<a class="menubackup" href="/admin/config_backup.php"><?php echo $lang['backup_restore'];?></a> 
+            <a class="menuupdate" href="/admin/update_HostFile_DMRIds.php"><?php echo $lang['update_hostsIds'];?></a>
 			<a class="menuupdate" href="/admin/update.php"><?php echo $lang['update'];?></a>
             <a class="menuexpert" href="/admin/expert/">Allstarlink</a> 
 			<a class="menuexpert" href="/admin/expert/">Expert</a>
+            <a class="menureset" href="javascript:factoryReset();"><?php echo $lang['factory_reset'];?></a>
 			<a class="menupower" href="/admin/power.php"><?php echo $lang['power'];?></a>
 			<a class="menuadmin" href="/admin/"><?php echo $lang['admin'];?></a>
 			<a class="menulive" href="/live/">Live Caller</a>
