@@ -100,6 +100,19 @@ require_once $_SERVER['DOCUMENT_ROOT'].'/config/version.php';
 			With that warning in mind, you are free to make any changes you like by accessing the expert areas
             in the upper-left-hand menus. <br />
 			</p>
+
+            <h3>**Allstarlink DVSwitch FM Network in one OS**</h3>
+                    <p>
+            Allstarlink Dashboard:  http://pi-star/supermon<br />
+            DVSwitch Dashboard:  http://pi-star:8080<br />
+            Monit Service Manager:  http://pi-star:2812/<br />
+            <br />
+            <h3>**WARNING**</h3>
+            This IMG Customized from WPSD history version,JUST for MMDVM Repeater FM Netowrk -- Allstarlink -- DVSwitch test.<br />
+            NOT supported by W0CHP!!! <br />
+            Any question you could contact @BI7JTA. <br />
+            As a Customized BETA version for Amateur radio. I do not promise any technical support, if you not satisfied in it, I suggest you delete this version and use the WPSD official version <br />
+            </p>
 		</div>
 	      </div>
 	    </div>
