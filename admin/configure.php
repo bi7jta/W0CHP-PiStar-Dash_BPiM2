@@ -545,7 +545,7 @@ $MYCALL=strtoupper($callsign);
                 <span id="timer"></span>
             </div> 
 			<a class="menubackup" href="/admin/config_backup.php"><?php echo $lang['backup_restore'];?></a> 
-            <a class="menuupdate" href="/admin/update_HostFile_DMRIds.php"><?php echo $lang['update_hostsIds'];?></a>
+            <a class="menuupdate" href="/admin/update_HostFile_DMRIds.php">Update DMRIds</a>
 			<a class="menuupdate" href="/admin/update.php"><?php echo $lang['update'];?></a>
             <a class="menuexpert" href="/admin/expert/">Allstarlink</a> 
 			<a class="menuexpert" href="/admin/expert/">Expert</a>
