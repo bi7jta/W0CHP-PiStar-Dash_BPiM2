@@ -62,15 +62,19 @@ switch ($action) {
     break;
 
     case "RunUpdatePatch":
-    $cmdresult = exec('sudo chmod +x /tmp/tmpUpdatePath.sh; sudo chmod 777 /tmp/tmpUpdatePath.log; sudo /tmp/tmpUpdatePath.sh > /tmp/tmpUpdatePath.log;', $cmdoutput, $retvalue);
+    $cmdresult = exec('sudo chmod +x /tmp/tmpUpdatePath.sh; sudo touch tmp/tmpUpdatePath.log > /dev/null 2>&1; sudo chmod 777 /tmp/tmpUpdatePath.log; sudo /tmp/tmpUpdatePath.sh > /tmp/tmpUpdatePath.log;', $cmdoutput, $retvalue);
     break;
 
     case "ChangeGithub2Gitee":
-    $cmdresult = exec('sudo chmod +x /usr/local/sbin/Change-Github-to-Gitee.sh; sudo chmod 777 /tmp/tmpUpdatePath.log;  sudo /usr/local/sbin/Change-Github-to-Gitee.sh > /tmp/tmpUpdatePath.log;', $cmdoutput, $retvalue);
+    $cmdresult = exec('sudo chmod +x /usr/local/sbin/Change-Github-to-Gitee.sh; sudo touch tmp/tmpUpdatePath.log > /dev/null 2>&1; sudo chmod 777 /tmp/tmpUpdatePath.log;  sudo /usr/local/sbin/Change-Github-to-Gitee.sh > /tmp/tmpUpdatePath.log;', $cmdoutput, $retvalue);
     break;
 
     case "ChangeGitee2Github":
-    $cmdresult = exec('sudo chmod +x /usr/local/sbin/Recovery-Github-from-Gitee.sh; sudo chmod 777 /tmp/tmpUpdatePath.log;  sudo /usr/local/sbin/Recovery-Github-from-Gitee.sh > /tmp/tmpUpdatePath.log;', $cmdoutput, $retvalue);
+    $cmdresult = exec('sudo chmod +x /usr/local/sbin/Recovery-Github-from-Gitee.sh; sudo touch tmp/tmpUpdatePath.log > /dev/null 2>&1; sudo chmod 777 /tmp/tmpUpdatePath.log;  sudo /usr/local/sbin/Recovery-Github-from-Gitee.sh > /tmp/tmpUpdatePath.log;', $cmdoutput, $retvalue);
+    break;
+
+    case "ForceUpdateGit":
+    $cmdresult = exec('sudo chmod +x /usr/local/sbin/Update-Pi-Star-OS-Ignore-Local-Changed.sh; sudo touch tmp/tmpUpdatePath.log > /dev/null 2>&1; sudo chmod 777 /tmp/tmpUpdatePath.log;  sudo /usr/local/sbin/Update-Pi-Star-OS-Ignore-Local-Changed.sh > /tmp/tmpUpdatePath.log;', $cmdoutput, $retvalue);
     break;
 
     default:

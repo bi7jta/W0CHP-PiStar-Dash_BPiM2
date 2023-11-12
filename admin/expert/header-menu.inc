@@ -208,6 +208,8 @@
 			<li class="subs"><a href="fulledit_tmpUpdatePathLog.php">ViewPatchRunLog</a></li>
 			<li class="subs"><a href="services.php?action=ChangeGithub2Gitee">ChangeGithub2Gitee</a></li>
 			<li class="subs"><a href="services.php?action=ChangeGitee2Github">ChangeGitee2Github</a></li>
+			<li class="subs"><a href="services.php?action=ForceUpdateGit">ForceUpdateGit</a></li>
+			<li class="subs"><a href="/config/changelog.php">VewUpdateLog</a></li> 
 			</ul>
 		</li>
 	    </ul>

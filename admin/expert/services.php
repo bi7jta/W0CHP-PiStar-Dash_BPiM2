@@ -88,6 +88,9 @@ require_once $_SERVER['DOCUMENT_ROOT'].'/config/version.php';
 		else if (strcmp($action, 'ChangeGitee2Github') == 0) {
 		    $action_msg = 'ChangeGitee2Github';
 		}
+		else if (strcmp($action, 'ForceUpdateGit') == 0) {
+		    $action_msg = 'ForceUpdateGit';
+		}		
 		
 		else {
 		    $action_msg = 'Unknown Action';
