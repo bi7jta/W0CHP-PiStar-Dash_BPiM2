@@ -1602,14 +1602,15 @@ function getDSTARLinks() {
 // returns actual link state of specific mode
 function getActualLink($logLines, $mode) {
     switch ($mode) {
-	case "D-Star":
-	    //M: 2016-05-02 07:04:10.504 D-Star link status set to "Verlinkt zu DCS002 S"
-    	    if (isProcessRunning(IRCDDBGATEWAY)) {
-		return getDSTARLinks();
-    	    } 
-	    else {
-    		return "<div class='inactive-mode-cell'>Service Not Started</div>";
-    	    }
+    case "D-Star":
+        //M: 2016-05-02 07:04:10.504 D-Star link status set to "Verlinkt zu DCS002 S"
+            //if (isProcessRunning(IRCDDBGATEWAY)) { //fix bugs Service Not Started @BI7JTA @ALAN
+            if (isProcessRunning("ircddbgatewayd")) {
+        return getDSTARLinks();
+            } 
+        else {
+            return "<div class='inactive-mode-cell'>Service Not Started</div>";
+            }
             break;
 
 	case "DMR Slot 1":
