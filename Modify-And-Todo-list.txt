@@ -166,8 +166,15 @@ Id=123456712
 Address=1.2.3.4
 Password=passw0rd
 
+#ChatGPT：用sed命令，将包含下面两行的文本
 [D-Star]
-Enable=0 
+Enable=1 
+替换成
+[D-Star]
+Enable=0
+注意带换行。
+
+sudo sed -i "s#\[NextionDriver\]#\[DelNextionDriver\]#g" /opt/MMDVM_Bridge/MMDVM_Bridge.ini; 
 
 [DMR]
 Enable=1 
