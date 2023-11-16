@@ -7,6 +7,54 @@ New feature:
 
 Bug fix:
 1, pistar-daily.cron
+ 日任务没有删除 大日志文件 /var/log/mmdvm/MMDVM_Bridge-2023-11-13.log
+ /var/log/mmdvm 不存在问题，服务启动时创建，改为服务启动自动创建，rc.local创建无效
+
+echo "fix DVSwitch log dir not create /var/log/mmdvm"
+if [ -f /lib/systemd/system/mmdvm_bridge.service ]; then 
+	sudo sed -i  "/ExecStartPre/d" /lib/systemd/system/mmdvm_bridge.service
+	sudo sed -i '/ExecStart=/ i\ExecStartPre=mkdir -p /var/log/mmdvm' /lib/systemd/system/mmdvm_bridge.service
+	cat /lib/systemd/system/mmdvm_bridge.service
+	sudo systemctl daemon-reload
+	sudo systemctl restart mmdvm_bridge.service
+	sudo systemctl status mmdvm_bridge.service
+fi
+
+echo "fix DVSwitch log dir not create /var/log/dvswitch"
+if [ -f /lib/systemd/system/analog_bridge.service ]; then 
+	sudo sed -i  "/ExecStartPre/d" /lib/systemd/system/analog_bridge.service
+	sudo sed -i '/ExecStart=/ i\ExecStartPre=mkdir -p /var/log/dvswitch' /lib/systemd/system/analog_bridge.service
+	cat /lib/systemd/system/analog_bridge.service
+	sudo systemctl daemon-reload
+	sudo systemctl restart analog_bridge.service
+	sudo systemctl status analog_bridge.service
+fi
+
+echo "Shrink /var/log/mmdvm/MMDVM_Bridge-xxx.log log to stop it getting out of hand"
+MMDVM_BridgeLogFile=/var/log/mmdvm/MMDVM_Bridge-`date "+%Y-%m-%d"`.log
+if [ ! -f ${MMDVM_BridgeLogFile} ]; then   
+    MMDVM_BridgeLogFile=/var/log/mmdvm/MMDVM_Bridge-`date -d'-1 day' "+%Y-%m-%d"`.log    
+fi
+
+echo "Log file: ${MMDVM_BridgeLogFile}"
+echo "Just keep one days logs"
+sudo find /var/log/mmdvm/ ! -wholename ${MMDVM_BridgeLogFile} -type f -exec rm -f {} +
+
+if [ -f ${MMDVM_BridgeLogFile} ]; then   
+	stat  ${MMDVM_BridgeLogFile}
+	sudo sh -c "tail -500 ${MMDVM_BridgeLogFile} > ${MMDVM_BridgeLogFile}"
+	stat  ${MMDVM_BridgeLogFile}
+fi
+
+# Shrink /var/log/Analog_Bridge.log log to stop it getting out of hand
+echo "$(tail -500 /var/log/Analog_Bridge.log)" > /var/log/Analog_Bridge.log
+
+#代码有错，问ChatGPT后得到答案，不能是echo里面不能再加变量，不能用单引号： sudo sh -c 'echo "$(tail -500 ${MMDVM_BridgeLogFile})" > /var/log/mmdvm/MMDVM_Bridge-2023-11-13.log'，改为：
+#sudo sh -c "tail -500 ${MMDVM_BridgeLogFile} > ${MMDVM_BridgeLogFile}"
+
+ MMDVM_Bridge.ini关掉DMR以外的服务，
+ 增加DMR_Hosts_Local.txt，XLX_Hosts_Local.txt 自动加载
+ 
 2, 
 3, install webssh: Shellinabox 
 

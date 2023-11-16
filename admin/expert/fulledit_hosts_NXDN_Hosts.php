@@ -12,7 +12,7 @@ if (!isset($_SESSION) || !is_array($_SESSION)) {
 }
 
 $editorname = 'NXDN Hosts';
-$configfile = '/usr/local/etc/NXDNHosts.txt';
+$configfile = '/root/NXDNHosts.txt';
 $tempfile = '/tmp/Hiy8EiH5FoEhc.tmp';
 
 require_once('fulledit_template.php');

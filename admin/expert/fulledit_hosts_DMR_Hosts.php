@@ -12,7 +12,7 @@ if (!isset($_SESSION) || !is_array($_SESSION)) {
 }
 
 $editorname = 'DMR Hosts';
-$configfile = '/usr/local/etc/DMR_Hosts.txt';
+$configfile = '/root/DMR_Hosts.txt';
 $tempfile = '/tmp/2SD3BhQpkuEUM.tmp';
 
 require_once('fulledit_template.php');

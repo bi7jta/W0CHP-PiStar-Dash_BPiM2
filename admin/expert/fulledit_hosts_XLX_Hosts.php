@@ -12,11 +12,11 @@ if (!isset($_SESSION) || !is_array($_SESSION)) {
 }
 
 $editorname = 'XLX Hosts';
-$configfile = '/usr/local/etc/XLXHosts.txt';
+$configfile = '/root/XLXHosts.txt';
 $tempfile = '/tmp/xGTcrAjxp2DN2.tmp';
 
 // Create empty host file if we don't have one
-$cmdresult = exec('sudo test -s /usr/local/etc/XLXHosts.txt', $dummyoutput, $retvalue);
+$cmdresult = exec('sudo test -s /root/XLXHosts.txt', $dummyoutput, $retvalue);
 if ($retvalue != 0) {
     exec('sudo echo "create XLXHosts.txt" >> /tmp/debug.txt');
     exec('sudo touch /tmp/xGTcrAjxp2DN2.tmp');
@@ -35,9 +35,9 @@ if ($retvalue != 0) {
     exec('echo "#" >> /tmp/xGTcrAjxp2DN2.tmp');
     exec('echo "#########################################################################" >> /tmp/xGTcrAjxp2DN2.tmp');
     exec('sudo mount -o remount,rw /');
-    exec('sudo mv /tmp/xGTcrAjxp2DN2.tmp /usr/local/etc/XLXHosts.txt');
-    exec('sudo chmod 644 /usr/local/etc/XLXHosts.txt');
-    exec('sudo chown root:root /usr/local/etc/XLXHosts.txt');
+    exec('sudo mv /tmp/xGTcrAjxp2DN2.tmp /root/XLXHosts.txt');
+    exec('sudo chmod 644 /root/XLXHosts.txt');
+    exec('sudo chown root:root /root/XLXHosts.txt');
     exec('sudo mount -o remount,ro /');
 }
 
