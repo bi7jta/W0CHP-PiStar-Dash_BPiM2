@@ -29,10 +29,14 @@ if ($_SERVER["PHP_SELF"] == "/admin/update.php") {
     }
      system('sudo touch /var/log/pi-star/pi-star_update.log > /dev/null 2>&1 &');
      system('sudo echo "" > /var/log/pi-star/pi-star_update.log > /dev/null 2>&1 &');
-     system('sudo chmod +x /usr/local/sbin/Update-Pi-Star-OS-Ignore-Local-Changed.sh  > /dev/null 2>&1 &');
-     system('sudo /usr/local/sbin/Update-Pi-Star-OS-Ignore-Local-Changed.sh  > /dev/null 2>&1 &');
+
+     //会导致出问题
+     //system('sudo chmod +x /usr/local/sbin/Update-Pi-Star-OS-Ignore-Local-Changed.sh  > /dev/null 2>&1 &');
+     //system('sudo /usr/local/sbin/Update-Pi-Star-OS-Ignore-Local-Changed.sh  > /dev/null 2>&1 &');
+
      system('sudo cp /usr/local/sbin/pistar-update /usr/local/sbin/pistar-update_Dashboard > /dev/null 2>&1 &');
      system('sudo chmod +x /usr/local/sbin/pistar-update_Dashboard > /dev/null 2>&1 &');
+     
      system('sudo sed -i  "/\/usr\/local\/sbin\/HostFilesUpdate.sh/d" /usr/local/sbin/pistar-update_Dashboard > /dev/null 2>&1 &'); 
      system('sudo /usr/local/sbin/pistar-update_Dashboard > /dev/null 2>&1 &');
   }
