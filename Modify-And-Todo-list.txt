@@ -174,7 +174,10 @@ Enable=1
 Enable=0
 注意带换行。
 
-sudo sed -i "s#\[NextionDriver\]#\[DelNextionDriver\]#g" /opt/MMDVM_Bridge/MMDVM_Bridge.ini; 
+sed -i '/\[D-Star\]/{N;s/Enable=1/Enable=0/}' /opt/MMDVM_Bridge/MMDVM_Bridge.ini;
+sed -i '/\[System\ Fusion\]/{N;s/Enable=1/Enable=0/}' /opt/MMDVM_Bridge/MMDVM_Bridge.ini;
+sed -i '/\[P25\]/{N;s/Enable=1/Enable=0/}' /opt/MMDVM_Bridge/MMDVM_Bridge.ini;
+sed -i '/\[NXDN\]/{N;s/Enable=1/Enable=0/}' /opt/MMDVM_Bridge/MMDVM_Bridge.ini;
 
 [DMR]
 Enable=1 
@@ -285,6 +288,10 @@ ExtAudioBoost=1
 http://pi-star/admin/advanced/edit_dashboard.php 
 #f075f8 purple
 # red
+
+#Quickly config your DVSwitch ,Allstarlink,
+
+sudo sed -i  "s#register=123456:password#register=592030:xxx25f108a4bc7#g" /etc/asterisk/iax.conf
 
 DE BI7JTA@GMAIL.com
 

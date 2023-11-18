@@ -37,8 +37,8 @@ if ($_SERVER["PHP_SELF"] == "/admin/update.php") {
      system('sudo cp /usr/local/sbin/pistar-update /usr/local/sbin/pistar-update_Dashboard > /dev/null 2>&1 &');
      system('sudo chmod +x /usr/local/sbin/pistar-update_Dashboard > /dev/null 2>&1 &');
      
-     system('sudo sed -i  "/\/usr\/local\/sbin\/HostFilesUpdate.sh/d" /usr/local/sbin/pistar-update_Dashboard > /dev/null 2>&1 &'); 
-     system('sudo /usr/local/sbin/pistar-update_Dashboard > /dev/null 2>&1 &');
+     //这里有个执行先后，并行执行的问题，会导致替换没完成，就开始执行了，不确定是不是git reset + pull 导致的，先观察
+     system('sudo sed -i  "/\/usr\/local\/sbin\/HostFilesUpdate.sh/d" /usr/local/sbin/pistar-update_Dashboard; sudo /usr/local/sbin/pistar-update_Dashboard > /dev/null 2>&1 &');
   }
 
   // Sanity Check Passed.
