@@ -69,6 +69,13 @@ require_once $_SERVER['DOCUMENT_ROOT'].'/config/version.php';
 			    exec('sudo systemctl restart '.$servicename); // Reload the daemon
 			}
 		    }
+
+		    // Add Local host to Global host 
+		    //if (isset($servicenames) && (count($servicenames) > 0)) {
+			//foreach($servicenames as $servicename) {
+			//    exec('sudo systemctl restart '.$servicename); // Reload the daemon
+			//}
+		    //}
 		    
 		    // Re-open the file and read it
 		    $fh = fopen($filepath, 'r');

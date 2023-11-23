@@ -116,14 +116,16 @@
 		
 		<li class="has-subs"><a href="#">Hosts File Editors</a>
 		    <ul class="dropdown">
-			<li class="subs"><a href="fulledit_hosts_DCS_Hosts.php">DCS Hosts</a></li>
-			<li class="subs"><a href="fulledit_hosts_DExtra_Hosts.php">DExtra Hosts</a></li>
-			<li class="subs"><a href="fulledit_hosts_DPlus_Hosts.php">DPlus Hosts</a></li>
+		    <li class="subs"><a href="fulledit_hosts_YSF_Hosts.php">YSF Hosts</a></li>
+		    <li class="subs"><a href="fulledit_hosts_FCS_Hosts.php">FCS Hosts</a></li>
+		    <li class="subs"><a href="fulledit_hosts_XLX_Hosts.php">XLX Hosts</a></li>
 			<li class="subs"><a href="fulledit_hosts_DMR_Hosts.php">DMR Hosts</a></li>
 			<li class="subs"><a href="fulledit_hosts_P25_Hosts.php">P25 Hosts</a></li>
 			<li class="subs"><a href="fulledit_hosts_NXDN_Hosts.php">NXDN Hosts</a></li>
 			<li class="subs"><a href="fulledit_hosts_M17_Hosts.php">M17 Hosts</a></li>
-			<li class="subs"><a href="fulledit_hosts_XLX_Hosts.php">XLX Hosts</a></li>
+			<li class="subs"><a href="fulledit_hosts_DCS_Hosts.php">DCS Hosts</a></li>
+			<li class="subs"><a href="fulledit_hosts_DExtra_Hosts.php">DExtra Hosts</a></li>
+			<li class="subs"><a href="fulledit_hosts_DPlus_Hosts.php">DPlus Hosts</a></li>
 		    </ul>
 		</li>
 			
@@ -212,6 +214,13 @@
 			<li class="subs"><a href="services.php?action=ChangeGitee2Github">ChangeGitee2Github</a></li>
 			<li class="subs"><a href="services.php?action=ForceUpdateGit">ForceUpdateGit</a></li>
 			<li class="subs"><a href="/config/changelog.php">VewUpdateLog</a></li> 
+			</ul>
+		</li>
+		<li class="has-subs"><a href="#">系统补丁</a>
+            <ul class="dropdown">
+            <li class="subs"><a href="services.php?action=Patch_Support_HDMI_1080p_FullScrean_RPi4B">修复1080p不满屏</a></li>
+            <li class="subs"><a href="services.php?action=Patch_Fix_ASL-3in1-OS-SSL_Certs_not_update_bug">修复ssl证书</a></li>
+			<li class="subs"><a href="fulledit_tmpUpdatePathLog.php">查看执行结果</a></li> 
 			</ul>
 		</li>
 	    </ul>

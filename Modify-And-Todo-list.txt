@@ -123,6 +123,9 @@ YSF2DMR默认配置端口问题，
 IDs更新地址从org改为官方，增加下载前判断，
 
 # 修复SSL更新问题，curl +k 忽略SSL证书检查
+# Fix Error, curl: (60) SSL certificate problem: unable to get local issuer certificate
+# When curl from https://www.bi7jta.cn https://www.bi7jta.org
+# sudo curl https://www.bi7jta.cn/files/AndyTaylorTweet/updateScripts/Patch_Fix_ASL-3in1-OS-SSL_Certs_not_update_bug.sh | sudo sh
 
 #已知问题：
 1，FM Network,FM Mode 只能工作在Duplex模式，但可以使用一台车台

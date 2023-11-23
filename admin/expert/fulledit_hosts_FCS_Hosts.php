@@ -11,9 +11,9 @@ if (!isset($_SESSION) || !is_array($_SESSION)) {
     checkSessionValidity();
 }
 
-$editorname = 'DMR Hosts';
-$configfile = '/usr/local/etc/DMR_Hosts.txt';
-$tempfile = '/tmp/2SD3BhQpkuEUM.tmp';
+$editorname = '/root/FCSHosts.txt';
+$configfile = '/root/FCSHosts.txt';
+$tempfile = '/tmp/2SD3BhQpkuEUM_FCSHosts.tmp';
 
 require_once('fulledit_template.php');
 
