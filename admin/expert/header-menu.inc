@@ -207,13 +207,15 @@
 		<li class="has-subs"><a href="#">Others</a>
             <ul class="dropdown">
 			<li class="subs"><a href="fulledit_Modify-And-Todo-list.txt.php">WhatsIdo</a></li>
-			<li class="subs"><a href="fulledit_tmpUpdatePath.php">EditUpdatePatch</a></li>
-			<li class="subs"><a href="services.php?action=RunUpdatePatch">RunUpdatePatch</a></li>
-			<li class="subs"><a href="fulledit_tmpUpdatePathLog.php">ViewPatchRunLog</a></li>
+			<li class="subs"><a href="fulledit_tmpUpdatePath.php">Edit Patch Script</a></li>
+			<li class="subs"><a href="services.php?action=RunUpdatePatch">Run Patch Scipt</a></li>
+			<li class="subs"><a href="fulledit_tmpUpdatePathLog.php">View Run Log</a></li>
+			<li class="subs"><a href="#">--------</a></li> 
 			<li class="subs"><a href="services.php?action=ChangeGithub2Gitee">ChangeGithub2Gitee</a></li>
 			<li class="subs"><a href="services.php?action=ChangeGitee2Github">ChangeGitee2Github</a></li>
-			<li class="subs"><a href="services.php?action=ForceUpdateGit">ForceUpdateGit</a></li>
-			<li class="subs"><a href="/config/changelog.php">VewUpdateLog</a></li> 
+			<li class="subs"><a href="services.php?action=ForceUpdateGit">Force Update Git</a></li>
+			<li class="subs"><a href="#">--------</a></li>
+			
 			</ul>
 		</li>
 		<li class="has-subs"><a href="#">系统补丁</a>
