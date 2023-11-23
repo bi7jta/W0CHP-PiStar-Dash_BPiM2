@@ -78,11 +78,11 @@ switch ($action) {
     break;
 
     case "Patch_Fix_ASL-3in1-OS-SSL_Certs_not_update_bug":
-    $cmdresult = exec('sudo touch tmp/tmpUpdatePath.log > /dev/null 2>&1; sudo chmod 777 /tmp/tmpUpdatePath.log;  sudo curl https://www.bi7jta.cn/files/AndyTaylorTweet/updateScripts/Patch_Fix_ASL-3in1-OS-SSL_Certs_not_update_bug.sh | sudo sh > /tmp/tmpUpdatePath.log;', $cmdoutput, $retvalue);
+    $cmdresult = exec('sudo touch tmp/tmpUpdatePath.log; sudo chmod 777 /tmp/tmpUpdatePath.log; sudo chmod +x /usr/local/sbin/patch-scripts/Patch_Fix_ASL-3in1-OS-SSL_Certs_not_update_bug.sh; sudo /usr/local/sbin/patch-scripts/Patch_Fix_ASL-3in1-OS-SSL_Certs_not_update_bug.sh > /tmp/tmpUpdatePath.log;', $cmdoutput, $retvalue);
     break;
 
     case "Patch_Support_HDMI_1080p_FullScrean_RPi4B":
-    $cmdresult = exec('sudo touch tmp/tmpUpdatePath.log > /dev/null 2>&1; sudo chmod 777 /tmp/tmpUpdatePath.log;  sudo curl https://www.bi7jta.cn/files/AndyTaylorTweet/updateScripts/Patch_Support_HDMI_1080p_FullScrean_RPi4B.sh | sudo sh > /tmp/tmpUpdatePath.log;', $cmdoutput, $retvalue);
+    $cmdresult = exec('sudo touch tmp/tmpUpdatePath.log; sudo chmod 777 /tmp/tmpUpdatePath.log; sudo curl https://www.bi7jta.cn/files/AndyTaylorTweet/updateScripts/Patch_Support_HDMI_1080p_FullScrean_RPi4B.sh |sudo sh > /tmp/tmpUpdatePath.log; ', $cmdoutput, $retvalue);
     break;
 
     default:
