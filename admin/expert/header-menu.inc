@@ -202,7 +202,7 @@
 		<li class="has-subs"><a href="#">NextionDriver</a>
             <ul class="dropdown">
 			<li class="subs"><a href="/admin/InstallNextionDriver.php">InstallNextionDriver</a></li>
-			<li class="subs"><a href=/admin/UnInstallNextionDriver.php">UnInstallNextionDriver</a></li>
+			<li class="subs"><a href="/admin/UnInstallNextionDriver.php">UnInstallNextionDriver</a></li>
 			</ul>
 		<li class="has-subs"><a href="#">Others</a>
             <ul class="dropdown">
