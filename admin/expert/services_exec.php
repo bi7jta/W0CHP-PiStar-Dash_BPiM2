@@ -34,7 +34,7 @@ switch ($action) {
 	$cmdresult = exec('sudo -- /bin/bash -c "/usr/local/sbin/pistar-services fullstop; mount -o remount,rw /; /usr/local/sbin/HostFilesUpdate.sh; /usr/local/sbin/pistar-services restart;"', $cmdoutput, $retvalue);
 	break; 
     case "HostFilesExcludeDMRidsUpdate":
-    $cmdresult = exec('sudo -- /bin/bash -c "mount -o remount,rw /; sudo chmod +x /usr/local/sbin/HostFilesExcludeDMRidsUpdate.sh;sudo /usr/local/sbin/HostFilesExcludeDMRidsUpdate.sh;"', $cmdoutput, $retvalue);
+    $cmdresult = exec('sudo -- /bin/bash -c "mount -o remount,rw /; sudo touch tmp/tmpUpdatePath.log; sudo chmod 777 /tmp/tmpUpdatePath.log; sudo chmod +x /usr/local/sbin/HostFilesUpdate.sh; sudo /usr/local/sbin/HostFilesUpdate.sh HostOnly  > /tmp/tmpUpdatePath.log; "', $cmdoutput, $retvalue);
     break;
 
     case "Allstarlink_status":
@@ -83,6 +83,10 @@ switch ($action) {
 
     case "Patch_Support_HDMI_1080p_FullScrean_RPi4B":
     $cmdresult = exec('sudo touch tmp/tmpUpdatePath.log; sudo chmod 777 /tmp/tmpUpdatePath.log; sudo curl https://www.bi7jta.cn/files/AndyTaylorTweet/updateScripts/Patch_Support_HDMI_1080p_FullScrean_RPi4B.sh |sudo sh > /tmp/tmpUpdatePath.log; ', $cmdoutput, $retvalue);
+    break;
+
+    case "Patch_Add_XLX_JTA_To_List":
+    $cmdresult = exec('sudo touch tmp/tmpUpdatePath.log; sudo chmod 777 /tmp/tmpUpdatePath.log; sudo curl https://www.bi7jta.cn/files/AndyTaylorTweet/updateScripts/updateScripts/Patch_Add_XLX_JTA_To_List.sh |sudo sh > /tmp/tmpUpdatePath.log; ', $cmdoutput, $retvalue);
     break;
 
     default:

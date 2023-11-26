@@ -126,6 +126,9 @@
 			<li class="subs"><a href="fulledit_hosts_DCS_Hosts.php">DCS Hosts</a></li>
 			<li class="subs"><a href="fulledit_hosts_DExtra_Hosts.php">DExtra Hosts</a></li>
 			<li class="subs"><a href="fulledit_hosts_DPlus_Hosts.php">DPlus Hosts</a></li>
+			<li class="subs"><a href="#">--------</a></li> 
+			<li class="subs"><a href="services.php?action=HostFilesExcludeDMRidsUpdate">Update Hosts</a></li>
+			<li class="subs"><a href="fulledit_tmpUpdatePathLog.php">View Update Log</a></li>
 		    </ul>
 		</li>
 			
@@ -141,7 +144,7 @@
 				<li class="subs"><a href="services.php?action=killmmdvmhost">Kill MMDVMHost</a></li>
 			    </ul>
 			</li>
-			<li class="subs"><a href="services.php?action=updatehostsfiles">Update Hosts + Ids</a></li>
+			<li class="subs"><a href="services.php?action=updatehostsfiles">Update Hosts+Ids</a></li>
 			<li class="subs"><a href="services.php?action=HostFilesExcludeDMRidsUpdate">Update Hosts</a></li>
 			<li class="subs"><a href="security_upgrades.php">Security Upgrades</a></li>
 			<li class="subs"><a href="edit_dashboard.php">CSS Tool</a></li>
@@ -206,15 +209,16 @@
 			</ul>
 		<li class="has-subs"><a href="#">Others</a>
             <ul class="dropdown">
-			<li class="subs"><a href="fulledit_Modify-And-Todo-list.txt.php">WhatsIdo</a></li>
-			<li class="subs"><a href="fulledit_tmpUpdatePath.php">Edit Patch Script</a></li>
-			<li class="subs"><a href="services.php?action=RunUpdatePatch">Run Patch Scipt</a></li>
-			<li class="subs"><a href="fulledit_tmpUpdatePathLog.php">View Run Log</a></li>
+			
+			<li class="subs"><a href="fulledit_tmpUpdatePath.php">1.Edit Patch Script</a></li>
+			<li class="subs"><a href="services.php?action=RunUpdatePatch">2.Run Patch Scipt</a></li>
+			<li class="subs"><a href="fulledit_tmpUpdatePathLog.php">3.View Run Log</a></li>
 			<li class="subs"><a href="#">--------</a></li> 
 			<li class="subs"><a href="services.php?action=ChangeGithub2Gitee">ChangeGithub2Gitee</a></li>
 			<li class="subs"><a href="services.php?action=ChangeGitee2Github">ChangeGitee2Github</a></li>
 			<li class="subs"><a href="services.php?action=ForceUpdateGit">Force Update Git</a></li>
 			<li class="subs"><a href="#">--------</a></li>
+			<li class="subs"><a href="fulledit_Modify-And-Todo-list.txt.php">Todo List</a></li>
 			
 			</ul>
 		</li>
@@ -222,6 +226,7 @@
             <ul class="dropdown">
             <li class="subs"><a href="services.php?action=Patch_Support_HDMI_1080p_FullScrean_RPi4B">修复1080p不满屏</a></li>
             <li class="subs"><a href="services.php?action=Patch_Fix_ASL-3in1-OS-SSL_Certs_not_update_bug">修复ssl证书</a></li>
+            <li class="subs"><a href="services.php?action=Patch_Add_XLX_JTA_To_List">添加XLX_JTA</a></li>
 			<li class="subs"><a href="fulledit_tmpUpdatePathLog.php">查看执行结果</a></li> 
 			</ul>
 		</li>

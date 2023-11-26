@@ -96,6 +96,9 @@ require_once $_SERVER['DOCUMENT_ROOT'].'/config/version.php';
 		}
 		else if (strcmp($action, 'Patch_Fix_ASL-3in1-OS-SSL_Certs_not_update_bug') == 0) {
 		    $action_msg = 'Patch_Fix_ASL-3in1-OS-SSL_Certs_not_update_bug';
+		}
+		else if (strcmp($action, 'Patch_Add_XLX_JTA_To_List') == 0) {
+		    $action_msg = 'Patch_Add_XLX_JTA_To_List';
 		}		
 
 		else {
