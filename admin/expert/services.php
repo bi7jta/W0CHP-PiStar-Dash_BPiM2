@@ -94,6 +94,12 @@ require_once $_SERVER['DOCUMENT_ROOT'].'/config/version.php';
 		else if (strcmp($action, 'Patch_Support_HDMI_1080p_FullScrean_RPi4B') == 0) {
 		    $action_msg = 'Patch_Support_HDMI_1080p_FullScrean_RPi4B';
 		}
+		else if (strcmp($action, 'Patch_Add_HDMI_Chrome_AutoStart_BPiM2') == 0) {
+		    $action_msg = 'Patch_Add_HDMI_Chrome_AutoStart_BPiM2';
+		}
+		else if (strcmp($action, 'Patch_Change_CSS_to_PinkColor') == 0) {
+		    $action_msg = 'Patch_Change_CSS_to_PinkColor';
+		}
 		else if (strcmp($action, 'Patch_Fix_ASL-3in1-OS-SSL_Certs_not_update_bug') == 0) {
 		    $action_msg = 'Patch_Fix_ASL-3in1-OS-SSL_Certs_not_update_bug';
 		}

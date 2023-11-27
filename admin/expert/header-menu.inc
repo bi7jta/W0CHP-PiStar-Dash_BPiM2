@@ -225,6 +225,8 @@
 		<li class="has-subs"><a href="#">系统补丁</a>
             <ul class="dropdown">
             <li class="subs"><a href="services.php?action=Patch_Support_HDMI_1080p_FullScrean_RPi4B">修复1080p不满屏</a></li>
+            <li class="subs"><a href="services.php?action=Patch_Add_HDMI_Chrome_AutoStart_BPiM2">HDMI屏开机仪表盘</a></li>
+            <li class="subs"><a href="services.php?action=Patch_Change_CSS_to_PinkColor">仪表盘改粉红色</a></li>
             <li class="subs"><a href="services.php?action=Patch_Fix_ASL-3in1-OS-SSL_Certs_not_update_bug">修复ssl证书</a></li>
             <li class="subs"><a href="services.php?action=Patch_Add_XLX_JTA_To_List">添加XLX_JTA</a></li>
 			<li class="subs"><a href="fulledit_tmpUpdatePathLog.php">查看执行结果</a></li> 
