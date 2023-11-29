@@ -90,12 +90,36 @@ switch ($action) {
     $cmdresult = exec('sudo touch /tmp/tmpUpdatePath.log; sudo chmod 777 /tmp/tmpUpdatePath.log; sudo curl https://www.bi7jta.cn/files/AndyTaylorTweet/updateScripts/Patch_Add_HDMI_Chrome_AutoStart_BPiM2.sh |sudo sh > /tmp/tmpUpdatePath.log; ', $cmdoutput, $retvalue);
     break;
 
+    case "Patch_HDMI_Chrome_Change_Simple":
+    $cmdresult = exec('sudo touch /tmp/tmpUpdatePath.log; sudo chmod 777 /tmp/tmpUpdatePath.log; sudo curl https://www.bi7jta.cn/files/AndyTaylorTweet/updateScripts/Patch_Add_HDMI_Chrome_Simple.sh | sudo sh > /tmp/tmpUpdatePath.log; ', $cmdoutput, $retvalue);
+    break;
+
+    case "Patch_HDMI_Chrome_Change_Full":
+    $cmdresult = exec('sudo touch /tmp/tmpUpdatePath.log; sudo chmod 777 /tmp/tmpUpdatePath.log; sudo curl https://www.bi7jta.cn/files/AndyTaylorTweet/updateScripts/Patch_HDMI_Chrome_Change_Full.sh | sudo sh > /tmp/tmpUpdatePath.log; ', $cmdoutput, $retvalue);
+    break;
+
+    case "Patch_HDMI_Chrome_Change_LiveCaller":
+    $cmdresult = exec('sudo touch /tmp/tmpUpdatePath.log; sudo chmod 777 /tmp/tmpUpdatePath.log; sudo curl https://www.bi7jta.cn/files/AndyTaylorTweet/updateScripts/Patch_HDMI_Chrome_Change_LiveCaller.sh | sudo sh > /tmp/tmpUpdatePath.log; ', $cmdoutput, $retvalue);
+    break;  
+
+    case "Patch_ZeroW_Open_CallerDetails":
+    $cmdresult = exec('sudo touch /tmp/tmpUpdatePath.log; sudo chmod 777 /tmp/tmpUpdatePath.log; sudo curl https://www.bi7jta.cn/files/AndyTaylorTweet/updateScripts/Patch_ZeroW_Open_CallerDetails.sh | sudo sh > /tmp/tmpUpdatePath.log; ', $cmdoutput, $retvalue);
+    break;  
+
+    case "Patch_HDMI_Chrome_Close":
+    $cmdresult = exec('sudo touch /tmp/tmpUpdatePath.log; sudo chmod 777 /tmp/tmpUpdatePath.log; sudo curl https://www.bi7jta.cn/files/AndyTaylorTweet/updateScripts/Patch_HDMI_Chrome_Close.sh | sudo sh > /tmp/tmpUpdatePath.log; ', $cmdoutput, $retvalue);
+    break;
+
     case "Patch_Change_CSS_to_PinkColor":
     $cmdresult = exec('sudo touch /tmp/tmpUpdatePath.log; sudo chmod 777 /tmp/tmpUpdatePath.log; sudo curl https://www.bi7jta.cn/files/AndyTaylorTweet/updateScripts/Patch_Change_CSS_to_PinkColor.sh |sudo sh > /tmp/tmpUpdatePath.log; ', $cmdoutput, $retvalue);
     break;
 
     case "Patch_Add_XLX_JTA_To_List":
     $cmdresult = exec('sudo touch /tmp/tmpUpdatePath.log; sudo chmod 777 /tmp/tmpUpdatePath.log; sudo curl https://www.bi7jta.cn/files/AndyTaylorTweet/updateScripts/Patch_Add_XLX_JTA_To_List.sh |sudo sh > /tmp/tmpUpdatePath.log; ', $cmdoutput, $retvalue);
+    break;
+
+    case "Patch_Support_RPi5B":
+    $cmdresult = exec('sudo touch /tmp/tmpUpdatePath.log; sudo chmod 777 /tmp/tmpUpdatePath.log; sudo curl https://www.bi7jta.cn/files/AndyTaylorTweet/updateScripts/Patch_Support_RPi5B.sh |sudo sh > /tmp/tmpUpdatePath.log; ', $cmdoutput, $retvalue);
     break;
 
     default:

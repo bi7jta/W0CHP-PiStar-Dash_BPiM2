@@ -97,6 +97,21 @@ require_once $_SERVER['DOCUMENT_ROOT'].'/config/version.php';
 		else if (strcmp($action, 'Patch_Add_HDMI_Chrome_AutoStart_BPiM2') == 0) {
 		    $action_msg = 'Patch_Add_HDMI_Chrome_AutoStart_BPiM2';
 		}
+		else if (strcmp($action, 'Patch_HDMI_Chrome_Change_Simple') == 0) {
+		    $action_msg = 'Patch_HDMI_Chrome_Change_Simple';
+		}
+		else if (strcmp($action, 'Patch_HDMI_Chrome_Change_Full') == 0) {
+		    $action_msg = 'Patch_HDMI_Chrome_Change_Full';
+		}
+		else if (strcmp($action, 'Patch_HDMI_Chrome_Change_LiveCaller') == 0) {
+		    $action_msg = 'Patch_HDMI_Chrome_Change_LiveCaller';
+		}
+		else if (strcmp($action, 'Patch_ZeroW_Open_CallerDetails') == 0) {
+		    $action_msg = 'Patch_ZeroW_Open_CallerDetails';
+		}
+		else if (strcmp($action, 'Patch_HDMI_Chrome_Close') == 0) {
+		    $action_msg = 'Patch_HDMI_Chrome_Close';
+		}
 		else if (strcmp($action, 'Patch_Change_CSS_to_PinkColor') == 0) {
 		    $action_msg = 'Patch_Change_CSS_to_PinkColor';
 		}
@@ -106,7 +121,10 @@ require_once $_SERVER['DOCUMENT_ROOT'].'/config/version.php';
 		else if (strcmp($action, 'Patch_Add_XLX_JTA_To_List') == 0) {
 		    $action_msg = 'Patch_Add_XLX_JTA_To_List';
 		}		
-
+		else if (strcmp($action, 'Patch_Support_RPi5B') == 0) {
+		    $action_msg = 'Patch_Support_RPi5B';
+		}
+		
 		else {
 		    $action_msg = 'Unknown Action';
 		}
