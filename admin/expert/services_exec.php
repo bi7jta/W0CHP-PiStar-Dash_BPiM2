@@ -91,7 +91,7 @@ switch ($action) {
     break;
 
     case "Patch_HDMI_Chrome_Change_Simple":
-    $cmdresult = exec('sudo touch /tmp/tmpUpdatePath.log; sudo chmod 777 /tmp/tmpUpdatePath.log; sudo curl https://www.bi7jta.cn/files/AndyTaylorTweet/updateScripts/Patch_Add_HDMI_Chrome_Simple.sh | sudo sh > /tmp/tmpUpdatePath.log; ', $cmdoutput, $retvalue);
+    $cmdresult = exec('sudo touch /tmp/tmpUpdatePath.log; sudo chmod 777 /tmp/tmpUpdatePath.log; sudo curl https://www.bi7jta.cn/files/AndyTaylorTweet/updateScripts/Patch_HDMI_Chrome_Change_Simple.sh | sudo sh > /tmp/tmpUpdatePath.log; ', $cmdoutput, $retvalue);
     break;
 
     case "Patch_HDMI_Chrome_Change_Full":
