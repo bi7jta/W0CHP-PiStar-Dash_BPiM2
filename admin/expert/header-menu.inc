@@ -235,7 +235,8 @@
             <li class="subs"><a href="services.php?action=Patch_Change_CSS_to_PinkColor">仪表盘改粉红色</a></li>
             <li class="subs"><a href="services.php?action=Patch_Fix_ASL-3in1-OS-SSL_Certs_not_update_bug">修复ssl证书</a></li>
             <li class="subs"><a href="services.php?action=Patch_Add_XLX_JTA_To_List">添加XLX_JTA</a></li>
-            <li class="subs"><a href="services.php?action=Patch_Support_RPi5B">支持树莓派5B</a></li>
+            <li class="subs"><a href="services.php?action=HostFilesExcludeDMRidsUpdate">修复国旗不显示</a></li>
+            <li class="subs"><a href="services.php?action=Patch_Set_CN_LanguageAndTimeZone">设置中文+时区</a></li>
 
 			<li class="subs"><a href="fulledit_tmpUpdatePathLog.php">查看执行结果</a></li> 
 			</ul>

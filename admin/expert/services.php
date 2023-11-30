@@ -124,6 +124,9 @@ require_once $_SERVER['DOCUMENT_ROOT'].'/config/version.php';
 		else if (strcmp($action, 'Patch_Support_RPi5B') == 0) {
 		    $action_msg = 'Patch_Support_RPi5B';
 		}
+		else if (strcmp($action, 'Patch_Set_CN_LanguageAndTimeZone') == 0) {
+		    $action_msg = 'Patch_Set_CN_LanguageAndTimeZone';
+		}
 		
 		else {
 		    $action_msg = 'Unknown Action';
