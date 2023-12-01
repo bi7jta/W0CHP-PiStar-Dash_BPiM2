@@ -789,9 +789,13 @@ function showMode($mode, $configs) {
 	            else {
 		            getModeClass(isProcessRunning("MMDVMHost"));
 	            }
-	        }
+	        }else if ($mode == "FM Network") {
+                getModeClass(isProcessRunning("MMDVMHost"));
+            }else if ($mode == "AX.25 Network") {
+                getModeClass(isProcessRunning("MMDVMHost"));
+            }
 	        else {
-	            if ($mode == "D-Star" || $mode == "DMR" || $mode == "System Fusion" || $mode == "P25" || $mode == "NXDN" || $mode == "POCSAG" || $mode == "M17" || $mode == "AX 25") {
+	            if ($mode == "D-Star" || $mode == "DMR" || $mode == "System Fusion" || $mode == "P25" || $mode == "NXDN" || $mode == "POCSAG" || $mode == "M17" || $mode == "AX 25"|| $mode == "FM" || $mode == "AX.25") {
 		            getModeClass(isProcessRunning("MMDVMHost"));
 	            }
 	        }

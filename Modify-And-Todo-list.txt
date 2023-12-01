@@ -47,3 +47,116 @@ sudo chmod +x /etc/cron.hourly/pistar-hourly
 sudo chmod +x /etc/cron.daily/pistar-daily
 
 
+# Quickly Setup Allstarlink and DVSwitch
+# Recommend, 592032
+ESSID:22 to TG91 , 
+ESSID:11 to TG3100 ;  
+ESSID:12 to TG460755 , 
+ESSID:33 to TG46001 , 
+
+#/opt/Analog_Bridge/Analog_Bridge.ini
+gatewayDmrId = 4600724
+repeaterID = 460072422
+txTg = 91
+
+#/opt/MMDVM_Bridge/MMDVM_Bridge.ini
+Callsign=N0CALL
+Id=123456712 
+Address=1.2.3.4
+Password=passw0rd
+
+#/etc/asterisk/iax.conf
+register=123456:password@register.allstarlink.org
+
+#/etc/asterisk/rpt.conf
+replace all 123456 to your Allstarlink Node Number: 
+
+/etc/asterisk/sip.conf
+Define your sip phone number
+
+#/etc/asterisk/extensions.conf
+replace all 123456 to your Allstarlink Node Number: 
+
+NODE = 123456   ; change this to your node number
+exten => 3000,n,rpt(123456|P); Change 51201 to your own node mumber, Pv is VOX replace *99 ptt
+
+#/var/www/dashboard/supermon/allmon.ini
+replace all 123456 to your Allstarlink Node Number: 
+
+
+#Visit
+Pi-Star: http://pi-star  pi-star/raspberry
+Allstarlink Dashbaord: http://pi-star/supermon/ ,admin/admin
+DVSwitch Dashboard: http://pi-star:8080 
+DVSwitch System status: http://192.168.31.181:2812/
+OS webSSH :http://pi-star:4200  pi-star/raspberry
+OS ssh/scp :repeater/allstarlink; root/allstarlink; pi-star/raspberry
+
+How to test?
+1, DVSwtich mobile Android App, test IAX connection, 
+2, Linphone iOS ,Android app, Cisco, PolyCom sip Phone,  Dial 3000 test PTT *99 , # End TX,
+3, Use MMDVM repeater board V3F4, from FM Analog channel radio(Simplex mode, Duplex Mode),
+4, Use MDDVM hotspot inner ADF7021 , test BM connect to Allstarlink.
+5, Login http://pi-star/supermon/ ,connect to the follow node and test QSO,
+   Allstarlink Node list: 41522 UK HUMNET ,27339 EAST COAST REFLECTOR, 42732 VK6 HUB, 27225 PHILADELPHIA HUB, 41120 sTARLINK ,40894 UK PARROT,  
+
+# Enable FM Network Debug logs (Recommend disable DEBUG log , will product a big logs cause /temp disk full!)
+http://pi-star/admin/expert/fulledit_mmdvmhost.php
+
+[FM Network]
+Enable=1
+Protocol=USRP
+LocalAddress=127.0.0.1
+LocalPort=22346
+GatewayAddress=127.0.0.1
+GatewayPort=22345
+PreEmphasis=1
+DeEmphasis=1
+TXAudioGain=1.0
+RXAudioGain=1.0
+ModeHang=20
+Debug=1
+LinkMode=1
+
+# Enable FM RF (If you use hotspot with ADF7021, disable it)
+
+[FM]
+Enable=1
+Callsign=BI7JTA
+CallsignSpeed=20
+CallsignFrequency=1000
+CallsignTime=10
+CallsignHoldoff=0
+CallsignHighLevel=50
+CallsignLowLevel=20
+CallsignAtStart=0
+CallsignAtEnd=0
+CallsignAtLatch=0
+RFAck=K
+ExtAck=N
+AckSpeed=20
+AckFrequency=1750
+AckMinTime=4
+AckDelay=1000
+AckLevel=50
+Timeout=180
+TimeoutLevel=80
+CTCSSFrequency=88.5
+CTCSSThreshold=30
+CTCSSHighThreshold=30
+CTCSSLowThreshold=20
+CTCSSLevel=20
+KerchunkTime=0
+HangTime=7
+AccessMode=1
+COSInvert=0
+RFAudioBoost=1
+MaxDevLevel=90
+ExtAudioBoost=1
+
+
+DE BI7JTA@GMAIL.com
+
+
+
+

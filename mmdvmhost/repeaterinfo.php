@@ -185,7 +185,20 @@ $numDMRmasters = exec('cd /var/log/pi-star ; /usr/local/bin/RemoteCommand 7643 s
   <div class="mode_flex row">
     <div class="mode_flex column">
       <div class="divTableCell">
-	<?php if (isPaused("POCSAG")) { echo '<div class="paused-mode-cell" title="Mode Paused">POCSAG</div>'; } else { showMode("POCSAG", $_SESSION['MMDVMHostConfigs']); } ?>
+  <?php if (isPaused("POCSAG")) { echo '<div class="paused-mode-cell" title="Mode Paused">POCSAG</div>'; } else { showMode("POCSAG", $_SESSION['MMDVMHostConfigs']); } ?>
+      </div>
+    </div>
+  </div>
+
+  <div class="mode_flex row">
+    <div class="mode_flex column">
+      <div class="divTableCell">
+  <?php  showMode("FM", $_SESSION['MMDVMHostConfigs']); ?>
+      </div>
+    </div>
+    <div class="mode_flex column">
+      <div class="divTableCell">
+  <?php  showMode("AX.25", $_SESSION['MMDVMHostConfigs']); ?>
       </div>
     </div>
   </div>
@@ -290,6 +303,20 @@ $numDMRmasters = exec('cd /var/log/pi-star ; /usr/local/bin/RemoteCommand 7643 s
       </div>
     </div>
   </div>
+
+  <div class="mode_flex row">
+    <div class="mode_flex column">
+      <div class="divTableCell">
+        <?php showMode("FM Network", $_SESSION['MMDVMHostConfigs']);?>
+      </div>
+    </div>
+    <div class="mode_flex column">
+      <div class="divTableCell">
+        <?php showMode("AX.25 Network", $_SESSION['MMDVMHostConfigs']);?>
+      </div>
+    </div>
+  </div>
+
 </div>
 
 <br />
