@@ -27,6 +27,11 @@ sudo nginx -s reload
 # HDMI not sleep
 sudo sed -i  "s#\#xserver-command=X#xserver-command=X\ -s\ 0\ -dpms#g" /etc/lightdm/lightdm.conf
 
+# Fixed pistar-css.php sub menu click problem
+.has-subs .has-subs .dropdown .subs {
+    position: relative;
+    top: -152px;
+
 
 TODO List:
 1, Allstarlink Node list: 41522 UK HUMNET ,27339 EAST COAST REFLECTOR, 42732 VK6 HUB, 27225 PHILADELPHIA HUB, 41120 sTARLINK ,40894 UK PARROT, 
@@ -65,11 +70,29 @@ Id=123456712
 Address=1.2.3.4
 Password=passw0rd
 
+[D-Star]
+Enable=0 
+
+[DMR]
+Enable=1 
+
+[System Fusion]
+Enable=0
+
+[P25]
+Enable=0 
+
+[NXDN]
+Enable=0 
+
 #/etc/asterisk/iax.conf
 register=123456:password@register.allstarlink.org
 
 #/etc/asterisk/rpt.conf
 replace all 123456 to your Allstarlink Node Number: 
+
+
+startup_macro = *3592030                 ; *3+Node Number, Automatic connect to Main Node, change to your Allstarlink Node number
 
 /etc/asterisk/sip.conf
 Define your sip phone number
@@ -154,6 +177,11 @@ RFAudioBoost=1
 MaxDevLevel=90
 ExtAudioBoost=1
 
+
+#Change CSS color
+http://pi-star/admin/advanced/edit_dashboard.php 
+#f075f8 purple
+# red
 
 DE BI7JTA@GMAIL.com
 
