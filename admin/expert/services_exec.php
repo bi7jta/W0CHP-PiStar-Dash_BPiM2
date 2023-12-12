@@ -136,15 +136,15 @@ switch ($action) {
     break;  
     //升级双工板固件1.6
     case "onekeyflash_RPi_fw_RPi_Duplex_VR2VYE_Ver1.6.1_CN":
-    $cmdresult = exec('sudo touch /tmp/tmpUpdatePath.log; sudo chmod 777 /tmp/tmpUpdatePath.log; sudo curl https://www.bi7jta.cn/files/AndyTaylorTweet/updateScripts/onekeyflash_RPi_fw_RPi_Duplex_VR2VYE_Ver1.6.1_CN.sh |sudo sh > /tmp/tmpUpdatePath.log; ', $cmdoutput, $retvalue);
+    $cmdresult = exec('sudo touch /tmp/tmpUpdatePath.log; sudo chmod 777 /tmp/tmpUpdatePath.log; sudo curl https://www.bi7jta.cn/files/MMDVM_Firmware/duplex_HAT/onekeyflash_RPi_fw_RPi_Duplex_VR2VYE_Ver1.6.1_CN.sh |sudo sh > /tmp/tmpUpdatePath.log; ', $cmdoutput, $retvalue);
     break;  
     //升级单工板固件1.6
     case "onekeyflash_RPi_fw_RPi_Simplex_VR2VYE_Ver1.6.1_CN":
-    $cmdresult = exec('sudo touch /tmp/tmpUpdatePath.log; sudo chmod 777 /tmp/tmpUpdatePath.log; sudo curl https://www.bi7jta.cn/files/AndyTaylorTweet/updateScripts/onekeyflash_RPi_fw_RPi_Simplex_VR2VYE_Ver1.6.1_CN.sh |sudo sh > /tmp/tmpUpdatePath.log; ', $cmdoutput, $retvalue);
+    $cmdresult = exec('sudo touch /tmp/tmpUpdatePath.log; sudo chmod 777 /tmp/tmpUpdatePath.log; sudo curl https://www.bi7jta.cn/files/MMDVM_Firmware/simplex_HAT/onekeyflash_RPi_fw_RPi_Simplex_VR2VYE_Ver1.6.1_CN.sh |sudo sh > /tmp/tmpUpdatePath.log; ', $cmdoutput, $retvalue);
     break;  
     //升级NEO板固件1.6
     case "onekeyflash_RPi_fw_NanoPi_NEO_VR2VYE_Ver1.6.1_CN":
-    $cmdresult = exec('sudo touch /tmp/tmpUpdatePath.log; sudo chmod 777 /tmp/tmpUpdatePath.log; sudo curl https://www.bi7jta.cn/files/AndyTaylorTweet/updateScripts/onekeyflash_RPi_fw_NanoPi_NEO_VR2VYE_Ver1.6.1_CN.sh |sudo sh > /tmp/tmpUpdatePath.log; ', $cmdoutput, $retvalue);
+    $cmdresult = exec('sudo touch /tmp/tmpUpdatePath.log; sudo chmod 777 /tmp/tmpUpdatePath.log; sudo curl https://www.bi7jta.cn/files/MMDVM_Firmware/nano_HAT/onekeyflash_RPi_fw_NanoPi_NEO_VR2VYE_Ver1.6.1_CN.sh |sudo sh > /tmp/tmpUpdatePath.log; ', $cmdoutput, $retvalue);
     break; 
 
     default:
