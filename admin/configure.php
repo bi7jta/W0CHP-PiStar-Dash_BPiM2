@@ -547,7 +547,7 @@ $MYCALL=strtoupper($callsign);
 			<a class="menubackup" href="/admin/config_backup.php"><?php echo $lang['backup_restore'];?></a> 
             <a class="menuupdate" href="/admin/update_HostFile_DMRIds.php">Update DMRIds</a>
 			<a class="menuupdate" href="/admin/update.php"><?php echo $lang['update'];?></a>
-            <a class="menuexpert" href="/admin/expert/">Allstarlink</a> 
+            <a class="menuexpert" href="/admin/expert/">Customized</a> 
 			<a class="menuexpert" href="/admin/expert/">Expert</a>
             <a class="menureset" href="javascript:factoryReset();"><?php echo $lang['factory_reset'];?></a>
 			<a class="menupower" href="/admin/power.php"><?php echo $lang['power'];?></a>
@@ -555,6 +555,7 @@ $MYCALL=strtoupper($callsign);
 			<a class="menulive" href="/live/">Live Caller</a>
             <a class="menulive" href="/admin/expert/ssh_access.php">SSH Mode</a> 
             <a class="menulogs" href="/admin/live_modem_log.php"><?php echo $lang['live_logs'];?></a>;
+            <a class="menulogs" href="/admin/download_all_logs.php"><?php echo $lang['download_all_logs'];?></a>;
 			<a class="menudashboard" href="/"><?php echo $lang['dashboard'];?></a>
 		    </div>
 		</p>

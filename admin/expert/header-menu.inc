@@ -176,8 +176,8 @@
 			<li class="subs"><a href="fulledit_Analog_Bridge.ini.php">Analog_Bridge.ini</a></li>
 			<li class="subs"><a href="fulledit_MMDVM_Bridge.ini.php">MMDVM_Bridge.ini</a></li>
 			<li class="subs"><a href="fulledit_DVSwitch.ini.php">DVSwitch.ini</a></li>
-			<li class="subs"><a href="http://fm-star:8080">DVSwitchUI</a></li>   
-			<li class="subs"><a href="http://fm-star:2812">MonitManager</a></li>
+			<li class="subs"><a href="http://pi-star:8080">DVSwitchUI</a></li>   
+			<li class="subs"><a href="http://pi-star:2812">MonitManager</a></li>
 			<!-- D-Star Sub --> 
 			</ul>
 		</li>
@@ -203,9 +203,9 @@
 			</ul>
 		</li>
 		<li class="has-subs"><a href="#">NextionDriver</a>
-            <ul class="dropdown">
-			<li class="subs"><a href="/admin/InstallNextionDriver.php">InstallNextionDriver</a></li>
+            <ul class="dropdown"> 
 			<li class="subs"><a href="/admin/UnInstallNextionDriver.php">UnInstallNextionDriver</a></li>
+			<li class="subs"><a href="/admin/InstallNextionDriver.php">InstallNextionDriver</a></li>
 			</ul>
 		<li class="has-subs"><a href="#">Others</a>
             <ul class="dropdown">
@@ -213,11 +213,9 @@
 			<li class="subs"><a href="fulledit_tmpUpdatePath.php">1.Edit Patch Script</a></li>
 			<li class="subs"><a href="services.php?action=RunUpdatePatch">2.Run Patch Scipt</a></li>
 			<li class="subs"><a href="fulledit_tmpUpdatePathLog.php">3.View Run Log</a></li>
-			<li class="subs"><a href="#">--------</a></li> 
 			<li class="subs"><a href="services.php?action=ChangeGithub2Gitee">ChangeGithub2Gitee</a></li>
 			<li class="subs"><a href="services.php?action=ChangeGitee2Github">ChangeGitee2Github</a></li>
 			<li class="subs"><a href="services.php?action=ForceUpdateGit">Force Update Git</a></li>
-			<li class="subs"><a href="#">--------</a></li>
 			<li class="subs"><a href="fulledit_Modify-And-Todo-list.txt.php">Todo List</a></li>
 			
 			</ul>
@@ -232,12 +230,25 @@
             <li class="subs"><a href="services.php?action=Patch_ZeroW_Open_CallerDetails">ZW开呼叫详情</a></li>
 
             <li class="subs"><a href="services.php?action=Patch_HDMI_Chrome_Close">HDMI关闭仪表盘</a></li>
+            <li class="subs"><a href="services.php?action=Patch_Remove_OS_Unattended_upgrades">优化CPU占用</a></li> 
             <li class="subs"><a href="services.php?action=Patch_Change_CSS_to_PinkColor">仪表盘改粉红色</a></li>
+            <li class="subs"><a href="services.php?action=Patch_Change_CSS_to_GrayColor">仪表盘改灰黑色</a></li>
             <li class="subs"><a href="services.php?action=Patch_Fix_ASL-3in1-OS-SSL_Certs_not_update_bug">修复ssl证书</a></li>
             <li class="subs"><a href="services.php?action=Patch_Add_XLX_JTA_To_List">添加XLX_JTA</a></li>
             <li class="subs"><a href="services.php?action=HostFilesExcludeDMRidsUpdate">修复国旗不显示</a></li>
             <li class="subs"><a href="services.php?action=Patch_Set_CN_LanguageAndTimeZone">设置中文+时区</a></li>
+            <li class="subs"><a href="/admin/download_all_logs.php">下载所有日志</a></li> 
+            <li class="subs"><a href="/admin/expert/filemanager.php?p=var%2Flog%2Fpi-star">浏览日志文件</a></li> 
 
+            <li class="subs"><a href="/admin/expert/log_manager.php">清空QSO日志</a></li> 
+            <li class="subs"><a href="/admin/update.php">修复Wi-Fi_AP丢失</a></li> 
+            <li class="subs"><a href="services.php?action=Patch_Disable-WiFi-MAC-Randomization">禁止MAC地址变化</a></li> 
+            <li class="subs"><a href="services.php?action=onekeyflash_RPi_fw_RPi_Duplex_VR2VYE_Ver1.6.1_CN">升级双工板固件1.6</a></li> 
+            <li class="subs"><a href="services.php?action=onekeyflash_RPi_fw_RPi_Simplex_VR2VYE_Ver1.6.1_CN">升级单工板固件1.6</a></li> 
+            <li class="subs"><a href="services.php?action=onekeyflash_RPi_fw_NanoPi_NEO_VR2VYE_Ver1.6.1_CN">升级NEO板固件1.6</a></li> 
+            <li class="subs"><a href="services.php?action=onekeyflash_RPi_fw_RPi_REP_V3F4">升级中继板固件</a></li>  
+			<li class="subs"><a href="/admin/UnInstallNextionDriver.php">卸载Nextion驱动</a></li>
+			<li class="subs"><a href="/admin/InstallNextionDriver.php">安装Nextion驱动</a></li>
 			<li class="subs"><a href="fulledit_tmpUpdatePathLog.php">查看执行结果</a></li> 
 			</ul>
 		</li>

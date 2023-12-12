@@ -136,6 +136,7 @@ if ($_SERVER["PHP_SELF"] == "/admin/UnInstallNextionDriver.php") {
             </div>
 		      <a class="menuconfig" href="/admin/configure.php"><?php echo $lang['configuration'];?></a>
 		      <a class="menubackup" href="/admin/config_backup.php"><?php echo $lang['backup_restore'];?></a>
+          <a class="menuexpert" href="/admin/expert/">Customized</a> 
 		      <a class="menupower" href="/admin/power.php"><?php echo $lang['power'];?></a>
 		      <a class="menuadmin" href="/admin/"><?php echo $lang['admin'];?></a>
               <a class="menulive" href="/live/">Live Caller</a>

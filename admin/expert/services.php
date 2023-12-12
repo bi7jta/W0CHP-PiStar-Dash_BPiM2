@@ -115,6 +115,9 @@ require_once $_SERVER['DOCUMENT_ROOT'].'/config/version.php';
 		else if (strcmp($action, 'Patch_Change_CSS_to_PinkColor') == 0) {
 		    $action_msg = 'Patch_Change_CSS_to_PinkColor';
 		}
+		else if (strcmp($action, 'Patch_Change_CSS_to_GrayColor') == 0) {
+		    $action_msg = 'Patch_Change_CSS_to_GrayColor';
+		}
 		else if (strcmp($action, 'Patch_Fix_ASL-3in1-OS-SSL_Certs_not_update_bug') == 0) {
 		    $action_msg = 'Patch_Fix_ASL-3in1-OS-SSL_Certs_not_update_bug';
 		}
@@ -126,8 +129,26 @@ require_once $_SERVER['DOCUMENT_ROOT'].'/config/version.php';
 		}
 		else if (strcmp($action, 'Patch_Set_CN_LanguageAndTimeZone') == 0) {
 		    $action_msg = 'Patch_Set_CN_LanguageAndTimeZone';
+		} 
+		else if (strcmp($action, 'Patch_Remove_OS_Unattended_upgrades') == 0) {
+		    $action_msg = 'Patch_Remove_OS_Unattended_upgrades';
 		}
-		
+		else if (strcmp($action, 'Patch_Disable-WiFi-MAC-Randomization') == 0) {
+		    $action_msg = 'Patch_Disable-WiFi-MAC-Randomization';
+		}
+		//升级双工板固件1.6
+		else if (strcmp($action, 'onekeyflash_RPi_fw_RPi_Duplex_VR2VYE_Ver1.6.1_CN') == 0) {
+		    $action_msg = 'onekeyflash_RPi_fw_RPi_Duplex_VR2VYE_Ver1.6.1_CN';
+		}
+		//升级单工板固件1.6
+		else if (strcmp($action, 'onekeyflash_RPi_fw_RPi_Simplex_VR2VYE_Ver1.6.1_CN') == 0) {
+		    $action_msg = 'onekeyflash_RPi_fw_RPi_Simplex_VR2VYE_Ver1.6.1_CN';
+		}
+		//升级NEO板固件1.6
+		else if (strcmp($action, 'onekeyflash_RPi_fw_NanoPi_NEO_VR2VYE_Ver1.6.1_CN') == 0) {
+		    $action_msg = 'onekeyflash_RPi_fw_NanoPi_NEO_VR2VYE_Ver1.6.1_CN';
+		}
+
 		else {
 		    $action_msg = 'Unknown Action';
 		}

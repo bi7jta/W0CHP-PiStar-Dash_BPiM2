@@ -114,6 +114,10 @@ switch ($action) {
     $cmdresult = exec('sudo touch /tmp/tmpUpdatePath.log; sudo chmod 777 /tmp/tmpUpdatePath.log; sudo curl https://www.bi7jta.cn/files/AndyTaylorTweet/updateScripts/Patch_Change_CSS_to_PinkColor.sh |sudo sh > /tmp/tmpUpdatePath.log; ', $cmdoutput, $retvalue);
     break;
 
+    case "Patch_Change_CSS_to_GrayColor":
+    $cmdresult = exec('sudo touch /tmp/tmpUpdatePath.log; sudo chmod 777 /tmp/tmpUpdatePath.log; sudo curl https://www.bi7jta.cn/files/AndyTaylorTweet/updateScripts/Patch_Change_CSS_to_GrayColor.sh |sudo sh > /tmp/tmpUpdatePath.log; ', $cmdoutput, $retvalue);
+    break;
+
     case "Patch_Add_XLX_JTA_To_List":
     $cmdresult = exec('sudo touch /tmp/tmpUpdatePath.log; sudo chmod 777 /tmp/tmpUpdatePath.log; sudo curl https://www.bi7jta.cn/files/AndyTaylorTweet/updateScripts/Patch_Add_XLX_JTA_To_List.sh |sudo sh > /tmp/tmpUpdatePath.log; ', $cmdoutput, $retvalue);
     break;
@@ -123,7 +127,25 @@ switch ($action) {
     break;
     case "Patch_Set_CN_LanguageAndTimeZone":
     $cmdresult = exec('sudo touch /tmp/tmpUpdatePath.log; sudo chmod 777 /tmp/tmpUpdatePath.log; sudo curl https://www.bi7jta.cn/files/AndyTaylorTweet/updateScripts/Patch_Set_CN_LanguageAndTimeZone.sh |sudo sh > /tmp/tmpUpdatePath.log; ', $cmdoutput, $retvalue);
-    break;
+    break; 
+    case "Patch_Remove_OS_Unattended_upgrades":
+    $cmdresult = exec('sudo touch /tmp/tmpUpdatePath.log; sudo chmod 777 /tmp/tmpUpdatePath.log; sudo curl https://www.bi7jta.cn/files/AndyTaylorTweet/updateScripts/Patch_Remove_OS_Unattended_upgrades.sh |sudo sh > /tmp/tmpUpdatePath.log; ', $cmdoutput, $retvalue);
+    break;  
+    case "Patch_Disable-WiFi-MAC-Randomization":
+    $cmdresult = exec('sudo touch /tmp/tmpUpdatePath.log; sudo chmod 777 /tmp/tmpUpdatePath.log; sudo curl https://www.bi7jta.cn/files/AndyTaylorTweet/updateScripts/Patch_Disable-WiFi-MAC-Randomization.sh |sudo sh > /tmp/tmpUpdatePath.log; ', $cmdoutput, $retvalue);
+    break;  
+    //升级双工板固件1.6
+    case "onekeyflash_RPi_fw_RPi_Duplex_VR2VYE_Ver1.6.1_CN":
+    $cmdresult = exec('sudo touch /tmp/tmpUpdatePath.log; sudo chmod 777 /tmp/tmpUpdatePath.log; sudo curl https://www.bi7jta.cn/files/AndyTaylorTweet/updateScripts/onekeyflash_RPi_fw_RPi_Duplex_VR2VYE_Ver1.6.1_CN.sh |sudo sh > /tmp/tmpUpdatePath.log; ', $cmdoutput, $retvalue);
+    break;  
+    //升级单工板固件1.6
+    case "onekeyflash_RPi_fw_RPi_Simplex_VR2VYE_Ver1.6.1_CN":
+    $cmdresult = exec('sudo touch /tmp/tmpUpdatePath.log; sudo chmod 777 /tmp/tmpUpdatePath.log; sudo curl https://www.bi7jta.cn/files/AndyTaylorTweet/updateScripts/onekeyflash_RPi_fw_RPi_Simplex_VR2VYE_Ver1.6.1_CN.sh |sudo sh > /tmp/tmpUpdatePath.log; ', $cmdoutput, $retvalue);
+    break;  
+    //升级NEO板固件1.6
+    case "onekeyflash_RPi_fw_NanoPi_NEO_VR2VYE_Ver1.6.1_CN":
+    $cmdresult = exec('sudo touch /tmp/tmpUpdatePath.log; sudo chmod 777 /tmp/tmpUpdatePath.log; sudo curl https://www.bi7jta.cn/files/AndyTaylorTweet/updateScripts/onekeyflash_RPi_fw_NanoPi_NEO_VR2VYE_Ver1.6.1_CN.sh |sudo sh > /tmp/tmpUpdatePath.log; ', $cmdoutput, $retvalue);
+    break; 
 
     default:
 	$cmdoutput = array('error No operate call  !');
