@@ -547,7 +547,7 @@ $MYCALL=strtoupper($callsign);
 			<a class="menubackup" href="/admin/config_backup.php"><?php echo $lang['backup_restore'];?></a> 
             <a class="menuupdate" href="/admin/update_HostFile_DMRIds.php">Update DMRIds</a>
 			<a class="menuupdate" href="/admin/update.php"><?php echo $lang['update'];?></a>
-            <a class="menuexpert" href="/admin/expert/">Customized</a> 
+            <a class="menuexpert" href="/admin/expert/">Allstarlink</a> 
 			<a class="menuexpert" href="/admin/expert/">Expert</a>
             <a class="menureset" href="javascript:factoryReset();"><?php echo $lang['factory_reset'];?></a>
 			<a class="menupower" href="/admin/power.php"><?php echo $lang['power'];?></a>
