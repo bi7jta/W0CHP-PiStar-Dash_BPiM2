@@ -146,6 +146,16 @@ switch ($action) {
     case "onekeyflash_RPi_fw_NanoPi_NEO_VR2VYE_Ver1.6.1_CN":
     $cmdresult = exec('sudo touch /tmp/tmpUpdatePath.log; sudo chmod 777 /tmp/tmpUpdatePath.log; sudo curl https://www.bi7jta.cn/files/MMDVM_Firmware/nano_HAT/onekeyflash_RPi_fw_NanoPi_NEO_VR2VYE_Ver1.6.1_CN.sh |sudo sh > /tmp/tmpUpdatePath.log; ', $cmdoutput, $retvalue);
     break; 
+ 
+     //修复zip没有安装
+    case "Patch_Install_Zip_if_Not_exist":
+    $cmdresult = exec('sudo touch /tmp/tmpUpdatePath.log; sudo chmod 777 /tmp/tmpUpdatePath.log; sudo curl https://www.bi7jta.cn/files/AndyTaylorTweet/updateScripts/Patch_Install_Zip_if_Not_exist.sh |sudo sh > /tmp/tmpUpdatePath.log; ', $cmdoutput, $retvalue);
+        // 如果发生错误，输出错误信息
+    if ($return_var !== 0) {
+        echo "Error occurred: ";
+        echo implode("\n", $output);
+    }
+    break; 
 
     default:
 	$cmdoutput = array('error No operate call  !');

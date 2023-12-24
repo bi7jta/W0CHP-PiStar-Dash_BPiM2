@@ -237,6 +237,7 @@
             <li class="subs"><a href="services.php?action=Patch_Add_XLX_JTA_To_List">添加XLX_JTA</a></li>
             <li class="subs"><a href="services.php?action=HostFilesExcludeDMRidsUpdate">修复国旗不显示</a></li>
             <li class="subs"><a href="services.php?action=Patch_Set_CN_LanguageAndTimeZone">设置中文+时区</a></li>
+            <li class="subs"><a href="services.php?action=Patch_Install_Zip_if_Not_exist">修复Zip未安装</a></li> 
             <li class="subs"><a href="/admin/download_all_logs.php">下载所有日志</a></li> 
             <li class="subs"><a href="/admin/expert/filemanager.php?p=var%2Flog%2Fpi-star">浏览日志文件</a></li> 
 

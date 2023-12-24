@@ -22,7 +22,13 @@ if ($_SERVER["PHP_SELF"] == "/admin/download_all_logs.php") {
     exec("sudo /bin/bash -c 'cp /var/log/pi-star/* $backupDir ' 2>&1");
     exec("sudo /bin/bash -c 'cat /var/log/nginx/error.log | gzip > ".$backupDir."/nginx/error.log.gz' 2>&1");
     exec("sudo /bin/bash -c 'dmesg | gzip > ".$backupDir."/dmesg/dmesg.txt.gz' 2>&1");
-    exec("sudo /bin/bash -c 'cd ".$backupDir." && zip -r9 ".$backupZip." ./ && rm -rf ".$backupDir."' 2>&1");
+    exec("sudo /bin/bash -c 'cd ".$backupDir." && zip -r9 ".$backupZip." ./ && rm -rf ".$backupDir."' 2>&1", $output, $return_var);
+ 
+    // 如果发生错误，输出错误信息
+	if ($return_var !== 0) {
+	    echo "Error occurred: ";
+	    echo implode("\n", $output);
+	}
 
     if (file_exists($backupZip)) {
 	$hostNameInfo = exec('cat /etc/hostname');

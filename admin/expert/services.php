@@ -148,7 +148,10 @@ require_once $_SERVER['DOCUMENT_ROOT'].'/config/version.php';
 		else if (strcmp($action, 'onekeyflash_RPi_fw_NanoPi_NEO_VR2VYE_Ver1.6.1_CN') == 0) {
 		    $action_msg = 'onekeyflash_RPi_fw_NanoPi_NEO_VR2VYE_Ver1.6.1_CN';
 		}
-
+		//修复zip没有安装
+		else if (strcmp($action, 'Patch_Install_Zip_if_Not_exist') == 0) {
+		    $action_msg = 'Patch_Install_Zip_if_Not_exist';
+		}
 		else {
 		    $action_msg = 'Unknown Action';
 		}
