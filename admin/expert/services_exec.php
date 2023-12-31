@@ -152,7 +152,7 @@ switch ($action) {
     $cmdresult = exec('sudo touch /tmp/tmpUpdatePath.log; sudo chmod 777 /tmp/tmpUpdatePath.log; sudo curl https://www.bi7jta.cn/files/AndyTaylorTweet/updateScripts/Patch_Install_Zip_if_Not_exist.sh |sudo sh > /tmp/tmpUpdatePath.log; ', $cmdoutput, $retvalue);
         // 如果发生错误，输出错误信息
     if ($return_var !== 0) {
-        echo "Error occurred: ";
+        //echo "Error occurred: ";
         echo implode("\n", $output);
     }
     break; 

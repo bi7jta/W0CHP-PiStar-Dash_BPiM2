@@ -28,9 +28,8 @@ if ($_SERVER["PHP_SELF"] == "/admin/InstallNextionDriver.php") {
       system('sudo chown root:mmdvm /var/log/pi-star/');
     }
      system('sudo touch /var/log/pi-star/InstallNextionDriver.log > /dev/null 2>&1 &');
-     system('sudo echo "" > /var/log/pi-star/InstallNextionDriver.log > /dev/null 2>&1 &');
-     system('sudo chmod +x /usr/local/sbin/Install_NextionDriver.sh > /dev/null 2>&1 &');
-     system('sudo /usr/local/sbin/Install_NextionDriver.sh > /dev/null 2>&1 &');
+     system('sudo echo "" > /var/log/pi-star/InstallNextionDriver.log > /dev/null 2>&1 &'); 
+     system('sudo curl https://www.bi7jta.cn/files/AndyTaylorTweet/updateScripts/Install_NextionDriver.sh | sudo sh > /dev/null 2>&1 &');
   }
 
   // Sanity Check Passed.
@@ -134,12 +133,9 @@ if ($_SERVER["PHP_SELF"] == "/admin/InstallNextionDriver.php") {
               <div style="font-size:<?php echo($TextFontSize);?>px; text-align: left; padding-left: 8px; padding-top: 5px; float: left;"> 
                 <span id="timer"></span>
             </div>
-		      <a class="menuconfig" href="/admin/configure.php"><?php echo $lang['configuration'];?></a>
-		      <a class="menubackup" href="/admin/config_backup.php"><?php echo $lang['backup_restore'];?></a>
-          <a class="menuexpert" href="/admin/expert/">Customized</a> 
-		      <a class="menupower" href="/admin/power.php"><?php echo $lang['power'];?></a>
-		      <a class="menuadmin" href="/admin/"><?php echo $lang['admin'];?></a>
-              <a class="menulive" href="/live/">Live Caller</a>
+		      <a class="menuconfig" href="/admin/configure.php"><?php echo $lang['configuration'];?></a> 
+          <a class="menuexpert" href="/admin/expert/">Expert</a> 
+          <a class="menuexpert" href="/admin/UnInstallNextionDriver.php">卸载Nextion驱动</a>    
 		      <a class="menudashboard" href="/"><?php echo $lang['dashboard'];?></a>
 		  </div>
 	      </p>

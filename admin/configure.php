@@ -443,12 +443,19 @@ $MYCALL=strtoupper($callsign);
 		document.getElementById("autoApPassForm").submit();
 	}
 	function factoryReset() {
-		if (confirm('WARNING: This will set all your settings back to factory defaults. WiFi setup will be retained to maintain network access to this Pi.\n\nAre you SURE you want to do this?\n\nPress OK to restore the factory configuration\nPress Cancel to go back.')) {
+		if (confirm('WARNING: This will set all your settings back to factory defaults. WiFi setup will be retained to maintain network access to this Pi.\nAre you SURE you want to do this?\nPress OK to restore the factory configuration\nPress Cancel to go back.\n警告:这将使您的所有设置恢复出厂设置。将保留WiFi设置以保持对这款Pi的网络访问。你确定要这么做吗?\n按确定键恢复出厂配置\n按取消键返回')) {
 			document.getElementById("factoryReset").submit();
 		} else {
 			return false;
 		}
 	}
+    function factoryReset_NextionDriver() {
+        if (confirm('WARNING: This will set all your settings back to factory defaults. WiFi setup will be retained to maintain network access to this Pi.\nAre you SURE you want to do this?\nPress OK to restore the factory configuration\nPress Cancel to go back.\n警告:这将使您的所有设置恢复出厂设置。将保留WiFi设置以保持对这款Pi的网络访问。你确定要这么做吗?\n按确定键恢复出厂配置\n按取消键返回')) {
+            document.getElementById("factoryReset_NextionDriver").submit();
+        } else {
+            return false;
+        }
+    }
 	function resizeIframe(obj) {
 		var numpix = parseInt(obj.contentWindow.document.body.scrollHeight, 10);
 		obj.style.height = numpix + 'px';
@@ -550,6 +557,7 @@ $MYCALL=strtoupper($callsign);
             <a class="menuexpert" href="/admin/expert/">Allstarlink</a> 
 			<a class="menuexpert" href="/admin/expert/">Expert</a>
             <a class="menureset" href="javascript:factoryReset();"><?php echo $lang['factory_reset'];?></a>
+            <a class="menureset" href="javascript:factoryReset_NextionDriver();">factoryResetNextionDriver</a>
 			<a class="menupower" href="/admin/power.php"><?php echo $lang['power'];?></a>
 			<a class="menuadmin" href="/admin/"><?php echo $lang['admin'];?></a>
 			<a class="menulive" href="/live/">Live Caller</a>
@@ -688,6 +696,51 @@ if (!empty($_POST)):
           echo "<br />\n</div>\n</div>\n</body>\n</html>\n";
 	  die();
 	  }
+
+    // Factory Reset NextionDriver Handler Here
+    if (empty($_POST['factoryReset_NextionDriver']) != TRUE ) {
+      echo "<br />\n";
+          echo "<table>\n";
+          echo "<tr><th>Factory Reset with NextionDriver Config</th></tr>\n";
+          echo "<tr><td>Loading fresh configuration file(s)...</td><tr>\n";
+          echo "</table>\n";
+          unset($_POST);
+
+      // Over-write the config files with the clean copies
+      exec('sudo unzip -o /usr/local/bin/config_clean_NextionDriver.zip -d /etc/');
+      //Keep my RadioType and CSS
+      //exec('sudo rm -rf /etc/dstar-radio.*');
+      //exec('sudo rm -rf /etc/pistar-css.ini');
+      exec('sudo git --work-tree=/usr/local/sbin --git-dir=/usr/local/sbin/.git update-index --assume-unchanged pistar-upnp.service');
+      exec('sudo git --work-tree=/usr/local/sbin --git-dir=/usr/local/sbin/.git reset --hard origin/master');
+      exec('sudo git --work-tree=/usr/local/bin --git-dir=/usr/local/bin/.git reset --hard origin/master');
+      exec('sudo git --work-tree=/var/www/dashboard --git-dir=/var/www/dashboard/.git reset --hard origin/master');
+          echo '<script type="text/javascript">setTimeout(function() { window.location=window.location;},5000);</script>';
+      // Make the root filesystem read-only
+          //system('sudo sync && sudo sync && sudo sync && sudo mount -o remount,ro /');
+      echo "<br />\n</div>\n";
+          echo "<div class=\"footer\">\nPi-Star web config, &copy; Andy Taylor (MW0MWZ) 2014-".date("Y").".<br />\n";
+          echo '<a href="https://w0chp.net/w0chp-pistar-dash/" style="color: #ffffff; text-decoration:underline;">W0CHP-PiStar-Dash</a> enhancements by W0CHP';
+          echo "<br />\n</div>\n</div>\n</body>\n</html>\n";
+      die();
+      }
+
+    // Handle the case where the config is not read correctly
+    if (count($configmmdvm) <= 18) {
+      echo "<br />\n";
+      echo "<table>\n";
+      echo "<tr><th>ERROR</th></tr>\n";
+      echo "<tr><td>Unable to read source configuration file(s)...</td><tr>\n";
+      echo "<tr><td>Please wait a few seconds and retry...</td></tr>\n";
+      echo "</table>\n";
+      unset($_POST);
+      echo '<script type="text/javascript">setTimeout(function() { window.location=window.location;},5000);</script>';
+      echo "<br />\n</div>\n";
+          echo "<div class=\"footer\">\nPi-Star web config, &copy; Andy Taylor (MW0MWZ) 2014-".date("Y").".<br />\n";
+          echo '<a href="https://w0chp.net/w0chp-pistar-dash/" style="color: #ffffff; text-decoration:underline;">W0CHP-PiStar-Dash</a> enhancements by W0CHP';
+          echo "<br />\n</div>\n</div>\n</body>\n</html>\n";
+      die();
+      }
 
 	// Change Radio Control Software
 	if (empty($_POST['controllerSoft']) != TRUE ) {
@@ -2332,8 +2385,6 @@ if (!empty($_POST)):
 	    system($rollModemType);
 	    system($rollRepeaterType1);
 	    $configmmdvm['Modem']['Port'] = "/dev/ttyAMA0";
-	    $configmmdvm['General']['Duplex'] = 0;
-	    $configmmdvm['DMR Network']['Slot1'] = 0;
         $configmmdvm['Modem']['Protocol'] = "uart";
         $configmmdvm['Modem']['UARTPort'] = $configmmdvm['Modem']['Port'];
 	  }
@@ -2344,7 +2395,6 @@ if (!empty($_POST)):
 	    system($rollModemType);
 	    system($rollRepeaterType1);
 	    $configmmdvm['Modem']['Port'] = "/dev/ttyAMA0";
-	    $configmmdvm['General']['Duplex'] = 1;
         $configmmdvm['Modem']['Protocol'] = "uart";
         $configmmdvm['Modem']['UARTPort'] = $configmmdvm['Modem']['Port'];
 	  }
@@ -3933,7 +3983,9 @@ else:
 <form id="factoryReset" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="post">
 	<div><input type="hidden" name="factoryReset" value="1" /></div>
 </form>
-
+<form id="factoryReset_NextionDriver" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="post">
+    <div><input type="hidden" name="factoryReset_NextionDriver" value="1" /></div>
+</form>
 <?php
     echo '<form id="config" action="'.htmlspecialchars($_SERVER["PHP_SELF"]).'" method="post">';
 ?>
@@ -4074,7 +4126,9 @@ else:
 		<option<?php if ($configModem['Modem']['Hardware'] === 'dvap') {		echo ' selected="selected"';}?> value="dvap">DVAP (USB)</option>
 		<option<?php if ($configModem['Modem']['Hardware'] === 'zum') {			echo ' selected="selected"';}?> value="zum">MMDVM / MMDVM_HS / Teensy / ZUM (USB)</option>
 		<option<?php if ($configModem['Modem']['Hardware'] === 'stm32dvm') {		echo ' selected="selected"';}?> value="stm32dvm">STM32-DVM / MMDVM_HS - Raspberry Pi Hat (GPIO)</option>
-		<option<?php if ($configModem['Modem']['Hardware'] === 'stm32usb') {		echo ' selected="selected"';}?> value="stm32usb">STM32-DVM (USB)</option>
+		<option<?php if ($configModem['Modem']['Hardware'] === 'stm32usb') {		echo ' selected="selected"';}?> value="stm32usb">STM32-DVM (USB) VisualBox, Windows macOS </option>
+            <option<?php if ($configModem['Modem']['Hardware'] === 'mmdvmvyehat') {     echo ' selected="selected"';}?> value="mmdvmvyehat">BI7JTA (VR2VYE) Nano_hotSPOT (14.7456MHz TCXO) GPIO</option>
+            <option<?php if ($configModem['Modem']['Hardware'] === 'mmdvmvyehatdual') { echo ' selected="selected"';}?> value="mmdvmvyehatdual">BI7JTA (VR2VYE) RPi Repeater V3F4/Duplex/Simplex GPIO</option>
 	        <option<?php if ($configModem['Modem']['Hardware'] === 'zumspotlibre') {	echo ' selected="selected"';}?> value="zumspotlibre">ZUMspot - Libre (USB)</option>
 		<option<?php if ($configModem['Modem']['Hardware'] === 'zumspotusb') {		echo ' selected="selected"';}?> value="zumspotusb">ZUMspot - USB Stick</option>
 		<option<?php if ($configModem['Modem']['Hardware'] === 'zumspotgpio') {		echo ' selected="selected"';}?> value="zumspotgpio">ZUMspot - Single Band Raspberry Pi Hat (GPIO)</option>
@@ -4093,8 +4147,6 @@ else:
 	        <option<?php if ($configModem['Modem']['Hardware'] === 'mmdvmhshatambe') {	echo ' selected="selected"';}?> value="mmdvmhshatambe">MMDVM_HS_AMBE (D2RG HS_AMBE) for Pi (GPIO)</option>
 	        <option<?php if ($configModem['Modem']['Hardware'] === 'mmdvmrpthat') {		echo ' selected="selected"';}?> value="mmdvmrpthat">MMDVM_RPT_Hat (DB9MAT, DF2ET &amp; F0DEI) for Pi (GPIO)</option>
 	        <option<?php if ($configModem['Modem']['Hardware'] === 'mmdvmmdohat') {		echo ' selected="selected"';}?> value="mmdvmmdohat">MMDVM_HS_MDO Hat (BG3MDO) for Pi (GPIO)</option>
-	        <option<?php if ($configModem['Modem']['Hardware'] === 'mmdvmvyehat') {		echo ' selected="selected"';}?> value="mmdvmvyehat">MMDVM_HS_NPi Hat (VR2VYE) for Nano Pi (GPIO)</option>
-	        <option<?php if ($configModem['Modem']['Hardware'] === 'mmdvmvyehatdual') {	echo ' selected="selected"';}?> value="mmdvmvyehatdual">MMDVM_HS_Hat_Dual Hat (VR2VYE) for Pi (GPIO)</option>
 		<option<?php if ($configModem['Modem']['Hardware'] === 'genesishat') {		echo ' selected="selected"';}?> value="genesishat">Genesis - HHDVM_HS_Hat for Pi (GPIO)</option>
 		<option<?php if ($configModem['Modem']['Hardware'] === 'genesisdualhat') {	echo ' selected="selected"';}?> value="genesisdualhat">Genesis Dual Hat - HHDVM_HS_Hat_Dual for Pi (GPIO)</option>
 	    	<option<?php if ($configModem['Modem']['Hardware'] === 'lshshatgpio') {		echo ' selected="selected"';}?> value="lshshatgpio">LoneStar - MMDVM_HS_Hat for Pi (GPIO)</option>
