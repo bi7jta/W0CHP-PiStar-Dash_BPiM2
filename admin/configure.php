@@ -563,7 +563,7 @@ $MYCALL=strtoupper($callsign);
 			<a class="menulive" href="/live/">Live Caller</a>
             <a class="menulive" href="/admin/expert/ssh_access.php">SSH Mode</a> 
             <a class="menulogs" href="/admin/live_modem_log.php"><?php echo $lang['live_logs'];?></a>;
-            <a class="menulogs" href="/admin/download_all_logs.php"><?php echo $lang['download_all_logs'];?></a>;
+            <a class="menulogs" href="/admin/download_all_logs.php">Download Logs</a>;
 			<a class="menudashboard" href="/"><?php echo $lang['dashboard'];?></a>
 		    </div>
 		</p>

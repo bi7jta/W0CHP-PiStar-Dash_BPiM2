@@ -192,6 +192,7 @@ if(empty($_POST['func'])) {
 			<a class="menulive" href="/live/">Live Caller</a>
 			<a class="menuhwinfo" href='#'>Toggle SysInfo</a>
 			<a class="menuexpert" href="/admin/expert/">Allstarlink</a> 
+			<a class="menulogs" href="/admin/download_all_logs.php">Download Logs</a>
 			<a class="menudashboard" href="/admin/wifi.php?page=wlan0_info">WiFi Config</a>
 			<a class="menudashboard" href="/"><?php echo $lang['dashboard'];?></a>
 		    </div> 
