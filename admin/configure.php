@@ -662,14 +662,34 @@ if (!empty($_POST)):
           unset($_POST);
 
 	  // Over-write the config files with the clean copies
-	  exec('sudo unzip -o /usr/local/bin/config_clean.zip -d /etc/');
+	  exec('sudo unzip -o /var/www/dashboard/factoryRecoveryConfig/config_clean.zip -d /etc/');
+      // Add Local Host
+      exec('sudo mv -fv /etc/DMR_Hosts.txt /root/');
+      exec('sudo mv -fv /etc/XLXHosts.txt /root/');
+      exec('sudo mv -fv /etc/M17Hosts.txt /root/');
+      exec('sudo mv -fv /etc/YSFHosts.txt /root/');
+      exec('sudo mv -fv /etc/P25Hosts.txt /root/');
+      exec('sudo mv -fv /etc/FCSHosts.txt /root/'); 
+
+      // Add ASL DVS
+      exec('sudo mv -fv /etc/iax.conf /etc/asterisk/iax.conf'); 
+      exec('sudo mv -fv /etc/rpt.conf /etc/asterisk/rpt.conf'); 
+      exec('sudo mv -fv /etc/extensions.conf /etc/asterisk/extensions.conf'); 
+      exec('sudo mv -fv /etc/sip.conf /etc/asterisk/sip.conf'); 
+      exec('sudo mv -fv /etc/allmon.ini /var/www/dashboard/supermon/allmon.ini'); 
+      exec('sudo mv -fv /etc/Analog_Bridge.ini /opt/Analog_Bridge/Analog_Bridge.ini'); 
+      exec('sudo mv -fv /etc/MMDVM_Bridge.ini /opt/MMDVM_Bridge/MMDVM_Bridge.ini'); 
+
+      // Push to /usr/local/etc/*Hosts.txt
+      exec('sudo -- /bin/bash -c "mount -o remount,rw /; sudo touch /tmp/tmpUpdatePath.log; sudo chmod 777 /tmp/tmpUpdatePath.log; sudo chmod +x /usr/local/sbin/HostFilesUpdate.sh; sudo /usr/local/sbin/HostFilesUpdate.sh HostOnly  > /tmp/tmpUpdatePath.log; "');
+
       //Keep my RadioType and CSS
 	  //exec('sudo rm -rf /etc/dstar-radio.*');
 	  //exec('sudo rm -rf /etc/pistar-css.ini');
-	  exec('sudo git --work-tree=/usr/local/sbin --git-dir=/usr/local/sbin/.git update-index --assume-unchanged pistar-upnp.service');
-	  exec('sudo git --work-tree=/usr/local/sbin --git-dir=/usr/local/sbin/.git reset --hard origin/master');
-	  exec('sudo git --work-tree=/usr/local/bin --git-dir=/usr/local/bin/.git reset --hard origin/master');
-	  exec('sudo git --work-tree=/var/www/dashboard --git-dir=/var/www/dashboard/.git reset --hard origin/master');
+	  //exec('sudo git --work-tree=/usr/local/sbin --git-dir=/usr/local/sbin/.git update-index --assume-unchanged pistar-upnp.service');
+	  //exec('sudo git --work-tree=/usr/local/sbin --git-dir=/usr/local/sbin/.git reset --hard origin/master');
+	  //exec('sudo git --work-tree=/usr/local/bin --git-dir=/usr/local/bin/.git reset --hard origin/master');
+	  //exec('sudo git --work-tree=/var/www/dashboard --git-dir=/var/www/dashboard/.git reset --hard origin/master');
           echo '<script type="text/javascript">setTimeout(function() { window.location=window.location;},5000);</script>';
 	  // Make the root filesystem read-only
           //system('sudo sync && sudo sync && sudo sync && sudo mount -o remount,ro /');
@@ -707,14 +727,34 @@ if (!empty($_POST)):
           unset($_POST);
 
       // Over-write the config files with the clean copies
-      exec('sudo unzip -o /usr/local/bin/config_clean_NextionDriver.zip -d /etc/');
+      exec('sudo unzip -o /var/www/dashboard/factoryRecoveryConfig/config_clean_NextionDriver.zip -d /etc/');
+      // Add Local Host
+      exec('sudo mv -fv /etc/DMR_Hosts.txt /root/');
+      exec('sudo mv -fv /etc/XLXHosts.txt /root/');
+      exec('sudo mv -fv /etc/M17Hosts.txt /root/');
+      exec('sudo mv -fv /etc/YSFHosts.txt /root/');
+      exec('sudo mv -fv /etc/P25Hosts.txt /root/');
+      exec('sudo mv -fv /etc/FCSHosts.txt /root/'); 
+
+      // Add ASL DVS
+      exec('sudo mv -fv /etc/iax.conf /etc/asterisk/iax.conf'); 
+      exec('sudo mv -fv /etc/rpt.conf /etc/asterisk/rpt.conf'); 
+      exec('sudo mv -fv /etc/extensions.conf /etc/asterisk/extensions.conf'); 
+      exec('sudo mv -fv /etc/sip.conf /etc/asterisk/sip.conf'); 
+      exec('sudo mv -fv /etc/allmon.ini /var/www/dashboard/supermon/allmon.ini'); 
+      exec('sudo mv -fv /etc/Analog_Bridge.ini /opt/Analog_Bridge/Analog_Bridge.ini'); 
+      exec('sudo mv -fv /etc/MMDVM_Bridge.ini /opt/MMDVM_Bridge/MMDVM_Bridge.ini'); 
+
+      // Push to /usr/local/etc/*Hosts.txt
+      exec('sudo -- /bin/bash -c "mount -o remount,rw /; sudo touch /tmp/tmpUpdatePath.log; sudo chmod 777 /tmp/tmpUpdatePath.log; sudo chmod +x /usr/local/sbin/HostFilesUpdate.sh; sudo /usr/local/sbin/HostFilesUpdate.sh HostOnly ; "');
+
       //Keep my RadioType and CSS
       //exec('sudo rm -rf /etc/dstar-radio.*');
       //exec('sudo rm -rf /etc/pistar-css.ini');
-      exec('sudo git --work-tree=/usr/local/sbin --git-dir=/usr/local/sbin/.git update-index --assume-unchanged pistar-upnp.service');
-      exec('sudo git --work-tree=/usr/local/sbin --git-dir=/usr/local/sbin/.git reset --hard origin/master');
-      exec('sudo git --work-tree=/usr/local/bin --git-dir=/usr/local/bin/.git reset --hard origin/master');
-      exec('sudo git --work-tree=/var/www/dashboard --git-dir=/var/www/dashboard/.git reset --hard origin/master');
+      //exec('sudo git --work-tree=/usr/local/sbin --git-dir=/usr/local/sbin/.git update-index --assume-unchanged pistar-upnp.service');
+      //exec('sudo git --work-tree=/usr/local/sbin --git-dir=/usr/local/sbin/.git reset --hard origin/master');
+      //exec('sudo git --work-tree=/usr/local/bin --git-dir=/usr/local/bin/.git reset --hard origin/master');
+      //exec('sudo git --work-tree=/var/www/dashboard --git-dir=/var/www/dashboard/.git reset --hard origin/master');
           echo '<script type="text/javascript">setTimeout(function() { window.location=window.location;},5000);</script>';
       // Make the root filesystem read-only
           //system('sudo sync && sudo sync && sudo sync && sudo mount -o remount,ro /');
