@@ -146,7 +146,7 @@ if(empty($_POST['func'])) {
 		<?php } else { ?>
 		<div id="CheckUpdate"><?php echo $version; ?></div></div>
 		<?php } ?>
-		<h1>Pi-Star <?php echo $lang['digital_voice']." ".$lang['dashboard_for']." <code style='font-weight:550;'>".$_SESSION['MYCALL']."</code>"; ?></h1>
+		<h1>Pi-Star (J-STAR Desktop) <?php echo $lang['digital_voice']." ".$lang['dashboard_for']." <code style='font-weight:550;'>".$_SESSION['MYCALL']."</code>"; ?></h1>
 		<!-- Disable check for M2z M2u
 		<div id="CheckMessage">
 		<?php

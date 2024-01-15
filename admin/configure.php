@@ -524,7 +524,7 @@ $MYCALL=strtoupper($callsign);
 <?php } else { ?>
 <div id="CheckUpdate"><?php echo $version; ?></div></div>
 <?php } ?>
-<h1>Pi-Star <?php echo $lang['digital_voice']." - ".$lang['configuration'];?></h1>
+<h1>Pi-Star(J-STAR Desktop) <?php echo $lang['digital_voice']." - ".$lang['configuration'];?></h1>
 		<p>
 		    <div class="navbar">
               <script type= "text/javascript">
@@ -548,9 +548,6 @@ $MYCALL=strtoupper($callsign);
                  update();
                });
               </script>
-              <div style="font-size:<?php echo($TextFontSize);?>px; text-align: left; padding-left: 8px; padding-top: 5px; float: left;">
-                <span id="timer"></span>
-            </div> 
 			<a class="menubackup" href="/admin/config_backup.php"><?php echo $lang['backup_restore'];?></a> 
             <a class="menuupdate" href="/admin/update_HostFile_DMRIds.php">Update DMRIds</a>
 			<a class="menuupdate" href="/admin/update.php"><?php echo $lang['update'];?></a>
@@ -562,8 +559,8 @@ $MYCALL=strtoupper($callsign);
 			<a class="menuadmin" href="/admin/"><?php echo $lang['admin'];?></a>
 			<a class="menulive" href="/live/">Live Caller</a>
             <a class="menulive" href="/admin/expert/ssh_access.php">SSH Mode</a> 
-            <a class="menulogs" href="/admin/live_modem_log.php"><?php echo $lang['live_logs'];?></a>;
-            <a class="menulogs" href="/admin/download_all_logs.php">Download Logs</a>;
+            <a class="menulogs" href="/admin/live_modem_log.php"><?php echo $lang['live_logs'];?></a>
+            <a class="menulogs" href="/admin/download_all_logs.php">Download Logs</a>
 			<a class="menudashboard" href="/"><?php echo $lang['dashboard'];?></a>
 		    </div>
 		</p>
