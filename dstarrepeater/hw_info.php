@@ -44,8 +44,8 @@ function formatSize( $bytes ) {
 }
 
 // root fs info
-$diskUsed = @exec("df --block-size=1 / | tail -1 | awk {'print $3'}");
-$diskTotal = @exec("df --block-size=1 / | tail -1 | awk {'print $2'}");
+$diskUsed = @exec("df --block-size=1 /var/log | tail -1 | awk {'print $3'}");
+$diskTotal = @exec("df --block-size=1 /var/log | tail -1 | awk {'print $2'}");
 $diskPercent = sprintf('%.2f',($diskUsed / $diskTotal) * 100);
 $rootfs_free = $diskTotal - $diskUsed;
 $rootfs_stats = formatSize($diskUsed). " of " .formatSize($diskTotal). " <small>($diskPercent% used / ".formatSize($rootfs_free)." free)</small>" ;
@@ -87,7 +87,7 @@ if (empty($VNStatGetData) == false) {
       <div class="divTableHeadCell"><a class="tooltip" href="#"><?php echo $lang['cpu_load'];?><span><strong><?php echo $lang['cpu_load'];?></strong></a></span></div>
       <div class="divTableHeadCell"><a class="tooltip" href="#"><?php echo $lang['cpu_temp'];?><span><strong>CPU Temp</strong></a><span></div>
       <div class="divTableHeadCell"><a class="tooltip" href="#">Memory Usage<span><strong>Memory Usage</strong></a></span></div>
-      <div class="divTableHeadCell"><a class="tooltip" href="#">Disk Usage<span><strong>Disk Usage</strong></a></span></div>
+      <div class="divTableHeadCell"><a class="tooltip" href="#">Log Space Usage<span><strong>Log Space Usage</strong></a></span></div>
       <div class="divTableHeadCell"><a class="tooltip" href="#">Network Traffic<span><strong>Total Network Traffic Today</strong></a></span></div>
     </div>
     <div class="divTableRow">

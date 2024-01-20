@@ -4163,9 +4163,9 @@ else:
 		<option<?php if ($configModem['Modem']['Hardware'] === 'dvap') {		echo ' selected="selected"';}?> value="dvap">DVAP (USB)</option>
 		<option<?php if ($configModem['Modem']['Hardware'] === 'zum') {			echo ' selected="selected"';}?> value="zum">MMDVM / MMDVM_HS / Teensy / ZUM (USB)</option>
 		<option<?php if ($configModem['Modem']['Hardware'] === 'stm32dvm') {		echo ' selected="selected"';}?> value="stm32dvm">STM32-DVM / MMDVM_HS - Raspberry Pi Hat (GPIO)</option>
-		<option<?php if ($configModem['Modem']['Hardware'] === 'stm32usb') {		echo ' selected="selected"';}?> value="stm32usb">STM32-DVM (USB) VisualBox, Windows macOS </option>
+		<option<?php if ($configModem['Modem']['Hardware'] === 'stm32usb') {		echo ' selected="selected"';}?> value="stm32usb">STM32-DVM (USB) </option>
             <option<?php if ($configModem['Modem']['Hardware'] === 'mmdvmvyehat') {     echo ' selected="selected"';}?> value="mmdvmvyehat">BI7JTA (VR2VYE) Nano_hotSPOT (14.7456MHz TCXO) GPIO</option>
-            <option<?php if ($configModem['Modem']['Hardware'] === 'mmdvmvyehatdual') { echo ' selected="selected"';}?> value="mmdvmvyehatdual">BI7JTA (VR2VYE) RPi Repeater V3F4/Duplex/Simplex GPIO</option>
+            <option<?php if ($configModem['Modem']['Hardware'] === 'mmdvmvyehatdual') { echo ' selected="selected"';}?> value="mmdvmvyehatdual">BI7JTA (VR2VYE) RPi GPIO  V3F4/Duplex/Simplex </option>
 	        <option<?php if ($configModem['Modem']['Hardware'] === 'zumspotlibre') {	echo ' selected="selected"';}?> value="zumspotlibre">ZUMspot - Libre (USB)</option>
 		<option<?php if ($configModem['Modem']['Hardware'] === 'zumspotusb') {		echo ' selected="selected"';}?> value="zumspotusb">ZUMspot - USB Stick</option>
 		<option<?php if ($configModem['Modem']['Hardware'] === 'zumspotgpio') {		echo ' selected="selected"';}?> value="zumspotgpio">ZUMspot - Single Band Raspberry Pi Hat (GPIO)</option>
