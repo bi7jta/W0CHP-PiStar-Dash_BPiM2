@@ -167,7 +167,9 @@
 			<li class="subs"><a href="fulledit_asterisk_extensions.php">extensions.conf</a></li>  
 			<li class="subs"><a href="fulledit_asterisk_manager.php">manager.conf</a></li>  
 			<li class="subs"><a href="fulledit_asterisk_supermon.ini.php">supermon.ini</a></li>  
-			<li class="subs"><a href="/supermon">SuperMonUI</a></li>  
+			<li class="subs"><a href="/admin/expert/filemanager.php?p=etc%2Fasterisk&edit=modules.conf">modules.conf</a></li>
+			<li class="subs"><a href="/admin/expert/filemanager.php?p=etc%2Fasterisk&edit=echolink.conf">echolink.conf</a></li>
+			<li class="subs"><a href="/supermon">ASL Dashboard</a></li>  
 			<!-- D-Star Sub -->
 			</ul>
 		</li>
@@ -177,7 +179,8 @@
 			<li class="subs"><a href="fulledit_Analog_Bridge.ini.php">Analog_Bridge.ini</a></li>
 			<li class="subs"><a href="fulledit_MMDVM_Bridge.ini.php">MMDVM_Bridge.ini</a></li>
 			<li class="subs"><a href="fulledit_DVSwitch.ini.php">DVSwitch.ini</a></li>
-			<li class="subs"><a href="http://pi-star:8080">DVSwitchUI</a></li>   
+			<li class="subs"><a href="/admin/expert/filemanager.php?p=opt%2FAnalog_Reflector&edit=Analog_Reflector.json">Analog_Reflector.json</a></li>
+			<li class="subs"><a href="http://pi-star:8080">DVS Dashboard</a></li>   
 			<li class="subs"><a href="http://pi-star:2812">MonitManager</a></li>
 			<!-- D-Star Sub --> 
 			</ul>
