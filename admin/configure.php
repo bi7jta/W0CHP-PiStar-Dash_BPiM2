@@ -4639,7 +4639,7 @@ fclose($dmrMasterFile);
 	while (!feof($dmrMasterFile1)) {
 		$dmrMasterLine1 = fgets($dmrMasterFile1);
                 $dmrMasterHost1 = preg_split('/\s+/', $dmrMasterLine1);
-                if ((strpos($dmrMasterHost1[0], '#') === FALSE ) && (substr($dmrMasterHost1[0], 0, 2) == "BM") && ($dmrMasterHost1[0] != '')) {
+                if ((strpos($dmrMasterHost1[0], '#') === FALSE ) && (substr($dmrMasterHost1[0], 0, 2) == "BM" || substr($dmrMasterHost1[0], 0, 4) == "TGIF") && ($dmrMasterHost1[0] != '')) {
                         if (($testMMDVMdmrMaster1 == $dmrMasterHost1[2]) && ($testMMDVMdmrMaster1Port == $dmrMasterHost1[4])) { echo "      <option value=\"$dmrMasterHost1[2],$dmrMasterHost1[3],$dmrMasterHost1[4],$dmrMasterHost1[0]\" selected=\"selected\">$dmrMasterHost1[0]</option>\n"; }
                         else { echo "      <option value=\"$dmrMasterHost1[2],$dmrMasterHost1[3],$dmrMasterHost1[4],$dmrMasterHost1[0]\">$dmrMasterHost1[0]</option>\n"; }
                 }
