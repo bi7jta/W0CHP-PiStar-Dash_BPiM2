@@ -213,7 +213,6 @@
 			</ul>
 		<li class="has-subs"><a href="#">Others</a>
             <ul class="dropdown">
-			
 			<li class="subs"><a href="fulledit_tmpUpdatePath.php">1.Edit Patch Script</a></li>
 			<li class="subs"><a href="services.php?action=RunUpdatePatch">2.Run Patch Scipt</a></li>
 			<li class="subs"><a href="fulledit_tmpUpdatePathLog.php">3.View Run Log</a></li>
@@ -221,20 +220,8 @@
 			<li class="subs"><a href="services.php?action=ChangeGitee2Github">ChangeGitee2Github</a></li>
 			<li class="subs"><a href="services.php?action=ForceUpdateGit">Force Update Git</a></li>
 			<li class="subs"><a href="fulledit_Modify-And-Todo-list.txt.php">Todo List</a></li>
-			
 			</ul>
 		</li>
-		<li class="has-subs"><a href="#">J-StarOS</a>
-            <ul class="dropdown">
-            <li class="subs"><a href="services.php?action=Patch_Support_HDMI_1080p_FullScrean_RPi4B">Fix1080pNotFull</a></li>
-            <li class="subs"><a href="services.php?action=Patch_Add_HDMI_Chrome_AutoStart_BPiM2">HDMI Dashboard on boot</a></li>
-            <li class="subs"><a href="services.php?action=Patch_HDMI_Chrome_Change_Simple">HDMI Dashboard Mobile</a></li>
-            <li class="subs"><a href="services.php?action=Patch_HDMI_Chrome_Change_Full">HDMI Dashbaord Full</a></li>
-            <li class="subs"><a href="services.php?action=Patch_HDMI_Chrome_Change_LiveCaller">HDMI Dashboard Live</a></li>
-            <li class="subs"><a href="services.php?action=Patch_ZeroW_Open_CallerDetails">ZW_CallerDetails</a></li>
-            <li class="subs"><a href="services.php?action=Patch_Add_Rustdesk_AutoStart_RPi4B">RustDesk_Onboot</a</li>
-			</ul>
-		</li> 
 		<li class="has-subs"><a href="#">系统补丁</a>
             <ul class="dropdown">
             <li class="subs"><a href="services.php?action=Patch_Support_HDMI_1080p_FullScrean_RPi4B">修复1080p不满屏</a></li>
@@ -265,6 +252,7 @@
             <li class="subs"><a href="services.php?action=onekeyflash_RPi_fw_RPi_REP_V3F4">升级中继板固件</a></li>  
 			<li class="subs"><a href="/admin/UnInstallNextionDriver.php">卸载Nextion驱动</a></li>
 			<li class="subs"><a href="/admin/InstallNextionDriver.php">安装Nextion驱动</a></li>
+			<li class="subs"><a href="services.php?action=Patch_Add_Rustdesk_AutoStart_RPi4B">RustDesk_Onboot</a</li>
 			<li class="subs"><a href="fulledit_tmpUpdatePathLog.php">查看执行结果</a></li> 
 			</ul>
 		</li> 
