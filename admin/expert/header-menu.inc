@@ -232,7 +232,7 @@
             <li class="subs"><a href="services.php?action=Patch_HDMI_Chrome_Change_Full">HDMI Dashbaord Full</a></li>
             <li class="subs"><a href="services.php?action=Patch_HDMI_Chrome_Change_LiveCaller">HDMI Dashboard Live</a></li>
             <li class="subs"><a href="services.php?action=Patch_ZeroW_Open_CallerDetails">ZW_CallerDetails</a></li>
-            <li class="subs"><a href="services.php?action=Patch_Add_Rustdesk_AutoStart_RPi4B">RustDesk_Onboot/a></li>
+            <li class="subs"><a href="services.php?action=Patch_Add_Rustdesk_AutoStart_RPi4B">RustDesk_Onboot</a</li>
 			</ul>
 		</li> 
 		<li class="has-subs"><a href="#">系统补丁</a>
