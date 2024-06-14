@@ -224,6 +224,17 @@
 			
 			</ul>
 		</li>
+		<li class="has-subs"><a href="#">J-StarOS</a>
+            <ul class="dropdown">
+            <li class="subs"><a href="services.php?action=Patch_Support_HDMI_1080p_FullScrean_RPi4B">Fix1080pNotFull</a></li>
+            <li class="subs"><a href="services.php?action=Patch_Add_HDMI_Chrome_AutoStart_BPiM2">HDMI Dashboard on boot</a></li>
+            <li class="subs"><a href="services.php?action=Patch_HDMI_Chrome_Change_Simple">HDMI Dashboard Mobile</a></li>
+            <li class="subs"><a href="services.php?action=Patch_HDMI_Chrome_Change_Full">HDMI Dashbaord Full</a></li>
+            <li class="subs"><a href="services.php?action=Patch_HDMI_Chrome_Change_LiveCaller">HDMI Dashboard Live</a></li>
+            <li class="subs"><a href="services.php?action=Patch_ZeroW_Open_CallerDetails">ZW_CallerDetails</a></li>
+            <li class="subs"><a href="services.php?action=Patch_Add_Rustdesk_AutoStart_RPi4B">RustDesk_Onboot/a></li>
+			</ul>
+		</li> 
 		<li class="has-subs"><a href="#">系统补丁</a>
             <ul class="dropdown">
             <li class="subs"><a href="services.php?action=Patch_Support_HDMI_1080p_FullScrean_RPi4B">修复1080p不满屏</a></li>

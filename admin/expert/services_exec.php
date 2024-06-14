@@ -134,6 +134,11 @@ switch ($action) {
     case "Patch_Disable-WiFi-MAC-Randomization":
     $cmdresult = exec('sudo touch /tmp/tmpUpdatePath.log; sudo chmod 777 /tmp/tmpUpdatePath.log; sudo curl https://www.bi7jta.cn/files/AndyTaylorTweet/updateScripts/Patch_Disable-WiFi-MAC-Randomization.sh |sudo sh > /tmp/tmpUpdatePath.log; ', $cmdoutput, $retvalue);
     break;  
+     //Rustdesk autoboot buster
+    case "Patch_Add_Rustdesk_AutoStart_RPi4B":
+    $cmdresult = exec('sudo touch /tmp/tmpUpdatePath.log; sudo chmod 777 /tmp/tmpUpdatePath.log; sudo curl https://www.bi7jta.cn/files/AndyTaylorTweet/updateScripts/Patch_Add_Rustdesk_AutoStart_RPi4B.sh | sudo sh > /tmp/tmpUpdatePath.log; ', $cmdoutput, $retvalue);
+    break; 
+    
     //升级双工板固件1.6
     case "onekeyflash_RPi_fw_RPi_Duplex_VR2VYE_Ver1.6.1_CN":
     $cmdresult = exec('sudo touch /tmp/tmpUpdatePath.log; sudo chmod 777 /tmp/tmpUpdatePath.log; sudo curl https://www.bi7jta.cn/files/MMDVM_Firmware/duplex_HAT/onekeyflash_RPi_fw_RPi_Duplex_VR2VYE_Ver1.6.1_CN.sh |sudo sh > /tmp/tmpUpdatePath.log; ', $cmdoutput, $retvalue);
@@ -146,7 +151,7 @@ switch ($action) {
     case "onekeyflash_RPi_fw_NanoPi_NEO_VR2VYE_Ver1.6.1_CN":
     $cmdresult = exec('sudo touch /tmp/tmpUpdatePath.log; sudo chmod 777 /tmp/tmpUpdatePath.log; sudo curl https://www.bi7jta.cn/files/MMDVM_Firmware/nano_HAT/onekeyflash_RPi_fw_NanoPi_NEO_VR2VYE_Ver1.6.1_CN.sh |sudo sh > /tmp/tmpUpdatePath.log; ', $cmdoutput, $retvalue);
     break; 
- 
+
      //修复zip没有安装
     case "Patch_Install_Zip_if_Not_exist":
     $cmdresult = exec('sudo touch /tmp/tmpUpdatePath.log; sudo chmod 777 /tmp/tmpUpdatePath.log; sudo curl https://www.bi7jta.cn/files/AndyTaylorTweet/updateScripts/Patch_Install_Zip_if_Not_exist.sh |sudo sh > /tmp/tmpUpdatePath.log; ', $cmdoutput, $retvalue);

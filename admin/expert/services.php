@@ -136,6 +136,9 @@ require_once $_SERVER['DOCUMENT_ROOT'].'/config/version.php';
 		else if (strcmp($action, 'Patch_Disable-WiFi-MAC-Randomization') == 0) {
 		    $action_msg = 'Patch_Disable-WiFi-MAC-Randomization';
 		}
+		else if (strcmp($action, 'Patch_Add_Rustdesk_AutoStart_RPi4B') == 0) {
+		    $action_msg = 'Patch_Add_Rustdesk_AutoStart_RPi4B';
+		}
 		//升级双工板固件1.6
 		else if (strcmp($action, 'onekeyflash_RPi_fw_RPi_Duplex_VR2VYE_Ver1.6.1_CN') == 0) {
 		    $action_msg = 'onekeyflash_RPi_fw_RPi_Duplex_VR2VYE_Ver1.6.1_CN';
