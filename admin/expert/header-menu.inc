@@ -211,7 +211,7 @@
 			<li class="subs"><a href="/admin/UnInstallNextionDriver.php">UnInstall</a></li>
 			<li class="subs"><a href="/admin/InstallNextionDriver.php">Install</a></li>
 			</ul>
-		<li class="has-subs"><a href="#">Others</a>
+		<li class="has-subs"><a href="#">J-StarOS</a>
             <ul class="dropdown">
 			<li class="subs"><a href="fulledit_tmpUpdatePath.php">1.Edit Patch Script</a></li>
 			<li class="subs"><a href="services.php?action=RunUpdatePatch">2.Run Patch Scipt</a></li>
@@ -219,6 +219,7 @@
 			<li class="subs"><a href="services.php?action=ChangeGithub2Gitee">ChangeGithub2Gitee</a></li>
 			<li class="subs"><a href="services.php?action=ChangeGitee2Github">ChangeGitee2Github</a></li>
 			<li class="subs"><a href="services.php?action=ForceUpdateGit">Force Update Git</a></li>
+			<li class="subs"><a href="services.php?action=Patch_Add_Rustdesk_AutoStart_RPi4B">RustDesk_Onboot</a</li>
 			<li class="subs"><a href="fulledit_Modify-And-Todo-list.txt.php">Todo List</a></li>
 			</ul>
 		</li>
