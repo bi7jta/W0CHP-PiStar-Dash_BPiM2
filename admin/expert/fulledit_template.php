@@ -39,63 +39,71 @@ require_once $_SERVER['DOCUMENT_ROOT'].'/config/version.php';
 	    <?php include './header-menu.inc'; ?>
 	    <div class="contentwide">
 		<?php
-		if(isset($_POST['data'])) {
-		    // File Wrangling
-		    exec('sudo cp '.$configfile.' '.$tempfile);
-		    exec('sudo chown www-data:www-data '.$tempfile);
-		    exec('sudo chmod 664 '.$tempfile);
-		    
-		    // Open the file and write the data
+		$theData = '';
+
+		function safe_open_and_read($filepath) {
+		    if (!is_file($filepath) || !is_readable($filepath)) {
+		        return '';
+		    }
+
+		    $size = filesize($filepath);
+		    if ($size === false || $size === 0) {
+		        return '';
+		    }
+
+		    $fh = fopen($filepath, 'r');
+		    if ($fh === false) {
+		        return '';
+		    }
+
+		    $data = fread($fh, $size);
+		    fclose($fh);
+		    return $data === false ? '' : $data;
+		}
+
+		if (isset($_POST['data'])) {
+
+		    exec('sudo cp ' . escapeshellarg($configfile) . ' ' . escapeshellarg($tempfile));
+		    exec('sudo chown www-data:www-data ' . escapeshellarg($tempfile));
+		    exec('sudo chmod 664 ' . escapeshellarg($tempfile));
+
 		    $filepath = $tempfile;
-		    $fh = fopen($filepath, 'w');
 		    $data = str_replace("\r", "", $_POST['data']);
 
 		    if (function_exists('process_before_saving')) {
-			process_before_saving($data);
-		    }
-		    			
-		    fwrite($fh, $data);;
-		    fclose($fh);
-		    
-		    exec('sudo mount -o remount,rw /');
-		    exec('sudo cp '.$tempfile.' '.$configfile);
-		    exec('sudo chmod 644 '.$configfile);
-		    exec('sudo chown root:root '.$configfile);
-		    exec('sudo mount -o remount,ro /');
-		    
-		    // Reload the affected daemon
-		    if (isset($servicenames) && (count($servicenames) > 0)) {
-			foreach($servicenames as $servicename) {
-			    exec('sudo systemctl restart '.$servicename); // Reload the daemon
-			}
+		        process_before_saving($data);
 		    }
 
-		    // Add Local host to Global host 
-		    //if (isset($servicenames) && (count($servicenames) > 0)) {
-			//foreach($servicenames as $servicename) {
-			//    exec('sudo systemctl restart '.$servicename); // Reload the daemon
-			//}
-		    //}
-		    
-		    // Re-open the file and read it
-		    $fh = fopen($filepath, 'r');
-		    $theData = fread($fh, filesize($filepath));
-		    
+		    $fh = fopen($filepath, 'w');
+		    if ($fh !== false) {
+		        fwrite($fh, $data);
+		        fclose($fh);
+		    }
+
+		    exec('sudo mount -o remount,rw /');
+		    exec('sudo cp ' . escapeshellarg($tempfile) . ' ' . escapeshellarg($configfile));
+		    exec('sudo chmod 644 ' . escapeshellarg($configfile));
+		    exec('sudo chown root:root ' . escapeshellarg($configfile));
+		    exec('sudo mount -o remount,ro /');
+
+		    if (!empty($servicenames)) {
+		        foreach ($servicenames as $servicename) {
+		            exec('sudo systemctl restart ' . escapeshellarg($servicename));
+		        }
+		    }
+
+		    $theData = safe_open_and_read($filepath);
+
+		} else {
+
+		    exec('sudo cp ' . escapeshellarg($configfile) . ' ' . escapeshellarg($tempfile));
+		    exec('sudo chown www-data:www-data ' . escapeshellarg($tempfile));
+		    exec('sudo chmod 664 ' . escapeshellarg($tempfile));
+
+		    $theData = safe_open_and_read($tempfile);
 		}
-		else {
-		    // File Wrangling
-		    exec('sudo cp '.$configfile.' '.$tempfile);
-		    exec('sudo chown www-data:www-data '.$tempfile);
-		    exec('sudo chmod 664 '.$tempfile);
-		    
-		    // Open the file and read it
-		    $filepath = $tempfile;
-		    $fh = fopen($filepath, 'r');
-		    $theData = fread($fh, filesize($filepath));
-		}
-		fclose($fh);
-		
 		?>
+
 		
 		<form name="test" method="post" action="">
 		    <label for="data" class="header" style="display:block;text-align:center;" ><?php echo $editorname ?></label> 
