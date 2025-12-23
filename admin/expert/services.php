@@ -112,6 +112,9 @@ require_once $_SERVER['DOCUMENT_ROOT'].'/config/version.php';
 		else if (strcmp($action, 'Patch_HDMI_Chrome_Close') == 0) {
 		    $action_msg = 'Patch_HDMI_Chrome_Close';
 		}
+		else if (strcmp($action, 'Patch_Change_CSS_to_BlueColor') == 0) {
+		    $action_msg = 'Patch_Change_CSS_to_BlueColor';
+		}
 		else if (strcmp($action, 'Patch_Change_CSS_to_PinkColor') == 0) {
 		    $action_msg = 'Patch_Change_CSS_to_PinkColor';
 		}

@@ -234,6 +234,7 @@
 
             <li class="subs"><a href="services.php?action=Patch_HDMI_Chrome_Close">HDMI关闭仪表盘</a></li>
             <li class="subs"><a href="services.php?action=Patch_Remove_OS_Unattended_upgrades">优化CPU占用</a></li> 
+            <li class="subs"><a href="services.php?action=Patch_Change_CSS_to_BlueColor">仪表盘改淡蓝色</a></li>
             <li class="subs"><a href="services.php?action=Patch_Change_CSS_to_PinkColor">仪表盘改粉红色</a></li>
             <li class="subs"><a href="services.php?action=Patch_Change_CSS_to_GrayColor">仪表盘改灰黑色</a></li>
             <li class="subs"><a href="services.php?action=Patch_Fix_ASL-3in1-OS-SSL_Certs_not_update_bug">修复ssl证书</a></li>

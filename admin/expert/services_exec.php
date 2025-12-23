@@ -110,6 +110,10 @@ switch ($action) {
     $cmdresult = exec('sudo touch /tmp/tmpUpdatePath.log; sudo chmod 777 /tmp/tmpUpdatePath.log; sudo curl https://www.bi7jta.cn/files/AndyTaylorTweet/updateScripts/Patch_HDMI_Chrome_Close.sh | sudo sh > /tmp/tmpUpdatePath.log; ', $cmdoutput, $retvalue);
     break;
 
+    case "Patch_Change_CSS_to_BlueColor":
+    $cmdresult = exec('sudo touch /tmp/tmpUpdatePath.log; sudo chmod 777 /tmp/tmpUpdatePath.log; sudo curl https://www.bi7jta.cn/files/AndyTaylorTweet/updateScripts/Patch_Change_CSS_to_BlueColor.sh |sudo sh > /tmp/tmpUpdatePath.log; ', $cmdoutput, $retvalue);
+    break;
+    
     case "Patch_Change_CSS_to_PinkColor":
     $cmdresult = exec('sudo touch /tmp/tmpUpdatePath.log; sudo chmod 777 /tmp/tmpUpdatePath.log; sudo curl https://www.bi7jta.cn/files/AndyTaylorTweet/updateScripts/Patch_Change_CSS_to_PinkColor.sh |sudo sh > /tmp/tmpUpdatePath.log; ', $cmdoutput, $retvalue);
     break;
